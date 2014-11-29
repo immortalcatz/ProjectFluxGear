@@ -1,0 +1,27 @@
+[
+    {
+        "modid": "ThermalTinkerer",
+        "name": "Thermal Tinkerer",
+        "description": "A unique kind of insane in Thermal Expansion addon form.",
+        "version": "0.1.0.0e",
+        "credits": "Team CoFH",
+        "logoFile": "",
+        "mcversion": "1.7.10",
+        "url": "",
+        "updateUrl": "",
+        "authors": [
+            "Mortvana",
+			"Gyro",
+			"Drullkus",
+			"Tiktalik"
+        ],
+        "parent": "",
+        "screenshots": [],
+        "dependencies": [
+            "MinecraftForge",
+			"CoFHLib",
+			"CoFHCore",
+			"ThermalFoundation"
+        ]
+    }
+]

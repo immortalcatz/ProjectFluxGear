@@ -1,0 +1,11 @@
+{
+    "name": {
+        "category": "",
+        "sounds": [
+            {
+                "name": "file path",
+                "stream": boolean
+            }
+        ]
+    }
+}

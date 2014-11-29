@@ -1,0 +1,109 @@
+tile.thermaltinkerer.ore.sphalerite.name=Sphalerite Ore
+tile.thermaltinkerer.ore.bismuthinite.name=Bismuthinite Ore
+tile.thermaltinkerer.ore.pyrolusite.name=Pyrolusite Ore
+tile.thermaltinkerer.ore.braggite.name=Braggite Ore
+tile.thermaltinkerer.ore.molybdenite.name=Molybdenite Ore
+tile.thermaltinkerer.ore.cobaltite.name=Cobaltite Ore
+tile.thermaltinkerer.ore.wolframite.name=Wolframite Ore
+tile.thermaltinkerer.ore.bauxite.name=Bauxite Ore
+tile.thermaltinkerer.ore.chromite.name=Chromite Ore
+tile.thermaltinkerer.ore.ilmenite.name=Ilmenite Ore
+tile.thermaltinkerer.ore.magnetite.name=Magnetite Ore
+tile.thermaltinkerer.ore.dioptase.name=Dioptase Ore
+tile.thermaltinkerer.ore.pyrope.name=Pyrope Ore
+tile.thermaltinkerer.ore.myuvil.name=Myuvil Ore
+
+tile.thermaltinkerer.storage.zinc.name=Zinc Block
+tile.thermaltinkerer.storage.bismuth.name=Bismuth Block
+tile.thermaltinkerer.storage.manganese.name=Manganese Block
+tile.thermaltinkerer.storage.palladium.name=Palladium Block
+tile.thermaltinkerer.storage.molybdenum.name=Molybdenum Block
+tile.thermaltinkerer.storage.cobalt.name=Cobalt Block
+tile.thermaltinkerer.storage.tungsten.name=Tungsten Block
+tile.thermaltinkerer.storage.aluminium.name=Aluminium Block
+tile.thermaltinkerer.storage.chromium.name=Chromium Block
+tile.thermaltinkerer.storage.titanium.name=Titanium Block
+tile.thermaltinkerer.storage.magnetite.name=Magnetite Block
+tile.thermaltinkerer.storage.dioptase.name=Dioptase Block
+tile.thermaltinkerer.storage.pyrope.name=Pyrope Block
+tile.thermaltinkerer.storage.myuvil.name=Myuvil Block
+
+tile.thermaltinkerer.alloy.brass.name=Brass Block
+tile.thermaltinkerer.alloy.bismuthBronze.name=Bismuth Bronze Block
+tile.thermaltinkerer.alloy.cupronickel.name=Cupronickel Block
+tile.thermaltinkerer.alloy.aluminiumBrass.name=Aluminium Brass Block
+tile.thermaltinkerer.alloy.mithrilBronze.name=Mithril Block
+tile.thermaltinkerer.alloy.electriplatinum.name=Electriplatinum Block
+tile.thermaltinkerer.alloy.steel.name=Steel Block
+tile.thermaltinkerer.alloy.tungstenSteel.name=Tungstensteel Block
+tile.thermaltinkerer.alloy.stainlessSteel.name=Stainless Steel Block
+
+item.thermaltinkerer.material.ingotZinc.name=Zinc Ingot
+item.thermaltinkerer.material.ingotBismuth.name=Bismuth Ingot
+item.thermaltinkerer.material.ingotManganese.name=Manganese Ingot
+item.thermaltinkerer.material.ingotPalladium.name=Palladium Ingot
+item.thermaltinkerer.material.ingotMolybdenum.name=Molybdenum Ingot
+item.thermaltinkerer.material.ingotCobalt.name=Cobalt Ingot
+item.thermaltinkerer.material.ingotTungsten.name=Tungsten Ingot
+item.thermaltinkerer.material.ingotAluminium.name=Aluminium Ingot
+item.thermaltinkerer.material.ingotChromium.name=Chromium Ingot
+item.thermaltinkerer.material.ingotTitanium.name=Titanium Ingot
+item.thermaltinkerer.material.ingotIridium.name=Iridium Ingot
+
+item.thermaltinkerer.material.gemDioptase.name=Dioptase
+item.thermaltinkerer.material.gemPyrope.name=Pyrope
+item.thermaltinkerer.material.gemMagnetite.name=Magnetite
+
+item.thermaltinkerer.material.dustZinc.name=Pulverized Zinc
+item.thermaltinkerer.material.dustBismuth.name=Pulverized Bismuth
+item.thermaltinkerer.material.dustManganese.name=Pulverized Manganese
+item.thermaltinkerer.material.dustPalladium.name=Pulverized Palladium
+item.thermaltinkerer.material.dustMolybdenum.name=Pulverized Molybdenum
+item.thermaltinkerer.material.dustCobalt.name=Pulverized Cobalt
+item.thermaltinkerer.material.dustTungsten.name=Pulverized Tungsten
+item.thermaltinkerer.material.dustAluminium.name=Pulverized Aluminium
+item.thermaltinkerer.material.dustChromium.name=Pulverized Chromium
+item.thermaltinkerer.material.dustTitanium.name=Pulverized Titanium
+item.thermaltinkerer.material.dustMagnetite.name=Ground Magnetite
+item.thermaltinkerer.material.dustMyuvil.name=Myuvil Dust
+item.thermaltinkerer.material.dustIridium.name=Pulverized Iridium
+
+item.thermaltinkerer.material.nuggetZinc.name=Zinc Nugget
+item.thermaltinkerer.material.nuggetBismuth.name=Bismuth Nugget
+item.thermaltinkerer.material.nuggetManganese.name=Manganese Nugget
+item.thermaltinkerer.material.nuggetPalladium.name=Palladium Nugget
+item.thermaltinkerer.material.nuggetMolybdenum.name=Molybdenum Nugget
+item.thermaltinkerer.material.nuggetCobalt.name=Cobalt Nugget
+item.thermaltinkerer.material.nuggetTungsten.name=Tungsten Nugget
+item.thermaltinkerer.material.nuggetAluminium.name=Aluminium Nugget
+item.thermaltinkerer.material.nuggetChromium.name=Chromium Nugget
+item.thermaltinkerer.material.nuggetTitanium.name=Titanium Nugget
+item.thermaltinkerer.material.nuggetMagnetite.name=Magnetite Shard
+item.thermaltinkerer.material.nuggetIridium.name=Iridium Nugget
+
+item.thermaltinkerer.material.gemSyntheticAmber.name=Synthetic Amber
+item.thermaltinkerer.material.gemCrystalFlux.name=Flux Crystal
+item.thermaltinkerer.material.gemMolybdenum.name=Crystalline Molybdenum
+item.thermaltinkerer.material.crystalMolybdenum.name=Molybdenum Crystals
+item.thermaltinkerer.material.crystalDioptase.name=Dioptase Crystals
+item.thermaltinkerer.material.crystalPyrope.name=Pyrope Crystals
+item.thermaltinkerer.material.gemAmber.name=Natural Amber
+item.thermaltinkerer.material.gemSyntheticMolybdenum.name=Synthetic Molybdenum
+item.thermaltinkerer.material.gemSyntheticDioptase.name=Synthetic Dioptase
+item.thermaltinkerer.material.gemSyntheticPyrope.name=Synthetic Pyrope
+item.thermaltinkerer.material.gemSyntheticGreen.name=Synthetic Green Gem
+
+itemGroup.thermaltinkerer.creativeTab=Thermal Tinkerer
+
+item.thermaltinkerer.material.partWiring.name=Wiring
+item.thermaltinkerer.material.partAssembledPCB.name=Assembled PCB
+item.thermaltinkerer.material.partTransistor.name=Transistor
+item.thermaltinkerer.material.partCapacitor.name=Capacitor
+item.thermaltinkerer.material.partResistor.name=Resistor
+item.thermaltinkerer.material.partFluxFilter.name=Flux Filter
+item.thermaltinkerer.material.partServoMotor.name=Servo Motor
+item.thermaltinkerer.material.partSolenoid.name=Solenoid
+
+item.thermaltinkerer.tool.protoSonicWrench.name=Prototype "Sonic" Omniwrench
+
+tooltip.thermaltinkerer.item.depletedUranium=I fucking love Radiation. Depleted uranium for everyone! -NeptunePink

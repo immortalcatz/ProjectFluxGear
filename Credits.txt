@@ -1,0 +1,37 @@
+Thermal Tinkerer Credits:
+
+King Lemming - Creating Thermal Expansion, Redstone Flux, Redstone Arsenal, Thermal Foundation, making his amazing source-code visible, and just being awesome.
+
+Zeldo Kavira - CoFH Stuff.
+
+Skyboy - MFR Updating, CoFH Stuff.
+
+mDiyo - Tinker's Construct, Orizon, Myuvil, and Oreberries.
+
+Gyro/NotGyro/FractalCat/SirNotGyroTheHipsterFractalCat - Weird Science, and other code.
+
+Drullkus Alpha of Drullkus Industries - Artwork.
+
+Tiktalik - Artwork.
+
+Othlon - Being an awesome friend.
+
+x3n0ph0b3 - EE, which got me into mods to start with, and for inadvertently getting me to keep coding
+
+Andrew2448 - Inadvertently getting my to mod, before x3n0 even started stalking me on twitter.
+
+Glassmaker - Being a good friend, Falling asleep on my AgSkies server, Help with Oreberries.
+
+Vazkii - All of his code I looked at for various things like the book and RF Lasers.
+
+SOTMead - Being hilariously derpy, and getting me interested in TFC.
+
+Florastar - Teaching the BEES!!!!
+
+Direwolf20 - Giving me the knowledge of "Mainstream" mod, turning me on to SOTMead and Florastar.
+
+Bioxx and Dunleosteous - Creating TerraFirmaCraft, which got me into metallurgy.
+
+MachineMuse - Her code, which helped me learn to make a simple mod a year ago.
+
+Pahimar - Teaching the moddings.

@@ -1,0 +1,15 @@
+\run
+\.gradle
+\.idea
+\build
+\lib
+*.iml
+*.ipr
+*.iws
+\out
+Thumbs.db
+\bin
+.classpath
+.project
+.settings/
+/bin/
