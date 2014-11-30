@@ -1,9 +1,15 @@
 package mortvana.projectfluxgear.block;
 
 import cofh.api.core.IInitializer;
-import cofh.lib.util.helpers.StringHelper;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
+import mortvana.fluxgearcore.util.helper.ItemHelper;
+import mortvana.fluxgearcore.util.helper.StringHelper;
+import mortvana.projectfluxgear.block.itemblock.ItemBlockFluidicAlloy;
+import mortvana.projectfluxgear.common.FluxGearContent;
 import mortvana.projectfluxgear.common.ProjectFluxGear;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -19,15 +25,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockFluidicAlloy extends Block implements IInitializer {
+public class BlockFluidicAlloy extends Block {
 
     public BlockFluidicAlloy() {
         super(Material.iron);
-        setHardness(5.0F);
-        setResistance(10.0F);
-        setStepSound(soundTypeMetal);
-        setCreativeTab(ProjectFluxGear.tab);
-        setBlockName("thermaltinkerer.fluidicalloy");
+        setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("thermaltinkerer.fluidicalloy");
     }
 
     @Override
@@ -42,12 +44,6 @@ public class BlockFluidicAlloy extends Block implements IInitializer {
     public int getLightValue(IBlockAccess world, int x, int y, int z) {
 
         return LIGHT[world.getBlockMetadata(x, y, z)];
-    }
-
-    @Override
-    public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side) {
-
-        return world.getBlockMetadata(x, y, z) == 3 ? 15 : 0;
     }
 
     @Override
@@ -91,73 +87,31 @@ public class BlockFluidicAlloy extends Block implements IInitializer {
     public void registerBlockIcons(IIconRegister ir) {
 
         for (int i = 0; i < NAMES.length; i++) {
-            TEXTURES[i] = ir.registerIcon("thermaltinkerer:storage/Block_" + StringHelper.titleCase(NAMES[i]));
+            TEXTURES[i] = ir.registerIcon("thermaltinkerer:storage/block" + StringHelper.titleCase(NAMES[i]));
         }
     }
 
-    /* IInitializer */
-    @Override
     public boolean preInit() {
 
-        /*blockTungstenBlazing = new ItemStack(this, 1, 0);
-        blockPlatinumGelid = new ItemStack(this, 1, 1);
-        blockSilverLuminous = new ItemStack(this, 1, 2);
-        blockElectrumFlux = new ItemStack(this, 1, 3);
-        blockMolybdenumResonant = new ItemStack(this, 1, 4);
-        blockChromiumCarbide = new ItemStack(this, 1, 5);
-        blockCarbonite = new ItemStack(this, 1, 6);
-        blockPyrum = new ItemStack(this, 1, 7);
-        blockGelinium = new ItemStack(this, 1, 8);
-        blockDullRedsolder = new ItemStack(this, 1, 9);
-        blockRedsolder = new ItemStack(this, 1, 10);
-        blockIridium = new ItemStack(this, 1, 11);
-        blockSulfur = new ItemStack(this, 1, 12);
-        blockSaltpeter = new ItemStack(this, 1, 13);
-        blockRust = new ItemStack(this, 1, 14);
-        blockColdfireBismuthBronze = new ItemStack(this, 1, 15);
+        GameRegistry.registerBlock(this, ItemBlockFluidicAlloy.class, "FluidicAlloy");
 
-        ItemHelper.registerWithHandlers("block", blockTungstenBlazing);
-        ItemHelper.registerWithHandlers("block", blockBismuthBronzeGelid);
-        ItemHelper.registerWithHandlers("block", blockSilverLuminous);
-        ItemHelper.registerWithHandlers("block", blockElectrumFlux);
-        ItemHelper.registerWithHandlers("block", blockMolybdenumResonant);
-        ItemHelper.registerWithHandlers("block", blockChromiumCarbide);
-        ItemHelper.registerWithHandlers("block", blockCarbonite);
-        ItemHelper.registerWithHandlers("block", blockPyrum);
-        ItemHelper.registerWithHandlers("block", blockGelinium);
-        ItemHelper.registerWithHandlers("block", blockRust);
-        ItemHelper.registerWithHandlers("block", blockApatite);
-        ItemHelper.registerWithHandlers("block", blockIridium);
-        ItemHelper.registerWithHandlers("block", blockSulfur);
-        ItemHelper.registerWithHandlers("block", blockSaltpeter);*/
+        FluxGearContent.blockTungstenBlazing = new ItemStack(this, 1, 0);
+        FluxGearContent.blockPlatinumGelid = new ItemStack(this, 1, 1);
+        FluxGearContent.blockSilverLuminous = new ItemStack(this, 1, 2);
+        FluxGearContent.blockElectrumFlux = new ItemStack(this, 1, 3);
+        FluxGearContent.blockMolybdenumResonant = new ItemStack(this, 1, 4);
+        FluxGearContent.blockChromiumCarbide = new ItemStack(this, 1, 5);
+        FluxGearContent.blockCarbonite = new ItemStack(this, 1, 6);
+        FluxGearContent.blockPyrum = new ItemStack(this, 1, 7);
+        FluxGearContent.blockGelinium = new ItemStack(this, 1, 8);
+        FluxGearContent.blockDullRedsolder = new ItemStack(this, 1, 9);
+        FluxGearContent.blockRedsolder = new ItemStack(this, 1, 10);
+        FluxGearContent.blockIridium = new ItemStack(this, 1, 11);
+        FluxGearContent.blockSulfur = new ItemStack(this, 1, 12);
+        FluxGearContent.blockSaltpeter = new ItemStack(this, 1, 13);
+        FluxGearContent.blockRust = new ItemStack(this, 1, 14);
+        FluxGearContent.blockColdfireBismuthBronze = new ItemStack(this, 1, 15);
 
-        return true;
-    }
-
-    @Override
-    public boolean initialize() {
-        return true;
-    }
-
-    @Override
-    public boolean postInit() {
-
-        /*ItemHelper.addStorageRecipe(blockTungstenBlazing, "ingotTungstenBlazing");
-        ItemHelper.addStorageRecipe(blockBismuthBronzeGelid, "ingotBismuthBronzeGelid");
-        ItemHelper.addStorageRecipe(blockSilverLuminous, "ingotSilverLuminous");
-        ItemHelper.addStorageRecipe(blockElectrumFlux, "ingotElectrumFlux");
-        ItemHelper.addStorageRecipe(blockMolybdenumResonant, "ingotMolybdenumResonant");
-        ItemHelper.addStorageRecipe(blockChromiumCarbide, "ingotChromiumCarbide");
-        ItemHelper.addStorageRecipe(blockCarbonite, "ingotCarbonite");
-        ItemHelper.addStorageRecipe(blockPyrum, "ingotPyrum");
-        ItemHelper.addStorageRecipe(blockGelinium, "ingotGelinium");
-        ItemHelper.addStorageRecipe(blockRust, "ingotRust");
-        ItemHelper.addStorageRecipe(blockApatite, "ingotApatite");
-        ItemHelper.addStorageRecipe(blockIridium, "ingotIridium");
-        ItemHelper.addStorageRecipe(blockSulfur, "dustSulfur");
-        ItemHelper.addStorageRecipe(blockSulfur, "dustSulphur");
-        ItemHelper.addStorageRecipe(blockSaltpeter, "dustSaltpeter");
-        ItemHelper.addStorageRecipe(blockSaltpeter, "dustSaltpetre");*/
 
         return true;
     }
@@ -169,18 +123,5 @@ public class BlockFluidicAlloy extends Block implements IInitializer {
     public static final float[] RESISTANCE = {};
     public static final int[] RARITY = {};
 
-    public static ItemStack blockTungstenBlazing;
-    public static ItemStack blockBismuthBronzeGelid;
-    public static ItemStack blockSilverLuminous;
-    public static ItemStack blockElectrumFlux;
-    public static ItemStack blockMolybdenumResonant;
-    public static ItemStack blockChromiumCarbide;
-    public static ItemStack blockCarbonite;
-    public static ItemStack blockPyrum;
-    public static ItemStack blockGelinium;
-    public static ItemStack blockRust;
-    public static ItemStack blockApatite;
-    public static ItemStack blockIridium;
-    public static ItemStack blockSulfur;
-    public static ItemStack blockSaltpeter;
+
 }

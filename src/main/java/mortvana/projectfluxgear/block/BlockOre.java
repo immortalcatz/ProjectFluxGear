@@ -1,21 +1,31 @@
 package mortvana.projectfluxgear.block;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import java.util.List;
 
-import mortvana.fluxgearcore.block.FluxGearBlock;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+import mortvana.fluxgearcore.util.helper.StringHelper;
 import mortvana.projectfluxgear.block.itemblock.ItemBlockOre;
 import mortvana.projectfluxgear.common.FluxGearContent;
+
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 
 import mortvana.projectfluxgear.common.ProjectFluxGear;
 
-public class BlockOre extends FluxGearBlock {
+public class BlockOre extends Block {
 
     public BlockOre() {
 
-        super(Material.rock, "thermaltinkerer:ore/ore");
+        super(Material.rock);
         setHardness(3.0F).setResistance(5.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("thermaltinkerer.ore");
 
         setHarvestLevel("pickaxe", 1, 0);
@@ -34,6 +44,42 @@ public class BlockOre extends FluxGearBlock {
         setHarvestLevel("pickaxe", 3, 13);
 
     }
+
+    @Override
+    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+
+        for (int i = 0; i < NAMES.length; i++) {
+            list.add(new ItemStack(item, 1, i));
+        }
+    }
+
+    @Override
+    public int getLightValue(IBlockAccess world, int x, int y, int z) {
+
+        return LIGHT[world.getBlockMetadata(x, y, z)];
+    }
+
+    @Override
+    public int damageDropped(int i) {
+
+        return i;
+    }
+
+    @Override
+    public IIcon getIcon(int side, int metadata) {
+
+        return TEXTURES[metadata];
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister ir) {
+
+        for (int i = 0; i < NAMES.length; i++) {
+            TEXTURES[i] = ir.registerIcon("thermaltinkerer:ore/ore" + StringHelper.titleCase(NAMES[i]));
+        }
+    }
+
 
     public boolean preInit() {
 

@@ -1,7 +1,7 @@
 {
     "sphalerite": {
         "template": "uniform",
-        "block": "ThermalTinkerer:Ore",
+        "block": {"name": "ThermalTinkerer:Ore", "metadata": 0},
         "clusterSize": 9,
         "numClusters": 8,
         "minHeight": 25,
@@ -63,7 +63,7 @@
         "template": "uniform",
         "block": [
 			{"name": "ThermalTinkerer:Ore", "metadata": 3, "weight": 70},
-			{"name": "ThermalFoundation:Ore", "metadata": 5, "weight": 10}
+			{"name": "ThermalFoundation:Ore", "metadata": 5, "weight": 10},
 			{"name": "ThermalFoundation:Ore", "metadata": 4, "weight": 20}
         ],
         "clusterSize": 18,
@@ -105,7 +105,7 @@
         "template": "uniform",
         "block": [
 			{"name": "ThermalTinkerer:Ore", "metadata": 2, "weight": 75},
-			{"name": "ThermalTinkerer:Ore", "metadata": 5, "weight": 70}
+			{"name": "ThermalTinkerer:Ore", "metadata": 5, "weight": 70},
 			{"name": "ThermalTinkerer:Ore", "metadata": 8, "weight": 5},
 			{"name": "ThermalFoundation:Ore", "metadata": 4, "weight": 10}
         ],
@@ -241,10 +241,9 @@
 	
 	"pyrope": {
         "template": "uniform",
-        "block": "ThermalTinkerer:Ore",
-        "metadata": 6,
+        "block": {"name": "ThermalTinkerer:Ore", "metadata": 12},
         "clusterSize": 4,
-        "numClusters": 400,
+        "numClusters": 4,
         "minHeight": 5,
         "maxHeight": 40,
         "retrogen": "true",

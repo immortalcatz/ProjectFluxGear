@@ -48,7 +48,7 @@ public class ProjectFluxGear {
     @Instance(modID)
     public static ProjectFluxGear instance;
 
-    @SidedProxy(clientSide = "mortvana.thermaltinkerer.client.ClientProxy", serverSide = "mortvana.thermaltinkerer.common.CommonProxy")
+    @SidedProxy(clientSide = "mortvana.projectfluxgear.client.ClientProxy", serverSide = "mortvana.projectfluxgear.common.CommonProxy")
     public static CommonProxy proxy;
 
     // My favorite Pulsar is a Magnetar...

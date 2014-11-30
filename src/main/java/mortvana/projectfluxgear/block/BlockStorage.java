@@ -1,13 +1,12 @@
 package mortvana.projectfluxgear.block;
 
-import cofh.api.core.IInitializer;
-import cofh.lib.util.helpers.ItemHelper;
-import cofh.lib.util.helpers.StringHelper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import mortvana.fluxgearcore.util.helper.StringHelper;
 import mortvana.projectfluxgear.block.itemblock.ItemBlockStorage;
+import mortvana.projectfluxgear.common.FluxGearContent;
 import mortvana.projectfluxgear.common.ProjectFluxGear;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -25,15 +24,11 @@ import java.util.List;
 
 import net.minecraftforge.oredict.OreDictionary;
 
-public class BlockStorage extends Block implements IInitializer {
+public class BlockStorage extends Block {
 
     public BlockStorage() {
         super(Material.iron);
-        setHardness(5.0F);
-        setResistance(10.0F);
-        setStepSound(soundTypeMetal);
-        setCreativeTab(ProjectFluxGear.tab);
-        setBlockName("thermaltinkerer.storage");
+        setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("thermaltinkerer.storage");
     }
 
     @Override
@@ -95,79 +90,26 @@ public class BlockStorage extends Block implements IInitializer {
         }
     }
 
-    /* IInitializer */
-    @Override
     public boolean preInit() {
 
         GameRegistry.registerBlock(this, ItemBlockStorage.class, "Storage");
 
-        blockZinc = new ItemStack(this, 1, 0);
-        blockBismuth = new ItemStack(this, 1, 1);
-        blockManganese = new ItemStack(this, 1, 2);
-        blockPalladium = new ItemStack(this, 1, 3);
-        blockMolybdenum = new ItemStack(this, 1, 4);
-        blockCobalt = new ItemStack(this, 1, 5);
-        blockTungsten = new ItemStack(this, 1, 6);
-        blockAluminium = new ItemStack(this, 1, 7);
-        blockChromium = new ItemStack(this, 1, 8);
-        blockTitanium = new ItemStack(this, 1, 9);
-        blockMagnetite = new ItemStack(this, 1, 10);
-        blockDioptase = new ItemStack(this, 1, 11);
-        blockPyrope = new ItemStack(this, 1, 12);
-        blockMyuvil = new ItemStack(this, 1, 13);
-        //blockArsenic = new ItemStack(this, 1, 14);
-        //blockAntimony = new ItemStack(this, 1, 15);
-
-        ItemHelper.registerWithHandlers("blockZinc", blockZinc);
-        ItemHelper.registerWithHandlers("blockBismuth", blockBismuth);
-        ItemHelper.registerWithHandlers("blockManganese", blockManganese);
-        ItemHelper.registerWithHandlers("blockPalladium", blockPalladium);
-        ItemHelper.registerWithHandlers("blockMolybdenum", blockMolybdenum);
-        ItemHelper.registerWithHandlers("blockNaturalCobalt", blockCobalt);
-        //if
-	        OreDictionary.registerOre("blockCobalt", blockCobalt);
-        //}
-        ItemHelper.registerWithHandlers("blockTungsten", blockTungsten);
-        ItemHelper.registerWithHandlers("blockAluminium", blockAluminium);
-	    OreDictionary.registerOre("blockAluminum", blockAluminium);
-        ItemHelper.registerWithHandlers("blockChromium", blockChromium);
-        ItemHelper.registerWithHandlers("blockTitanium", blockTitanium);
-        ItemHelper.registerWithHandlers("blockMagnetite", blockMagnetite);
-        ItemHelper.registerWithHandlers("blockDioptase", blockDioptase);
-        ItemHelper.registerWithHandlers("blockPyrope", blockPyrope);
-        ItemHelper.registerWithHandlers("blockMyuvil", blockMyuvil);
-        //ItemHelper.registerWithHandlers("blockArsenic", blockArsenic);
-        //ItemHelper.registerWithHandlers("blockAntimony", blockAntimony);
-
-        return true;
-    }
-
-    @Override
-    public boolean initialize() {
-
-        return true;
-    }
-
-    @Override
-    public boolean postInit() {
-
-        ItemHelper.addStorageRecipe(blockZinc, "ingotZinc");
-        ItemHelper.addStorageRecipe(blockBismuth, "ingotBismuth");
-        ItemHelper.addStorageRecipe(blockManganese, "ingotManganese");
-        ItemHelper.addStorageRecipe(blockPalladium, "ingotPalladium");
-        ItemHelper.addStorageRecipe(blockMolybdenum, "ingotMolybdenum");
-        ItemHelper.addStorageRecipe(blockCobalt, "ingotNaturalCobalt");
-        ItemHelper.addStorageRecipe(blockTungsten, "ingotTungsten");
-        ItemHelper.addStorageRecipe(blockAluminium, "ingotAluminium");
-        ItemHelper.addStorageRecipe(blockAluminium, "ingotAluminum"); // We Americans are so naive...
-        ItemHelper.addStorageRecipe(blockChromium, "ingotChromium");
-        ItemHelper.addStorageRecipe(blockTitanium, "ingotTitanium");
-        ItemHelper.addStorageRecipe(blockMagnetite, "gemMagnetite");
-        ItemHelper.addStorageRecipe(blockDioptase, "gemDioptase");
-        ItemHelper.addStorageRecipe(blockPyrope, "gemPyrope");
-        ItemHelper.addStorageRecipe(blockMyuvil, "dustMyuvil");
-        //ItemHelper.addStorageRecipe(blockArsenic, "dustArsenic");
-        //ItemHelper.addStorageRecipe(blockAntimony, "dustAntimony");
+        FluxGearContent.blockZinc = new ItemStack(this, 1, 0);
+        FluxGearContent.blockBismuth = new ItemStack(this, 1, 1);
+        FluxGearContent.blockManganese = new ItemStack(this, 1, 2);
+        FluxGearContent.blockPalladium = new ItemStack(this, 1, 3);
+        FluxGearContent.blockMolybdenum = new ItemStack(this, 1, 4);
+        FluxGearContent.blockCobalt = new ItemStack(this, 1, 5);
+        FluxGearContent.blockTungsten = new ItemStack(this, 1, 6);
+        FluxGearContent.blockAluminium = new ItemStack(this, 1, 7);
+        FluxGearContent.blockChromium = new ItemStack(this, 1, 8);
+        FluxGearContent.blockTitanium = new ItemStack(this, 1, 9);
+        FluxGearContent.blockMagnetite = new ItemStack(this, 1, 10);
+        FluxGearContent.blockDioptase = new ItemStack(this, 1, 11);
+        FluxGearContent.blockPyrope = new ItemStack(this, 1, 12);
+        FluxGearContent.blockMyuvil = new ItemStack(this, 1, 13);
+        //FluxGearContent.blockArsenic = new ItemStack(this, 1, 14);
+        //FluxGearContent.blockAntimony = new ItemStack(this, 1, 15);
 
         return true;
     }
@@ -178,22 +120,5 @@ public class BlockStorage extends Block implements IInitializer {
     public static final float[] HARDNESS = { 5, 5, 5, 5, 6, 7, 10, 5, 7, 8, 5, 7, 7, 4, 3, 3 };
     public static final float[] RESISTANCE = { 6, 8, 6, 6, 7, 8, 25, 8, 10, 12, 8, 13, 13, 6, 5, 5};
     public static final int[] RARITY = { 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 0, 0 };
-
-    public static ItemStack blockZinc;
-    public static ItemStack blockBismuth;
-    public static ItemStack blockManganese;
-    public static ItemStack blockPalladium;
-    public static ItemStack blockMolybdenum;
-    public static ItemStack blockCobalt;
-    public static ItemStack blockTungsten;
-    public static ItemStack blockAluminium;
-    public static ItemStack blockChromium;
-    public static ItemStack blockTitanium;
-    public static ItemStack blockMagnetite;
-    public static ItemStack blockDioptase;
-    public static ItemStack blockPyrope;
-    public static ItemStack blockMyuvil;
-    public static ItemStack blockArsenic;
-    public static ItemStack blockAntimony;
 
 }

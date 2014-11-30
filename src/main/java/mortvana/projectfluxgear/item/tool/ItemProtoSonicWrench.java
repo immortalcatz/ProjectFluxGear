@@ -129,7 +129,6 @@ public class ItemProtoSonicWrench extends ItemBase implements ICarpentersHammer,
 		}
 
 		/* Flowstone Energy Compat */
-
 		if (block instanceof IFlowWrenchable) {
 			if (player.isSneaking()) {
 				world.setBlockToAir(x, y, z);
@@ -202,9 +201,7 @@ public class ItemProtoSonicWrench extends ItemBase implements ICarpentersHammer,
 
 	/* ICarpentersHammer (Carpenter's Blocks) */
 	@Override
-	public void onHammerUse(World world, EntityPlayer player) {
-
-	}
+	public void onHammerUse(World world, EntityPlayer player) {}
 
 	@Override
 	public boolean canUseHammer(World world, EntityPlayer player) {
@@ -213,9 +210,7 @@ public class ItemProtoSonicWrench extends ItemBase implements ICarpentersHammer,
 
 	/* IScrewdriver (Project:Red) */
 	@Override
-	public void damageScrewdriver(World world, EntityPlayer player) {
-
-	}
+	public void damageScrewdriver(World world, EntityPlayer player) {}
 
 	/* IToolCrowbar (RailCraft) */
 	@Override
@@ -255,9 +250,7 @@ public class ItemProtoSonicWrench extends ItemBase implements ICarpentersHammer,
 	}
 
 	@Override
-	public void wrenchUsed(EntityPlayer player, int x, int y, int z) {
-
-	}
+	public void wrenchUsed(EntityPlayer player, int x, int y, int z) {}
 
 	/* IToolHammer (CoFH Mods) */
 	@Override
@@ -266,9 +259,7 @@ public class ItemProtoSonicWrench extends ItemBase implements ICarpentersHammer,
 	}
 
 	@Override
-	public void toolUsed(ItemStack itemStack, EntityLivingBase entityLivingBase, int i, int i2, int i3) {
-
-	}
+	public void toolUsed(ItemStack itemStack, EntityLivingBase entityLivingBase, int i, int i2, int i3) {}
 
 	/* IAEWrench (Applied Energistics 2) */
 	@Override

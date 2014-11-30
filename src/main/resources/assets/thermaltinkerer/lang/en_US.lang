@@ -93,7 +93,7 @@ item.thermaltinkerer.material.gemSyntheticDioptase.name=Synthetic Dioptase
 item.thermaltinkerer.material.gemSyntheticPyrope.name=Synthetic Pyrope
 item.thermaltinkerer.material.gemSyntheticGreen.name=Synthetic Green Gem
 
-itemGroup.thermaltinkerer.creativeTab=Thermal Tinkerer
+itemGroup.thermaltinkerer.creativeTab=Project Flux Gear
 
 item.thermaltinkerer.material.partWiring.name=Wiring
 item.thermaltinkerer.material.partAssembledPCB.name=Assembled PCB
@@ -106,4 +106,4 @@ item.thermaltinkerer.material.partSolenoid.name=Solenoid
 
 item.thermaltinkerer.tool.protoSonicWrench.name=Prototype "Sonic" Omniwrench
 
-tooltip.thermaltinkerer.item.depletedUranium=I fucking love Radiation. Depleted uranium for everyone! -NeptunePink
+tooltip.thermaltinkerer.item.depletedUranium=I f*cking love Radiation. Depleted uranium for everyone! -NeptunePink

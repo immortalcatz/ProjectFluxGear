@@ -1,14 +1,12 @@
 package mortvana.projectfluxgear.block;
 
-import cofh.api.core.IInitializer;
-import cofh.lib.util.helpers.ItemHelper;
-import cofh.lib.util.helpers.StringHelper;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import mortvana.fluxgearcore.util.helper.StringHelper;
 import mortvana.projectfluxgear.block.itemblock.ItemBlockAlloy;
+import mortvana.projectfluxgear.common.FluxGearContent;
 import mortvana.projectfluxgear.common.ProjectFluxGear;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -24,15 +22,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockAlloy extends Block implements IInitializer {
+public class BlockAlloy extends Block {
 
     public BlockAlloy() {
         super(Material.iron);
-        setHardness(5.0F);
-        setResistance(10.0F);
-        setStepSound(soundTypeMetal);
-        setCreativeTab(ProjectFluxGear.tab);
-        setBlockName("thermaltinkerer.alloy");
+        setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("thermaltinkerer.alloy");
     }
 
     @Override
@@ -94,99 +88,36 @@ public class BlockAlloy extends Block implements IInitializer {
         }
     }
 
-    /* IInitializer */
-    @Override
     public boolean preInit() {
 
 	    GameRegistry.registerBlock(this, ItemBlockAlloy.class, "Alloy");
 
-        blockBrass = new ItemStack(this, 1, 0);
-        blockBismuthBronze = new ItemStack(this, 1, 1);
-        blockCupronickel = new ItemStack(this, 1, 2);
-        blockAluminiumBrass = new ItemStack(this, 1, 3);
-        blockMithrilBronze = new ItemStack(this, 1, 4);
-        blockElectriplatinum = new ItemStack(this, 1, 5);
-        blockSteel = new ItemStack(this, 1, 6);
-        blockTungstenSteel = new ItemStack(this, 1, 7);
-        blockStainlessSteel = new ItemStack(this, 1, 8);
-        /*block = new ItemStack(this, 1, );
-        block = new ItemStack(this, 1, );
-        block = new ItemStack(this, 1, );
-        block = new ItemStack(this, 1, );
-        block = new ItemStack(this, 1, );
-        block = new ItemStack(this, 1, );
-        block = new ItemStack(this, 1, );*/
-
-        ItemHelper.registerWithHandlers("blockBrass", blockBrass);
-        ItemHelper.registerWithHandlers("blockBismuthBronze", blockBismuthBronze);
-        ItemHelper.registerWithHandlers("blockCupronickel", blockCupronickel);
-        ItemHelper.registerWithHandlers("blockAluminiumBrass", blockAluminiumBrass);
-        ItemHelper.registerWithHandlers("blockMithrilBronze", blockMithrilBronze);
-        ItemHelper.registerWithHandlers("blockElectriplatinum", blockElectriplatinum);
-        ItemHelper.registerWithHandlers("blockSteel", blockSteel);
-        ItemHelper.registerWithHandlers("blockTungstenSteel", blockTungstenSteel);
-        ItemHelper.registerWithHandlers("blockStainlessSteel", blockStainlessSteel);
-        /*ItemHelper.registerWithHandlers("block", block);
-        ItemHelper.registerWithHandlers("block", block);
-        ItemHelper.registerWithHandlers("block", block);
-        ItemHelper.registerWithHandlers("block", block);
-        ItemHelper.registerWithHandlers("block", block);
-        ItemHelper.registerWithHandlers("block", block);
-        ItemHelper.registerWithHandlers("block", block);*/
+        FluxGearContent.blockBrass = new ItemStack(this, 1, 0);
+        FluxGearContent.blockBismuthBronze = new ItemStack(this, 1, 1);
+        FluxGearContent.blockCupronickel = new ItemStack(this, 1, 2);
+        FluxGearContent.blockAluminiumBrass = new ItemStack(this, 1, 3);
+        FluxGearContent.blockMithrilBronze = new ItemStack(this, 1, 4);
+        FluxGearContent.blockElectriplatinum = new ItemStack(this, 1, 5);
+        FluxGearContent.blockSteel = new ItemStack(this, 1, 6);
+        FluxGearContent.blockTungstenSteel = new ItemStack(this, 1, 7);
+        FluxGearContent.blockStainlessSteel = new ItemStack(this, 1, 8);
+        FluxGearContent.blockTechnomancy = new ItemStack(this, 1, 9);
+        FluxGearContent.blockResonantTechnomancy = new ItemStack(this, 1, 10);
+        FluxGearContent.blockAmber = new ItemStack(this, 1, 11);
+        FluxGearContent.blockCrystalFlux = new ItemStack(this, 1, 12);
+        FluxGearContent.blockLapiquartz = new ItemStack(this, 1, 13);
+        FluxGearContent.blockWhitePointStar = new ItemStack(this, 1, 14);
+        FluxGearContent.blockVoidInfernoStar = new ItemStack(this, 1, 15);
 
         return true;
     }
 
-    @Override
-    public boolean initialize() {
-        return true;
-    }
-
-    @Override
-    public boolean postInit() {
-
-        ItemHelper.addStorageRecipe(blockBrass, "ingotBrass");
-        ItemHelper.addStorageRecipe(blockBismuthBronze, "ingotBismuthBronze");
-        ItemHelper.addStorageRecipe(blockCupronickel, "ingotCupronickel");
-        ItemHelper.addStorageRecipe(blockAluminiumBrass, "ingotAluminiumBrass");
-        ItemHelper.addStorageRecipe(blockAluminiumBrass, "ingotAluminumBrass");
-        ItemHelper.addStorageRecipe(blockMithrilBronze, "ingotMithrilBronze");
-        ItemHelper.addStorageRecipe(blockElectriplatinum, "ingotElectrplatinum");
-        ItemHelper.addStorageRecipe(blockSteel, "ingotSteel");
-        ItemHelper.addStorageRecipe(blockTungstenSteel, "ingotTungstenSteel");
-        ItemHelper.addStorageRecipe(blockStainlessSteel, "ingotStainlessSteel");
-        /*ItemHelper.addStorageRecipe(blockTecnomancy, "ingot");
-        ItemHelper.addStorageRecipe(blockResonantTechnomancy, "ingot");
-        // Amber is a 2x2 recipe
-        ItemHelper.addStorageRecipe(blockCrystalFlux, "ingot");
-        // Lapiquartz is a resource recipe
-        ItemHelper.addStorageRecipe(blockWhitePointStar, "ingot");
-        ItemHelper.addStorageRecipe(blockVoidInfernoStar, "ingot");*/
-
-        return true;
-    }
-
-    public static final String[] NAMES = { "brass", "bismuthBronze", "cupronickel", "aluminiumBrass", "mithrilBronze", "electriplatinum", "steel", "tungstenSteel", "stainlessSteel" };
+    public static final String[] NAMES = { "brass", "bismuthBronze", "cupronickel", "aluminiumBrass", "mithrilBronze", "electriplatinum", "steel", "tungstenSteel", "stainlessSteel", "technomancy", "resonantTechnomancy", "amber", "crystalFlux", "lapiquartz", "whitePointStar", "voidInfernoStar" };
     public static final IIcon[] TEXTURES = new IIcon[NAMES.length];
-    public static final int[] LIGHT = { 0, 2, 0, 2, 2, 4, 0, 0, 0};
-    public static final float[] HARDNESS = { 5, 5, 5, 5, 5, 6, 8, 13, 8 };
-    public static final float[] RESISTANCE = { 6, 8, 6, 6, 10, 8, 13, 42, 13};
-    public static final int[] RARITY = { 0, 0, 0, 1, 1, 0, 1, 1, 1};
+    public static final int[] LIGHT = { 0, 2, 0, 2, 2, 4, 0, 0, 0, 4, 8, 0, 4, 2, 15, 15 };
+    public static final float[] HARDNESS = { 5, 5, 5, 5, 5, 6, 8, 13, 8, 7, 11, 4, 5, 5, 8, 8 };
+    public static final float[] RESISTANCE = { 6, 8, 6, 6, 10, 8, 13, 42, 13, 8, 10, 6, 8, 8, 42, 507 };
+    public static final int[] RARITY = { 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 2, 0, 1, 1, 2, 3 };
 
-    public static ItemStack blockBrass;
-    public static ItemStack blockBismuthBronze;
-    public static ItemStack blockCupronickel;
-    public static ItemStack blockAluminiumBrass;
-    public static ItemStack blockMithrilBronze;
-    public static ItemStack blockElectriplatinum;
-    public static ItemStack blockSteel;
-    public static ItemStack blockTungstenSteel;
-    public static ItemStack blockStainlessSteel;
-    public static ItemStack blockTecnomancy;
-    public static ItemStack blockResonantTechnomancy;
-    public static ItemStack blockAmber;
-    public static ItemStack blockCrystalFlux;
-    public static ItemStack blockLapiquartz;
-    public static ItemStack blockWhitePointStar;
-    public static ItemStack blockVoidInfernoStar;
+
 }

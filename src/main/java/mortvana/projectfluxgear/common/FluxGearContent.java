@@ -20,6 +20,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import mortvana.projectfluxgear.block.BlockAlloy;
+import mortvana.projectfluxgear.block.BlockFluidicAlloy;
 import mortvana.projectfluxgear.block.BlockOre;
 import mortvana.projectfluxgear.block.BlockStorage;
 import mortvana.fluxgearcore.item.ItemBase;
@@ -31,12 +32,12 @@ public class FluxGearContent implements IFuelHandler{
 
 	public void preInit() {
         loadBlocks();
-        loadMachines();
+        //loadMachines();
         loadFluids();
         loadItems();
         loadTools();
 	    //loadEnchants();
-		loadTiles();
+		//loadTiles();
         //loadAugments();
     }
 
@@ -46,25 +47,21 @@ public class FluxGearContent implements IFuelHandler{
 	    initItems();
         //initTools();
         //initAugments();
-        addOreDict();
+        //addOreDict();
 	    craftingRecipes();
 	    furnaceRecipes();
     }
 
     public void postInit() {
         aluminiumArc();
-        modIntegration();
-        //postInitBlocks();
-        blockStorage.postInit();
-        blockAlloy.postInit();
-        //blockFluidicAlloy.postInit();
+        //modIntegration();
     }
 
     public void loadBlocks() {
         blockOre = new BlockOre();
         blockStorage = new BlockStorage();
         blockAlloy = new BlockAlloy();
-        //blockFluidicAlloy = new BlockFluidicAlloy();
+        blockFluidicAlloy = new BlockFluidicAlloy();
 
         //blockTileEntity = new BlockTileEntity();
 
@@ -73,6 +70,7 @@ public class FluxGearContent implements IFuelHandler{
         blockOre.preInit();
         blockStorage.preInit();
 	    blockAlloy.preInit();
+        blockFluidicAlloy.preInit();
 
         // OreDict Ores
         ItemHelper.registerWithHandlers("oreSphalerite", oreSphalerite);
@@ -89,7 +87,8 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.registerWithHandlers("oreDioptase", oreDioptase);
         ItemHelper.registerWithHandlers("orePyrope", orePyrope);
         ItemHelper.registerWithHandlers("oreMyuvil", oreMyuvil);
-
+        ItemHelper.registerWithHandlers("orePitchblende", orePitchblende);
+        ItemHelper.registerWithHandlers("oreNeirdermayrite", oreNierdermayrite);
 
         //Lame-man's Ores
         OreDictionary.registerOre("oreZinc", oreSphalerite);
@@ -103,11 +102,61 @@ public class FluxGearContent implements IFuelHandler{
         OreDictionary.registerOre("oreChromium", oreChromite);
         OreDictionary.registerOre("oreTitanium", oreIlmenite);
 
+        //Ore Storage Blocks
+        ItemHelper.registerWithHandlers("blockZinc", blockZinc);
+        ItemHelper.registerWithHandlers("blockBismuth", blockBismuth);
+        ItemHelper.registerWithHandlers("blockManganese", blockManganese);
+        ItemHelper.registerWithHandlers("blockPalladium", blockPalladium);
+        ItemHelper.registerWithHandlers("blockMolybdenum", blockMolybdenum);
+        ItemHelper.registerWithHandlers("blockNaturalCobalt", blockCobalt);
+        ItemHelper.registerWithHandlers("blockTungsten", blockTungsten);
+        ItemHelper.registerWithHandlers("blockAluminium", blockAluminium);
+        ItemHelper.registerWithHandlers("blockChromium", blockChromium);
+        ItemHelper.registerWithHandlers("blockTitanium", blockTitanium);
+        ItemHelper.registerWithHandlers("blockMagnetite", blockMagnetite);
+        ItemHelper.registerWithHandlers("blockDioptase", blockDioptase);
+        ItemHelper.registerWithHandlers("blockPyrope", blockPyrope);
+        ItemHelper.registerWithHandlers("blockMyuvil", blockMyuvil);
+        ItemHelper.registerWithHandlers("blockArsenic", blockArsenic);
+        ItemHelper.registerWithHandlers("blockAntimony", blockAntimony);
+
+        ItemHelper.registerWithHandlers("blockBrass", blockBrass);
+        ItemHelper.registerWithHandlers("blockBismuthBronze", blockBismuthBronze);
+        ItemHelper.registerWithHandlers("blockCupronickel", blockCupronickel);
+        ItemHelper.registerWithHandlers("blockAluminiumBrass", blockAluminiumBrass);
+        ItemHelper.registerWithHandlers("blockMithrilBronze", blockMithrilBronze);
+        ItemHelper.registerWithHandlers("blockElectriplatinum", blockElectriplatinum);
+        ItemHelper.registerWithHandlers("blockSteel", blockSteel);
+        ItemHelper.registerWithHandlers("blockTungstenSteel", blockTungstenSteel);
+        ItemHelper.registerWithHandlers("blockStainlessSteel", blockStainlessSteel);
+        ItemHelper.registerWithHandlers("blockTechnomancy", blockTechnomancy);
+        ItemHelper.registerWithHandlers("blockResonantTechnomancy", blockResonantTechnomancy);
+        ItemHelper.registerWithHandlers("blockAmber", blockAmber);
+        ItemHelper.registerWithHandlers("blockCrystalFlux", blockCrystalFlux);
+        ItemHelper.registerWithHandlers("blockLapiquartz", blockLapiquartz);
+        ItemHelper.registerWithHandlers("blockWhitePointStar", blockWhitePointStar);
+        ItemHelper.registerWithHandlers("blockVoidInfernoStar", blockVoidInfernoStar);
+
+        ItemHelper.registerWithHandlers("blockTungstenBlazing", blockTungstenBlazing);
+        ItemHelper.registerWithHandlers("blockPlatinumGelid", blockPlatinumGelid);
+        ItemHelper.registerWithHandlers("blockSilverLuminous", blockSilverLuminous);
+        ItemHelper.registerWithHandlers("blockElectrumFlux", blockElectrumFlux);
+        ItemHelper.registerWithHandlers("blockMolybdenumResonant", blockMolybdenumResonant);
+        ItemHelper.registerWithHandlers("blockChromiumCarbide", blockChromiumCarbide);
+        ItemHelper.registerWithHandlers("blockCarbonite", blockCarbonite);
+        ItemHelper.registerWithHandlers("blockPyrum", blockPyrum);
+        ItemHelper.registerWithHandlers("blockGelinium", blockGelinium);
+        ItemHelper.registerWithHandlers("blockDullResolder", blockDullRedsolder);
+        ItemHelper.registerWithHandlers("blockRedsolder", blockRedsolder);
+        ItemHelper.registerWithHandlers("blockIridium", blockIridium);
+        ItemHelper.registerWithHandlers("blockSulfur", blockSulfur);
+        ItemHelper.registerWithHandlers("blockSaltpeter", blockSaltpeter);
+        ItemHelper.registerWithHandlers("blockRust", blockRust);
+        ItemHelper.registerWithHandlers("blockColdfireBismuthBronze", blockColdfireBismuthBronze);
+
     }
 
-    public void loadMachines() {
-
-    }
+    //public void loadMachines() {}
 
     public void loadFluids() {
         fluidGhastTear = new Fluid("ghastTear").setLuminosity(3).setDensity(1850).setViscosity(2675).setTemperature(375).setRarity(EnumRarity.rare);
@@ -265,11 +314,9 @@ public class FluxGearContent implements IFuelHandler{
 	    itemProtoSonicWrench = (ItemProtoSonicWrench) new ItemProtoSonicWrench().setUnlocalizedName("tool", "prototypeSonicWrench");
     }
 
-    public void loadEnchants() {
+    //public void loadEnchants() {}
 
-    }
-
-    public void loadTiles() {}
+    //public void loadTiles() {}
 
     public void aluminiumArc() {
         OreDictionary.registerOre("ingotAluminum", ingotAluminium);
@@ -278,15 +325,22 @@ public class FluxGearContent implements IFuelHandler{
         OreDictionary.registerOre("ingotAluminumBrass", ingotAluminiumBrass);
         OreDictionary.registerOre("dustAluminumBrass", dustAluminiumBrass);
         OreDictionary.registerOre("nuggetAluminumBrass", nuggetAluminiumBrass);
-
         OreDictionary.registerOre("oreAluminum", oreBauxite);
+        OreDictionary.registerOre("blockAluminum", blockAluminium);
 
         if (FluxGearConfig.cobaltAssimilation) {
             OreDictionary.registerOre("ingotCobalt", ingotCobalt);
             OreDictionary.registerOre("dustCobalt", dustCobalt);
             OreDictionary.registerOre("nuggetCobalt", nuggetCobalt);
             OreDictionary.registerOre("oreCobalt", oreCobaltite);
+            OreDictionary.registerOre("blockCobalt", blockCobalt);
         }
+
+        ItemHelper.addStorageRecipe(ingotAluminium, "nuggetAluminum");
+        ItemHelper.addReverseStorageRecipe(ingotAluminium, "blockAluminum");
+        ItemHelper.addReverseStorageRecipe(nuggetAluminium, "ingotAluminum");
+        ItemHelper.addStorageRecipe(blockAluminium, "ingotAluminum");
+        ItemHelper.addStorageRecipe(blockAluminiumBrass, "ingotAluminumBrass");
     }
 
 	public void initItems() {
@@ -302,7 +356,6 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.addStorageRecipe(ingotCobalt, "nuggetNaturalCobalt");
         ItemHelper.addStorageRecipe(ingotTungsten, "nuggetTungsten");
         ItemHelper.addStorageRecipe(ingotAluminium, "nuggetAluminium");
-        ItemHelper.addStorageRecipe(ingotAluminium, "nuggetAluminum"); //We Americans are so naive
         ItemHelper.addStorageRecipe(ingotChromium, "nuggetChromium");
         ItemHelper.addStorageRecipe(ingotTitanium, "nuggetTitanium");
         ItemHelper.addStorageRecipe(ingotIridium, "nuggetIridium");
@@ -316,7 +369,6 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.addReverseStorageRecipe(ingotCobalt, "blockNaturalCobalt");
         ItemHelper.addReverseStorageRecipe(ingotTungsten, "blockTungsten");
         ItemHelper.addReverseStorageRecipe(ingotAluminium, "blockAluminium");
-        ItemHelper.addReverseStorageRecipe(ingotAluminium, "blockAluminum"); //We Americans are so naive
         ItemHelper.addReverseStorageRecipe(ingotChromium, "blockChromium");
         ItemHelper.addReverseStorageRecipe(ingotTitanium, "blockTitanium");
         ItemHelper.addReverseStorageRecipe(ingotIridium, "blockIridium");
@@ -332,11 +384,63 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.addReverseStorageRecipe(nuggetCobalt, "ingotNaturalCobalt");
         ItemHelper.addReverseStorageRecipe(nuggetTungsten, "ingotTungsten");
         ItemHelper.addReverseStorageRecipe(nuggetAluminium, "ingotAluminium");
-        ItemHelper.addReverseStorageRecipe(nuggetAluminium, "ingotAluminum"); //We Americans are so naive
         ItemHelper.addReverseStorageRecipe(nuggetChromium, "ingotChromium");
         ItemHelper.addReverseStorageRecipe(nuggetTitanium, "ingotTitanium");
         ItemHelper.addReverseStorageRecipe(nuggetIridium, "ingotIridium");
         ItemHelper.addReverseStorageRecipe(nuggetMagnetite, "ingotMagnetite");
+
+        ItemHelper.addStorageRecipe(blockZinc, "ingotZinc");
+        ItemHelper.addStorageRecipe(blockBismuth, "ingotBismuth");
+        ItemHelper.addStorageRecipe(blockManganese, "ingotManganese");
+        ItemHelper.addStorageRecipe(blockPalladium, "ingotPalladium");
+        ItemHelper.addStorageRecipe(blockMolybdenum, "ingotMolybdenum");
+        ItemHelper.addStorageRecipe(blockCobalt, "ingotNaturalCobalt");
+        ItemHelper.addStorageRecipe(blockTungsten, "ingotTungsten");
+        ItemHelper.addStorageRecipe(blockAluminium, "ingotAluminium");
+        ItemHelper.addStorageRecipe(blockChromium, "ingotChromium");
+        ItemHelper.addStorageRecipe(blockTitanium, "ingotTitanium");
+        ItemHelper.addStorageRecipe(blockMagnetite, "gemMagnetite");
+        ItemHelper.addStorageRecipe(blockDioptase, "gemDioptase");
+        ItemHelper.addStorageRecipe(blockPyrope, "gemPyrope");
+        ItemHelper.addStorageRecipe(blockMyuvil, "dustMyuvil");
+        ItemHelper.addStorageRecipe(blockArsenic, "dustArsenic");
+        ItemHelper.addStorageRecipe(blockAntimony, "dustAntimony");
+
+        ItemHelper.addStorageRecipe(blockBrass, "ingotBrass");
+        ItemHelper.addStorageRecipe(blockBismuthBronze, "ingotBismuthBronze");
+        ItemHelper.addStorageRecipe(blockCupronickel, "ingotCupronickel");
+        ItemHelper.addStorageRecipe(blockAluminiumBrass, "ingotAluminiumBrass");
+        ItemHelper.addStorageRecipe(blockMithrilBronze, "ingotMithrilBronze");
+        ItemHelper.addStorageRecipe(blockElectriplatinum, "ingotElectrplatinum");
+        ItemHelper.addStorageRecipe(blockSteel, "ingotSteel");
+        ItemHelper.addStorageRecipe(blockTungstenSteel, "ingotTungstenSteel");
+        ItemHelper.addStorageRecipe(blockStainlessSteel, "ingotStainlessSteel");
+        ItemHelper.addStorageRecipe(blockTechnomancy, "ingotTechnomancy");
+        ItemHelper.addStorageRecipe(blockResonantTechnomancy, "ingotResonantTechnomancy");
+        // Amber is a 2x2 recipe
+        ItemHelper.addStorageRecipe(blockCrystalFlux, "gemCrystalFlux");
+        // Lapiquartz is a resource recipe
+        ItemHelper.addStorageRecipe(blockWhitePointStar, "gemWhitePointStar");
+        ItemHelper.addStorageRecipe(blockVoidInfernoStar, "gemVoidInfernoStar");
+
+        ItemHelper.addStorageRecipe(blockTungstenBlazing, "ingotTungstenBlazing");
+        ItemHelper.addStorageRecipe(blockPlatinumGelid, "ingotBismuthBronzeGelid");
+        ItemHelper.addStorageRecipe(blockSilverLuminous, "ingotSilverLuminous");
+        ItemHelper.addStorageRecipe(blockElectrumFlux, "ingotElectrumFlux");
+        ItemHelper.addStorageRecipe(blockMolybdenumResonant, "ingotMolybdenumResonant");
+        ItemHelper.addStorageRecipe(blockChromiumCarbide, "ingotChromiumCarbide");
+        ItemHelper.addStorageRecipe(blockCarbonite, "ingotCarbonite");
+        ItemHelper.addStorageRecipe(blockPyrum, "ingotPyrum");
+        ItemHelper.addStorageRecipe(blockGelinium, "ingotGelinium");
+        ItemHelper.addStorageRecipe(blockDullRedsolder, "ingotDullRedsolder");
+        ItemHelper.addStorageRecipe(blockRedsolder, "ingotRedsolder");
+        ItemHelper.addStorageRecipe(blockIridium, "ingotIridium");
+        ItemHelper.addStorageRecipe(blockSulfur, "dustSulfur");
+        ItemHelper.addStorageRecipe(blockSulfur, "dustSulphur");
+        ItemHelper.addStorageRecipe(blockSaltpeter, "dustSaltpeter");
+        ItemHelper.addStorageRecipe(blockSaltpeter, "dustSaltpetre");
+        ItemHelper.addStorageRecipe(blockRust, "dustRust");
+        ItemHelper.addStorageRecipe(blockColdfireBismuthBronze, "ingotColdfireBismuthBronze");
 
 	    GameRegistry.addRecipe(new ShapedOreRecipe(toolProtoSonicWrench, "B B", "ADA", " B ", 'B', "ingotBronze", 'A', "ingotAluminium", 'D', "gemDioptase"));
         //GameRegistry.addRecipe(new ShapedOreRecipe(toolProtoSonicWrench, "B B", "WDW", " B ", 'B', "ingotMithrilBronze", 'W', "ingotTungsten", 'D', "gemDioptase"));
@@ -351,16 +455,18 @@ public class FluxGearContent implements IFuelHandler{
         GameRegistry.addSmelting(oreBraggite, ingotPalladium, 1.1F);
         GameRegistry.addSmelting(oreMolybdenite, ingotMolybdenum, 1.0F);
         GameRegistry.addSmelting(oreCobaltite, ingotCobalt, 1.1F);
-        //No Wolframite
+        // No Wolframite
         // Temporary Aluminium Processing
         GameRegistry.addSmelting(oreBauxite, ingotAluminium, 0.9F);
         GameRegistry.addSmelting(oreChromite, ingotChromium, 1.2F);
-        GameRegistry.addSmelting(oreIlmenite, ingotTitanium, 1.2F);
+        // No Ilmenite
         // For when you Silk Touch the ores
         GameRegistry.addSmelting(oreMagnetite, gemMagnetite, 1.0F);
         GameRegistry.addSmelting(oreDioptase, gemDioptase, 1.0F);
         GameRegistry.addSmelting(orePyrope, gemPyrope, 1.0F);
-        GameRegistry.addSmelting(oreMyuvil, dustMyuvil, 1.0F);
+        GameRegistry.addSmelting(oreMyuvil, ItemHelper.cloneStack(dustMyuvil, 4), 1.0F);
+        GameRegistry.addSmelting(orePitchblende, dustPitchblende, 1.3F);
+        GameRegistry.addSmelting(oreNierdermayrite, ItemHelper.cloneStack(dustNierdermayrite, 4), 1.1F);
 
         // Dust to Ingot
         GameRegistry.addSmelting(dustZinc, ingotZinc, 0.0F);
@@ -369,22 +475,22 @@ public class FluxGearContent implements IFuelHandler{
         GameRegistry.addSmelting(dustPalladium, ingotPalladium, 0.0F);
         GameRegistry.addSmelting(dustMolybdenum, ingotMolybdenum, 0.0F);
         GameRegistry.addSmelting(dustCobalt, ingotCobalt, 0.0F);
-        // No Tungsten
+        // No Tungsten, requires Pyrotheum/Blast Furnace
         GameRegistry.addSmelting(dustAluminium, ingotAluminium, 0.0F);
         GameRegistry.addSmelting(dustChromium, ingotChromium, 0.0F);
-        // No Titanium
-        // No Iridium
+        // Temporary Titanium Smelting until we have Blast Furnaces
+        GameRegistry.addSmelting(dustTitanium, ingotTitanium, 0.0F);
+        // No Iridium, requires Pyrotheum/Blast Furnace
     }
 
-    public void addOreDict() {}
+    //public void addOreDict() {}
 
-    public void modIntegration() {}
+    //public void modIntegration() {}
 
     public void registerDispenserHandlers() {
         BlockDispenser.dispenseBehaviorRegistry.putObject(FluxGearContent.itemBucket, new DispenserFilledBucketHandler());
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.bucket, new DispenserEmptyBucketHandler());
     }
-
 
     @Override
     public int getBurnTime(ItemStack fuel) {
@@ -395,9 +501,9 @@ public class FluxGearContent implements IFuelHandler{
     public static BlockOre blockOre;
     public static BlockStorage blockStorage;
     public static BlockAlloy blockAlloy;
-    /*public static BlockFluidicAlloy blockFluidicAlloy;
+    public static BlockFluidicAlloy blockFluidicAlloy;
 
-    public static BlockTileEntity blockTileEntity;*/
+    //public static BlockTileEntity blockTileEntity;
 
     // Fluids
     public static Fluid fluidGhastTear;
@@ -415,7 +521,7 @@ public class FluxGearContent implements IFuelHandler{
     public static BlockFluidCoFHBase blockFluidAcid;
     public static BlockFluidCoFHBase blockFluidBlood;
 
-    //Ore Blocks
+    // Ore Blocks
     public static ItemStack oreSphalerite;
     public static ItemStack oreBismuthinite;
     public static ItemStack orePyrolusite;
@@ -430,6 +536,63 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack oreDioptase;
     public static ItemStack orePyrope;
     public static ItemStack oreMyuvil;
+    public static ItemStack orePitchblende;
+    public static ItemStack oreNierdermayrite;
+
+    // Ore Storage Blocks
+    public static ItemStack blockZinc;
+    public static ItemStack blockBismuth;
+    public static ItemStack blockManganese;
+    public static ItemStack blockPalladium;
+    public static ItemStack blockMolybdenum;
+    public static ItemStack blockCobalt;
+    public static ItemStack blockTungsten;
+    public static ItemStack blockAluminium;
+    public static ItemStack blockChromium;
+    public static ItemStack blockTitanium;
+    public static ItemStack blockMagnetite;
+    public static ItemStack blockDioptase;
+    public static ItemStack blockPyrope;
+    public static ItemStack blockMyuvil;
+    public static ItemStack blockArsenic;
+    public static ItemStack blockAntimony;
+
+    // Alloy Storage Blocks
+    public static ItemStack blockBrass;
+    public static ItemStack blockBismuthBronze;
+    public static ItemStack blockCupronickel;
+    public static ItemStack blockAluminiumBrass;
+    public static ItemStack blockMithrilBronze;
+    public static ItemStack blockElectriplatinum;
+    public static ItemStack blockSteel;
+    public static ItemStack blockTungstenSteel;
+    public static ItemStack blockStainlessSteel;
+    public static ItemStack blockTechnomancy;
+    public static ItemStack blockResonantTechnomancy;
+    public static ItemStack blockAmber;
+    public static ItemStack blockCrystalFlux;
+    public static ItemStack blockLapiquartz;
+    public static ItemStack blockWhitePointStar;
+    public static ItemStack blockVoidInfernoStar;
+
+    // Fluidic Alloy Storage Blocks
+    public static ItemStack blockTungstenBlazing;
+    public static ItemStack blockPlatinumGelid;
+    public static ItemStack blockSilverLuminous;
+    public static ItemStack blockElectrumFlux;
+    public static ItemStack blockMolybdenumResonant;
+    public static ItemStack blockChromiumCarbide;
+    public static ItemStack blockCarbonite;
+    public static ItemStack blockPyrum;
+    public static ItemStack blockGelinium;
+    public static ItemStack blockDullRedsolder;
+    public static ItemStack blockRedsolder;
+    public static ItemStack blockIridium;
+    public static ItemStack blockSulfur;
+    public static ItemStack blockSaltpeter;
+    public static ItemStack blockRust;
+    public static ItemStack blockColdfireBismuthBronze;
+
 
     // Base Items
     public static ItemBucket itemBucket;
@@ -580,6 +743,8 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack dustSteelStainless;
     public static ItemStack dustTechnomancy;
     public static ItemStack dustTechnomancyResonant;
+    public static ItemStack dustPitchblende;
+    public static ItemStack dustNierdermayrite;
 
     // Complex Alloy Nuggets
     public static ItemStack nuggetMithrilBronze;
@@ -592,27 +757,30 @@ public class FluxGearContent implements IFuelHandler{
 
     // Fluid Alloy Ingots
     public static ItemStack ingotTungstenBlazing;
-    public static ItemStack ingotBismuthBronzeGelid;
+    public static ItemStack ingotPlatinumGelid;
     public static ItemStack ingotSilverLuminous;
     public static ItemStack ingotElectrumFlux;
     public static ItemStack ingotMolybdenumResonant;
     public static ItemStack ingotChromiumCarbide;
+    public static ItemStack ingotColdfireBismuthBronze;
 
     // Fluid Alloy Dusts
     public static ItemStack dustTungstenBlazing;
-    public static ItemStack dustBismuthBronzeGelid;
+    public static ItemStack dustPlatinumGelid;
     public static ItemStack dustSilverLuminous;
     public static ItemStack dustElectrumFlux;
     public static ItemStack dustMolybdenumResonant;
     public static ItemStack dustChromiumCarbide;
+    public static ItemStack dustColdfireBismuthBronze;
 
     // Fluid Alloy Nuggets
     public static ItemStack nuggetTungstenBlazing;
-    public static ItemStack nuggetBismuthBronzeGelid;
+    public static ItemStack nuggetPlatinumGelid;
     public static ItemStack nuggetSilverLuminous;
     public static ItemStack nuggetElectrumFlux;
     public static ItemStack nuggetMolybdenumResonant;
     public static ItemStack nuggetChromiumCarbide;
+    public static ItemStack nuggetColdfireBismuthBronze;
 
     // Fluid-Doped Alloy Ingots
     public static ItemStack ingotCarbonite;
@@ -631,10 +799,56 @@ public class FluxGearContent implements IFuelHandler{
 
     // White Point Stars and Void Inferno Stars
 
-
-
-
     // Magnetar and Quasar Parts
+
+    // More Components
+    public static ItemStack coilHeatingRedstone;
+    public static ItemStack coilHeatingCupronickel;
+    public static ItemStack coilSteel;
+    public static ItemStack partRedLED;
+    public static ItemStack partGreenLED;
+    public static ItemStack partBlueLED;
+    public static ItemStack partUltravioletLight;
+    public static ItemStack panelSteel;
+    public static ItemStack partFluxResonator;
+    public static ItemStack partTankInternal;
+    public static ItemStack partTankPressurized;
+    public static ItemStack coilSignalum;
+    public static ItemStack circuitMagitech;
+    public static ItemStack partKkaylionicRainbow;
+    public static ItemStack partImpeller;
+    public static ItemStack partSaw;
+    public static ItemStack partRotor;
+    public static ItemStack partGearbox;
+    public static ItemStack partTurbine;
+    public static ItemStack circuitObscurity;
+    public static ItemStack partShaftSteel;
+    public static ItemStack partScreen;
+    public static ItemStack partPropellerBlade;
+    public static ItemStack partGrindingHeadTungsten;
+    public static ItemStack partFluxMotor;
+    public static ItemStack partMagneticGenerator;
+    public static ItemStack partElectromagnetStandard;
+    public static ItemStack partElectromagnetNeodymium;
+    public static ItemStack partElectrode;
+    public static ItemStack partRotaryOrb;
+    public static ItemStack partLaserEmitter;
+    public static ItemStack partFiberOpticCable;
+    public static ItemStack partMatterConverter;
+    public static ItemStack partFluxLaser;
+    public static ItemStack partCopperPipe;
+    public static ItemStack partPump;
+    public static ItemStack partMirror;
+    public static ItemStack partKeyboard;
+    public static ItemStack partMouse;
+    public static ItemStack partRAM;
+    public static ItemStack partProcessor;
+    public static ItemStack partMixer;
+    public static ItemStack partHeadReader;
+
+
+    // Random Stuff
+    public static ItemStack feeshSkeleton;
 
     public static Item itemQuantumCapacitor;
 

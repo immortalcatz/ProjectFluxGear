@@ -1,4 +1,4 @@
-Thermal Tinkerer
+#Project Flux Gear
 ========
 
 ##Compiling from Source
@@ -20,8 +20,8 @@ Please include the following:
 * CoFH Core version
 * Thermal Foundation version
 * Thermal Expansion version
-* Magnequasar Core Version
-* Thermal Tinkerer version
+* Flux Gear Core Version
+* Project Flux Gear version
 * Versions of any mods potentially related to the issue 
 * Any relevant screenshots are greatly appreciated.
 * For crashes:
@@ -30,17 +30,17 @@ Please include the following:
 
 ##Licensing
 
-####Thermal Tinkerer is copyleft under the Open Source Team Magnequasar Mod License v1:
+####Project Flux Gear is copyleft under the Open Source Team Magnequasar Mod License v1:
 
-The code of Thermal Tinkerer in source and/or binary is the intellectual property of the Team Magnequasar. The end user (From here on know as "You") may not reproduce or modify Thermal Tinkerer for public distribution without prior permission. You can however redistribute official Thermal Tinkerer compiled binaries in modpacks with adequate permissions for other mods to be included. Any modpack using Thermal Tinkerer takes **full** responsibility for user support queries. For anyone else, we only support official builds from the main CI servers, or from CurseForge, not custom built jars. We also do not take bug reports for outdated versions of Minecraft. You are allowed to fork and modify Thermal Tinkerer, and submit Pull Requests, and even port it if the whole team happens to spontaneously implode and/or drop the project. You can copy portions of code for use in other projects, or even use our (Team Magnequasar's) code as a dependency for other mods. Any contributions to this repository are automatically licensed under this license, so if you do agree with it, do contribute. Any code copied from, derived from, or building on our code must be publicly visible; You keep rights to your OWN code, but you still must make your source visible. You are forbidden from claiming any code, which you did not write as your own. If you copy a large portion of the code, you must at least state that you learned from and used our code, in your repositories README. Also, just use common sense and follow Wheaton's Law
+The code of Project Flux Gear in source and/or binary is the intellectual property of the Team Magnequasar. The end user (From here on know as "You") may not reproduce or modify Project Flux Gear for public distribution without prior permission. You can however redistribute official Project Flux Gear compiled binaries in modpacks with adequate permissions for other mods to be included. Any modpack using Project Flux Gear takes **full** responsibility for user support queries. For anyone else, we only support official builds from the main CI servers, or from CurseForge, not custom built jars. We also do not take bug reports for outdated versions of Minecraft. You are allowed to fork and modify Project Flux Gear, and submit Pull Requests, and even port it if the whole team happens to spontaneously implode and/or drop the project. You can copy portions of code for use in other projects, or even use our (Team Magnequasar's) code as a dependency for other mods. Any contributions to this repository are automatically licensed under this license, so if you do agree with it, do contribute. Any code copied from, derived from, or building on our code must be publicly visible; You keep rights to your OWN code, but you still must make your source visible. You are forbidden from claiming any code, which you did not write as your own. If you copy a large portion of the code, you must at least state that you learned from and used our code, in your repositories README. Also, just use common sense and follow Wheaton's Law
 
 #### In Human Readable Text:
 
-- Thermal Tinkerer's code in any form belongs to Team Magnequasar.
-- You may not publically distribute unofficial Thermal Tinkerer binaries without permission.
-- You may distribute official (From) Thermal Tinkerer binaries without our permission.
-- Go ahead and use Thermal Tinkerer in **OFFICIAL** modpacks (a modpack permissions to include all mods included).
-- Any modpack using Thermal Tinkerer must handle bug reports.
+- Project Flux Gear's code in any form belongs to Team Magnequasar.
+- You may not publically distribute unofficial Project Flux Gear binaries without permission.
+- You may distribute official (From) Project Flux Gear binaries without our permission.
+- Go ahead and use Project Flux Gear in **OFFICIAL** modpacks (a modpack permissions to include all mods included).
+- Any modpack using Project Flux Gear must handle bug reports.
 - Don't report bugs for outdated versions of Minecraft, 
 - You can fork, modify, and make pull requests.
 - You can copy portions of the code, and are encouraged to learn from it.
