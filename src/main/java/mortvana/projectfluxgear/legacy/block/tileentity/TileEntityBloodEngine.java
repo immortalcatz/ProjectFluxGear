@@ -10,9 +10,9 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
-import mortvana.projectfluxgear.legacy.ContentRegistry;
-import mortvana.projectfluxgear.legacy.util.IConfiggable;
-import mortvana.projectfluxgear.legacy.util.IDeferredInit;
+import mortvana.fluxgearcore.legacy.ContentRegistry;
+import mortvana.fluxgearcore.legacy.util.IConfiggable;
+import mortvana.fluxgearcore.legacy.util.IDeferredInit;
 import mortvana.fluxgearcore.legacy.util.IRegistrable;
 
 public class TileEntityBloodEngine extends TileEntityGenerator implements

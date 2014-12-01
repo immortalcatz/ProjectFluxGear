@@ -9,8 +9,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
-import mortvana.projectfluxgear.legacy.ContentRegistry;
-import mortvana.projectfluxgear.legacy.util.IConfiggable;
+import mortvana.fluxgearcore.legacy.ContentRegistry;
+import mortvana.fluxgearcore.legacy.util.IConfiggable;
 import mortvana.fluxgearcore.legacy.util.IRegistrable;
 
 public class TileEntityOccultEngine extends TileEntityBloodEngine implements IConfiggable, IRegistrable {

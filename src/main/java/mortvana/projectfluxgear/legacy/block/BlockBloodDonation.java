@@ -12,8 +12,8 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import mortvana.projectfluxgear.legacy.block.tileentity.TileEntityBloodDonation;
-import mortvana.projectfluxgear.legacy.ContentRegistry;
-import mortvana.projectfluxgear.legacy.util.IConfiggable;
+import mortvana.fluxgearcore.legacy.ContentRegistry;
+import mortvana.fluxgearcore.legacy.util.IConfiggable;
 
 public class BlockBloodDonation extends BlockMetaTank implements IConfiggable {
 	

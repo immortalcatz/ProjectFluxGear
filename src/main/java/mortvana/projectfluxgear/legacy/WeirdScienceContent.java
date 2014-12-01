@@ -2,7 +2,9 @@ package mortvana.projectfluxgear.legacy;
 
 import java.util.ArrayList;
 
+import mortvana.fluxgearcore.legacy.ContentRegistry;
 import mortvana.fluxgearcore.legacy.item.SubBucket;
+import mortvana.fluxgearcore.legacy.util.crafting.DisableableRecipe;
 import mortvana.projectfluxgear.fluid.BlockFluidAcid;
 import mortvana.projectfluxgear.fluid.BlockFluidSmog;
 import mortvana.projectfluxgear.legacy.item.Coagulant;
@@ -14,6 +16,8 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
+
 import mortvana.projectfluxgear.legacy.block.BlockBloodDonation;
 import mortvana.projectfluxgear.legacy.block.BlockBloodEngine;
 import mortvana.projectfluxgear.legacy.block.BlockFuelBurner;
@@ -27,7 +31,6 @@ import mortvana.fluxgearcore.legacy.item.ItemBase;
 import mortvana.fluxgearcore.legacy.item.ItemBucketWS;
 import mortvana.fluxgearcore.legacy.util.chemistry.reaction.BlockFluidReactive;
 import mortvana.fluxgearcore.legacy.util.chemistry.reaction.ReactionSpec;
-import mortvana.projectfluxgear.legacy.util.crafting.DisableableRecipe;
 import mortvana.fluxgearcore.legacy.util.crafting.SimpleRecipe;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -268,34 +271,26 @@ public class WeirdScienceContent {
         cr.RegisterRecipe(new SimpleRecipe(new ItemStack(blockRust, 1, 0), new Object[] { "rrr", "rrr", "rrr", 'r', itemRust }, false, false));
 
         //Machine recipes
-        //      Nitrate Engine
-        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(nitrateEngineBlock, 1, 0), "sss", "gcg", "sbs", Character.valueOf('s'), "blockStone", Character.valueOf('c'), new ItemStack(Items.slime_ball,
-                1, 0), Character.valueOf('g'), new ItemStack(Items.gold_ingot), Character.valueOf('b'), new ItemStack(Items.bucket)));
-        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(nitrateEngineBlock, 1, 0), "sss", "gcg", "sbs", Character.valueOf('s'), new ItemStack(Blocks.stone), Character.valueOf('c'), new ItemStack(
-                Items.slime_ball, 1, 0), Character.valueOf('g'), new ItemStack(Items.gold_ingot), Character.valueOf('b'), new ItemStack(Items.bucket)));
-        //      Blood Donation Station
-        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(donationBlock, 1, 0), "aba", "aga", "aba", Character.valueOf('a'), "ingotAluminum", Character.valueOf('g'),
-                new ItemStack(Blocks.glass, 1, 0), Character.valueOf('b'), new ItemStack(Items.bucket)));
-        //      Blood Engine
-        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(bloodEngineBlock, 1, 0), "aba", "afa", "aaa", Character.valueOf('a'), "ingotAluminum", Character.valueOf('f'), new ItemStack(
-                Blocks.furnace, 1, 0), Character.valueOf('b'), new ItemStack(Items.bucket)));
-        //      Occult Engine
-        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(occultEngineBlock, 1, 0), "gog", "oeo", "gog", Character.valueOf('e'), new ItemStack(bloodEngineBlock, 1, 0), Character.valueOf('o'),
-                new ItemStack(Blocks.obsidian), Character.valueOf('g'), new ItemStack(Items.gold_ingot)));
-        //      Blast Engine
-        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(gunpowderEngineBlock, 1, 0), "aia", "afa", "ana", Character.valueOf('a'), "ingotAluminum", Character.valueOf('f'), new ItemStack(
-                Blocks.furnace, 1, 0), Character.valueOf('n'), new ItemStack(Blocks.netherrack), Character.valueOf('i'), new ItemStack(Blocks.iron_bars)));
+        // Nitrate Engine
+        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(nitrateEngineBlock, 1, 0), "sss", "gcg", "sbs", 's', "stone", 'c', Items.slime_ball, 'g', "ingotGold", 'b', Items.bucket));
+        // Blood Donation Station
+        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(donationBlock, 1, 0), "aba", "aga", "aba", 'a', "ingotAluminium", 'g', Blocks.glass, 'b', Items.bucket));
+        // Blood Engine
+        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(bloodEngineBlock, 1, 0), "aba", "afa", "aaa", 'a', "ingotAluminium", 'f', Blocks.furnace, 'b', new ItemStack(Items.bucket)));
+        // Occult Engine
+        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(occultEngineBlock, 1, 0), "gog", "oeo", "gog", 'e', bloodEngineBlock, 'o', Blocks.obsidian, 'g', "ingotGold"));
+        // Blast Engine
+        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(gunpowderEngineBlock, 1, 0), "aia", "afa", "ana", 'a', "ingotAluminium", 'f', Blocks.furnace, 'n', Blocks.netherrack, 'i', Blocks.iron_bars));
 
-        if (thermiteRecipe.isEnabled())
-        {
-            //Registers other aluminum dusts as items from which thermite can be made.
-            ArrayList<ItemStack> aluminumDusts = OreDictionary.getOres("dustAluminum");
-            if (aluminumDusts != null)
-            {
-                if (aluminumDusts.size() > 0)
-                {
-                    for (ItemStack item : aluminumDusts)
-                    {
+        if (thermiteRecipe.isEnabled()) {
+
+            GameRegistry.addShapedRecipe(new ShapelessOreRecipe(new ItemStack(itemThermite, 1, 0), "dustRust", "dustAluminium"));
+
+            //Registers other aluminium dusts as items from which thermite can be made.
+            ArrayList<ItemStack> aluminiumDusts = OreDictionary.getOres("dustAluminium");
+            if (aluminiumDusts != null) {
+                if (aluminiumDusts.size() > 0) {
+                    for (ItemStack item : aluminiumDusts) {
                         cr.RegisterRecipe(new SimpleRecipe(new ItemStack(itemThermite, 1, 0), new Object[] { itemRust, item }, true, false));
                     }
                 }

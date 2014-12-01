@@ -10,9 +10,9 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 import net.minecraftforge.fluids.IFluidTank;
 import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
-import mortvana.projectfluxgear.legacy.ContentRegistry;
+import mortvana.fluxgearcore.legacy.ContentRegistry;
 import mortvana.fluxgearcore.legacy.block.tile.TileEntityBase;
-import mortvana.projectfluxgear.legacy.util.IConfiggable;
+import mortvana.fluxgearcore.legacy.util.IConfiggable;
 import mortvana.fluxgearcore.legacy.util.IRegistrable;
 
 public class TileEntityBloodDonation extends TileEntityBase implements IFluidHandler, IFluidTank, IConfiggable, IRegistrable {

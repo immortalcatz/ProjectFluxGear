@@ -16,10 +16,10 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.FluidStack;
 import mortvana.fluxgearcore.legacy.block.IBlockMetaPower;
-import mortvana.projectfluxgear.legacy.ContentRegistry;
+import mortvana.fluxgearcore.legacy.ContentRegistry;
 import mortvana.fluxgearcore.legacy.energy.SolidFuelInfo;
-import mortvana.projectfluxgear.legacy.util.IConfiggable;
-import mortvana.projectfluxgear.legacy.util.IDeferredInit;
+import mortvana.fluxgearcore.legacy.util.IConfiggable;
+import mortvana.fluxgearcore.legacy.util.IDeferredInit;
 import mortvana.fluxgearcore.legacy.util.IRegistrable;
 import mortvana.fluxgearcore.legacy.energy.ISolidFuelInfo;
 
