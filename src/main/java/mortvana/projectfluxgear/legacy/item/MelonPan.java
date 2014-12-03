@@ -6,7 +6,6 @@ public class MelonPan extends ItemFood {
 
 	public MelonPan(int par1, int par2, boolean par3) {
 		super(par1, par2, par3);
-		// TODO Auto-generated constructor stub
 	} /*
 	@Override
 	private static final int hungerRestore = 3;

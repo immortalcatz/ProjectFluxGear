@@ -33,7 +33,6 @@ public class Coagulant extends ItemBase {
 	
 	public Coagulant(Configuration config, String name) {
 		super(config, name);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
