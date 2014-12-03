@@ -14,6 +14,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -27,6 +28,7 @@ import mortvana.fluxgearcore.item.ItemBase;
 import mortvana.fluxgearcore.util.helper.ItemHelper;
 
 import mortvana.projectfluxgear.item.tool.ItemProtoSonicWrench;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class FluxGearContent implements IFuelHandler{
 
@@ -48,7 +50,8 @@ public class FluxGearContent implements IFuelHandler{
         //initTools();
         //initAugments();
         //addOreDict();
-	    craftingRecipes();
+	    metalCraftingRecipes();
+        otherCraftingRecipes();
 	    furnaceRecipes();
     }
 
@@ -177,16 +180,20 @@ public class FluxGearContent implements IFuelHandler{
     }
 
     public void loadItems() {
-        //itemBucket = (ItemBucket) new ItemBucket("thermaltinkerer").setUnlocalizedName("bucket").setCreativeTab(ThermalTinkerer.tab);
+        itemBucket = (ItemBucket) new ItemBucket("thermaltinkerer").setUnlocalizedName("bucket").setCreativeTab(ProjectFluxGear.tab);
         itemMaterial = (ItemBase) new ItemBase("thermaltinkerer").setUnlocalizedName("material").setCreativeTab(ProjectFluxGear.tab);
         //itemFood =
+        //itemInteractive (Alum & Thermite)
 
         //Buckets
-        /*bucketGhastTears = itemBucket.addItem(0, "bucketGhastTears", 1);
-        bucketEtchingAcid = itemBucket.addItem(1, "bucketEtchingAcid", 0);
-        bucketBlood = itemBucket.addItem(2, "bucketBlood", 1);
-        bucketAcid = itemBucket.addItem(3, "bucketAcid", 0);
-        bucketSmog = itemBucket.addItem(4, "bucketSmog", 0);*/
+        bucketGhastTears = itemBucket.addItem(0, "bucketGhastTears", 1);
+        bucketLye = itemBucket.addItem(1, "bucketLye", 0);
+        bucketAcid = itemBucket.addItem(2, "bucketAcid", 0);
+        bucketEtchingAcid = itemBucket.addItem(3, "bucketEtchingAcid", 0);
+        bucketSmog = itemBucket.addItem(4, "bucketSmog", 0);
+        bucketBlood = itemBucket.addItem(5, "bucketBlood", 1);
+        bucketGelidPyrotheum = itemBucket.addItem(6, "bucketGelidPyrotheum", 2);
+
 
         // Standard Ingots
         ingotZinc = itemMaterial.addOreDictItem(0, "ingotZinc");
@@ -347,7 +354,7 @@ public class FluxGearContent implements IFuelHandler{
 		toolProtoSonicWrench = itemProtoSonicWrench.addItem(0, "protoSonicWrench");
 	}
 
-    public void craftingRecipes() {
+    public void metalCraftingRecipes() {
         ItemHelper.addStorageRecipe(ingotZinc, "nuggetZinc");
         ItemHelper.addStorageRecipe(ingotBismuth, "nuggetBismuth");
         ItemHelper.addStorageRecipe(ingotManganese, "nuggetManganese");
@@ -441,10 +448,15 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.addStorageRecipe(blockSaltpeter, "dustSaltpetre");
         ItemHelper.addStorageRecipe(blockRust, "dustRust");
         ItemHelper.addStorageRecipe(blockColdfireBismuthBronze, "ingotColdfireBismuthBronze");
+    }
 
-	    GameRegistry.addRecipe(new ShapedOreRecipe(toolProtoSonicWrench, "B B", "ADA", " B ", 'B', "ingotBronze", 'A', "ingotAluminium", 'D', "gemDioptase"));
+    public void otherCraftingRecipes() {
+        //GameRegistry.addRecipe(new ShapelessOreRecipe(melonPan, Items.bread, Items.melon));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(bucketLye, Items.water_bucket, dustAshes));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(bucketAcid, Items.water_bucket, Items.gunpowder));
+        //GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(itemInteractive, 1, 0), "dustRust", "dustAluminium"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(toolProtoSonicWrench, "B B", "ADA", " B ", 'B', "ingotBronze", 'A', "ingotAluminium", 'D', "gemDioptase"));
         //GameRegistry.addRecipe(new ShapedOreRecipe(toolProtoSonicWrench, "B B", "WDW", " B ", 'B', "ingotMithrilBronze", 'W', "ingotTungsten", 'D', "gemDioptase"));
-
     }
 
     public void furnaceRecipes() {
@@ -603,10 +615,13 @@ public class FluxGearContent implements IFuelHandler{
 
     //Buckets
     public static ItemStack bucketGhastTears;
-    public static ItemStack bucketEtchingAcid;
-    public static ItemStack bucketBlood;
+    public static ItemStack bucketLye;
     public static ItemStack bucketAcid;
+    public static ItemStack bucketEtchingAcid;
     public static ItemStack bucketSmog;
+    public static ItemStack bucketBlood;
+    public static ItemStack bucketGelidPyrotheum;
+
 
 
     // Standard Ingots
@@ -745,6 +760,8 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack dustTechnomancyResonant;
     public static ItemStack dustPitchblende;
     public static ItemStack dustNierdermayrite;
+    public static ItemStack dustRust;
+    public static ItemStack dustAshes;
 
     // Complex Alloy Nuggets
     public static ItemStack nuggetMithrilBronze;
@@ -846,9 +863,9 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack partMixer;
     public static ItemStack partHeadReader;
 
-
     // Random Stuff
     public static ItemStack feeshSkeleton;
+
 
     public static Item itemQuantumCapacitor;
 

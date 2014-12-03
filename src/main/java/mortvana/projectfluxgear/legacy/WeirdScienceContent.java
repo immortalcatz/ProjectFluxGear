@@ -2,22 +2,32 @@ package mortvana.projectfluxgear.legacy;
 
 import java.util.ArrayList;
 
-import mortvana.fluxgearcore.legacy.ContentRegistry;
-import mortvana.fluxgearcore.legacy.item.SubBucket;
-import mortvana.fluxgearcore.legacy.util.crafting.DisableableRecipe;
-import mortvana.projectfluxgear.fluid.BlockFluidAcid;
-import mortvana.projectfluxgear.fluid.BlockFluidSmog;
-import mortvana.projectfluxgear.legacy.item.Coagulant;
+import mortvana.fluxgearcore.util.helper.ItemHelper;
+import mortvana.projectfluxgear.common.FluxGearContent;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
+import mortvana.fluxgearcore.legacy.ContentRegistry;
+import mortvana.fluxgearcore.legacy.item.SubBucket;
+import mortvana.fluxgearcore.legacy.block.BlockBase;
+import mortvana.fluxgearcore.legacy.fluid.BlockFluidClassicWS;
+import mortvana.fluxgearcore.legacy.item.ItemBase;
+import mortvana.fluxgearcore.legacy.item.ItemBucketWS;
+import mortvana.fluxgearcore.legacy.util.chemistry.reaction.BlockFluidReactive;
+import mortvana.fluxgearcore.legacy.util.chemistry.reaction.ReactionSpec;
+
+import mortvana.projectfluxgear.fluid.BlockFluidAcid;
+import mortvana.projectfluxgear.fluid.BlockFluidSmog;
+import mortvana.projectfluxgear.legacy.item.Coagulant;
 import mortvana.projectfluxgear.legacy.block.BlockBloodDonation;
 import mortvana.projectfluxgear.legacy.block.BlockBloodEngine;
 import mortvana.projectfluxgear.legacy.block.BlockFuelBurner;
@@ -25,19 +35,9 @@ import mortvana.projectfluxgear.legacy.block.BlockGunpowderEngine;
 import mortvana.projectfluxgear.legacy.block.BlockNitrateEngine;
 import mortvana.projectfluxgear.legacy.block.BlockOccultEngine;
 import mortvana.projectfluxgear.legacy.block.CongealedBloodBlock;
-import mortvana.fluxgearcore.legacy.block.BlockBase;
-import mortvana.fluxgearcore.legacy.fluid.BlockFluidClassicWS;
-import mortvana.fluxgearcore.legacy.item.ItemBase;
-import mortvana.fluxgearcore.legacy.item.ItemBucketWS;
-import mortvana.fluxgearcore.legacy.util.chemistry.reaction.BlockFluidReactive;
-import mortvana.fluxgearcore.legacy.util.chemistry.reaction.ReactionSpec;
-import mortvana.fluxgearcore.legacy.util.crafting.SimpleRecipe;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 //TODO: Write some sort of generic reflection proxy class that caches the results it finds.
 // ^ Actually a really strong use case for a Singleton.
-
 
 // TODO: Put this in a proper spot
 @Deprecated
@@ -207,48 +207,8 @@ public class WeirdScienceContent {
         itemAlum.congealedBlock = congealedBlock;
         cr.RegisterItem(itemAlum);
 
-        ItemBucketWS bucket = new ItemBucketWS(config, "Bucket");
-        bucket.addSubBucket(new SubBucket("Blood Bucket", "gui:bloodbucket", bloodBlock));
-        SubBucket bucketAcid = new SubBucket("Acid Bucket", "gui:acidbucket", acidBlock);
-        bucket.addSubBucket(bucketAcid);
-        SubBucket bucketBase = new SubBucket("Base Bucket", "gui:basebucket", baseBlock);
-        bucket.addSubBucket(bucketBase);
-
-        /*
-        ItemBucketWS bucketBlood = new ItemBucketWS(config, "Blood Bucket", ItemBase.FindFreeItemID(), bloodBlock);
-        bucketBlood.setTextureName("gui:bloodbucket");
-        cr.RegisterItem(bucketBlood);
-
-        ItemBucketWS bucketAcid = new ItemBucketWS(config, "Acid Bucket", ItemBase.FindFreeItemID(), acidBlock);
-        bucketAcid.setTextureName("gui:acidbucket");
-        cr.RegisterItem(bucketAcid);
-        
-        //heh
-        ItemBucketWS bucketBase = new ItemBucketWS(config, "Lye Solution Bucket", ItemBase.FindFreeItemID(), baseBlock);
-        bucketBase.setTextureName("gui:basebucket");
-        cr.RegisterItem(bucketBase);*/
-        cr.RegisterItem(bucket);
-
-        ItemBase ingotAluminum = new ItemBase(config, "Aluminum Ingot");
-        ingotAluminum.setTextureName("gui:aluminumingot");
-        OreDictionary.registerOre("ingotAluminum", ingotAluminum);
-        cr.RegisterItem(ingotAluminum);
-
-        ItemBase dustAluminum = new ItemBase(config, "Aluminum Dust");
-        dustAluminum.setTextureName("gui:aluminumdust");
-        OreDictionary.registerOre("dustAluminum", dustAluminum);
-        cr.RegisterItem(dustAluminum);
-
-        ItemBase itemAshes = new ItemBase(config, "Ashes");
-        itemAshes.setTextureName("gui:ashes");
-        OreDictionary.registerOre("ashes", itemAshes);
-        cr.RegisterItem(itemAshes);
-
-        ItemBase itemRust = new ItemBase(config, "Rust Pile");
-        itemRust.setTextureName("gui:rustpile");
-        cr.RegisterItem(itemRust);
-
-        blockRust.setItemDropped(new ItemStack(itemRust, 6, 0));
+        //TODO: Add to Rust Block
+        blockRust.setItemDropped(ItemHelper.cloneStack(FluxGearContent.dustRust, 6));
         blockRust.setDroppedRandomBonus(3);
 
         //TODO: Thermite item behavior.
@@ -261,41 +221,17 @@ public class WeirdScienceContent {
 
         //TileEntityGunpowderEngine.thermite = itemThermite;
 
-        //Register recipes.
-
-        DisableableRecipe thermiteRecipe = new DisableableRecipe(new ItemStack(itemThermite, 1, 0), new Object[] { itemRust, dustAluminum }, true, false);
-        //cr.RegisterRecipe(new DisableableRecipe(itemMelonPan, new Object[] { Item.bread, Item.melon }, true, false));
-        cr.RegisterRecipe(new DisableableRecipe(new ItemStack(bucket, 1, bucketBase.getAssociatedMeta()), new Object[] { Items.water_bucket, itemAshes }, true, false));
-        cr.RegisterRecipe(new DisableableRecipe(new ItemStack(bucket, 1, bucketAcid.getAssociatedMeta()), new Object[] { Items.water_bucket, Items.gunpowder }, true, false));
-        cr.RegisterRecipe(thermiteRecipe);
-        cr.RegisterRecipe(new SimpleRecipe(new ItemStack(blockRust, 1, 0), new Object[] { "rrr", "rrr", "rrr", 'r', itemRust }, false, false));
-
-        //Machine recipes
+        //Register Machine recipes
         // Nitrate Engine
-        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(nitrateEngineBlock, 1, 0), "sss", "gcg", "sbs", 's', "stone", 'c', Items.slime_ball, 'g', "ingotGold", 'b', Items.bucket));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(nitrateEngineBlock, 1, 0), "sss", "gcg", "sbs", 's', "stone", 'c', Items.slime_ball, 'g', "ingotGold", 'b', Items.bucket));
         // Blood Donation Station
-        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(donationBlock, 1, 0), "aba", "aga", "aba", 'a', "ingotAluminium", 'g', Blocks.glass, 'b', Items.bucket));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(donationBlock, 1, 0), "aba", "aga", "aba", 'a', "ingotAluminium", 'g', Blocks.glass, 'b', Items.bucket));
         // Blood Engine
-        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(bloodEngineBlock, 1, 0), "aba", "afa", "aaa", 'a', "ingotAluminium", 'f', Blocks.furnace, 'b', new ItemStack(Items.bucket)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(bloodEngineBlock, 1, 0), "aba", "afa", "aaa", 'a', "ingotAluminium", 'f', Blocks.furnace, 'b', new ItemStack(Items.bucket)));
         // Occult Engine
-        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(occultEngineBlock, 1, 0), "gog", "oeo", "gog", 'e', bloodEngineBlock, 'o', Blocks.obsidian, 'g', "ingotGold"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(occultEngineBlock, 1, 0), "gog", "oeo", "gog", 'e', bloodEngineBlock, 'o', Blocks.obsidian, 'g', "ingotGold"));
         // Blast Engine
-        cr.RegisterRecipe(new ShapedOreRecipe(new ItemStack(gunpowderEngineBlock, 1, 0), "aia", "afa", "ana", 'a', "ingotAluminium", 'f', Blocks.furnace, 'n', Blocks.netherrack, 'i', Blocks.iron_bars));
-
-        if (thermiteRecipe.isEnabled()) {
-
-            GameRegistry.addShapedRecipe(new ShapelessOreRecipe(new ItemStack(itemThermite, 1, 0), "dustRust", "dustAluminium"));
-
-            //Registers other aluminium dusts as items from which thermite can be made.
-            ArrayList<ItemStack> aluminiumDusts = OreDictionary.getOres("dustAluminium");
-            if (aluminiumDusts != null) {
-                if (aluminiumDusts.size() > 0) {
-                    for (ItemStack item : aluminiumDusts) {
-                        cr.RegisterRecipe(new SimpleRecipe(new ItemStack(itemThermite, 1, 0), new Object[] { itemRust, item }, true, false));
-                    }
-                }
-            }
-        }
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(gunpowderEngineBlock, 1, 0), "aia", "afa", "ana", 'a', "ingotAluminium", 'f', Blocks.furnace, 'n', Blocks.netherrack, 'i', Blocks.iron_bars));
 
         //Register chemistry.
         //Clay to slurry reaction.
@@ -305,7 +241,7 @@ public class WeirdScienceContent {
         cr.RegisterReaction(clayDissolve);
 
         //Alum to aluminum dust reaction.
-        ReactionSpec alumDissolve = new ReactionSpec(fluidBase, new ItemStack(itemAlum), null, new ItemStack(dustAluminum));
+        ReactionSpec alumDissolve = new ReactionSpec(fluidBase, new ItemStack(itemAlum), null, FluxGearContent.dustAluminium);
         alumDissolve.soluteAffected = true;
         alumDissolve.solventAffected = false;
         cr.RegisterReaction(alumDissolve);
@@ -327,64 +263,45 @@ public class WeirdScienceContent {
         grassDissolveBase.soluteAffected = true;
         cr.RegisterReaction(grassDissolveBase);
 
-        ArrayList<ItemStack> aluminumIngots = OreDictionary.getOres("ingotAluminum");
-        ArrayList<ItemStack> aluminumOres = OreDictionary.getOres("oreAluminum");
-        //aluminumOres.addAll(OreDictionary.getOres("oreBauxite"));
+        ArrayList<ItemStack> aluminiumIngots = OreDictionary.getOres("ingotAluminium");
+        ArrayList<ItemStack> aluminiumOres = OreDictionary.getOres("oreAluminum");
+        aluminiumOres.addAll(OreDictionary.getOres("oreBauxite"));
         //Register aluminum ingot dissolution.
-        if (aluminumIngots != null)
-        {
-            if (aluminumIngots.size() > 0)
-            {
-                for (ItemStack item : aluminumIngots)
-                {
-                    ReactionSpec aluminumDissolve = new ReactionSpec(fluidAcid, item.copy(), null, new ItemStack(itemAlum));
-                    aluminumDissolve.soluteMin = 1; //Should be 1 to 1
-                    aluminumDissolve.soluteAffected = true;
-                    aluminumDissolve.solventAffected = false;
-                    cr.RegisterReaction(aluminumDissolve);
-                }
+        if (aluminiumIngots != null && aluminiumIngots.size() > 0) {
+            for (ItemStack item : aluminiumIngots) {
+                ReactionSpec aluminumDissolve = new ReactionSpec(fluidAcid, item.copy(), null, new ItemStack(itemAlum));
+                aluminumDissolve.soluteMin = 1; //Should be 1 to 1
+                aluminumDissolve.soluteAffected = true;
+                aluminumDissolve.solventAffected = false;
+                cr.RegisterReaction(aluminumDissolve);
             }
         }
         //Register aluminum ore dissolution.
-        if (aluminumOres != null)
-        {
-            if (aluminumOres.size() > 0)
-            {
-                for (ItemStack item : aluminumOres)
-                {
-                    /* Note the stack size of 2: This allows item doubling for those willing to spend the effort and coal 
-                     * to go the ore -> aluminosillicate slurry -> alum -> dissolved alum -> aluminum dust -> aluminum ingot path.
-                     */
-                    ReactionSpec aluminumDissolve = new ReactionSpec(fluidAcid, item.copy(), null, new ItemStack(aluminumSludge, 2, 0));
-                    aluminumDissolve.soluteMin = 1; //Should be 1 to 1
-                    aluminumDissolve.soluteAffected = true;
-                    aluminumDissolve.solventAffected = false;
-                    cr.RegisterReaction(aluminumDissolve);
-                }
+        if (aluminiumOres != null && aluminiumOres.size() > 0) {
+            for (ItemStack item : aluminiumOres) {
+                /* Note the stack size of 2: This allows item doubling for those willing to spend the effort and fuel
+                 * to go the ore -> aluminosillicate slurry -> alum -> dissolved alum -> aluminum dust -> aluminum ingot path.
+                 */
+                ReactionSpec aluminumDissolve = new ReactionSpec(fluidAcid, item.copy(), null, new ItemStack(aluminumSludge, 2, 0));
+                aluminumDissolve.soluteMin = 1; //Should be 1 to 1
+                aluminumDissolve.soluteAffected = true;
+                aluminumDissolve.solventAffected = false;
+                cr.RegisterReaction(aluminumDissolve);
             }
         }
 
         //Register furnace stuff.
         GameRegistry.addSmelting(aluminumSludge, new ItemStack(itemAlum), 0.0F);
-        GameRegistry.addSmelting(dustAluminum, new ItemStack(ingotAluminum), 0.0F);//plankWood 
         //Wood to ashes smelting.
         ArrayList<ItemStack> woodPlanks = OreDictionary.getOres("plankWood");
-        if (woodPlanks != null)
-        {
-            if (woodPlanks.size() > 0)
-            {
-                for (ItemStack item : woodPlanks)
-                {
-                    GameRegistry.addSmelting(item, new ItemStack(itemAshes), 0.0F);
-                }
+        if (woodPlanks != null && woodPlanks.size() > 0) {
+            for (ItemStack item : woodPlanks) {
+                GameRegistry.addSmelting(item, FluxGearContent.dustAshes, 0.0F);
             }
         }
         GameRegistry.addSmelting(blockRust, new ItemStack(Blocks.iron_block, 1, 0), 0.0F);
 
         boolean thermiteFuelEnabled = config.get("recipe", "Enable thermite as furnace fuel", true).getBoolean(true);
-        if (thermiteFuelEnabled)
-        {
-        }
-
+        if (thermiteFuelEnabled) {}
     }
 }
