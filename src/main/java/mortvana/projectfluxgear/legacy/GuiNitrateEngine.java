@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.legacy.gui;
+package mortvana.projectfluxgear.legacy;
 
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -8,7 +8,7 @@ import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
-import mortvana.projectfluxgear.legacy.block.tileentity.TileEntityNitrateEngine;
+import mortvana.projectfluxgear.legacy.tileentity.TileEntityNitrateEngine;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

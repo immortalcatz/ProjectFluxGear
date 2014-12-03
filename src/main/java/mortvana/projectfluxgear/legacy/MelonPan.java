@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.legacy.item;
+package mortvana.projectfluxgear.legacy;
 
 import net.minecraft.item.ItemFood;
 

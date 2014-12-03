@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.legacy.block.tileentity;
+package mortvana.projectfluxgear.legacy.tileentity;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -23,11 +23,9 @@ import net.minecraftforge.fluids.IFluidHandler;
 import net.minecraftforge.fluids.IFluidTank;
 import mortvana.fluxgearcore.legacy.block.IBlockMetaPower;
 import mortvana.fluxgearcore.legacy.ContentRegistry;
-import mortvana.fluxgearcore.legacy.energy.SolidFuelInfo;
-import mortvana.fluxgearcore.legacy.util.IConfiggable;
-import mortvana.fluxgearcore.legacy.util.IDeferredInit;
+import mortvana.fluxgearcore.legacy.item.SolidFuelInfo;
 import mortvana.fluxgearcore.legacy.util.IRegistrable;
-import mortvana.fluxgearcore.legacy.energy.ISolidFuelInfo;
+import mortvana.fluxgearcore.legacy.item.ISolidFuelInfo;
 import cofh.api.energy.IEnergyHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -35,9 +33,7 @@ import cpw.mods.fml.relauncher.Side;
 
 //import static java.lang.System.out;
 
-public class TileEntityNitrateEngine extends TileEntitySolidFueled implements
-		IEnergyHandler, ISidedInventory, IFluidHandler, IFluidTank,
-		IConfiggable, IRegistrable, IDeferredInit {
+public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IEnergyHandler, ISidedInventory, IFluidHandler, IFluidTank, IRegistrable {
 	private static final int[] accessibleSlots = new int[] { 0, 1 };
 
 	/**
@@ -559,18 +555,13 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements
 		if (byproductStack == null) {
 			// If we're just receiving a null value, do nothing with it.
 			return;
-		} else if (engineItemStacks[1] == null) { // Make sure we have a sand
-													// stack to add to.
+		} else if (engineItemStacks[1] == null) { // Make sure we have a sand stack to add to.
 			engineItemStacks[1] = byproductStack;
 		} else {
-			// Only do the simple behavior if we've got two item stacks of the
-			// same type and added items will fit.
-			if ((engineItemStacks[1].isItemEqual(byproductStack))
-					&& ((engineItemStacks[1].stackSize + byproductStack.stackSize) > this
-							.getInventoryStackLimit())) {
+			// Only do the simple behavior if we've got two item stacks of the same type and added items will fit.
+			if ((engineItemStacks[1].isItemEqual(byproductStack)) && ((engineItemStacks[1].stackSize + byproductStack.stackSize) > this.getInventoryStackLimit())) {
 			} else {
-				// ...Otherwise, remove everything from that slot and put our
-				// byproduct stack in there.
+				// ...Otherwise, remove everything from that slot and put our byproduct stack in there.
 				ejectWaste();
 				engineItemStacks[1] = byproductStack.copy();
 			}
@@ -578,10 +569,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements
 	}
 
 	public void ejectWaste() {
-		if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) { // prevent
-																				// ghost
-																				// item
-																				// stupidity
+		if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) { // prevent ghost item stupidity
 			float xr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
 			float yr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
 			float zr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
@@ -589,7 +577,6 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements
 					(double) ((float) xCoord + xr),
 					(double) ((float) yCoord + yr),
 					(double) ((float) zCoord + zr), engineItemStacks[1].copy());
-
 			worldObj.spawnEntityInWorld(entityItem);
 			engineItemStacks[1] = null;
 		}
@@ -656,7 +643,6 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements
 		// }
 	}
 
-	@Override
 	public void doConfig(Configuration config, ContentRegistry cr) {
 		staticEnergyCap = config.get(getEnglishName(),
 				"Capacity of internal buffer", 2000).getInt();
@@ -730,13 +716,11 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements
 
 	@Override
 	public String getEnglishName() {
-		// TODO Auto-generated method stub
 		return "NitrateEngine";
 	}
 
 	@Override
 	public String getGameRegistryName() {
-		// TODO Auto-generated method stub
 		return "engineNitrate";
 	}
 
@@ -745,31 +729,22 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements
 		return true;
 	}
 
-	@Override
 	public void DeferredInit(ContentRegistry cr) {
 		if (dirtFuel != null) {
-			// In case somebody overrides the terrain block classes like a
-			// weirdo, this is here.
-			dirtFuel.ourFuel = new ItemStack(Item.getItemFromBlock(Blocks.dirt));
-			dirtFuel.byproduct = new ItemStack(
-					Item.getItemFromBlock(Blocks.sand));
+			dirtFuel.ourFuel = new ItemStack(Blocks.dirt);
+			dirtFuel.byproduct = new ItemStack(Blocks.sand);
 			dirtFuel.exhaust = new FluidStack(waste, exhaustPerDirt);
 			staticFuelInfo.add(dirtFuel);
 		}
 		if (grassyDirtFuel != null) {
-			// In case somebody overrides the terrain block classes like a
-			// weirdo, this is here.
-			grassyDirtFuel.ourFuel = new ItemStack(
-					Item.getItemFromBlock(Blocks.grass));
-			grassyDirtFuel.byproduct = new ItemStack(Item.getItemFromBlock(Blocks.sand));
+			grassyDirtFuel.ourFuel = new ItemStack(Blocks.grass);
+			grassyDirtFuel.byproduct = new ItemStack(Blocks.sand);
 			grassyDirtFuel.exhaust = new FluidStack(waste, exhaustPerDirt);
 			staticFuelInfo.add(grassyDirtFuel);
 		}
 		if (myceliumFuel != null) {
-			// In case somebody overrides the terrain block classes like a
-			// weirdo, this is here.
-			myceliumFuel.ourFuel = new ItemStack(Item.getItemFromBlock(Blocks.mycelium));
-			myceliumFuel.byproduct = new ItemStack(Item.getItemFromBlock(Blocks.sand));
+			myceliumFuel.ourFuel = new ItemStack(Blocks.mycelium);
+			myceliumFuel.byproduct = new ItemStack(Blocks.sand);
 			myceliumFuel.exhaust = new FluidStack(waste, exhaustPerDirt / 2);
 			staticFuelInfo.add(myceliumFuel);
 		}
@@ -783,21 +758,16 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements
 			if (GameRegistry.findBlock("Natura", "heatsand") != null) {
 				hsBlock = GameRegistry.findBlock("Natura", "heatsand");
 			}
-			if ((taintedSoilFuel != null) && (tsBlock != null)) {
+			if (taintedSoilFuel != null && tsBlock != null) {
 				System.out.println("yoyoyo");
-				taintedSoilFuel.ourFuel = new ItemStack(
-						Item.getItemFromBlock(tsBlock));
-				taintedSoilFuel.byproduct = new ItemStack(
-						Item.getItemFromBlock(Blocks.soul_sand));
-				taintedSoilFuel.exhaust = new FluidStack(waste,
-						exhaustPerTaintedSoil);
+				taintedSoilFuel.ourFuel = new ItemStack(tsBlock);
+				taintedSoilFuel.byproduct = new ItemStack(Blocks.soul_sand);
+				taintedSoilFuel.exhaust = new FluidStack(waste, exhaustPerTaintedSoil);
 				staticFuelInfo.add(taintedSoilFuel);
 			}
-			if ((heatSandFuel != null) && (hsBlock != null)) {
-				heatSandFuel.ourFuel = new ItemStack(
-						Item.getItemFromBlock(hsBlock));
-				heatSandFuel.byproduct = new ItemStack(
-						Item.getItemFromBlock(Blocks.soul_sand));
+			if (heatSandFuel != null && hsBlock != null) {
+				heatSandFuel.ourFuel = new ItemStack(Item.getItemFromBlock(hsBlock));
+				heatSandFuel.byproduct = new ItemStack(Item.getItemFromBlock(Blocks.soul_sand));
 				heatSandFuel.exhaust = new FluidStack(waste, exhaustPerHeatSand);
 				heatSandFuel.byproductMult = 0.5f;
 				staticFuelInfo.add(heatSandFuel);
@@ -807,14 +777,10 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements
 
 	@Override
 	public void closeInventory() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void openInventory() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -26,7 +26,7 @@ public class BlockAlloy extends Block {
 
     public BlockAlloy() {
         super(Material.iron);
-        setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("thermaltinkerer.alloy");
+        setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("projectfluxgear.alloy");
     }
 
     @Override
@@ -84,7 +84,7 @@ public class BlockAlloy extends Block {
     public void registerBlockIcons(IIconRegister ir) {
 
         for (int i = 0; i < NAMES.length; i++) {
-            TEXTURES[i] = ir.registerIcon("thermaltinkerer:storage/block" + StringHelper.titleCase(NAMES[i]));
+            TEXTURES[i] = ir.registerIcon("projectfluxgear:storage/block" + StringHelper.titleCase(NAMES[i]));
         }
     }
 

@@ -1,11 +1,11 @@
-package mortvana.projectfluxgear.legacy.gui;
+package mortvana.projectfluxgear.legacy;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import mortvana.projectfluxgear.legacy.block.tileentity.TileEntityNitrateEngine;
+import mortvana.projectfluxgear.legacy.tileentity.TileEntityNitrateEngine;
 //import cofh.lib.gui.slot.SlotOutput;
 
 @Deprecated

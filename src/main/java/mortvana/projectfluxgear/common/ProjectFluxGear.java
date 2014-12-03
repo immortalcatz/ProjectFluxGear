@@ -10,18 +10,17 @@ import cpw.mods.fml.common.Mod.*;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.network.NetworkCheckHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
+
 import mortvana.fluxgearcore.pulsar.config.ForgeCFG;
 import mortvana.fluxgearcore.pulsar.control.PulseManager;
 import mortvana.fluxgearcore.util.FluxGearData;
 import mortvana.fluxgearcore.util.handler.ConfigHandler;
 import mortvana.fluxgearcore.util.remapper.Remapper;
 
-import mortvana.projectfluxgear.gui.PFGCreativeTab;
 import mortvana.projectfluxgear.gui.FluxGearAchievements;
+import mortvana.projectfluxgear.gui.PFGCreativeTab;
 import mortvana.projectfluxgear.modules.ThermalKroostyl;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -31,16 +30,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
-import java.util.Map;
 
-@Mod(modid = ProjectFluxGear.modID, name = "Project Flux Gear", version = ProjectFluxGear.version,
-        dependencies = "required-after:FluxGearCore; required-after:CoFHCore; required-after:ThermalFoundation; required-after:ThermalExpansion",
-        canBeDeactivated = false, guiFactory = "mortvana.projectfluxgear.gui.config.ConfigGuiFactory")
-
+@Mod(modid = ProjectFluxGear.modID, name = "Project Flux Gear", version = ProjectFluxGear.version, dependencies = ProjectFluxGear.dependencies, canBeDeactivated = false, guiFactory = "mortvana.projectfluxgear.gui.config.ConfigGuiFactory")
 public class ProjectFluxGear {
 
     public static final String version = "v0.1.0.2";
-    public static final String modID = "ThermalTinkerer";
+    public static final String modID = "ProjectFluxGear";
+    public static final String dependencies = "required-after:FluxGearCore; required-after:CoFHCore; required-after:ThermalFoundation; required-after:ThermalExpansion";
 
     public static final Logger logger = LogManager.getLogger(modID);
     //public static final PacketPipeline packetPipeline = new PacketPipeline();
@@ -65,11 +61,12 @@ public class ProjectFluxGear {
     public static final ConfigHandler config = new ConfigHandler(version);
     //public static final GuiHandler guiHandler = new GuiHandler();
 
+
     public static final CreativeTabs tab = new PFGCreativeTab();
     //MOAR Tabs?
 
     public static File worldGen;
-    public static final String worldGenInternal = "assets/thermaltinkerer/world/ProjectFluxGear-Ores.json";
+    public static final String worldGenInternal = "assets/projectfluxgear/world/ProjectFluxGear-Ores.json";
 
     // Doctor Octoartifact, BLAAHHHH...
     /*public static ArrayList<String> sounds;// = CongealedBloodBlock.sounds;
@@ -198,7 +195,7 @@ public class ProjectFluxGear {
         if (!worldGen.exists()) {
             try {
                 worldGen.createNewFile();
-                CoreUtils.copyFileUsingStream("assets/thermaltinkerer/world/ProjectFluxGear-Ores.json", worldGen);
+                CoreUtils.copyFileUsingStream("assets/projectfluxgear/world/ProjectFluxGear-Ores.json", worldGen);
             } catch (Throwable localThrowable) {
                 localThrowable.printStackTrace();
             }

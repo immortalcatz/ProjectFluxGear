@@ -1,6 +1,5 @@
 package mortvana.projectfluxgear.legacy.block;
 
-
 import java.lang.reflect.Field;
 
 import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
@@ -18,8 +17,7 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidBlock;
-import mortvana.projectfluxgear.legacy.block.tileentity.TileEntityBloodEngine;
-import mortvana.fluxgearcore.legacy.item.ItemBucketWS;
+import mortvana.projectfluxgear.legacy.tileentity.TileEntityBloodEngine;
 
 public class BlockBloodEngine extends BlockMetaTank {
 	
@@ -44,7 +42,7 @@ public class BlockBloodEngine extends BlockMetaTank {
 		if (playerItem != null) {
 			//Is the player's item THE ONE TRUE ITEM we're lookin' for?
 			//First try the Zettabyte version.
-			if (playerItem.getItem() instanceof ItemBucketWS) {
+			/*if (playerItem.getItem() instanceof ItemBucketWS) {
 				ItemBucketWS bucket = (ItemBucketWS)playerItem.getItem();
 				//Is it blood?
 				if(bucket.getFluid(playerItem).getFluid().getName().contentEquals(fuelName)) {
@@ -55,7 +53,7 @@ public class BlockBloodEngine extends BlockMetaTank {
 				}
 				
 			}
-			else if (playerItem.getItem() instanceof ItemBucket) {
+			else*/ if (playerItem.getItem() instanceof ItemBucket) {
 				ItemBucket bucket = (ItemBucket)playerItem.getItem();
 				//Do deep black Worst Practices hoodoo because Notch didn't design anything to be extended or generalized
 				//Lucky for us the performance impact of reflection is negligable in this case since there won't be 

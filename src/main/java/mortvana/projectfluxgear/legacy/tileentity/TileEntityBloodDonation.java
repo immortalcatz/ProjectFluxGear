@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.legacy.block.tileentity;
+package mortvana.projectfluxgear.legacy.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.config.Configuration;
@@ -12,10 +12,9 @@ import net.minecraftforge.fluids.IFluidTank;
 import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
 import mortvana.fluxgearcore.legacy.ContentRegistry;
 import mortvana.fluxgearcore.legacy.block.tile.TileEntityBase;
-import mortvana.fluxgearcore.legacy.util.IConfiggable;
 import mortvana.fluxgearcore.legacy.util.IRegistrable;
 
-public class TileEntityBloodDonation extends TileEntityBase implements IFluidHandler, IFluidTank, IConfiggable, IRegistrable {
+public class TileEntityBloodDonation extends TileEntityBase implements IFluidHandler, IFluidTank, IRegistrable {
 	
     protected FluidStack fluidTank;
     protected static int capacity = 0;
@@ -74,29 +73,29 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
 	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
 		return drain(from, resource.amount, doDrain);
 	}
+
 	@Override
 	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
 		return drain(maxDrain, doDrain);
 	}
+
 	@Override
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		// TODO Auto-generated method stub
 		return true;
 	}
+
 	@Override
 	public boolean canDrain(ForgeDirection from, Fluid fluid) {
-		// TODO Auto-generated method stub
 		return true;
 	}
+
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
-		// TODO Auto-generated method stub
 		return new FluidTankInfo[] { getInfo() };
 	}
 
 	@Override
 	public FluidStack getFluid() {
-		// TODO Auto-generated method stub
 		return fluidTank;
 	}
 
@@ -204,8 +203,7 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
 	}
 
 	@Override
-	public void updateEntity()
-	{		
+	public void updateEntity() {
 		super.updateEntity();
 		//Clientside is for suckers.
 		if(!worldObj.isRemote) {
@@ -233,7 +231,6 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
 		}
 	}
 
-	@Override
 	public void doConfig(Configuration config, ContentRegistry cr) {
 		capacity = config.get("Blood", "Blood Donation Station internal capacity", 1000).getInt();
 		outputSpeed = config.get("Blood", "Blood Donation Station output rate per tick", 500).getInt();
@@ -241,13 +238,11 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
 
 	@Override
 	public String getEnglishName() {
-		// TODO Auto-generated method stub
 		return "Blood Donation Station";
 	}
 
 	@Override
 	public String getGameRegistryName() {
-		// TODO Auto-generated method stub
 		return "bloodDonation";
 	}
 
@@ -255,9 +250,7 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
 	public boolean isEnabled() {
 		return true;
 	}
-	
 
-	
 	public void updateTank() { 
 		if(!worldObj.isRemote) {
 			if(worldObj.getBlock(xCoord, yCoord, zCoord) instanceof BlockMetaTank) {

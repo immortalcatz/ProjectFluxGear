@@ -28,7 +28,7 @@ public class BlockStorage extends Block {
 
     public BlockStorage() {
         super(Material.iron);
-        setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("thermaltinkerer.storage");
+        setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("projectfluxgear.storage");
     }
 
     @Override
@@ -86,7 +86,7 @@ public class BlockStorage extends Block {
     public void registerBlockIcons(IIconRegister ir) {
 
         for (int i = 0; i < NAMES.length; i++) {
-            TEXTURES[i] = ir.registerIcon("thermaltinkerer:storage/block" + StringHelper.titleCase(NAMES[i]));
+            TEXTURES[i] = ir.registerIcon("projectfluxgear:storage/block" + StringHelper.titleCase(NAMES[i]));
         }
     }
 
@@ -108,13 +108,13 @@ public class BlockStorage extends Block {
         FluxGearContent.blockDioptase = new ItemStack(this, 1, 11);
         FluxGearContent.blockPyrope = new ItemStack(this, 1, 12);
         FluxGearContent.blockMyuvil = new ItemStack(this, 1, 13);
-        //FluxGearContent.blockArsenic = new ItemStack(this, 1, 14);
-        //FluxGearContent.blockAntimony = new ItemStack(this, 1, 15);
+        FluxGearContent.blockArsenic = new ItemStack(this, 1, 14);
+        FluxGearContent.blockAntimony = new ItemStack(this, 1, 15);
 
         return true;
     }
 
-    public static final String[] NAMES = { "zinc", "bismuth", "manganese", "palladium", "molybdenum", "cobalt", "tungsten", "aluminium", "chromium", "titanium", "magnetite", "dioptase", "pyrope", "myuvil"/*, "arsenic", "antimony"*/ };
+    public static final String[] NAMES = { "zinc", "bismuth", "manganese", "palladium", "molybdenum", "cobalt", "tungsten", "aluminium", "chromium", "titanium", "magnetite", "dioptase", "pyrope", "myuvil", "arsenic", "antimony" };
     public static final IIcon[] TEXTURES = new IIcon[NAMES.length];
     public static final int[] LIGHT = { 0, 2, 0, 2, 0, 0, 0, 2, 0, 0, 0, 8, 4, 4, 0, 0};
     public static final float[] HARDNESS = { 5, 5, 5, 5, 6, 7, 10, 5, 7, 8, 5, 7, 7, 4, 3, 3 };

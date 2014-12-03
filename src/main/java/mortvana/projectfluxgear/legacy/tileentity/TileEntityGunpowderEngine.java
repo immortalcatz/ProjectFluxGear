@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.legacy.block.tileentity;
+package mortvana.projectfluxgear.legacy.tileentity;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -17,11 +17,9 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.FluidStack;
 import mortvana.fluxgearcore.legacy.block.IBlockMetaPower;
 import mortvana.fluxgearcore.legacy.ContentRegistry;
-import mortvana.fluxgearcore.legacy.energy.SolidFuelInfo;
-import mortvana.fluxgearcore.legacy.util.IConfiggable;
-import mortvana.fluxgearcore.legacy.util.IDeferredInit;
+import mortvana.fluxgearcore.legacy.item.SolidFuelInfo;
 import mortvana.fluxgearcore.legacy.util.IRegistrable;
-import mortvana.fluxgearcore.legacy.energy.ISolidFuelInfo;
+import mortvana.fluxgearcore.legacy.item.ISolidFuelInfo;
 
 /*
  * A tile entity is essentially a bit of extra behavior and information that is associated with a block in the world.
@@ -33,8 +31,7 @@ import mortvana.fluxgearcore.legacy.energy.ISolidFuelInfo;
  * (so use them sparingly and don't build your walls out of engines)
  * (actually that would be cool and totally worth it, please build your walls out of engines)
  */
-public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements
-		IConfiggable, IRegistrable, IDeferredInit, ISidedInventory {
+public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements IRegistrable, ISidedInventory {
 
 	// Static settings to apply to every instance of the Tile Entity.
 	public static int rfPerTick;
@@ -99,7 +96,6 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements
 	 * will never be used in the world, for the purpose of doing configuration
 	 * on static fields.
 	 */
-	@Override
 	public void doConfig(Configuration config, ContentRegistry cr) {
 		// Get the energy cap which is universal for all TileEntityGunpowderEngines.
 		// Then, we will set the specific energy cap of the instances from this value.
@@ -151,7 +147,6 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements
 	}
 
 	// All mods have added all items. Do cool init stuff now.
-	@Override
 	public void DeferredInit(ContentRegistry cr) {
 		if (enableThermite) {
 			SolidFuelInfo thermInfo = new SolidFuelInfo();
@@ -471,27 +466,20 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements
 
 	@Override
 	public void closeInventory() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public String getInventoryName() {
-		// TODO Auto-generated method stub
 		return "engineGunpowder";
 	}
 
 	@Override
 	public boolean hasCustomInventoryName() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public void openInventory() {
-		// TODO Auto-generated method stub
-		
+
 	}
-	
-	//A route to 
 }

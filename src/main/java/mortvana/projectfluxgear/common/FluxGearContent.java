@@ -9,6 +9,7 @@ import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraft.block.BlockDispenser;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
@@ -37,6 +38,7 @@ public class FluxGearContent implements IFuelHandler{
         //loadMachines();
         loadFluids();
         loadItems();
+        loadParts();
         loadTools();
 	    //loadEnchants();
 		//loadTiles();
@@ -51,6 +53,7 @@ public class FluxGearContent implements IFuelHandler{
         //initAugments();
         //addOreDict();
 	    metalCraftingRecipes();
+        machineCraftingRecipes();
         otherCraftingRecipes();
 	    furnaceRecipes();
     }
@@ -156,7 +159,6 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.registerWithHandlers("blockSaltpeter", blockSaltpeter);
         ItemHelper.registerWithHandlers("blockRust", blockRust);
         ItemHelper.registerWithHandlers("blockColdfireBismuthBronze", blockColdfireBismuthBronze);
-
     }
 
     //public void loadMachines() {}
@@ -180,10 +182,9 @@ public class FluxGearContent implements IFuelHandler{
     }
 
     public void loadItems() {
-        itemBucket = (ItemBucket) new ItemBucket("thermaltinkerer").setUnlocalizedName("bucket").setCreativeTab(ProjectFluxGear.tab);
-        itemMaterial = (ItemBase) new ItemBase("thermaltinkerer").setUnlocalizedName("material").setCreativeTab(ProjectFluxGear.tab);
+        itemBucket = (ItemBucket) new ItemBucket("projectfluxgear").setUnlocalizedName("bucket").setCreativeTab(ProjectFluxGear.tab);
         //itemFood =
-        //itemInteractive (Alum & Thermite)
+        itemInteractive = (ItemBase) new ItemBase("projectfluxgear").setUnlocalizedName("interactive").setCreativeTab(ProjectFluxGear.tab);
 
         //Buckets
         bucketGhastTears = itemBucket.addItem(0, "bucketGhastTears", 1);
@@ -194,6 +195,18 @@ public class FluxGearContent implements IFuelHandler{
         bucketBlood = itemBucket.addItem(5, "bucketBlood", 1);
         bucketGelidPyrotheum = itemBucket.addItem(6, "bucketGelidPyrotheum", 2);
 
+        //Food
+
+        //Interactive
+        dustThermite = itemInteractive.addOreDictItem(0, "dustThermite");
+        coagulantAlum = itemInteractive.addItem(1, "coagulant");
+
+
+        //dust = itemMaterial.addOreDictItem(, "dust");
+    }
+
+    public void loadParts() {
+        itemMaterial = (ItemBase) new ItemBase("projectfluxgear").setUnlocalizedName("material").setCreativeTab(ProjectFluxGear.tab);
 
         // Standard Ingots
         ingotZinc = itemMaterial.addOreDictItem(0, "ingotZinc");
@@ -314,7 +327,6 @@ public class FluxGearContent implements IFuelHandler{
         nuggetCupronickel = itemMaterial.addOreDictItem(146, "nuggetCupronickel");
         nuggetAluminiumBrass = itemMaterial.addOreDictItem(147, "nuggetAluminiumBrass");
 
-        //dust = itemMaterial.addOreDictItem(, "dust");
     }
 
     public void loadTools() {
@@ -450,10 +462,26 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.addStorageRecipe(blockColdfireBismuthBronze, "ingotColdfireBismuthBronze");
     }
 
+    public void machineCraftingRecipes() {
+
+        /* Weird Science Legacy Recipes
+        // Nitrate Engine
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(nitrateEngineBlock, 1, 0), "sss", "gcg", "sbs", 's', "stone", 'c', Items.slime_ball, 'g', "ingotGold", 'b', Items.bucket));
+        // Blood Donation Station
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(donationBlock, 1, 0), "aba", "aga", "aba", 'a', "ingotAluminium", 'g', Blocks.glass, 'b', Items.bucket));
+        // Blood Engine
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(bloodEngineBlock, 1, 0), "aba", "afa", "aaa", 'a', "ingotAluminium", 'f', Blocks.furnace, 'b', new ItemStack(Items.bucket)));
+        // Occult Engine
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(occultEngineBlock, 1, 0), "gog", "oeo", "gog", 'e', bloodEngineBlock, 'o', Blocks.obsidian, 'g', "ingotGold"));
+        // Blast Engine
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(gunpowderEngineBlock, 1, 0), "aia", "afa", "ana", 'a', "ingotAluminium", 'f', Blocks.furnace, 'n', Blocks.netherrack, 'i', Blocks.iron_bars));*/
+    }
+
     public void otherCraftingRecipes() {
+        //Weird Science Legacy Recipes
         //GameRegistry.addRecipe(new ShapelessOreRecipe(melonPan, Items.bread, Items.melon));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(bucketLye, Items.water_bucket, dustAshes));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(bucketAcid, Items.water_bucket, Items.gunpowder));
+        //GameRegistry.addRecipe(new ShapelessOreRecipe(bucketLye, Items.water_bucket, dustAshes));
+        //GameRegistry.addRecipe(new ShapelessOreRecipe(bucketAcid, Items.water_bucket, Items.gunpowder));
         //GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(itemInteractive, 1, 0), "dustRust", "dustAluminium"));
         GameRegistry.addRecipe(new ShapedOreRecipe(toolProtoSonicWrench, "B B", "ADA", " B ", 'B', "ingotBronze", 'A', "ingotAluminium", 'D', "gemDioptase"));
         //GameRegistry.addRecipe(new ShapedOreRecipe(toolProtoSonicWrench, "B B", "WDW", " B ", 'B', "ingotMithrilBronze", 'W', "ingotTungsten", 'D', "gemDioptase"));
@@ -493,6 +521,11 @@ public class FluxGearContent implements IFuelHandler{
         // Temporary Titanium Smelting until we have Blast Furnaces
         GameRegistry.addSmelting(dustTitanium, ingotTitanium, 0.0F);
         // No Iridium, requires Pyrotheum/Blast Furnace
+
+        //GameRegistry.addSmelting(aluminumSludge, new ItemStack(itemAlum), 0.0F);
+
+        // Temporary way to get Rust
+        //GameRegistry.addSmelting(blockRust, new ItemStack(Blocks.iron_block, 1, 0), 0.0F);
     }
 
     //public void addOreDict() {}
@@ -532,6 +565,19 @@ public class FluxGearContent implements IFuelHandler{
     public static BlockFluidCoFHBase blockFluidSmog;
     public static BlockFluidCoFHBase blockFluidAcid;
     public static BlockFluidCoFHBase blockFluidBlood;
+
+    // Base Items
+    public static ItemBucket itemBucket;
+    public static ItemBase itemMaterial;
+    public static ItemBase/*InteracivePFG*/ itemInteractive;
+    public static ItemProtoSonicWrench itemProtoSonicWrench;
+
+
+
+
+
+
+
 
     // Ore Blocks
     public static ItemStack oreSphalerite;
@@ -605,13 +651,6 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack blockRust;
     public static ItemStack blockColdfireBismuthBronze;
 
-
-    // Base Items
-    public static ItemBucket itemBucket;
-    public static ItemBase itemMaterial;
-
-	public static ItemProtoSonicWrench itemProtoSonicWrench;
-	public static ItemStack toolProtoSonicWrench;
 
     //Buckets
     public static ItemStack bucketGhastTears;
@@ -866,6 +905,12 @@ public class FluxGearContent implements IFuelHandler{
     // Random Stuff
     public static ItemStack feeshSkeleton;
 
+    // Interactive Items
+    public static ItemStack dustThermite;
+    public static ItemStack coagulantAlum;
+
+
+    public static ItemStack toolProtoSonicWrench;
 
     public static Item itemQuantumCapacitor;
 

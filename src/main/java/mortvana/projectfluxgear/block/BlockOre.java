@@ -26,7 +26,7 @@ public class BlockOre extends Block {
     public BlockOre() {
 
         super(Material.rock);
-        setHardness(3.0F).setResistance(5.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("thermaltinkerer.ore");
+        setHardness(3.0F).setResistance(5.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("projectfluxgear.ore");
 
         setHarvestLevel("pickaxe", 1, 0);
         setHarvestLevel("pickaxe", 1, 1);
@@ -42,7 +42,8 @@ public class BlockOre extends Block {
         setHarvestLevel("pickaxe", 3, 11);
         setHarvestLevel("pickaxe", 3, 12);
         setHarvestLevel("pickaxe", 3, 13);
-
+        setHarvestLevel("pickaxe", 2, 14);
+        setHarvestLevel("pickaxe", 2, 15);
     }
 
     @Override
@@ -76,7 +77,7 @@ public class BlockOre extends Block {
     public void registerBlockIcons(IIconRegister ir) {
 
         for (int i = 0; i < NAMES.length; i++) {
-            TEXTURES[i] = ir.registerIcon("thermaltinkerer:ore/ore" + StringHelper.titleCase(NAMES[i]));
+            TEXTURES[i] = ir.registerIcon("projectfluxgear:ore/ore" + StringHelper.titleCase(NAMES[i]));
         }
     }
 
@@ -99,12 +100,14 @@ public class BlockOre extends Block {
         FluxGearContent.oreDioptase = new ItemStack(this, 1, 11);
         FluxGearContent.orePyrope = new ItemStack(this, 1, 12);
         FluxGearContent.oreMyuvil = new ItemStack(this, 1, 13);
+        FluxGearContent.orePitchblende = new ItemStack(this, 1, 14);
+        FluxGearContent.oreNierdermayrite = new ItemStack(this, 1, 15);
 
         return true;
     }
 
-    public static final String[] NAMES = { "sphalerite", "bismuthinite", "pyrolusite", "braggite", "molybdenite", "cobaltite", "wolframite", "bauxite", "chromite", "ilmenite", "magnetite", "dioptase", "pyrope", "myuvil" };
+    public static final String[] NAMES = { "sphalerite", "bismuthinite", "pyrolusite", "braggite", "molybdenite", "cobaltite", "wolframite", "bauxite", "chromite", "ilmenite", "magnetite", "dioptase", "pyrope", "myuvil", "pitchblende", "nierdermayrite" };
     public static final IIcon[] TEXTURES = new IIcon[NAMES.length];
-    public static final int[] LIGHT =  { 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 8, 4, 4 };
-    public static final int[] RARITY = { 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 2, 2, 1 };
+    public static final int[] LIGHT = { 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 8, 4, 4, 1, 0};
+    public static final int[] RARITY = { 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 2, 2, 1, 0, 0 };
 }

@@ -3,7 +3,7 @@ package mortvana.projectfluxgear.fluid;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.fluids.Fluid;
-import mortvana.fluxgearcore.legacy.util.chemistry.reaction.IBioactive;
+import mortvana.fluxgearcore.util.chemistry.reaction.IBioactive;
 import mortvana.fluxgearcore.legacy.util.IRegistrable;
 
 //TODO: Make CoFH Style

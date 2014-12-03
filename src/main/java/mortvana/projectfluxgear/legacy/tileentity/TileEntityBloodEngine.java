@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.legacy.block.tileentity;
+package mortvana.projectfluxgear.legacy.tileentity;
 
 import mortvana.fluxgearcore.legacy.block.tile.TileEntityGenerator;
 import net.minecraft.nbt.NBTTagCompound;
@@ -11,12 +11,9 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
 import mortvana.fluxgearcore.legacy.ContentRegistry;
-import mortvana.fluxgearcore.legacy.util.IConfiggable;
-import mortvana.fluxgearcore.legacy.util.IDeferredInit;
 import mortvana.fluxgearcore.legacy.util.IRegistrable;
 
-public class TileEntityBloodEngine extends TileEntityGenerator implements
-		IFluidHandler, IConfiggable, IDeferredInit, IRegistrable {
+public class TileEntityBloodEngine extends TileEntityGenerator implements IFluidHandler, IRegistrable {
 	
 	//Static values
 	protected static int tankCap;
@@ -78,7 +75,7 @@ public class TileEntityBloodEngine extends TileEntityGenerator implements
         	nbt.setString("Empty", "");
         }
     }
-	@Override
+
 	public void doConfig(Configuration config, ContentRegistry cr) {
 		rfPerMB = (float)config.get(engineName, "RF generated per MB of fuel", 0.1f).getDouble(0.1d);
 		rfPerTickStatic = config.get(engineName, "RF transfer rate", 20).getInt();
@@ -89,7 +86,7 @@ public class TileEntityBloodEngine extends TileEntityGenerator implements
 		ticksUntilBurn = ticksPerBurn;
 		energyCap = energyCapStatic;
 	}
-	@Override
+
 	public void DeferredInit(ContentRegistry cr) {
 		fuelFluidID = FluidRegistry.getFluidID(fuelName);
 	}

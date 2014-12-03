@@ -11,11 +11,10 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import mortvana.projectfluxgear.legacy.block.tileentity.TileEntityBloodDonation;
+import mortvana.projectfluxgear.legacy.tileentity.TileEntityBloodDonation;
 import mortvana.fluxgearcore.legacy.ContentRegistry;
-import mortvana.fluxgearcore.legacy.util.IConfiggable;
 
-public class BlockBloodDonation extends BlockMetaTank implements IConfiggable {
+public class BlockBloodDonation extends BlockMetaTank {
 	
 	private static Fluid bloodFluid;
 	private static int mbPerDonation;
@@ -104,7 +103,6 @@ public class BlockBloodDonation extends BlockMetaTank implements IConfiggable {
 		}
 	}
 
-	@Override
 	public void doConfig(Configuration config, ContentRegistry cr) {
 		mbPerDonation = config.get("Blood", "Blood Donation Station milibuckets of blood per donation", 500).getInt();
 		dmgPerDonation = config.get("Blood", "Blood Donation Station damage per donation", 2).getInt();

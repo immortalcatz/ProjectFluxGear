@@ -10,7 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import mortvana.fluxgearcore.legacy.util.chemistry.reaction.IBioactive;
+import mortvana.fluxgearcore.util.chemistry.reaction.IBioactive;
 import mortvana.fluxgearcore.legacy.util.IRegistrable;
 
 public class BlockFluidSmog extends BlockFluidCoFHBase implements IBioactive, IRegistrable {

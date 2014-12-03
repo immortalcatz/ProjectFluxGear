@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.legacy.block.tileentity;
+package mortvana.projectfluxgear.legacy.tileentity;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -10,10 +10,9 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
 import mortvana.fluxgearcore.legacy.ContentRegistry;
-import mortvana.fluxgearcore.legacy.util.IConfiggable;
 import mortvana.fluxgearcore.legacy.util.IRegistrable;
 
-public class TileEntityOccultEngine extends TileEntityBloodEngine implements IConfiggable, IRegistrable {
+public class TileEntityOccultEngine extends TileEntityBloodEngine implements IRegistrable {
 	
 	//Static values
 	protected static int staticTankCap;

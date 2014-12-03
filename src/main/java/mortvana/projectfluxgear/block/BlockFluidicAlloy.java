@@ -29,7 +29,7 @@ public class BlockFluidicAlloy extends Block {
 
     public BlockFluidicAlloy() {
         super(Material.iron);
-        setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("thermaltinkerer.fluidicalloy");
+        setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("projectfluxgear.fluidicalloy");
     }
 
     @Override
@@ -87,7 +87,7 @@ public class BlockFluidicAlloy extends Block {
     public void registerBlockIcons(IIconRegister ir) {
 
         for (int i = 0; i < NAMES.length; i++) {
-            TEXTURES[i] = ir.registerIcon("thermaltinkerer:storage/block" + StringHelper.titleCase(NAMES[i]));
+            TEXTURES[i] = ir.registerIcon("projectfluxgear:storage/block" + StringHelper.titleCase(NAMES[i]));
         }
     }
 
@@ -119,7 +119,7 @@ public class BlockFluidicAlloy extends Block {
     public static final String[] NAMES = {};
     public static final IIcon[] TEXTURES = new IIcon[NAMES.length];
     public static final int[] LIGHT = {};
-    public static final float[] HARDNESS = {};
+    public static final float[] HARDNESS = {/*Rust=0.6F*/};
     public static final float[] RESISTANCE = {};
     public static final int[] RARITY = {};
 

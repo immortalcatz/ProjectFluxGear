@@ -11,12 +11,10 @@ import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
-import mortvana.projectfluxgear.legacy.block.tileentity.TileEntityOccultEngine;
-
+import mortvana.projectfluxgear.legacy.tileentity.TileEntityOccultEngine;
 
 //TODO: Particle effect when an appropriate block is on top of this engine.
-public class BlockOccultEngine extends BlockBloodEngine implements
-        IBlockMetaPower {
+public class BlockOccultEngine extends BlockBloodEngine implements IBlockMetaPower {
 	
 	public static ArrayList<String> idols = new ArrayList<String>(2);
 
@@ -27,14 +25,11 @@ public class BlockOccultEngine extends BlockBloodEngine implements
 	
 	@Override
 	public void recievePowerOn(World world, int x, int y, int z) {
-		//TODO
 	}
 
 	@Override
 	public void recievePowerOff(World world, int x, int y, int z) {
-		//TODO
 	}
-	
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {
@@ -70,8 +65,7 @@ public class BlockOccultEngine extends BlockBloodEngine implements
 								}
 							}
 						}
-					}
-					else {
+					} else {
 						//Every other block.
 						TileEntity te = world.getTileEntity(x, y, z);
 						if(te != null) {
@@ -81,10 +75,7 @@ public class BlockOccultEngine extends BlockBloodEngine implements
 						}
 					}
 				}
-			}
-			if((b == null) || (b == Blocks.air)) {
-				//air
-
+			} if((b == null) || (b == Blocks.air)) {
 				TileEntity te = world.getTileEntity(x, y, z);
 				if(te != null) {
 					if(te instanceof TileEntityOccultEngine) {
@@ -93,8 +84,7 @@ public class BlockOccultEngine extends BlockBloodEngine implements
 				}
 				
 			}
-		}
-		else {
+		} else {
 			TileEntity te = world.getTileEntity(x, y, z);
 			if(te != null) {
 				if(te instanceof TileEntityOccultEngine) {
@@ -104,20 +94,16 @@ public class BlockOccultEngine extends BlockBloodEngine implements
 		}
 	}
 
-	public BlockOccultEngine(Configuration config, String name,
-			Material material) {
+	public BlockOccultEngine(Configuration config, String name, Material material) {
 		super(config, name, material);
-		// TODO Auto-generated constructor stub
 	}
 
 	public BlockOccultEngine(Configuration config, String name) {
 		super(config, name);
-		// TODO Auto-generated constructor stub
 	}
 
 	public BlockOccultEngine(Material material) {
 		super(material);
-		// TODO Auto-generated constructor stub
 	}
 	
 }

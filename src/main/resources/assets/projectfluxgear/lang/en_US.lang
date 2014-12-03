@@ -1,0 +1,109 @@
+tile.projectfluxgear.ore.sphalerite.name=Sphalerite Ore
+tile.projectfluxgear.ore.bismuthinite.name=Bismuthinite Ore
+tile.projectfluxgear.ore.pyrolusite.name=Pyrolusite Ore
+tile.projectfluxgear.ore.braggite.name=Braggite Ore
+tile.projectfluxgear.ore.molybdenite.name=Molybdenite Ore
+tile.projectfluxgear.ore.cobaltite.name=Cobaltite Ore
+tile.projectfluxgear.ore.wolframite.name=Wolframite Ore
+tile.projectfluxgear.ore.bauxite.name=Bauxite Ore
+tile.projectfluxgear.ore.chromite.name=Chromite Ore
+tile.projectfluxgear.ore.ilmenite.name=Ilmenite Ore
+tile.projectfluxgear.ore.magnetite.name=Magnetite Ore
+tile.projectfluxgear.ore.dioptase.name=Dioptase Ore
+tile.projectfluxgear.ore.pyrope.name=Pyrope Ore
+tile.projectfluxgear.ore.myuvil.name=Myuvil Ore
+
+tile.projectfluxgear.storage.zinc.name=Zinc Block
+tile.projectfluxgear.storage.bismuth.name=Bismuth Block
+tile.projectfluxgear.storage.manganese.name=Manganese Block
+tile.projectfluxgear.storage.palladium.name=Palladium Block
+tile.projectfluxgear.storage.molybdenum.name=Molybdenum Block
+tile.projectfluxgear.storage.cobalt.name=Cobalt Block
+tile.projectfluxgear.storage.tungsten.name=Tungsten Block
+tile.projectfluxgear.storage.aluminium.name=Aluminium Block
+tile.projectfluxgear.storage.chromium.name=Chromium Block
+tile.projectfluxgear.storage.titanium.name=Titanium Block
+tile.projectfluxgear.storage.magnetite.name=Magnetite Block
+tile.projectfluxgear.storage.dioptase.name=Dioptase Block
+tile.projectfluxgear.storage.pyrope.name=Pyrope Block
+tile.projectfluxgear.storage.myuvil.name=Myuvil Block
+
+tile.projectfluxgear.alloy.brass.name=Brass Block
+tile.projectfluxgear.alloy.bismuthBronze.name=Bismuth Bronze Block
+tile.projectfluxgear.alloy.cupronickel.name=Cupronickel Block
+tile.projectfluxgear.alloy.aluminiumBrass.name=Aluminium Brass Block
+tile.projectfluxgear.alloy.mithrilBronze.name=Mithril Block
+tile.projectfluxgear.alloy.electriplatinum.name=Electriplatinum Block
+tile.projectfluxgear.alloy.steel.name=Steel Block
+tile.projectfluxgear.alloy.tungstenSteel.name=Tungstensteel Block
+tile.projectfluxgear.alloy.stainlessSteel.name=Stainless Steel Block
+
+item.projectfluxgear.material.ingotZinc.name=Zinc Ingot
+item.projectfluxgear.material.ingotBismuth.name=Bismuth Ingot
+item.projectfluxgear.material.ingotManganese.name=Manganese Ingot
+item.projectfluxgear.material.ingotPalladium.name=Palladium Ingot
+item.projectfluxgear.material.ingotMolybdenum.name=Molybdenum Ingot
+item.projectfluxgear.material.ingotCobalt.name=Cobalt Ingot
+item.projectfluxgear.material.ingotTungsten.name=Tungsten Ingot
+item.projectfluxgear.material.ingotAluminium.name=Aluminium Ingot
+item.projectfluxgear.material.ingotChromium.name=Chromium Ingot
+item.projectfluxgear.material.ingotTitanium.name=Titanium Ingot
+item.projectfluxgear.material.ingotIridium.name=Iridium Ingot
+
+item.projectfluxgear.material.gemDioptase.name=Dioptase
+item.projectfluxgear.material.gemPyrope.name=Pyrope
+item.projectfluxgear.material.gemMagnetite.name=Magnetite
+
+item.projectfluxgear.material.dustZinc.name=Pulverized Zinc
+item.projectfluxgear.material.dustBismuth.name=Pulverized Bismuth
+item.projectfluxgear.material.dustManganese.name=Pulverized Manganese
+item.projectfluxgear.material.dustPalladium.name=Pulverized Palladium
+item.projectfluxgear.material.dustMolybdenum.name=Pulverized Molybdenum
+item.projectfluxgear.material.dustCobalt.name=Pulverized Cobalt
+item.projectfluxgear.material.dustTungsten.name=Pulverized Tungsten
+item.projectfluxgear.material.dustAluminium.name=Pulverized Aluminium
+item.projectfluxgear.material.dustChromium.name=Pulverized Chromium
+item.projectfluxgear.material.dustTitanium.name=Pulverized Titanium
+item.projectfluxgear.material.dustMagnetite.name=Ground Magnetite
+item.projectfluxgear.material.dustMyuvil.name=Myuvil Dust
+item.projectfluxgear.material.dustIridium.name=Pulverized Iridium
+
+item.projectfluxgear.material.nuggetZinc.name=Zinc Nugget
+item.projectfluxgear.material.nuggetBismuth.name=Bismuth Nugget
+item.projectfluxgear.material.nuggetManganese.name=Manganese Nugget
+item.projectfluxgear.material.nuggetPalladium.name=Palladium Nugget
+item.projectfluxgear.material.nuggetMolybdenum.name=Molybdenum Nugget
+item.projectfluxgear.material.nuggetCobalt.name=Cobalt Nugget
+item.projectfluxgear.material.nuggetTungsten.name=Tungsten Nugget
+item.projectfluxgear.material.nuggetAluminium.name=Aluminium Nugget
+item.projectfluxgear.material.nuggetChromium.name=Chromium Nugget
+item.projectfluxgear.material.nuggetTitanium.name=Titanium Nugget
+item.projectfluxgear.material.nuggetMagnetite.name=Magnetite Shard
+item.projectfluxgear.material.nuggetIridium.name=Iridium Nugget
+
+item.projectfluxgear.material.gemSyntheticAmber.name=Synthetic Amber
+item.projectfluxgear.material.gemCrystalFlux.name=Flux Crystal
+item.projectfluxgear.material.gemMolybdenum.name=Crystalline Molybdenum
+item.projectfluxgear.material.crystalMolybdenum.name=Molybdenum Crystals
+item.projectfluxgear.material.crystalDioptase.name=Dioptase Crystals
+item.projectfluxgear.material.crystalPyrope.name=Pyrope Crystals
+item.projectfluxgear.material.gemAmber.name=Natural Amber
+item.projectfluxgear.material.gemSyntheticMolybdenum.name=Synthetic Molybdenum
+item.projectfluxgear.material.gemSyntheticDioptase.name=Synthetic Dioptase
+item.projectfluxgear.material.gemSyntheticPyrope.name=Synthetic Pyrope
+item.projectfluxgear.material.gemSyntheticGreen.name=Synthetic Green Gem
+
+itemGroup.projectfluxgear.creativeTab=Project Flux Gear
+
+item.projectfluxgear.material.partWiring.name=Wiring
+item.projectfluxgear.material.partAssembledPCB.name=Assembled PCB
+item.projectfluxgear.material.partTransistor.name=Transistor
+item.projectfluxgear.material.partCapacitor.name=Capacitor
+item.projectfluxgear.material.partResistor.name=Resistor
+item.projectfluxgear.material.partFluxFilter.name=Flux Filter
+item.projectfluxgear.material.partServoMotor.name=Servo Motor
+item.projectfluxgear.material.partSolenoid.name=Solenoid
+
+item.projectfluxgear.tool.protoSonicWrench.name=Prototype "Sonic" Omniwrench
+
+tooltip.projectfluxgear.item.depletedUranium=I f*cking love Radiation. Depleted uranium for everyone! -NeptunePink

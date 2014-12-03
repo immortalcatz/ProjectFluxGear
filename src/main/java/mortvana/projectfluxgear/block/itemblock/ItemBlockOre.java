@@ -28,7 +28,7 @@ public class ItemBlockOre extends ItemBlock {
     @Override
     public String getUnlocalizedName(ItemStack item) {
 
-        return "tile.thermaltinkerer.ore." + BlockOre.NAMES[ItemHelper.getItemDamage(item)] + ".name";
+        return "tile.projectfluxgear.ore." + BlockOre.NAMES[ItemHelper.getItemDamage(item)] + ".name";
     }
 
     @Override

@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.legacy.item;
+package mortvana.projectfluxgear.legacy;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;

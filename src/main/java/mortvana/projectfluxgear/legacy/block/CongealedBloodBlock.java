@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import mortvana.projectfluxgear.common.ProjectFluxGear;
+
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.config.Configuration;
 import mortvana.fluxgearcore.legacy.block.BlockBase;
-import mortvana.fluxgearcore.legacy.audio.ISoundProvider;
+import mortvana.fluxgearcore.legacy.util.ISoundProvider;
 
-public class CongealedBloodBlock extends BlockBase implements ISoundProvider {
+public class CongealedBloodBlock extends Block implements ISoundProvider {
 	private static String unlocalizedName = "congealedBloodBlock";
 	
 	private static final String stepSoundName = ProjectFluxGear.modID + ":step." + unlocalizedName;
@@ -27,7 +29,7 @@ public class CongealedBloodBlock extends BlockBase implements ISoundProvider {
 		stepSounds = new String[stepSoundCount];
 		for(int i = 0; i < stepSoundCount; i++) {
 			stepSounds[i] = ProjectFluxGear.modID + ":step/" + unlocalizedName + (i + 1) + "." + stepSoundType;
-			System.out.println("THERMAL TINKERER - WEIRD SCIENCE LEGACY DEBUG OUTPUT: " + stepSounds[i]);
+			System.out.println("PROJECT FLUX GEAR - WEIRD SCIENCE LEGACY DEBUG OUTPUT: " + stepSounds[i]);
 		}
 		placeSounds = new String[placeSoundCount];
 		for(int i = 0; i < placeSoundCount; i++) {
@@ -38,42 +40,25 @@ public class CongealedBloodBlock extends BlockBase implements ISoundProvider {
 		sounds.addAll(Arrays.asList(stepSounds));
 		sounds.addAll(Arrays.asList(placeSounds));
 	}
-
-	/*public CongealedBloodBlock(int blockID, Material blockMaterial) {
-		super(blockID, blockMaterial);
-		
-		setCreativeTab(ThermalTinkerer.tabWeirdScience);
-		setUnlocalizedName("congealedBloodBlock");
-		setHardness(Block.dirt.blockHardness);
-		setResistance(Block.dirt.blockResistance);
-		
-		setStepSound((StepSound) new WeirdStepSound(placeSoundName, placeSoundName, stepSoundName, 1.0f, 1.0f));
-	}*/
 	
-	public CongealedBloodBlock(Configuration config, String engName, Material blockMaterial) {
-		super(config, engName, blockMaterial);
-		//Done by the game registry.
-		//BlockBase returns true from isInCreativeTab by default.
-		//setCreativeTab(WeirdScience.tabWeirdScience);
+	public CongealedBloodBlock(Material blockMaterial) {
+		super(Material.ground);
+
+		setCreativeTab(ProjectFluxGear.tab);
 		setBlockName("congealedBloodBlock");
 		setHardness(1); //TODO: Proper value for this.
 		setResistance(1);
-		
+		setBlockTextureName("gui:congealedBloodBlock");
 		//setStepSound((StepSound) new WeirdStepSound(placeSoundName, placeSoundName, stepSoundName, 1.0f, 1.0f));
 	}
-	/*
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister reg) {
-		blockIcon = reg.registerIcon(WeirdScience.modid + ":" + getUnlocalizedName().substring(5));
-	}*/
+
 	@Override
 	public int getHarvestLevel(int subBlockMeta) {
 		return 0;
 	}
 
-	@Override
 	public String getHarvestType(int subBlockMeta) {
-		return "pickaxe";
+		return "shovel";
 	}
 
 	@Override

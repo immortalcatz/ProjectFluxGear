@@ -3,7 +3,10 @@ package mortvana.projectfluxgear.legacy.block;
 import java.util.Random;
 
 import mortvana.fluxgearcore.legacy.block.IBlockMetaPower;
+import mortvana.fluxgearcore.util.helper.BlockHelper;
 import mortvana.projectfluxgear.common.ProjectFluxGear;
+
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,13 +23,12 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.util.RotationHelper;
 import net.minecraftforge.fluids.Fluid;
-import mortvana.projectfluxgear.legacy.block.tileentity.TileEntityNitrateEngine;
+import mortvana.projectfluxgear.legacy.tileentity.TileEntityNitrateEngine;
 import mortvana.fluxgearcore.legacy.block.BlockContainerBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockNitrateEngine extends BlockContainerBase implements
-        IBlockMetaPower {
+public class BlockNitrateEngine extends BlockContainerBase implements IBlockMetaPower {
 
 	int teCapacity = 0;
 	int tePerTick = 0;
@@ -67,23 +69,19 @@ public class BlockNitrateEngine extends BlockContainerBase implements
 		}
 	}
 
-	protected static void initRotate(BlockNitrateEngine b) {
-		//BlockHelper.rotateType[b.blockID] = BlockHelper.RotationType.CHEST;
+	protected static void initRotate(BlockNitrateEngine block) {
+		BlockHelper.rotateType[Block.getIdFromBlock(block)] = BlockHelper.RotationType.CHEST;
 	}
 
 	@Override
-	public ForgeDirection[] getValidRotations(World worldObj, int x, int y,
-			int z) {
-		// Dumb hacks ahoy. Should really find a better (but still non-verbose)
-		// way to do this.
+	public ForgeDirection[] getValidRotations(World worldObj, int x, int y, int z) {
+		// Dumb hacks ahoy. Should really find a better (but still non-verbose) way to do this.
 		return RotationHelper.getValidVanillaBlockRotations(Blocks.furnace);
 	}
 
 	@Override
-	public boolean rotateBlock(World worldObj, int x, int y, int z,
-			ForgeDirection axis) {
-		// Dumb hacks ahoy. Should really find a better (but still non-verbose)
-		// way to do this.
+	public boolean rotateBlock(World worldObj, int x, int y, int z, ForgeDirection axis) {
+		// Dumb hacks ahoy. Should really find a better (but still non-verbose way to do this.
 		return RotationHelper.rotateVanillaBlock(Blocks.furnace, worldObj,
 				x, y, z, axis);
 	}
@@ -103,8 +101,7 @@ public class BlockNitrateEngine extends BlockContainerBase implements
 	}
 
 	@Override
-	public void onBlockPlacedBy(World world, int x, int y, int z,
-			EntityLivingBase placer, ItemStack thisItemStack) {
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase placer, ItemStack thisItemStack) {
 		int quadrant = (int) ((placer.rotationYaw * 4.0F / 360.0F) + 0.5F);
 
 		// Modulo out any 360 degree dealies.
@@ -114,23 +111,13 @@ public class BlockNitrateEngine extends BlockContainerBase implements
 		 * public static final ForgeDirection[] VALID_DIRECTIONS = {DOWN, UP,
 		 * NORTH, SOUTH, WEST, EAST}; 0 1 2 3 4 5
 		 */
-		// Facing south
-		if (quadrant == 0) {
+		if (quadrant == 0) { // Facing south
 			world.setBlockMetadataWithNotify(x, y, z, 2, 2);
-		}
-
-		// Facing west
-		else if (quadrant == 1) {
+		} else if (quadrant == 1) { // Facing west
 			world.setBlockMetadataWithNotify(x, y, z, 5, 2);
-		}
-
-		// Facing north
-		else if (quadrant == 2) {
+		} else if (quadrant == 2) { // Facing north
 			world.setBlockMetadataWithNotify(x, y, z, 3, 2);
-		}
-
-		// Facing east
-		else if (quadrant == 3) {
+		} else if (quadrant == 3) { // Facing east
 			world.setBlockMetadataWithNotify(x, y, z, 4, 2);
 		}
 	}
@@ -151,10 +138,8 @@ public class BlockNitrateEngine extends BlockContainerBase implements
 	 * used instead of the redstone signal strength when this block inputs to a
 	 * comparator.
 	 */
-	public int getComparatorInputOverride(World world, int x, int y, int z,
-			int par5) {
-		return Container.calcRedstoneFromInventory((IInventory) world
-				.getTileEntity(x, y, z));
+	public int getComparatorInputOverride(World world, int x, int y, int z, int par5) {
+		return Container.calcRedstoneFromInventory((IInventory) world.getTileEntity(x, y, z));
 	}
 	
 	@Override
@@ -169,10 +154,7 @@ public class BlockNitrateEngine extends BlockContainerBase implements
 						float xr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
 						float yr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
 						float zr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
-						EntityItem entityItem = new EntityItem(world,
-								(double) ((float) x + xr),
-								(double) ((float) y + yr),
-								(double) ((float) z + zr), itemstack);
+						EntityItem entityItem = new EntityItem(world, (double) ((float) x + xr), (double) ((float) y + yr), (double) ((float) z + zr), itemstack);
 						world.spawnEntityInWorld(entityItem);
 					}
 				}
@@ -181,9 +163,7 @@ public class BlockNitrateEngine extends BlockContainerBase implements
 		super.onBlockDestroyedByPlayer(world, x, y, z, par5);
 	}
 
-	public boolean onBlockActivated(World world, int x, int y, int z,
-			EntityPlayer player, int metadata, float par1, float par2,
-			float par3) {
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float par1, float par2, float par3) {
 		TileEntity tileEntity = world.getTileEntity(x, y, z);
 		if (tileEntity == null || player.isSneaking()) {
 			return false;
@@ -195,9 +175,7 @@ public class BlockNitrateEngine extends BlockContainerBase implements
 	@Override
 	public void recievePowerOn(World world, int x, int y, int z) {
 		// Bitmask bit 8 to on
-		world.setBlockMetadataWithNotify(x, y, z,
-				world.getBlockMetadata(x, y, z) | 8, 2);
-
+		world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) | 8, 2);
 	}
 
 	@Override
@@ -206,24 +184,19 @@ public class BlockNitrateEngine extends BlockContainerBase implements
 		 * Bitmask bit 8 to off by &ing it with the bitwise complement of 8
 		 * (which is to say ~8).
 		 */
-		world.setBlockMetadataWithNotify(x, y, z,
-				world.getBlockMetadata(x, y, z) & ~8, 2);
+		world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) & ~8, 2);
 	}
 
-	public BlockNitrateEngine(Configuration config, String name,
-			Material material) {
+	public BlockNitrateEngine(Configuration config, String name, Material material) {
 		super(config, name, material);
-		// TODO Auto-generated constructor stub
 	}
 
 	public BlockNitrateEngine(Configuration config, String name) {
 		super(config, name);
-		// TODO Auto-generated constructor stub
 	}
 
 	public BlockNitrateEngine(Material material) {
 		super(material);
-		// TODO Auto-generated constructor stub
 	}
 
 }
