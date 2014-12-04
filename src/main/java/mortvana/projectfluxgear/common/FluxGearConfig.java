@@ -16,6 +16,7 @@ public class FluxGearConfig {
 	public static float solarPanelHeight;
 	public static boolean achievementsEnabled;
 	public static int thermiteFuelValue;
+	public static boolean regen;
 
 	public static void loadConfiguration (File mainConfigFolder) {
 		ProjectFluxGear.logger.info("Loading configuration from disk.");
@@ -26,7 +27,7 @@ public class FluxGearConfig {
 		} catch (IOException e) {
 			ProjectFluxGear.logger.error("Error getting/creating Thermal Tinkerer configuration directory: " + e.getMessage());
 		}
-		config = new Configuration(new File(configFolder, ("ThermalTinkerer.cfg")));
+		config = new Configuration(new File(configFolder, ("ProjectFluxGear.cfg")));
 		config.load();
 		enableDebug = config.get("DebugHelpers", "Enable Debug", false).getBoolean(false);
 		cobaltAssimilation = config.get("Misc.", "Cobalt Assimilation", false).getBoolean(false);

@@ -79,7 +79,7 @@ public class ProjectFluxGear {
         thermalRemapper = new Remapper(Loader.instance().activeModContainer());
         MinecraftForge.EVENT_BUS.register(this);
 
-        config.setConfiguration(new Configuration(new File(FluxGearData.configDir, "Mortvana/ProjectFluxGear.cfg")));
+        config.setConfiguration(new Configuration(new File(FluxGearData.configDir, "Mortvana")));
 
         /*
         pulsar.registerPulse(new ThermalCore());

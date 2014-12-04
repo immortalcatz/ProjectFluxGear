@@ -67,8 +67,8 @@ public class FluxGearContent implements IFuelHandler{
         blockStorage = new BlockStorage();
         blockAlloy = new BlockAlloy();
         blockFluidicAlloy = new BlockFluidicAlloy();
-        blockTemporalPylon = new BlockTemporalPylon();
-        woodenTileEntity = new BlockWoodenTileEntity();
+        //blockTemporalPylon = new BlockTemporalPylon();
+        //woodenTileEntity = new BlockWoodenTileEntity();
 
         //blockTileEntity = new BlockTileEntity();
 
@@ -78,7 +78,7 @@ public class FluxGearContent implements IFuelHandler{
         blockStorage.preInit();
 	    blockAlloy.preInit();
         blockFluidicAlloy.preInit();
-        blockTemporalPylon.preInit();
+        //blockTemporalPylon.preInit();
         //woodenTileEntity.preInit();
 
         // OreDict Ores
