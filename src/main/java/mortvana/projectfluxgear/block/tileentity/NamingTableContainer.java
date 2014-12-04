@@ -1,7 +1,9 @@
-package mortvana.projectfluxgear.modules.mechutil;
+package mortvana.projectfluxgear.block.tileentity;
 
-import mortvana.projectfluxgear.modules.mechutil.util.ActiveContainer;
-import mortvana.projectfluxgear.modules.mechutil.util.SmrtSlot;
+import mortvana.projectfluxgear.block.logic.NamingTableLogic;
+import mortvana.projectfluxgear.common.FluxGearContent;
+import mortvana.fluxgearcore.inventory.ActiveContainer;
+import mortvana.fluxgearcore.gui.SmrtSlot;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -66,7 +68,7 @@ public class NamingTableContainer extends ActiveContainer {
     @Override
     public boolean canInteractWith (EntityPlayer entityplayer) {
         Block block = logic.getWorldObj().getBlock(logic.xCoord, logic.yCoord, logic.zCoord);
-        if (block != MechanicsUtils.woodTileEntity)
+        if (block != FluxGearContent.woodenTileEntity)
             return false;
         return logic.isUseableByPlayer(entityplayer);
     }

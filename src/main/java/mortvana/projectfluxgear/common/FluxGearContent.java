@@ -9,13 +9,11 @@ import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraft.block.BlockDispenser;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -29,7 +27,8 @@ import mortvana.fluxgearcore.item.ItemBase;
 import mortvana.fluxgearcore.util.helper.ItemHelper;
 
 import mortvana.projectfluxgear.item.tool.ItemProtoSonicWrench;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
+import mortvana.projectfluxgear.block.BlockTemporalPylon;
+import mortvana.projectfluxgear.block.BlockWoodenTileEntity;
 
 public class FluxGearContent implements IFuelHandler{
 
@@ -68,6 +67,8 @@ public class FluxGearContent implements IFuelHandler{
         blockStorage = new BlockStorage();
         blockAlloy = new BlockAlloy();
         blockFluidicAlloy = new BlockFluidicAlloy();
+        blockTemporalPylon = new BlockTemporalPylon();
+        woodenTileEntity = new BlockWoodenTileEntity();
 
         //blockTileEntity = new BlockTileEntity();
 
@@ -77,6 +78,8 @@ public class FluxGearContent implements IFuelHandler{
         blockStorage.preInit();
 	    blockAlloy.preInit();
         blockFluidicAlloy.preInit();
+        blockTemporalPylon.preInit();
+        //woodenTileEntity.preInit();
 
         // OreDict Ores
         ItemHelper.registerWithHandlers("oreSphalerite", oreSphalerite);
@@ -931,4 +934,11 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemArmorRF itemChestInvarRF;
     public static ItemArmorRF itemLegsInvarRF;
     public static ItemArmorRF itemBootsInvarRF;*/
+
+    // Mechanic's Utilities
+    public static BlockTemporalPylon blockTemporalPylon;
+    public static BlockWoodenTileEntity woodenTileEntity;
+
+    public static ItemStack temporalPylon;
+    public static ItemStack namingTable;
 }

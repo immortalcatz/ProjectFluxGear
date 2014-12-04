@@ -1,12 +1,12 @@
 package mortvana.projectfluxgear.block.itemblock;
 
-import cofh.lib.util.helpers.ItemHelper;
-import cofh.lib.util.helpers.StringHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
+import mortvana.fluxgearcore.util.helper.ItemHelper;
+import mortvana.fluxgearcore.util.helper.StringHelper;
 import mortvana.projectfluxgear.block.BlockStorage;
 
 public class ItemBlockStorage extends ItemBlock {

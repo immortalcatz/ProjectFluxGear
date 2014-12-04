@@ -1,16 +1,18 @@
-package mortvana.projectfluxgear.modules.mechutil;
+package mortvana.projectfluxgear.block;
 
-import mantle.blocks.abstracts.InventoryBlock;
+import mortvana.projectfluxgear.block.logic.NamingTableLogic;
 import mortvana.projectfluxgear.common.ProjectFluxGear;
+import mortvana.fluxgearcore.inventory.InventoryBlock;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class WoodenTileEntity extends InventoryBlock{
+public class BlockWoodenTileEntity extends InventoryBlock {
 
-    public WoodenTileEntity(Material material) {
+    public BlockWoodenTileEntity() {
         super(Material.wood);
         setCreativeTab(ProjectFluxGear.tab).setHardness(2.0F).setStepSound(Block.soundTypeWood);
     }
