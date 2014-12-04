@@ -12,7 +12,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import mortvana.fluxgearcore.legacy.ContentRegistry;
 import mortvana.fluxgearcore.legacy.util.IRegistrable;
 
-public class TileEntityOccultEngine extends TileEntityBloodEngine implements IRegistrable {
+public class TileEntityOccultEngine extends TileEntityBloodDynamo implements IRegistrable {
 	
 	//Static values
 	protected static int staticTankCap;

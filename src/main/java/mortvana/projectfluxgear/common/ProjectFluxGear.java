@@ -21,6 +21,7 @@ import mortvana.fluxgearcore.util.remapper.Remapper;
 
 import mortvana.projectfluxgear.gui.FluxGearAchievements;
 import mortvana.projectfluxgear.gui.PFGCreativeTab;
+import mortvana.projectfluxgear.modules.mechutil.MechanicsUtils;
 import mortvana.projectfluxgear.modules.ThermalKroostyl;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -107,6 +108,7 @@ public class ProjectFluxGear {
         pulsar.registerPulse(new ThermalAE2());
         pulsar.registerPulse(new ThermalM4Synth());*/
         pulsar.registerPulse(new ThermalKroostyl());
+        pulsar.registerPulse(new MechanicsUtils());
 
 
         content = new FluxGearContent();

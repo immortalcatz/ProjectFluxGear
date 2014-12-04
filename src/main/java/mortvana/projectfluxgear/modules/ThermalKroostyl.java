@@ -5,6 +5,6 @@ import mortvana.fluxgearcore.pulsar.pulse.Pulse;
 import mortvana.projectfluxgear.common.ProjectFluxGear;
 
 @ObjectHolder(ProjectFluxGear.modID)
-@Pulse(id = "Thermal Tinkerer - Ood's Mod Compatibility", description = "Quite OP Kroostyl Stoof in Thermal Tinkerer", modsRequired = "oodmod")
+@Pulse(id = "Project Flux Gear - Ood's Mod Compatibility", description = "Quite OP Kroostyl Stoof in Project Flux Gear", modsRequired = "oodmod")
 public class ThermalKroostyl {
 }

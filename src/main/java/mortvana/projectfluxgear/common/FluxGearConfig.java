@@ -33,7 +33,7 @@ public class FluxGearConfig {
 		autoBalanceEnergy = config.get("Misc.", "Balance Energy", true, "Neighbo(u)ring Solar Panels share their RF (Like old RedPower 2 ones).").getBoolean(true);
 		solarPanelHeight = config.getFloat("SolarPanelHeight", "Misc.", 0.375F, 0.1F, 1.0F, "Height of a Solar Panel");
 		achievementsEnabled = config.get("Misc.", "Enable Achievements", false, "Enable Thermal Tinkerer Achievements").getBoolean(false);
-		thermiteFuelValue = config.get("Misc.", "Furnace fuel value of Thermite", 5000).getInt(5000);
+		thermiteFuelValue = config.get("Misc.", "Furnace fuel value of Thermite", 5000, "200 is 1 smelting operation, 5000 is 25, setting this to 0 disable Thermite as fuel").getInt(5000);
 
 		config.save();
 		ProjectFluxGear.logger.info("Configuration load completed.");

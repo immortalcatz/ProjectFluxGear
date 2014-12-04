@@ -539,6 +539,9 @@ public class FluxGearContent implements IFuelHandler{
 
     @Override
     public int getBurnTime(ItemStack fuel) {
+        if (fuel == dustThermite && FluxGearConfig.thermiteFuelValue != 0) {
+            return FluxGearConfig.thermiteFuelValue;
+        }
         return 0;
     }
 
@@ -651,7 +654,6 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack blockRust;
     public static ItemStack blockColdfireBismuthBronze;
 
-
     //Buckets
     public static ItemStack bucketGhastTears;
     public static ItemStack bucketLye;
@@ -660,8 +662,6 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack bucketSmog;
     public static ItemStack bucketBlood;
     public static ItemStack bucketGelidPyrotheum;
-
-
 
     // Standard Ingots
     public static ItemStack ingotZinc;
@@ -854,6 +854,19 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack nuggetGelinium;
 
     // White Point Stars and Void Inferno Stars
+    public static ItemStack shardWhitePointStar;
+    public static ItemStack gemWhitePointStar;
+    public static ItemStack gemWhitePointStarInfused;
+    public static ItemStack shardVoidInfernoStar;
+    public static ItemStack shardVoidInfernoStarActive;
+    public static ItemStack shardVoidInfernoStarEnergized;
+    public static ItemStack shardVoidInfernoStarResonant;
+    public static ItemStack shardVoidInfernoStarColdfire;
+    public static ItemStack shardVoidInfernoStarQuantum;
+    public static ItemStack shardVoidInfernoStarEntangled;
+    public static ItemStack gemVoidInfernoStarDull;
+    public static ItemStack gemVoidInfernoStar;
+    public static ItemStack gemVoidInfernoStarFluxed;
 
     // Magnetar and Quasar Parts
 

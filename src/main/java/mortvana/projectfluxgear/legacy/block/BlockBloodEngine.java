@@ -17,7 +17,7 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidBlock;
-import mortvana.projectfluxgear.legacy.tileentity.TileEntityBloodEngine;
+import mortvana.projectfluxgear.legacy.tileentity.TileEntityBloodDynamo;
 
 public class BlockBloodEngine extends BlockMetaTank {
 	
@@ -25,13 +25,13 @@ public class BlockBloodEngine extends BlockMetaTank {
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {
-		return new TileEntityBloodEngine();
+		return new TileEntityBloodDynamo();
 	}
 	
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float par1, float par2, float par3) {
-		TileEntityBloodEngine tileEntity = null;
-		if(world.getTileEntity(x, y, z) instanceof TileEntityBloodEngine) {
-			tileEntity = (TileEntityBloodEngine)world.getTileEntity(x, y, z);
+		TileEntityBloodDynamo tileEntity = null;
+		if(world.getTileEntity(x, y, z) instanceof TileEntityBloodDynamo) {
+			tileEntity = (TileEntityBloodDynamo)world.getTileEntity(x, y, z);
 		}
 	    if (tileEntity == null || player.isSneaking()) {
 	            return false;
@@ -104,7 +104,7 @@ public class BlockBloodEngine extends BlockMetaTank {
 		return false;
 	}
 	
-	public boolean FillTank(Fluid f, TileEntityBloodEngine tileEntity) {
+	public boolean FillTank(Fluid f, TileEntityBloodDynamo tileEntity) {
 		//Get the amount of fluid we're trying to put in the TE.
 		FluidStack toTry = new FluidStack(f, 1000);
 		//First simulate the filling to make sure we can fit a whole bucket of blood in the engine.

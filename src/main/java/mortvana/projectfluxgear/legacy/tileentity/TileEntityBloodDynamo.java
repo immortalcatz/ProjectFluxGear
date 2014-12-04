@@ -13,7 +13,7 @@ import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
 import mortvana.fluxgearcore.legacy.ContentRegistry;
 import mortvana.fluxgearcore.legacy.util.IRegistrable;
 
-public class TileEntityBloodEngine extends TileEntityGenerator implements IFluidHandler, IRegistrable {
+public class TileEntityBloodDynamo extends TileEntityGenerator implements IFluidHandler, IRegistrable {
 	
 	//Static values
 	protected static int tankCap;
@@ -32,7 +32,7 @@ public class TileEntityBloodEngine extends TileEntityGenerator implements IFluid
 	protected int ticksUntilBurn;
 	protected FluidStack tank = null;
 
-	public TileEntityBloodEngine() {
+	public TileEntityBloodDynamo() {
 		super();
 		this.setEnergyCapacity(energyCapStatic);
 		this.setEnergyTransferRate(rfPerTickStatic);

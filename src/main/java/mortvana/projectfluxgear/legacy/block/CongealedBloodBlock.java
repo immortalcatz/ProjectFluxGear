@@ -7,8 +7,6 @@ import mortvana.projectfluxgear.common.ProjectFluxGear;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraftforge.common.config.Configuration;
-import mortvana.fluxgearcore.legacy.block.BlockBase;
 import mortvana.fluxgearcore.legacy.util.ISoundProvider;
 
 public class CongealedBloodBlock extends Block implements ISoundProvider {
