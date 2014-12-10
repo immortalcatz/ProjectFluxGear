@@ -21,7 +21,7 @@ import mortvana.fluxgearcore.util.remapper.Remapper;
 
 import mortvana.projectfluxgear.gui.FluxGearAchievements;
 import mortvana.projectfluxgear.gui.PFGCreativeTab;
-import mortvana.projectfluxgear.modules.ThermalKroostyl;
+import mortvana.projectfluxgear.modules.FluxGearKroostyl;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -91,22 +91,13 @@ public class ProjectFluxGear {
         pulsar.registerPulse(new AtomicPower());
         pulsar.registerPulse(new TinkersDynamos());
         pulsar.registerPulse(new ThermalTinkering());
-        pulsar.registerPulse(new ThermalCoilguns());
-        pulsar.registerPulse(new ThermalTools());
-        pulsar.registerPulse(new ThermalArmor());
+            pulsar.registerPulse(new ThermalCoilguns());
+            pulsar.registerPulse(new ThermalTools());
+            pulsar.registerPulse(new ThermalArmor());
         pulsar.registerPulse(new ThermalTinkers());
         pulsar.registerPulse(new ThermalNEI());
         pulsar.registerPulse(new ThermalBees());
-        pulsar.registerPulse(new ThermalTC4());
-        pulsar.registerPulse(new ThermalWAILA());
-        pulsar.registerPulse(new ThermalMek());
-        pulsar.registerPulse(new ThermalIC3());
-        pulsar.registerPulse(new ThermalMFR());
-        pulsar.registerPulse(new ThermalMystcraft());
-        pulsar.registerPulse(new ThermalBuildcraft());
-        pulsar.registerPulse(new ThermalAE2());
-        pulsar.registerPulse(new ThermalM4Synth());*/
-        pulsar.registerPulse(new ThermalKroostyl());
+        pulsar.registerPulse(new ThermalWAILA());*/
 
 
         content = new FluxGearContent();
