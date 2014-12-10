@@ -917,6 +917,7 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack partProcessor;
     public static ItemStack partMixer;
     public static ItemStack partHeadReader;
+    public static ItemStack partLaserDetector;
 
     // Random Stuff
     public static ItemStack feeshSkeleton;
