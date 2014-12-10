@@ -903,7 +903,7 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack partElectromagnetStandard;
     public static ItemStack partElectromagnetNeodymium;
     public static ItemStack partElectrode;
-    public static ItemStack partRotaryOrb;
+    public static ItemStack partOmnidirectionalHinge;
     public static ItemStack partLaserEmitter;
     public static ItemStack partFiberOpticCable;
     public static ItemStack partMatterConverter;
