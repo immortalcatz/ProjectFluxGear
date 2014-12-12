@@ -112,7 +112,7 @@ sourceSets {
     }
 }
 
-task buildInfo() {
+/*task buildInfo() {
     def cmd = "git rev-parse --short HEAD"
     def proc = cmd.execute()
     proc.waitFor()
@@ -134,7 +134,8 @@ if (System.getenv().ARTIFACT_VERSION == null) {
 }
 if(System.getenv().ARTIFACT_VERSION != null) {
     artifact_version = "${system.getenv().ARTIFACT_VERSION}"
-}
+}*/
+
 version = "${config.minecraft_version}-${artifact_version}"
 
 processResources {
@@ -240,6 +241,3 @@ artifacts {
         }    
     }
 }*/
-
-
-

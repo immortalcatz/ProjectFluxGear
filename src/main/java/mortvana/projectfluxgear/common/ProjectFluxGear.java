@@ -21,7 +21,6 @@ import mortvana.fluxgearcore.util.remapper.Remapper;
 
 import mortvana.projectfluxgear.gui.FluxGearAchievements;
 import mortvana.projectfluxgear.gui.PFGCreativeTab;
-import mortvana.projectfluxgear.modules.FluxGearKroostyl;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -34,7 +33,7 @@ import java.io.File;
 @Mod(modid = ProjectFluxGear.modID, name = "Project Flux Gear", version = ProjectFluxGear.version, dependencies = ProjectFluxGear.dependencies, canBeDeactivated = false, guiFactory = "mortvana.projectfluxgear.gui.config.ConfigGuiFactory")
 public class ProjectFluxGear {
 
-    public static final String version = "v0.1.0.2";
+    public static final String version = "v0.0.1.0.cactus";
     public static final String modID = "ProjectFluxGear";
     public static final String dependencies = "required-after:FluxGearCore; required-after:CoFHCore; required-after:ThermalFoundation; required-after:ThermalExpansion";
 
@@ -76,7 +75,7 @@ public class ProjectFluxGear {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
 
-        thermalRemapper = new Remapper(Loader.instance().activeModContainer());
+        //thermalRemapper = new Remapper(Loader.instance().activeModContainer());
         MinecraftForge.EVENT_BUS.register(this);
 
         config.setConfiguration(new Configuration(new File(FluxGearData.configDir, "Mortvana")));
@@ -136,7 +135,7 @@ public class ProjectFluxGear {
             FMLCommonHandler.instance().bus().register(new WorldTickHandler());
         }*/
 
-        loadWorldGeneration();
+        //loadWorldGeneration();
 
         /** Register Handlers */
         MinecraftForge.EVENT_BUS.register(proxy);
@@ -191,8 +190,7 @@ public class ProjectFluxGear {
     }
 
     @SubscribeEvent
-    public void chunkDataSave (ChunkDataEvent.Save event)
-    {
+    public void chunkDataSave (ChunkDataEvent.Save event) {
         event.getData().setBoolean("ProjectFluxGear.Retrogen", true);
     }
 }

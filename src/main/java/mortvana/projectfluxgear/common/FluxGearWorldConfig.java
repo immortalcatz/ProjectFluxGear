@@ -94,7 +94,7 @@ public class FluxGearWorldConfig {
 	}
 
 	public static String regenKey() {
-		return config.getName("Retrogen", "regenKey", "POTATO");
+		return config.getName("Retrogen", "regenKey", "PO-TA-TO");
 	}
 
 	private static void saveChanges() {

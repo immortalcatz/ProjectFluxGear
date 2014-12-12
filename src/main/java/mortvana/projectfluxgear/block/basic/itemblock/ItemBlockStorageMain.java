@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.block.itemblock;
+package mortvana.projectfluxgear.block.basic.itemblock;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
@@ -7,11 +7,11 @@ import net.minecraft.item.ItemStack;
 
 import mortvana.fluxgearcore.util.helper.ItemHelper;
 import mortvana.fluxgearcore.util.helper.StringHelper;
-import mortvana.projectfluxgear.block.BlockStorage;
+import mortvana.projectfluxgear.block.basic.BlockStorageMain;
 
-public class ItemBlockStorage extends ItemBlock {
+public class ItemBlockStorageMain extends ItemBlock {
 
-    public ItemBlockStorage(Block block) {
+    public ItemBlockStorageMain(Block block) {
 
         super(block);
         setHasSubtypes(true);
@@ -27,7 +27,7 @@ public class ItemBlockStorage extends ItemBlock {
     @Override
     public String getUnlocalizedName(ItemStack item) {
 
-        return "tile.projectfluxgear.storage." + BlockStorage.NAMES[ItemHelper.getItemDamage(item)] + ".name";
+        return "tile.projectfluxgear.storage." + BlockStorageMain.NAMES[ItemHelper.getItemDamage(item)] + ".name";
     }
 
     @Override
@@ -39,6 +39,6 @@ public class ItemBlockStorage extends ItemBlock {
     @Override
     public EnumRarity getRarity(ItemStack stack) {
 
-        return EnumRarity.values()[BlockStorage.RARITY[ItemHelper.getItemDamage(stack)]];
+        return EnumRarity.values()[BlockStorageMain.RARITY[ItemHelper.getItemDamage(stack)]];
     }
 }

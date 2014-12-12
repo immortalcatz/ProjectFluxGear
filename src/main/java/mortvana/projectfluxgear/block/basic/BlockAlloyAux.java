@@ -1,11 +1,11 @@
-package mortvana.projectfluxgear.block;
+package mortvana.projectfluxgear.block.basic;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.fluxgearcore.util.helper.StringHelper;
-import mortvana.projectfluxgear.block.itemblock.ItemBlockStorage;
+import mortvana.projectfluxgear.block.basic.itemblock.ItemBlockAlloyAux;
 import mortvana.projectfluxgear.common.FluxGearContent;
 import mortvana.projectfluxgear.common.ProjectFluxGear;
 import net.minecraft.block.Block;
@@ -22,13 +22,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-import net.minecraftforge.oredict.OreDictionary;
+public class BlockAlloyAux extends Block {
 
-public class BlockStorage extends Block {
-
-    public BlockStorage() {
+    public BlockAlloyAux() {
         super(Material.iron);
-        setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("projectfluxgear.storage");
+        setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("projectfluxgear.alloyAux");
     }
 
     @Override
@@ -92,33 +90,34 @@ public class BlockStorage extends Block {
 
     public boolean preInit() {
 
-        GameRegistry.registerBlock(this, ItemBlockStorage.class, "Storage");
+        GameRegistry.registerBlock(this, ItemBlockAlloyAux.class, "AlloyAux");
 
-        FluxGearContent.blockZinc = new ItemStack(this, 1, 0);
-        FluxGearContent.blockBismuth = new ItemStack(this, 1, 1);
-        FluxGearContent.blockManganese = new ItemStack(this, 1, 2);
-        FluxGearContent.blockPalladium = new ItemStack(this, 1, 3);
-        FluxGearContent.blockMolybdenum = new ItemStack(this, 1, 4);
-        FluxGearContent.blockCobalt = new ItemStack(this, 1, 5);
-        FluxGearContent.blockTungsten = new ItemStack(this, 1, 6);
-        FluxGearContent.blockAluminium = new ItemStack(this, 1, 7);
-        FluxGearContent.blockChromium = new ItemStack(this, 1, 8);
-        FluxGearContent.blockTitanium = new ItemStack(this, 1, 9);
-        FluxGearContent.blockMagnetite = new ItemStack(this, 1, 10);
-        FluxGearContent.blockDioptase = new ItemStack(this, 1, 11);
-        FluxGearContent.blockPyrope = new ItemStack(this, 1, 12);
-        FluxGearContent.blockMyuvil = new ItemStack(this, 1, 13);
-        FluxGearContent.blockArsenic = new ItemStack(this, 1, 14);
-        FluxGearContent.blockAntimony = new ItemStack(this, 1, 15);
+        FluxGearContent.blockTechnomancy = new ItemStack(this, 1, 0);
+        FluxGearContent.blockResonantTechnomancy = new ItemStack(this, 1, 1);
+        FluxGearContent.blockTungstenBlazing = new ItemStack(this, 1, 2);
+        FluxGearContent.blockPlatinumGelid = new ItemStack(this, 1, 3);
+        FluxGearContent.blockSilverLuminous = new ItemStack(this, 1, 4);
+        FluxGearContent.blockElectrumFlux = new ItemStack(this, 1, 5);
+        FluxGearContent.blockMolybdenumResonant = new ItemStack(this, 1, 6);
+        FluxGearContent.blockChromiumCarbide = new ItemStack(this, 1, 7);
+        FluxGearContent.blockColdfireBismuthBronze = new ItemStack(this, 1, 8);
+        FluxGearContent.blockPyrum = new ItemStack(this, 1, 9);
+        FluxGearContent.blockGelinium = new ItemStack(this, 1, 10);
+        FluxGearContent.blockLumium = new ItemStack(this, 1, 11);
+        FluxGearContent.blockSignalum = new ItemStack(this, 1, 12);
+        FluxGearContent.blockEnderium = new ItemStack(this, 1, 13);
+        FluxGearContent.blockCarbonite = new ItemStack(this, 1, 14);
+        FluxGearContent.blockTherminate = new ItemStack(this, 1, 15);
 
         return true;
     }
 
-    public static final String[] NAMES = { "zinc", "bismuth", "manganese", "palladium", "molybdenum", "cobalt", "tungsten", "aluminium", "chromium", "titanium", "magnetite", "dioptase", "pyrope", "myuvil", "arsenic", "antimony" };
+    public static final String[] NAMES = {};
     public static final IIcon[] TEXTURES = new IIcon[NAMES.length];
-    public static final int[] LIGHT = { 0, 2, 0, 2, 0, 0, 0, 2, 0, 0, 0, 8, 4, 4, 0, 0};
-    public static final float[] HARDNESS = { 5, 5, 5, 5, 6, 7, 10, 5, 7, 8, 5, 7, 7, 4, 3, 3 };
-    public static final float[] RESISTANCE = { 6, 8, 6, 6, 7, 8, 25, 8, 10, 12, 8, 13, 13, 6, 5, 5};
-    public static final int[] RARITY = { 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 0, 0 };
+    public static final int[] LIGHT = {};
+    public static final float[] HARDNESS = {/*Rust=0.6F*/};
+    public static final float[] RESISTANCE = {};
+    public static final int[] RARITY = {};
+
 
 }

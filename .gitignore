@@ -1,3 +1,33 @@
+#Ant Stuff
+build.xml
+/bin/
+/download/
+#Remove OS generated garbage
+*/.DS_Store
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+#Gradle Stuff
+/.gradle
+/build/
+/run/
+#IDEA files from Gradle
+out/
+.idea/
+/*.iml
+/*.ipr
+/*.iws
+#Vim backups
+*~
+#eclipse stuffs
+/.classpath
+/.project
+/.settings/
+#Possibly Redundant Stuff
 \run
 \.gradle
 \.idea
@@ -7,9 +37,9 @@
 *.ipr
 *.iws
 \out
-Thumbs.db
 \bin
 .classpath
 .project
 .settings/
-/bin/
+
+lib/Thaumcraft-deobf-1.7.10-4.2.2.B2

@@ -1,18 +1,17 @@
-package mortvana.projectfluxgear.block.itemblock;
-
-import cofh.lib.util.helpers.ItemHelper;
-import cofh.lib.util.helpers.StringHelper;
+package mortvana.projectfluxgear.block.basic.itemblock;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-import mortvana.projectfluxgear.block.BlockOre;
+import mortvana.fluxgearcore.util.helper.ItemHelper;
+import mortvana.fluxgearcore.util.helper.StringHelper;
+import mortvana.projectfluxgear.block.basic.BlockOreMain;
 
-public class ItemBlockOre extends ItemBlock {
+public class ItemBlockOreMain extends ItemBlock {
 
-    public ItemBlockOre(Block block) {
+    public ItemBlockOreMain(Block block) {
 
         super(block);
         setHasSubtypes(true);
@@ -28,7 +27,7 @@ public class ItemBlockOre extends ItemBlock {
     @Override
     public String getUnlocalizedName(ItemStack item) {
 
-        return "tile.projectfluxgear.ore." + BlockOre.NAMES[ItemHelper.getItemDamage(item)] + ".name";
+        return "tile.projectfluxgear.ore." + BlockOreMain.NAMES[ItemHelper.getItemDamage(item)] + ".name";
     }
 
     @Override
@@ -40,7 +39,7 @@ public class ItemBlockOre extends ItemBlock {
     @Override
     public EnumRarity getRarity(ItemStack stack) {
 
-        return EnumRarity.values()[BlockOre.RARITY[ItemHelper.getItemDamage(stack)]];
+        return EnumRarity.values()[BlockOreMain.RARITY[ItemHelper.getItemDamage(stack)]];
     }
 
 }

@@ -1,17 +1,17 @@
-package mortvana.projectfluxgear.block.itemblock;
+package mortvana.projectfluxgear.block.basic.itemblock;
 
-import cofh.lib.util.helpers.ItemHelper;
-import cofh.lib.util.helpers.StringHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-import mortvana.projectfluxgear.block.BlockFluidicAlloy;
+import mortvana.fluxgearcore.util.helper.ItemHelper;
+import mortvana.fluxgearcore.util.helper.StringHelper;
+import mortvana.projectfluxgear.block.basic.BlockAlloyAux;
 
-public class ItemBlockFluidicAlloy extends ItemBlock {
+public class ItemBlockAlloyAux extends ItemBlock {
 
-    public ItemBlockFluidicAlloy(Block block) {
+    public ItemBlockAlloyAux(Block block) {
 
         super(block);
         setHasSubtypes(true);
@@ -27,7 +27,7 @@ public class ItemBlockFluidicAlloy extends ItemBlock {
     @Override
     public String getUnlocalizedName(ItemStack item) {
 
-        return "tile.projectfluxgear.fluidicalloy." + BlockFluidicAlloy.NAMES[ItemHelper.getItemDamage(item)] + ".name";
+        return "tile.projectfluxgear.fluidicalloy." + BlockAlloyAux.NAMES[ItemHelper.getItemDamage(item)] + ".name";
     }
 
     @Override
@@ -39,6 +39,6 @@ public class ItemBlockFluidicAlloy extends ItemBlock {
     @Override
     public EnumRarity getRarity(ItemStack stack) {
 
-        return EnumRarity.values()[BlockFluidicAlloy.RARITY[ItemHelper.getItemDamage(stack)]];
+        return EnumRarity.values()[BlockAlloyAux.RARITY[ItemHelper.getItemDamage(stack)]];
     }
 }
