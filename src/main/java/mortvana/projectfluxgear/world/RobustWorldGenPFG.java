@@ -11,7 +11,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
 
-import mortvana.projectfluxgear.common.FluxGearWorldConfig;
+import mortvana.projectfluxgear.common.config.FluxGearWorldConfig;
 
 public class RobustWorldGenPFG implements IWorldGenerator {
 

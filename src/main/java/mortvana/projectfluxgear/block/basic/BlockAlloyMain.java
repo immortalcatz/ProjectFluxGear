@@ -26,7 +26,7 @@ public class BlockAlloyMain extends Block {
 
     public BlockAlloyMain() {
         super(Material.iron);
-        setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("projectfluxgear.alloy");
+        setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeMetal).setCreativeTab(ProjectFluxGear.tab).setBlockName("projectfluxgear.alloyMain");
     }
 
     @Override
@@ -90,34 +90,35 @@ public class BlockAlloyMain extends Block {
 
     public boolean preInit() {
 
-	    GameRegistry.registerBlock(this, ItemBlockAlloyMain.class, "Alloy");
+	    GameRegistry.registerBlock(this, ItemBlockAlloyMain.class, "AlloyMain");
 
-        FluxGearContent.blockBrass = new ItemStack(this, 1, 0);
-        FluxGearContent.blockBismuthBronze = new ItemStack(this, 1, 1);
-        FluxGearContent.blockCupronickel = new ItemStack(this, 1, 2);
-        FluxGearContent.blockAluminiumBrass = new ItemStack(this, 1, 3);
-        FluxGearContent.blockMithril = new ItemStack(this, 1, 4);
-        FluxGearContent.blockElectriplatinum = new ItemStack(this, 1, 5);
-        FluxGearContent.blockSteel = new ItemStack(this, 1, 6);
-        FluxGearContent.blockTungstenSteel = new ItemStack(this, 1, 7);
-        FluxGearContent.blockStainlessSteel = new ItemStack(this, 1, 8);
-        FluxGearContent.blockTechnomancy = new ItemStack(this, 1, 9);
-        FluxGearContent.blockResonantTechnomancy = new ItemStack(this, 1, 10);
-        FluxGearContent.blockAmber = new ItemStack(this, 1, 11);
-        FluxGearContent.blockCrystalFlux = new ItemStack(this, 1, 12);
-        FluxGearContent.blockLapiquartz = new ItemStack(this, 1, 13);
-        FluxGearContent.blockWhitePointStar = new ItemStack(this, 1, 14);
-        FluxGearContent.blockVoidInfernoStar = new ItemStack(this, 1, 15);
+        FluxGearContent.blockBronze = new ItemStack(this, 1, 0);
+        FluxGearContent.blockBrass = new ItemStack(this, 1, 1);
+        FluxGearContent.blockInvar = new ItemStack(this, 1, 2);
+        FluxGearContent.blockBismuthBronze = new ItemStack(this, 1, 3);
+        FluxGearContent.blockCupronickel = new ItemStack(this, 1, 4);
+        FluxGearContent.blockAluminiumBrass = new ItemStack(this, 1, 5);
+        FluxGearContent.blockElectrum = new ItemStack(this, 1, 6);
+        FluxGearContent.blockDullRedsolder = new ItemStack(this, 1, 7);
+        FluxGearContent.blockRedsolder = new ItemStack(this, 1, 8);
+        FluxGearContent.blockHCSteel = new ItemStack(this, 1, 9);
+        FluxGearContent.blockSteel = new ItemStack(this, 1, 10);
+        FluxGearContent.blockHSLA = new ItemStack(this, 1, 11);
+        FluxGearContent.blockStainlessSteel = new ItemStack(this, 1, 12);
+        FluxGearContent.blockTungstenSteel = new ItemStack(this, 1, 13);
+        FluxGearContent.blockElectriplatinum = new ItemStack(this, 1, 14);
+        FluxGearContent.blockMithril = new ItemStack(this, 1, 15);
 
         return true;
     }
 
-    public static final String[] NAMES = { "brass", "bismuthBronze", "cupronickel", "aluminiumBrass", "mithril", "electriplatinum", "steel", "tungstenSteel", "stainlessSteel", "technomancy", "resonantTechnomancy", "amber", "crystalFlux", "lapiquartz", "whitePointStar", "voidInfernoStar" };
+    public static final String[] NAMES = { "bronze", "brass", "invar", "bismuthBronze",
+                "cupronickel", "aluminiumBrass", "electrum", "dullRedsolder", "redsolder",
+            "highCarbonSteel", "steel", "HSLA", "stainlessSteel", "tungstenSteel", "electriplatinum", "mithril" };
+
     public static final IIcon[] TEXTURES = new IIcon[NAMES.length];
-    public static final int[] LIGHT = { 0, 2, 0, 2, 2, 4, 0, 0, 0, 4, 8, 0, 4, 2, 15, 15 };
-    public static final float[] HARDNESS = { 5, 5, 5, 5, 5, 6, 8, 13, 8, 7, 11, 4, 5, 5, 8, 8 };
-    public static final float[] RESISTANCE = { 6, 8, 6, 6, 10, 8, 13, 42, 13, 8, 10, 6, 8, 8, 42, 507 };
-    public static final int[] RARITY = { 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 2, 0, 1, 1, 2, 3 };
-
-
+    public static final int[] LIGHT = { 0, 0, 0, 2, 0, 2, 4, 2, 2, 0, 0, 0, 0, 0, 4, 2 };
+    public static final float[] HARDNESS = { 5, 5, 6, 5, 5, 5, 5, 5, 5, 7, 8, 8, 8, 13, 6, 5 };
+    public static final float[] RESISTANCE = { 7, 6, 8, 8, 6, 6, 6, 6, 6, 12, 13, 13, 13, 42, 8, 10 };
+    public static final int[] RARITY = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1 };
 }

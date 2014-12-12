@@ -8,6 +8,7 @@ import cofh.core.util.fluid.DispenserFilledBucketHandler;
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 
+import mortvana.projectfluxgear.common.config.FluxGearConfig;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
@@ -758,6 +759,13 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack blockTungstenSteel;
     public static ItemStack blockElectriplatinum;
     public static ItemStack blockMithril;
+
+    //NLHReRa List
+    //{"technomancy", "resonantTechnomancy", "amber", "crystalFlux", "lapiquartz", "whitePointStar", "voidInfernoStar" };
+    //{4, 8,  0, 4, 2, 15, 15  };
+    //{7, 11, 4, 5, 5, 8,  8   };
+    //{8, 10, 6, 8, 8, 42, 507 };
+    //{1, 2,  0, 1, 1, 2,  3   };
 
 
     public static ItemStack blockTechnomancy;

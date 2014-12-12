@@ -4,7 +4,6 @@ import cofh.core.CoFHProps;
 import cofh.core.util.FMLEventHandler;
 import cofh.core.util.CoreUtils;
 
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.*;
 import cpw.mods.fml.common.SidedProxy;
@@ -19,6 +18,7 @@ import mortvana.fluxgearcore.util.FluxGearData;
 import mortvana.fluxgearcore.util.handler.ConfigHandler;
 import mortvana.fluxgearcore.util.remapper.Remapper;
 
+import mortvana.projectfluxgear.common.config.FluxGearConfig;
 import mortvana.projectfluxgear.gui.FluxGearAchievements;
 import mortvana.projectfluxgear.gui.PFGCreativeTab;
 import net.minecraft.creativetab.CreativeTabs;
@@ -52,7 +52,7 @@ public class ProjectFluxGear {
 
     public ProjectFluxGear() {}
 
-    FluxGearContent content;
+    public static FluxGearContent content = new FluxGearContent();
     public static boolean retrogen;
 
     public static Remapper thermalRemapper;
@@ -65,6 +65,7 @@ public class ProjectFluxGear {
     //MOAR Tabs?
 
     public static File worldGen;
+    public static FluxGearCompat compat = new FluxGearCompat();
     public static final String worldGenInternal = "assets/projectfluxgear/world/ProjectFluxGear-Ores.json";
 
     // Doctor Octoartifact, BLAAHHHH...
@@ -80,26 +81,8 @@ public class ProjectFluxGear {
 
         config.setConfiguration(new Configuration(new File(FluxGearData.configDir, "Mortvana")));
 
-        /*
-        pulsar.registerPulse(new ThermalCore());
-        pulsar.registerPulse(new ThermalMachines());
-        pulsar.registerPulse(new ThermalDynamos());
-        pulsar.registerPulse(new WeirdScience());
-        pulsar.registerPulse(new SolarDynamos());
-        pulsar.registerPulse(new StarDynamos());
-        pulsar.registerPulse(new AtomicPower());
-        pulsar.registerPulse(new TinkersDynamos());
-        pulsar.registerPulse(new ThermalTinkering());
-            pulsar.registerPulse(new ThermalCoilguns());
-            pulsar.registerPulse(new ThermalTools());
-            pulsar.registerPulse(new ThermalArmor());
-        pulsar.registerPulse(new ThermalTinkers());
-        pulsar.registerPulse(new ThermalNEI());
-        pulsar.registerPulse(new ThermalBees());
-        pulsar.registerPulse(new ThermalWAILA());*/
-
-
-        content = new FluxGearContent();
+        compat.preInitCompat();
+        compat.preInitIMC();
         content.preInit();
 
         FMLEventHandler.initialize();
@@ -172,7 +155,6 @@ public class ProjectFluxGear {
         //TileDynamo.configure();
         //log.info(StringHelper.localize("Restoring Client Configuration..."));
     }
-
 
     void loadWorldGeneration() {
         if (!config.get("world", "GenerateWorldJSON", true, "If enabled, Project Flux Gear will create default world generation files - if it cannot find existing ones. Only disable this if you know what you are doing.")) {

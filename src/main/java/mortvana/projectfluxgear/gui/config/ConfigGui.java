@@ -5,7 +5,7 @@ import cpw.mods.fml.client.config.GuiConfig;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
 
-import mortvana.projectfluxgear.common.FluxGearConfig;
+import mortvana.projectfluxgear.common.config.FluxGearConfig;
 import mortvana.projectfluxgear.common.ProjectFluxGear;
 
 public class ConfigGui extends GuiConfig {
