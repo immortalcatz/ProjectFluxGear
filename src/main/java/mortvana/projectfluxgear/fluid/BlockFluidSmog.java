@@ -11,9 +11,8 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import mortvana.fluxgearcore.util.chemistry.reaction.IBioactive;
-import mortvana.fluxgearcore.legacy.util.IRegistrable;
 
-public class BlockFluidSmog extends BlockFluidCoFHBase implements IBioactive, IRegistrable {
+public class BlockFluidSmog extends BlockFluidCoFHBase implements IBioactive {
 
     public static final int LEVELS = 6;
     public static final Material materialFluidSmog = new MaterialLiquid(MapColor.brownColor);
@@ -136,20 +135,6 @@ public class BlockFluidSmog extends BlockFluidCoFHBase implements IBioactive, IR
 
 	@Override
 	public boolean canBreatheAffectCreature() {
-		return true;
-	}
-	@Override
-	public String getEnglishName() {
-		return this.getLocalizedName();
-	}
-
-	@Override
-	public String getGameRegistryName() {
-		return this.getUnlocalizedName();
-	}
-
-	@Override
-	public boolean isEnabled() {
 		return true;
 	}
 

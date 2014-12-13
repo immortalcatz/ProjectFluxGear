@@ -60,44 +60,31 @@ public class BlockBloodDonation extends BlockMetaTank {
 						//Do we have more than one bucket/canister/whatever?
 						if (playerItem.stackSize > 1) {
 							//If so, try to add the item to the player's inventory
-							if(donationEntity.drain(toDrain.amount, false) != null){
-								if(donationEntity.drain(toDrain.amount, false).amount >= toDrain.amount) {
-									if (!player.inventory.addItemStackToInventory(filledItem)) {
-										return false;
-									}
-								}
+							if((donationEntity.drain(toDrain.amount, false) != null) && (donationEntity.drain(toDrain.amount, false).amount >= toDrain.amount) && (!player.inventory.addItemStackToInventory(filledItem))){
+								return false;
 							}
 							//Decrement our stack size.
 							--playerItem.stackSize;
 							//TODO: Check to see if this is actually necessary.
 							player.inventory.setInventorySlotContents(player.inventory.currentItem, playerItem);
-						}
-						else {
-							//If so, try to add the item to the player's inventory
-							if(donationEntity.drain(toDrain.amount, false) != null){
-								if(donationEntity.drain(toDrain.amount, false).amount >= toDrain.amount) {
-									donationEntity.drain(toDrain.amount, true);
-									//Set the slot to our filled item.
-									player.inventory.setInventorySlotContents(player.inventory.currentItem, filledItem);
-									playerItem = null;
-								}
-							}
+						} else if((donationEntity.drain(toDrain.amount, false) != null) && (donationEntity.drain(toDrain.amount, false).amount >= toDrain.amount)) { //If so, try to add the item to the player's inventory
+							donationEntity.drain(toDrain.amount, true);
+							//Set the slot to our filled item.
+							player.inventory.setInventorySlotContents(player.inventory.currentItem, filledItem);
+							playerItem = null;
 						}
 					}
 				}
 			}
 			return true;
-		}
-		else {
+		} else {
 			//The player is not holding a bucket.
 			//Try to harm the player. Bucketlessness is a sin.
 		    float previousPlayerHealth = player.getHealth();
 			player.attackEntityFrom(DamageSource.magic, (float)dmgPerDonation);
 			//If the player has taken damage, fill the tank. (Prevent cheesing via fakeplayers.)
-			if((player.getHealth() < previousPlayerHealth) || player.capabilities.isCreativeMode){
-				if(donationEntity != null) {
-					donationEntity.fillFromBlock(new FluidStack(bloodFluid, mbPerDonation), true);
-				}
+			if(((player.getHealth() < previousPlayerHealth) || player.capabilities.isCreativeMode) && (donationEntity != null)) {
+				donationEntity.fillFromBlock(new FluidStack(bloodFluid, mbPerDonation), true);
 			}
 		    return true;
 		}
@@ -107,19 +94,8 @@ public class BlockBloodDonation extends BlockMetaTank {
 		mbPerDonation = config.get("Blood", "Blood Donation Station milibuckets of blood per donation", 500).getInt();
 		dmgPerDonation = config.get("Blood", "Blood Donation Station damage per donation", 2).getInt();
 	}
-	public BlockBloodDonation(Configuration config, String name,
-			Material material) {
+
+	public BlockBloodDonation(Configuration config, String name, Material material) {
 		super(config, name, material);
-		// TODO Auto-generated constructor stub
 	}
-	public BlockBloodDonation(Configuration config, String name) {
-		super(config, name);
-		// TODO Auto-generated constructor stub
-	}
-	public BlockBloodDonation(Material material) {
-		super(material);
-		// TODO Auto-generated constructor stub
-	}
-	
-	
 }

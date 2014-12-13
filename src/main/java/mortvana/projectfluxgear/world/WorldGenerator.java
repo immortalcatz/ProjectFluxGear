@@ -71,9 +71,13 @@ public class WorldGenerator implements IWorldGenerator{
 
 	}
 
-	public void generateSurface(Random random, int xChunk, int zChunk, World world) {}
+	public void generateSurface(Random random, int xChunk, int zChunk, World world) {
 
-	public void generateNether(Random random, int xChunk, int zChunk, World world) {}
+	}
+
+	public void generateNether(Random random, int xChunk, int zChunk, World world) {
+
+	}
 
 	WorldGenMinable chalcocite;
 	WorldGenMinable cassiterite;

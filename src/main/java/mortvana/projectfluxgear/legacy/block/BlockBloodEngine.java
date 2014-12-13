@@ -34,7 +34,7 @@ public class BlockBloodEngine extends BlockMetaTank {
 			tileEntity = (TileEntityBloodDynamo)world.getTileEntity(x, y, z);
 		}
 	    if (tileEntity == null || player.isSneaking()) {
-	            return false;
+	        return false;
 	    }
 		ItemStack playerItem = player.inventory.getCurrentItem();
 
@@ -42,18 +42,7 @@ public class BlockBloodEngine extends BlockMetaTank {
 		if (playerItem != null) {
 			//Is the player's item THE ONE TRUE ITEM we're lookin' for?
 			//First try the Zettabyte version.
-			/*if (playerItem.getItem() instanceof ItemBucketWS) {
-				ItemBucketWS bucket = (ItemBucketWS)playerItem.getItem();
-				//Is it blood?
-				if(bucket.getFluid(playerItem).getFluid().getName().contentEquals(fuelName)) {
-					if(FillTank(bucket.getFluid(playerItem).getFluid(), tileEntity) && !player.capabilities.isCreativeMode) {
-						player.inventory.setInventorySlotContents(player.inventory.currentItem, FluidContainerRegistry.EMPTY_BUCKET);
-					}
-					return true;
-				}
-				
-			}
-			else*/ if (playerItem.getItem() instanceof ItemBucket) {
+			if (playerItem.getItem() instanceof ItemBucket) {
 				ItemBucket bucket = (ItemBucket)playerItem.getItem();
 				//Do deep black Worst Practices hoodoo because Notch didn't design anything to be extended or generalized
 				//Lucky for us the performance impact of reflection is negligable in this case since there won't be 
@@ -119,17 +108,14 @@ public class BlockBloodEngine extends BlockMetaTank {
 
 	public BlockBloodEngine(Configuration config, String name, Material material) {
 		super(config, name, material);
-		// TODO Auto-generated constructor stub
 	}
 
 	public BlockBloodEngine(Configuration config, String name) {
 		super(config, name);
-		// TODO Auto-generated constructor stub
 	}
 
 	public BlockBloodEngine(Material material) {
 		super(material);
-		// TODO Auto-generated constructor stub
 	}
 
 	

@@ -79,7 +79,7 @@ public class FluxGearWorldConfig {
 		int oresPreVein = config.configuration.get("Generators." + oreTag, "Ores per Vein", defaultInfo[1]).getInt(defaultInfo[1]);
 		int minYLevel = config.configuration.get("Generators." + oreTag, "Min Y Level", defaultInfo[2]).getInt(defaultInfo[2]);
 		int maxYLevel = config.configuration.get("Generators." + oreTag, "Max Y Level", defaultInfo[3]).getInt(defaultInfo[3]);
-		int chunkChance = config.configuration.get("Generators." + oreTag, "Chunk per Chance", defaultInfo[4]).getInt(defaultInfo[4]);
+		int chunkChance = config.configuration.get("Generators." + oreTag, "Chance per Chunk", defaultInfo[4]).getInt(defaultInfo[4]);
 		int[] generationInfo = { veinsPerChunk, oresPreVein, minYLevel, maxYLevel, chunkChance };
 		return generationInfo;
 	}

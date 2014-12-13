@@ -18,7 +18,6 @@ import net.minecraftforge.fluids.FluidStack;
 import mortvana.fluxgearcore.legacy.block.IBlockMetaPower;
 import mortvana.fluxgearcore.legacy.ContentRegistry;
 import mortvana.fluxgearcore.legacy.item.SolidFuelInfo;
-import mortvana.fluxgearcore.legacy.util.IRegistrable;
 import mortvana.fluxgearcore.legacy.item.ISolidFuelInfo;
 
 /*
@@ -31,7 +30,7 @@ import mortvana.fluxgearcore.legacy.item.ISolidFuelInfo;
  * (so use them sparingly and don't build your walls out of engines)
  * (actually that would be cool and totally worth it, please build your walls out of engines)
  */
-public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements IRegistrable, ISidedInventory {
+public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements ISidedInventory {
 
 	// Static settings to apply to every instance of the Tile Entity.
 	public static int rfPerTick;
@@ -73,23 +72,6 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 		// Do nothing. Not that kind of engine.
 	}
 
-	// Called by our very own game registry and config systems.
-	@Override
-	public String getEnglishName() {
-		return "Blast Engine";
-	}
-
-	@Override
-	public String getGameRegistryName() {
-		return "engineGunpowder";
-	}
-
-	// Placeholder, maybe we will eventually use this for something
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
-
 	/*
 	 * Called automatically by our very own game registry and config systems.
 	 * This method is called on a short-lived instance of the Tile Entity that
@@ -99,24 +81,21 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 	public void doConfig(Configuration config, ContentRegistry cr) {
 		// Get the energy cap which is universal for all TileEntityGunpowderEngines.
 		// Then, we will set the specific energy cap of the instances from this value.
-		staticEnergyCap = config.get(getEnglishName(),
-				"Capacity of internal energy buffer", 2000).getInt();
-		setsFires = config.get(getEnglishName(), "Sets fires", true).getBoolean(true);
+		staticEnergyCap = config.get("Blast Engine", "Capacity of internal energy buffer", 2000).getInt();
+		setsFires = config.get("Blast Engine", "Sets fires", true).getBoolean(true);
 		quantityPerBurn = 32; // Amount of dirt to attempt to consume at once.
 		ticksPerBurn = 20; // Time between ticks where we burn dirt. To reduce lag.
 		// Which is to say: Every X ticks, we will do the engine logic. Where X = ticksPerBurn
-		rfPerTick = config.get(getEnglishName(), "RF transfer rate", 20) .getInt();
-		radius = rfPerTick = config.get(getEnglishName(), "Burn radius", 4) .getInt(4);
+		rfPerTick = config.get("Blast Engine", "RF transfer rate", 20) .getInt();
+		radius = rfPerTick = config.get("Blast Engine", "Burn radius", 4) .getInt(4);
 
 		ticksUntilBurn = ticksPerBurn;
 
-		boolean enableGunpowder = config.get(getEnglishName(),
-				"Enable gunpowder as fuel", true).getBoolean(true);
+		boolean enableGunpowder = config.get("Blast Engine", "Enable gunpowder as fuel", true).getBoolean(true);
 		if (enableGunpowder) {
 			SolidFuelInfo gunpowderInfo = new SolidFuelInfo();
 			gunpowderInfo.ourFuel = new ItemStack(Items.gunpowder);
-			// Remember:                          config secton,   setting name,     default     default
-			gunpowderInfo.energyPer = config.get(getEnglishName(), "RF per Gunpowder", 80).getInt(80);
+			gunpowderInfo.energyPer = config.get("Blast Engine", "RF per Gunpowder", 80).getInt(80);
 			/*
 			 * Bit of a hack. SolidFuelInfo is very much specific to the Nitrate
 			 * Engines I designed it for, and I haven't figured out how I should
@@ -124,25 +103,21 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 			 * float variable to contain info about how much fire each different
 			 * fuel will produce.
 			 */
-			gunpowderInfo.byproductMult = (float) config.get(getEnglishName(),
-					"Gunpowder fire factor", 4.0).getDouble(4.0d);
+			gunpowderInfo.byproductMult = (float) config.get("Blast Engine", "Gunpowder fire factor", 4.0).getDouble(4.0d);
 			staticFuelInfo.add(gunpowderInfo);
 		}
-		boolean enableBlazePowder = config.get(getEnglishName(),
-				"Enable blaze powder as fuel", true).getBoolean(true);
+		boolean enableBlazePowder = config.get("Blast Engine", "Enable blaze powder as fuel", true).getBoolean(true);
 		if (enableBlazePowder) {
 			SolidFuelInfo blazeInfo = new SolidFuelInfo();
 			blazeInfo.ourFuel = new ItemStack(Items.blaze_powder);
-			blazeInfo.energyPer = config.get(getEnglishName(),
-					"RF per Blaze Powder", 80).getInt(80);
-			blazeInfo.byproductMult = (float) config.get(getEnglishName(),
-					"Blaze Powder fire factor", 8.0).getDouble(8.0d);
+			blazeInfo.energyPer = config.get("Blast Engine", "RF per Blaze Powder", 80).getInt(80);
+			blazeInfo.byproductMult = (float) config.get("Blast Engine", "Blaze Powder fire factor", 8.0).getDouble(8.0d);
 			staticFuelInfo.add(blazeInfo);
 		}
-		enableThermite = config.get(getEnglishName(), "Enable Thermite as fuel", true).getBoolean(true);
+		enableThermite = config.get("Blast Engine", "Enable Thermite as fuel", true).getBoolean(true);
 		if (enableThermite) { 
-			rfPerThermite = config.get(getEnglishName(), "RF per Blaze Powder", 80).getInt(80);
-			thermiteFires = (float) config.get(getEnglishName(), "Blaze Powder fire factor", 8.0).getDouble(8.0d);
+			rfPerThermite = config.get("Blast Engine", "RF per Blaze Powder", 80).getInt(80);
+			thermiteFires = (float) config.get("Blast Engine", "Blaze Powder fire factor", 8.0).getDouble(8.0d);
 		}
 	}
 
@@ -238,10 +213,8 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer) { // Sanity
-																	// checks!
-		if (entityplayer.getDistanceSq((double) this.xCoord + 0.5D,
-				(double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 16.0D) {
+	public boolean isUseableByPlayer(EntityPlayer entityplayer) { // Sanity checks!
+		if (entityplayer.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 16.0D) {
 			return true; // The player is sufficiently close.
 		} else {
 			return false; // The player is too far away.
@@ -255,8 +228,7 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 	}
 
 	public boolean isItemFuel(Item item) {
-		// Uses the canBurn functionality from our parent class,
-		// TileEntitySolidFueled
+		// Uses the canBurn functionality from our parent class, TileEntitySolidFueled
 		if (canBurn(new ItemStack(item)) != null) {
 			return true;
 		} else {
@@ -287,22 +259,17 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 	@Override
 	public boolean canExtractItem(int slotID, ItemStack itemstack, int direction) {
 		if (slotID == 0) {
-			// We can extract from and insert to the same slot.
-			// This is fine because there is a single slot for the machine.
-			// In a machine with input and result slots, consider only allowing
-			// extraction from result slots and insertion to input slots, to
-			// allow
-			// reasonable automation.
+			// We can extract from and insert to the same slot. This is fine because there is a single slot
+			// for the machine. In a machine with input and result slots, consider only allowing extraction
+			// from result slots and insertion to input slots, to allow reasonable automation.
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	// NBT stuff: Minecraft uses this data structure for serializing many things
-	// to file and to network.
-	// Our parent class handles energy just fine, but here, we must implement
-	// saving/loading of fuel.
+	// NBT stuff: Minecraft uses this data structure for serializing many things to file and to network.
+	// Our parent class handles energy just fine, but here, we must implement saving/loading of fuel.
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
@@ -311,13 +278,10 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 		if (nbttagcompound1 != null) {
 			fuelStack = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 		}
-		// Simple behavior for performance reasons: If there's fuel in the slot,
-		// assume the engine was running.
+		// Simple behavior for performance reasons: If there's fuel in the slot, assume the engine was running.
 		if (fuelStack != null) {
 			this.wasRunningLastBurn = true;
-		}
-		// ...otherwise, assume it was not.
-		else {
+		} else { // ...otherwise, assume it was not.
 			this.wasRunningLastBurn = false;
 		}
 		// Read how far we are from doing another engine tick.
@@ -340,14 +304,11 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 	// The meat of our engine logic.
 	// ENTITY UPDATE:
 	@Override
-	public void updateEntity() // The meat of our block.
-	{
+	public void updateEntity() { // The meat of our block.
 		super.updateEntity();
 		boolean flagInvChanged = false;
-		//worldObj.isRemote is a boolean set to true on gui.
-		//We need to run this code only on server-side,
-		//because Minecraft is very naive about sidedness.
-		//It does none of it for you.
+		//worldObj.isRemote is a boolean set to true on gui. We need to run this code only on server-side,
+		//because Minecraft is very naive about sidedness. It does none of it for you.
 		if (!worldObj.isRemote) {
 			// Burn logic:
 			// Are we still waiting to burn fuel?
@@ -358,23 +319,20 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 			} else {
 				// If we are not waiting, update the entity.
 				int toBurn = 0;
-				// Make sure we have fuel, somewhere to put waste products, and
-				// energy storage capacity.
+				// Make sure we have fuel, somewhere to put waste products, and energy storage capacity.
 				if (fuelStack != null) {
 					if (fuelStack.stackSize >= 1) {
 						// Do the burny thing.
 						int deltaItems = doBurn(fuelStack, quantityPerBurn);
 						
 						setFires(canBurn(fuelStack), deltaItems);
-						//Delta, here, is the mathematical meaning of the word
-						//(change in thing)
+						//Delta, here, is the mathematical meaning of the word (change in thing)
 						fuelStack.stackSize -= deltaItems;
 						flagHasPower = (deltaItems != 0);
 						flagInvChanged = flagHasPower;
 						if (fuelStack.stackSize <= 0) {
 							fuelStack = null;
-						}
-						//Update our block as to the current running state of the engine.
+						} //Update our block as to the current running state of the engine.
 						if (deltaItems != 0) {
 							TurnBlockOn();
 						} else {
@@ -383,8 +341,7 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 					} else {
 						TurnBlockOff();
 					}
-					ticksUntilBurn = ticksPerBurn; // Reset the timer, but only
-													// if we did anything.
+					ticksUntilBurn = ticksPerBurn; // Reset the timer, but only if we did anything.
 				} else {
 					TurnBlockOff();
 				}
@@ -394,9 +351,7 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 				this.powerAdjacent();
 			}
 		}
-
-		//This is really important: Here, inventory info is syncced.
-		//You get desync if you comment this out.
+		//This is really important: Here, inventory info is synced. You get desync if you comment this out.
 		if (flagInvChanged) {
 			this.markDirty();
 		}
@@ -406,33 +361,25 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 	//Attempt to ignite surrounding blocks.
 	private void setFires(ISolidFuelInfo fuel, int quantityBurned) {
 		//Is this behavior enabled via config?
-		if(setsFires) {
-			if(quantityBurned > 0) {
-				//Chance per block, a percentage.
-				//Magic number 2.0f here. Refactor how?
-				int cpb = (int) ((2.0f * fuel.getByproductMult()) * (float)quantityBurned);
-				ChunkCoordinates coordCheck = new ChunkCoordinates(0, 0, 0);
-				ChunkCoordinates coordOurs = new ChunkCoordinates(xCoord, yCoord, zCoord);
-				//Iterate through surrounding blocks within the bounding box, attempting to set them on fire.
-				for(int x = -radius; x <= radius; ++x) {
-					for(int y = -radius; y <= radius; ++y) {
-						for(int z = -radius; z <= radius; ++z) {
-							coordCheck.set(x+xCoord, y+yCoord, z+zCoord);
-							//Check to see if this block is ACTUALLY within the radius.
-							int distanceSquared = (int) coordCheck.getDistanceSquaredToChunkCoordinates(coordOurs);
-							if(distanceSquared <= (radius * radius)) {
-								//Check to see if the block under this one is not air
-								if(worldObj.getBlock(x+xCoord, (y+yCoord)-1, z+zCoord) != Blocks.air) {
-									//Check to see if THIS block is air
-									if(worldObj.getBlock(x+xCoord, y+yCoord, z+zCoord) == Blocks.air) {
-										//Roll the dice. Adjust to scale off with distance.
-										if(rand.nextInt(100) <= (cpb - (distanceSquared * 2))) {
-											//Set it to fire.
-											worldObj.setBlock(x+xCoord, y+yCoord, z+zCoord, Blocks.fire);
-										}
-									}
-								}
-							}
+		if((setsFires) && (quantityBurned > 0)) {
+			//Chance per block, a percentage.
+			//Magic number 2.0f here. Refactor how?
+			int cpb = (int) ((2.0f * fuel.getByproductMult()) * (float)quantityBurned);
+			ChunkCoordinates coordCheck = new ChunkCoordinates(0, 0, 0);
+			ChunkCoordinates coordOurs = new ChunkCoordinates(xCoord, yCoord, zCoord);
+			//Iterate through surrounding blocks within the bounding box, attempting to set them on fire.
+			for(int x = -radius; x <= radius; ++x) {
+				for(int y = -radius; y <= radius; ++y) {
+					for(int z = -radius; z <= radius; ++z) {
+						coordCheck.set(x+xCoord, y+yCoord, z+zCoord);
+						//Check to see if this block is ACTUALLY within the radius.
+						//Check to see if the block under this one is not air
+						// Check to see if THIS block is air
+						// Roll the dice. Adjust to scale off with distance.
+						int distanceSquared = (int) coordCheck.getDistanceSquaredToChunkCoordinates(coordOurs);
+						if((distanceSquared <= (radius * radius)) && (worldObj.getBlock(x+xCoord, (y+yCoord)-1, z+zCoord) != Blocks.air) && (worldObj.getBlock(x+xCoord, y+yCoord, z+zCoord) == Blocks.air) && (rand.nextInt(100) <= (cpb - (distanceSquared * 2)))) {
+							//Set it to fire.
+							worldObj.setBlock(x+xCoord, y+yCoord, z+zCoord, Blocks.fire);
 						}
 					}
 				}
@@ -445,8 +392,7 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 		if (wasRunningLastBurn == true) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
 			if (block instanceof IBlockMetaPower) {
-				((IBlockMetaPower) block).recievePowerOff(worldObj, xCoord,
-						yCoord, zCoord);
+				((IBlockMetaPower) block).recievePowerOff(worldObj, xCoord, yCoord, zCoord);
 			}
 		}
 		wasRunningLastBurn = false;
@@ -457,8 +403,7 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 		if (wasRunningLastBurn == false) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
 			if (block instanceof IBlockMetaPower) {
-				((IBlockMetaPower) block).recievePowerOn(worldObj, xCoord,
-						yCoord, zCoord);
+				((IBlockMetaPower) block).recievePowerOn(worldObj, xCoord, yCoord, zCoord);
 			}
 		}
 		wasRunningLastBurn = true;

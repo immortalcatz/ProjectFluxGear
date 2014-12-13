@@ -1,9 +1,5 @@
 package mortvana.projectfluxgear.common;
 
-import cofh.core.CoFHProps;
-import cofh.core.util.FMLEventHandler;
-import cofh.core.util.CoreUtils;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.*;
 import cpw.mods.fml.common.SidedProxy;
@@ -12,8 +8,6 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-import mortvana.fluxgearcore.pulsar.config.ForgeCFG;
-import mortvana.fluxgearcore.pulsar.control.PulseManager;
 import mortvana.fluxgearcore.util.FluxGearData;
 import mortvana.fluxgearcore.util.handler.ConfigHandler;
 import mortvana.fluxgearcore.util.remapper.Remapper;
@@ -48,7 +42,7 @@ public class ProjectFluxGear {
 
     // My favorite Pulsar is a Magnetar...
     // Loads modules in a way that doesn't clutter the @Mod list
-    public static PulseManager pulsar = new PulseManager(modID, new ForgeCFG("ProjectFluxGear-Modules", "Modules: Disabling these will disable a chunk of the mod"));
+    //public static PulseManager pulsar = new PulseManager(modID, new ForgeCFG("ProjectFluxGear-Modules", "Modules: Disabling these will disable a chunk of the mod"));
 
     public ProjectFluxGear() {}
 
@@ -85,14 +79,10 @@ public class ProjectFluxGear {
         compat.preInitIMC();
         content.preInit();
 
-        FMLEventHandler.initialize();
-
         //Erroneous Errors of Erroneousness
         /*weirdRegistry = new ContentRegistry(config, logger, tabWeirdScience);
         MinecraftForge.EVENT_BUS.register(weirdRegistry.bucketMan);
         WeirdScienceContent.RegisterContent(config, weirdRegistry, event);*/
-
-        pulsar.preInit(event);
 
         if (FluxGearConfig.achievementsEnabled) {
             FluxGearAchievements.addAchievements();
@@ -123,8 +113,6 @@ public class ProjectFluxGear {
         /** Register Handlers */
         MinecraftForge.EVENT_BUS.register(proxy);
 
-        pulsar.init(event);
-
     }
 
     @EventHandler
@@ -135,8 +123,6 @@ public class ProjectFluxGear {
         proxy.registerEntities();
 
         //packetPipeline.postInitialize();
-
-        pulsar.postInit(event);
 
         config.cleanUp(false, true);
     }
@@ -156,7 +142,7 @@ public class ProjectFluxGear {
         //log.info(StringHelper.localize("Restoring Client Configuration..."));
     }
 
-    void loadWorldGeneration() {
+    /*void loadWorldGeneration() {
         if (!config.get("world", "GenerateWorldJSON", true, "If enabled, Project Flux Gear will create default world generation files - if it cannot find existing ones. Only disable this if you know what you are doing.")) {
             return;
         }
@@ -169,7 +155,7 @@ public class ProjectFluxGear {
                 localThrowable.printStackTrace();
             }
         }
-    }
+    }*/
 
     @SubscribeEvent
     public void chunkDataSave (ChunkDataEvent.Save event) {

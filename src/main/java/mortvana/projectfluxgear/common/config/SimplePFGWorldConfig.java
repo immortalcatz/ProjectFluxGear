@@ -72,6 +72,8 @@ public class SimplePFGWorldConfig {
 	}
 
 	public static void density() {
+		chalcociteDensity = config.get("Ores Per Chunk", "Chalcocite (Copper) per Chunk", 10).getInt(10);
+		cassiteriteDensity = config.get("Ores Per Chunk", "Cassiterite (Tin) per Chunk", 8).getInt(8);
 
 	}
 

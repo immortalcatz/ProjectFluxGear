@@ -43,8 +43,7 @@ public class Coagulant extends ItemBase {
 		// If no object was within the click-range, just return normally
 		if (clickedObject == null) {
 			return heldStack;
-		}
-		else {
+		} else {
 			// If the user clicked on a tile of some sort
 			if (clickedObject.typeOfHit == MovingObjectType.BLOCK) {
 				int x = clickedObject.blockX, y = clickedObject.blockY, z = clickedObject.blockZ;
@@ -54,23 +53,19 @@ public class Coagulant extends ItemBase {
 					return heldStack;
 				}
 				// If it's fluid blood, make it congealed and remove a coagulant
-				if (currentWorld.getBlock(x, y, z) != Blocks.air) {
-					if (currentWorld.getBlock(x, y, z) instanceof IFluidBlock) {
-						IFluidBlock fluidBlock = (IFluidBlock)currentWorld.getBlock(x, y, z);
-						if(fluidBlock.getFluid().getName().contentEquals("blood")) {
-							currentWorld.setBlock(x, y, z, congealedBlock);
-							if(!clickingPlayer.capabilities.isCreativeMode) {
-								--heldStack.stackSize;
-							}
+				if ((currentWorld.getBlock(x, y, z) != Blocks.air) && (currentWorld.getBlock(x, y, z) instanceof IFluidBlock)) {
+					IFluidBlock fluidBlock = (IFluidBlock)currentWorld.getBlock(x, y, z);
+					if(fluidBlock.getFluid().getName().contentEquals("blood")) {
+						currentWorld.setBlock(x, y, z, congealedBlock);
+						if(!clickingPlayer.capabilities.isCreativeMode) {
+							--heldStack.stackSize;
 						}
 					}
 				}
 				return heldStack;
-			}
-			else {
+			} else {
 				return heldStack;
 			}
 		}
 	}
-
 }

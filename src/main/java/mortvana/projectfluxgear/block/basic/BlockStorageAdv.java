@@ -18,11 +18,11 @@ import mortvana.fluxgearcore.block.BlockFluxGear;
 import mortvana.fluxgearcore.util.helper.StringHelper;
 import mortvana.projectfluxgear.common.ProjectFluxGear;
 
-public class BlockAlloyAux extends BlockFluxGear {
+public class BlockStorageAdv extends BlockFluxGear {
 
-	public BlockAlloyAux() {
+	public BlockStorageAdv() {
 		super(Material.iron, ProjectFluxGear.tab, "BLOCK");
-		setBlockName("projectfluxgear.alloyAux");
+		setBlockName("projectfluxgear.storageAdv");
 	}
 
 	@Override
@@ -37,19 +37,6 @@ public class BlockAlloyAux extends BlockFluxGear {
 	public int getLightValue(IBlockAccess world, int x, int y, int z) {
 
 		return LIGHT[world.getBlockMetadata(x, y, z)];
-	}
-
-	@Override
-	public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side) {
-
-		if (world.getBlockMetadata(x, y, z) == 5) {
-			return 7;
-		} else
-			if (world.getBlockMetadata(x, y, z) == 12) {
-				return 15;
-			} else {
-				return 0;
-			}
 	}
 
 	@Override
@@ -79,10 +66,10 @@ public class BlockAlloyAux extends BlockFluxGear {
 		}
 	}
 
-	public static final String[] NAMES = {"technomancy", "resonantTechnomancy", "tungstenBlazing", "platinumGelid", "silverLuminous", "electrumFlux", "molybdenumResonant", "chromiumCarbide", "bismuthBronzeColdfire", "pyrum", "gelinum", "lumium", "signalum", "enderium", "carbonite", "therminate"};
+	public static final String[] NAMES = {"thorium", "uranium235", "uranium238", "magnetite", "neodymiumM", "ironM", "manganeseM", "cobaltM", "nickelM", "invarM", "highCarbonSteelM", "steel", "hsla", "amber", "potato", "polycarbide"};
 	public static final IIcon[] TEXTURES = new IIcon[NAMES.length];
-	public static final int[] LIGHT = {4, 8, 12, 4, 15, 7, 4, 2, 15, 12, 4, 15, 7, 4, 2, 15};
-	public static final float[] HARDNESS = {7, 11, 13, 8, 8, 8, 13, 11, 16, 11, 6, 5, 5, 40, 7, 13};
-	public static final float[] RESISTANCE = {16, 128, 135, 85, 85, 85, 192, 192, 256, 35, 11, 9, 9, 120, 64, 128};
-	public static final int[] RARITY = {1, 2, 2, 2, 2, 2, 3, 2, 3, 1, 1, 1, 1, 2, 1, 2};
+	public static final int[] LIGHT = {2, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	public static final float[] HARDNESS = {5, 5, 5, 5, 5, 5, 5, 7, 7, 6, 7, 8, 8, 4, 2, 42};
+	public static final float[] RESISTANCE = {5, 5, 5, 8, 8, 10, 6, 8, 6, 8, 12, 13, 13, 6, 11, 1000};
+	public static final int[] RARITY = {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 3, 3};
 }

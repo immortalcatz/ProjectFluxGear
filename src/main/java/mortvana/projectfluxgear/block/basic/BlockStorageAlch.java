@@ -18,16 +18,15 @@ import mortvana.fluxgearcore.block.BlockFluxGear;
 import mortvana.fluxgearcore.util.helper.StringHelper;
 import mortvana.projectfluxgear.common.ProjectFluxGear;
 
-public class BlockAlloyAux extends BlockFluxGear {
+public class BlockStorageAlch extends BlockFluxGear {
 
-	public BlockAlloyAux() {
+	public BlockStorageAlch() {
 		super(Material.iron, ProjectFluxGear.tab, "BLOCK");
-		setBlockName("projectfluxgear.alloyAux");
+		setBlockName("projectfluxgear.storageAux");
 	}
 
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-
 		for (int i = 0; i < NAMES.length; i++) {
 			list.add(new ItemStack(item, 1, i));
 		}
@@ -35,38 +34,21 @@ public class BlockAlloyAux extends BlockFluxGear {
 
 	@Override
 	public int getLightValue(IBlockAccess world, int x, int y, int z) {
-
 		return LIGHT[world.getBlockMetadata(x, y, z)];
 	}
 
 	@Override
-	public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side) {
-
-		if (world.getBlockMetadata(x, y, z) == 5) {
-			return 7;
-		} else
-			if (world.getBlockMetadata(x, y, z) == 12) {
-				return 15;
-			} else {
-				return 0;
-			}
-	}
-
-	@Override
 	public float getBlockHardness(World world, int x, int y, int z) {
-
 		return HARDNESS[world.getBlockMetadata(x, y, z)];
 	}
 
 	@Override
 	public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
-
 		return RESISTANCE[world.getBlockMetadata(x, y, z)];
 	}
 
 	@Override
 	public IIcon getIcon(int side, int metadata) {
-
 		return TEXTURES[metadata];
 	}
 
@@ -79,10 +61,10 @@ public class BlockAlloyAux extends BlockFluxGear {
 		}
 	}
 
-	public static final String[] NAMES = {"technomancy", "resonantTechnomancy", "tungstenBlazing", "platinumGelid", "silverLuminous", "electrumFlux", "molybdenumResonant", "chromiumCarbide", "bismuthBronzeColdfire", "pyrum", "gelinum", "lumium", "signalum", "enderium", "carbonite", "therminate"};
+	public static final String[] NAMES = {"nullmetal", "iocarbide", "cryocarbide", "pyrocarbide", "tenebride", "illuminide", "zythoferride", "crystalFlux", "lapiquartz", "rust", "whitePointStar", "voidInfernoStar", "sulfur", "saltpeter", "mithrilFlux", "mithrilTinker"};
 	public static final IIcon[] TEXTURES = new IIcon[NAMES.length];
-	public static final int[] LIGHT = {4, 8, 12, 4, 15, 7, 4, 2, 15, 12, 4, 15, 7, 4, 2, 15};
-	public static final float[] HARDNESS = {7, 11, 13, 8, 8, 8, 13, 11, 16, 11, 6, 5, 5, 40, 7, 13};
-	public static final float[] RESISTANCE = {16, 128, 135, 85, 85, 85, 192, 192, 256, 35, 11, 9, 9, 120, 64, 128};
-	public static final int[] RARITY = {1, 2, 2, 2, 2, 2, 3, 2, 3, 1, 1, 1, 1, 2, 1, 2};
+	public static final int[] LIGHT = {0, 0, 4, 4, 0, 15, 7, 4, 2, 0, 15, 15, 0, 0, 7, 15};
+	public static final float[] HARDNESS = {1, 5, 5, 5, 7, 7, 11, 5, 5, 0.6F, 8, 8, 5, 5, 8, 11};
+	public static final float[] RESISTANCE = {1, 6, 7, 7, 10, 10, 42, 8, 8, 1, 42, 507, 5, 5, 32, 64};
+	public static final int[] RARITY = {0, 0, 0, 0, 1, 1, 2, 1, 1, 0, 2, 3, 0, 0, 1, 2};
 }

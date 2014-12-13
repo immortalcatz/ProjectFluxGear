@@ -12,9 +12,8 @@ import net.minecraftforge.fluids.IFluidTank;
 import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
 import mortvana.fluxgearcore.legacy.ContentRegistry;
 import mortvana.fluxgearcore.legacy.block.tile.TileEntityBase;
-import mortvana.fluxgearcore.legacy.util.IRegistrable;
 
-public class TileEntityBloodDonation extends TileEntityBase implements IFluidHandler, IFluidTank, IRegistrable {
+public class TileEntityBloodDonation extends TileEntityBase implements IFluidHandler, IFluidTank{
 	
     protected FluidStack fluidTank;
     protected static int capacity = 0;
@@ -145,29 +144,22 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
 		        	//Will we still be under capacity with this new influx of resources?
 		        	fluidTank.amount += resource.amount;
 		        	filled = resource.amount;
-		        }
-		        else {
+		        } else {
 		        	//Over capacity?
 		        	//Get the difference between current and capacity, that's what we're filling.
 		        	filled = capacity - fluidTank.amount;
 		        	fluidTank.amount = capacity;
 		        }
-		
-		        if (fluidTank != null) {
+				if (fluidTank != null) {
 		        	//Some network thing.
 		            FluidEvent.fireEvent(new FluidEvent.FluidFillingEvent(fluidTank, this.worldObj, this.xCoord, this.yCoord, this.zCoord, this));
 		        }
-
 	            updateTank();
-	            
 		        return filled;
-		
-			}
-			else {
+			} else {
 				return 0;
 			}
-		}
-		else {
+		} else {
 			return 0;
 		}
 	}
@@ -205,26 +197,21 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-		//Clientside is for suckers.
-		if(!worldObj.isRemote) {
-			//Do we have blood to dispense?
-			if(fluidTank != null) {
-				//Attempt to dump tank into surrounding Forge fluid handlers.
-				if(fluidTank != null) {
-					ForgeDirection dir;
-					IFluidHandler adjFluidHandler;
-					for(int i = 0; i < 6; ++i) {
-						dir = ForgeDirection.VALID_DIRECTIONS[i];
-						adjFluidHandler = this.adjFluidHandlers[i];
-						if(adjFluidHandler != null) {
-							FluidStack toDrain = new FluidStack(fluidTank.getFluid(), fluidTank.amount);
-							drain(adjFluidHandler.fill(dir.getOpposite(), toDrain, true), true);
-				            updateTank();
-				            
-							if(fluidTank == null) {
-								break;
-							}
-						}
+		//Clientside is for suckers. Do we have blood to dispense?
+		if((!worldObj.isRemote) && (fluidTank != null)) {
+			//Attempt to dump tank into surrounding Forge fluid handlers.
+			ForgeDirection dir;
+			IFluidHandler adjFluidHandler;
+			for(int i = 0; i < 6; ++i) {
+				dir = ForgeDirection.VALID_DIRECTIONS[i];
+				adjFluidHandler = this.adjFluidHandlers[i];
+				if(adjFluidHandler != null) {
+					FluidStack toDrain = new FluidStack(fluidTank.getFluid(), fluidTank.amount);
+					drain(adjFluidHandler.fill(dir.getOpposite(), toDrain, true), true);
+					updateTank();
+
+					if(fluidTank == null) {
+						break;
 					}
 				}
 			}
@@ -236,20 +223,6 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
 		outputSpeed = config.get("Blood", "Blood Donation Station output rate per tick", 500).getInt();
 	}
 
-	@Override
-	public String getEnglishName() {
-		return "Blood Donation Station";
-	}
-
-	@Override
-	public String getGameRegistryName() {
-		return "bloodDonation";
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
 
 	public void updateTank() { 
 		if(!worldObj.isRemote) {
@@ -257,10 +230,8 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
 				BlockMetaTank bmt = (BlockMetaTank) worldObj.getBlock(xCoord, yCoord, zCoord);
 				if(fluidTank == null) {
 					bmt.setMetaByFillPercent(worldObj, xCoord, yCoord, zCoord, 0);
-				} 
-				else {
-					bmt.setMetaByFillPercent(worldObj, xCoord, yCoord, zCoord,
-							(fluidTank.amount*100)/capacity);
+				} else {
+					bmt.setMetaByFillPercent(worldObj, xCoord, yCoord, zCoord, (fluidTank.amount*100)/capacity);
 				}
 			}
 		}

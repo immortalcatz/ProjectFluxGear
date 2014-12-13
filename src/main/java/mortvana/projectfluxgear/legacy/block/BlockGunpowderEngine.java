@@ -28,23 +28,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 //A copy-and-paste from BlockNitrateEngine.
 //Soon I will abstract this functionality out
 //to a BlockContainerRotatable or something like that.
-public class BlockGunpowderEngine extends BlockContainerBase /*implements
-        IBlockMetaPower*/ {
+public class BlockGunpowderEngine extends BlockContainerBase {
 
-	public BlockGunpowderEngine(Configuration config, String name,
-			Material material) {
+	public BlockGunpowderEngine(Configuration config, String name, Material material) {
 		super(config, name, material);
-		// TODO Auto-generated constructor stub
-	}
-
-	public BlockGunpowderEngine(Configuration config, String name) {
-		super(config, name);
-		// TODO Auto-generated constructor stub
-	}
-
-	public BlockGunpowderEngine(Material material) {
-		super(material);
-		// TODO Auto-generated constructor stub
 	}
 
 	int teCapacity = 0;
@@ -90,20 +77,15 @@ public class BlockGunpowderEngine extends BlockContainerBase /*implements
 	}
 
 	@Override
-	public ForgeDirection[] getValidRotations(World worldObj, int x, int y,
-			int z) {
-		// Dumb hacks ahoy. Should really find a better (but still non-verbose)
-		// way to do this.
+	public ForgeDirection[] getValidRotations(World worldObj, int x, int y, int z) {
+		// Dumb hacks ahoy. Should really find a better (but still non-verbose) way to do this.
 		return RotationHelper.getValidVanillaBlockRotations(Blocks.furnace);
 	}
 
 	@Override
-	public boolean rotateBlock(World worldObj, int x, int y, int z,
-			ForgeDirection axis) {
-		// Dumb hacks ahoy. Should really find a better (but still non-verbose)
-		// way to do this.
-		return RotationHelper.rotateVanillaBlock(Blocks.furnace, worldObj,
-				x, y, z, axis);
+	public boolean rotateBlock(World worldObj, int x, int y, int z, ForgeDirection axis) {
+		// Dumb hacks ahoy. Should really find a better (but still non-verbose) way to do this.
+		return RotationHelper.rotateVanillaBlock(Blocks.furnace, worldObj, x, y, z, axis);
 	}
 
 	public boolean hasComparatorInputOverride() {
@@ -112,8 +94,7 @@ public class BlockGunpowderEngine extends BlockContainerBase /*implements
 
     @SideOnly(Side.CLIENT)
 	@Override
-	public IIcon getIcon(IBlockAccess world, int x, int y, int z,
-			int side) {
+	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
 		return this.getIcon(side, world.getBlockMetadata(x, y, z));
 	}
 
@@ -124,13 +105,11 @@ public class BlockGunpowderEngine extends BlockContainerBase /*implements
 		frontIcon = iconRegister.registerIcon("gui:genericmachine5");
 		sidesIcon = iconRegister.registerIcon("gui:genericmachine");
 		topIcon = iconRegister.registerIcon("gui:genericmachine3");
-		frontIconPowered = iconRegister
-				.registerIcon("gui:genericmachine5_active");
+		frontIconPowered = iconRegister.registerIcon("gui:genericmachine5_active");
 	}
 
 	@Override
-	public void onBlockPlacedBy(World world, int x, int y, int z,
-			EntityLivingBase placer, ItemStack thisItemStack) {
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase placer, ItemStack thisItemStack) {
 		int quadrant = (int) ((placer.rotationYaw * 4.0F / 360.0F) + 0.5F);
 
 		// Modulo out any 360 degree dealies.
@@ -140,42 +119,25 @@ public class BlockGunpowderEngine extends BlockContainerBase /*implements
 		 * public static final ForgeDirection[] VALID_DIRECTIONS = {DOWN, UP,
 		 * NORTH, SOUTH, WEST, EAST}; 0 1 2 3 4 5
 		 */
-		// Facing south
-		if (quadrant == 0) {
+
+		if (quadrant == 0) { // Facing south
 			world.setBlockMetadataWithNotify(x, y, z, 2, 2);
-		}
-
-		// Facing west
-		else if (quadrant == 1) {
+		} else if (quadrant == 1) { // Facing west
 			world.setBlockMetadataWithNotify(x, y, z, 5, 2);
-		}
-
-		// Facing north
-		else if (quadrant == 2) {
+		} else if (quadrant == 2) { // Facing north
 			world.setBlockMetadataWithNotify(x, y, z, 3, 2);
-		}
-
-		// Facing east
-		else if (quadrant == 3) {
+		} else if (quadrant == 3) { // Facing east
 			world.setBlockMetadataWithNotify(x, y, z, 4, 2);
 		}
 	}
-
-	/*@Override
-	public TileEntity createNewTileEntity(World world) {
-		TileEntityGunpowderEngine TE = new TileEntityGunpowderEngine();
-		return TE;
-	}*/
 
 	/**
 	 * If hasComparatorInputOverride returns true, the return value from this is
 	 * used instead of the redstone signal strength when this block inputs to a
 	 * comparator.
 	 */
-	public int getComparatorInputOverride(World world, int x, int y, int z,
-			int par5) {
-		return Container.calcRedstoneFromInventory((IInventory) world
-				.getTileEntity(x, y, z));
+	public int getComparatorInputOverride(World world, int x, int y, int z, int par5) {
+		return Container.calcRedstoneFromInventory((IInventory) world.getTileEntity(x, y, z));
 	}
 
 	//Toss away all item stacks on block break.
@@ -230,7 +192,6 @@ public class BlockGunpowderEngine extends BlockContainerBase /*implements
 		 * Bitmask bit 8 to off by &ing it with the bitwise complement of 8
 		 * (which is to say ~8).
 		 */
-		/*world.setBlockMetadataWithNotify(x, y, z,
-				world.getBlockMetadata(x, y, z) & ~8, 2);
+		/*world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) & ~8, 2);
 	}*/
 }

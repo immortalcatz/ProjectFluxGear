@@ -7,21 +7,10 @@ import net.minecraftforge.common.config.Configuration;
 import mortvana.fluxgearcore.legacy.block.tile.TileEntityFuelBurner;
 import mortvana.fluxgearcore.legacy.block.BlockContainerBase;
 
-public class BlockFuelBurner extends BlockContainerBase
-{
+public class BlockFuelBurner extends BlockContainerBase {
+
     public BlockFuelBurner(Configuration config, String name, Material material) {
 		super(config, name, material);
-		// TODO Auto-generated constructor stub
-	}
-
-	public BlockFuelBurner(Configuration config, String name) {
-		super(config, name);
-		// TODO Auto-generated constructor stub
-	}
-
-	public BlockFuelBurner(Material material) {
-		super(material);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

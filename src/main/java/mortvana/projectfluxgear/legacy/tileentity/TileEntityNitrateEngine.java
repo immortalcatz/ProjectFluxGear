@@ -24,45 +24,35 @@ import net.minecraftforge.fluids.IFluidTank;
 import mortvana.fluxgearcore.legacy.block.IBlockMetaPower;
 import mortvana.fluxgearcore.legacy.ContentRegistry;
 import mortvana.fluxgearcore.legacy.item.SolidFuelInfo;
-import mortvana.fluxgearcore.legacy.util.IRegistrable;
 import mortvana.fluxgearcore.legacy.item.ISolidFuelInfo;
 import cofh.api.energy.IEnergyHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-//import static java.lang.System.out;
-
-public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IEnergyHandler, ISidedInventory, IFluidHandler, IFluidTank, IRegistrable {
+public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IEnergyHandler, ISidedInventory, IFluidHandler, IFluidTank {
 	private static final int[] accessibleSlots = new int[] { 0, 1 };
 
-	/**
-	 * The ItemStacks that hold the items currently being used in the furnace
-	 */
+	// The ItemStacks that hold the items currently being used in the furnace
 	private ItemStack[] engineItemStacks = new ItemStack[2];
 
-	private final Random itemDropRand = new Random(); // Randomize item drop
-														// direction.
+	private final Random itemDropRand = new Random(); // Randomize item drop direction.
 
 	public static int rfPerTick;
 	public static int rfPerDirt;
-	public static int quantityPerBurn; // Amount of dirt to attempt to consume
-										// at once.
-	public static int ticksPerBurn; // Time between ticks where we burn dirt. To
-									// reduce lag.
+	public static int quantityPerBurn; // Amount of dirt to attempt to consume at once.
+	public static int ticksPerBurn; // Time between ticks where we burn dirt. To reduce lag.
 	// private static int energy;
 	private static int staticEnergyCap;
 	public static float explosionStrength = 4.0F;
 	protected static int wasteCapacity;
-	protected static int ticksPerExhaust; // How long until we try to spawn
-											// smog?
+	protected static int ticksPerExhaust; // How long until we try to spawn smog?
 	protected static int exhaustPerDirt;
 	protected static int exhaustPerGrass;
 	protected static int exhaustPerMycelium;
 
 	public static Fluid waste = null;
-	private static ArrayList<ISolidFuelInfo> staticFuelInfo = new ArrayList<ISolidFuelInfo>(
-			3);
+	private static ArrayList<ISolidFuelInfo> staticFuelInfo = new ArrayList<ISolidFuelInfo>(3);
 
 	// Fuel config.
 	static boolean enableDirt = true;
@@ -172,12 +162,11 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 
 	@Override
 	public String getInventoryName() {
-		return "NitrateEngine";
+		return "Nitrate Engine";
 	}
 
 	@Override
 	public boolean hasCustomInventoryName() {
-		// TODO
 		return false;
 	}
 
@@ -187,10 +176,8 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer) { // Sanity
-																	// checks!
-		if (entityplayer.getDistanceSq((double) this.xCoord + 0.5D,
-				(double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 16.0D) {
+	public boolean isUseableByPlayer(EntityPlayer entityplayer) { // Sanity checks!
+		if (entityplayer.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 16.0D) {
 			return true; // The player is sufficiently close.
 		} else {
 			return false; // The player is too far away.
@@ -205,10 +192,6 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 
 	public boolean isItemFuel(Item item) {
 		if (canBurn(new ItemStack(item)) != null) {
-			// Vanilla item ID / block ID #3 is dirt.
-			// Using this rather than the class for Chisel compat.
-			// (Chisel hijacks the same ID for a new class
-			// for dirt)
 			return true;
 		} else {
 			return false;
@@ -227,8 +210,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 
 	@Override
 	public boolean isItemValidForSlot(int slotID, ItemStack itemstack) {
-		// Only allow inserting into the input slot, and only allow
-		// fuel to be inserted.
+		// Only allow inserting into the input slot, and only allow fuel to be inserted.
 		if (isItemFuel(itemstack.getItem()) && (slotID == 0)) {
 			return true;
 		} else {
@@ -249,8 +231,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 	@Override
 	public boolean canExtractItem(int slotID, ItemStack itemstack, int direction) {
 		if (slotID == 1) {
-			// Only allow removing from the output slot.
-			// Causes hoppers and item pipes to act clever.
+			// Only allow removing from the output slot. Causes hoppers and item pipes to act clever.
 			return true;
 		} else {
 			return false;
@@ -274,13 +255,10 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 						.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
-		// Simple behavior for performance reasons: If there's fuel in the slot,
-		// assume the engine was running.
+		// Simple behavior for performance reasons: If there's fuel in the slot, assume the engine was running.
 		if (this.engineItemStacks[0] != null) {
 			this.wasRunningLastBurn = true;
-		}
-		// ...otherwise, assume it was not.
-		else {
+		} else { // ...otherwise, assume it was not.
 			this.wasRunningLastBurn = false;
 		}
 		// Read how far we are from doing another engine tick.
@@ -329,8 +307,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 
 	// FLUID CODE:
 	@Override
-	public FluidStack drain(ForgeDirection from, FluidStack resource,
-			boolean doDrain) {
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
 		if (resource.isFluidEqual(fluidTank)) {
 			return drain(from, resource.amount, doDrain);
 		} else {
@@ -401,10 +378,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 			if (fluidTank.amount <= 0) {
 				fluidTank = null;
 			}
-			FluidEvent
-					.fireEvent(new FluidEvent.FluidDrainingEvent(fluidTank,
-							this.worldObj, this.xCoord, this.yCoord,
-							this.zCoord, this));
+			FluidEvent.fireEvent(new FluidEvent.FluidDrainingEvent(fluidTank, this.worldObj, this.xCoord, this.yCoord, this.zCoord, this));
 		}
 		return stack;
 	}
@@ -456,8 +430,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 
 	// ENTITY UPDATE:
 	@Override
-	public void updateEntity() // The meat of our block.
-	{
+	public void updateEntity(){ // The meat of our block.
 		super.updateEntity();
 		boolean flagInvChanged = false;
 		if (!worldObj.isRemote) {
@@ -510,11 +483,8 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 					dir = ForgeDirection.VALID_DIRECTIONS[i];
 					adjFluidHandler = this.adjFluidHandlers[i];
 					if (adjFluidHandler != null) {
-						FluidStack toDrain = new FluidStack(
-								fluidTank.getFluid(), fluidTank.amount);
-						drain(adjFluidHandler.fill(dir.getOpposite(), toDrain,
-								true), true);
-
+						FluidStack toDrain = new FluidStack(fluidTank.getFluid(), fluidTank.amount);
+						drain(adjFluidHandler.fill(dir.getOpposite(), toDrain, true), true);
 						if (fluidTank == null) {
 							break;
 						}
@@ -522,7 +492,6 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 				}
 			}
 		}
-
 		if (flagInvChanged) {
 			this.markDirty();
 		}
@@ -532,8 +501,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 		if (wasRunningLastBurn == true) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
 			if (block instanceof IBlockMetaPower) {
-				((IBlockMetaPower) block).recievePowerOff(worldObj, xCoord,
-						yCoord, zCoord);
+				((IBlockMetaPower) block).recievePowerOff(worldObj, xCoord, yCoord, zCoord);
 			}
 		}
 		wasRunningLastBurn = false;
@@ -543,8 +511,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 		if (wasRunningLastBurn == false) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
 			if (block instanceof IBlockMetaPower) {
-				((IBlockMetaPower) block).recievePowerOn(worldObj, xCoord,
-						yCoord, zCoord);
+				((IBlockMetaPower) block).recievePowerOn(worldObj, xCoord, yCoord, zCoord);
 			}
 		}
 		wasRunningLastBurn = true;
@@ -573,10 +540,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 			float xr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
 			float yr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
 			float zr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
-			EntityItem entityItem = new EntityItem(this.worldObj,
-					(double) ((float) xCoord + xr),
-					(double) ((float) yCoord + yr),
-					(double) ((float) zCoord + zr), engineItemStacks[1].copy());
+			EntityItem entityItem = new EntityItem(this.worldObj, (double) ((float) xCoord + xr), (double) ((float) yCoord + yr), (double) ((float) zCoord + zr), engineItemStacks[1].copy());
 			worldObj.spawnEntityInWorld(entityItem);
 			engineItemStacks[1] = null;
 		}
@@ -644,89 +608,46 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 	}
 
 	public void doConfig(Configuration config, ContentRegistry cr) {
-		staticEnergyCap = config.get(getEnglishName(),
-				"Capacity of internal buffer", 2000).getInt();
+		staticEnergyCap = config.get("Nitrate Engine", "Capacity of internal buffer", 2000).getInt();
 		quantityPerBurn = 32; // Amount of dirt to attempt to consume at once.
-		ticksPerBurn = 20; // Time between ticks where we burn dirt. To reduce
-							// lag.
-		rfPerTick = config.get(getEnglishName(), "RF transfer rate", 20)
-				.getInt();
-		enableNaturaCompat = config.get(getEnglishName(),
-				"Enable Natura fuels", true).getBoolean(true);
-
-		enableDirt = config.get(getEnglishName(), "Enable dirt as fuel", true)
-				.getBoolean(true);
-		enableGrassyDirt = config.get(getEnglishName(),
-				"Enable grassy dirt as fuel", true).getBoolean(true);
-		enableMycelium = config.get(getEnglishName(),
-				"Enable mycelium as fuel", true).getBoolean(true);
+		ticksPerBurn = 20; // Time between ticks where we burn dirt. To reduce lag.
+		rfPerTick = config.get("Nitrate Engine", "RF transfer rate", 20).getInt();
+		enableNaturaCompat = config.get("Nitrate Engine", "Enable Natura fuels", true).getBoolean(true);
+		enableDirt = config.get("Nitrate Engine", "Enable dirt as fuel", true).getBoolean(true);
+		enableGrassyDirt = config.get("Nitrate Engine", "Enable grassy dirt as fuel", true).getBoolean(true);
+		enableMycelium = config.get("Nitrate Engine", "Enable mycelium as fuel", true).getBoolean(true);
 
 		if (enableDirt) {
 			dirtFuel = new SolidFuelInfo();
-			dirtFuel.energyPer = config.get(getEnglishName(),
-					"RF generated per dirt", 2).getInt();
-			exhaustPerDirt = config.get(getEnglishName(),
-					"Smog produced per dirt burned in milibuckets", 16)
-					.getInt();
+			dirtFuel.energyPer = config.get("Nitrate Engine", "RF generated per dirt", 2).getInt();
+			exhaustPerDirt = config.get("Nitrate Engine", "Smog produced per dirt burned in milibuckets", 16).getInt();
 		}
 		if (enableGrassyDirt) {
 			grassyDirtFuel = new SolidFuelInfo();
-			grassyDirtFuel.energyPer = config.get(getEnglishName(),
-					"RF generated per grassy dirt", 3).getInt();
-			exhaustPerGrass = config.get(getEnglishName(),
-					"Smog produced per grassy dirt burned in milibuckets", 16)
-					.getInt();
+			grassyDirtFuel.energyPer = config.get("Nitrate Engine", "RF generated per grassy dirt", 3).getInt();
+			exhaustPerGrass = config.get("Nitrate Engine", "Smog produced per grassy dirt burned in milibuckets", 16).getInt();
 		}
 		if (enableMycelium) {
 			myceliumFuel = new SolidFuelInfo();
-			myceliumFuel.energyPer = config.get(getEnglishName(),
-					"RF generated per mycelium", 5).getInt();
-			exhaustPerMycelium = config.get(getEnglishName(),
-					"Smog produced per mycelium burned in milibuckets", 16)
-					.getInt();
+			myceliumFuel.energyPer = config.get("Nitrate Engine", "RF generated per mycelium", 5).getInt();
+			exhaustPerMycelium = config.get("Nitrate Engine", "Smog produced per mycelium burned in milibuckets", 16).getInt();
 		}
 		if (enableNaturaCompat) {
-			enableTaintedSoil = config.get(getEnglishName(),
-					"Enable tainted soil as fuel", true).getBoolean(true);
-			enableHeatSand = config.get(getEnglishName(),
-					"Enable heat sand as fuel", true).getBoolean(true);
+			enableTaintedSoil = config.get("Nitrate Engine", "Enable tainted soil as fuel", true).getBoolean(true);
+			enableHeatSand = config.get("Nitrate Engine", "Enable heat sand as fuel", true).getBoolean(true);
 			if (enableTaintedSoil) {
 				taintedSoilFuel = new SolidFuelInfo();
-				taintedSoilFuel.energyPer = config.get(getEnglishName(),
-						"RF generated per Tainted Soil", 4).getInt();
-				exhaustPerTaintedSoil = config.get(getEnglishName(),
-						"Smog produced per Tainted Soil burned in milibuckets",
-						32).getInt();
+				taintedSoilFuel.energyPer = config.get("Nitrate Engine", "RF generated per Tainted Soil", 4).getInt();
+				exhaustPerTaintedSoil = config.get("Nitrate Engine", "Smog produced per Tainted Soil burned in milibuckets", 32).getInt();
 			}
 			if (enableHeatSand) {
 				heatSandFuel = new SolidFuelInfo();
-				heatSandFuel.energyPer = config.get(getEnglishName(),
-						"RF generated per heat sand", 16).getInt();
-				exhaustPerHeatSand = config
-						.get(getEnglishName(),
-								"waste produced per heat sand burned in milibuckets",
-								2).getInt();
+				heatSandFuel.energyPer = config.get("Nitrate Engine", "RF generated per heat sand", 16).getInt();
+				exhaustPerHeatSand = config.get("Nitrate Engine", "waste produced per heat sand burned in milibuckets", 2).getInt();
 			}
 		}
 		ticksUntilBurn = ticksPerBurn;
-		wasteCapacity = config.get(getEnglishName(),
-				"Internal smog tank capacity",
-				(exhaustPerDirt * quantityPerBurn) * 2).getInt();
-	}
-
-	@Override
-	public String getEnglishName() {
-		return "NitrateEngine";
-	}
-
-	@Override
-	public String getGameRegistryName() {
-		return "engineNitrate";
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
+		wasteCapacity = config.get("Nitrate Engine", "Internal smog tank capacity", (exhaustPerDirt * quantityPerBurn) * 2).getInt();
 	}
 
 	public void DeferredInit(ContentRegistry cr) {

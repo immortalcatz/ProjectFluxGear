@@ -4,10 +4,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.fluids.Fluid;
 import mortvana.fluxgearcore.util.chemistry.reaction.IBioactive;
-import mortvana.fluxgearcore.legacy.util.IRegistrable;
 
 //TODO: Make CoFH Style
-public class BlockFluidAcid extends Fluid implements IBioactive, IRegistrable {
+public class BlockFluidAcid extends Fluid implements IBioactive {
 
 	public int damage = 4;
 	public BlockFluidAcid(String fluidName) {
@@ -62,18 +61,4 @@ public class BlockFluidAcid extends Fluid implements IBioactive, IRegistrable {
 		return true;
 	}
 
-	@Override
-	public String getEnglishName() {
-		return this.getLocalizedName();
-	}
-
-	@Override
-	public String getGameRegistryName() {
-		return this.getUnlocalizedName();
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
 }

@@ -8,6 +8,7 @@ import cofh.core.util.fluid.DispenserFilledBucketHandler;
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 
+import mortvana.projectfluxgear.block.basic.itemblock.*;
 import mortvana.projectfluxgear.common.config.FluxGearConfig;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.init.Items;
@@ -43,7 +44,7 @@ public class FluxGearContent implements IFuelHandler{
     }
 
     public void init() {
-        //initBlocks();
+        initBlocks();
         //initMachines();
 	    initItems();
         //initTools();
@@ -62,11 +63,14 @@ public class FluxGearContent implements IFuelHandler{
 
     public void loadBlocks() {
         blockOreMain = new BlockOreMain();
-
+        blockOreAux = new BlockOreAux();
         blockStorageMain = new BlockStorageMain();
-
+        blockStorageAux = new BlockStorageAux();
         blockAlloyMain = new BlockAlloyMain();
         blockAlloyAux = new BlockAlloyAux();
+        blockStorageAlch = new BlockStorageAlch();
+        blockStorageAdv = new BlockStorageAdv();
+        blockEarthen = new BlockEarthen();
         //blockTemporalPylon = new BlockTemporalPylon();
         //woodenTileEntity = new BlockWoodenTileEntity();
 
@@ -74,15 +78,202 @@ public class FluxGearContent implements IFuelHandler{
 
         //blockFluidGhastTear = new BlockFluidGhastTear();
 
-        blockOreMain.preInit();
-        blockOreAux.preInit();
-        blockStorageMain.preInit();
-
-	    blockAlloyMain.preInit();
-        blockAlloyAux.preInit();
         //blockTemporalPylon.preInit();
         //woodenTileEntity.preInit();
 
+        GameRegistry.registerBlock(blockOreMain, ItemBlockOreMain.class, "OreMain");
+        oreChalcocite = new ItemStack(blockOreMain, 1, 0);
+        oreCassiterite = new ItemStack(blockOreMain, 1, 1);
+        oreGalena = new ItemStack(blockOreMain, 1, 2);
+        oreAcanthite = new ItemStack(blockOreMain, 1, 3);
+        oreGarnierite = new ItemStack(blockOreMain, 1, 4);
+        oreSphalerite = new ItemStack(blockOreMain, 1, 5);
+        oreBismuthinite = new ItemStack(blockOreMain, 1, 6);
+        orePyrolusite = new ItemStack(blockOreMain, 1, 7);
+        oreBauxite = new ItemStack(blockOreMain, 1, 8);
+        oreCooperite = new ItemStack(blockOreMain, 1, 9);
+        oreBraggite = new ItemStack(blockOreMain, 1, 10);
+        oreMolybdenite = new ItemStack(blockOreMain, 1, 11);
+        oreCobaltite = new ItemStack(blockOreMain, 1, 12);
+        oreWolframite = new ItemStack(blockOreMain, 1, 13);
+        oreIlmenite = new ItemStack(blockOreMain, 1, 14);
+        oreChromite = new ItemStack(blockOreMain, 1, 15);
+
+        GameRegistry.registerBlock(blockOreAux, ItemBlockOreAux.class, "OreAux");
+        oreCinnabar = new ItemStack(blockOreAux, 1, 0);
+        orePitchblende = new ItemStack(blockOreAux, 1, 1);
+        oreMonazite = new ItemStack(blockOreAux, 1, 2);
+        oreNiedermayrite = new ItemStack(blockOreAux, 1, 3);
+        oreGreenockite = new ItemStack(blockOreAux, 1, 4);
+        oreGaotaiite = new ItemStack(blockOreAux, 1, 5);
+        oreOsarsite = new ItemStack(blockOreAux, 1, 6);
+        oreZnamenskyite = new ItemStack(blockOreAux, 1, 7);
+        oreGallobeudanite = new ItemStack(blockOreAux, 1, 8);
+        oreTertahedrite = new ItemStack(blockOreAux, 1, 9);
+        oreTennantite = new ItemStack(blockOreAux, 1, 10);
+        oreSantafeite = new ItemStack(blockOreAux, 1, 11);
+        oreMagnetite = new ItemStack(blockOreAux, 1, 12);
+        oreDioptase = new ItemStack(blockOreAux, 1, 13);
+        orePyrope = new ItemStack(blockOreAux, 1, 14);
+        oreMyuvil = new ItemStack(blockOreAux, 1, 15);
+
+        GameRegistry.registerBlock(blockStorageMain, ItemBlockStorageMain.class, "StorageMain");
+        blockCopper = new ItemStack(blockStorageMain, 1, 0);
+        blockTin = new ItemStack(blockStorageMain, 1, 1);
+        blockLead = new ItemStack(blockStorageMain, 1, 2);
+        blockSilver = new ItemStack(blockStorageMain, 1, 3);
+        blockNickel = new ItemStack(blockStorageMain, 1, 4);
+        blockZinc = new ItemStack(blockStorageMain, 1, 5);
+        blockBismuth = new ItemStack(blockStorageMain, 1, 6);
+        blockManganese = new ItemStack(blockStorageMain, 1, 7);
+        blockAluminium = new ItemStack(blockStorageMain, 1, 8);
+        blockPlatinum = new ItemStack(blockStorageMain, 1, 9);
+        blockPalladium = new ItemStack(blockStorageMain, 1, 10);
+        blockMolybdenum = new ItemStack(blockStorageMain, 1, 11);
+        blockCobalt = new ItemStack(blockStorageMain, 1, 12);
+        blockTungsten = new ItemStack(blockStorageMain, 1, 13);
+        blockTitanium = new ItemStack(blockStorageMain, 1, 14);
+        blockChromium = new ItemStack(blockStorageMain, 1, 15);
+
+        GameRegistry.registerBlock(blockStorageAux, ItemBlockStorageAux.class, "StorageAux");
+        blockAntimony = new ItemStack(blockStorageAux, 1, 0);
+        blockArsenic = new ItemStack(blockStorageAux, 1, 1);
+        blockNeodymium = new ItemStack(blockStorageAux, 1, 2);
+        blockTesseractium = new ItemStack(blockStorageAux, 1, 3);
+        blockCadmium = new ItemStack(blockStorageAux, 1, 4);
+        blockTellurium = new ItemStack(blockStorageAux, 1, 5);
+        blockOsmium = new ItemStack(blockStorageAux, 1, 6);
+        blockIridium = new ItemStack(blockStorageAux, 1, 7);
+        blockIndium = new ItemStack(blockStorageAux, 1, 8);
+        blockArsenicalBronze = new ItemStack(blockStorageAux, 1, 9);
+        blockAntimonialBronze = new ItemStack(blockStorageAux, 1, 10);
+        blockVanadium = new ItemStack(blockStorageAux, 1, 11);
+        blockUnobtainium = new ItemStack(blockStorageAux, 1, 12);
+        blockDioptase = new ItemStack(blockStorageAux, 1, 13);
+        blockPyrope = new ItemStack(blockStorageAux, 1, 14);
+        blockMyuvil = new ItemStack(blockStorageAux, 1, 15);
+
+        GameRegistry.registerBlock(blockAlloyMain, ItemBlockAlloyMain.class, "AlloyMain");
+        blockBronze = new ItemStack(blockAlloyMain, 1, 0);
+        blockBrass = new ItemStack(blockAlloyMain, 1, 1);
+        blockInvar = new ItemStack(blockAlloyMain, 1, 2);
+        blockBismuthBronze = new ItemStack(blockAlloyMain, 1, 3);
+        blockCupronickel = new ItemStack(blockAlloyMain, 1, 4);
+        blockAluminiumBrass = new ItemStack(blockAlloyMain, 1, 5);
+        blockElectrum = new ItemStack(blockAlloyMain, 1, 6);
+        blockDullRedsolder = new ItemStack(blockAlloyMain, 1, 7);
+        blockRedsolder = new ItemStack(blockAlloyMain, 1, 8);
+        blockHCSteel = new ItemStack(blockAlloyMain, 1, 9);
+        blockSteel = new ItemStack(blockAlloyMain, 1, 10);
+        blockHSLA = new ItemStack(blockAlloyMain, 1, 11);
+        blockStainlessSteel = new ItemStack(blockAlloyMain, 1, 12);
+        blockTungstenSteel = new ItemStack(blockAlloyMain, 1, 13);
+        blockElectriplatinum = new ItemStack(blockAlloyMain, 1, 14);
+        blockMithril = new ItemStack(blockAlloyMain, 1, 15);
+
+        GameRegistry.registerBlock(blockAlloyAux, ItemBlockAlloyAux.class, "AlloyAux");
+        blockTechnomancy = new ItemStack(blockAlloyAux, 1, 0);
+        blockResonantTechnomancy = new ItemStack(blockAlloyAux, 1, 1);
+        blockTungstenBlazing = new ItemStack(blockAlloyAux, 1, 2);
+        blockPlatinumGelid = new ItemStack(blockAlloyAux, 1, 3);
+        blockSilverLuminous = new ItemStack(blockAlloyAux, 1, 4);
+        blockElectrumFlux = new ItemStack(blockAlloyAux, 1, 5);
+        blockMolybdenumResonant = new ItemStack(blockAlloyAux, 1, 6);
+        blockChromiumCarbide = new ItemStack(blockAlloyAux, 1, 7);
+        blockBismuthBronzeColdfire = new ItemStack(blockAlloyAux, 1, 8);
+        blockPyrum = new ItemStack(blockAlloyAux, 1, 9);
+        blockGelinium = new ItemStack(blockAlloyAux, 1, 10);
+        blockLumium = new ItemStack(blockAlloyAux, 1, 11);
+        blockSignalum = new ItemStack(blockAlloyAux, 1, 12);
+        blockEnderium = new ItemStack(blockAlloyAux, 1, 13);
+        blockCarbonite = new ItemStack(blockAlloyAux, 1, 14);
+        blockTherminate = new ItemStack(blockAlloyAux, 1, 15);
+
+        GameRegistry.registerBlock(blockStorageAlch, ItemBlockStorageAlch.class, "StorageAlch");
+        blockNullmetal = new ItemStack(blockStorageAlch, 1, 0);
+        blockIocarbide = new ItemStack(blockStorageAlch, 1, 1);
+        blockCryocarbide = new ItemStack(blockStorageAlch, 1, 2);
+        blockPyrocarbide = new ItemStack(blockStorageAlch, 1, 3);
+        blockTenebride = new ItemStack(blockStorageAlch, 1, 4);
+        blockIlluminide = new ItemStack(blockStorageAlch, 1, 5);
+        blockZythoferride = new ItemStack(blockStorageAlch, 1, 6);
+        blockCrystalFlux = new ItemStack(blockStorageAlch, 1, 7);
+        blockLapiquartz = new ItemStack(blockStorageAlch, 1, 8);
+        blockRust = new ItemStack(blockStorageAlch, 1, 9);
+        blockWhitePointStar = new ItemStack(blockStorageAlch, 1, 10);
+        blockVoidInfernoStar = new ItemStack(blockStorageAlch, 1, 11);
+        blockSulfur = new ItemStack(blockStorageAlch, 1, 12);
+        blockSaltpeter = new ItemStack(blockStorageAlch, 1, 13);
+        blockMithrilFlux = new ItemStack(blockStorageAlch, 1, 14);
+        blockMithrilTinker = new ItemStack(blockStorageAlch, 1, 15);
+
+        GameRegistry.registerBlock(blockStorageAdv, ItemBlockStorageAdv.class, "StorageAdv");
+        blockThorium = new ItemStack(blockStorageAdv, 1, 0);
+        blockUranium235 = new ItemStack(blockStorageAdv, 1, 1);
+        blockUranium238 = new ItemStack(blockStorageAdv, 1, 2);
+        blockMagnetite = new ItemStack(blockStorageAdv, 1, 3);
+        blockNdMagnet = new ItemStack(blockStorageAdv, 1, 4);
+        blockFeMagnet = new ItemStack(blockStorageAdv, 1, 5);
+        blockMnMagnet = new ItemStack(blockStorageAdv, 1, 6);
+        blockCoMagnet = new ItemStack(blockStorageAdv, 1, 7);
+        blockNiMagnet = new ItemStack(blockStorageAdv, 1, 8);
+        blockInvarMagnet = new ItemStack(blockStorageAdv, 1, 9);
+        blockHCSteelMagnet = new ItemStack(blockStorageAdv, 1, 10);
+        blockSteelMagnet = new ItemStack(blockStorageAdv, 1, 11);
+        blockHSLAMagnet = new ItemStack(blockStorageAdv, 1, 12);
+        blockAmber = new ItemStack(blockStorageAdv, 1, 13);
+        blockPotato = new ItemStack(blockStorageAdv, 1, 14);
+        blockPolycarbide = new ItemStack(blockStorageAdv, 1, 15);
+
+        GameRegistry.registerBlock(blockEarthen, ItemBlockEarthen.class, "Earthen");
+        blockIridiumSands = new ItemStack(blockEarthen, 1, 0);
+        blockPoorIridiumSands = new ItemStack(blockEarthen, 1, 1);
+        blockAluminosilicateSludge = new ItemStack(blockEarthen, 1, 2);
+
+
+
+
+
+
+
+
+        blockOreMain.setHarvestLevel("pickaxe", 1, 0);
+        blockOreMain.setHarvestLevel("pickaxe", 1, 1);
+        blockOreMain.setHarvestLevel("pickaxe", 2, 2);
+        blockOreMain.setHarvestLevel("pickaxe", 2, 3);
+        blockOreMain.setHarvestLevel("pickaxe", 2, 4);
+        blockOreMain.setHarvestLevel("pickaxe", 1, 5);
+        blockOreMain.setHarvestLevel("pickaxe", 1, 6);
+        blockOreMain.setHarvestLevel("pickaxe", 1, 7);
+        blockOreMain.setHarvestLevel("pickaxe", 1, 8);
+        blockOreMain.setHarvestLevel("pickaxe", 2, 9);
+        blockOreMain.setHarvestLevel("pickaxe", 2, 10);
+        blockOreMain.setHarvestLevel("pickaxe", 2, 11);
+        blockOreMain.setHarvestLevel("pickaxe", 2, 12);
+        blockOreMain.setHarvestLevel("pickaxe", 3, 13);
+        blockOreMain.setHarvestLevel("pickaxe", 2, 14);
+        blockOreMain.setHarvestLevel("pickaxe", 2, 15);
+
+        blockOreAux.setHarvestLevel("pickaxe", 2, 0);
+        blockOreAux.setHarvestLevel("pickaxe", 2, 1);
+        blockOreAux.setHarvestLevel("pickaxe", 2, 2);
+        blockOreAux.setHarvestLevel("pickaxe", 2, 3);
+        blockOreAux.setHarvestLevel("pickaxe", 2, 4);
+        blockOreAux.setHarvestLevel("pickaxe", 3, 5);
+        blockOreAux.setHarvestLevel("pickaxe", 2, 6);
+        blockOreAux.setHarvestLevel("pickaxe", 2, 7);
+        blockOreAux.setHarvestLevel("pickaxe", 2, 8);
+        blockOreAux.setHarvestLevel("pickaxe", 1, 9);
+        blockOreAux.setHarvestLevel("pickaxe", 1, 10);
+        blockOreAux.setHarvestLevel("pickaxe", 2, 11);
+        blockOreAux.setHarvestLevel("pickaxe", 2, 12);
+        blockOreAux.setHarvestLevel("pickaxe", 3, 13);
+        blockOreAux.setHarvestLevel("pickaxe", 3, 14);
+        blockOreAux.setHarvestLevel("pickaxe", 3, 15);
+
+    }
+
+    public void initBlocks() {
         // OreDict Ores
         ItemHelper.registerWithHandlers("oreChalcocite", oreChalcocite);
         ItemHelper.registerWithHandlers("oreCassiterite", oreCassiterite);
@@ -168,6 +359,7 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.registerWithHandlers("blockAntimony", blockAntimony); //Mercury is a fluid
         ItemHelper.registerWithHandlers("blockArsenic", blockArsenic); //Uranium has custom properties
         ItemHelper.registerWithHandlers("blockNeodymium", blockNeodymium);
+        ItemHelper.registerWithHandlers("blockTesseractium", blockTesseractium); //Cadmium is next, so :P
         ItemHelper.registerWithHandlers("blockCadmium", blockCadmium);
         ItemHelper.registerWithHandlers("blockTellurium", blockTellurium);
         ItemHelper.registerWithHandlers("blockOsmium", blockOsmium);
@@ -176,7 +368,7 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.registerWithHandlers("blockAntimonialBronze", blockAntimonialBronze);
         ItemHelper.registerWithHandlers("blockArsenicalBronze", blockArsenicalBronze);
         ItemHelper.registerWithHandlers("blockVanadium", blockVanadium);
-        ItemHelper.registerWithHandlers("blockMagnetite", blockMagnetite);
+        ItemHelper.registerWithHandlers("blockUnobtainium", blockUnobtainium);
         ItemHelper.registerWithHandlers("blockDioptase", blockDioptase);
         ItemHelper.registerWithHandlers("blockPyrope", blockPyrope);
         ItemHelper.registerWithHandlers("blockMyuvil", blockMyuvil);
@@ -206,7 +398,7 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.registerWithHandlers("blockElectrumFlux", blockElectrumFlux);
         ItemHelper.registerWithHandlers("blockMolybdenumResonant", blockMolybdenumResonant);
         ItemHelper.registerWithHandlers("blockChromiumCarbide", blockChromiumCarbide);
-        ItemHelper.registerWithHandlers("blockColdfireBismuthBronze", blockColdfireBismuthBronze);
+        ItemHelper.registerWithHandlers("blockBismuthBronzeColdfire", blockBismuthBronzeColdfire);
         ItemHelper.registerWithHandlers("blockPyrum", blockPyrum);
         ItemHelper.registerWithHandlers("blockGelinium", blockGelinium);
         ItemHelper.registerWithHandlers("blockLumium", blockLumium);
@@ -235,6 +427,7 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.registerWithHandlers("blockThorium", blockThorium);
         ItemHelper.registerWithHandlers("blockUranium235", blockUranium235);
         ItemHelper.registerWithHandlers("blockUranium238", blockUranium238);
+        ItemHelper.registerWithHandlers("blockMagnetite", blockMagnetite);
         ItemHelper.registerWithHandlers("blockNeodymiumMagnetMetal", blockNdMagnet);
         ItemHelper.registerWithHandlers("blockIronMagnet", blockFeMagnet);
         ItemHelper.registerWithHandlers("blockManganeseMagnet", blockMnMagnet);
@@ -246,13 +439,13 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.registerWithHandlers("blockHSLAMagnet", blockHSLAMagnet);
         ItemHelper.registerWithHandlers("blockAmber", blockAmber);
         ItemHelper.registerWithHandlers("blockPotato", blockPotato);
-        //Three more possible
-        //
+        ItemHelper.registerWithHandlers("blockPolycarbide", blockPolycarbide);
     }
 
     //public void loadMachines() {}
 
     public void loadFluids() {
+        //TODO-- Redo
         fluidGhastTear = new Fluid("ghastTear").setLuminosity(3).setDensity(1850).setViscosity(2675).setTemperature(375).setRarity(EnumRarity.rare);
         fluidLye = new Fluid("lye").setLuminosity(0).setDensity(1750).setViscosity(3500).setTemperature(300).setRarity(EnumRarity.common);
         fluidAcid = new Fluid("acid").setLuminosity(0).setDensity(1750).setViscosity(3500).setTemperature(300).setRarity(EnumRarity.common);
@@ -275,7 +468,7 @@ public class FluxGearContent implements IFuelHandler{
         //itemFood =
         itemInteractive = (ItemBase) new ItemBase("projectfluxgear").setUnlocalizedName("interactive").setCreativeTab(ProjectFluxGear.tab);
 
-        //Buckets
+        //Buckets TODO-- Redo
         bucketGhastTears = itemBucket.addItem(0, "bucketGhastTears", 1);
         bucketLye = itemBucket.addItem(1, "bucketLye", 0);
         bucketAcid = itemBucket.addItem(2, "bucketAcid", 0);
@@ -297,7 +490,7 @@ public class FluxGearContent implements IFuelHandler{
     public void loadParts() {
         itemMaterial = (ItemBase) new ItemBase("projectfluxgear").setUnlocalizedName("material").setCreativeTab(ProjectFluxGear.tab);
 
-        // Standard Ingots
+        /*// Standard Ingots
         ingotZinc = itemMaterial.addOreDictItem(0, "ingotZinc");
         ingotBismuth = itemMaterial.addOreDictItem(1, "ingotBismuth");
         ingotManganese = itemMaterial.addOreDictItem(2, "ingotManganese");
@@ -329,7 +522,7 @@ public class FluxGearContent implements IFuelHandler{
         /*dustArsenic = itemMaterial.addOreDictItem(29, "dustArsenic");
         dustAntimony = itemMaterial.addOreDictItem(30, "dustAntimony");*/
 
-        // Standard Nuggets
+        /*// Standard Nuggets
         nuggetZinc = itemMaterial.addOreDictItem(32, "nuggetZinc");
         nuggetBismuth = itemMaterial.addOreDictItem(33, "nuggetBismuth");
         nuggetManganese = itemMaterial.addOreDictItem(34, "nuggetManganese");
@@ -365,7 +558,7 @@ public class FluxGearContent implements IFuelHandler{
         /*partCircuitPlate = itemMaterial.addOreDictItem(65, "partCircuitPlate");
         partUnprocessedPCB = itemMaterial.addOreDictItem(66, "partUnprocessedPCB");
         partUnassembledPCB = itemMaterial.addOreDictItem(67, "partUnassembledPCB");*/
-        partAssembledPCB = itemMaterial.addOreDictItem(68, "partAssembledPCB");
+        /*partAssembledPCB = itemMaterial.addOreDictItem(68, "partAssembledPCB");
         partTransistor = itemMaterial.addOreDictItem(69, "partTransistor");
         partResistor = itemMaterial.addOreDictItem(70, "partResistor");
         //partSpring = itemMaterial.addOreDictItem(71, "partSpring");
@@ -374,7 +567,7 @@ public class FluxGearContent implements IFuelHandler{
         partResonantThruster = itemMaterial.addOreDictItem(74, "partResonantIonThruster");
         partMagnet = itemMaterial.addOreDictItem(75, "partMagnet");
         partAlCoNiMagnet = itemMaterial.addOreDictItem(76, "partAlCoNiMagnet");*/
-        partServoMotor = itemMaterial.addOreDictItem(77, "partServoMotor");
+        /*partServoMotor = itemMaterial.addOreDictItem(77, "partServoMotor");
         partSolenoid = itemMaterial.addOreDictItem(78, "partSolenoid");
         //partGearCore = itemMaterial.addOreDictItem(79, "partGearCore");
 
@@ -399,7 +592,7 @@ public class FluxGearContent implements IFuelHandler{
 
         // Simple Alloys
         //Brass, BisBronze, Cupro, AluBrass, DullRedsolder, Redsolder
-        ingotBrass = itemMaterial.addOreDictItem(128, "ingotBrass");
+        /*ingotBrass = itemMaterial.addOreDictItem(128, "ingotBrass");
         ingotBismuthBronze = itemMaterial.addOreDictItem(129, "ingotBismuthBronze");
         ingotCupronickel = itemMaterial.addOreDictItem(130, "ingotCupronickel");
         ingotAluminiumBrass = itemMaterial.addOreDictItem(131, "ingotAluminiumBrass");
@@ -414,7 +607,7 @@ public class FluxGearContent implements IFuelHandler{
         nuggetBrass = itemMaterial.addOreDictItem(144, "nuggetBrass");
         nuggetBismuthBronze =  itemMaterial.addOreDictItem(145, "nuggetBismuthBronze");
         nuggetCupronickel = itemMaterial.addOreDictItem(146, "nuggetCupronickel");
-        nuggetAluminiumBrass = itemMaterial.addOreDictItem(147, "nuggetAluminiumBrass");
+        nuggetAluminiumBrass = itemMaterial.addOreDictItem(147, "nuggetAluminiumBrass");*/
 
     }
 
@@ -444,6 +637,9 @@ public class FluxGearContent implements IFuelHandler{
             OreDictionary.registerOre("blockCobalt", blockCobalt);
         }
 
+        OreDictionary.registerOre("blockDalekanium", blockPolycarbide);
+
+
         ItemHelper.addStorageRecipe(ingotAluminium, "nuggetAluminum");
         ItemHelper.addReverseStorageRecipe(ingotAluminium, "blockAluminum");
         ItemHelper.addReverseStorageRecipe(nuggetAluminium, "ingotAluminum");
@@ -456,6 +652,7 @@ public class FluxGearContent implements IFuelHandler{
 	}
 
     public void metalCraftingRecipes() {
+        //TODO-- UPDATE
         ItemHelper.addStorageRecipe(ingotZinc, "nuggetZinc");
         ItemHelper.addStorageRecipe(ingotBismuth, "nuggetBismuth");
         ItemHelper.addStorageRecipe(ingotManganese, "nuggetManganese");
@@ -548,7 +745,7 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.addStorageRecipe(blockSaltpeter, "dustSaltpeter");
         ItemHelper.addStorageRecipe(blockSaltpeter, "dustSaltpetre");
         ItemHelper.addStorageRecipe(blockRust, "dustRust");
-        ItemHelper.addStorageRecipe(blockColdfireBismuthBronze, "ingotColdfireBismuthBronze");
+        ItemHelper.addStorageRecipe(blockBismuthBronzeColdfire, "ingotBismuthBronzeColdfire");
     }
 
     public void machineCraftingRecipes() {
@@ -577,6 +774,7 @@ public class FluxGearContent implements IFuelHandler{
     }
 
     public void furnaceRecipes() {
+        //TODO-- UPDATE
         // Ore to Ingot
         GameRegistry.addSmelting(oreSphalerite, ingotZinc, 0.7F);
         GameRegistry.addSmelting(oreBismuthinite, ingotBismuth, 0.9F);
@@ -614,7 +812,7 @@ public class FluxGearContent implements IFuelHandler{
         //GameRegistry.addSmelting(aluminumSludge, new ItemStack(itemAlum), 0.0F);
 
         // Temporary way to get Rust
-        //GameRegistry.addSmelting(blockRust, new ItemStack(Blocks.iron_block, 1, 0), 0.0F);
+        //GameRegistry.addSmelting(blockRust, new ItemStack(Blocks.iron_block, 1, 0), 0.0F);*/
     }
 
     //public void modIntegration() {}
@@ -636,10 +834,14 @@ public class FluxGearContent implements IFuelHandler{
     public static BlockOreMain blockOreMain;
     public static BlockOreAux blockOreAux;
     public static BlockStorageMain blockStorageMain;
-
+    public static BlockStorageAux blockStorageAux;
     public static BlockAlloyMain blockAlloyMain;
     public static BlockAlloyAux blockAlloyAux;
-
+    public static BlockStorageAlch blockStorageAlch;
+    public static BlockStorageAdv blockStorageAdv;
+    public static BlockEarthen blockEarthen;
+    public static BlockPoorOreMain blockPoorOreMain;
+    public static BlockPoorOreAux blockPoorOreAux;
 
     //public static BlockTileEntity blockTileEntity;
 
@@ -658,7 +860,12 @@ public class FluxGearContent implements IFuelHandler{
     public static Fluid fluidCarbon;
     public static Fluid fluidGelidPyrotheum;
     public static Fluid fluidEssence;
+    public static Fluid fluidEctoplasm;
     public static Fluid fluidRedWater;
+    public static Fluid fluidUnstableFlowstone;
+    public static Fluid fluidEmptyWater;
+    public static Fluid fluidUnstableEctoplasm;
+    public static Fluid fluidAcidicEssence;
 
     // Fluid Blocks
     public static BlockFluidCoFHBase blockFluidGhastTear;
@@ -738,7 +945,8 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack blockAntimonialBronze;
     public static ItemStack blockArsenicalBronze;
     public static ItemStack blockVanadium;
-    public static ItemStack blockMagnetite;
+    public static ItemStack blockTesseractium;
+    public static ItemStack blockUnobtainium;
     public static ItemStack blockDioptase;
     public static ItemStack blockPyrope;
     public static ItemStack blockMyuvil;
@@ -760,14 +968,6 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack blockElectriplatinum;
     public static ItemStack blockMithril;
 
-    //NLHReRa List
-    //{"technomancy", "resonantTechnomancy", "amber", "crystalFlux", "lapiquartz", "whitePointStar", "voidInfernoStar" };
-    //{4, 8,  0, 4, 2, 15, 15  };
-    //{7, 11, 4, 5, 5, 8,  8   };
-    //{8, 10, 6, 8, 8, 42, 507 };
-    //{1, 2,  0, 1, 1, 2,  3   };
-
-
     public static ItemStack blockTechnomancy;
     public static ItemStack blockResonantTechnomancy;
     public static ItemStack blockTungstenBlazing;
@@ -776,7 +976,7 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack blockElectrumFlux;
     public static ItemStack blockMolybdenumResonant;
     public static ItemStack blockChromiumCarbide;
-    public static ItemStack blockColdfireBismuthBronze;
+    public static ItemStack blockBismuthBronzeColdfire;
     public static ItemStack blockPyrum;
     public static ItemStack blockGelinium;
     public static ItemStack blockLumium;
@@ -805,6 +1005,7 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack blockThorium;
     public static ItemStack blockUranium235;
     public static ItemStack blockUranium238;
+    public static ItemStack blockMagnetite;
     public static ItemStack blockNdMagnet;
     public static ItemStack blockFeMagnet;
     public static ItemStack blockMnMagnet;
@@ -816,6 +1017,11 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack blockHSLAMagnet;
     public static ItemStack blockAmber;
     public static ItemStack blockPotato;
+    public static ItemStack blockPolycarbide;
+
+    public static ItemStack blockIridiumSands;
+    public static ItemStack blockPoorIridiumSands;
+    public static ItemStack blockAluminosilicateSludge;
 
     //Buckets
     public static ItemStack bucketGhastTears;
@@ -846,6 +1052,7 @@ public class FluxGearContent implements IFuelHandler{
     //* Antimony
     //* Arsenic
     public static ItemStack ingotNeodymium;
+    public static ItemStack ingotTesseractium;
     public static ItemStack ingotCadmium;
     public static ItemStack ingotTellurium;
     public static ItemStack ingotOsmium;
@@ -854,7 +1061,7 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack ingotArsenicalBronze;
     public static ItemStack ingotAntimonialBronze;
     public static ItemStack ingotVanadium;
-    //* Magnetite
+    public static ItemStack ingotUnobtainium;
     //* Dioptase
     //* Pyrope
     //* Myuvil
@@ -882,7 +1089,7 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack ingotElectrumFlux;
     public static ItemStack ingotMolybdenumResonant;
     public static ItemStack ingotChromiumCarbide;
-    public static ItemStack ingotColdfireBismuthBronze;
+    public static ItemStack ingotBismuthBronzeColdfire;
     public static ItemStack ingotPyrum;
     public static ItemStack ingotGelinium;
     public static ItemStack ingotLumium;
@@ -909,6 +1116,7 @@ public class FluxGearContent implements IFuelHandler{
     //* Thorium
     //* U235
     //* U238
+    //* Magnetite
     public static ItemStack ingotNeodymiumMagnet;
     public static ItemStack ingotIronMagnet;
     public static ItemStack ingotManganeseMagnet;
@@ -920,8 +1128,8 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack ingotHSLAMagnet;
     //* Amber
     //* Ashes
-    public static ItemStack ingotTesseractium;
-    public static ItemStack ingotUnobtainium;
+    //* Polycarbide
+    //* Vorpal
     //* Iron
     //* Gold
     //* Diamond

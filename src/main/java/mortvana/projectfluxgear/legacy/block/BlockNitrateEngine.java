@@ -145,18 +145,16 @@ public class BlockNitrateEngine extends BlockContainerBase implements IBlockMeta
 	@Override
 	public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int par5) {
 		TileEntity te = world.getTileEntity(x, y, z);
-		if (te != null) {
-			if (te instanceof TileEntityNitrateEngine) {
-				TileEntityNitrateEngine tileentity = (TileEntityNitrateEngine) te;
-				for (int slotiter = 0; slotiter < tileentity.getSizeInventory(); ++slotiter) {
-					ItemStack itemstack = tileentity.getStackInSlot(slotiter);
-					if (itemstack != null) {
-						float xr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
-						float yr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
-						float zr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
-						EntityItem entityItem = new EntityItem(world, (double) ((float) x + xr), (double) ((float) y + yr), (double) ((float) z + zr), itemstack);
-						world.spawnEntityInWorld(entityItem);
-					}
+		if ((te != null) && (te instanceof TileEntityNitrateEngine)) {
+			TileEntityNitrateEngine tileentity = (TileEntityNitrateEngine) te;
+			for (int slotiter = 0; slotiter < tileentity.getSizeInventory(); ++slotiter) {
+				ItemStack itemstack = tileentity.getStackInSlot(slotiter);
+				if (itemstack != null) {
+					float xr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
+					float yr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
+					float zr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
+					EntityItem entityItem = new EntityItem(world, (double) ((float) x + xr), (double) ((float) y + yr), (double) ((float) z + zr), itemstack);
+					world.spawnEntityInWorld(entityItem);
 				}
 			}
 		}
@@ -190,13 +188,4 @@ public class BlockNitrateEngine extends BlockContainerBase implements IBlockMeta
 	public BlockNitrateEngine(Configuration config, String name, Material material) {
 		super(config, name, material);
 	}
-
-	public BlockNitrateEngine(Configuration config, String name) {
-		super(config, name);
-	}
-
-	public BlockNitrateEngine(Material material) {
-		super(material);
-	}
-
 }

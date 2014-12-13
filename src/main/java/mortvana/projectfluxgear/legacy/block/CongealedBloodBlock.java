@@ -11,27 +11,21 @@ import mortvana.fluxgearcore.legacy.util.ISoundProvider;
 
 public class CongealedBloodBlock extends Block implements ISoundProvider {
 	private static String unlocalizedName = "congealedBloodBlock";
-	
-	private static final String stepSoundName = ProjectFluxGear.modID + ":step." + unlocalizedName;
-	private static final String stepSoundType = "wav";
-	private static final String placeSoundName = ProjectFluxGear.modID + ":place." + unlocalizedName;
-	private static final String placeSoundType = "wav";
-	private static final int stepSoundCount = 2;
+
 	private static final String stepSounds[];
-	private static final int placeSoundCount = 1;
 	private static final String placeSounds[];
 	
 	public static final ArrayList<String> sounds;
 	
 	static {
-		stepSounds = new String[stepSoundCount];
-		for(int i = 0; i < stepSoundCount; i++) {
-			stepSounds[i] = ProjectFluxGear.modID + ":step/" + unlocalizedName + (i + 1) + "." + stepSoundType;
+		stepSounds = new String[2];
+		for(int i = 0; i < 2; i++) {
+			stepSounds[i] = "projectfluxgear:step/congealedBloodBlock" + (i + 1) + ".wav";
 			System.out.println("PROJECT FLUX GEAR - WEIRD SCIENCE LEGACY DEBUG OUTPUT: " + stepSounds[i]);
 		}
-		placeSounds = new String[placeSoundCount];
-		for(int i = 0; i < placeSoundCount; i++) {
-			placeSounds[i] = ProjectFluxGear.modID + ":place/" + unlocalizedName + (i + 1) + "." + placeSoundType;
+		placeSounds = new String[1];
+		for(int i = 0; i < 1; i++) {
+			placeSounds[i] = "projectfluxgear:place/congealedBloodBlock" + (i + 1) + ".wav";
 		}
 		
 		sounds = new ArrayList<String>();

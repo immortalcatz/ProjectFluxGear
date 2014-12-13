@@ -63,11 +63,6 @@ public class ContainerNitrateEngine extends Container {
 					return null;
 				}
 				slot.onSlotChange(itemstack1, itemstack);
-			} else if (tileEntity.canBurn(itemstack1) != null) { // Is this fuel? If so, put it
-																// in the fuel slot.
-				if (!this.mergeItemStack(itemstack1, 0, 1, false)) {
-					return null;
-				}
 			} else {
 				return null;
 			}

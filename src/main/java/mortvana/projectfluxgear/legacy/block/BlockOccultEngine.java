@@ -51,45 +51,35 @@ public class BlockOccultEngine extends BlockBloodEngine implements IBlockMetaPow
 					if(b.getUnlocalizedName().contentEquals(Blocks.skull.getUnlocalizedName())) {
 						//Special case for the wither skull
 						TileEntity teUp = world.getTileEntity(x, y+1, z);
-						if(teUp != null) {
-							if(teUp instanceof TileEntitySkull) {
-								TileEntitySkull teS = (TileEntitySkull) teUp;
-								if(teS.getBlockMetadata() == 1) {
-									TileEntity te = world.getTileEntity(x, y, z);
-									if(te != null) {
-										if(te instanceof TileEntityOccultEngine) {
-											((TileEntityOccultEngine)te).updateCurrentIdol(b.getUnlocalizedName());
-											return;
-										}
-									}
+						if((teUp != null) && (teUp instanceof TileEntitySkull)) {
+							TileEntitySkull teS = (TileEntitySkull) teUp;
+							if(teS.getBlockMetadata() == 1) {
+								TileEntity te = world.getTileEntity(x, y, z);
+								if((te != null) && (te instanceof TileEntityOccultEngine)) {
+									((TileEntityOccultEngine)te).updateCurrentIdol(b.getUnlocalizedName());
+									return;
 								}
 							}
 						}
 					} else {
 						//Every other block.
 						TileEntity te = world.getTileEntity(x, y, z);
-						if(te != null) {
-							if(te instanceof TileEntityOccultEngine) {
-								((TileEntityOccultEngine)te).updateCurrentIdol(b.getUnlocalizedName());
-							}
+						if((te != null) && (te instanceof TileEntityOccultEngine)) {
+							((TileEntityOccultEngine)te).updateCurrentIdol(b.getUnlocalizedName());
 						}
 					}
 				}
 			} if((b == null) || (b == Blocks.air)) {
 				TileEntity te = world.getTileEntity(x, y, z);
-				if(te != null) {
-					if(te instanceof TileEntityOccultEngine) {
-						((TileEntityOccultEngine)te).updateCurrentIdol(null);
-					}
+				if((te != null) && (te instanceof TileEntityOccultEngine)) {
+					((TileEntityOccultEngine)te).updateCurrentIdol(null);
 				}
 				
 			}
 		} else {
 			TileEntity te = world.getTileEntity(x, y, z);
-			if(te != null) {
-				if(te instanceof TileEntityOccultEngine) {
-					((TileEntityOccultEngine)te).updateCurrentIdol(null);
-				}
+			if((te != null) && (te instanceof TileEntityOccultEngine)) {
+				((TileEntityOccultEngine)te).updateCurrentIdol(null);
 			}
 		}
 	}
@@ -97,13 +87,4 @@ public class BlockOccultEngine extends BlockBloodEngine implements IBlockMetaPow
 	public BlockOccultEngine(Configuration config, String name, Material material) {
 		super(config, name, material);
 	}
-
-	public BlockOccultEngine(Configuration config, String name) {
-		super(config, name);
-	}
-
-	public BlockOccultEngine(Material material) {
-		super(material);
-	}
-	
 }

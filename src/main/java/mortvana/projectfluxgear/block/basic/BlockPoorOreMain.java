@@ -1,4 +1,4 @@
 package mortvana.projectfluxgear.block.basic;
 
-public class BlockStorageRandom {
+public class BlockPoorOreMain {
 }

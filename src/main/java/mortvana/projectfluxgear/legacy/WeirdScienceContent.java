@@ -60,10 +60,8 @@ public class WeirdScienceContent {
         BlockFluidClassicWS bloodBlock = new BlockFluidClassicWS("Blood", Material.water, fluidBlood);
 
         //Ugly gas init code goes here.
-        /*GasWrapper smogManager = new GasWrapper(new GasFactory()
-        {
-            public BlockGasBase Make (Configuration config, String name, Fluid fluid)
-            {
+        /*GasWrapper smogManager = new GasWrapper(new GasFactory() {
+            public BlockGasBase Make (Configuration config, String name, Fluid fluid) {
                 return new BlockGasSmog(config, name, fluid);
             }
         }, "Smog", fluidSmog, smogDetailDefault);
@@ -86,20 +84,19 @@ public class WeirdScienceContent {
         fluidBlood.setBlock(bloodBlock);
         fluidBase.setBlock(baseBlock);
 
-        if (event.getSide() == Side.CLIENT)
-        {
+        if (event.getSide() == Side.CLIENT) {
             fluidAcid.setIcons(acidBlock.getIcon(0, 0));
             fluidBase.setIcons(baseBlock.getIcon(0, 0));
             fluidBlood.setIcons(bloodBlock.getIcon(0, 0));
         }
-/*
+
         if (smogManager.isEnabled()) {
             if (event.getSide() == Side.CLIENT) {
                 fluidSmog.setIcons(smogManager.blocks.get(0).getIcon(0, 0));
             }
             fluidSmog.setBlockID(smogManager.blocks.get(0).blockID);
-        }
-*/
+        }*/
+
         //Register normal fluid blocks
         cr.RegisterBlock(acidBlock);
         cr.RegisterBlock(baseBlock);
@@ -249,8 +246,5 @@ public class WeirdScienceContent {
                 GameRegistry.addSmelting(item, FluxGearContent.dustAshes, 0.0F);
             }
         }
-
-        boolean thermiteFuelEnabled = config.get("recipe", "Enable thermite as furnace fuel", true).getBoolean(true);
-        if (thermiteFuelEnabled) {}
     }
 }
