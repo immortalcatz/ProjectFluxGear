@@ -1,13 +1,13 @@
 package mortvana.projectfluxgear.common;
 
 import cofh.core.fluid.BlockFluidCoFHBase;
-import cofh.core.item.ItemBucket;
-import cofh.core.util.fluid.DispenserEmptyBucketHandler;
-import cofh.core.util.fluid.DispenserFilledBucketHandler;
 
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 
+import mortvana.fluxgearcore.item.tool.FluxGearBucket;
+import mortvana.fluxgearcore.util.handler.DispenserEmptyBucketHandler;
+import mortvana.fluxgearcore.util.handler.DispenserFilledBucketHandler;
 import mortvana.projectfluxgear.block.basic.itemblock.*;
 import mortvana.projectfluxgear.common.config.FluxGearConfig;
 import net.minecraft.block.BlockDispenser;
@@ -21,7 +21,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-import mortvana.fluxgearcore.item.ItemBase;
+import mortvana.fluxgearcore.item.FluxGearItem;
 import mortvana.fluxgearcore.util.helper.ItemHelper;
 
 import mortvana.projectfluxgear.block.basic.*;
@@ -44,9 +44,8 @@ public class FluxGearContent implements IFuelHandler{
     }
 
     public void init() {
-        initBlocks();
+        registerBlocks();
         //initMachines();
-	    initItems();
         //initTools();
         //initAugments();
         //addOreDict();
@@ -222,20 +221,13 @@ public class FluxGearContent implements IFuelHandler{
         blockSteelMagnet = new ItemStack(blockStorageAdv, 1, 11);
         blockHSLAMagnet = new ItemStack(blockStorageAdv, 1, 12);
         blockAmber = new ItemStack(blockStorageAdv, 1, 13);
-        blockPotato = new ItemStack(blockStorageAdv, 1, 14);
+        blockNichrome = new ItemStack(blockStorageAdv, 1, 14);
         blockPolycarbide = new ItemStack(blockStorageAdv, 1, 15);
 
         GameRegistry.registerBlock(blockEarthen, ItemBlockEarthen.class, "Earthen");
         blockIridiumSands = new ItemStack(blockEarthen, 1, 0);
         blockPoorIridiumSands = new ItemStack(blockEarthen, 1, 1);
         blockAluminosilicateSludge = new ItemStack(blockEarthen, 1, 2);
-
-
-
-
-
-
-
 
         blockOreMain.setHarvestLevel("pickaxe", 1, 0);
         blockOreMain.setHarvestLevel("pickaxe", 1, 1);
@@ -273,7 +265,7 @@ public class FluxGearContent implements IFuelHandler{
 
     }
 
-    public void initBlocks() {
+    public void registerBlocks() {
         // OreDict Ores
         ItemHelper.registerWithHandlers("oreChalcocite", oreChalcocite);
         ItemHelper.registerWithHandlers("oreCassiterite", oreCassiterite);
@@ -429,16 +421,16 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.registerWithHandlers("blockUranium238", blockUranium238);
         ItemHelper.registerWithHandlers("blockMagnetite", blockMagnetite);
         ItemHelper.registerWithHandlers("blockNeodymiumMagnetMetal", blockNdMagnet);
-        ItemHelper.registerWithHandlers("blockIronMagnet", blockFeMagnet);
-        ItemHelper.registerWithHandlers("blockManganeseMagnet", blockMnMagnet);
-        ItemHelper.registerWithHandlers("blockCobaltMagnet", blockCoMagnet);
-        ItemHelper.registerWithHandlers("blockNickelMagnet", blockNiMagnet);
-        ItemHelper.registerWithHandlers("blockInvarMagnet", blockInvarMagnet);
-        ItemHelper.registerWithHandlers("blockHCSteelMagnet", blockHCSteelMagnet);
-        ItemHelper.registerWithHandlers("blockSteelMagnet", blockSteelMagnet);
-        ItemHelper.registerWithHandlers("blockHSLAMagnet", blockHSLAMagnet);
+        ItemHelper.registerWithHandlers("blockIronMagnetic", blockFeMagnet);
+        ItemHelper.registerWithHandlers("blockManganeseMagnetic", blockMnMagnet);
+        ItemHelper.registerWithHandlers("blockCobaltMagnetic", blockCoMagnet);
+        ItemHelper.registerWithHandlers("blockNickelMagnetic", blockNiMagnet);
+        ItemHelper.registerWithHandlers("blockInvarMagnetic", blockInvarMagnet);
+        ItemHelper.registerWithHandlers("blockSteelMagnetic", blockHCSteelMagnet);
+        ItemHelper.registerWithHandlers("blockRefinedSteelMagnetic", blockSteelMagnet);
+        ItemHelper.registerWithHandlers("blockHSLAMagnetic", blockHSLAMagnet);
         ItemHelper.registerWithHandlers("blockAmber", blockAmber);
-        ItemHelper.registerWithHandlers("blockPotato", blockPotato);
+        ItemHelper.registerWithHandlers("blockNichrome", blockNichrome);
         ItemHelper.registerWithHandlers("blockPolycarbide", blockPolycarbide);
     }
 
@@ -464,9 +456,11 @@ public class FluxGearContent implements IFuelHandler{
     }
 
     public void loadItems() {
-        itemBucket = (ItemBucket) new ItemBucket("projectfluxgear").setUnlocalizedName("bucket").setCreativeTab(ProjectFluxGear.tab);
+        itemMaterial = (FluxGearItem) new FluxGearItem("projectfluxgear").setUnlocalizedName("material").setCreativeTab(ProjectFluxGear.tab);
+
+        itemBucket = (FluxGearBucket) new FluxGearBucket("projectfluxgear").setUnlocalizedName("bucket").setCreativeTab(ProjectFluxGear.tab);
         //itemFood =
-        itemInteractive = (ItemBase) new ItemBase("projectfluxgear").setUnlocalizedName("interactive").setCreativeTab(ProjectFluxGear.tab);
+        itemInteractive = (FluxGearItem) new FluxGearItem("projectfluxgear").setUnlocalizedName("interactive").setCreativeTab(ProjectFluxGear.tab);
 
         //Buckets TODO-- Redo
         bucketGhastTears = itemBucket.addItem(0, "bucketGhastTears", 1);
@@ -483,46 +477,270 @@ public class FluxGearContent implements IFuelHandler{
         dustThermite = itemInteractive.addOreDictItem(0, "dustThermite");
         coagulantAlum = itemInteractive.addItem(1, "coagulant");
 
-
-        //dust = itemMaterial.addOreDictItem(, "dust");
+        loadIngots();
+        loadDusts();
     }
 
-    public void loadParts() {
-        itemMaterial = (ItemBase) new ItemBase("projectfluxgear").setUnlocalizedName("material").setCreativeTab(ProjectFluxGear.tab);
-
-        /*// Standard Ingots
-        ingotZinc = itemMaterial.addOreDictItem(0, "ingotZinc");
-        ingotBismuth = itemMaterial.addOreDictItem(1, "ingotBismuth");
-        ingotManganese = itemMaterial.addOreDictItem(2, "ingotManganese");
-        ingotPalladium = itemMaterial.addOreDictItem(3, "ingotPalladium");
-        ingotMolybdenum = itemMaterial.addOreDictItem(4, "ingotMolybdenum");
-        ingotCobalt = itemMaterial.addItem(5, "ingotCobalt");
+    //0-199 Ingots and Gems
+    public void loadIngots() {
+        ingotCopper = itemMaterial.addOreDictItem(0, "ingotCopper");
+        ingotTin = itemMaterial.addOreDictItem(1, "ingotTin");
+        ingotLead = itemMaterial.addOreDictItem(2, "ingotLead");
+        ingotSilver = itemMaterial.addOreDictItem(3, "ingotSilver");
+        ingotNickel = itemMaterial.addOreDictItem(4, "ingotNickel");
+        ingotZinc = itemMaterial.addOreDictItem(5, "ingotZinc");
+        ingotBismuth = itemMaterial.addOreDictItem(6, "ingotBismuth");
+        ingotManganese = itemMaterial.addOreDictItem(7, "ingotManganese");
+        ingotAluminium = itemMaterial.addOreDictItem(8, "ingotAluminium");
+        ingotPlatinum = itemMaterial.addOreDictItem(9, "ingotPlatinum");
+        ingotPalladium = itemMaterial.addOreDictItem(10, "ingotPalladium");
+        ingotMolybdenum = itemMaterial.addOreDictItem(11, "ingotMolybdenum");
+        ingotCobalt = itemMaterial.addItem(12, "ingotCobalt");
         OreDictionary.registerOre("ingotNaturalCobalt", ingotCobalt);
-        ingotTungsten = itemMaterial.addOreDictItem(6, "ingotTungsten");
-        ingotAluminium = itemMaterial.addOreDictItem(7, "ingotAluminium");
-        ingotChromium = itemMaterial.addOreDictItem(8, "ingotChromium");
-        ingotTitanium = itemMaterial.addOreDictItem(9, "ingotTitanium");
-        ingotIridium = itemMaterial.addOreDictItem(10, "ingotIridium");
+        ingotTungsten = itemMaterial.addOreDictItem(13, "ingotTungsten");
+        ingotTitanium = itemMaterial.addOreDictItem(14, "ingotTitanium");
+        ingotChromium = itemMaterial.addOreDictItem(15, "ingotChromium");
+        //* Antimony
+        //* Arsenic
+        ingotNeodymium = itemMaterial.addOreDictItem(18, "ingotNeodymium");
+        ingotTesseractium = itemMaterial.addOreDictItem(19, "ingotTesseractium");
+        ingotCadmium = itemMaterial.addOreDictItem(20, "ingotCadmium");
+        ingotTellurium = itemMaterial.addOreDictItem(21, "ingotTellurium");
+        ingotOsmium = itemMaterial.addOreDictItem(22, "ingotOsmium");
+        ingotIridium = itemMaterial.addOreDictItem(23, "ingotIridium");
+        ingotIndium = itemMaterial.addOreDictItem(24, "ingotIndium");
+        ingotArsenicalBronze = itemMaterial.addOreDictItem(25, "ingotArsenicalBronze");
+        ingotAntimonialBronze = itemMaterial.addOreDictItem(26, "ingotAntimonialBronze");
+        ingotVanadium = itemMaterial.addOreDictItem(27, "ingotVanadium");
+        ingotUnobtainium = itemMaterial.addOreDictItem(28, "ingotUnobtainium");
+        gemDioptase = itemMaterial.addOreDictItem(29, "gemDioptase");
+        gemPyrope = itemMaterial.addOreDictItem(30, "gemPyrope");
+        //* Myuvil
+        ingotBronze = itemMaterial.addOreDictItem(32, "ingotBronze");
+        ingotBrass = itemMaterial.addOreDictItem(33, "ingotBrass");
+        ingotInvar = itemMaterial.addOreDictItem(34, "ingotInvar");
+        ingotBismuthBronze = itemMaterial.addOreDictItem(35, "ingotBismuthBronze");
+        ingotCupronickel = itemMaterial.addOreDictItem(36, "ingotCupronickel");
+        ingotAluminiumBrass = itemMaterial.addOreDictItem(37, "ingotAluminiumBrass");
+        ingotElectrum = itemMaterial.addOreDictItem(38, "ingotElectrum");
+        ingotDullRedsolder = itemMaterial.addOreDictItem(39, "ingotDullRedsolder");
+        ingotRedsolder = itemMaterial.addOreDictItem(40, "ingotRedsolder");
+        ingotHCSteel = itemMaterial.addItem(41, "ingotHighCarbonSteel");
+        OreDictionary.registerOre("ingotSteel", ingotHCSteel);
+        ingotSteel = itemMaterial.addItem(42, "ingotSteel");
+        OreDictionary.registerOre("ingotRefinedSteel", ingotSteel);
+        ingotHSLA = itemMaterial.addOreDictItem(43, "ingotHSLA");
+        ingotStainlessSteel = itemMaterial.addOreDictItem(44, "ingotStainlessSteel");
+        ingotTungstenSteel = itemMaterial.addOreDictItem(45, "ingotTungstenSteel");
+        ingotEletriplatinum = itemMaterial.addOreDictItem(46, "ingotElectriplatinum");
+        ingotMithril = itemMaterial.addItem(47, "ingotMithril");
+        OreDictionary.registerOre("ingotMitrilBronze", ingotMithril);
+        ingotTechnomancer = itemMaterial.addOreDictItem(48, "ingotTechnomancer");
+        ingotTechnomancerResonant = itemMaterial.addOreDictItem(49, "ingotTechnomancerResonant");
+        ingotTungstenBlazing = itemMaterial.addOreDictItem(50, "ingotTungstenBlazing");
+        ingotPlatinumGelid = itemMaterial.addOreDictItem(51, "ingotPlatinumGelid");
+        ingotSilverLuminous = itemMaterial.addOreDictItem(52, "ingotSilverLuminous");
+        ingotElectrumFlux = itemMaterial.addOreDictItem(53, "ingotElectrumFlux");
+        ingotMolybdenumResonant = itemMaterial.addOreDictItem(54, "ingotMolybdenumResonant");
+        ingotChromiumCarbide = itemMaterial.addOreDictItem(55, "ingotChromiumCarbide");
+        ingotBismuthBronzeColdfire = itemMaterial.addOreDictItem(56, "ingotBismuthBronzeColdfire");
+        ingotPyrum = itemMaterial.addOreDictItem(57, "ingotPyrum");
+        ingotGelinium = itemMaterial.addOreDictItem(58, "ingotGelinium");
+        ingotLumium = itemMaterial.addOreDictItem(59, "ingotLumium");
+        ingotSignalum = itemMaterial.addOreDictItem(60, "ingotSignalum");
+        ingotEnderium = itemMaterial.addOreDictItem(61, "ingotEnderium");
+        ingotCarbonite = itemMaterial.addOreDictItem(62, "ingotCarbonite");
+        ingotTherminate = itemMaterial.addOreDictItem(63, "ingotTherminate");
+        algotNullmetal = itemMaterial.addOreDictItem(64, "algotNullmetal");
+        algotIocarbide = itemMaterial.addOreDictItem(65, "algotIocarbide");
+        algotCryocarbide = itemMaterial.addOreDictItem(66, "algotCryocarbide");
+        algotPyrocarbide = itemMaterial.addOreDictItem(67, "algotPyrocarbide");
+        algotTenebride = itemMaterial.addOreDictItem(68, "algotTenebride");
+        algotIlluminide = itemMaterial.addOreDictItem(69, "algotIlluminide");
+        algotZythoferride = itemMaterial.addOreDictItem(70, "algotZythoferride");
+        gemCrystalFlux = itemMaterial.addOreDictItem(71, "gemCrystalFlux");
+        //* Lapiquartz
+        //* Rust
+        //* Sulfur
+        //* Saltpeter
+        ingotMithrilFlux = itemMaterial.addOreDictItem(76, "ingotMithrilFlux");
+        ingotMithrilTinker = itemMaterial.addOreDictItem(77, "ingotMithrilTinker");
+        //* Thorium     x+078
+        //* U235        x+079
+        //* U238        x+080
+        gemMagnetite = itemMaterial.addOreDictItem(81, "gemMagnetite");
+        ingotNeodymiumMagnet = itemMaterial.addOreDictItem(82, "ingotNeodymiumMagnetMetal");
+        ingotIronMagnet = itemMaterial.addOreDictItem(83, "ingotIronMagnetic");
+        ingotManganeseMagnet = itemMaterial.addOreDictItem(84, "ingotManganeseMagnetic");
+        ingotCobaltMagnet = itemMaterial.addOreDictItem(85, "ingotCobaltMagnetic");
+        ingotNickelMagnet = itemMaterial.addOreDictItem(86, "ingotNickelMagnetic");
+        ingotInvarMagnet = itemMaterial.addOreDictItem(87, "ingotInvarMagnetic");
+        ingotHCSteelMagnet = itemMaterial.addItem(88, "ingotHighCarbonSteelMagnetic");
+        OreDictionary.registerOre("ingotSteelMagnetic", ingotHCSteelMagnet);
+        ingotSteelMagnet = itemMaterial.addItem(89, "ingotSteelMagnetic");
+        OreDictionary.registerOre("ingotRefinedSteelMagnetic", ingotSteelMagnet);
+        ingotHSLAMagnet = itemMaterial.addOreDictItem(90, "ingotHSLAMagnetic");
+        //* Amber       x+091
+        ingotNichrome = itemMaterial.addOreDictItem(92, "ingotNichrome");
+        ingotPolycarbide = itemMaterial.addOreDictItem(93, "ingotPolycarbide");
+        ingotVorpal = itemMaterial.addOreDictItem(94, "ingotVorpal");
+        //* Ashes       x+095
+        //* Iron        x+096
+        //* Gold        x+097
+        //* Diamond     x+098
+        //* Coal        x+099
+        //* Charcoal    x+100
+        //* Obsidian    x+101
+        //* Blizz       x+102
+        //* Cyrotheum   x+103
+        //* Pyrotheum   x+104
+        //* Iceflame    x+105
+        //* Kroostyl    x+106
+        ingotYttrium = itemMaterial.addOreDictItem(107, "ingotYtrium");
+        ingotRuthenium = itemMaterial.addOreDictItem(108, "ingotRuthenium");
+        ingotLanthanum = itemMaterial.addOreDictItem(109, "ingotLanthanum");
+        ingotCerium = itemMaterial.addOreDictItem(110, "ingotCerium");
+        //* Magnesium   x+111
+        //* Calcium     x+112
+        //* Strontium   x+113
+    }
 
-        // Standard Dusts
-        dustZinc = itemMaterial.addOreDictItem(16, "dustZinc");
-        dustBismuth = itemMaterial.addOreDictItem(17, "dustBismuth");
-        dustManganese = itemMaterial.addOreDictItem(18, "dustManganese");
-        dustPalladium = itemMaterial.addOreDictItem(19, "dustPalladium");
-        dustMolybdenum = itemMaterial.addOreDictItem(20, "dustMolybdenum");
-        dustCobalt = itemMaterial.addItem(21, "dustCobalt");
+    //200-399 Dusts
+    public void loadDusts() {
+        dustCopper = itemMaterial.addOreDictItem(200, "dustCopper");
+        dustTin = itemMaterial.addOreDictItem(201, "dustTin");
+        dustLead = itemMaterial.addOreDictItem(202, "dustLead");
+        dustSilver = itemMaterial.addOreDictItem(203, "dustSilver");
+        dustNickel = itemMaterial.addOreDictItem(204, "dustNickel");
+        dustZinc = itemMaterial.addOreDictItem(205, "dustZinc");
+        dustBismuth = itemMaterial.addOreDictItem(206, "dustBismuth");
+        dustManganese = itemMaterial.addOreDictItem(207, "dustManganese");
+        dustAluminium = itemMaterial.addOreDictItem(208, "dustAluminium");
+        dustPlatinum = itemMaterial.addOreDictItem(209, "dustPlatinum");
+        dustPalladium = itemMaterial.addOreDictItem(210, "dustPalladium");
+        dustMolybdenum = itemMaterial.addOreDictItem(211, "dustMolybdenum");
+        dustCobalt = itemMaterial.addItem(212, "dustCobalt");
         OreDictionary.registerOre("dustNaturalCobalt", dustCobalt);
-        dustTungsten = itemMaterial.addOreDictItem(22, "dustTungsten");
-        dustAluminium = itemMaterial.addOreDictItem(23, "dustAluminium");
-        dustChromium = itemMaterial.addOreDictItem(24, "dustChromium");
-        dustTitanium = itemMaterial.addOreDictItem(25, "dustTitanium");
-        dustIridium = itemMaterial.addOreDictItem(26, "dustIridium");
-        dustMagnetite = itemMaterial.addOreDictItem(27, "dustMagnetite");
-        dustMyuvil = itemMaterial.addOreDictItem(28, "dustMyuvil");
-        /*dustArsenic = itemMaterial.addOreDictItem(29, "dustArsenic");
-        dustAntimony = itemMaterial.addOreDictItem(30, "dustAntimony");*/
+        dustTungsten = itemMaterial.addOreDictItem(213, "dustTungsten");
+        dustTitanium = itemMaterial.addOreDictItem(214, "dustTitanium");
+        dustChromium = itemMaterial.addOreDictItem(215, "dustChromium");
+        dustAntimony = itemMaterial.addOreDictItem(216, "dustAntimony");
+        dustArsenic = itemMaterial.addOreDictItem(217, "dustArsenic");
+        dustNeodymium = itemMaterial.addOreDictItem(218, "dustNeodymium");
+        dustTesseractium = itemMaterial.addOreDictItem(219, "dustTesseractium");
+        dustCadmium = itemMaterial.addOreDictItem(220, "dustCadmium");
+        dustTellurium = itemMaterial.addOreDictItem(221, "dustTellurium");
+        dustOsmium = itemMaterial.addOreDictItem(222, "dustOsmium");
+        dustIridium = itemMaterial.addOreDictItem(223, "dustIridium");
+        dustIndium = itemMaterial.addOreDictItem(224, "dustIndium");
+        dustArsenicalBronze = itemMaterial.addOreDictItem(225, "dustArsenicalBronze");
+        dustAntimonialBronze = itemMaterial.addOreDictItem(226, "dustAntimonialBronze");
+        dustVanadium = itemMaterial.addOreDictItem(227, "dustVanadium");
+        dustUnobtainium = itemMaterial.addOreDictItem(228, "dustUnobtainium");
+        dustDioptase = itemMaterial.addOreDictItem(229, "dustDioptase");
+        dustPyrope = itemMaterial.addOreDictItem(230, "dustPyrope");
+        dustMyuvil = itemMaterial.addOreDictItem(231, "dustMyuvil");
+        dustBronze = itemMaterial.addOreDictItem(232, "dustBronze");
+        dustBrass = itemMaterial.addOreDictItem(233, "dustBrass");
+        dustInvar = itemMaterial.addOreDictItem(234, "dustInvar");
+        dustBismuthBronze = itemMaterial.addOreDictItem(235, "dustBismuthBronze");
+        dustCupronickel = itemMaterial.addOreDictItem(236, "dustCupronickel");
+        dustAluminiumBrass = itemMaterial.addOreDictItem(237, "dustAluminiumBrass");
+        dustElectrum = itemMaterial.addOreDictItem(238, "dustElectrum");
+        dustDullRedsolder = itemMaterial.addOreDictItem(239, "dustDullRedsolder");
+        dustRedsolder = itemMaterial.addOreDictItem(240, "dustRedsolder");
+        dustHCSteel = itemMaterial.addItem(241, "dustHighCarbonSteel");
+        OreDictionary.registerOre("dustSteel", dustHCSteel);
+        dustSteel = itemMaterial.addItem(242, "dustSteel");
+        OreDictionary.registerOre("dustRefinedSteel", dustSteel);
+        dustHSLA = itemMaterial.addOreDictItem(243, "dustHSLA");
+        dustStainlessSteel = itemMaterial.addOreDictItem(244, "dustStainlessSteel");
+        dustTungstenSteel = itemMaterial.addOreDictItem(245, "dustTungstenSteel");
+        dustEletriplatinum = itemMaterial.addOreDictItem(246, "dustElectriplatinum");
+        dustMithril = itemMaterial.addItem(247, "dustMithril");
+        OreDictionary.registerOre("dustMitrilBronze", dustMithril);
+        dustTechnomancer = itemMaterial.addOreDictItem(248, "dustTechnomancer");
+        dustTechnomancerResonant = itemMaterial.addOreDictItem(249, "dustTechnomancerResonant");
+        dustTungstenBlazing = itemMaterial.addOreDictItem(250, "dustTungstenBlazing");
+        dustPlatinumGelid = itemMaterial.addOreDictItem(251, "dustPlatinumGelid");
+        dustSilverLuminous = itemMaterial.addOreDictItem(252, "dustSilverLuminous");
+        dustElectrumFlux = itemMaterial.addOreDictItem(253, "dustElectrumFlux");
+        dustMolybdenumResonant = itemMaterial.addOreDictItem(254, "dustMolybdenumResonant");
+        dustChromiumCarbide = itemMaterial.addOreDictItem(255, "dustChromiumCarbide");
+        dustBismuthBronzeColdfire = itemMaterial.addOreDictItem(256, "dustBismuthBronzeColdfire");
+        dustPyrum = itemMaterial.addOreDictItem(257, "dustPyrum");
+        dustGelinium = itemMaterial.addOreDictItem(258, "dustGelinium");
+        dustLumium = itemMaterial.addOreDictItem(259, "dustLumium");
+        dustSignalum = itemMaterial.addOreDictItem(260, "dustSignalum");
+        dustEnderium = itemMaterial.addOreDictItem(261, "dustEnderium");
+        dustCarbonite = itemMaterial.addOreDictItem(262, "dustCarbonite");
+        dustTherminate = itemMaterial.addOreDictItem(263, "dustTherminate");
+        dustNullmetal = itemMaterial.addOreDictItem(264, "dustNullmetal");
+        dustIocarbide = itemMaterial.addOreDictItem(265, "dustIocarbide");
+        dustCryocarbide = itemMaterial.addOreDictItem(266, "dustCryocarbide");
+        dustPyrocarbide = itemMaterial.addOreDictItem(267, "dustPyrocarbide");
+        dustTenebride = itemMaterial.addOreDictItem(268, "dustTenebride");
+        dustIlluminide = itemMaterial.addOreDictItem(269, "dustIlluminide");
+        dustZythoferride = itemMaterial.addOreDictItem(270, "dustZythoferride");
+        dustCrystalFlux = itemMaterial.addOreDictItem(271, "dustCrystalFlux");
+        dustLapiquartz = itemMaterial.addOreDictItem(272, "dustLapiquartz");
+        dustRust = itemMaterial.addOreDictItem(273 , "dustRust");
+        dustSulfur = itemMaterial.addOreDictItem(274 , "dustSulfur");
+        dustSaltpeter = itemMaterial.addOreDictItem(275 , "dustSaltpeter");
+        dustMithrilFlux = itemMaterial.addOreDictItem(276, "dustMithrilFlux");
+        dustMithrilTinker = itemMaterial.addOreDictItem(277, "dustMithrilTinker");
+        dustThorium = itemMaterial.addOreDictItem(278 , "dustThorium");
+        dustUranium235 = itemMaterial.addOreDictItem(279 , "dustUranium235");
+        dustUranium238 = itemMaterial.addOreDictItem(280 , "dustUranium238");
+        dustMagnetite = itemMaterial.addOreDictItem(281, "dustMagnetite");
+        dustNeodymiumMagnet = itemMaterial.addOreDictItem(282, "dustNeodymiumMagnetMetal");
+        dustIronMagnet = itemMaterial.addOreDictItem(283, "dustIronMagnetic");
+        dustManganeseMagnet = itemMaterial.addOreDictItem(284, "dustManganeseMagnetic");
+        dustCobaltMagnet = itemMaterial.addOreDictItem(285, "dustCobaltMagnetic");
+        dustNickelMagnet = itemMaterial.addOreDictItem(286, "dustNickelMagnetic");
+        dustInvarMagnet = itemMaterial.addOreDictItem(287, "dustInvarMagnetic");
+        dustHCSteelMagnet = itemMaterial.addItem(288, "dustHighCarbonSteelMagnetic");
+        OreDictionary.registerOre("dustSteelMagnetic", dustHCSteelMagnet);
+        dustSteelMagnet = itemMaterial.addItem(289, "dustSteelMagnetic");
+        OreDictionary.registerOre("dustRefinedSteelMagnetic", dustSteelMagnet);
+        dustHSLAMagnet = itemMaterial.addOreDictItem(290, "dustHSLAMagnetic");
+        //* Amber
+        dustNichrome = itemMaterial.addOreDictItem(292, "dustNichrome");
+        dustPolycarbide = itemMaterial.addOreDictItem(293, "dustPolycarbide");
+        dustVorpal = itemMaterial.addOreDictItem(294, "dustVorpal");
+        dustAshes = itemMaterial.addOreDictItem(295, "dustAshes");
+        dustIron = itemMaterial.addOreDictItem(296 , "dustIron");
+        dustGold = itemMaterial.addOreDictItem(297 , "dustGold");
+        dustDiamond = itemMaterial.addOreDictItem(298 , "dustDiamond");
+        dustCoal = itemMaterial.addOreDictItem(299 , "dustCoal");
+        dustCharcoal = itemMaterial.addOreDictItem(300 , "dustCharcoal");
+        dustObsidian = itemMaterial.addOreDictItem(301 , "dustObsidian");
+        dustBlizz = itemMaterial.addOreDictItem(302 , "dustBlizz");
+        dustCyrotheum = itemMaterial.addOreDictItem(303 , "dustCryotheum");
+        dustPyrotheum = itemMaterial.addOreDictItem(304 , "dustPyrotheum");
+        dustIceflame = itemMaterial.addOreDictItem(305 , "dustIceflame");
+        dustKroostyl = itemMaterial.addOreDictItem(306 , "dustKroostyl");
+        dustYttrium = itemMaterial.addOreDictItem(307, "dustYtrium");
+        dustRuthenium = itemMaterial.addOreDictItem(308, "dustRuthenium");
+        dustLanthanum = itemMaterial.addOreDictItem(319, "dustLanthanum");
+        dustCerium = itemMaterial.addOreDictItem(310, "dustCerium");
+        dustMagnesium = itemMaterial.addOreDictItem(311 , "dustMagnesium");
+        dustCalcium = itemMaterial.addOreDictItem(312 , "dustCalcium");
+        dustStrontium = itemMaterial.addOreDictItem(313 , "dustStrontium");
 
-        /*// Standard Nuggets
+    }
+
+    //400-599 Nuggets
+    public void loadNuggets() {
+
+    }
+
+    //1000-1199 Gears
+    public void loadGears() {
+        /*
+        nuggetCopper = itemMaterial.addOreDictItem(1000, "nuggetCopper");
+
+        // Standard Nuggets
         nuggetZinc = itemMaterial.addOreDictItem(32, "nuggetZinc");
         nuggetBismuth = itemMaterial.addOreDictItem(33, "nuggetBismuth");
         nuggetManganese = itemMaterial.addOreDictItem(34, "nuggetManganese");
@@ -538,11 +756,7 @@ public class FluxGearContent implements IFuelHandler{
         nuggetMagnetite = itemMaterial.addOreDictItem(43, "nuggetMagnetite");
 
         // Gems
-        gemDioptase = itemMaterial.addOreDictItem(48, "gemDioptase");
-        gemPyrope = itemMaterial.addOreDictItem(49, "gemPyrope");
-        gemMagnetite= itemMaterial.addOreDictItem(50, "gemMagnetite");
         gemAmber = itemMaterial.addOreDictItem(51, "gemSyntheticAmber");
-        gemCrystalFlux = itemMaterial.addOreDictItem(52, "gemCrystalFlux");
         gemMolybdenum = itemMaterial.addOreDictItem(53, "gemMolybdenum");
         crystalMolybdenum = itemMaterial.addOreDictItem(54, "crystalMolybdenum");
         crystalDioptase = itemMaterial.addOreDictItem(55, "crystalDioptase");
@@ -555,53 +769,24 @@ public class FluxGearContent implements IFuelHandler{
 
         // Parts
         partWiring = itemMaterial.addOreDictItem(64, "partWiring");
-        /*partCircuitPlate = itemMaterial.addOreDictItem(65, "partCircuitPlate");
+        partCircuitPlate = itemMaterial.addOreDictItem(65, "partCircuitPlate");
         partUnprocessedPCB = itemMaterial.addOreDictItem(66, "partUnprocessedPCB");
-        partUnassembledPCB = itemMaterial.addOreDictItem(67, "partUnassembledPCB");*/
-        /*partAssembledPCB = itemMaterial.addOreDictItem(68, "partAssembledPCB");
+        partUnassembledPCB = itemMaterial.addOreDictItem(67, "partUnassembledPCB");
+        partAssembledPCB = itemMaterial.addOreDictItem(68, "partAssembledPCB");
         partTransistor = itemMaterial.addOreDictItem(69, "partTransistor");
         partResistor = itemMaterial.addOreDictItem(70, "partResistor");
-        //partSpring = itemMaterial.addOreDictItem(71, "partSpring");
+        partSpring = itemMaterial.addOreDictItem(71, "partSpring");
         partFluxFilter = itemMaterial.addOreDictItem(72, "partFluxFilter");
-        /*partIonThruster = itemMaterial.addOreDictItem(73, "partIonThruster");
+        partIonThruster = itemMaterial.addOreDictItem(73, "partIonThruster");
         partResonantThruster = itemMaterial.addOreDictItem(74, "partResonantIonThruster");
         partMagnet = itemMaterial.addOreDictItem(75, "partMagnet");
-        partAlCoNiMagnet = itemMaterial.addOreDictItem(76, "partAlCoNiMagnet");*/
-        /*partServoMotor = itemMaterial.addOreDictItem(77, "partServoMotor");
+        partAlCoNiMagnet = itemMaterial.addOreDictItem(76, "partAlCoNiMagnet");
+        partServoMotor = itemMaterial.addOreDictItem(77, "partServoMotor");
         partSolenoid = itemMaterial.addOreDictItem(78, "partSolenoid");
         //partGearCore = itemMaterial.addOreDictItem(79, "partGearCore");
 
         // Capacitors
         //partCapacitorLv1 = itemMaterial.addOreDictItem(88, "partCapacitorLv1");
-
-        // Magnetized Ingots
-        /*ingotIronMagnet = itemMaterial.addOreDictItem(96, "ingotIronMagnet");
-        ingotManganeseMagnet = itemMaterial.addOreDictItem(97, "ingotManganeseMagnet");
-        ingotCobaltMagnet = itemMaterial.addOreDictItem(98, "ingotCobaltMagnet");
-        ingotNickelMagnet = itemMaterial.addOreDictItem(99, "ingotNickelMagnet");
-        ingotSteelMagnet = itemMaterial.addOreDictItem(100, "ingotSteelMagnet");
-        ingotInvarMagnet = itemMaterial.addOreDictItem(101, "ingotInvarMagnet");
-
-        // Magnetized Nuggets
-        nuggetIronMagnet = itemMaterial.addOreDictItem(112, "nuggetIronMagnet");
-        nuggetManganeseMagnet = itemMaterial.addOreDictItem(113, "nuggetManganeseMagnet");
-        nuggetCobaltMagnet = itemMaterial.addOreDictItem(114, "nuggetCobaltMagnet");
-        //nuggetNickelMagnet = itemMaterial.addOreDictItem(114, "nuggetNickelMagnet");
-        nuggetSteelMagnet = itemMaterial.addOreDictItem(115, "nuggetSteelMagnet");
-        nuggetInvarMagnet = itemMaterial.addOreDictItem(116, "nuggetInvarMagnet");*/
-
-        // Simple Alloys
-        //Brass, BisBronze, Cupro, AluBrass, DullRedsolder, Redsolder
-        /*ingotBrass = itemMaterial.addOreDictItem(128, "ingotBrass");
-        ingotBismuthBronze = itemMaterial.addOreDictItem(129, "ingotBismuthBronze");
-        ingotCupronickel = itemMaterial.addOreDictItem(130, "ingotCupronickel");
-        ingotAluminiumBrass = itemMaterial.addOreDictItem(131, "ingotAluminiumBrass");
-
-        // Simple Alloy Dusts
-        dustBrass = itemMaterial.addOreDictItem(136, "dustBrass");
-        dustBismuthBronze = itemMaterial.addOreDictItem(137, "dustBismuthBronze");
-        dustCupronickel = itemMaterial.addOreDictItem(138, "dustCupronickel");
-        dustAluminiumBrass = itemMaterial.addOreDictItem(139, "dustAluminiumBrass");
 
         // Simple Alloy Nuggets
         nuggetBrass = itemMaterial.addOreDictItem(144, "nuggetBrass");
@@ -611,8 +796,109 @@ public class FluxGearContent implements IFuelHandler{
 
     }
 
+    //1200-1399 1/4 Dusts
+    public void loadDustsSmall() {}
+
+    //1400-1599 1/9 Dusts
+    public void loadDustsTiny() {}
+
+    //1600-1799 Foils
+    public void loadFoils() {}
+
+    //1800-1999 Plates
+    public void loadPlates() {}
+
+    //2000-2199 Dense Plates
+    public void loadPlatesDense() {}
+
+    //2200-2399 Washers
+    public void loadWashers() {}
+
+    //2400-2599 Bolts
+    public void loadBolts() {}
+
+    //2600-2799 Nuts
+    public void loadNuts() {}
+
+    //2800-2999 Ball Bearings
+    public void loadBearings() {}
+
+    //3000-3199 Shafts
+    public void loadShafts() {}
+
+    //3200-3399 Panels
+    public void loadPanels() {}
+
+    //5000-5999 Tiered Components
+    public void loadComponents() {
+        //5000-5024 Etched Wires
+        //5025-5049 Energy Circuits
+        //5050-5074 Data Circuits
+        //5075-5099 Circuit Parts
+        //5100-5124 Circuits
+        //5125-5149 Transmitters
+        //5150-5174 Receivers
+        //5175-5199 Tranceivers
+        //5200-5224 Sensors
+        //5225-5249 Field Generators
+        //5250-5274 Flux Motors
+        //5275-5299 Conveyors
+        //5300-5324 Flux Pistons
+        //5325-5349 Robotic Arms
+        //5350-5374 Capacitors
+        //5375-5399 Circuits
+        //5400-5424 Filters
+        //5425-5449 Pipes
+        //5450-5475 Ducts
+        //5475-5499 Lenses
+        //5500-5524 Heating Coils
+        //5525-5549 Flux Coils
+    }
+
+    //6000-6999 Non-Tiered Components
+    public void loadParts() {}
+
+    //10000-10199 Trace Minerals
+
+    //11000-11199 Ore Chips
+
+    //11200-11399 Dirty Ore Chunks
+
+    //11400-11599 Clean Ore Chunks
+
+    //11600-11799 Crushed Ores
+
+    //11800-11999 Purified Crushed Ores
+
+    //12000-12199 Dirty Ground Ores
+
+    //12200-12399 Clean Ground Ores
+
+    //12400-12599 Impure Ore Dusts
+
+    //12600-12799 Purified Ore Dusts
+
+    //12800-12999 Ore Slurries
+
+    //13000-13199 Ore Solutions
+
+    //13200-13399 Ore Flakes
+
+    //13400-13599 Pulverized Ore Flakes
+
+    //13600-13799 Centrifuged Ores
+
+    //13800-13999 Purified Centrifuged Ores
+
+    //14000-14199 Rendered Ore Chunks
+
+    //14200-14399 Crystallized Ores
+
+
+
     public void loadTools() {
 	    itemProtoSonicWrench = (ItemProtoSonicWrench) new ItemProtoSonicWrench().setUnlocalizedName("tool", "prototypeSonicWrench");
+        toolProtoSonicWrench = itemProtoSonicWrench.addItem(0, "protoSonicWrench");
     }
 
     //public void loadEnchants() {}
@@ -622,17 +908,17 @@ public class FluxGearContent implements IFuelHandler{
     public void aluminiumArc() {
         OreDictionary.registerOre("ingotAluminum", ingotAluminium);
         OreDictionary.registerOre("dustAluminum", dustAluminium);
-        OreDictionary.registerOre("nuggetAluminum", nuggetAluminium);
+        //OreDictionary.registerOre("nuggetAluminum", nuggetAluminium);
         OreDictionary.registerOre("ingotAluminumBrass", ingotAluminiumBrass);
         OreDictionary.registerOre("dustAluminumBrass", dustAluminiumBrass);
-        OreDictionary.registerOre("nuggetAluminumBrass", nuggetAluminiumBrass);
+        //OreDictionary.registerOre("nuggetAluminumBrass", nuggetAluminiumBrass);
         OreDictionary.registerOre("oreAluminum", oreBauxite);
         OreDictionary.registerOre("blockAluminum", blockAluminium);
 
         if (FluxGearConfig.cobaltAssimilation) {
             OreDictionary.registerOre("ingotCobalt", ingotCobalt);
             OreDictionary.registerOre("dustCobalt", dustCobalt);
-            OreDictionary.registerOre("nuggetCobalt", nuggetCobalt);
+            //OreDictionary.registerOre("nuggetCobalt", nuggetCobalt);
             OreDictionary.registerOre("oreCobalt", oreCobaltite);
             OreDictionary.registerOre("blockCobalt", blockCobalt);
         }
@@ -646,10 +932,6 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.addStorageRecipe(blockAluminium, "ingotAluminum");
         ItemHelper.addStorageRecipe(blockAluminiumBrass, "ingotAluminumBrass");
     }
-
-	public void initItems() {
-		toolProtoSonicWrench = itemProtoSonicWrench.addItem(0, "protoSonicWrench");
-	}
 
     public void metalCraftingRecipes() {
         //TODO-- UPDATE
@@ -720,7 +1002,7 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.addStorageRecipe(blockSteel, "ingotSteel");
         ItemHelper.addStorageRecipe(blockTungstenSteel, "ingotTungstenSteel");
         ItemHelper.addStorageRecipe(blockStainlessSteel, "ingotStainlessSteel");
-        ItemHelper.addStorageRecipe(blockTechnomancy, "ingotTechnomancy");
+        ItemHelper.addStorageRecipe(blockTechnomancy, "ingotTechnomancer");
         ItemHelper.addStorageRecipe(blockResonantTechnomancy, "ingotResonantTechnomancy");
         // Amber is a 2x2 recipe
         ItemHelper.addStorageRecipe(blockCrystalFlux, "gemCrystalFlux");
@@ -866,6 +1148,8 @@ public class FluxGearContent implements IFuelHandler{
     public static Fluid fluidEmptyWater;
     public static Fluid fluidUnstableEctoplasm;
     public static Fluid fluidAcidicEssence;
+    public static Fluid fluidMercury;
+    public static Fluid fluidGallium;
 
     // Fluid Blocks
     public static BlockFluidCoFHBase blockFluidGhastTear;
@@ -875,9 +1159,9 @@ public class FluxGearContent implements IFuelHandler{
     public static BlockFluidCoFHBase blockFluidBlood;
 
     // Base Items
-    public static ItemBucket itemBucket;
-    public static ItemBase itemMaterial;
-    public static ItemBase/*InteracivePFG*/ itemInteractive;
+    public static FluxGearBucket itemBucket;
+    public static FluxGearItem itemMaterial;
+    public static FluxGearItem/*InteracivePFG*/ itemInteractive;
     public static ItemProtoSonicWrench itemProtoSonicWrench;
 
     //Primary Ore Blocks
@@ -1016,12 +1300,15 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack blockSteelMagnet;
     public static ItemStack blockHSLAMagnet;
     public static ItemStack blockAmber;
-    public static ItemStack blockPotato;
+    public static ItemStack blockNichrome;
     public static ItemStack blockPolycarbide;
 
     public static ItemStack blockIridiumSands;
     public static ItemStack blockPoorIridiumSands;
     public static ItemStack blockAluminosilicateSludge;
+
+
+    public static ItemStack blockPotato;
 
     //Buckets
     public static ItemStack bucketGhastTears;
@@ -1062,8 +1349,8 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack ingotAntimonialBronze;
     public static ItemStack ingotVanadium;
     public static ItemStack ingotUnobtainium;
-    //* Dioptase
-    //* Pyrope
+    public static ItemStack gemDioptase;
+    public static ItemStack gemPyrope;
     //* Myuvil
     public static ItemStack ingotBronze;
     public static ItemStack ingotBrass;
@@ -1077,12 +1364,12 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack ingotHCSteel;
     public static ItemStack ingotSteel;
     public static ItemStack ingotHSLA;
-    public static ItemStack ingotSteelStainless;
+    public static ItemStack ingotStainlessSteel;
     public static ItemStack ingotTungstenSteel;
     public static ItemStack ingotEletriplatinum;
     public static ItemStack ingotMithril;
-    public static ItemStack ingotTechnomancy;
-    public static ItemStack ingotTechnomancyResonant;
+    public static ItemStack ingotTechnomancer;
+    public static ItemStack ingotTechnomancerResonant;
     public static ItemStack ingotTungstenBlazing;
     public static ItemStack ingotPlatinumGelid;
     public static ItemStack ingotSilverLuminous;
@@ -1104,11 +1391,9 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack algotTenebride;
     public static ItemStack algotIlluminide;
     public static ItemStack algotZythoferride;
-    //* Crystal Flux
+    public static ItemStack gemCrystalFlux;
     //* Lapiquartz
     //* Rust
-    //* WPS
-    //* VIS
     //* Sulfur
     //* Saltpeter
     public static ItemStack ingotMithrilFlux;
@@ -1116,7 +1401,7 @@ public class FluxGearContent implements IFuelHandler{
     //* Thorium
     //* U235
     //* U238
-    //* Magnetite
+    public static ItemStack gemMagnetite;
     public static ItemStack ingotNeodymiumMagnet;
     public static ItemStack ingotIronMagnet;
     public static ItemStack ingotManganeseMagnet;
@@ -1126,18 +1411,17 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack ingotHCSteelMagnet;
     public static ItemStack ingotSteelMagnet;
     public static ItemStack ingotHSLAMagnet;
-    //* Amber
+    public static ItemStack gemAmber;
+    public static ItemStack ingotNichrome;
+    public static ItemStack ingotPolycarbide;
+    public static ItemStack ingotVorpal;
     //* Ashes
-    //* Polycarbide
-    //* Vorpal
     //* Iron
     //* Gold
     //* Diamond
     //* Coal
     //* Charcoal
     //* Obsidian
-    //* Sufur
-    //* Saltpeter
     //* Blizz Powder
     //* Cyrotheum
     //* Pyrotheum
@@ -1152,28 +1436,126 @@ public class FluxGearContent implements IFuelHandler{
     //* Calcium
     //* Strontium
 
-    // Standard Dusts
+    public static ItemStack dustCopper;
+    public static ItemStack dustTin;
+    public static ItemStack dustLead;
+    public static ItemStack dustSilver;
+    public static ItemStack dustNickel;
     public static ItemStack dustZinc;
     public static ItemStack dustBismuth;
     public static ItemStack dustManganese;
+    public static ItemStack dustAluminium;
+    public static ItemStack dustPlatinum;
     public static ItemStack dustPalladium;
     public static ItemStack dustMolybdenum;
     public static ItemStack dustCobalt;
     public static ItemStack dustTungsten;
-    public static ItemStack dustAluminium;
-    public static ItemStack dustChromium;
     public static ItemStack dustTitanium;
+    public static ItemStack dustChromium;
+    public static ItemStack dustAntimony;
+    public static ItemStack dustArsenic;
+    public static ItemStack dustNeodymium;
+    public static ItemStack dustTesseractium;
+    public static ItemStack dustCadmium;
+    public static ItemStack dustTellurium;
+    public static ItemStack dustOsmium;
     public static ItemStack dustIridium;
+    public static ItemStack dustIndium;
+    public static ItemStack dustArsenicalBronze;
+    public static ItemStack dustAntimonialBronze;
+    public static ItemStack dustVanadium;
+    public static ItemStack dustUnobtainium;
+    public static ItemStack dustDioptase;
+    public static ItemStack dustPyrope;
+    public static ItemStack dustMyuvil;
+    public static ItemStack dustBronze;
+    public static ItemStack dustBrass;
+    public static ItemStack dustInvar;
+    public static ItemStack dustBismuthBronze;
+    public static ItemStack dustCupronickel;
+    public static ItemStack dustAluminiumBrass;
+    public static ItemStack dustElectrum;
+    public static ItemStack dustDullRedsolder;
+    public static ItemStack dustRedsolder;
+    public static ItemStack dustHCSteel;
+    public static ItemStack dustSteel;
+    public static ItemStack dustHSLA;
+    public static ItemStack dustStainlessSteel;
+    public static ItemStack dustTungstenSteel;
+    public static ItemStack dustEletriplatinum;
+    public static ItemStack dustMithril;
+    public static ItemStack dustTechnomancer;
+    public static ItemStack dustTechnomancerResonant;
+    public static ItemStack dustTungstenBlazing;
+    public static ItemStack dustPlatinumGelid;
+    public static ItemStack dustSilverLuminous;
+    public static ItemStack dustElectrumFlux;
+    public static ItemStack dustMolybdenumResonant;
+    public static ItemStack dustChromiumCarbide;
+    public static ItemStack dustBismuthBronzeColdfire;
+    public static ItemStack dustCarbonite;
+    public static ItemStack dustPyrum;
+    public static ItemStack dustLumium;
+    public static ItemStack dustSignalum;
+    public static ItemStack dustEnderium;
+    public static ItemStack dustGelinium;
+    public static ItemStack dustTherminate;
+    public static ItemStack dustNullmetal;
+    public static ItemStack dustIocarbide;
+    public static ItemStack dustCryocarbide;
+    public static ItemStack dustPyrocarbide;
+    public static ItemStack dustTenebride;
+    public static ItemStack dustIlluminide;
+    public static ItemStack dustZythoferride;
+    public static ItemStack dustCrystalFlux;
+    public static ItemStack dustLapiquartz;
+    public static ItemStack dustRust;
+    public static ItemStack dustSulfur;
+    public static ItemStack dustSaltpeter;
+    public static ItemStack dustMithrilFlux;
+    public static ItemStack dustMithrilTinker;
+    public static ItemStack dustThorium;
+    public static ItemStack dustUranium235;
+    public static ItemStack dustUranium238;
+    public static ItemStack dustMagnetite;
+    public static ItemStack dustNeodymiumMagnet;
+    public static ItemStack dustIronMagnet;
+    public static ItemStack dustManganeseMagnet;
+    public static ItemStack dustCobaltMagnet;
+    public static ItemStack dustNickelMagnet;
+    public static ItemStack dustInvarMagnet;
+    public static ItemStack dustHCSteelMagnet;
+    public static ItemStack dustSteelMagnet;
+    public static ItemStack dustHSLAMagnet;
+    //* Amber
+    public static ItemStack dustNichrome;
+    public static ItemStack dustPolycarbide;
+    public static ItemStack dustVorpal;
+    public static ItemStack dustAshes;
+    public static ItemStack dustIron;
+    public static ItemStack dustGold;
+    public static ItemStack dustDiamond;
+    public static ItemStack dustCoal;
+    public static ItemStack dustCharcoal;
+    public static ItemStack dustObsidian;
+    public static ItemStack dustBlizz;
+    public static ItemStack dustCyrotheum;
+    public static ItemStack dustPyrotheum;
+    public static ItemStack dustMana;
+    public static ItemStack dustIceflame;
+    public static ItemStack dustKroostyl;
+    public static ItemStack dustYttrium;
+    public static ItemStack dustRuthenium;
+    public static ItemStack dustLanthanum;
+    public static ItemStack dustCerium;
+    public static ItemStack dustMagnesium;
+    public static ItemStack dustCalcium;
+    public static ItemStack dustStrontium;
+
 
     // Random Dusts
     public static ItemStack dustPitchblende;
     public static ItemStack dustNiedermayrite;
-    public static ItemStack dustRust;
-    public static ItemStack dustAshes;
-    public static ItemStack dustMagnetite;
-    public static ItemStack dustArsenic;
-    public static ItemStack dustAntimony;
-    public static ItemStack dustMyuvil;
 
     // Standard Nuggets
     public static ItemStack nuggetZinc;
@@ -1190,11 +1572,6 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack nuggetMagnetite;
 
     // Gems
-    public static ItemStack gemDioptase;
-    public static ItemStack gemPyrope;
-    public static ItemStack gemMagnetite;
-    public static ItemStack gemAmber;
-    public static ItemStack gemCrystalFlux;
     public static ItemStack gemMolybdenum;
     public static ItemStack crystalMolybdenum;
     public static ItemStack crystalDioptase;
@@ -1238,42 +1615,10 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack nuggetNickelMagnet;
     public static ItemStack nuggetSteelMagnet;
     public static ItemStack nuggetInvarMagnet;
-
-    // Simple Alloy Dusts
-    public static ItemStack dustBrass;
-    public static ItemStack dustBismuthBronze;
-    public static ItemStack dustCupronickel;
-    public static ItemStack dustAluminiumBrass;
-
-    // Simple Alloy Nuggets
     public static ItemStack nuggetBrass;
     public static ItemStack nuggetBismuthBronze;
     public static ItemStack nuggetCupronickel;
     public static ItemStack nuggetAluminiumBrass;
-
-    // Complex Alloy Ingots
-
-
-    // Complex Alloy Dusts
-    public static ItemStack dustMithrilBronze;
-    public static ItemStack dustEletriplatinum;
-    public static ItemStack dustSteel;
-    public static ItemStack dustTungstenSteel;
-    public static ItemStack dustSteelStainless;
-    public static ItemStack dustTechnomancy;
-    public static ItemStack dustTechnomancyResonant;
-    public static ItemStack dustTungstenBlazing;
-    public static ItemStack dustPlatinumGelid;
-    public static ItemStack dustSilverLuminous;
-    public static ItemStack dustElectrumFlux;
-    public static ItemStack dustMolybdenumResonant;
-    public static ItemStack dustChromiumCarbide;
-    public static ItemStack dustColdfireBismuthBronze;
-    public static ItemStack dustCarbonite;
-    public static ItemStack dustPyrum;
-    public static ItemStack dustGelinium;
-
-    // Complex Alloy Nuggets
     public static ItemStack nuggetMithrilBronze;
     public static ItemStack nuggetEletriplatinum;
     public static ItemStack nuggetSteel;
@@ -1291,8 +1636,6 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack nuggetCarbonite;
     public static ItemStack nuggetPyrum;
     public static ItemStack nuggetGelinium;
-
-
 
     // White Point Stars and Void Inferno Stars
     public static ItemStack shardWhitePointStar;

@@ -15,12 +15,6 @@ public class ItemBlockStorageAlch extends ItemBlockFluxGear {
 	}
 
 	@Override
-	public String getItemStackDisplayName(ItemStack item) {
-
-		return StringHelper.localize(getUnlocalizedName(item));
-	}
-
-	@Override
 	public String getUnlocalizedName(ItemStack item) {
 
 		return "tile.projectfluxgear.storage." + BlockStorageAlch.NAMES[ItemHelper.getItemDamage(item)] + ".name";

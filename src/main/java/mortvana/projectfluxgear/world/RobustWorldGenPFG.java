@@ -11,7 +11,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
 
-import mortvana.projectfluxgear.common.config.FluxGearWorldConfig;
+import mortvana.projectfluxgear.legacy.FluxGearWorldConfigOld;
 
 public class RobustWorldGenPFG implements IWorldGenerator {
 
@@ -68,7 +68,7 @@ public class RobustWorldGenPFG implements IWorldGenerator {
 	}
 
 	public void generate(Random random, int chunkX, int chunkZ, World world, boolean firstGenerate) {
-		if (firstGenerate || FluxGearWorldConfig.regen()) {
+		if (firstGenerate || FluxGearWorldConfigOld.regen()) {
 			Random chunkRand = this.getRandom(random, chunkX, chunkZ);
 			int dimId = world.provider.dimensionId;
 			if (!this.vaildDimension(dimId)) { return; }

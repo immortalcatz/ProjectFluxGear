@@ -29,7 +29,7 @@ public class ProjectFluxGear {
 
     public static final String version = "v0.0.1.0.cactus";
     public static final String modID = "ProjectFluxGear";
-    public static final String dependencies = "required-after:FluxGearCore; required-after:CoFHCore; required-after:ThermalFoundation; required-after:ThermalExpansion";
+    public static final String dependencies = "required-after:FluxGearCore; required-after:CoFHCore; after:ThermalExpansion";
 
     public static final Logger logger = LogManager.getLogger(modID);
     //public static final PacketPipeline packetPipeline = new PacketPipeline();
@@ -127,10 +127,10 @@ public class ProjectFluxGear {
         config.cleanUp(false, true);
     }
 
-    @EventHandler
+    /*@EventHandler
     public void remapEvent (FMLMissingMappingsEvent event) {
         thermalRemapper.processMigrationEvent(event);
-    }
+    }*/
 
     @EventHandler
     public void serverStarting(FMLServerStartingEvent event) {

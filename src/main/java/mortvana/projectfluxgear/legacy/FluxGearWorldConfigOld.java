@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.common.config;
+package mortvana.projectfluxgear.legacy;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,10 +6,10 @@ import java.io.IOException;
 import mortvana.projectfluxgear.common.ProjectFluxGear;
 import net.minecraftforge.common.config.Configuration;
 
-public class FluxGearWorldConfig {
+public class FluxGearWorldConfigOld {
 
 	public static Configuration configuration;
-	public static FluxGearWorldConfig config;
+	public static FluxGearWorldConfigOld config;
 	public static File configFolder;
 
 	public static void loadConfiguration(File mainConfigFolder) {
