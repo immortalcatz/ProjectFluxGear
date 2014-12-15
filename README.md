@@ -54,4 +54,4 @@ If you have queries about any license or the above support restrictions, drop by
 
 ##Legal Stuff
 
--As per terms of the Railcraft licence, I must state that I have used Railcraft code in creating the Poor Ores, all code from Railcraft is marked as such (and all utilities for Poor Ores are under mortvana.projectflugear.world.cjrepack).
+-As per terms of the Railcraft licence, I must state that I have used Railcraft code in creating the Poor Ores, all code from Railcraft is marked as such (and all utilities for Poor Ores are under mortvana.fluxgearcore.util.world.cjrepack).
