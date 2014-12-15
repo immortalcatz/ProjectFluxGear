@@ -14,11 +14,13 @@ import mortvana.fluxgearcore.util.remapper.Remapper;
 
 import mortvana.projectfluxgear.common.config.FluxGearConfig;
 import mortvana.projectfluxgear.gui.FluxGearAchievements;
-import mortvana.projectfluxgear.gui.PFGCreativeTab;
+import mortvana.fluxgearcore.gui.FluxGearTab;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.world.ChunkDataEvent;
+
+import mortvana.projectfluxgear.world.FluxGearWorldGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -55,7 +57,8 @@ public class ProjectFluxGear {
     //public static final GuiHandler guiHandler = new GuiHandler();
 
 
-    public static final CreativeTabs tab = new PFGCreativeTab();
+    public static final CreativeTabs tabResources = new FluxGearTab("PFG-Resources", "projectfluxgear.resourceTab", FluxGearContent.gemDioptase);
+    public static final CreativeTabs tabOres = new FluxGearTab("PFG-Ores", "projectfluxgear.oreTab", FluxGearContent.oreBauxite);
     //MOAR Tabs?
 
     public static File worldGen;
@@ -78,6 +81,8 @@ public class ProjectFluxGear {
         compat.preInitCompat();
         compat.preInitIMC();
         content.preInit();
+
+        GameRegistry.registerWorldGenerator(new FluxGearWorldGenerator(), 1);
 
         //Erroneous Errors of Erroneousness
         /*weirdRegistry = new ContentRegistry(config, logger, tabWeirdScience);

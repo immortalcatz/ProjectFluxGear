@@ -25,7 +25,7 @@ import com.google.common.collect.Multimap;
 import ic2.api.tile.IWrenchable;
 import main.flowstoneenergy.core.interfaces.IFlowWrenchable;
 import mortvana.projectfluxgear.common.ProjectFluxGear;
-import mortvana.fluxgearcore.item.FluxGearItem;
+import mortvana.fluxgearcore.item.ItemFluxGear;
 import mortvana.fluxgearcore.util.helper.BlockHelper;
 import mortvana.fluxgearcore.util.helper.ServerHelper;
 
@@ -61,11 +61,11 @@ import pneumaticCraft.api.block.IPneumaticWrenchable;
  * RotaryCraft Screwdriver (If Reika makes stuff streamlined enough to integrate)
  */
 
-public class ItemProtoSonicWrench extends FluxGearItem implements ICarpentersHammer, IOmniwrench {
+public class ItemFluxGearProtoSonicWrench extends ItemFluxGear implements ICarpentersHammer, IOmniwrench {
 
-	public ItemProtoSonicWrench() {
+	public ItemFluxGearProtoSonicWrench() {
 		super("thermaltinkerer");
-		setCreativeTab(ProjectFluxGear.tab);
+		setCreativeTab(ProjectFluxGear.tabResources);
 		setMaxStackSize(1);
 	}
 

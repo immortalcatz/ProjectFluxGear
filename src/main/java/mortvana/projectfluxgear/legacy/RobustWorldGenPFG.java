@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.world;
+package mortvana.projectfluxgear.legacy;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -10,8 +10,6 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
-
-import mortvana.projectfluxgear.legacy.FluxGearWorldConfigOld;
 
 public class RobustWorldGenPFG implements IWorldGenerator {
 

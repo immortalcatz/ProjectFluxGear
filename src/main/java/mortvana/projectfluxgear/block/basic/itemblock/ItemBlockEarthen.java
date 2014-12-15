@@ -10,6 +10,7 @@ import mortvana.fluxgearcore.util.helper.StringHelper;
 import mortvana.projectfluxgear.block.basic.BlockEarthen;
 
 public class ItemBlockEarthen extends ItemBlockFluxGear {
+
 	public ItemBlockEarthen(Block block) {
 		super(block);
 	}

@@ -1,6 +1,7 @@
 Plans until v1.0.0.0 (when we get out of beta)
 
-v0.1.0.0
+Alpha:
+v0.0.5.0
 Finish World Gen
     --Finish Config
     --Entwined Ores
@@ -8,8 +9,8 @@ Finish World Gen
     --Dimension Black/Whitelist
     --Retrogen Use
 Latex Stuff
-    --Latex Trees
-    --Latex Bushes
+    --Para Rubber Trees
+    --Guayule Bushes
     --Tree Tap
     --Latex Tree "Model"
 Add Iridium Clay Sands
@@ -18,6 +19,15 @@ Add Iridium Clay Sands
 Add Poor Ores
     --Poor Ore Code
     --Implement Spawning
+    --Create Classes
+Add Gravel Ores
+    --Implement Configs
+    --Implement Spawning
+    --Create Classes
+Ore Breaking Drops
+
+Beta:
+v0.1.0.0
 New Fluids
     --Lye
     --Acid

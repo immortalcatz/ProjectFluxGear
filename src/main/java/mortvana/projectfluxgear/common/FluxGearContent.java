@@ -5,7 +5,7 @@ import cofh.core.fluid.BlockFluidCoFHBase;
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-import mortvana.fluxgearcore.item.tool.FluxGearBucket;
+import mortvana.fluxgearcore.item.tool.BucketFluxGear;
 import mortvana.fluxgearcore.util.handler.DispenserEmptyBucketHandler;
 import mortvana.fluxgearcore.util.handler.DispenserFilledBucketHandler;
 import mortvana.projectfluxgear.block.basic.itemblock.*;
@@ -21,11 +21,11 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-import mortvana.fluxgearcore.item.FluxGearItem;
+import mortvana.fluxgearcore.item.ItemFluxGear;
 import mortvana.fluxgearcore.util.helper.ItemHelper;
 
 import mortvana.projectfluxgear.block.basic.*;
-import mortvana.projectfluxgear.item.tool.ItemProtoSonicWrench;
+import mortvana.projectfluxgear.item.tool.ItemFluxGearProtoSonicWrench;
 import mortvana.projectfluxgear.block.BlockTemporalPylon;
 import mortvana.projectfluxgear.block.BlockWoodenTileEntity;
 
@@ -53,6 +53,7 @@ public class FluxGearContent implements IFuelHandler{
         machineCraftingRecipes();
         otherCraftingRecipes();
 	    furnaceRecipes();
+        registerPoorOres();
     }
 
     public void postInit() {
@@ -456,11 +457,10 @@ public class FluxGearContent implements IFuelHandler{
     }
 
     public void loadItems() {
-        itemMaterial = (FluxGearItem) new FluxGearItem("projectfluxgear").setUnlocalizedName("material").setCreativeTab(ProjectFluxGear.tab);
-
-        itemBucket = (FluxGearBucket) new FluxGearBucket("projectfluxgear").setUnlocalizedName("bucket").setCreativeTab(ProjectFluxGear.tab);
+        itemMaterial = (ItemFluxGear) new ItemFluxGear("projectfluxgear").setUnlocalizedName("material").setCreativeTab(ProjectFluxGear.tabResources);
+        itemBucket = (BucketFluxGear) new BucketFluxGear("projectfluxgear").setUnlocalizedName("bucket").setCreativeTab(ProjectFluxGear.tabResources);
         //itemFood =
-        itemInteractive = (FluxGearItem) new FluxGearItem("projectfluxgear").setUnlocalizedName("interactive").setCreativeTab(ProjectFluxGear.tab);
+        itemInteractive = (ItemFluxGear) new ItemFluxGear("projectfluxgear").setUnlocalizedName("interactive").setCreativeTab(ProjectFluxGear.tabResources);
 
         //Buckets TODO-- Redo
         bucketGhastTears = itemBucket.addItem(0, "bucketGhastTears", 1);
@@ -495,8 +495,7 @@ public class FluxGearContent implements IFuelHandler{
         ingotPlatinum = itemMaterial.addOreDictItem(9, "ingotPlatinum");
         ingotPalladium = itemMaterial.addOreDictItem(10, "ingotPalladium");
         ingotMolybdenum = itemMaterial.addOreDictItem(11, "ingotMolybdenum");
-        ingotCobalt = itemMaterial.addItem(12, "ingotCobalt");
-        OreDictionary.registerOre("ingotNaturalCobalt", ingotCobalt);
+        ingotCobalt = itemMaterial.addOreDictItem(12, "ingotCobalt", "ingotNaturalCobalt");
         ingotTungsten = itemMaterial.addOreDictItem(13, "ingotTungsten");
         ingotTitanium = itemMaterial.addOreDictItem(14, "ingotTitanium");
         ingotChromium = itemMaterial.addOreDictItem(15, "ingotChromium");
@@ -525,16 +524,13 @@ public class FluxGearContent implements IFuelHandler{
         ingotElectrum = itemMaterial.addOreDictItem(38, "ingotElectrum");
         ingotDullRedsolder = itemMaterial.addOreDictItem(39, "ingotDullRedsolder");
         ingotRedsolder = itemMaterial.addOreDictItem(40, "ingotRedsolder");
-        ingotHCSteel = itemMaterial.addItem(41, "ingotHighCarbonSteel");
-        OreDictionary.registerOre("ingotSteel", ingotHCSteel);
-        ingotSteel = itemMaterial.addItem(42, "ingotSteel");
-        OreDictionary.registerOre("ingotRefinedSteel", ingotSteel);
+        ingotHCSteel = itemMaterial.addOreDictItem(41, "ingotHighCarbonSteel", "ingotSteel");
+        ingotSteel = itemMaterial.addOreDictItem(42, "ingotSteel", "ingotRefinedSteel");
         ingotHSLA = itemMaterial.addOreDictItem(43, "ingotHSLA");
         ingotStainlessSteel = itemMaterial.addOreDictItem(44, "ingotStainlessSteel");
         ingotTungstenSteel = itemMaterial.addOreDictItem(45, "ingotTungstenSteel");
         ingotEletriplatinum = itemMaterial.addOreDictItem(46, "ingotElectriplatinum");
-        ingotMithril = itemMaterial.addItem(47, "ingotMithril");
-        OreDictionary.registerOre("ingotMitrilBronze", ingotMithril);
+        ingotMithril = itemMaterial.addOreDictItem(47, "ingotMithril", "ingotMitrilBronze");
         ingotTechnomancer = itemMaterial.addOreDictItem(48, "ingotTechnomancer");
         ingotTechnomancerResonant = itemMaterial.addOreDictItem(49, "ingotTechnomancerResonant");
         ingotTungstenBlazing = itemMaterial.addOreDictItem(50, "ingotTungstenBlazing");
@@ -575,10 +571,8 @@ public class FluxGearContent implements IFuelHandler{
         ingotCobaltMagnet = itemMaterial.addOreDictItem(85, "ingotCobaltMagnetic");
         ingotNickelMagnet = itemMaterial.addOreDictItem(86, "ingotNickelMagnetic");
         ingotInvarMagnet = itemMaterial.addOreDictItem(87, "ingotInvarMagnetic");
-        ingotHCSteelMagnet = itemMaterial.addItem(88, "ingotHighCarbonSteelMagnetic");
-        OreDictionary.registerOre("ingotSteelMagnetic", ingotHCSteelMagnet);
-        ingotSteelMagnet = itemMaterial.addItem(89, "ingotSteelMagnetic");
-        OreDictionary.registerOre("ingotRefinedSteelMagnetic", ingotSteelMagnet);
+        ingotHCSteelMagnet = itemMaterial.addOreDictItem(88, "ingotHighCarbonSteelMagnetic", "ingotSteelMagnetic");
+        ingotSteelMagnet = itemMaterial.addOreDictItem(89, "ingotSteelMagnetic", "ingotRefinedSteelMagnetic");
         ingotHSLAMagnet = itemMaterial.addOreDictItem(90, "ingotHSLAMagnetic");
         //* Amber       x+091
         ingotNichrome = itemMaterial.addOreDictItem(92, "ingotNichrome");
@@ -619,8 +613,7 @@ public class FluxGearContent implements IFuelHandler{
         dustPlatinum = itemMaterial.addOreDictItem(209, "dustPlatinum");
         dustPalladium = itemMaterial.addOreDictItem(210, "dustPalladium");
         dustMolybdenum = itemMaterial.addOreDictItem(211, "dustMolybdenum");
-        dustCobalt = itemMaterial.addItem(212, "dustCobalt");
-        OreDictionary.registerOre("dustNaturalCobalt", dustCobalt);
+        dustCobalt = itemMaterial.addOreDictItem(212, "dustCobalt", "dustNaturalCobalt");
         dustTungsten = itemMaterial.addOreDictItem(213, "dustTungsten");
         dustTitanium = itemMaterial.addOreDictItem(214, "dustTitanium");
         dustChromium = itemMaterial.addOreDictItem(215, "dustChromium");
@@ -649,16 +642,13 @@ public class FluxGearContent implements IFuelHandler{
         dustElectrum = itemMaterial.addOreDictItem(238, "dustElectrum");
         dustDullRedsolder = itemMaterial.addOreDictItem(239, "dustDullRedsolder");
         dustRedsolder = itemMaterial.addOreDictItem(240, "dustRedsolder");
-        dustHCSteel = itemMaterial.addItem(241, "dustHighCarbonSteel");
-        OreDictionary.registerOre("dustSteel", dustHCSteel);
-        dustSteel = itemMaterial.addItem(242, "dustSteel");
-        OreDictionary.registerOre("dustRefinedSteel", dustSteel);
+        dustHCSteel = itemMaterial.addOreDictItem(241, "dustHighCarbonSteel", "dustSteel");
+        dustSteel = itemMaterial.addOreDictItem(242, "dustSteel", "dustRefinedSteel");
         dustHSLA = itemMaterial.addOreDictItem(243, "dustHSLA");
         dustStainlessSteel = itemMaterial.addOreDictItem(244, "dustStainlessSteel");
         dustTungstenSteel = itemMaterial.addOreDictItem(245, "dustTungstenSteel");
         dustEletriplatinum = itemMaterial.addOreDictItem(246, "dustElectriplatinum");
-        dustMithril = itemMaterial.addItem(247, "dustMithril");
-        OreDictionary.registerOre("dustMitrilBronze", dustMithril);
+        dustMithril = itemMaterial.addOreDictItem(247, "dustMithril", "dustMitrilBronze");
         dustTechnomancer = itemMaterial.addOreDictItem(248, "dustTechnomancer");
         dustTechnomancerResonant = itemMaterial.addOreDictItem(249, "dustTechnomancerResonant");
         dustTungstenBlazing = itemMaterial.addOreDictItem(250, "dustTungstenBlazing");
@@ -897,41 +887,13 @@ public class FluxGearContent implements IFuelHandler{
 
 
     public void loadTools() {
-	    itemProtoSonicWrench = (ItemProtoSonicWrench) new ItemProtoSonicWrench().setUnlocalizedName("tool", "prototypeSonicWrench");
+	    itemProtoSonicWrench = (ItemFluxGearProtoSonicWrench) new ItemFluxGearProtoSonicWrench().setUnlocalizedName("tool", "prototypeSonicWrench");
         toolProtoSonicWrench = itemProtoSonicWrench.addItem(0, "protoSonicWrench");
     }
 
     //public void loadEnchants() {}
 
     //public void loadTiles() {}
-
-    public void aluminiumArc() {
-        OreDictionary.registerOre("ingotAluminum", ingotAluminium);
-        OreDictionary.registerOre("dustAluminum", dustAluminium);
-        //OreDictionary.registerOre("nuggetAluminum", nuggetAluminium);
-        OreDictionary.registerOre("ingotAluminumBrass", ingotAluminiumBrass);
-        OreDictionary.registerOre("dustAluminumBrass", dustAluminiumBrass);
-        //OreDictionary.registerOre("nuggetAluminumBrass", nuggetAluminiumBrass);
-        OreDictionary.registerOre("oreAluminum", oreBauxite);
-        OreDictionary.registerOre("blockAluminum", blockAluminium);
-
-        if (FluxGearConfig.cobaltAssimilation) {
-            OreDictionary.registerOre("ingotCobalt", ingotCobalt);
-            OreDictionary.registerOre("dustCobalt", dustCobalt);
-            //OreDictionary.registerOre("nuggetCobalt", nuggetCobalt);
-            OreDictionary.registerOre("oreCobalt", oreCobaltite);
-            OreDictionary.registerOre("blockCobalt", blockCobalt);
-        }
-
-        OreDictionary.registerOre("blockDalekanium", blockPolycarbide);
-
-
-        ItemHelper.addStorageRecipe(ingotAluminium, "nuggetAluminum");
-        ItemHelper.addReverseStorageRecipe(ingotAluminium, "blockAluminum");
-        ItemHelper.addReverseStorageRecipe(nuggetAluminium, "ingotAluminum");
-        ItemHelper.addStorageRecipe(blockAluminium, "ingotAluminum");
-        ItemHelper.addStorageRecipe(blockAluminiumBrass, "ingotAluminumBrass");
-    }
 
     public void metalCraftingRecipes() {
         //TODO-- UPDATE
@@ -1097,7 +1059,42 @@ public class FluxGearContent implements IFuelHandler{
         //GameRegistry.addSmelting(blockRust, new ItemStack(Blocks.iron_block, 1, 0), 0.0F);*/
     }
 
+    public void registerPoorOres() {
+        /*
+		*   if(FluxGearConfigWorld.generatePoor$ == 0 || (FluxGearConfigWorld.generatePoor$ == 2 && FluxGearData.isRailcraftLoaded == true))
+		*       MinecraftForge.ORE_GEN_BUS.register(new Poor$Generator);
+		*/
+    }
+
     //public void modIntegration() {}
+
+    public void aluminiumArc() {
+        OreDictionary.registerOre("ingotAluminum", ingotAluminium);
+        OreDictionary.registerOre("dustAluminum", dustAluminium);
+        //OreDictionary.registerOre("nuggetAluminum", nuggetAluminium);
+        OreDictionary.registerOre("ingotAluminumBrass", ingotAluminiumBrass);
+        OreDictionary.registerOre("dustAluminumBrass", dustAluminiumBrass);
+        //OreDictionary.registerOre("nuggetAluminumBrass", nuggetAluminiumBrass);
+        OreDictionary.registerOre("oreAluminum", oreBauxite);
+        OreDictionary.registerOre("blockAluminum", blockAluminium);
+
+        if (FluxGearConfig.cobaltAssimilation) {
+            OreDictionary.registerOre("ingotCobalt", ingotCobalt);
+            OreDictionary.registerOre("dustCobalt", dustCobalt);
+            //OreDictionary.registerOre("nuggetCobalt", nuggetCobalt);
+            OreDictionary.registerOre("oreCobalt", oreCobaltite);
+            OreDictionary.registerOre("blockCobalt", blockCobalt);
+        }
+
+        OreDictionary.registerOre("blockDalekanium", blockPolycarbide);
+
+
+        ItemHelper.addStorageRecipe(ingotAluminium, "nuggetAluminum");
+        ItemHelper.addReverseStorageRecipe(ingotAluminium, "blockAluminum");
+        ItemHelper.addReverseStorageRecipe(nuggetAluminium, "ingotAluminum");
+        ItemHelper.addStorageRecipe(blockAluminium, "ingotAluminum");
+        ItemHelper.addStorageRecipe(blockAluminiumBrass, "ingotAluminumBrass");
+    }
 
     public void registerDispenserHandlers() {
         BlockDispenser.dispenseBehaviorRegistry.putObject(FluxGearContent.itemBucket, new DispenserFilledBucketHandler());
@@ -1159,10 +1156,10 @@ public class FluxGearContent implements IFuelHandler{
     public static BlockFluidCoFHBase blockFluidBlood;
 
     // Base Items
-    public static FluxGearBucket itemBucket;
-    public static FluxGearItem itemMaterial;
-    public static FluxGearItem/*InteracivePFG*/ itemInteractive;
-    public static ItemProtoSonicWrench itemProtoSonicWrench;
+    public static BucketFluxGear itemBucket;
+    public static ItemFluxGear itemMaterial;
+    public static ItemFluxGear/*InteracivePFG*/ itemInteractive;
+    public static ItemFluxGearProtoSonicWrench itemProtoSonicWrench;
 
     //Primary Ore Blocks
     public static ItemStack oreChalcocite;      //Cu_2S

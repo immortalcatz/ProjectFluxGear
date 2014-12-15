@@ -12,12 +12,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.fluxgearcore.block.BlockFluxGear;
+import mortvana.fluxgearcore.block.EnumBlockType;
 import mortvana.fluxgearcore.util.helper.StringHelper;
 import mortvana.projectfluxgear.common.ProjectFluxGear;
 
 public class BlockEarthen extends BlockFluxGear {
 	public BlockEarthen() {
-		super(Material.clay, ProjectFluxGear.tab, "SOILORE");
+		super(Material.clay, ProjectFluxGear.tabResources, EnumBlockType.SOIL_ORE);
 		setBlockName("projectfluxgear.earthen");
 	}
 

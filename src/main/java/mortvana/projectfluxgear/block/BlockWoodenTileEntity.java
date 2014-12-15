@@ -14,7 +14,7 @@ public class BlockWoodenTileEntity extends InventoryBlock {
 
     public BlockWoodenTileEntity() {
         super(Material.wood);
-        setCreativeTab(ProjectFluxGear.tab).setHardness(2.0F).setStepSound(Block.soundTypeWood);
+        setCreativeTab(ProjectFluxGear.tabResources).setHardness(2.0F).setStepSound(Block.soundTypeWood);
     }
 
     @Override

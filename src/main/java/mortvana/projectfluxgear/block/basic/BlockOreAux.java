@@ -13,13 +13,14 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.fluxgearcore.block.BlockFluxGear;
+import mortvana.fluxgearcore.block.EnumBlockType;
 import mortvana.fluxgearcore.util.helper.StringHelper;
 import mortvana.projectfluxgear.common.ProjectFluxGear;
 
 public class BlockOreAux extends BlockFluxGear {
 
 	public BlockOreAux() {
-		super(Material.rock, ProjectFluxGear.tab, "ORE");
+		super(Material.rock, ProjectFluxGear.tabOres, EnumBlockType.ORE);
 		setBlockName("projectfluxgear.oreAux");
 	}
 

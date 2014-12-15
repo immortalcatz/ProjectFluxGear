@@ -36,7 +36,7 @@ public class CongealedBloodBlock extends Block implements ISoundProvider {
 	public CongealedBloodBlock(Material blockMaterial) {
 		super(Material.ground);
 
-		setCreativeTab(ProjectFluxGear.tab);
+		setCreativeTab(ProjectFluxGear.tabResources);
 		setBlockName("congealedBloodBlock");
 		setHardness(1); //TODO: Proper value for this.
 		setResistance(1);

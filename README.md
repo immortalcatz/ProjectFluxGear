@@ -51,3 +51,7 @@ The code of Project Flux Gear in source and/or binary is the intellectual proper
 - Most importantly, you MUST follow Wheaton's Law
 
 If you have queries about any license or the above support restrictions, drop by our IRC channel, #MortTech on irc.esper.net
+
+##Legal Stuff
+
+-As per terms of the Railcraft licence, I must state that I have used Railcraft code in creating the Poor Ores, all code from Railcraft is marked as such (and all utilities for Poor Ores are under mortvana.projectflugear.world.cjrepack).

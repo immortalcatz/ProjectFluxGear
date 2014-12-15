@@ -13,9 +13,9 @@ import net.minecraftforge.common.BiomeDictionary;
 
 import mortvana.projectfluxgear.common.FluxGearContent;
 
-public class WorldGenerator implements IWorldGenerator{
+public class FluxGearWorldGenerator implements IWorldGenerator{
 
-	public WorldGenerator() {
+	public FluxGearWorldGenerator() {
 		chalcocite = new WorldGenMinable(FluxGearContent.blockOreMain, 0, 10, Blocks.stone);
 		cassiterite = new WorldGenMinable(FluxGearContent.blockOreMain, 1, 9, Blocks.stone);
 		//TODO: Make Galena (55%) and Acanthite (45%) entwined (Total 17)
@@ -58,6 +58,7 @@ public class WorldGenerator implements IWorldGenerator{
 		//iridiumSands = new WorldGenDeposits(FluxGearContent.blockEarthen, 0, 1, Blocks.stone);
 
 	}
+
 
 
 	@Override
