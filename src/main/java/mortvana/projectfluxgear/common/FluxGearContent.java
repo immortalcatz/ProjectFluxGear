@@ -459,19 +459,34 @@ public class FluxGearContent implements IFuelHandler{
     public void loadItems() {
         itemMaterial = (ItemFluxGear) new ItemFluxGear("projectfluxgear").setUnlocalizedName("material").setCreativeTab(ProjectFluxGear.tabResources);
         itemBucket = (BucketFluxGear) new BucketFluxGear("projectfluxgear").setUnlocalizedName("bucket").setCreativeTab(ProjectFluxGear.tabResources);
-        //itemFood =
+        itemFood = (ItemFluxGear) new ItemFluxGear("projectfluxgear").setUnlocalizedName("food").setCreativeTab(ProjectFluxGear.tabResources);
         itemInteractive = (ItemFluxGear) new ItemFluxGear("projectfluxgear").setUnlocalizedName("interactive").setCreativeTab(ProjectFluxGear.tabResources);
 
-        //Buckets TODO-- Redo
+        //Buckets
         bucketGhastTears = itemBucket.addItem(0, "bucketGhastTears", 1);
         bucketLye = itemBucket.addItem(1, "bucketLye", 0);
         bucketAcid = itemBucket.addItem(2, "bucketAcid", 0);
         bucketEtchingAcid = itemBucket.addItem(3, "bucketEtchingAcid", 0);
         bucketSmog = itemBucket.addItem(4, "bucketSmog", 0);
         bucketBlood = itemBucket.addItem(5, "bucketBlood", 1);
-        bucketGelidPyrotheum = itemBucket.addItem(6, "bucketGelidPyrotheum", 2);
+        bucketPyrotheum = itemBucket.addItem(6, "bucketPyrotheum", 2);
+        bucketCyrotheum = itemBucket.addItem(7, "bucketCryotheum", 2);
+        bucketRedstone = itemBucket.addItem(8, "bucketRedstone", 1);
+        bucketGlowstone = itemBucket.addItem(9, "bucketGlowstone", 1);
+        bucketEnder = itemBucket.addItem(10, "bucketEnder", 2);
+        bucketCarbon = itemBucket.addItem(11, "bucketCarbon", 1);
+        bucketGelidPyrotheum = itemBucket.addItem(12, "bucketGelidPyrotheum", 3);
+        bucketEssence = itemBucket.addItem(13, "bucketEssence", 1);
+        bucketEctoplasm = itemBucket.addItem(14, "bucketEctoplasm", 1);
+        bucketRedWater = itemBucket.addItem(15, "bucketRedWater", 2);
+        bucketUnstableEctoplasm = itemBucket.addItem(16, "bucketUnstableEctoplasm", 2);
+        bucketAcidicEssence = itemBucket.addItem(17, "bucketAcidicEssence", 1);
+        bucketMercury = itemBucket.addItem(18, "bucketMercury", 1);
+        bucketGallium = itemBucket.addItem(19, "bucketGallium", 1);
+        bucketKiernandio = itemBucket.addItem(20, "bucketKiernandio", 2);
 
         //Food
+        foodMelonPan = itemFood.addItem(0, "foodMelonPan"/*3, 0.6F,*/);
 
         //Interactive
         dustThermite = itemInteractive.addOreDictItem(0, "dustThermite");
@@ -479,6 +494,7 @@ public class FluxGearContent implements IFuelHandler{
 
         loadIngots();
         loadDusts();
+        loadNuggets();
     }
 
     //0-199 Ingots and Gems
@@ -836,6 +852,9 @@ public class FluxGearContent implements IFuelHandler{
         //* Strontium   x+113
     }
 
+    //600-799 Gems
+    public void loadGems() {}
+
     //1000-1199 Gears
     public void loadGears() {
         /*gemMolybdenum = itemMaterial.addOreDictItem(53, "gemMolybdenum");
@@ -1099,6 +1118,7 @@ public class FluxGearContent implements IFuelHandler{
         //GameRegistry.addRecipe(new ShapelessOreRecipe(bucketAcid, Items.water_bucket, Items.gunpowder));
         //GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(itemInteractive, 1, 0), "dustRust", "dustAluminium"));
         GameRegistry.addRecipe(new ShapedOreRecipe(toolProtoSonicWrench, "B B", "ADA", " B ", 'B', "ingotBronze", 'A', "ingotAluminium", 'D', "gemDioptase"));
+        GameRegistry.addRecipe();
         //GameRegistry.addRecipe(new ShapedOreRecipe(toolProtoSonicWrench, "B B", "WDW", " B ", 'B', "ingotMithrilBronze", 'W', "ingotTungsten", 'D', "gemDioptase"));
     }
 
@@ -1207,6 +1227,13 @@ public class FluxGearContent implements IFuelHandler{
     public static BlockPoorOreMain blockPoorOreMain;
     public static BlockPoorOreAux blockPoorOreAux;
 
+    // Base Items
+    public static BucketFluxGear itemBucket;
+    public static ItemFluxGear itemMaterial;
+    public static ItemFluxGear/*InteracivePFG*/ itemInteractive;
+    public static ItemFluxGear /*FoodPFG*/ itemFood;
+    public static ItemFluxGearProtoSonicWrench itemProtoSonicWrench;
+
     //public static BlockTileEntity blockTileEntity;
 
     // Fluids
@@ -1232,6 +1259,7 @@ public class FluxGearContent implements IFuelHandler{
     public static Fluid fluidAcidicEssence;
     public static Fluid fluidMercury;
     public static Fluid fluidGallium;
+    public static Fluid fluidKiernandio;
 
     // Fluid Blocks
     public static BlockFluidCoFHBase blockFluidGhastTear;
@@ -1240,11 +1268,6 @@ public class FluxGearContent implements IFuelHandler{
     public static BlockFluidCoFHBase blockFluidAcid;
     public static BlockFluidCoFHBase blockFluidBlood;
 
-    // Base Items
-    public static BucketFluxGear itemBucket;
-    public static ItemFluxGear itemMaterial;
-    public static ItemFluxGear/*InteracivePFG*/ itemInteractive;
-    public static ItemFluxGearProtoSonicWrench itemProtoSonicWrench;
 
     //Primary Ore Blocks
     public static ItemStack oreChalcocite;      //Cu_2S
@@ -1399,7 +1422,23 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack bucketEtchingAcid;
     public static ItemStack bucketSmog;
     public static ItemStack bucketBlood;
+    public static ItemStack bucketPyrotheum;
+    public static ItemStack bucketCyrotheum;
+    public static ItemStack bucketGlowstone;
+    public static ItemStack bucketRedstone;
+    public static ItemStack bucketEnder;
+    public static ItemStack bucketCarbon;
     public static ItemStack bucketGelidPyrotheum;
+    public static ItemStack bucketEssence;
+    public static ItemStack bucketEctoplasm;
+    public static ItemStack bucketRedWater;
+    public static ItemStack bucketUnstableFlowstone;
+    public static ItemStack bucketEmptyWater;
+    public static ItemStack bucketUnstableEctoplasm;
+    public static ItemStack bucketAcidicEssence;
+    public static ItemStack bucketMercury;
+    public static ItemStack bucketGallium;
+    public static ItemStack bucketKiernandio;
 
     // Standard Ingots
     public static ItemStack ingotCopper;
@@ -1623,7 +1662,6 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack dustBlizz;
     public static ItemStack dustCyrotheum;
     public static ItemStack dustPyrotheum;
-    public static ItemStack dustMana;
     public static ItemStack dustIceflame;
     public static ItemStack dustKroostyl;
     public static ItemStack dustYttrium;
@@ -1784,28 +1822,7 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack partServoMotor;
     public static ItemStack partSolenoid;
     public static ItemStack partGearCore;
-
-    // Capacitors
-    public static ItemStack partCapacitorLv1;
-
-    // White Point Stars and Void Inferno Stars
-    public static ItemStack shardWhitePointStar;
-    public static ItemStack gemWhitePointStar;
-    public static ItemStack gemWhitePointStarInfused;
-    public static ItemStack shardVoidInfernoStar;
-    public static ItemStack shardVoidInfernoStarActive;
-    public static ItemStack shardVoidInfernoStarEnergized;
-    public static ItemStack shardVoidInfernoStarResonant;
-    public static ItemStack shardVoidInfernoStarColdfire;
-    public static ItemStack shardVoidInfernoStarQuantum;
-    public static ItemStack shardVoidInfernoStarEntangled;
-    public static ItemStack gemVoidInfernoStarDull;
-    public static ItemStack gemVoidInfernoStar;
-    public static ItemStack gemVoidInfernoStarFluxed;
-
-    // Magnetar and Quasar Parts
-
-    // More Components
+    public static ItemStack partGearBushing;
     public static ItemStack coilHeatingRedstone;
     public static ItemStack coilHeatingCupronickel;
     public static ItemStack coilSteel;
@@ -1813,7 +1830,6 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack partGreenLED;
     public static ItemStack partBlueLED;
     public static ItemStack partUltravioletLight;
-    public static ItemStack panelSteel;
     public static ItemStack partFluxResonator;
     public static ItemStack partTankInternal;
     public static ItemStack partTankPressurized;
@@ -1852,6 +1868,26 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack partLaserDetector;
     public static ItemStack partOblivionContinuum;
 
+    // Capacitors
+    public static ItemStack partCapacitorLv1;
+
+    // White Point Stars and Void Inferno Stars
+    public static ItemStack shardWhitePointStar;
+    public static ItemStack gemWhitePointStar;
+    public static ItemStack gemWhitePointStarInfused;
+    public static ItemStack shardVoidInfernoStar;
+    public static ItemStack shardVoidInfernoStarActive;
+    public static ItemStack shardVoidInfernoStarEnergized;
+    public static ItemStack shardVoidInfernoStarResonant;
+    public static ItemStack shardVoidInfernoStarColdfire;
+    public static ItemStack shardVoidInfernoStarQuantum;
+    public static ItemStack shardVoidInfernoStarEntangled;
+    public static ItemStack gemVoidInfernoStarDull;
+    public static ItemStack gemVoidInfernoStar;
+    public static ItemStack gemVoidInfernoStarFluxed;
+
+    // Magnetar and Quasar Parts
+
     // Random Stuff
     public static ItemStack feeshSkeleton;
 
@@ -1859,6 +1895,8 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack dustThermite;
     public static ItemStack coagulantAlum;
 
+    // Food
+    public static ItemStack foodMelonPan;
 
     public static ItemStack toolProtoSonicWrench;
 
