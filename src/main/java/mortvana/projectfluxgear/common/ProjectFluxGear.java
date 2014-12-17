@@ -8,7 +8,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-import mortvana.fluxgearcore.util.FluxGearData;
+import mortvana.fluxgearcore.common.FluxGearCore;
 import mortvana.fluxgearcore.util.handler.ConfigHandler;
 import mortvana.fluxgearcore.util.remapper.Remapper;
 
@@ -76,7 +76,7 @@ public class ProjectFluxGear {
         //thermalRemapper = new Remapper(Loader.instance().activeModContainer());
         MinecraftForge.EVENT_BUS.register(this);
 
-        config.setConfiguration(new Configuration(new File(FluxGearData.configDir, "Mortvana")));
+        config.setConfiguration(new Configuration(new File(FluxGearCore.configDir, "Mortvana")));
 
         compat.preInitCompat();
         compat.preInitIMC();
