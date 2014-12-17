@@ -9,6 +9,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import mortvana.fluxgearcore.common.FluxGearCore;
+import mortvana.fluxgearcore.legacy.ContentRegistry;
 import mortvana.fluxgearcore.util.handler.ConfigHandler;
 import mortvana.fluxgearcore.util.remapper.Remapper;
 
@@ -66,8 +67,8 @@ public class ProjectFluxGear {
     public static final String worldGenInternal = "assets/projectfluxgear/world/ProjectFluxGear-Ores.json";
 
     // Doctor Octoartifact, BLAAHHHH...
-    /*public static ArrayList<String> sounds;// = CongealedBloodBlock.sounds;
-    public static ContentRegistry weirdRegistry;*/
+    //public static ArrayList<String> sounds;// = CongealedBloodBlock.sounds;
+    //public static ContentRegistry weirdRegistry;
 
     /** Initialization Sequence */
     @EventHandler
@@ -84,10 +85,8 @@ public class ProjectFluxGear {
 
         GameRegistry.registerWorldGenerator(new FluxGearWorldGenerator(), 1);
 
-        //Erroneous Errors of Erroneousness
-        /*weirdRegistry = new ContentRegistry(config, logger, tabWeirdScience);
-        MinecraftForge.EVENT_BUS.register(weirdRegistry.bucketMan);
-        WeirdScienceContent.RegisterContent(config, weirdRegistry, event);*/
+        // Hey, listen. Hey, listen. Hey-- ARTIFACT DETECTED, EeEEXXxTtTEEeRRrMmMmIiIiNnNAAaA*boom*
+        //MinecraftForge.EVENT_BUS.register(weirdRegistry.bucketMan);
 
         if (FluxGearConfig.achievementsEnabled) {
             FluxGearAchievements.addAchievements();
@@ -162,8 +161,8 @@ public class ProjectFluxGear {
         }
     }*/
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public void chunkDataSave (ChunkDataEvent.Save event) {
         event.getData().setBoolean("ProjectFluxGear.Retrogen", true);
-    }
+    }*/
 }

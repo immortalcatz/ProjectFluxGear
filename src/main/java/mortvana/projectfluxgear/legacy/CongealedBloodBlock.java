@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.legacy.block;
+package mortvana.projectfluxgear.legacy;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.legacy.tileentity;
+package mortvana.projectfluxgear.legacy;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.config.Configuration;

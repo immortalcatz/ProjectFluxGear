@@ -1,16 +1,15 @@
-package mortvana.projectfluxgear.legacy.block;
+package mortvana.projectfluxgear.legacy;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
-import mortvana.fluxgearcore.legacy.block.tile.TileEntityFuelBurner;
 import mortvana.fluxgearcore.legacy.block.BlockContainerBase;
 
 public class BlockFuelBurner extends BlockContainerBase {
 
-    public BlockFuelBurner(Configuration config, String name, Material material) {
-		super(config, name, material);
+    public BlockFuelBurner(String name, Material material) {
+		super(name, material);
 	}
 
 	@Override

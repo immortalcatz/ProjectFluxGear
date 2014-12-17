@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.legacy.block;
+package mortvana.projectfluxgear.legacy;
 
 import java.util.Random;
 
@@ -23,7 +23,6 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.util.RotationHelper;
 import net.minecraftforge.fluids.Fluid;
-import mortvana.projectfluxgear.legacy.tileentity.TileEntityNitrateEngine;
 import mortvana.fluxgearcore.legacy.block.BlockContainerBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -185,7 +184,7 @@ public class BlockNitrateEngine extends BlockContainerBase implements IBlockMeta
 		world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) & ~8, 2);
 	}
 
-	public BlockNitrateEngine(Configuration config, String name, Material material) {
-		super(config, name, material);
+	public BlockNitrateEngine(String name, Material material) {
+		super(name, material);
 	}
 }

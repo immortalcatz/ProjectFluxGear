@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.legacy.block;
+package mortvana.projectfluxgear.legacy;
 
 import java.lang.reflect.Field;
 
@@ -17,7 +17,7 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidBlock;
-import mortvana.projectfluxgear.legacy.tileentity.TileEntityBloodDynamo;
+import mortvana.projectfluxgear.legacy.TileEntityBloodDynamo;
 
 public class BlockBloodEngine extends BlockMetaTank {
 	
@@ -106,17 +106,12 @@ public class BlockBloodEngine extends BlockMetaTank {
 		return false;
 	}
 
-	public BlockBloodEngine(Configuration config, String name, Material material) {
-		super(config, name, material);
+	public BlockBloodEngine(String name, Material material) {
+		super(name, material);
 	}
 
-	public BlockBloodEngine(Configuration config, String name) {
-		super(config, name);
+	public BlockBloodEngine(String name) {
+		super(name);
 	}
 
-	public BlockBloodEngine(Material material) {
-		super(material);
-	}
-
-	
 }

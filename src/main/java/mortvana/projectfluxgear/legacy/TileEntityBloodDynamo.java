@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.legacy.tileentity;
+package mortvana.projectfluxgear.legacy;
 
 import mortvana.fluxgearcore.legacy.block.tile.TileEntityGenerator;
 import net.minecraft.nbt.NBTTagCompound;

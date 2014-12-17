@@ -1,8 +1,9 @@
-package mortvana.projectfluxgear.legacy.block;
+package mortvana.projectfluxgear.legacy;
 
 import java.util.Random;
 
 //import mortvana.core.block.IBlockMetaPower;
+import mortvana.fluxgearcore.util.helper.BlockHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -30,23 +31,25 @@ import cpw.mods.fml.relauncher.SideOnly;
 //to a BlockContainerRotatable or something like that.
 public class BlockGunpowderEngine extends BlockContainerBase {
 
-	public BlockGunpowderEngine(Configuration config, String name, Material material) {
-		super(config, name, material);
+	public BlockGunpowderEngine(String name, Material material) {
+		super(name, material);
 	}
 
 	int teCapacity = 0;
 	int tePerTick = 0;
 	int tePerDirt = 0;
 
-	private final Random itemDropRand = new Random(); // Randomize item drop
-														// direction.
+	private final Random itemDropRand = new Random(); // Randomize item drop direction.
 
 	@SideOnly(Side.CLIENT)
 	public IIcon frontIcon;
+
 	@SideOnly(Side.CLIENT)
 	public IIcon frontIconPowered;
+
 	@SideOnly(Side.CLIENT)
 	public IIcon topIcon;
+
 	@SideOnly(Side.CLIENT)
 	public IIcon sidesIcon;
 
@@ -73,7 +76,7 @@ public class BlockGunpowderEngine extends BlockContainerBase {
 	}
 
 	protected static void initRotate(BlockGunpowderEngine b) {
-		//BlockHelper.rotateType[b.blockID] = BlockHelper.RotationType.CHEST;
+		//BlockHelper.rotateType[b] = BlockHelper.RotationType.CHEST;
 	}
 
 	@Override

@@ -1,6 +1,7 @@
-package mortvana.projectfluxgear.legacy.block;
+package mortvana.projectfluxgear.legacy;
 
 import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
+import mortvana.projectfluxgear.common.config.FluxGearConfig;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -11,23 +12,22 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import mortvana.projectfluxgear.legacy.tileentity.TileEntityBloodDonation;
+import mortvana.projectfluxgear.legacy.TileEntityBloodDonation;
 import mortvana.fluxgearcore.legacy.ContentRegistry;
 
 public class BlockBloodDonation extends BlockMetaTank {
 	
 	private static Fluid bloodFluid;
-	private static int mbPerDonation;
-	private static int dmgPerDonation;
+	static FluxGearConfig cfg;
 
 	public static void setFluid(Fluid newfluid) {
 		bloodFluid = newfluid;
 	}
 	public static void setDamagePer(int setDmg) {
-		dmgPerDonation = setDmg;
+		cfg.dmgPerBloodDonation = setDmg;
 	}
 	public static void setDonationAmt(int setAmt) {
-		mbPerDonation = setAmt;
+		cfg.mbPerBloodDonation = setAmt;
 	}
 
 	@Override
@@ -81,21 +81,16 @@ public class BlockBloodDonation extends BlockMetaTank {
 			//The player is not holding a bucket.
 			//Try to harm the player. Bucketlessness is a sin.
 		    float previousPlayerHealth = player.getHealth();
-			player.attackEntityFrom(DamageSource.magic, (float)dmgPerDonation);
+			player.attackEntityFrom(DamageSource.magic, (float)cfg.dmgPerBloodDonation);
 			//If the player has taken damage, fill the tank. (Prevent cheesing via fakeplayers.)
 			if(((player.getHealth() < previousPlayerHealth) || player.capabilities.isCreativeMode) && (donationEntity != null)) {
-				donationEntity.fillFromBlock(new FluidStack(bloodFluid, mbPerDonation), true);
+				donationEntity.fillFromBlock(new FluidStack(bloodFluid, cfg.mbPerBloodDonation), true);
 			}
 		    return true;
 		}
 	}
 
-	public void doConfig(Configuration config, ContentRegistry cr) {
-		mbPerDonation = config.get("Blood", "Blood Donation Station milibuckets of blood per donation", 500).getInt();
-		dmgPerDonation = config.get("Blood", "Blood Donation Station damage per donation", 2).getInt();
-	}
-
-	public BlockBloodDonation(Configuration config, String name, Material material) {
-		super(config, name, material);
+	public BlockBloodDonation(String name, Material material) {
+		super(name, material);
 	}
 }
