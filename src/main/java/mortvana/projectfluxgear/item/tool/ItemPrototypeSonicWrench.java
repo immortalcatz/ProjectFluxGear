@@ -34,7 +34,7 @@ import pneumaticCraft.api.block.IPneumaticWrenchable;
 /*
  * Currently Works as:
  * A Decent Weapon
- * Team Magnequasar Standrd IOmniwrench:
+ * Flux Gear Standard IOmniwrench:
  *     CoFH Hammer (MFR or TE)
  *     BuildCraft Wrench
  *     Project:Red Screwdriver
@@ -46,25 +46,25 @@ import pneumaticCraft.api.block.IPneumaticWrenchable;
  * PneumaticCraft Pneumatic Wrench
  *
  * Planned to Work as:
- * Professor Flaxbeard's Wondrous Steam Power Mod Wrench (Eventually)
- * Extra Trees Hammer (When I can figure out how to do it without the API)
+ * Professor Flaxbeard's Wondrous Steam Power Mod Wrench (Tonight [12-19-2014])
+ * Extra Trees Hammer (When I can figure out how to do it without the API, well BON time tonight... [12-19-2014])
+ * Mekanism Wrench (Tonight [12-19-2014])
  * Carpenter's Blocks Chisel (Once I add modes)
  * Mekanism Configurator (Once I add modes)
  * Enhanced Portals Painter (Once I add modes)
  * Thaumcraft Wand (For Rotations)
- * BiblioCraft Screwgun (When I can figure out how to do it without the API)
+ * BiblioCraft Screwgun (When I can figure out how to do it without the API, or maybe BON...)
  * Advanced EnderIO Support (Sometime in the future?)
  * BluePower Screwdriver (NO SCREWDRIVER API, MAYBE EVENTUALLY)
- * Funky Locomotion Wrench?
  *
  * May Work as:
- * RotaryCraft Screwdriver (If Reika makes stuff streamlined enough to integrate)
+ * RotaryCraft Screwdriver (If Reika made stuff streamlined enough to integrate, maybe in 1.8...)
  */
 
-public class ItemFluxGearProtoSonicWrench extends ItemFluxGear implements ICarpentersHammer, IOmniwrench {
+public class ItemPrototypeSonicWrench extends ItemFluxGear implements ICarpentersHammer, IOmniwrench {
 
-	public ItemFluxGearProtoSonicWrench() {
-		super("thermaltinkerer");
+	public ItemPrototypeSonicWrench() {
+		super("projectfluxgear");
 		setCreativeTab(ProjectFluxGear.tabResources);
 		setMaxStackSize(1);
 	}
@@ -214,32 +214,32 @@ public class ItemFluxGearProtoSonicWrench extends ItemFluxGear implements ICarpe
 
 	/* IToolCrowbar (RailCraft) */
 	@Override
-	public boolean canWhack(EntityPlayer player, ItemStack crowbar, int x, int y, int z) {
+	public boolean canWhack(EntityPlayer player, ItemStack wrench, int x, int y, int z) {
 		return true;
 	}
 
 	@Override
-	public void onWhack(EntityPlayer player, ItemStack crowbar, int x, int y, int z) {
+	public void onWhack(EntityPlayer player, ItemStack wrench, int x, int y, int z) {
 		player.swingItem();
 	}
 
 	@Override
-	public boolean canLink(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
+	public boolean canLink(EntityPlayer player, ItemStack wrench, EntityMinecart cart) {
 		return player.isSneaking();
 	}
 
 	@Override
-	public void onLink(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
+	public void onLink(EntityPlayer player, ItemStack wrench, EntityMinecart cart) {
 		player.swingItem();
 	}
 
 	@Override
-	public boolean canBoost(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
+	public boolean canBoost(EntityPlayer player, ItemStack wrench, EntityMinecart cart) {
 		return !player.isSneaking();
 	}
 
 	@Override
-	public void onBoost(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
+	public void onBoost(EntityPlayer player, ItemStack wrench, EntityMinecart cart) {
 		player.swingItem();
 	}
 
@@ -254,12 +254,12 @@ public class ItemFluxGearProtoSonicWrench extends ItemFluxGear implements ICarpe
 
 	/* IToolHammer (CoFH Mods) */
 	@Override
-	public boolean isUsable(ItemStack itemStack, EntityLivingBase entityLivingBase, int i, int i2, int i3) {
+	public boolean isUsable(ItemStack wrench, EntityLivingBase entityLiving, int x, int y, int z) {
 		return true;
 	}
 
 	@Override
-	public void toolUsed(ItemStack itemStack, EntityLivingBase entityLivingBase, int i, int i2, int i3) {}
+	public void toolUsed(ItemStack wrench, EntityLivingBase entityLiving, int x, int y, int z) {}
 
 	/* IAEWrench (Applied Energistics 2) */
 	@Override
@@ -269,7 +269,7 @@ public class ItemFluxGearProtoSonicWrench extends ItemFluxGear implements ICarpe
 
 	/* IWrench (Hairy Spice) */
 	@Override
-	public boolean isWrench(ItemStack is) {
+	public boolean isWrench(ItemStack wrench) {
 		return true;
 	}
 }

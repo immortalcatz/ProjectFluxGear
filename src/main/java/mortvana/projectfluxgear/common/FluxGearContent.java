@@ -17,6 +17,7 @@ import mortvana.projectfluxgear.block.basic.itemblock.*;
 import mortvana.projectfluxgear.common.config.FluxGearConfig;
 import mortvana.projectfluxgear.fluid.BlockFluidAcid;
 import mortvana.projectfluxgear.fluid.BlockFluidSmog;
+import mortvana.projectfluxgear.item.ItemInteractivePFG;
 import mortvana.projectfluxgear.legacy.*;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.material.Material;
@@ -26,7 +27,6 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -37,7 +37,7 @@ import mortvana.fluxgearcore.item.ItemFluxGear;
 import mortvana.fluxgearcore.util.helper.ItemHelper;
 
 import mortvana.projectfluxgear.block.basic.*;
-import mortvana.projectfluxgear.item.tool.ItemFluxGearProtoSonicWrench;
+import mortvana.projectfluxgear.item.tool.ItemPrototypeSonicWrench;
 import mortvana.projectfluxgear.block.BlockTemporalPylon;
 import mortvana.projectfluxgear.block.BlockWoodenTileEntity;
 
@@ -472,8 +472,8 @@ public class FluxGearContent implements IFuelHandler{
         itemMaterial = (ItemFluxGear) new ItemFluxGear("projectfluxgear").setUnlocalizedName("material").setCreativeTab(ProjectFluxGear.tabResources);
         itemBucket = (BucketFluxGear) new BucketFluxGear("projectfluxgear").setUnlocalizedName("bucket").setCreativeTab(ProjectFluxGear.tabResources);
         itemFood = (ItemFluxGear) new ItemFluxGear("projectfluxgear").setUnlocalizedName("food").setCreativeTab(ProjectFluxGear.tabResources);
-        itemInteractive = (ItemFluxGear) new ItemFluxGear("projectfluxgear").setUnlocalizedName("interactive").setCreativeTab(ProjectFluxGear.tabResources);
-        itemProtoSonicWrench = (ItemFluxGearProtoSonicWrench) new ItemFluxGearProtoSonicWrench().setUnlocalizedName("tool", "prototypeSonicWrench");
+        itemInteractive = (ItemInteractivePFG) new ItemInteractivePFG().setUnlocalizedName("interactive").setCreativeTab(ProjectFluxGear.tabResources);
+        itemProtoSonicWrench = (ItemPrototypeSonicWrench) new ItemPrototypeSonicWrench().setUnlocalizedName("tool", "prototypeSonicWrench");
 
         //Buckets
         bucketGhastTears = itemBucket.addItem(0, "bucketGhastTears", 1);
@@ -1259,9 +1259,9 @@ public class FluxGearContent implements IFuelHandler{
     // Base Items
     public static BucketFluxGear itemBucket;
     public static ItemFluxGear itemMaterial;
-    public static ItemFluxGear/*InteracivePFG*/ itemInteractive;
+    public static ItemInteractivePFG itemInteractive;
     public static ItemFluxGear /*FoodPFG*/ itemFood;
-    public static ItemFluxGearProtoSonicWrench itemProtoSonicWrench;
+    public static ItemPrototypeSonicWrench itemProtoSonicWrench;
 
     //public static BlockTileEntity blockTileEntity;
 
@@ -1943,7 +1943,8 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack temporalPylon;
     public static ItemStack namingTable;
 
-    public static final void RegisterContent (Configuration config, ContentRegistry cr) {
+    //Pile of Weird Science Legacy Code
+    public static final void RegisterContent (ContentRegistry cr) {
         //Constants.
         final int smogDetailDefault = 8;
         //Init fluids.
