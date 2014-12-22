@@ -1,24 +1,7 @@
 package mortvana.projectfluxgear.common;
 
-import cofh.core.fluid.BlockFluidCoFHBase;
+import java.util.ArrayList;
 
-import cpw.mods.fml.common.IFuelHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
-
-import mortvana.fluxgearcore.item.tool.BucketFluxGear;
-import mortvana.fluxgearcore.legacy.ContentRegistry;
-import mortvana.fluxgearcore.legacy.block.BlockBase;
-import mortvana.fluxgearcore.legacy.fluid.BlockFluidClassicWS;
-import mortvana.fluxgearcore.legacy.util.BlockFluidReactive;
-import mortvana.fluxgearcore.util.chemistry.reaction.ReactionSpec;
-import mortvana.fluxgearcore.util.handler.DispenserEmptyBucketHandler;
-import mortvana.fluxgearcore.util.handler.DispenserFilledBucketHandler;
-import mortvana.projectfluxgear.block.basic.itemblock.*;
-import mortvana.projectfluxgear.common.config.FluxGearConfig;
-import mortvana.projectfluxgear.fluid.BlockFluidAcid;
-import mortvana.projectfluxgear.fluid.BlockFluidSmog;
-import mortvana.projectfluxgear.item.ItemInteractivePFG;
-import mortvana.projectfluxgear.legacy.*;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -26,22 +9,40 @@ import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
+import cpw.mods.fml.common.IFuelHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
+import mortvana.fluxgearcore.common.FluxGearCore;
 import mortvana.fluxgearcore.item.ItemFluxGear;
+import mortvana.fluxgearcore.item.tool.BucketFluxGear;
+import mortvana.fluxgearcore.legacy.ContentRegistry;
+import mortvana.fluxgearcore.legacy.block.BlockBase;
+import mortvana.fluxgearcore.legacy.fluid.BlockFluidClassicWS;
+import mortvana.fluxgearcore.legacy.fluid.BlockFluidReactive;
+import mortvana.fluxgearcore.util.chemistry.reaction.ReactionSpec;
+import mortvana.fluxgearcore.util.handler.DispenserEmptyBucketHandler;
+import mortvana.fluxgearcore.util.handler.DispenserFilledBucketHandler;
 import mortvana.fluxgearcore.util.helper.ItemHelper;
+import cofh.core.fluid.BlockFluidCoFHBase;
 
-import mortvana.projectfluxgear.block.basic.*;
-import mortvana.projectfluxgear.item.tool.ItemPrototypeSonicWrench;
 import mortvana.projectfluxgear.block.BlockTemporalPylon;
 import mortvana.projectfluxgear.block.BlockWoodenTileEntity;
-
-import java.util.ArrayList;
+import mortvana.projectfluxgear.block.basic.*;
+import mortvana.projectfluxgear.block.basic.itemblock.*;
+import mortvana.projectfluxgear.common.config.FluxGearConfig;
+import mortvana.projectfluxgear.common.config.FluxGearConfigWorld;
+import mortvana.projectfluxgear.fluid.BlockFluidAcid;
+import mortvana.projectfluxgear.fluid.BlockFluidSmog;
+import mortvana.projectfluxgear.item.ItemInteractivePFG;
+import mortvana.projectfluxgear.item.tool.ItemPrototypeSonicWrench;
+import mortvana.projectfluxgear.legacy.*;
+import mortvana.projectfluxgear.world.PoorOreGen.*;
 
 public class FluxGearContent implements IFuelHandler{
 
@@ -445,19 +446,21 @@ public class FluxGearContent implements IFuelHandler{
         ItemHelper.registerWithHandlers("blockAmber", blockAmber);
         ItemHelper.registerWithHandlers("blockNichrome", blockNichrome);
         ItemHelper.registerWithHandlers("blockPolycarbide", blockPolycarbide);
+
+
     }
 
     //public void loadMachines() {}
 
     public void loadFluids() {
         //TODO-- Redo
-        fluidGhastTear = new Fluid("ghastTear").setLuminosity(3).setDensity(1850).setViscosity(2675).setTemperature(375).setRarity(EnumRarity.rare);
-        fluidLye = new Fluid("lye").setLuminosity(0).setDensity(1750).setViscosity(3500).setTemperature(300).setRarity(EnumRarity.common);
-        fluidAcid = new Fluid("acid").setLuminosity(0).setDensity(1750).setViscosity(3500).setTemperature(300).setRarity(EnumRarity.common);
-        fluidEtchingAcid = new Fluid("etchingAcid").setLuminosity(0).setDensity(1750).setViscosity(3500).setTemperature(300).setRarity(EnumRarity.uncommon);
+        fluidGhastTear = new Fluid("ghastTear").setLuminosity(3).setDensity(1850).setViscosity(1325).setTemperature(335).setRarity(EnumRarity.rare);
+        fluidLye = new Fluid("lye").setLuminosity(0).setDensity(1750).setViscosity(1350).setTemperature(295).setRarity(EnumRarity.common);
+        fluidAcid = new Fluid("acid").setLuminosity(0).setDensity(1750).setViscosity(1350).setTemperature(295).setRarity(EnumRarity.common);
+        fluidEtchingAcid = new Fluid("etchingAcid").setLuminosity(0).setDensity(1250).setViscosity(3500).setTemperature(295).setRarity(EnumRarity.uncommon);
         fluidSmog = new Fluid("smog").setLuminosity(0).setDensity(1000).setViscosity(500).setTemperature(315).setRarity(EnumRarity.common);
-        fluidBlood = new Fluid("blood").setLuminosity(0).setDensity(1350).setViscosity(1850).setTemperature(300).setRarity(EnumRarity.common);
-        fluidGelidPyrotheum = new Fluid("gelidPyrotheum").setLuminosity(15).setDensity(1350).setViscosity(2350).setTemperature(1).setRarity(EnumRarity.epic);
+        fluidBlood = new Fluid("blood").setLuminosity(0).setDensity(1350).setViscosity(13850).setTemperature(300).setRarity(EnumRarity.common);
+        fluidGelidPyrotheum = new Fluid("gelidPyrotheum").setLuminosity(15).setDensity(1350).setViscosity(2350).setTemperature(295).setRarity(EnumRarity.epic);
 
         FluidRegistry.registerFluid(fluidGhastTear);
         FluidRegistry.registerFluid(fluidLye);
@@ -509,9 +512,10 @@ public class FluxGearContent implements IFuelHandler{
         loadDusts();
         loadNuggets();
         loadTools();
+        loadGems();
     }
 
-    //0-199 Ingots and Gems
+    //0-499 Ingots and Gems
     public void loadIngots() {
         ingotCopper = itemMaterial.addOreDictItem(0, "ingotCopper");
         ingotTin = itemMaterial.addOreDictItem(1, "ingotTin");
@@ -629,222 +633,222 @@ public class FluxGearContent implements IFuelHandler{
         //* Strontium   x+113
     }
 
-    //200-399 Dusts
+    //500-999 Dusts
     public void loadDusts() {
-        dustCopper = itemMaterial.addOreDictItem(200, "dustCopper");
-        dustTin = itemMaterial.addOreDictItem(201, "dustTin");
-        dustLead = itemMaterial.addOreDictItem(202, "dustLead");
-        dustSilver = itemMaterial.addOreDictItem(203, "dustSilver");
-        dustNickel = itemMaterial.addOreDictItem(204, "dustNickel");
-        dustZinc = itemMaterial.addOreDictItem(205, "dustZinc");
-        dustBismuth = itemMaterial.addOreDictItem(206, "dustBismuth");
-        dustManganese = itemMaterial.addOreDictItem(207, "dustManganese");
-        dustAluminium = itemMaterial.addOreDictItem(208, "dustAluminium");
-        dustPlatinum = itemMaterial.addOreDictItem(209, "dustPlatinum");
-        dustPalladium = itemMaterial.addOreDictItem(210, "dustPalladium");
-        dustMolybdenum = itemMaterial.addOreDictItem(211, "dustMolybdenum");
-        dustCobalt = itemMaterial.addOreDictItem(212, "dustCobalt", "dustNaturalCobalt");
-        dustTungsten = itemMaterial.addOreDictItem(213, "dustTungsten");
-        dustTitanium = itemMaterial.addOreDictItem(214, "dustTitanium");
-        dustChromium = itemMaterial.addOreDictItem(215, "dustChromium");
-        dustArsenic = itemMaterial.addOreDictItem(216, "dustArsenic");
-        dustAntimony = itemMaterial.addOreDictItem(217, "dustAntimony");
-        dustNeodymium = itemMaterial.addOreDictItem(218, "dustNeodymium");
-        dustTesseractium = itemMaterial.addOreDictItem(219, "dustTesseractium");
-        dustCadmium = itemMaterial.addOreDictItem(220, "dustCadmium");
-        dustTellurium = itemMaterial.addOreDictItem(221, "dustTellurium");
-        dustOsmium = itemMaterial.addOreDictItem(222, "dustOsmium");
-        dustIridium = itemMaterial.addOreDictItem(223, "dustIridium");
-        dustIndium = itemMaterial.addOreDictItem(224, "dustIndium");
-        dustAntimonialBronze = itemMaterial.addOreDictItem(225, "dustAntimonialBronze");
-        dustArsenicalBronze = itemMaterial.addOreDictItem(226, "dustArsenicalBronze");
-        dustVanadium = itemMaterial.addOreDictItem(227, "dustVanadium");
-        dustUnobtainium = itemMaterial.addOreDictItem(228, "dustUnobtainium");
-        dustDioptase = itemMaterial.addOreDictItem(229, "dustDioptase");
-        dustPyrope = itemMaterial.addOreDictItem(230, "dustPyrope");
-        dustMyuvil = itemMaterial.addOreDictItem(231, "dustMyuvil");
-        dustBronze = itemMaterial.addOreDictItem(232, "dustBronze");
-        dustBrass = itemMaterial.addOreDictItem(233, "dustBrass");
-        dustInvar = itemMaterial.addOreDictItem(234, "dustInvar");
-        dustBismuthBronze = itemMaterial.addOreDictItem(235, "dustBismuthBronze");
-        dustCupronickel = itemMaterial.addOreDictItem(236, "dustCupronickel");
-        dustAluminiumBrass = itemMaterial.addOreDictItem(237, "dustAluminiumBrass");
-        dustElectrum = itemMaterial.addOreDictItem(238, "dustElectrum");
-        dustDullRedsolder = itemMaterial.addOreDictItem(239, "dustDullRedsolder");
-        dustRedsolder = itemMaterial.addOreDictItem(240, "dustRedsolder");
-        dustHCSteel = itemMaterial.addOreDictItem(241, "dustHighCarbonSteel", "dustSteel");
-        dustSteel = itemMaterial.addOreDictItem(242, "dustSteel", "dustRefinedSteel");
-        dustHSLA = itemMaterial.addOreDictItem(243, "dustHSLA");
-        dustStainlessSteel = itemMaterial.addOreDictItem(244, "dustStainlessSteel");
-        dustTungstenSteel = itemMaterial.addOreDictItem(245, "dustTungstenSteel");
-        dustEletriplatinum = itemMaterial.addOreDictItem(246, "dustElectriplatinum");
-        dustMithril = itemMaterial.addOreDictItem(247, "dustMithril", "dustMitrilBronze");
-        dustTechnomancer = itemMaterial.addOreDictItem(248, "dustTechnomancer");
-        dustTechnomancerResonant = itemMaterial.addOreDictItem(249, "dustTechnomancerResonant");
-        dustTungstenBlazing = itemMaterial.addOreDictItem(250, "dustTungstenBlazing");
-        dustPlatinumGelid = itemMaterial.addOreDictItem(251, "dustPlatinumGelid");
-        dustSilverLuminous = itemMaterial.addOreDictItem(252, "dustSilverLuminous");
-        dustElectrumFlux = itemMaterial.addOreDictItem(253, "dustElectrumFlux");
-        dustMolybdenumResonant = itemMaterial.addOreDictItem(254, "dustMolybdenumResonant");
-        dustChromiumCarbide = itemMaterial.addOreDictItem(255, "dustChromiumCarbide");
-        dustBismuthBronzeColdfire = itemMaterial.addOreDictItem(256, "dustBismuthBronzeColdfire");
-        dustPyrum = itemMaterial.addOreDictItem(257, "dustPyrum");
-        dustGelinium = itemMaterial.addOreDictItem(258, "dustGelinium");
-        dustLumium = itemMaterial.addOreDictItem(259, "dustLumium");
-        dustSignalum = itemMaterial.addOreDictItem(260, "dustSignalum");
-        dustEnderium = itemMaterial.addOreDictItem(261, "dustEnderium");
-        dustCarbonite = itemMaterial.addOreDictItem(262, "dustCarbonite");
-        dustTherminate = itemMaterial.addOreDictItem(263, "dustTherminate");
-        dustNullmetal = itemMaterial.addOreDictItem(264, "dustNullmetal");
-        dustIocarbide = itemMaterial.addOreDictItem(265, "dustIocarbide");
-        dustCryocarbide = itemMaterial.addOreDictItem(266, "dustCryocarbide");
-        dustPyrocarbide = itemMaterial.addOreDictItem(267, "dustPyrocarbide");
-        dustTenebride = itemMaterial.addOreDictItem(268, "dustTenebride");
-        dustIlluminide = itemMaterial.addOreDictItem(269, "dustIlluminide");
-        dustZythoferride = itemMaterial.addOreDictItem(270, "dustZythoferride");
-        dustCrystalFlux = itemMaterial.addOreDictItem(271, "dustCrystalFlux");
-        dustLapiquartz = itemMaterial.addOreDictItem(272, "dustLapiquartz");
-        dustRust = itemMaterial.addOreDictItem(273 , "dustRust");
-        dustSulfur = itemMaterial.addOreDictItem(274 , "dustSulfur");
-        dustSaltpeter = itemMaterial.addOreDictItem(275 , "dustSaltpeter");
-        dustMithrilFlux = itemMaterial.addOreDictItem(276, "dustMithrilFlux");
-        dustMithrilTinker = itemMaterial.addOreDictItem(277, "dustMithrilTinker");
-        dustThorium = itemMaterial.addOreDictItem(278 , "dustThorium");
-        dustUranium235 = itemMaterial.addOreDictItem(279 , "dustUranium235");
-        dustUranium238 = itemMaterial.addOreDictItem(280 , "dustUranium238");
-        dustMagnetite = itemMaterial.addOreDictItem(281, "dustMagnetite");
-        dustNeodymiumMagnet = itemMaterial.addOreDictItem(282, "dustNeodymiumMagnetMetal");
-        dustIronMagnet = itemMaterial.addOreDictItem(283, "dustIronMagnetic");
-        dustManganeseMagnet = itemMaterial.addOreDictItem(284, "dustManganeseMagnetic");
-        dustCobaltMagnet = itemMaterial.addOreDictItem(285, "dustCobaltMagnetic");
-        dustNickelMagnet = itemMaterial.addOreDictItem(286, "dustNickelMagnetic");
-        dustInvarMagnet = itemMaterial.addOreDictItem(287, "dustInvarMagnetic");
-        dustHCSteelMagnet = itemMaterial.addOreDictItem(288, "dustHighCarbonSteelMagnetic", "dustSteelMagnetic");
-        dustSteelMagnet = itemMaterial.addOreDictItem(289, "dustSteelMagnetic");
-        dustHSLAMagnet = itemMaterial.addOreDictItem(290, "dustHSLAMagnetic", "dustRefinedSteelMagnetic");
+        dustCopper = itemMaterial.addOreDictItem(500, "dustCopper");
+        dustTin = itemMaterial.addOreDictItem(501, "dustTin");
+        dustLead = itemMaterial.addOreDictItem(502, "dustLead");
+        dustSilver = itemMaterial.addOreDictItem(503, "dustSilver");
+        dustNickel = itemMaterial.addOreDictItem(504, "dustNickel");
+        dustZinc = itemMaterial.addOreDictItem(505, "dustZinc");
+        dustBismuth = itemMaterial.addOreDictItem(506, "dustBismuth");
+        dustManganese = itemMaterial.addOreDictItem(507, "dustManganese");
+        dustAluminium = itemMaterial.addOreDictItem(508, "dustAluminium");
+        dustPlatinum = itemMaterial.addOreDictItem(509, "dustPlatinum");
+        dustPalladium = itemMaterial.addOreDictItem(510, "dustPalladium");
+        dustMolybdenum = itemMaterial.addOreDictItem(511, "dustMolybdenum");
+        dustCobalt = itemMaterial.addOreDictItem(512, "dustCobalt", "dustNaturalCobalt");
+        dustTungsten = itemMaterial.addOreDictItem(513, "dustTungsten");
+        dustTitanium = itemMaterial.addOreDictItem(514, "dustTitanium");
+        dustChromium = itemMaterial.addOreDictItem(515, "dustChromium");
+        dustArsenic = itemMaterial.addOreDictItem(516, "dustArsenic");
+        dustAntimony = itemMaterial.addOreDictItem(517, "dustAntimony");
+        dustNeodymium = itemMaterial.addOreDictItem(518, "dustNeodymium");
+        dustTesseractium = itemMaterial.addOreDictItem(519, "dustTesseractium");
+        dustCadmium = itemMaterial.addOreDictItem(520, "dustCadmium");
+        dustTellurium = itemMaterial.addOreDictItem(521, "dustTellurium");
+        dustOsmium = itemMaterial.addOreDictItem(522, "dustOsmium");
+        dustIridium = itemMaterial.addOreDictItem(523, "dustIridium");
+        dustIndium = itemMaterial.addOreDictItem(524, "dustIndium");
+        dustAntimonialBronze = itemMaterial.addOreDictItem(525, "dustAntimonialBronze");
+        dustArsenicalBronze = itemMaterial.addOreDictItem(526, "dustArsenicalBronze");
+        dustVanadium = itemMaterial.addOreDictItem(527, "dustVanadium");
+        dustUnobtainium = itemMaterial.addOreDictItem(528, "dustUnobtainium");
+        dustDioptase = itemMaterial.addOreDictItem(529, "dustDioptase");
+        dustPyrope = itemMaterial.addOreDictItem(530, "dustPyrope");
+        dustMyuvil = itemMaterial.addOreDictItem(531, "dustMyuvil");
+        dustBronze = itemMaterial.addOreDictItem(532, "dustBronze");
+        dustBrass = itemMaterial.addOreDictItem(533, "dustBrass");
+        dustInvar = itemMaterial.addOreDictItem(534, "dustInvar");
+        dustBismuthBronze = itemMaterial.addOreDictItem(535, "dustBismuthBronze");
+        dustCupronickel = itemMaterial.addOreDictItem(536, "dustCupronickel");
+        dustAluminiumBrass = itemMaterial.addOreDictItem(537, "dustAluminiumBrass");
+        dustElectrum = itemMaterial.addOreDictItem(538, "dustElectrum");
+        dustDullRedsolder = itemMaterial.addOreDictItem(539, "dustDullRedsolder");
+        dustRedsolder = itemMaterial.addOreDictItem(540, "dustRedsolder");
+        dustHCSteel = itemMaterial.addOreDictItem(541, "dustHighCarbonSteel", "dustSteel");
+        dustSteel = itemMaterial.addOreDictItem(542, "dustSteel", "dustRefinedSteel");
+        dustHSLA = itemMaterial.addOreDictItem(543, "dustHSLA");
+        dustStainlessSteel = itemMaterial.addOreDictItem(544, "dustStainlessSteel");
+        dustTungstenSteel = itemMaterial.addOreDictItem(545, "dustTungstenSteel");
+        dustEletriplatinum = itemMaterial.addOreDictItem(546, "dustElectriplatinum");
+        dustMithril = itemMaterial.addOreDictItem(547, "dustMithril", "dustMitrilBronze");
+        dustTechnomancer = itemMaterial.addOreDictItem(548, "dustTechnomancer");
+        dustTechnomancerResonant = itemMaterial.addOreDictItem(549, "dustTechnomancerResonant");
+        dustTungstenBlazing = itemMaterial.addOreDictItem(550, "dustTungstenBlazing");
+        dustPlatinumGelid = itemMaterial.addOreDictItem(551, "dustPlatinumGelid");
+        dustSilverLuminous = itemMaterial.addOreDictItem(552, "dustSilverLuminous");
+        dustElectrumFlux = itemMaterial.addOreDictItem(553, "dustElectrumFlux");
+        dustMolybdenumResonant = itemMaterial.addOreDictItem(554, "dustMolybdenumResonant");
+        dustChromiumCarbide = itemMaterial.addOreDictItem(555, "dustChromiumCarbide");
+        dustBismuthBronzeColdfire = itemMaterial.addOreDictItem(556, "dustBismuthBronzeColdfire");
+        dustPyrum = itemMaterial.addOreDictItem(557, "dustPyrum");
+        dustGelinium = itemMaterial.addOreDictItem(558, "dustGelinium");
+        dustLumium = itemMaterial.addOreDictItem(559, "dustLumium");
+        dustSignalum = itemMaterial.addOreDictItem(560, "dustSignalum");
+        dustEnderium = itemMaterial.addOreDictItem(561, "dustEnderium");
+        dustCarbonite = itemMaterial.addOreDictItem(562, "dustCarbonite");
+        dustTherminate = itemMaterial.addOreDictItem(563, "dustTherminate");
+        dustNullmetal = itemMaterial.addOreDictItem(564, "dustNullmetal");
+        dustIocarbide = itemMaterial.addOreDictItem(565, "dustIocarbide");
+        dustCryocarbide = itemMaterial.addOreDictItem(566, "dustCryocarbide");
+        dustPyrocarbide = itemMaterial.addOreDictItem(567, "dustPyrocarbide");
+        dustTenebride = itemMaterial.addOreDictItem(568, "dustTenebride");
+        dustIlluminide = itemMaterial.addOreDictItem(569, "dustIlluminide");
+        dustZythoferride = itemMaterial.addOreDictItem(570, "dustZythoferride");
+        dustCrystalFlux = itemMaterial.addOreDictItem(571, "dustCrystalFlux");
+        dustLapiquartz = itemMaterial.addOreDictItem(572, "dustLapiquartz");
+        dustRust = itemMaterial.addOreDictItem(573 , "dustRust");
+        dustSulfur = itemMaterial.addOreDictItem(574 , "dustSulfur");
+        dustSaltpeter = itemMaterial.addOreDictItem(575 , "dustSaltpeter");
+        dustMithrilFlux = itemMaterial.addOreDictItem(576, "dustMithrilFlux");
+        dustMithrilTinker = itemMaterial.addOreDictItem(577, "dustMithrilTinker");
+        dustThorium = itemMaterial.addOreDictItem(578 , "dustThorium");
+        dustUranium235 = itemMaterial.addOreDictItem(579 , "dustUranium235");
+        dustUranium238 = itemMaterial.addOreDictItem(580 , "dustUranium238");
+        dustMagnetite = itemMaterial.addOreDictItem(581, "dustMagnetite");
+        dustNeodymiumMagnet = itemMaterial.addOreDictItem(582, "dustNeodymiumMagnetMetal");
+        dustIronMagnet = itemMaterial.addOreDictItem(583, "dustIronMagnetic");
+        dustManganeseMagnet = itemMaterial.addOreDictItem(584, "dustManganeseMagnetic");
+        dustCobaltMagnet = itemMaterial.addOreDictItem(585, "dustCobaltMagnetic");
+        dustNickelMagnet = itemMaterial.addOreDictItem(586, "dustNickelMagnetic");
+        dustInvarMagnet = itemMaterial.addOreDictItem(587, "dustInvarMagnetic");
+        dustHCSteelMagnet = itemMaterial.addOreDictItem(588, "dustHighCarbonSteelMagnetic", "dustSteelMagnetic");
+        dustSteelMagnet = itemMaterial.addOreDictItem(589, "dustSteelMagnetic");
+        dustHSLAMagnet = itemMaterial.addOreDictItem(590, "dustHSLAMagnetic", "dustRefinedSteelMagnetic");
         //* Amber
-        dustNichrome = itemMaterial.addOreDictItem(292, "dustNichrome");
-        dustPolycarbide = itemMaterial.addOreDictItem(293, "dustPolycarbide");
-        dustVorpal = itemMaterial.addOreDictItem(294, "dustVorpal");
-        dustAshes = itemMaterial.addOreDictItem(295, "dustAshes");
-        dustIron = itemMaterial.addOreDictItem(296 , "dustIron");
-        dustGold = itemMaterial.addOreDictItem(297 , "dustGold");
-        dustDiamond = itemMaterial.addOreDictItem(298 , "dustDiamond");
-        dustCoal = itemMaterial.addOreDictItem(299 , "dustCoal");
-        dustCharcoal = itemMaterial.addOreDictItem(300 , "dustCharcoal");
-        dustObsidian = itemMaterial.addOreDictItem(301 , "dustObsidian");
-        dustBlizz = itemMaterial.addOreDictItem(302 , "dustBlizz");
-        dustCyrotheum = itemMaterial.addOreDictItem(303 , "dustCryotheum");
-        dustPyrotheum = itemMaterial.addOreDictItem(304 , "dustPyrotheum");
-        dustIceflame = itemMaterial.addOreDictItem(305 , "dustIceflame");
-        dustKroostyl = itemMaterial.addOreDictItem(306 , "dustKroostyl");
-        dustYttrium = itemMaterial.addOreDictItem(307, "dustYtrium");
-        dustRuthenium = itemMaterial.addOreDictItem(308, "dustRuthenium");
-        dustLanthanum = itemMaterial.addOreDictItem(319, "dustLanthanum");
-        dustCerium = itemMaterial.addOreDictItem(310, "dustCerium");
-        dustMagnesium = itemMaterial.addOreDictItem(311 , "dustMagnesium");
-        dustCalcium = itemMaterial.addOreDictItem(312 , "dustCalcium");
-        dustStrontium = itemMaterial.addOreDictItem(313 , "dustStrontium");
+        dustNichrome = itemMaterial.addOreDictItem(592, "dustNichrome");
+        dustPolycarbide = itemMaterial.addOreDictItem(593, "dustPolycarbide");
+        dustVorpal = itemMaterial.addOreDictItem(594, "dustVorpal");
+        dustAshes = itemMaterial.addOreDictItem(595, "dustAshes");
+        dustIron = itemMaterial.addOreDictItem(596 , "dustIron");
+        dustGold = itemMaterial.addOreDictItem(597 , "dustGold");
+        dustDiamond = itemMaterial.addOreDictItem(598 , "dustDiamond");
+        dustCoal = itemMaterial.addOreDictItem(599 , "dustCoal");
+        dustCharcoal = itemMaterial.addOreDictItem(600 , "dustCharcoal");
+        dustObsidian = itemMaterial.addOreDictItem(601 , "dustObsidian");
+        dustBlizz = itemMaterial.addOreDictItem(602 , "dustBlizz");
+        dustCyrotheum = itemMaterial.addOreDictItem(603 , "dustCryotheum");
+        dustPyrotheum = itemMaterial.addOreDictItem(604 , "dustPyrotheum");
+        dustIceflame = itemMaterial.addOreDictItem(605 , "dustIceflame");
+        dustKroostyl = itemMaterial.addOreDictItem(606 , "dustKroostyl");
+        dustYttrium = itemMaterial.addOreDictItem(607, "dustYtrium");
+        dustRuthenium = itemMaterial.addOreDictItem(608, "dustRuthenium");
+        dustLanthanum = itemMaterial.addOreDictItem(609, "dustLanthanum");
+        dustCerium = itemMaterial.addOreDictItem(610, "dustCerium");
+        dustMagnesium = itemMaterial.addOreDictItem(611 , "dustMagnesium");
+        dustCalcium = itemMaterial.addOreDictItem(612 , "dustCalcium");
+        dustStrontium = itemMaterial.addOreDictItem(613 , "dustStrontium");
 
     }
 
-    //400-599 Nuggets
+    //1000-1499 Nuggets
     public void loadNuggets() {
-        nuggetCopper = itemMaterial.addOreDictItem(400, "nuggetCopper");
-        nuggetTin = itemMaterial.addOreDictItem(401, "nuggetTin");
-        nuggetLead = itemMaterial.addOreDictItem(402, "nuggetLead");
-        nuggetSilver = itemMaterial.addOreDictItem(403, "nuggetSilver");
-        nuggetNickel = itemMaterial.addOreDictItem(404, "nuggetNickel");
-        nuggetZinc = itemMaterial.addOreDictItem(405, "nuggetZinc");
-        nuggetBismuth = itemMaterial.addOreDictItem(406, "nuggetBismuth");
-        nuggetManganese = itemMaterial.addOreDictItem(407, "nuggetManganese");
-        nuggetAluminium = itemMaterial.addOreDictItem(408, "nuggetAluminium");
-        nuggetPlatinum = itemMaterial.addOreDictItem(409, "nuggetPlatinum");
-        nuggetPalladium = itemMaterial.addOreDictItem(410, "nuggetPalladium");
-        nuggetMolybdenum = itemMaterial.addOreDictItem(411, "nuggetMolybdenum");
-        nuggetCobalt = itemMaterial.addOreDictItem(412, "nuggetCobalt", "nuggetNaturalCobalt");
-        nuggetTungsten = itemMaterial.addOreDictItem(413, "nuggetTungsten");
-        nuggetTitanium = itemMaterial.addOreDictItem(414, "nuggetTitanium");
-        nuggetChromium = itemMaterial.addOreDictItem(415, "nuggetChromium");
+        nuggetCopper = itemMaterial.addOreDictItem(1000, "nuggetCopper");
+        nuggetTin = itemMaterial.addOreDictItem(1001, "nuggetTin");
+        nuggetLead = itemMaterial.addOreDictItem(1002, "nuggetLead");
+        nuggetSilver = itemMaterial.addOreDictItem(1003, "nuggetSilver");
+        nuggetNickel = itemMaterial.addOreDictItem(1004, "nuggetNickel");
+        nuggetZinc = itemMaterial.addOreDictItem(1005, "nuggetZinc");
+        nuggetBismuth = itemMaterial.addOreDictItem(1006, "nuggetBismuth");
+        nuggetManganese = itemMaterial.addOreDictItem(1007, "nuggetManganese");
+        nuggetAluminium = itemMaterial.addOreDictItem(1008, "nuggetAluminium");
+        nuggetPlatinum = itemMaterial.addOreDictItem(1009, "nuggetPlatinum");
+        nuggetPalladium = itemMaterial.addOreDictItem(1010, "nuggetPalladium");
+        nuggetMolybdenum = itemMaterial.addOreDictItem(1011, "nuggetMolybdenum");
+        nuggetCobalt = itemMaterial.addOreDictItem(1012, "nuggetCobalt", "nuggetNaturalCobalt");
+        nuggetTungsten = itemMaterial.addOreDictItem(1013, "nuggetTungsten");
+        nuggetTitanium = itemMaterial.addOreDictItem(1014, "nuggetTitanium");
+        nuggetChromium = itemMaterial.addOreDictItem(1015, "nuggetChromium");
         //* Antimony
         //* Arsenic
-        nuggetNeodymium = itemMaterial.addOreDictItem(418, "nuggetNeodymium");
-        nuggetTesseractium = itemMaterial.addOreDictItem(419, "nuggetTesseractium");
-        nuggetCadmium = itemMaterial.addOreDictItem(420, "nuggetCadmium");
-        nuggetTellurium = itemMaterial.addOreDictItem(421, "nuggetTellurium");
-        nuggetOsmium = itemMaterial.addOreDictItem(422, "nuggetOsmium");
-        nuggetIridium = itemMaterial.addOreDictItem(423, "nuggetIridium");
-        nuggetIndium = itemMaterial.addOreDictItem(424, "nuggetIndium");
-        nuggetAntimonialBronze = itemMaterial.addOreDictItem(425, "nuggetAntimonialBronze");
-        nuggetArsenicalBronze = itemMaterial.addOreDictItem(426, "nuggetArsenicalBronze");
-        nuggetVanadium = itemMaterial.addOreDictItem(427, "nuggetVanadium");
-        nuggetUnobtainium = itemMaterial.addOreDictItem(428, "nuggetUnobtainium");
-        nuggetDioptase = itemMaterial.addOreDictItem(429, "nuggetDioptase");
-        nuggetPyrope = itemMaterial.addOreDictItem(430, "nuggetPyrope");
+        nuggetNeodymium = itemMaterial.addOreDictItem(1018, "nuggetNeodymium");
+        nuggetTesseractium = itemMaterial.addOreDictItem(1019, "nuggetTesseractium");
+        nuggetCadmium = itemMaterial.addOreDictItem(1020, "nuggetCadmium");
+        nuggetTellurium = itemMaterial.addOreDictItem(1021, "nuggetTellurium");
+        nuggetOsmium = itemMaterial.addOreDictItem(1022, "nuggetOsmium");
+        nuggetIridium = itemMaterial.addOreDictItem(1023, "nuggetIridium");
+        nuggetIndium = itemMaterial.addOreDictItem(1024, "nuggetIndium");
+        nuggetAntimonialBronze = itemMaterial.addOreDictItem(1025, "nuggetAntimonialBronze");
+        nuggetArsenicalBronze = itemMaterial.addOreDictItem(1026, "nuggetArsenicalBronze");
+        nuggetVanadium = itemMaterial.addOreDictItem(1027, "nuggetVanadium");
+        nuggetUnobtainium = itemMaterial.addOreDictItem(1028, "nuggetUnobtainium");
+        nuggetDioptase = itemMaterial.addOreDictItem(1029, "nuggetDioptase");
+        nuggetPyrope = itemMaterial.addOreDictItem(1030, "nuggetPyrope");
         //* Myuvil
-        nuggetBronze = itemMaterial.addOreDictItem(432, "nuggetBronze");
-        nuggetBrass = itemMaterial.addOreDictItem(433, "nuggetBrass");
-        nuggetInvar = itemMaterial.addOreDictItem(434, "nuggetInvar");
-        nuggetBismuthBronze = itemMaterial.addOreDictItem(435, "nuggetBismuthBronze");
-        nuggetCupronickel = itemMaterial.addOreDictItem(436, "nuggetCupronickel");
-        nuggetAluminiumBrass = itemMaterial.addOreDictItem(437, "nuggetAluminiumBrass");
-        nuggetElectrum = itemMaterial.addOreDictItem(438, "nuggetElectrum");
-        nuggetDullRedsolder = itemMaterial.addOreDictItem(439, "nuggetDullRedsolder");
-        nuggetRedsolder = itemMaterial.addOreDictItem(440, "nuggetRedsolder");
-        nuggetHCSteel = itemMaterial.addOreDictItem(441, "nuggetHighCarbonSteel", "nuggetSteel");
-        nuggetSteel = itemMaterial.addOreDictItem(442, "nuggetSteel", "nuggetRefinedSteel");
-        nuggetHSLA = itemMaterial.addOreDictItem(443, "nuggetHSLA");
-        nuggetStainlessSteel = itemMaterial.addOreDictItem(444, "nuggetStainlessSteel");
-        nuggetTungstenSteel = itemMaterial.addOreDictItem(445, "nuggetTungstenSteel");
-        nuggetEletriplatinum = itemMaterial.addOreDictItem(446, "nuggetElectriplatinum");
-        nuggetMithril = itemMaterial.addOreDictItem(447, "nuggetMithril", "nuggetMitrilBronze");
-        nuggetTechnomancer = itemMaterial.addOreDictItem(448, "nuggetTechnomancer");
-        nuggetTechnomancerResonant = itemMaterial.addOreDictItem(449, "nuggetTechnomancerResonant");
-        nuggetTungstenBlazing = itemMaterial.addOreDictItem(450, "nuggetTungstenBlazing");
-        nuggetPlatinumGelid = itemMaterial.addOreDictItem(451, "nuggetPlatinumGelid");
-        nuggetSilverLuminous = itemMaterial.addOreDictItem(452, "nuggetSilverLuminous");
-        nuggetElectrumFlux = itemMaterial.addOreDictItem(453, "nuggetElectrumFlux");
-        nuggetMolybdenumResonant = itemMaterial.addOreDictItem(454, "nuggetMolybdenumResonant");
-        nuggetChromiumCarbide = itemMaterial.addOreDictItem(455, "nuggetChromiumCarbide");
-        nuggetBismuthBronzeColdfire = itemMaterial.addOreDictItem(456, "nuggetBismuthBronzeColdfire");
-        nuggetPyrum = itemMaterial.addOreDictItem(457, "nuggetPyrum");
-        nuggetGelinium = itemMaterial.addOreDictItem(458, "nuggetGelinium");
-        nuggetLumium = itemMaterial.addOreDictItem(459, "nuggetLumium");
-        nuggetSignalum = itemMaterial.addOreDictItem(460, "nuggetSignalum");
-        nuggetEnderium = itemMaterial.addOreDictItem(461, "nuggetEnderium");
-        nuggetCarbonite = itemMaterial.addOreDictItem(462, "nuggetCarbonite");
-        nuggetTherminate = itemMaterial.addOreDictItem(463, "nuggetTherminate");
-        nuggetNullmetal = itemMaterial.addOreDictItem(464, "nuggetNullmetal");
-        nuggetIocarbide = itemMaterial.addOreDictItem(465, "nuggetIocarbide");
-        nuggetCryocarbide = itemMaterial.addOreDictItem(466, "nuggetCryocarbide");
-        nuggetPyrocarbide = itemMaterial.addOreDictItem(467, "nuggetPyrocarbide");
-        nuggetTenebride = itemMaterial.addOreDictItem(468, "nuggetTenebride");
-        nuggetIlluminide = itemMaterial.addOreDictItem(469, "nuggetIlluminide");
-        nuggetZythoferride = itemMaterial.addOreDictItem(470, "nuggetZythoferride");
-        nuggetCrystalFlux = itemMaterial.addOreDictItem(471, "nuggetCrystalFlux");
+        nuggetBronze = itemMaterial.addOreDictItem(1032, "nuggetBronze");
+        nuggetBrass = itemMaterial.addOreDictItem(1033, "nuggetBrass");
+        nuggetInvar = itemMaterial.addOreDictItem(1034, "nuggetInvar");
+        nuggetBismuthBronze = itemMaterial.addOreDictItem(1035, "nuggetBismuthBronze");
+        nuggetCupronickel = itemMaterial.addOreDictItem(1036, "nuggetCupronickel");
+        nuggetAluminiumBrass = itemMaterial.addOreDictItem(1037, "nuggetAluminiumBrass");
+        nuggetElectrum = itemMaterial.addOreDictItem(1038, "nuggetElectrum");
+        nuggetDullRedsolder = itemMaterial.addOreDictItem(1039, "nuggetDullRedsolder");
+        nuggetRedsolder = itemMaterial.addOreDictItem(1040, "nuggetRedsolder");
+        nuggetHCSteel = itemMaterial.addOreDictItem(1041, "nuggetHighCarbonSteel", "nuggetSteel");
+        nuggetSteel = itemMaterial.addOreDictItem(1042, "nuggetSteel", "nuggetRefinedSteel");
+        nuggetHSLA = itemMaterial.addOreDictItem(1043, "nuggetHSLA");
+        nuggetStainlessSteel = itemMaterial.addOreDictItem(1044, "nuggetStainlessSteel");
+        nuggetTungstenSteel = itemMaterial.addOreDictItem(1045, "nuggetTungstenSteel");
+        nuggetEletriplatinum = itemMaterial.addOreDictItem(1046, "nuggetElectriplatinum");
+        nuggetMithril = itemMaterial.addOreDictItem(1047, "nuggetMithril", "nuggetMitrilBronze");
+        nuggetTechnomancer = itemMaterial.addOreDictItem(1048, "nuggetTechnomancer");
+        nuggetTechnomancerResonant = itemMaterial.addOreDictItem(1049, "nuggetTechnomancerResonant");
+        nuggetTungstenBlazing = itemMaterial.addOreDictItem(1050, "nuggetTungstenBlazing");
+        nuggetPlatinumGelid = itemMaterial.addOreDictItem(1051, "nuggetPlatinumGelid");
+        nuggetSilverLuminous = itemMaterial.addOreDictItem(1052, "nuggetSilverLuminous");
+        nuggetElectrumFlux = itemMaterial.addOreDictItem(1053, "nuggetElectrumFlux");
+        nuggetMolybdenumResonant = itemMaterial.addOreDictItem(1054, "nuggetMolybdenumResonant");
+        nuggetChromiumCarbide = itemMaterial.addOreDictItem(1055, "nuggetChromiumCarbide");
+        nuggetBismuthBronzeColdfire = itemMaterial.addOreDictItem(1056, "nuggetBismuthBronzeColdfire");
+        nuggetPyrum = itemMaterial.addOreDictItem(1057, "nuggetPyrum");
+        nuggetGelinium = itemMaterial.addOreDictItem(1058, "nuggetGelinium");
+        nuggetLumium = itemMaterial.addOreDictItem(1059, "nuggetLumium");
+        nuggetSignalum = itemMaterial.addOreDictItem(1060, "nuggetSignalum");
+        nuggetEnderium = itemMaterial.addOreDictItem(1061, "nuggetEnderium");
+        nuggetCarbonite = itemMaterial.addOreDictItem(1062, "nuggetCarbonite");
+        nuggetTherminate = itemMaterial.addOreDictItem(1063, "nuggetTherminate");
+        nuggetNullmetal = itemMaterial.addOreDictItem(1064, "nuggetNullmetal");
+        nuggetIocarbide = itemMaterial.addOreDictItem(1065, "nuggetIocarbide");
+        nuggetCryocarbide = itemMaterial.addOreDictItem(1066, "nuggetCryocarbide");
+        nuggetPyrocarbide = itemMaterial.addOreDictItem(1067, "nuggetPyrocarbide");
+        nuggetTenebride = itemMaterial.addOreDictItem(1068, "nuggetTenebride");
+        nuggetIlluminide = itemMaterial.addOreDictItem(1069, "nuggetIlluminide");
+        nuggetZythoferride = itemMaterial.addOreDictItem(1070, "nuggetZythoferride");
+        nuggetCrystalFlux = itemMaterial.addOreDictItem(1071, "nuggetCrystalFlux");
         //* Lapiquartz
         //* Rust
         //* Sulfur
         //* Saltpeter
-        nuggetMithrilFlux = itemMaterial.addOreDictItem(476, "nuggetMithrilFlux");
-        nuggetMithrilTinker = itemMaterial.addOreDictItem(477, "nuggetMithrilTinker");
+        nuggetMithrilFlux = itemMaterial.addOreDictItem(1076, "nuggetMithrilFlux");
+        nuggetMithrilTinker = itemMaterial.addOreDictItem(1077, "nuggetMithrilTinker");
         //* Thorium     x+078
         //* U235        x+079
         //* U238        x+080
-        nuggetMagnetite = itemMaterial.addOreDictItem(481, "nuggetMagnetite");
-        nuggetNeodymiumMagnet = itemMaterial.addOreDictItem(482, "nuggetNeodymiumMagnetMetal");
-        nuggetIronMagnet = itemMaterial.addOreDictItem(483, "nuggetIronMagnetic");
-        nuggetManganeseMagnet = itemMaterial.addOreDictItem(484, "nuggetManganeseMagnetic");
-        nuggetCobaltMagnet = itemMaterial.addOreDictItem(485, "nuggetCobaltMagnetic");
-        nuggetNickelMagnet = itemMaterial.addOreDictItem(486, "nuggetNickelMagnetic");
-        nuggetInvarMagnet = itemMaterial.addOreDictItem(487, "nuggetInvarMagnetic");
-        nuggetHCSteelMagnet = itemMaterial.addOreDictItem(488, "nuggetHighCarbonSteelMagnetic", "nuggetSteelMagnetic");
-        nuggetSteelMagnet = itemMaterial.addOreDictItem(489, "nuggetSteelMagnetic", "nuggetRefinedSteelMagnetic");
-        nuggetHSLAMagnet = itemMaterial.addOreDictItem(490, "nuggetHSLAMagnetic");
+        nuggetMagnetite = itemMaterial.addOreDictItem(1081, "nuggetMagnetite");
+        nuggetNeodymiumMagnet = itemMaterial.addOreDictItem(1082, "nuggetNeodymiumMagnetMetal");
+        nuggetIronMagnet = itemMaterial.addOreDictItem(1083, "nuggetIronMagnetic");
+        nuggetManganeseMagnet = itemMaterial.addOreDictItem(1084, "nuggetManganeseMagnetic");
+        nuggetCobaltMagnet = itemMaterial.addOreDictItem(1085, "nuggetCobaltMagnetic");
+        nuggetNickelMagnet = itemMaterial.addOreDictItem(1086, "nuggetNickelMagnetic");
+        nuggetInvarMagnet = itemMaterial.addOreDictItem(1087, "nuggetInvarMagnetic");
+        nuggetHCSteelMagnet = itemMaterial.addOreDictItem(1088, "nuggetHighCarbonSteelMagnetic", "nuggetSteelMagnetic");
+        nuggetSteelMagnet = itemMaterial.addOreDictItem(1089, "nuggetSteelMagnetic", "nuggetRefinedSteelMagnetic");
+        nuggetHSLAMagnet = itemMaterial.addOreDictItem(1090, "nuggetHSLAMagnetic");
         //* Amber       x+091
-        nuggetNichrome = itemMaterial.addOreDictItem(492, "nuggetNichrome");
-        nuggetPolycarbide = itemMaterial.addOreDictItem(493, "nuggetPolycarbide");
-        nuggetVorpal = itemMaterial.addOreDictItem(494, "nuggetVorpal");
+        nuggetNichrome = itemMaterial.addOreDictItem(1092, "nuggetNichrome");
+        nuggetPolycarbide = itemMaterial.addOreDictItem(1093, "nuggetPolycarbide");
+        nuggetVorpal = itemMaterial.addOreDictItem(1094, "nuggetVorpal");
         //* Ashes       x+095
         //* Iron        x+096
         //* Gold        x+097
@@ -856,32 +860,34 @@ public class FluxGearContent implements IFuelHandler{
         //* Cyrotheum   x+103
         //* Pyrotheum   x+104
         //* Iceflame    x+105
-        nuggetKroostyl = itemMaterial.addOreDictItem(506, "nuggetKroostyl");
-        nuggetYttrium = itemMaterial.addOreDictItem(507, "nuggetYtrium");
-        nuggetRuthenium = itemMaterial.addOreDictItem(508, "nuggetRuthenium");
-        nuggetLanthanum = itemMaterial.addOreDictItem(509, "nuggetLanthanum");
-        nuggetCerium = itemMaterial.addOreDictItem(510, "nuggetCerium");
+        nuggetKroostyl = itemMaterial.addOreDictItem(1106, "nuggetKroostyl");
+        nuggetYttrium = itemMaterial.addOreDictItem(1107, "nuggetYtrium");
+        nuggetRuthenium = itemMaterial.addOreDictItem(1108, "nuggetRuthenium");
+        nuggetLanthanum = itemMaterial.addOreDictItem(1109, "nuggetLanthanum");
+        nuggetCerium = itemMaterial.addOreDictItem(1110, "nuggetCerium");
         //* Magnesium   x+111
         //* Calcium     x+112
         //* Strontium   x+113
     }
 
-    //600-799 Gems
-    public void loadGems() {}
+    //1500-1999 Gems
+    public void loadGems() {
+        crystalMolybdenum = itemMaterial.addOreDictItem(1500, "crystalMolybdenum");
+        crystalDioptase = itemMaterial.addOreDictItem(1501, "crystalDioptase");
+        crystalPyrope = itemMaterial.addOreDictItem(1502, "crystalPyrope");
+        gemNaturalAmber = itemMaterial.addOreDictItem(1503, "gemAmber");
 
-    //1000-1199 Gears
+        gemMolybdenum = itemMaterial.addOreDictItem(1550, "gemMolybdenum");
+
+        gemSyntheticMolybdenum = itemMaterial.addOreDictItem(1600, "gemSyntheticMolybdenum");
+        gemSyntheticDioptase = itemMaterial.addOreDictItem(1601, "gemSyntheticDioptase");
+        gemSyntheticPyrope = itemMaterial.addOreDictItem(1602, "gemSyntheticPyrope");
+        gemSyntheticGreen = itemMaterial.addOreDictItem(1603, "gemSyntheticGreen");
+    }
+
+    //2000-2499 Gears
     public void loadGears() {
-        /*gemMolybdenum = itemMaterial.addOreDictItem(53, "gemMolybdenum");
-        crystalMolybdenum = itemMaterial.addOreDictItem(54, "crystalMolybdenum");
-        crystalDioptase = itemMaterial.addOreDictItem(55, "crystalDioptase");
-        crystalPyrope = itemMaterial.addOreDictItem(56, "crystalPyrope");
-        gemNaturalAmber = itemMaterial.addOreDictItem(57, "gemAmber");
-        gemSyntheticMolybdenum = itemMaterial.addOreDictItem(58, "gemSyntheticMolybdenum");
-        gemSyntheticDioptase = itemMaterial.addOreDictItem(59, "gemSyntheticDioptase");
-        gemSyntheticPyrope = itemMaterial.addOreDictItem(60, "gemSyntheticPyrope");
-        gemSyntheticGreen = itemMaterial.addOreDictItem(61, "gemSyntheticGreen");
-
-        // Parts
+        /*// Parts
         partWiring = itemMaterial.addOreDictItem(64, "partWiring");
         partCircuitPlate = itemMaterial.addOreDictItem(65, "partCircuitPlate");
         partUnprocessedPCB = itemMaterial.addOreDictItem(66, "partUnprocessedPCB");
@@ -903,40 +909,40 @@ public class FluxGearContent implements IFuelHandler{
         //partCapacitorLv1 = itemMaterial.addOreDictItem(88, "partCapacitorLv1");*/
     }
 
-    //1200-1399 1/4 Dusts
+    //2500-2999 1/4 Dusts
     public void loadDustsSmall() {}
 
-    //1400-1599 1/9 Dusts
+    //3000-3499 1/9 Dusts
     public void loadDustsTiny() {}
 
-    //1600-1799 Foils
+    //3500-3999 Foils
     public void loadFoils() {}
 
-    //1800-1999 Plates
+    //4000-4499 Plates
     public void loadPlates() {}
 
-    //2000-2199 Dense Plates
+    //4500-4999 Dense Plates
     public void loadPlatesDense() {}
 
-    //2200-2399 Washers
+    //5000-5499 Washers
     public void loadWashers() {}
 
-    //2400-2599 Bolts
+    //5500-5999 Bolts
     public void loadBolts() {}
 
-    //2600-2799 Nuts
+    //6000-6499 Nuts
     public void loadNuts() {}
 
-    //2800-2999 Ball Bearings
+    //6500-6999 Ball Bearings
     public void loadBearings() {}
 
-    //3000-3199 Shafts
+    //7000-7499 Shafts
     public void loadShafts() {}
 
-    //3200-3399 Panels
+    //7500-7999 Panels
     public void loadPanels() {}
 
-    //5000-5999 Tiered Components
+    //10000-10999 Tiered Components
     public void loadComponents() {
         //5000-5024 Etched Wires
         //5025-5049 Energy Circuits
@@ -962,63 +968,62 @@ public class FluxGearContent implements IFuelHandler{
         //5525-5549 Flux Coils
     }
 
-    //6000-6999 Non-Tiered Components
+    //11000-11999 Non-Tiered Components
     public void loadParts() {}
 
-    //10000-10199 Trace Minerals
+    //12000-12999 Trace Minerals
     public void loadTraceMinerals() {}
 
-    //11000-11199 Ore Chips
+    //13000-13999 Ore Chips
     public void loadOres1() {}
 
-    //11200-11399 Dirty Ore Chunks
+    //14000-14999 Dirty Ore Chunks
     public void loadOres2() {}
 
-    //11400-11599 Clean Ore Chunks
+    //15000-15999 Clean Ore Chunks
     public void loadOres3() {}
 
-    //11600-11799 Crushed Ores
+    //16000-16999 Crushed Ores
     public void loadOres4() {}
 
-    //11800-11999 Purified Crushed Ores
+    //17000-17999 Purified Crushed Ores
     public void loadOres5() {}
 
-    //12000-12199 Dirty Ground Ores
+    //18000-18999 Dirty Ground Ores
     public void loadOres6() {}
 
-    //12200-12399 Clean Ground Ores
+    //19000-19999 Clean Ground Ores
     public void loadOres7() {}
 
-    //12400-12599 Impure Ore Dusts
+    //20000-20999 Impure Ore Dusts
     public void loadOres8() {}
 
-    //12600-12799 Purified Ore Dusts
+    //21000-21999 Purified Ore Dusts
     public void loadOres9() {}
 
-    //12800-12999 Ore Slurries
+    //22000-22999 Ore Slurries
     public void loadOres10() {}
 
-    //13000-13199 Ore Solutions
+    //23000-23999 Ore Solutions
     public void loadOres11() {}
 
-    //13200-13399 Ore Flakes
+    //24000-24999 Ore Flakes
     public void loadOres12() {}
 
-    //13400-13599 Pulverized Ore Flakes
+    //25000-25999 Pulverized Ore Flakes
     public void loadOres13() {}
 
-    //13600-13799 Centrifuged Ores
+    //26000-26999 Centrifuged Ores
     public void loadOres14() {}
 
-    //13800-13999 Purified Centrifuged Ores
+    //27000-27999 Purified Centrifuged Ores
     public void loadOres15() {}
 
-    //14000-14199 Rendered Ore Chunks
+    //28000-28999 Rendered Ore Chunks
     public void loadOres16() {}
 
-    //14200-14399 Crystallized Ores
+    //29000-29999 Crystallized Ores
     public void loadOres17(){}
-
 
     public void loadTools() {
 	    toolProtoSonicWrench = itemProtoSonicWrench.addItem(0, "protoSonicWrench");
@@ -1194,10 +1199,102 @@ public class FluxGearContent implements IFuelHandler{
     }
 
     public void registerPoorOres() {
-        /*
-		*   if(FluxGearConfigWorld.generatePoor$ == 0 || (FluxGearConfigWorld.generatePoor$ == 2 && FluxGearData.isRailcraftLoaded == true))
-		*       MinecraftForge.ORE_GEN_BUS.register(new Poor$Generator);
-		*/
+        if (FluxGearConfigWorld.generatePoorChalcocite == 0 || (FluxGearConfigWorld.generatePoorChalcocite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorChalcociteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorCassiterite == 0 || (FluxGearConfigWorld.generatePoorCassiterite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorCassiteriteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorGalena == 0 || (FluxGearConfigWorld.generatePoorGalena == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorGalenaGen());
+        }
+        if (FluxGearConfigWorld.generatePoorAcanthite == 0 || (FluxGearConfigWorld.generatePoorAcanthite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorAcanthiteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorGarnierite == 0 || (FluxGearConfigWorld.generatePoorGarnierite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorGarnieriteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorSphalerite == 0 || (FluxGearConfigWorld.generatePoorSphalerite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorSphaleriteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorBismuthinite == 0 || (FluxGearConfigWorld.generatePoorBismuthinite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorBismuthiniteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorPyrolusite == 0 || (FluxGearConfigWorld.generatePoorPyrolusite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorPyrolusiteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorBauxite == 0 || (FluxGearConfigWorld.generatePoorBauxite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorBauxiteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorCooperite == 0 || (FluxGearConfigWorld.generatePoorCooperite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorCooperiteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorBraggite == 0 || (FluxGearConfigWorld.generatePoorBraggite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorBraggriteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorMolybdenite == 0 || (FluxGearConfigWorld.generatePoorMolybdenite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorMolybdeniteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorCobaltite == 0 || (FluxGearConfigWorld.generatePoorCobaltite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorCobaltiteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorWolframite == 0 || (FluxGearConfigWorld.generatePoorWolframite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorWolframiteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorIlmenite == 0 || (FluxGearConfigWorld.generatePoorIlmenite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorIlmeniteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorChromite == 0 || (FluxGearConfigWorld.generatePoorChromite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorChromiteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorCinnabar == 0 || (FluxGearConfigWorld.generatePoorCinnabar == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorCinnabarGen());
+        }
+        if (FluxGearConfigWorld.generatePoorPitchblende == 0 || (FluxGearConfigWorld.generatePoorPitchblende == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorPitchblendeGen());
+        }
+        if (FluxGearConfigWorld.generatePoorMonazite == 0 || (FluxGearConfigWorld.generatePoorMonazite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorMonaziteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorNiedermayrite == 0 || (FluxGearConfigWorld.generatePoorNiedermayrite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorNiedermayriteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorGreenockite == 0 || (FluxGearConfigWorld.generatePoorGreenockite == 2 && FluxGearCore.isRailcraftLoaded)) {
+            MinecraftForge.ORE_GEN_BUS.register(new PoorGreenockiteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorGaotaiite == 0 || (FluxGearConfigWorld.generatePoorGaotaiite == 2 && FluxGearCore.isRailcraftLoaded)){
+            MinecraftForge.ORE_GEN_BUS.register(new PoorGaotaiiteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorOsarsite == 0 || (FluxGearConfigWorld.generatePoorOsarsite == 2 && FluxGearCore.isRailcraftLoaded)){
+            MinecraftForge.ORE_GEN_BUS.register(new PoorOsarsiteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorZnamenskyite == 0 || (FluxGearConfigWorld.generatePoorZnamenskyite == 2 && FluxGearCore.isRailcraftLoaded)){
+            MinecraftForge.ORE_GEN_BUS.register(new PoorZnamenskyiteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorGallobeudanite == 0 || (FluxGearConfigWorld.generatePoorGallobeudanite == 2 && FluxGearCore.isRailcraftLoaded)){
+            MinecraftForge.ORE_GEN_BUS.register(new PoorGallobeudaniteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorTetrahedrite == 0 || (FluxGearConfigWorld.generatePoorTetrahedrite == 2 && FluxGearCore.isRailcraftLoaded)){
+            MinecraftForge.ORE_GEN_BUS.register(new PoorTetrahediteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorTennantite == 0 || (FluxGearConfigWorld.generatePoorTennantite == 2 && FluxGearCore.isRailcraftLoaded)){
+            MinecraftForge.ORE_GEN_BUS.register(new PoorTennantiteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorSantafeite == 0 || (FluxGearConfigWorld.generatePoorSantafeite == 2 && FluxGearCore.isRailcraftLoaded)){
+            MinecraftForge.ORE_GEN_BUS.register(new PoorSantafeiteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorMagnetite == 0 || (FluxGearConfigWorld.generatePoorMagnetite == 2 && FluxGearCore.isRailcraftLoaded)){
+            MinecraftForge.ORE_GEN_BUS.register(new PoorMagnetiteGen());
+        }
+        if (FluxGearConfigWorld.generatePoorDioptase == 0 || (FluxGearConfigWorld.generatePoorDioptase == 2 && FluxGearCore.isRailcraftLoaded)){
+            MinecraftForge.ORE_GEN_BUS.register(new PoorDioptaseGen());
+        }
+        //if (FluxGearConfigWorld.generatePoorPyrope == 0 || (FluxGearConfigWorld.generatePoorPyrope == 2 && FluxGearCore.isRailcraftLoaded)){
+        //    MinecraftForge.ORE_GEN_BUS.register(new PoorPyropeGen());
+        //}
+        if (FluxGearConfigWorld.generatePoorMyuvil == 0 || (FluxGearConfigWorld.generatePoorMyuvil == 2 && FluxGearCore.isRailcraftLoaded)){
+            MinecraftForge.ORE_GEN_BUS.register(new PoorMyuvilGen());
+        }
     }
 
     //public void modIntegration() {}
@@ -1252,13 +1349,17 @@ public class FluxGearContent implements IFuelHandler{
     public static BlockAlloyAux blockAlloyAux;
     public static BlockStorageAlch blockStorageAlch;
     public static BlockStorageAdv blockStorageAdv;
+    //public static BlockStorageMisc blockStorageMisc;
     public static BlockEarthen blockEarthen;
     public static BlockPoorOreMain blockPoorOreMain;
     public static BlockPoorOreAux blockPoorOreAux;
+    //public static BlockTileMetal blockTileMetal; //Metallic TileEntities with a static model
+    //public static BlockTileTESR blockTileTESR; //Metallic TileEntities with a non-static or animated model
+    //public static BlockTileWood blockTileWood;
 
     // Base Items
     public static BucketFluxGear itemBucket;
-    public static ItemFluxGear itemMaterial;
+    public static ItemFluxGear itemMaterial; //If the item has no functionality itself (only used in crafting or as fuel, functionality is handled by an inventory, etc.) use this.
     public static ItemInteractivePFG itemInteractive;
     public static ItemFluxGear /*FoodPFG*/ itemFood;
     public static ItemPrototypeSonicWrench itemProtoSonicWrench;
@@ -1440,6 +1541,42 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack blockIridiumSands;
     public static ItemStack blockPoorIridiumSands;
     public static ItemStack blockAluminosilicateSludge;
+
+    //Primary Poor Ore Blocks
+    public static ItemStack orePoorChalcocite;
+    public static ItemStack orePoorCassiterite;
+    public static ItemStack orePoorGalena;
+    public static ItemStack orePoorAcanthite;
+    public static ItemStack orePoorGarnierite;
+    public static ItemStack orePoorSphalerite;
+    public static ItemStack orePoorBismuthinite;
+    public static ItemStack orePoorPyrolusite;
+    public static ItemStack orePoorBauxite;
+    public static ItemStack orePoorCooperite;
+    public static ItemStack orePoorBraggite;
+    public static ItemStack orePoorMolybdenite;
+    public static ItemStack orePoorCobaltite;
+    public static ItemStack orePoorWolframite;
+    public static ItemStack orePoorIlmenite;
+    public static ItemStack orePoorChromite;
+
+    //Secondary Poor Ore Blocks
+    public static ItemStack orePoorCinnabar;
+    public static ItemStack orePoorPitchblende;
+    public static ItemStack orePoorMonazite;
+    public static ItemStack orePoorNiedermayrite;
+    public static ItemStack orePoorGreenockite;
+    public static ItemStack orePoorGaotaiite;
+    public static ItemStack orePoorOsarsite;
+    public static ItemStack orePoorGallobeudanite;
+    public static ItemStack orePoorZnamenskyite;
+    public static ItemStack orePoorTertahedrite;
+    public static ItemStack orePoorTennantite;
+    public static ItemStack orePoorSantafeite;
+    public static ItemStack orePoorMagnetite;
+    public static ItemStack orePoorDioptase;
+    public static ItemStack orePoorPyrope;
+    public static ItemStack orePoorMyuvil;
 
 
     public static ItemStack blockPotato;
@@ -2011,12 +2148,12 @@ public class FluxGearContent implements IFuelHandler{
         cr.RegisterBlock(baseBlock);
         cr.RegisterBlock(bloodBlock);
 
-        BlockBase aluminumSludge = new BlockBase("Aluminosilicate Sludge", Material.clay);
-        aluminumSludge.setBlockTextureName("gui:aluminosilicate_sludge");
-        aluminumSludge.harvestType = "shovel";
-        aluminumSludge.harvestLevel = 0;
-        aluminumSludge.setHardness(0.3F);
-        cr.RegisterBlock(aluminumSludge);
+        BlockBase aluminiumSludge = new BlockBase("Aluminosilicate Sludge", Material.clay);
+        aluminiumSludge.setBlockTextureName("gui:aluminosilicate_sludge");
+        aluminiumSludge.harvestType = "shovel";
+        aluminiumSludge.harvestLevel = 0;
+        aluminiumSludge.setHardness(0.3F);
+        cr.RegisterBlock(aluminiumSludge);
 
         //((BlockGasSmog) smogManager.blocks.get(0)).blockRust = blockRust;
         //((BlockGasSmog) smogManager.blocks.get(0)).metaRust = 0;
@@ -2082,46 +2219,29 @@ public class FluxGearContent implements IFuelHandler{
         cr.RegisterBlock(fuelBurnerBlock);
 
         //Init and register items.
-        //ItemFoodBase itemMelonPan = new ItemFoodBase(config, "Melonpan", 3, 0.6f);
-        //itemMelonPan.setTextureName("gui:melonpan");
-        //cr.RegisterItem(itemMelonPan);
-
-        //itemAlum.congealedBlock = congealedBlock;
 
         //TileEntityGunpowderEngine.thermite = itemThermite;
 
         //Register chemistry.
         //Clay to slurry reaction.
-        ReactionSpec clayDissolve = new ReactionSpec(fluidAcid, new ItemStack(Items.clay_ball), aluminumSludge, null);
-        clayDissolve.soluteMin = 4; //Require 4 clay.
-        clayDissolve.soluteAffected = true; //Delete the clay item when the reaction takes place.
+        ReactionSpec clayDissolve = new ReactionSpec(fluidAcid, new ItemStack(Items.clay_ball), aluminiumSludge, null, false, true, 0, 4); //Require 4 clay and delete the clay item when the reaction takes place.
         cr.RegisterReaction(clayDissolve);
 
         //Alum to aluminum dust reaction.
-        ReactionSpec alumDissolve = new ReactionSpec(fluidBase, new ItemStack(/*itemAlum*/ Items.poisonous_potato), null, FluxGearContent.dustAluminium);
-        alumDissolve.soluteAffected = true;
-        alumDissolve.solventAffected = false;
+        ReactionSpec alumDissolve = new ReactionSpec(fluidBase, new ItemStack(/*itemAlum*/ Items.poisonous_potato), null, dustAluminium, true, false);
         cr.RegisterReaction(alumDissolve);
 
         //Acids and bases kill grass dead.
-        ReactionSpec grassDissolveAcid = new ReactionSpec();
-        grassDissolveAcid.solvent = fluidAcid;
-        grassDissolveAcid.solute = Blocks.grass;
-        grassDissolveAcid.soluteTarget = Blocks.dirt;
-        grassDissolveAcid.solventAffected = false;
-        grassDissolveAcid.soluteAffected = true;
+        ReactionSpec grassDissolveAcid = new ReactionSpec(fluidAcid, Blocks.grass, null, Blocks.dirt, false, true);
         cr.RegisterReaction(grassDissolveAcid);
 
-        ReactionSpec grassDissolveBase = new ReactionSpec();
-        grassDissolveBase.solvent = fluidBase;
-        grassDissolveBase.solute = Blocks.grass;
-        grassDissolveBase.soluteTarget = Blocks.dirt;
-        grassDissolveBase.solventAffected = false;
-        grassDissolveBase.soluteAffected = true;
+        ReactionSpec grassDissolveBase = new ReactionSpec(fluidBase, Blocks.grass, null, Blocks.dirt, false, true);
         cr.RegisterReaction(grassDissolveBase);
 
         ArrayList<ItemStack> aluminiumIngots = OreDictionary.getOres("ingotAluminium");
-        ArrayList<ItemStack> aluminiumOres = OreDictionary.getOres("oreAluminum");
+        aluminiumIngots.addAll(OreDictionary.getOres("ingotAluminum"));
+        ArrayList<ItemStack> aluminiumOres = OreDictionary.getOres("oreAluminium");
+        aluminiumOres.addAll(OreDictionary.getOres("oreAluminum"));
         aluminiumOres.addAll(OreDictionary.getOres("oreBauxite"));
         //Register aluminum ingot dissolution.
         if (aluminiumIngots != null && aluminiumIngots.size() > 0) {
@@ -2133,13 +2253,14 @@ public class FluxGearContent implements IFuelHandler{
                 cr.RegisterReaction(aluminumDissolve);
             }
         }
+
         //Register aluminum ore dissolution.
         if (aluminiumOres != null && aluminiumOres.size() > 0) {
             for (ItemStack item : aluminiumOres) {
-                /* Note the stack size of 2: This allows item doubling for those willing to spend the effort and fuel
-                 * to go the ore -> aluminosillicate slurry -> alum -> dissolved alum -> aluminum dust -> aluminum ingot path.
+                /* Note the stack size of 4: This allows ore quadrupling early-game for those willing to spend the effort and fuel
+                 * to go the Ore -> Aluminosillicate Slurry -> Alum -> Dissolved Alum -> Aluminium Dust -> Aluminium Ingot path.
                  */
-                ReactionSpec aluminumDissolve = new ReactionSpec(fluidAcid, item.copy(), null, new ItemStack(aluminumSludge, 2, 0));
+                ReactionSpec aluminumDissolve = new ReactionSpec(fluidAcid, item.copy(), null, new ItemStack(aluminiumSludge, 4, 0));
                 aluminumDissolve.soluteMin = 1; //Should be 1 to 1
                 aluminumDissolve.soluteAffected = true;
                 aluminumDissolve.solventAffected = false;

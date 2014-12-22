@@ -1,16 +1,13 @@
 package mortvana.projectfluxgear.legacy;
 
-import mortvana.fluxgearcore.legacy.block.tile.TileEntityGenerator;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
-import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
+import net.minecraftforge.fluids.*;
+
 import mortvana.fluxgearcore.legacy.ContentRegistry;
+import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
+import mortvana.fluxgearcore.legacy.block.tile.TileEntityGenerator;
 
 public class TileEntityBloodDynamo extends TileEntityGenerator implements IFluidHandler {
 	

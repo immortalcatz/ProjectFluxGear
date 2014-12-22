@@ -1,31 +1,29 @@
 package mortvana.projectfluxgear.common;
 
+import java.io.File;
+import java.lang.reflect.Method;
+
+import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.*;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 
 import mortvana.fluxgearcore.common.FluxGearCore;
-import mortvana.fluxgearcore.legacy.ContentRegistry;
+import mortvana.fluxgearcore.gui.FluxGearTab;
 import mortvana.fluxgearcore.util.handler.ConfigHandler;
-import mortvana.fluxgearcore.util.remapper.Remapper;
 
 import mortvana.projectfluxgear.common.config.FluxGearConfig;
 import mortvana.projectfluxgear.gui.FluxGearAchievements;
-import mortvana.fluxgearcore.gui.FluxGearTab;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.event.world.ChunkDataEvent;
-
 import mortvana.projectfluxgear.world.FluxGearWorldGenerator;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.File;
 
 @Mod(modid = ProjectFluxGear.modID, name = "Project Flux Gear", version = ProjectFluxGear.version, dependencies = ProjectFluxGear.dependencies, canBeDeactivated = false, guiFactory = "mortvana.projectfluxgear.gui.config.ConfigGuiFactory")
 public class ProjectFluxGear {
@@ -50,9 +48,6 @@ public class ProjectFluxGear {
     public ProjectFluxGear() {}
 
     public static FluxGearContent content = new FluxGearContent();
-    public static boolean retrogen;
-
-    public static Remapper thermalRemapper;
 
     public static final ConfigHandler config = new ConfigHandler(version);
     //public static final GuiHandler guiHandler = new GuiHandler();
@@ -129,12 +124,23 @@ public class ProjectFluxGear {
         //packetPipeline.postInitialize();
 
         config.cleanUp(false, true);
+
+        //Cheap and Dirty addon loading
+        try {
+            Class pfgAddons = Class.forName("mortvana.fluxgearaddons.common.FluxGearAddons");
+            Method method = pfgAddons.getMethod("initialize");
+            method.invoke(null);
+        } catch (Exception e) {}
     }
 
-    /*@EventHandler
+    @EventHandler
     public void remapEvent (FMLMissingMappingsEvent event) {
-        thermalRemapper.processMigrationEvent(event);
-    }*/
+        //for (FMLMissingMappingsEvent.MissingMapping mapping : event.get()) {
+            /*if (mapping.name.equals("Thingy:ItemOrBlock")) {
+                mapping.remap(LoadingClass.blockOrItem.item/block());
+            }*/
+        //}
+    }
 
     @EventHandler
     public void serverStarting(FMLServerStartingEvent event) {

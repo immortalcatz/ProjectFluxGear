@@ -9,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import mortvana.fluxgearcore.legacy.ContentRegistry;
 
 public class TileEntityOccultEngine extends TileEntityBloodDynamo {

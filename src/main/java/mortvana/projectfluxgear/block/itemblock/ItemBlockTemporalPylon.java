@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import mortvana.fluxgearcore.util.helper.ItemHelper;
 import mortvana.fluxgearcore.util.helper.StringHelper;
+
 import mortvana.projectfluxgear.block.BlockTemporalPylon;
 
 public class ItemBlockTemporalPylon extends ItemBlock {

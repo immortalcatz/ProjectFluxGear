@@ -2,8 +2,6 @@ package mortvana.projectfluxgear.legacy;
 
 import java.util.Random;
 
-//import mortvana.core.block.IBlockMetaPower;
-import mortvana.fluxgearcore.util.helper.BlockHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,14 +14,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.common.util.RotationHelper;
-//import mortvana.thermaltinkerer.block.gui.tile.TileEntityGunpowderEngine;
-//import mortvana.thermaltinkerer.block.gui.tile.TileEntityNitrateEngine;
-import mortvana.fluxgearcore.legacy.block.BlockContainerBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.common.util.RotationHelper;
+
+import mortvana.fluxgearcore.legacy.block.BlockContainerBase;
 
 
 //A copy-and-paste from BlockNitrateEngine.

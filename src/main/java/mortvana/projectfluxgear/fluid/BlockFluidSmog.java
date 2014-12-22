@@ -1,8 +1,5 @@
 package mortvana.projectfluxgear.fluid;
 
-import cofh.core.fluid.BlockFluidCoFHBase;
-import cpw.mods.fml.common.registry.GameRegistry;
-import mortvana.projectfluxgear.common.FluxGearContent;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
@@ -10,7 +7,12 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.registry.GameRegistry;
+
 import mortvana.fluxgearcore.util.chemistry.reaction.IBioactive;
+import cofh.core.fluid.BlockFluidCoFHBase;
+
+import mortvana.projectfluxgear.common.FluxGearContent;
 
 public class BlockFluidSmog extends BlockFluidCoFHBase implements IBioactive {
 

@@ -2,10 +2,6 @@ package mortvana.projectfluxgear.legacy;
 
 import java.util.Random;
 
-import mortvana.fluxgearcore.legacy.block.IBlockMetaPower;
-import mortvana.fluxgearcore.util.helper.BlockHelper;
-import mortvana.projectfluxgear.common.ProjectFluxGear;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -19,15 +15,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraftforge.common.config.Configuration;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.util.RotationHelper;
 import net.minecraftforge.fluids.Fluid;
-import mortvana.fluxgearcore.legacy.block.BlockContainerBase;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockNitrateEngine extends BlockContainerBase implements IBlockMetaPower {
+import mortvana.fluxgearcore.legacy.block.BlockContainerBase;
+import mortvana.fluxgearcore.util.helper.BlockHelper;
+
+import mortvana.projectfluxgear.common.ProjectFluxGear;
+
+public class BlockNitrateEngine extends BlockContainerBase {
 
 	int teCapacity = 0;
 	int tePerTick = 0;
@@ -169,13 +168,11 @@ public class BlockNitrateEngine extends BlockContainerBase implements IBlockMeta
 		return true;
 	}
 
-	@Override
 	public void recievePowerOn(World world, int x, int y, int z) {
 		// Bitmask bit 8 to on
 		world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) | 8, 2);
 	}
 
-	@Override
 	public void recievePowerOff(World world, int x, int y, int z) {
 		/*
 		 * Bitmask bit 8 to off by &ing it with the bitwise complement of 8

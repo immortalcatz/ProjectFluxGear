@@ -1,19 +1,18 @@
 package mortvana.projectfluxgear.legacy;
 
-import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
-import mortvana.projectfluxgear.common.config.FluxGearConfig;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import mortvana.projectfluxgear.legacy.TileEntityBloodDonation;
-import mortvana.fluxgearcore.legacy.ContentRegistry;
+
+import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
+
+import mortvana.projectfluxgear.common.config.FluxGearConfig;
 
 public class BlockBloodDonation extends BlockMetaTank {
 	

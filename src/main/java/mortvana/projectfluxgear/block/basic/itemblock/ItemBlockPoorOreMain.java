@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import mortvana.fluxgearcore.block.ItemBlockFluxGear;
 import mortvana.fluxgearcore.util.helper.ItemHelper;
+
 import mortvana.projectfluxgear.block.basic.BlockPoorOreMain;
 
 public class ItemBlockPoorOreMain extends ItemBlockFluxGear{

@@ -1,14 +1,15 @@
 package mortvana.projectfluxgear.block;
 
-import mortvana.projectfluxgear.block.logic.NamingTableLogic;
-import mortvana.projectfluxgear.common.ProjectFluxGear;
-import mortvana.fluxgearcore.inventory.InventoryBlock;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import mortvana.fluxgearcore.inventory.InventoryBlock;
+
+import mortvana.projectfluxgear.block.logic.NamingTableLogic;
+import mortvana.projectfluxgear.common.ProjectFluxGear;
 
 public class BlockWoodenTileEntity extends InventoryBlock {
 

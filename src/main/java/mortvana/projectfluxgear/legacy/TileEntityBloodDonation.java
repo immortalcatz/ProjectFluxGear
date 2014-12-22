@@ -3,14 +3,10 @@ package mortvana.projectfluxgear.legacy;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidEvent;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
-import net.minecraftforge.fluids.IFluidTank;
-import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
+import net.minecraftforge.fluids.*;
+
 import mortvana.fluxgearcore.legacy.ContentRegistry;
+import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
 import mortvana.fluxgearcore.legacy.block.tile.TileEntityBase;
 
 public class TileEntityBloodDonation extends TileEntityBase implements IFluidHandler, IFluidTank{

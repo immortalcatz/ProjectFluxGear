@@ -3,7 +3,7 @@ package mortvana.projectfluxgear.legacy;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.config.Configuration;
+
 import mortvana.fluxgearcore.legacy.block.BlockContainerBase;
 
 public class BlockFuelBurner extends BlockContainerBase {

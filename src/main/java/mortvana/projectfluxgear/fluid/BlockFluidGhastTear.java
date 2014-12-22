@@ -1,11 +1,13 @@
 package mortvana.projectfluxgear.fluid;
 
-import cofh.core.fluid.BlockFluidCoFHBase;
-import cpw.mods.fml.common.registry.GameRegistry;
-import mortvana.projectfluxgear.common.FluxGearContent;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
+import cpw.mods.fml.common.registry.GameRegistry;
+
+import cofh.core.fluid.BlockFluidCoFHBase;
+
+import mortvana.projectfluxgear.common.FluxGearContent;
 
 public class BlockFluidGhastTear extends BlockFluidCoFHBase {
 

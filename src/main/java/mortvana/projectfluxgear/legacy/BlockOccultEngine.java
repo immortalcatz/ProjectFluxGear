@@ -2,7 +2,6 @@ package mortvana.projectfluxgear.legacy;
 
 import java.util.ArrayList;
 
-import mortvana.fluxgearcore.legacy.block.IBlockMetaPower;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -10,10 +9,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.config.Configuration;
 
 //TODO: Particle effect when an appropriate block is on top of this engine.
-public class BlockOccultEngine extends BlockBloodEngine implements IBlockMetaPower {
+public class BlockOccultEngine extends BlockBloodEngine {
 	
 	public static ArrayList<String> idols = new ArrayList<String>(2);
 
@@ -21,12 +19,10 @@ public class BlockOccultEngine extends BlockBloodEngine implements IBlockMetaPow
 		idols.add(Blocks.skull.getUnlocalizedName());
 		idols.add(Blocks.dragon_egg.getUnlocalizedName());
 	}
-	
-	@Override
+
 	public void recievePowerOn(World world, int x, int y, int z) {
 	}
 
-	@Override
 	public void recievePowerOff(World world, int x, int y, int z) {
 	}
 

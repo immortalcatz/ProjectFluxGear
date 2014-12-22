@@ -3,7 +3,6 @@ package mortvana.projectfluxgear.legacy;
 import java.util.ArrayList;
 import java.util.Random;
 
-import mortvana.fluxgearcore.legacy.block.tile.TileEntitySolidFueled;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,22 +12,18 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidEvent;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
-import net.minecraftforge.fluids.IFluidTank;
-import mortvana.fluxgearcore.legacy.block.IBlockMetaPower;
-import mortvana.fluxgearcore.legacy.ContentRegistry;
-import mortvana.fluxgearcore.legacy.item.SolidFuelInfo;
-import mortvana.fluxgearcore.legacy.item.ISolidFuelInfo;
-import cofh.api.energy.IEnergyHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.*;
+
+import mortvana.fluxgearcore.legacy.ContentRegistry;
+import mortvana.fluxgearcore.legacy.block.tile.TileEntitySolidFueled;
+import mortvana.fluxgearcore.legacy.item.ISolidFuelInfo;
+import mortvana.fluxgearcore.legacy.item.SolidFuelInfo;
+import cofh.api.energy.IEnergyHandler;
 
 public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IEnergyHandler, ISidedInventory, IFluidHandler, IFluidTank {
 	private static final int[] accessibleSlots = new int[] { 0, 1 };
@@ -457,19 +452,19 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 						if (this.engineItemStacks[0].stackSize <= 0) {
 							this.engineItemStacks[0] = null;
 						}
-						if (deltaItems != 0) {
+						/*if (deltaItems != 0) {
 							TurnBlockOn();
 						} else {
 							TurnBlockOff();
-						}
-					} else {
+						}*/
+					} /*else {
 						TurnBlockOff();
-					}
+					}*/
 					ticksUntilBurn = ticksPerBurn; // Reset the timer, but only
 													// if we did anything.
-				} else {
+				} /*else {
 					TurnBlockOff();
-				}
+				}*/
 			}
 			// And now, attempt to charge surrounding blocks.
 			if (flagHasPower) {
@@ -497,7 +492,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 		}
 	}
 
-	private void TurnBlockOff() {
+	/*private void TurnBlockOff() {
 		if (wasRunningLastBurn == true) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
 			if (block instanceof IBlockMetaPower) {
@@ -515,7 +510,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 			}
 		}
 		wasRunningLastBurn = true;
-	}
+	}*/
 
 	@Override
 	public void receiveByproduct(ItemStack byproductStack) {

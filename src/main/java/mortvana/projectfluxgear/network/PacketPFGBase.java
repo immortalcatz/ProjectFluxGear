@@ -1,12 +1,14 @@
 package mortvana.projectfluxgear.network;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+
 import cofh.api.tileentity.IRedstoneControl;
 import cofh.api.tileentity.ISecurable;
 import cofh.core.network.PacketCoFHBase;
 import cofh.core.network.PacketHandler;
+
 import mortvana.projectfluxgear.common.ProjectFluxGear;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
 
 public class PacketPFGBase extends PacketCoFHBase
 {

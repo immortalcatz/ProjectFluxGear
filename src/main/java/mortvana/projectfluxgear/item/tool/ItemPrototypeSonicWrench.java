@@ -13,22 +13,23 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-
 import net.minecraftforge.common.util.ForgeDirection;
 
+import mortvana.fluxgearcore.item.ItemFluxGear;
 import mortvana.fluxgearcore.item.tool.IOmniwrench;
+import mortvana.fluxgearcore.util.helper.BlockHelper;
+import mortvana.fluxgearcore.util.helper.ServerHelper;
 import cofh.api.block.IDismantleable;
 
+import mortvana.projectfluxgear.common.ProjectFluxGear;
+
+import binnie.extratrees.api.IToolHammer;
 import carpentersblocks.api.ICarpentersHammer;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import flaxbeard.steamcraft.api.IPipeWrench;
 import ic2.api.tile.IWrenchable;
 import main.flowstoneenergy.core.interfaces.IFlowWrenchable;
-import mortvana.projectfluxgear.common.ProjectFluxGear;
-import mortvana.fluxgearcore.item.ItemFluxGear;
-import mortvana.fluxgearcore.util.helper.BlockHelper;
-import mortvana.fluxgearcore.util.helper.ServerHelper;
-
 import pneumaticCraft.api.block.IPneumaticWrenchable;
 
 /*
@@ -40,28 +41,28 @@ import pneumaticCraft.api.block.IPneumaticWrenchable;
  *     Project:Red Screwdriver
  *     Hairy Spice Wrench
  *     Applied Energistics Wrench
+ *     Mekanism Wrench
  * IndustrialCraft Wrench
  * Carpenter's Blocks Hammer (SHOULD, BUT IT IS BROKEN)
  * Flowstone Energy Wrench
  * PneumaticCraft Pneumatic Wrench
+ * Professor Flaxbeard's Wondrous Steam Power Mod Wrench
+ * Extra Trees Hammer
  *
  * Planned to Work as:
- * Professor Flaxbeard's Wondrous Steam Power Mod Wrench (Tonight [12-19-2014])
- * Extra Trees Hammer (When I can figure out how to do it without the API, well BON time tonight... [12-19-2014])
- * Mekanism Wrench (Tonight [12-19-2014])
  * Carpenter's Blocks Chisel (Once I add modes)
  * Mekanism Configurator (Once I add modes)
  * Enhanced Portals Painter (Once I add modes)
  * Thaumcraft Wand (For Rotations)
- * BiblioCraft Screwgun (When I can figure out how to do it without the API, or maybe BON...)
  * Advanced EnderIO Support (Sometime in the future?)
- * BluePower Screwdriver (NO SCREWDRIVER API, MAYBE EVENTUALLY)
  *
  * May Work as:
  * RotaryCraft Screwdriver (If Reika made stuff streamlined enough to integrate, maybe in 1.8...)
+ * BiblioCraft Screwgun (No API :c)
+ * BluePower Screwdriver (NO SCREWDRIVER API, MAYBE EVENTUALLY)
  */
 
-public class ItemPrototypeSonicWrench extends ItemFluxGear implements ICarpentersHammer, IOmniwrench {
+public class ItemPrototypeSonicWrench extends ItemFluxGear implements ICarpentersHammer, IOmniwrench, IPipeWrench, IToolHammer {
 
 	public ItemPrototypeSonicWrench() {
 		super("projectfluxgear");
@@ -243,7 +244,7 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements ICarpenter
 		player.swingItem();
 	}
 
-	/* IToolWrench (BuildCraft) */
+	/* IToolWrench (BuildCraft) and IPipeWrench (Flaxbeard's Steam Power) */
 	@Override
 	public boolean canWrench(EntityPlayer player, int x, int y, int z) {
 		return true;
@@ -270,6 +271,21 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements ICarpenter
 	/* IWrench (Hairy Spice) */
 	@Override
 	public boolean isWrench(ItemStack wrench) {
+		return true;
+	}
+
+	/* IToolHammer (Extra Trees) */
+	@Override
+	public boolean isActive(ItemStack var1) {
+		return true;
+	}
+
+	@Override
+	public void onHammerUsed(ItemStack var1, EntityPlayer var2) {}
+
+	/* IMekWrench */
+	@Override
+	public boolean canUseWrench(EntityPlayer player, int x, int y, int z) {
 		return true;
 	}
 }

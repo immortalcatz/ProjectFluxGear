@@ -1,12 +1,13 @@
 package mortvana.projectfluxgear.block.logic;
 
-import mantle.blocks.abstracts.InventoryLogic;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import mantle.blocks.abstracts.InventoryLogic;
 
 import mortvana.projectfluxgear.block.tileentity.NamingTableContainer;
 

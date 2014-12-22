@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import mortvana.fluxgearcore.block.ItemBlockFluxGear;
 import mortvana.fluxgearcore.util.helper.ItemHelper;
-import mortvana.fluxgearcore.util.helper.StringHelper;
+
 import mortvana.projectfluxgear.block.basic.BlockStorageAlch;
 
 public class ItemBlockStorageAlch extends ItemBlockFluxGear {

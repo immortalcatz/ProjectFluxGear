@@ -1,7 +1,8 @@
 package mortvana.projectfluxgear.legacy;
 
-import mortvana.fluxgearcore.legacy.block.tile.TileEntityGenerator;
 import net.minecraft.nbt.NBTTagCompound;
+
+import mortvana.fluxgearcore.legacy.block.tile.TileEntityGenerator;
 
 @Deprecated
 //TODO: I just wanna watch the Google burn...

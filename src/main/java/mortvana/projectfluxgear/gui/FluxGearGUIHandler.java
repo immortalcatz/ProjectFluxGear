@@ -1,10 +1,10 @@
 package mortvana.projectfluxgear.gui;
 
+import java.util.HashMap;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
-
-import java.util.HashMap;
 
 public class FluxGearGUIHandler implements IGuiHandler {
 

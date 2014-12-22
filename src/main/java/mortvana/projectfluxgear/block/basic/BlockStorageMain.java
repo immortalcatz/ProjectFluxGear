@@ -17,6 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.fluxgearcore.block.BlockFluxGear;
 import mortvana.fluxgearcore.block.EnumBlockType;
 import mortvana.fluxgearcore.util.helper.StringHelper;
+
 import mortvana.projectfluxgear.common.ProjectFluxGear;
 
 public class BlockStorageMain extends BlockFluxGear {

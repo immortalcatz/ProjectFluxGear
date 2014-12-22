@@ -3,8 +3,6 @@ package mortvana.projectfluxgear.legacy;
 import java.util.ArrayList;
 import java.util.Random;
 
-import mortvana.fluxgearcore.legacy.block.tile.TileEntitySolidFueled;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -15,10 +13,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.FluidStack;
-import mortvana.fluxgearcore.legacy.block.IBlockMetaPower;
+
 import mortvana.fluxgearcore.legacy.ContentRegistry;
-import mortvana.fluxgearcore.legacy.item.SolidFuelInfo;
+import mortvana.fluxgearcore.legacy.block.tile.TileEntitySolidFueled;
 import mortvana.fluxgearcore.legacy.item.ISolidFuelInfo;
+import mortvana.fluxgearcore.legacy.item.SolidFuelInfo;
 
 /*
  * A tile entity is essentially a bit of extra behavior and information that is associated with a block in the world.
@@ -333,18 +332,18 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 						if (fuelStack.stackSize <= 0) {
 							fuelStack = null;
 						} //Update our block as to the current running state of the engine.
-						if (deltaItems != 0) {
+						/*if (deltaItems != 0) {
 							TurnBlockOn();
 						} else {
 							TurnBlockOff();
-						}
-					} else {
+						}*/
+					}/* else {
 						TurnBlockOff();
-					}
+					}*/
 					ticksUntilBurn = ticksPerBurn; // Reset the timer, but only if we did anything.
-				} else {
+				} /*else {
 					TurnBlockOff();
-				}
+				}*/
 			}
 			// And now, attempt to charge surrounding blocks.
 			if (flagHasPower) {
@@ -387,7 +386,7 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 		}
 	}
 
-	//Do metadata things to our block, changing its textures based on if the engine is on or off.
+	/*//Do metadata things to our block, changing its textures based on if the engine is on or off.
 	private void TurnBlockOff() {
 		if (wasRunningLastBurn == true) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
@@ -407,7 +406,7 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 			}
 		}
 		wasRunningLastBurn = true;
-	}
+	}*/
 
 	@Override
 	public void closeInventory() {

@@ -14,6 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.fluxgearcore.block.BlockFluxGear;
 import mortvana.fluxgearcore.block.EnumBlockType;
 import mortvana.fluxgearcore.util.helper.StringHelper;
+
 import mortvana.projectfluxgear.common.ProjectFluxGear;
 
 public class BlockEarthen extends BlockFluxGear {
@@ -48,5 +49,6 @@ public class BlockEarthen extends BlockFluxGear {
 	public static final String[] NAMES = {"claysandsIridium", "claysandsIridiumPoor", "aluminosilicateSludge"};
 	public static final IIcon[] TEXTURES = new IIcon[NAMES.length];
 	public static final int[] RARITY = { 1, 0, 0 };
+	public static final float[] HARDNESS = {5, 5, 0.3F};
 
 }

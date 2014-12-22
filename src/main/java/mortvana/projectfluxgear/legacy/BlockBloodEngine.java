@@ -2,7 +2,6 @@ package mortvana.projectfluxgear.legacy;
 
 import java.lang.reflect.Field;
 
-import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,14 +9,10 @@ import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidBlock;
-import mortvana.projectfluxgear.legacy.TileEntityBloodDynamo;
+import net.minecraftforge.fluids.*;
+
+import mortvana.fluxgearcore.legacy.block.BlockMetaTank;
 
 public class BlockBloodEngine extends BlockMetaTank {
 	

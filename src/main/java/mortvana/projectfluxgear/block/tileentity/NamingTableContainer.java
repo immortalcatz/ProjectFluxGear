@@ -1,16 +1,18 @@
 package mortvana.projectfluxgear.block.tileentity;
 
-import mortvana.projectfluxgear.block.logic.NamingTableLogic;
-import mortvana.projectfluxgear.common.FluxGearContent;
-import mortvana.fluxgearcore.inventory.ActiveContainer;
-import mortvana.fluxgearcore.gui.SmrtSlot;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import java.util.Random;
+import mortvana.fluxgearcore.gui.SmrtSlot;
+import mortvana.fluxgearcore.inventory.ActiveContainer;
+
+import mortvana.projectfluxgear.block.logic.NamingTableLogic;
+import mortvana.projectfluxgear.common.FluxGearContent;
 
 public class NamingTableContainer extends ActiveContainer {
 

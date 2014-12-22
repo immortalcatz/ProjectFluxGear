@@ -2,12 +2,11 @@ package mortvana.projectfluxgear.block.basic.itemblock;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 import mortvana.fluxgearcore.block.ItemBlockFluxGear;
 import mortvana.fluxgearcore.util.helper.ItemHelper;
-import mortvana.fluxgearcore.util.helper.StringHelper;
+
 import mortvana.projectfluxgear.block.basic.BlockAlloyAux;
 
 public class ItemBlockAlloyAux extends ItemBlockFluxGear {

@@ -3,8 +3,9 @@ package mortvana.projectfluxgear.legacy;
 import java.io.File;
 import java.io.IOException;
 
-import mortvana.projectfluxgear.common.ProjectFluxGear;
 import net.minecraftforge.common.config.Configuration;
+
+import mortvana.projectfluxgear.common.ProjectFluxGear;
 
 public class FluxGearWorldConfigOld {
 

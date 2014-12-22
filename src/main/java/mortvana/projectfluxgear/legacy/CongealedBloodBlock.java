@@ -3,11 +3,12 @@ package mortvana.projectfluxgear.legacy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import mortvana.projectfluxgear.common.ProjectFluxGear;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+
 import mortvana.fluxgearcore.legacy.util.ISoundProvider;
+
+import mortvana.projectfluxgear.common.ProjectFluxGear;
 
 public class CongealedBloodBlock extends Block implements ISoundProvider {
 	private static String unlocalizedName = "congealedBloodBlock";

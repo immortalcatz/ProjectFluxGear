@@ -5,12 +5,8 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate;
-
-import mortvana.fluxgearcore.util.world.SurfaceOreGen;
-import mortvana.projectfluxgear.common.FluxGearContent;
 
 public class TerrainGenEventHandler {
 

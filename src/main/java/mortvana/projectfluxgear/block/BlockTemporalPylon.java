@@ -19,9 +19,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.fluxgearcore.util.helper.StringHelper;
-import mortvana.projectfluxgear.common.FluxGearContent;
+
 import mortvana.projectfluxgear.block.itemblock.ItemBlockTemporalPylon;
 import mortvana.projectfluxgear.block.tileentity.TileTemporalPylon;
+import mortvana.projectfluxgear.common.FluxGearContent;
 
 public class BlockTemporalPylon extends Block implements ITileEntityProvider {
 
