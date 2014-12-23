@@ -19,6 +19,7 @@ import mortvana.fluxgearcore.gui.FluxGearTab;
 import mortvana.fluxgearcore.util.handler.ConfigHandler;
 
 import mortvana.projectfluxgear.common.config.FluxGearConfig;
+import mortvana.projectfluxgear.common.config.FluxGearConfigWorld;
 import mortvana.projectfluxgear.gui.FluxGearAchievements;
 import mortvana.projectfluxgear.world.FluxGearWorldGenerator;
 
@@ -49,7 +50,6 @@ public class ProjectFluxGear {
 
     public static FluxGearContent content = new FluxGearContent();
 
-    public static final ConfigHandler config = new ConfigHandler(version);
     //public static final GuiHandler guiHandler = new GuiHandler();
 
 
@@ -72,7 +72,8 @@ public class ProjectFluxGear {
         //thermalRemapper = new Remapper(Loader.instance().activeModContainer());
         MinecraftForge.EVENT_BUS.register(this);
 
-        config.setConfiguration(new Configuration(new File(FluxGearCore.configDir, "Mortvana")));
+        FluxGearConfig.loadConfiguration(event.getModConfigurationDirectory());
+        FluxGearConfigWorld.loadConfiguration(event.getModConfigurationDirectory());
 
         compat.preInitCompat();
         compat.preInitIMC();
@@ -87,7 +88,6 @@ public class ProjectFluxGear {
             FluxGearAchievements.addAchievements();
         }
 
-        config.save();
     }
 
     @EventHandler
@@ -123,14 +123,6 @@ public class ProjectFluxGear {
 
         //packetPipeline.postInitialize();
 
-        config.cleanUp(false, true);
-
-        //Cheap and Dirty addon loading
-        try {
-            Class pfgAddons = Class.forName("mortvana.fluxgearaddons.common.FluxGearAddons");
-            Method method = pfgAddons.getMethod("initialize");
-            method.invoke(null);
-        } catch (Exception e) {}
     }
 
     @EventHandler

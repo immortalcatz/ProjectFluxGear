@@ -14,13 +14,15 @@ public class FluxGearConfigWorld {
 	
 	public static void loadConfiguration (File mainConfigFolder) {
 		ProjectFluxGear.logger.info("Loading configuration from disk.");
+
 		try {
 			configFolder = new File(mainConfigFolder.getCanonicalPath(), "Mortvana");
 			if (!configFolder.exists())
 				configFolder.mkdirs();
 		} catch (IOException e) {
-			ProjectFluxGear.logger.error("Error getting/creating Thermal Tinkerer configuration directory: " + e.getMessage());
+			ProjectFluxGear.logger.error("Error getting/creating Project Flux Gear configuration directory: " + e.getMessage());
 		}
+
 		config = new Configuration(new File(configFolder, ("ProjectFluxGear-World.cfg")));
 		config.load();
 
@@ -29,10 +31,13 @@ public class FluxGearConfigWorld {
 		config.addCustomCategoryComment(minL, "The lowest Y level an ore will spawn at.");
 		config.addCustomCategoryComment(maxL, "The highest Y level an ore will spawn at.");
 		config.addCustomCategoryComment(amntL, "How many ores are in a vein.");
-		config.addCustomCategoryComment(chncL, "Configure the frequency a chunk will have ores.");
-		config.addCustomCategoryComment(irGenL, "Configure miscellaneous world generation.");
-		config.addCustomCategoryComment(pooresL, "Stuff relating to Poor Ores. 0 is enabled, 1 is disbled, 2 is automatic");
-		config.addCustomCategoryComment(retroL, "Stuff relating to Retroactive World Generation (Retrogen).");
+		config.addCustomCategoryComment(chncL, "Configure the frequency a chunk will have ores. (1/x)");
+		config.addCustomCategoryComment(miscGenL, "Configure miscellaneous world generation.");
+		config.addCustomCategoryComment(pooresL, "Stuff relating to Poor Ores. 0 is enabled, 1 is disabled, 2 is automatic (Only with Railcraft)");
+		config.addCustomCategoryComment(gravGenL, "Stuff relating to Gravel Ores. 0 is enabled, 1 is disabled, 2 is automatic (Only with Tinker's Construct)");
+		config.addCustomCategoryComment(chncL, "Configure the frequency a chunk will have gravel ores. (1/x)");
+		config.addCustomCategoryComment(gravSizeL, "How many gravel ores are in a vein.");
+		config.addCustomCategoryComment(retroL, "Stuff relating to \"Retroactive World Generation\" (Retrogen).");
 
 		doesGenerate();
 		density();
@@ -41,6 +46,9 @@ public class FluxGearConfigWorld {
 		amount();
 		chance();
 		pooresGen();
+		gravelOresGen();
+		gravelOresRarity();
+		gravelOresSize();
 		otherGen();
 		retrogenConfig();
 
@@ -120,56 +128,110 @@ public class FluxGearConfigWorld {
 		myuvilDensity = config.get(densL, myv + dens, 4).getInt(4);
 	}
 
-	public static void minY() {}
+	public static void minY() {
 
-	public static void maxY() {}
+	}
 
-	public static void amount() {}
+	public static void maxY() {
+
+	}
+
+	public static void amount() {
+
+	}
 
 	//Not yet Used
-	public static void chance () {}
+	public static void chance () {
 
-	public static void otherGen() {
-		generateIridium = config.get(irGenL, gen + ir , true).getBoolean(true);
 	}
 
 	public static void pooresGen() {
 		//TODO: Figure out how to Enum stuffs
-		generatePoorChalcocite = config.get(genL, gen + poor + cu, 2).getInt(2);
-		generatePoorCassiterite = config.get(genL, gen + poor + sn, 2).getInt(2);
-		generatePoorGalena = config.get(genL, gen + poor + pb, 2).getInt(2);
-		generatePoorAcanthite = config.get(genL, gen + poor + ag, 2).getInt(2);
-		generatePoorGarnierite = config.get(genL, gen + poor + ni, 2).getInt(2);
-		generatePoorSphalerite = config.get(genL, gen + poor + zn, 2).getInt(2);
-		generatePoorBismuthinite = config.get(genL, gen + poor + bi, 2).getInt(2);
-		generatePoorPyrolusite = config.get(genL, gen + poor + mn, 2).getInt(2);
-		generatePoorBauxite = config.get(genL, gen + poor + al, 2).getInt(2);
-		generatePoorCooperite = config.get(genL, gen + poor + pt, 2).getInt(2);
-		generatePoorBraggite = config.get(genL, gen + poor + pd, 2).getInt(2);
-		generatePoorMolybdenite = config.get(genL, gen + poor + mo, 2).getInt(2);
-		generatePoorCobaltite = config.get(genL, gen + poor + co, 2).getInt(2);
-		generatePoorWolframite = config.get(genL, gen + poor + w, 2).getInt(2);
-		generatePoorIlmenite = config.get(genL, gen + poor + ti, 2).getInt(2);
-		generatePoorChromite = config.get(genL, gen + poor + cr, 2).getInt(2);
+		generatePoorChalcocite = config.get(pooresL, gen + poor + cu, 2).getInt(2);
+		generatePoorCassiterite = config.get(pooresL, gen + poor + sn, 2).getInt(2);
+		generatePoorGalena = config.get(pooresL, gen + poor + pb, 2).getInt(2);
+		generatePoorAcanthite = config.get(pooresL, gen + poor + ag, 2).getInt(2);
+		generatePoorGarnierite = config.get(pooresL, gen + poor + ni, 2).getInt(2);
+		generatePoorSphalerite = config.get(pooresL, gen + poor + zn, 2).getInt(2);
+		generatePoorBismuthinite = config.get(pooresL, gen + poor + bi, 2).getInt(2);
+		generatePoorPyrolusite = config.get(pooresL, gen + poor + mn, 2).getInt(2);
+		generatePoorBauxite = config.get(pooresL, gen + poor + al, 2).getInt(2);
+		generatePoorCooperite = config.get(pooresL, gen + poor + pt, 2).getInt(2);
+		generatePoorBraggite = config.get(pooresL, gen + poor + pd, 2).getInt(2);
+		generatePoorMolybdenite = config.get(pooresL, gen + poor + mo, 2).getInt(2);
+		generatePoorCobaltite = config.get(pooresL, gen + poor + co, 2).getInt(2);
+		generatePoorWolframite = config.get(pooresL, gen + poor + w, 2).getInt(2);
+		generatePoorIlmenite = config.get(pooresL, gen + poor + ti, 2).getInt(2);
+		generatePoorChromite = config.get(pooresL, gen + poor + cr, 2).getInt(2);
 
-		generatePoorCinnabar = config.get(genL, gen + poor + hg, 2).getInt(2);
-		generatePoorPitchblende = config.get(genL, gen + poor + u, 2).getInt(2);
-		generatePoorMonazite = config.get(genL, gen + poor + mnz, 2).getInt(2);
-		generatePoorNiedermayrite = config.get(genL, gen + poor + nrd, 2).getInt(2);
-		generatePoorGreenockite = config.get(genL, gen + poor + cad, 2).getInt(2);
-		generatePoorGaotaiite = config.get(genL, gen + poor + tel, 2).getInt(2);
-		generatePoorOsarsite = config.get(genL, gen + poor + os, 2).getInt(2);
-		generatePoorGallobeudanite = config.get(genL, gen + poor + ga, 2).getInt(2);
-		generatePoorZnamenskyite = config.get(genL, gen + poor + ind, 2).getInt(2);
-		generatePoorTetrahedrite = config.get(genL, gen + poor + sbb, 2).getInt(2);
-		generatePoorTennantite = config.get(genL, gen + poor + asb, 2).getInt(2);
-		generatePoorSantafeite = config.get(genL, gen + poor + fe, 2).getInt(2);
-		generatePoorMagnetite = config.get(genL, gen + poor + va, 2).getInt(2);
-		generatePoorDioptase = config.get(genL, gen + poor + dts, 2).getInt(2);
-		generatePoorPyrope = config.get(genL, gen + poor + prp, 2).getInt(2);
-		generatePoorMyuvil = config.get(genL, gen + poor + myv, 2).getInt(2);
+		generatePoorCinnabar = config.get(pooresL, gen + poor + hg, 2).getInt(2);
+		generatePoorPitchblende = config.get(pooresL, gen + poor + u, 2).getInt(2);
+		generatePoorMonazite = config.get(pooresL, gen + poor + mnz, 2).getInt(2);
+		generatePoorNiedermayrite = config.get(pooresL, gen + poor + nrd, 2).getInt(2);
+		generatePoorGreenockite = config.get(pooresL, gen + poor + cad, 2).getInt(2);
+		generatePoorGaotaiite = config.get(pooresL, gen + poor + tel, 2).getInt(2);
+		generatePoorOsarsite = config.get(pooresL, gen + poor + os, 2).getInt(2);
+		generatePoorGallobeudanite = config.get(pooresL, gen + poor + ga, 2).getInt(2);
+		generatePoorZnamenskyite = config.get(pooresL, gen + poor + ind, 2).getInt(2);
+		generatePoorTetrahedrite = config.get(pooresL, gen + poor + sbb, 2).getInt(2);
+		generatePoorTennantite = config.get(pooresL, gen + poor + asb, 2).getInt(2);
+		generatePoorSantafeite = config.get(pooresL, gen + poor + fe, 2).getInt(2);
+		generatePoorMagnetite = config.get(pooresL, gen + poor + va, 2).getInt(2);
+		generatePoorDioptase = config.get(pooresL, gen + poor + dts, 2).getInt(2);
+		generatePoorPyrope = config.get(pooresL, gen + poor + prp, 2).getInt(2);
+		generatePoorMyuvil = config.get(pooresL, gen + poor + myv, 2).getInt(2);
+	}
 
-		generatePoorIridium = config.get(irGenL, gen + poor + ir, 2).getInt(2);
+	public static void gravelOresGen() {
+		//TODO: Figure out how to Enum stuffs
+		generateGravelChalcocite = config.get(gravGenL, gen + gravel + cu, 2).getInt(2);
+		generateGravelCassiterite = config.get(gravGenL, gen + gravel + sn, 2).getInt(2);
+		generateGravelGalena = config.get(gravGenL, gen + gravel + pb, 2).getInt(2);
+		generateGravelAcanthite = config.get(gravGenL, gen + gravel + ag, 2).getInt(2);
+		generateGravelGarnierite = config.get(gravGenL, gen + gravel + ni, 2).getInt(2);
+		generateGravelSphalerite = config.get(gravGenL, gen + gravel + zn, 2).getInt(2);
+		generateGravelBismuthinite = config.get(gravGenL, gen + gravel + bi, 2).getInt(2);
+		generateGravelPyrolusite = config.get(gravGenL, gen + gravel + mn, 2).getInt(2);
+		generateGravelBauxite = config.get(gravGenL, gen + gravel + al, 2).getInt(2);
+		generateGravelCooperite = config.get(gravGenL, gen + gravel + pt, 2).getInt(2);
+		generateGravelBraggite = config.get(gravGenL, gen + gravel + pd, 2).getInt(2);
+		generateGravelMolybdenite = config.get(gravGenL, gen + gravel + mo, 2).getInt(2);
+		generateGravelCobaltite = config.get(gravGenL, gen + gravel + co, 2).getInt(2);
+		generateGravelWolframite = config.get(gravGenL, gen + gravel + w, 2).getInt(2);
+		generateGravelIlmenite = config.get(gravGenL, gen + gravel + ti, 2).getInt(2);
+		generateGravelChromite = config.get(gravGenL, gen + gravel + cr, 2).getInt(2);
+
+		generateGravelCinnabar = config.get(gravGenL, gen + gravel + hg, 2).getInt(2);
+		generateGravelPitchblende = config.get(gravGenL, gen + gravel + u, 2).getInt(2);
+		generateGravelMonazite = config.get(gravGenL, gen + gravel + mnz, 2).getInt(2);
+		generateGravelNiedermayrite = config.get(gravGenL, gen + gravel + nrd, 2).getInt(2);
+		generateGravelGreenockite = config.get(gravGenL, gen + gravel + cad, 2).getInt(2);
+		generateGravelGaotaiite = config.get(gravGenL, gen + gravel + tel, 2).getInt(2);
+		generateGravelOsarsite = config.get(gravGenL, gen + gravel + os, 2).getInt(2);
+		generateGravelGallobeudanite = config.get(gravGenL, gen + gravel + ga, 2).getInt(2);
+		generateGravelZnamenskyite = config.get(gravGenL, gen + gravel + ind, 2).getInt(2);
+		generateGravelTetrahedrite = config.get(gravGenL, gen + gravel + sbb, 2).getInt(2);
+		generateGravelTennantite = config.get(gravGenL, gen + gravel + asb, 2).getInt(2);
+		generateGravelSantafeite = config.get(gravGenL, gen + gravel + fe, 2).getInt(2);
+		generateGravelMagnetite = config.get(gravGenL, gen + gravel + va, 2).getInt(2);
+		generateGravelDioptase = config.get(gravGenL, gen + gravel + dts, 2).getInt(2);
+		generateGravelPyrope = config.get(gravGenL, gen + gravel + prp, 2).getInt(2);
+		generateGravelMyuvil = config.get(gravGenL, gen + gravel + myv, 2).getInt(2);
+	}
+
+	public static void gravelOresRarity() {
+
+	}
+
+	public static void gravelOresSize() {
+
+	}
+
+	public static void otherGen() {
+		generateIridium = config.get(miscGenL, gen + ir , true).getBoolean(true);
+		generatePoorIridium = config.get(pooresL, gen + poor + ir, 2).getInt(2);
+		spawnParaTrees = config.get(miscGenL, gen + "Para Rubber Trees in the world", true).getBoolean(true);
+		spawnGuayuleBushes = config.get(miscGenL, gen + "Guayule Latex Bushes in the world", true).getBoolean(true);
 	}
 
 	public static void retrogenConfig() {
@@ -229,11 +291,15 @@ public class FluxGearConfigWorld {
 	public static String maxL = "";
 	public static String amntL = "";
 	public static String chncL = "";
-	public static String irGenL = "Other Generation";
+	public static String miscGenL = "Other Generation";
 	public static String pooresL = "Poor Ore Enablers";
+	public static String gravGenL = "Gravel Ore Enablers";
+	public static String gravRareL = "Gravel Ore Rarities";
+	public static String gravSizeL = "Gravel Ores per Vein";
 	public static String retroL = "Retrogen";
 
 	public static String poor = "Poor ";
+	public static String gravel = "Gravel ";
 	
 	public static boolean generateChalcocite;
 	public static int chalcociteDensity;
@@ -492,16 +558,118 @@ public class FluxGearConfigWorld {
 	public static int generatePoorDioptase;
 	public static int generatePoorPyrope;
 	public static int generatePoorMyuvil;
-	public static int generatePoorIridium;
+
+	public static int generateGravelChalcocite;
+	public static int generateGravelCassiterite;
+	public static int generateGravelGalena;
+	public static int generateGravelAcanthite;
+	public static int generateGravelGarnierite;
+	public static int generateGravelSphalerite;
+	public static int generateGravelBismuthinite;
+	public static int generateGravelPyrolusite;
+	public static int generateGravelBauxite;
+	public static int generateGravelCooperite;
+	public static int generateGravelBraggite;
+	public static int generateGravelMolybdenite;
+	public static int generateGravelCobaltite;
+	public static int generateGravelWolframite;
+	public static int generateGravelIlmenite;
+	public static int generateGravelChromite;
+
+	public static int generateGravelCinnabar;
+	public static int generateGravelPitchblende;
+	public static int generateGravelMonazite;
+	public static int generateGravelNiedermayrite;
+	public static int generateGravelGreenockite;
+	public static int generateGravelGaotaiite;
+	public static int generateGravelOsarsite;
+	public static int generateGravelGallobeudanite;
+	public static int generateGravelZnamenskyite;
+	public static int generateGravelTetrahedrite;
+	public static int generateGravelTennantite;
+	public static int generateGravelSantafeite;
+	public static int generateGravelMagnetite;
+	public static int generateGravelDioptase;
+	public static int generateGravelPyrope;
+	public static int generateGravelMyuvil;
+
+	public static int gravelChalcociteRarity;
+	public static int gravelCassiteriteRarity;
+	public static int gravelGalenaRarity;
+	public static int gravelAcanthiteRarity;
+	public static int gravelGarnieriteRarity;
+	public static int gravelSphaleriteRarity;
+	public static int gravelBismuthiniteRarity;
+	public static int gravelPyrolusiteRarity;
+	public static int gravelBauxiteRarity;
+	public static int gravelCooperiteRarity;
+	public static int gravelBraggiteRarity;
+	public static int gravelMolybdeniteRarity;
+	public static int gravelCobaltiteRarity;
+	public static int gravelWolframiteRarity;
+	public static int gravelIlmeniteRarity;
+	public static int gravelChromiteRarity;
+
+	public static int gravelCinnabarRarity;
+	public static int gravelPitchblendeRarity;
+	public static int gravelMonaziteRarity;
+	public static int gravelNiedermayriteRarity;
+	public static int gravelGreenockiteRarity;
+	public static int gravelGaotaiiteRarity;
+	public static int gravelOsarsiteRarity;
+	public static int gravelGallobeudaniteRarity;
+	public static int gravelZnamenskyiteRarity;
+	public static int gravelTetraheadriteRarity;
+	public static int gravelTennantiteRarity;
+	public static int gravelSantafeiteRarity;
+	public static int gravelMagnetiteRarity;
+	public static int gravelDioptaseRarity;
+	public static int gravelPyropeRarity;
+	public static int gravelMyuvilRarity;
+
+	public static int gravelChalcociteSize;
+	public static int gravelCassiteriteSize;
+	public static int gravelGalenaSize;
+	public static int gravelAcanthiteSize;
+	public static int gravelGarnieriteSize;
+	public static int gravelSphaleriteSize;
+	public static int gravelBismuthiniteSize;
+	public static int gravelPyrolusiteSize;
+	public static int gravelBauxiteSize;
+	public static int gravelCooperiteSize;
+	public static int gravelBraggiteSize;
+	public static int gravelMolybdeniteSize;
+	public static int gravelCobaltiteSize;
+	public static int gravelWolframiteSize;
+	public static int gravelIlmeniteSize;
+	public static int gravelChromiteSize;
+
+	public static int gravelCinnabarSize;
+	public static int gravelPitchblendeSize;
+	public static int gravelMonaziteSize;
+	public static int gravelNiedermayriteSize;
+	public static int gravelGreenockiteSize;
+	public static int gravelGaotaiiteSize;
+	public static int gravelOsarsiteSize;
+	public static int gravelGallobeudaniteSize;
+	public static int gravelZnamenskyiteSize;
+	public static int gravelTetraheadriteSize;
+	public static int gravelTennantiteSize;
+	public static int gravelSantafeiteSize;
+	public static int gravelMagnetiteSize;
+	public static int gravelDioptaseSize;
+	public static int gravelPyropeSize;
+	public static int gravelMyuvilSize;
 
 	public static boolean generateIridium;
-	public static boolean spawnLatexTrees;
-	public static boolean spawnLatexBushes;
+	public static int generatePoorIridium;
+	public static boolean spawnParaTrees;
+	public static boolean spawnGuayuleBushes;
 
 	public static boolean enableRetrogen;
 	public static boolean regenOres;
 	public static boolean regenPoores;
-	public static boolean regenLatexTrees;
-	public static boolean regenLatexBushes;
+	public static boolean regenParaTrees;
+	public static boolean regenGuayuleBushes;
 	public static String regenKey;
 }

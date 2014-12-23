@@ -8,9 +8,15 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate;
 
-public class TerrainGenEventHandler {
+import mortvana.fluxgearcore.util.world.SurfaceOreGen;
 
-	//public final SurfaceOreGen chalcociteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 0, 12, true);
+import mortvana.projectfluxgear.common.FluxGearContent;
+import mortvana.projectfluxgear.common.config.FluxGearConfig;
+import mortvana.projectfluxgear.common.config.FluxGearConfigWorld;
+
+public class GravelOreGenEventHandler {
+
+	//public final SurfaceOreGen chalcociteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 0, FluxGearConfigWorld.chalcociteGravelAmount, true);
 
 	@SubscribeEvent
 	public void onDecorationEvent(Decorate event) {

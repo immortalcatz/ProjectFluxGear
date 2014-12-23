@@ -14,15 +14,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.fluxgearcore.block.BlockFluxGear;
 import mortvana.fluxgearcore.block.EnumBlockType;
+import mortvana.fluxgearcore.block.FallingBlockFluxGear;
 import mortvana.fluxgearcore.util.helper.StringHelper;
 
 import mortvana.projectfluxgear.common.ProjectFluxGear;
 
-public class BlockPoorOreMain extends BlockFluxGear {
+public class BlockGravelOreMain extends FallingBlockFluxGear {
 
-	public BlockPoorOreMain() {
-		super(Material.rock, ProjectFluxGear.tabOres, EnumBlockType.ORE);
-		setBlockName("projectfluxgear.poorOreMain");
+	public BlockGravelOreMain() {
+		super(Material.rock, ProjectFluxGear.tabOres, EnumBlockType.SOIL_ORE);
+		setBlockName("projectfluxgear.gravelOreMain");
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public class BlockPoorOreMain extends BlockFluxGear {
 	public void registerBlockIcons(IIconRegister ir) {
 
 		for (int i = 0; i < NAMES.length; i++) {
-			TEXTURES[i] = ir.registerIcon("projectfluxgear:ore/orePoor" + StringHelper.titleCase(NAMES[i]));
+			TEXTURES[i] = ir.registerIcon("projectfluxgear:ore/oreGravel" + StringHelper.titleCase(NAMES[i]));
 		}
 	}
 

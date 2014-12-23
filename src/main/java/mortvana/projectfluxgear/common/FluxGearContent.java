@@ -42,6 +42,7 @@ import mortvana.projectfluxgear.fluid.BlockFluidSmog;
 import mortvana.projectfluxgear.item.ItemInteractivePFG;
 import mortvana.projectfluxgear.item.tool.ItemPrototypeSonicWrench;
 import mortvana.projectfluxgear.legacy.*;
+import mortvana.projectfluxgear.util.PFGColors;
 import mortvana.projectfluxgear.world.PoorOreGen.*;
 
 public class FluxGearContent implements IFuelHandler{
@@ -84,6 +85,10 @@ public class FluxGearContent implements IFuelHandler{
         blockStorageAlch = new BlockStorageAlch();
         blockStorageAdv = new BlockStorageAdv();
         blockEarthen = new BlockEarthen();
+        blockPoorOreMain = new BlockPoorOreMain();
+        blockPoorOreAux = new BlockPoorOreAux();
+        blockGravelOreMain = new BlockGravelOreMain();
+        blockGravelOreAux = new BlockGravelOreAux();
         //blockTemporalPylon = new BlockTemporalPylon();
         //woodenTileEntity = new BlockWoodenTileEntity();
 
@@ -243,41 +248,92 @@ public class FluxGearContent implements IFuelHandler{
         blockPoorIridiumSands = new ItemStack(blockEarthen, 1, 1);
         blockAluminosilicateSludge = new ItemStack(blockEarthen, 1, 2);
 
-        blockOreMain.setHarvestLevel("pickaxe", 1, 0);
-        blockOreMain.setHarvestLevel("pickaxe", 1, 1);
-        blockOreMain.setHarvestLevel("pickaxe", 2, 2);
-        blockOreMain.setHarvestLevel("pickaxe", 2, 3);
-        blockOreMain.setHarvestLevel("pickaxe", 2, 4);
-        blockOreMain.setHarvestLevel("pickaxe", 1, 5);
-        blockOreMain.setHarvestLevel("pickaxe", 1, 6);
-        blockOreMain.setHarvestLevel("pickaxe", 1, 7);
-        blockOreMain.setHarvestLevel("pickaxe", 1, 8);
-        blockOreMain.setHarvestLevel("pickaxe", 2, 9);
-        blockOreMain.setHarvestLevel("pickaxe", 2, 10);
-        blockOreMain.setHarvestLevel("pickaxe", 2, 11);
-        blockOreMain.setHarvestLevel("pickaxe", 2, 12);
-        blockOreMain.setHarvestLevel("pickaxe", 3, 13);
-        blockOreMain.setHarvestLevel("pickaxe", 2, 14);
-        blockOreMain.setHarvestLevel("pickaxe", 2, 15);
+        GameRegistry.registerBlock(blockPoorOreMain, ItemBlockPoorOreMain.class, "PoorOreMain");
+        orePoorChalcocite = new ItemStack(blockPoorOreMain, 1, 0);
+        orePoorCassiterite = new ItemStack(blockPoorOreMain, 1, 1);
+        orePoorGalena = new ItemStack(blockPoorOreMain, 1, 2);
+        orePoorAcanthite = new ItemStack(blockPoorOreMain, 1, 3);
+        orePoorGarnierite = new ItemStack(blockPoorOreMain, 1, 4);
+        orePoorSphalerite = new ItemStack(blockPoorOreMain, 1, 5);
+        orePoorBismuthinite = new ItemStack(blockPoorOreMain, 1, 6);
+        orePoorPyrolusite = new ItemStack(blockPoorOreMain, 1, 7);
+        orePoorBauxite = new ItemStack(blockPoorOreMain, 1, 8);
+        orePoorCooperite = new ItemStack(blockPoorOreMain, 1, 9);
+        orePoorBraggite = new ItemStack(blockPoorOreMain, 1, 10);
+        orePoorMolybdenite = new ItemStack(blockPoorOreMain, 1, 11);
+        orePoorCobaltite = new ItemStack(blockPoorOreMain, 1, 12);
+        orePoorWolframite = new ItemStack(blockPoorOreMain, 1, 13);
+        orePoorIlmenite = new ItemStack(blockPoorOreMain, 1, 14);
+        orePoorChromite = new ItemStack(blockPoorOreMain, 1, 15);
 
-        blockOreAux.setHarvestLevel("pickaxe", 2, 0);
-        blockOreAux.setHarvestLevel("pickaxe", 2, 1);
-        blockOreAux.setHarvestLevel("pickaxe", 2, 2);
-        blockOreAux.setHarvestLevel("pickaxe", 2, 3);
-        blockOreAux.setHarvestLevel("pickaxe", 2, 4);
-        blockOreAux.setHarvestLevel("pickaxe", 3, 5);
-        blockOreAux.setHarvestLevel("pickaxe", 2, 6);
-        blockOreAux.setHarvestLevel("pickaxe", 2, 7);
-        blockOreAux.setHarvestLevel("pickaxe", 2, 8);
-        blockOreAux.setHarvestLevel("pickaxe", 1, 9);
-        blockOreAux.setHarvestLevel("pickaxe", 1, 10);
-        blockOreAux.setHarvestLevel("pickaxe", 2, 11);
-        blockOreAux.setHarvestLevel("pickaxe", 2, 12);
-        blockOreAux.setHarvestLevel("pickaxe", 3, 13);
-        blockOreAux.setHarvestLevel("pickaxe", 3, 14);
-        blockOreAux.setHarvestLevel("pickaxe", 3, 15);
+        GameRegistry.registerBlock(blockPoorOreAux, ItemBlockPoorOreAux.class, "PoorOreAux");
+        orePoorCinnabar = new ItemStack(blockPoorOreAux, 1, 0);
+        orePoorPitchblende = new ItemStack(blockPoorOreAux, 1, 1);
+        orePoorMonazite = new ItemStack(blockPoorOreAux, 1, 2);
+        orePoorNiedermayrite = new ItemStack(blockPoorOreAux, 1, 3);
+        orePoorGreenockite = new ItemStack(blockPoorOreAux, 1, 4);
+        orePoorGaotaiite = new ItemStack(blockPoorOreAux, 1, 5);
+        orePoorOsarsite = new ItemStack(blockPoorOreAux, 1, 6);
+        orePoorZnamenskyite = new ItemStack(blockPoorOreAux, 1, 7);
+        orePoorGallobeudanite = new ItemStack(blockPoorOreAux, 1, 8);
+        orePoorTertahedrite = new ItemStack(blockPoorOreAux, 1, 9);
+        orePoorTennantite = new ItemStack(blockPoorOreAux, 1, 10);
+        orePoorSantafeite = new ItemStack(blockPoorOreAux, 1, 11);
+        orePoorMagnetite = new ItemStack(blockPoorOreAux, 1, 12);
+        orePoorDioptase = new ItemStack(blockPoorOreAux, 1, 13);
+        orePoorPyrope = new ItemStack(blockPoorOreAux, 1, 14);
+        orePoorMyuvil = new ItemStack(blockPoorOreAux, 1, 15);
+
+        GameRegistry.registerBlock(blockGravelOreMain, ItemBlockGravelOreMain.class, "GravelOreMain");
+        oreGravelChalcocite = new ItemStack(blockGravelOreMain, 1, 0);
+        oreGravelCassiterite = new ItemStack(blockGravelOreMain, 1, 1);
+        oreGravelGalena = new ItemStack(blockGravelOreMain, 1, 2);
+        oreGravelAcanthite = new ItemStack(blockGravelOreMain, 1, 3);
+        oreGravelGarnierite = new ItemStack(blockGravelOreMain, 1, 4);
+        oreGravelSphalerite = new ItemStack(blockGravelOreMain, 1, 5);
+        oreGravelBismuthinite = new ItemStack(blockGravelOreMain, 1, 6);
+        oreGravelPyrolusite = new ItemStack(blockGravelOreMain, 1, 7);
+        oreGravelBauxite = new ItemStack(blockGravelOreMain, 1, 8);
+        oreGravelCooperite = new ItemStack(blockGravelOreMain, 1, 9);
+        oreGravelBraggite = new ItemStack(blockGravelOreMain, 1, 10);
+        oreGravelMolybdenite = new ItemStack(blockGravelOreMain, 1, 11);
+        oreGravelCobaltite = new ItemStack(blockGravelOreMain, 1, 12);
+        oreGravelWolframite = new ItemStack(blockGravelOreMain, 1, 13);
+        oreGravelIlmenite = new ItemStack(blockGravelOreMain, 1, 14);
+        oreGravelChromite = new ItemStack(blockGravelOreMain, 1, 15);
+
+        GameRegistry.registerBlock(blockGravelOreAux, ItemBlockGravelOreAux.class, "GravelOreAux");
+        oreGravelCinnabar = new ItemStack(blockGravelOreAux, 1, 0);
+        oreGravelPitchblende = new ItemStack(blockGravelOreAux, 1, 1);
+        oreGravelMonazite = new ItemStack(blockGravelOreAux, 1, 2);
+        oreGravelNiedermayrite = new ItemStack(blockGravelOreAux, 1, 3);
+        oreGravelGreenockite = new ItemStack(blockGravelOreAux, 1, 4);
+        oreGravelGaotaiite = new ItemStack(blockGravelOreAux, 1, 5);
+        oreGravelOsarsite = new ItemStack(blockGravelOreAux, 1, 6);
+        oreGravelZnamenskyite = new ItemStack(blockGravelOreAux, 1, 7);
+        oreGravelGallobeudanite = new ItemStack(blockGravelOreAux, 1, 8);
+        oreGravelTertahedrite = new ItemStack(blockGravelOreAux, 1, 9);
+        oreGravelTennantite = new ItemStack(blockGravelOreAux, 1, 10);
+        oreGravelSantafeite = new ItemStack(blockGravelOreAux, 1, 11);
+        oreGravelMagnetite = new ItemStack(blockGravelOreAux, 1, 12);
+        oreGravelDioptase = new ItemStack(blockGravelOreAux, 1, 13);
+        oreGravelPyrope = new ItemStack(blockGravelOreAux, 1, 14);
+        oreGravelMyuvil = new ItemStack(blockGravelOreAux, 1, 15);
+
+        int i;
+        for (i = 0; i < 16; i++) {
+            blockOreMain.setHarvestLevel("pickaxe", MAINHARVLV[i], i);
+            blockOreAux.setHarvestLevel("pickaxe", AUXHARVLV[i], i);
+            blockPoorOreMain.setHarvestLevel("pickaxe", MAINHARVLV[i], i);
+            blockPoorOreAux.setHarvestLevel("pickaxe", AUXHARVLV[i], i);
+            blockGravelOreMain.setHarvestLevel("shovel", MAINHARVLV[i], i);
+            blockGravelOreAux.setHarvestLevel("shovel", AUXHARVLV[i], i);
+        }
 
     }
+
+    public static final int[] MAINHARVLV = { 1, 1, 2, 2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 3, 2, 2 };
+    public static final int[] AUXHARVLV = { 2, 2, 2, 2, 2, 3, 2, 2, 2, 1, 1, 2, 2, 3, 3, 3 };
 
     public void registerBlocks() {
         // OreDict Ores
@@ -517,8 +573,8 @@ public class FluxGearContent implements IFuelHandler{
 
     //0-499 Ingots and Gems
     public void loadIngots() {
-        ingotCopper = itemMaterial.addOreDictItem(0, "ingotCopper");
-        ingotTin = itemMaterial.addOreDictItem(1, "ingotTin");
+        ingotCopper = itemMaterial.addOreDictItem(0, "ingotCopper", 0, PFGColors.COPPER, "ingotGrayscale");
+        ingotTin = itemMaterial.addOreDictItem(1, "ingotTin", 0, PFGColors.TIN, "ingotGrayscale");
         ingotLead = itemMaterial.addOreDictItem(2, "ingotLead");
         ingotSilver = itemMaterial.addOreDictItem(3, "ingotSilver");
         ingotNickel = itemMaterial.addOreDictItem(4, "ingotNickel");
@@ -1353,6 +1409,8 @@ public class FluxGearContent implements IFuelHandler{
     public static BlockEarthen blockEarthen;
     public static BlockPoorOreMain blockPoorOreMain;
     public static BlockPoorOreAux blockPoorOreAux;
+    public static BlockGravelOreMain blockGravelOreMain;
+    public static BlockGravelOreAux blockGravelOreAux;
     //public static BlockTileMetal blockTileMetal; //Metallic TileEntities with a static model
     //public static BlockTileTESR blockTileTESR; //Metallic TileEntities with a non-static or animated model
     //public static BlockTileWood blockTileWood;
@@ -1578,6 +1636,41 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack orePoorPyrope;
     public static ItemStack orePoorMyuvil;
 
+    //Primary Gravel Ore Blocks
+    public static ItemStack oreGravelChalcocite;
+    public static ItemStack oreGravelCassiterite;
+    public static ItemStack oreGravelGalena;
+    public static ItemStack oreGravelAcanthite;
+    public static ItemStack oreGravelGarnierite;
+    public static ItemStack oreGravelSphalerite;
+    public static ItemStack oreGravelBismuthinite;
+    public static ItemStack oreGravelPyrolusite;
+    public static ItemStack oreGravelBauxite;
+    public static ItemStack oreGravelCooperite;
+    public static ItemStack oreGravelBraggite;
+    public static ItemStack oreGravelMolybdenite;
+    public static ItemStack oreGravelCobaltite;
+    public static ItemStack oreGravelWolframite;
+    public static ItemStack oreGravelIlmenite;
+    public static ItemStack oreGravelChromite;
+
+    //Secondary Gravel Ore Blocks
+    public static ItemStack oreGravelCinnabar;
+    public static ItemStack oreGravelPitchblende;
+    public static ItemStack oreGravelMonazite;
+    public static ItemStack oreGravelNiedermayrite;
+    public static ItemStack oreGravelGreenockite;
+    public static ItemStack oreGravelGaotaiite;
+    public static ItemStack oreGravelOsarsite;
+    public static ItemStack oreGravelGallobeudanite;
+    public static ItemStack oreGravelZnamenskyite;
+    public static ItemStack oreGravelTertahedrite;
+    public static ItemStack oreGravelTennantite;
+    public static ItemStack oreGravelSantafeite;
+    public static ItemStack oreGravelMagnetite;
+    public static ItemStack oreGravelDioptase;
+    public static ItemStack oreGravelPyrope;
+    public static ItemStack oreGravelMyuvil;
 
     public static ItemStack blockPotato;
 
