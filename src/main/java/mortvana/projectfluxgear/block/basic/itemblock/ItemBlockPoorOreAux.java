@@ -19,7 +19,7 @@ public class ItemBlockPoorOreAux extends ItemBlockFluxGear{
 	@Override
 	public String getUnlocalizedName(ItemStack item) {
 
-		return "tile.projectfluxgear.ore." + BlockPoorOreAux.NAMES[ItemHelper.getItemDamage(item)] + ".name";
+		return "tile.projectfluxgear.orePoor." + BlockPoorOreAux.NAMES[ItemHelper.getItemDamage(item)] + ".name";
 	}
 
 	@Override

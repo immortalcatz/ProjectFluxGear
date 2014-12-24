@@ -22,6 +22,7 @@ import mortvana.projectfluxgear.common.config.FluxGearConfig;
 import mortvana.projectfluxgear.common.config.FluxGearConfigWorld;
 import mortvana.projectfluxgear.gui.FluxGearAchievements;
 import mortvana.projectfluxgear.world.FluxGearWorldGenerator;
+import mortvana.projectfluxgear.world.GravelOreGenEventHandler;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -52,7 +53,6 @@ public class ProjectFluxGear {
 
     //public static final GuiHandler guiHandler = new GuiHandler();
 
-
     public static final CreativeTabs tabResources = new FluxGearTab("PFG-Resources", "projectfluxgear.resourceTab", FluxGearContent.gemDioptase);
     public static final CreativeTabs tabOres = new FluxGearTab("PFG-Ores", "projectfluxgear.oreTab", FluxGearContent.oreBauxite);
     //MOAR Tabs?
@@ -69,7 +69,6 @@ public class ProjectFluxGear {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
 
-        //thermalRemapper = new Remapper(Loader.instance().activeModContainer());
         MinecraftForge.EVENT_BUS.register(this);
 
         FluxGearConfig.loadConfiguration(event.getModConfigurationDirectory());
@@ -111,7 +110,7 @@ public class ProjectFluxGear {
 
         /** Register Handlers */
         MinecraftForge.EVENT_BUS.register(proxy);
-
+        MinecraftForge.TERRAIN_GEN_BUS.register(new GravelOreGenEventHandler());
     }
 
     @EventHandler

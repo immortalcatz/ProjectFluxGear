@@ -1209,7 +1209,10 @@ public class FluxGearContent implements IFuelHandler{
         //GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(itemInteractive, 1, 0), "dustRust", "dustAluminium"));
         GameRegistry.addRecipe(new ShapedOreRecipe(toolProtoSonicWrench, "B B", "ADA", " B ", 'B', "ingotBronze", 'A', "ingotAluminium", 'D', "gemDioptase"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(foodMelonPan, Items.bread, Items.melon));
-        //GameRegistry.addRecipe(new ShapedOreRecipe(toolProtoSonicWrench, "B B", "WDW", " B ", 'B', "ingotMithrilBronze", 'W', "ingotTungsten", 'D', "gemDioptase"));
+        //if (FluxGearCore.isThermalExpansionLoaded) {
+        //    GameRegistry.addRecipe(new ShapedOreRecipe(toolProtoSonicWrench, "B B", "WDW", " B ", 'B', "ingotMithrilBronze", 'W', "ingotTungsten", 'D', "gemDioptase"));
+        //}
+
     }
 
     public void furnaceRecipes() {
@@ -1593,7 +1596,7 @@ public class FluxGearContent implements IFuelHandler{
     public static ItemStack blockSteelMagnet;
     public static ItemStack blockHSLAMagnet;
     public static ItemStack blockAmber;
-    public static ItemStack blockNichrome;
+    public static ItemStack blockNichrome; //TODO
     public static ItemStack blockPolycarbide;
 
     public static ItemStack blockIridiumSands;

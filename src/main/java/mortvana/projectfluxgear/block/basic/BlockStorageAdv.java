@@ -68,7 +68,7 @@ public class BlockStorageAdv extends BlockFluxGear {
 		}
 	}
 
-	public static final String[] NAMES = {"thorium", "uranium235", "uranium238", "magnetite", "neodymiumM", "ironM", "manganeseM", "cobaltM", "nickelM", "invarM", "highCarbonSteelM", "steel", "hsla", "amber", "potato", "polycarbide"};
+	public static final String[] NAMES = {"thorium", "uranium235", "uranium238", "magnetite", "neodymiumM", "ironM", "manganeseM", "cobaltM", "nickelM", "invarM", "highCarbonSteelM", "steel", "hsla", "amber", "nichrome", "polycarbide"};
 	public static final IIcon[] TEXTURES = new IIcon[NAMES.length];
 	public static final int[] LIGHT = {2, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	public static final float[] HARDNESS = {5, 5, 5, 5, 5, 5, 5, 7, 7, 6, 7, 8, 8, 4, 2, 42};

@@ -283,7 +283,7 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements ICarpenter
 	@Override
 	public void onHammerUsed(ItemStack var1, EntityPlayer var2) {}
 
-	/* IMekWrench */
+	/* IMekWrench (Mekanism) */
 	@Override
 	public boolean canUseWrench(EntityPlayer player, int x, int y, int z) {
 		return true;

@@ -1,13 +1,10 @@
 Plans until v1.0.0.0 (when we get out of beta)
 
 Alpha:
-v0.0.5.0
+v0.0.1.0
 Finish World Gen
     --Finish Config
     --Entwined Ores
-    --Biome Specific Ores
-    --Dimension Black/Whitelist
-    --Retrogen Use
 Latex Stuff
     --Para Rubber Trees
     --Guayule Bushes
@@ -17,17 +14,21 @@ Add Iridium Clay Sands
     --Spawn Code
     --Implement Spawning
 Add Poor Ores
-    --Poor Ore Code
-    --Implement Spawning
-    --Create Classes
+    --Confirm Sphalerite
 Add Gravel Ores
-    --Implement Configs
-    --Implement Spawning
-    --Create Classes
+    --Confirm Cobaltite
 Ore Breaking Drops
+Colorizer
+    --Implement on Blocks
+    --Implement on Items
+Multi-layer Ore render
+New Material for Soil Ores
 
-Beta:
-v0.1.0.0
+v0.0.2.0
+World Gen
+    --Biome Specific Ores
+    --Dimension Black/Whitelist
+    --Retrogen Use
 New Fluids
     --Lye
     --Acid
@@ -42,7 +43,7 @@ New Fluids
     --Redstone
     --Ender
     --Carbon
-    --GelidPyrotheum
+    --Gelid Pyrotheum
     --Essence
     --Ectoplasm
     --Red Water
@@ -60,9 +61,11 @@ Thaumcraft Aspects
     --Dusts
     --Nuggets
     --Blocks
-Colorizer
-    --Implement on Blocks
-    --Implement on Items
+Ore-Stone Adjacency Render
+
+//TODO: UPDATE
+Beta:
+v0.1.0.0
 
 v0.2.0.0
 Crafting of Components

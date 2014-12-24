@@ -35,7 +35,7 @@ public class FluxGearConfigWorld {
 		config.addCustomCategoryComment(miscGenL, "Configure miscellaneous world generation.");
 		config.addCustomCategoryComment(pooresL, "Stuff relating to Poor Ores. 0 is enabled, 1 is disabled, 2 is automatic (Only with Railcraft)");
 		config.addCustomCategoryComment(gravGenL, "Stuff relating to Gravel Ores. 0 is enabled, 1 is disabled, 2 is automatic (Only with Tinker's Construct)");
-		config.addCustomCategoryComment(chncL, "Configure the frequency a chunk will have gravel ores. (1/x)");
+		config.addCustomCategoryComment(gravRareL, "Configure the frequency a chunk will have gravel ores. (1/x)");
 		config.addCustomCategoryComment(gravSizeL, "How many gravel ores are in a vein.");
 		config.addCustomCategoryComment(retroL, "Stuff relating to \"Retroactive World Generation\" (Retrogen).");
 
@@ -145,8 +145,8 @@ public class FluxGearConfigWorld {
 
 	}
 
+	//TODO: Figure out how to Enum stuffs
 	public static void pooresGen() {
-		//TODO: Figure out how to Enum stuffs
 		generatePoorChalcocite = config.get(pooresL, gen + poor + cu, 2).getInt(2);
 		generatePoorCassiterite = config.get(pooresL, gen + poor + sn, 2).getInt(2);
 		generatePoorGalena = config.get(pooresL, gen + poor + pb, 2).getInt(2);
@@ -183,7 +183,7 @@ public class FluxGearConfigWorld {
 	}
 
 	public static void gravelOresGen() {
-		//TODO: Figure out how to Enum stuffs
+
 		generateGravelChalcocite = config.get(gravGenL, gen + gravel + cu, 2).getInt(2);
 		generateGravelCassiterite = config.get(gravGenL, gen + gravel + sn, 2).getInt(2);
 		generateGravelGalena = config.get(gravGenL, gen + gravel + pb, 2).getInt(2);
@@ -220,17 +220,86 @@ public class FluxGearConfigWorld {
 	}
 
 	public static void gravelOresRarity() {
+		//   50: As common as Aluminium
+		//  100: As common as Copper/Tin
+		//  400: As common as Iron
+		//  900: As common as Gold
+		// 2000: As common as Brobalt
+		gravelChalcociteRarity = config.get(gravRareL, gravel + cu + rarity, 75).getInt(75);
+		gravelCassiteriteRarity = config.get(gravRareL, gravel + sn + rarity, 75).getInt(75);
+		gravelGalenaRarity = config.get(gravRareL, gravel + pb + rarity, 450).getInt(450);
+		gravelAcanthiteRarity = config.get(gravRareL, gravel + ag + rarity, 475).getInt(475);
+		gravelGarnieriteRarity = config.get(gravRareL, gravel + ni + rarity, 550).getInt(550);
+		gravelSphaleriteRarity = config.get(gravRareL, gravel + zn + rarity, 225).getInt(225);
+		gravelBismuthiniteRarity = config.get(gravRareL, gravel + bi + rarity, 325).getInt(325);
+		gravelPyrolusiteRarity = config.get(gravRareL, gravel + mn + rarity, 275).getInt(275);
+		gravelBauxiteRarity = config.get(gravRareL, gravel + al + rarity, 75).getInt(75);
+		gravelCooperiteRarity = config.get(gravRareL, gravel + pt + rarity, 2350).getInt(2350);
+		gravelBraggiteRarity = config.get(gravRareL, gravel + pd + rarity, 1325).getInt(1325);
+		gravelMolybdeniteRarity = config.get(gravRareL, gravel + mo + rarity, 725).getInt(725);
+		gravelCobaltiteRarity = config.get(gravRareL, gravel + co + rarity, 1725).getInt(1725);
+		gravelWolframiteRarity = config.get(gravRareL, gravel + w + rarity, 1450).getInt(1450);
+		gravelIlmeniteRarity = config.get(gravRareL, gravel + ti + rarity, 1475).getInt(1475);
+		gravelChromiteRarity = config.get(gravRareL, gravel + cr + rarity, 1425).getInt(1425);
 
+		gravelCinnabarRarity = config.get(gravRareL, gravel + hg + rarity, 825).getInt(825);
+		gravelPitchblendeRarity = config.get(gravRareL, gravel + u + rarity, 1250).getInt(1250);
+		gravelMonaziteRarity = config.get(gravRareL, gravel + mnz + rarity, 1325).getInt(1325);
+		gravelNiedermayriteRarity = config.get(gravRareL, gravel + nrd + rarity, 1325).getInt(1325);
+		gravelGreenockiteRarity = config.get(gravRareL, gravel + cad + rarity, 1625).getInt(1625);
+		gravelGaotaiiteRarity = config.get(gravRareL, gravel + tel + rarity, 1725).getInt(1725);
+		gravelOsarsiteRarity = config.get(gravRareL, gravel + os + rarity, 1675).getInt(1675);
+		gravelGallobeudaniteRarity = config.get(gravRareL, gravel + ga + rarity, 675).getInt(675);
+		gravelZnamenskyiteRarity = config.get(gravRareL, gravel + ind + rarity, 700).getInt(700);
+		gravelTetrahedriteRarity = config.get(gravRareL, gravel + sbb + rarity, 125).getInt(125);
+		gravelTennantiteRarity = config.get(gravRareL, gravel + asb + rarity, 125).getInt(125);
+		gravelSantafeiteRarity = config.get(gravRareL, gravel + fe + rarity, 525).getInt(525);
+		gravelMagnetiteRarity = config.get(gravRareL, gravel + va + rarity, 450).getInt(450);
+		gravelDioptaseRarity = config.get(gravRareL, gravel + dts + rarity, 2700).getInt(2700);
+		gravelPyropeRarity = config.get(gravRareL, gravel + prp + rarity, 2700).getInt(2700);
+		gravelMyuvilRarity = config.get(gravRareL, gravel + myv + rarity, 2950).getInt(2950);
 	}
 
 	public static void gravelOresSize() {
+		gravelChalcociteSize = config.get(gravSizeL, gravel + cu + size, 12).getInt(12);
+		gravelCassiteriteSize = config.get(gravSizeL, gravel + sn + size, 12).getInt(12);
+		gravelGalenaSize = config.get(gravSizeL, gravel + pb + size, 16).getInt(16);
+		gravelAcanthiteSize = config.get(gravSizeL, gravel + ag + size, 16).getInt(16);
+		gravelGarnieriteSize = config.get(gravSizeL, gravel + ni + size, 12).getInt(12);
+		gravelSphaleriteSize = config.get(gravSizeL, gravel + zn + size, 12).getInt(12);
+		gravelBismuthiniteSize = config.get(gravSizeL, gravel + bi + size, 12).getInt(12);
+		gravelPyrolusiteSize = config.get(gravSizeL, gravel + mn + size, 12).getInt(12);
+		gravelBauxiteSize = config.get(gravSizeL, gravel + al + size, 16).getInt(16);
+		gravelCooperiteSize = config.get(gravSizeL, gravel + pt + size, 24).getInt(24);
+		gravelBraggiteSize = config.get(gravSizeL, gravel + pd + size, 16).getInt(16);
+		gravelMolybdeniteSize = config.get(gravSizeL, gravel + mo + size, 14).getInt(14);
+		gravelCobaltiteSize = config.get(gravSizeL, gravel + co + size, 14).getInt(14);
+		gravelWolframiteSize = config.get(gravSizeL, gravel + w + size, 17).getInt(17);
+		gravelIlmeniteSize = config.get(gravSizeL, gravel + ti + size, 17).getInt(17);
+		gravelChromiteSize = config.get(gravSizeL, gravel + cr + size, 17).getInt(17);
 
+		gravelCinnabarSize = config.get(gravSizeL, gravel + hg + size, 14).getInt(14);
+		gravelPitchblendeSize = config.get(gravSizeL, gravel + u + size, 18).getInt(18);
+		gravelMonaziteSize = config.get(gravSizeL, gravel + mnz + size, 15).getInt(15);
+		gravelNiedermayriteSize = config.get(gravSizeL, gravel + nrd + size, 15).getInt(15);
+		gravelGreenockiteSize = config.get(gravSizeL, gravel + cad + size, 13).getInt(13);
+		gravelGaotaiiteSize = config.get(gravSizeL, gravel + tel + size, 13).getInt(13);
+		gravelOsarsiteSize = config.get(gravSizeL, gravel + os + size, 14).getInt(14);
+		gravelGallobeudaniteSize = config.get(gravSizeL, gravel + ga + size, 12).getInt(12);
+		gravelZnamenskyiteSize = config.get(gravSizeL, gravel + ind + size, 12).getInt(12);
+		gravelTetrahedriteSize = config.get(gravSizeL, gravel + sbb + size, 10).getInt(10);
+		gravelTennantiteSize = config.get(gravSizeL, gravel + asb + size, 10).getInt(10);
+		gravelSantafeiteSize = config.get(gravSizeL, gravel + fe + size, 11).getInt(11);
+		gravelMagnetiteSize = config.get(gravSizeL, gravel + va + size, 20).getInt(20);
+		gravelDioptaseSize = config.get(gravSizeL, gravel + dts + size, 27).getInt(27);
+		gravelPyropeSize = config.get(gravSizeL, gravel + prp + size, 27).getInt(27);
+		gravelMyuvilSize = config.get(gravSizeL, gravel + myv + size, 32).getInt(32);
 	}
 
 	public static void otherGen() {
 		generateIridium = config.get(miscGenL, gen + ir , true).getBoolean(true);
 		generatePoorIridium = config.get(pooresL, gen + poor + ir, 2).getInt(2);
-		spawnParaTrees = config.get(miscGenL, gen + "Para Rubber Trees in the world", true).getBoolean(true);
+		spawnParaTrees = config.get(miscGenL, gen + "Pará Rubber Trees in the world", true).getBoolean(true);
 		spawnGuayuleBushes = config.get(miscGenL, gen + "Guayule Latex Bushes in the world", true).getBoolean(true);
 	}
 
@@ -284,6 +353,8 @@ public class FluxGearConfigWorld {
 	public static String maxy = "";
 	public static String amnt = "";
 	public static String chnc = "";
+	public static String rarity = " Rarity";
+	public static String size = " Ores per vein";
 
 	public static String genL = "World Gen Enablers";
 	public static String densL = "Ores Per Chunk";
@@ -619,7 +690,7 @@ public class FluxGearConfigWorld {
 	public static int gravelOsarsiteRarity;
 	public static int gravelGallobeudaniteRarity;
 	public static int gravelZnamenskyiteRarity;
-	public static int gravelTetraheadriteRarity;
+	public static int gravelTetrahedriteRarity;
 	public static int gravelTennantiteRarity;
 	public static int gravelSantafeiteRarity;
 	public static int gravelMagnetiteRarity;
@@ -653,7 +724,7 @@ public class FluxGearConfigWorld {
 	public static int gravelOsarsiteSize;
 	public static int gravelGallobeudaniteSize;
 	public static int gravelZnamenskyiteSize;
-	public static int gravelTetraheadriteSize;
+	public static int gravelTetrahedriteSize;
 	public static int gravelTennantiteSize;
 	public static int gravelSantafeiteSize;
 	public static int gravelMagnetiteSize;

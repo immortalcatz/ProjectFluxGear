@@ -19,7 +19,7 @@ public class ItemBlockGravelOreMain extends ItemBlockFluxGear {
 	@Override
 	public String getUnlocalizedName(ItemStack item) {
 
-		return "tile.projectfluxgear.ore." + BlockGravelOreMain.NAMES[ItemHelper.getItemDamage(item)] + ".name";
+		return "tile.projectfluxgear.oreGravel." + BlockGravelOreMain.NAMES[ItemHelper.getItemDamage(item)] + ".name";
 	}
 
 	@Override
