@@ -11,14 +11,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import mortvana.fluxgearcore.common.FluxGearCore;
 import mortvana.fluxgearcore.item.ItemFluxGear;
 import mortvana.fluxgearcore.item.tool.BucketFluxGear;
 import mortvana.fluxgearcore.legacy.ContentRegistry;
@@ -31,19 +29,18 @@ import mortvana.fluxgearcore.util.handler.DispenserFilledBucketHandler;
 import mortvana.fluxgearcore.util.helper.ItemHelper;
 import cofh.core.fluid.BlockFluidCoFHBase;
 
+import mortvana.projectfluxgear.block.BlockPFGBasic.*;
 import mortvana.projectfluxgear.block.BlockTemporalPylon;
 import mortvana.projectfluxgear.block.BlockWoodenTileEntity;
 import mortvana.projectfluxgear.block.basic.*;
 import mortvana.projectfluxgear.block.basic.itemblock.*;
 import mortvana.projectfluxgear.common.config.FluxGearConfig;
-import mortvana.projectfluxgear.common.config.FluxGearConfigWorld;
 import mortvana.projectfluxgear.fluid.BlockFluidAcid;
 import mortvana.projectfluxgear.fluid.BlockFluidSmog;
 import mortvana.projectfluxgear.item.ItemInteractivePFG;
 import mortvana.projectfluxgear.item.tool.ItemPrototypeSonicWrench;
 import mortvana.projectfluxgear.legacy.*;
 import mortvana.projectfluxgear.util.PFGColors;
-import mortvana.projectfluxgear.world.PoorOreGen.*;
 
 public class FluxGearContent implements IFuelHandler{
 
