@@ -1,6 +1,10 @@
 package mortvana.projectfluxgear.world;
 
+import mortvana.fluxgearcore.common.FluxGearCore;
+import mortvana.projectfluxgear.common.ProjectFluxGear;
+import mortvana.projectfluxgear.common.config.FluxGearConfigWorld;
 import net.minecraft.block.Block;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType;
 
@@ -11,8 +15,107 @@ import mortvana.projectfluxgear.common.FluxGearContent;
 
 public class PoorOreGen {
 
-	public PoorOreGen () {}
+	public PoorOreGen() {}
 
+	public static void registerOres() {
+		if (FluxGearConfigWorld.generatePoorChalcocite == 0 || (FluxGearConfigWorld.generatePoorChalcocite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorChalcociteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorCassiterite == 0 || (FluxGearConfigWorld.generatePoorCassiterite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorCassiteriteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorGalena == 0 || (FluxGearConfigWorld.generatePoorGalena == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorGalenaGen());
+		}
+		if (FluxGearConfigWorld.generatePoorAcanthite == 0 || (FluxGearConfigWorld.generatePoorAcanthite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorAcanthiteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorGarnierite == 0 || (FluxGearConfigWorld.generatePoorGarnierite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorGarnieriteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorSphalerite == 0 || (FluxGearConfigWorld.generatePoorSphalerite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorSphaleriteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorBismuthinite == 0 || (FluxGearConfigWorld.generatePoorBismuthinite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorBismuthiniteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorPyrolusite == 0 || (FluxGearConfigWorld.generatePoorPyrolusite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorPyrolusiteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorBauxite == 0 || (FluxGearConfigWorld.generatePoorBauxite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorBauxiteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorCooperite == 0 || (FluxGearConfigWorld.generatePoorCooperite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorCooperiteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorBraggite == 0 || (FluxGearConfigWorld.generatePoorBraggite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorBraggriteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorMolybdenite == 0 || (FluxGearConfigWorld.generatePoorMolybdenite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorMolybdeniteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorCobaltite == 0 || (FluxGearConfigWorld.generatePoorCobaltite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorCobaltiteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorWolframite == 0 || (FluxGearConfigWorld.generatePoorWolframite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorWolframiteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorIlmenite == 0 || (FluxGearConfigWorld.generatePoorIlmenite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorIlmeniteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorChromite == 0 || (FluxGearConfigWorld.generatePoorChromite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorChromiteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorCinnabar == 0 || (FluxGearConfigWorld.generatePoorCinnabar == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorCinnabarGen());
+		}
+		if (FluxGearConfigWorld.generatePoorPitchblende == 0 || (FluxGearConfigWorld.generatePoorPitchblende == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorPitchblendeGen());
+		}
+		if (FluxGearConfigWorld.generatePoorMonazite == 0 || (FluxGearConfigWorld.generatePoorMonazite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorMonaziteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorNiedermayrite == 0 || (FluxGearConfigWorld.generatePoorNiedermayrite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorNiedermayriteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorGreenockite == 0 || (FluxGearConfigWorld.generatePoorGreenockite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)) {
+			MinecraftForge.ORE_GEN_BUS.register(new PoorGreenockiteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorGaotaiite == 0 || (FluxGearConfigWorld.generatePoorGaotaiite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)){
+			MinecraftForge.ORE_GEN_BUS.register(new PoorGaotaiiteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorOsarsite == 0 || (FluxGearConfigWorld.generatePoorOsarsite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)){
+			MinecraftForge.ORE_GEN_BUS.register(new PoorOsarsiteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorZnamenskyite == 0 || (FluxGearConfigWorld.generatePoorZnamenskyite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)){
+			MinecraftForge.ORE_GEN_BUS.register(new PoorZnamenskyiteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorGallobeudanite == 0 || (FluxGearConfigWorld.generatePoorGallobeudanite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)){
+			MinecraftForge.ORE_GEN_BUS.register(new PoorGallobeudaniteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorTetrahedrite == 0 || (FluxGearConfigWorld.generatePoorTetrahedrite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)){
+			MinecraftForge.ORE_GEN_BUS.register(new PoorTetrahediteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorTennantite == 0 || (FluxGearConfigWorld.generatePoorTennantite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)){
+			MinecraftForge.ORE_GEN_BUS.register(new PoorTennantiteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorSantafeite == 0 || (FluxGearConfigWorld.generatePoorSantafeite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)){
+			MinecraftForge.ORE_GEN_BUS.register(new PoorSantafeiteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorMagnetite == 0 || (FluxGearConfigWorld.generatePoorMagnetite == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)){
+			MinecraftForge.ORE_GEN_BUS.register(new PoorMagnetiteGen());
+		}
+		if (FluxGearConfigWorld.generatePoorDioptase == 0 || (FluxGearConfigWorld.generatePoorDioptase == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)){
+			MinecraftForge.ORE_GEN_BUS.register(new PoorDioptaseGen());
+		}
+		//if (FluxGearConfigWorld.generatePoorPyrope == 0 || (FluxGearConfigWorld.generatePoorPyrope == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)){
+		//    MinecraftForge.ORE_GEN_BUS.register(new PoorPyropeGen());
+		//}
+		if (FluxGearConfigWorld.generatePoorMyuvil == 0 || (FluxGearConfigWorld.generatePoorMyuvil == 2 && FluxGearCore.isRailcraftLoaded || ProjectFluxGear.debugWorldGen)){
+			MinecraftForge.ORE_GEN_BUS.register(new PoorMyuvilGen());
+		}
+	}
+	
 	public static EventType theEvent;
 	public static final String[] NAMES = { "CHALCOCITE", "CASSITERITE", "GALENA", "ACANTHITE", "GARNIERITE", "SPHALERITE", "BISMUTHINITE", "PYROLUSITE", "BAUXITE", "COOPERITE", "BRAGGITE", "MOLYBDENITE", "COBALTITE", "WOLFRAMITE", "ILMENITE", "CHROMITE", "CINNABAR", "PITCHBLENDE", "MONAZITE", "NIEDERMAYRITE", "GREENOCKITE", "GAOTAIITE", "OSARSITE", "ZNAMENSKYITE", "GALLOBEUDANITE", "TETRAHEDRITE", "TENNANTITE", "SANTAFEITE", "MAGNETITE", "DIOPTASE", "PYROPE", "MYUVIL" };
 	public static final int[] Y_LEVEL = { 60, 50, 30, 25, 35, 55, 45, 55, 45, 15, 25, 40, 35, 15, 20, 20, 55, 20, 35, 25, 40, 30, 35, 30, 25, 50, 45, 20, 55, 10, 95, 10};

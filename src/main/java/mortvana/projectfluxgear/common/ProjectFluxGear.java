@@ -3,6 +3,7 @@ package mortvana.projectfluxgear.common;
 import java.io.File;
 import java.lang.reflect.Method;
 
+import mortvana.projectfluxgear.world.PoorOreGen;
 import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -36,6 +37,8 @@ public class ProjectFluxGear {
 
     public static final Logger logger = LogManager.getLogger(modID);
     //public static final PacketPipeline packetPipeline = new PacketPipeline();
+
+    public static final boolean debugWorldGen = true;
 
     @Instance(modID)
     public static ProjectFluxGear instance;
@@ -110,6 +113,7 @@ public class ProjectFluxGear {
 
         /** Register Handlers */
         MinecraftForge.EVENT_BUS.register(proxy);
+        PoorOreGen.registerOres();
         MinecraftForge.TERRAIN_GEN_BUS.register(new GravelOreGenEventHandler());
     }
 

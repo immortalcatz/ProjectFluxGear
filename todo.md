@@ -17,6 +17,8 @@ Add Poor Ores
     --Confirm Sphalerite
 Add Gravel Ores
     --Confirm Cobaltite
+Check for Chalcocite/Cinnabar glitched Spawning
+Fix World Config
 Ore Breaking Drops
 Colorizer
     --Implement on Blocks
