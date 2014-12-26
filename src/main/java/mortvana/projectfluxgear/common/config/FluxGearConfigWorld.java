@@ -37,7 +37,7 @@ public class FluxGearConfigWorld {
 		config.addCustomCategoryComment(gravGenL, "Stuff relating to Gravel Ores. 0 is enabled, 1 is disabled, 2 is automatic (Only with Tinker's Construct)");
 		config.addCustomCategoryComment(gravRareL, "Configure the frequency a chunk will have gravel ores. (1/x)");
 		config.addCustomCategoryComment(gravSizeL, "How many gravel ores are in a vein.");
-		config.addCustomCategoryComment(retroL, "Stuff relating to \"Retroactive World Generation\" (Retrogen).");
+		config.addCustomCategoryComment(retroL, "Stuff relating to Retroactive World Generation (Retrogen).");
 
 		doesGenerate();
 		density();
@@ -358,10 +358,10 @@ public class FluxGearConfigWorld {
 
 	public static String genL = "World Gen Enablers";
 	public static String densL = "Ores Per Chunk";
-	public static String minL = "";
-	public static String maxL = "";
-	public static String amntL = "";
-	public static String chncL = "";
+	public static String minL = "Minimum Y Levels";
+	public static String maxL = "Maximum Y Levels";
+	public static String amntL = "Ores per Vein";
+	public static String chncL = "Ore Chance per Chunk";
 	public static String miscGenL = "Other Generation";
 	public static String pooresL = "Poor Ore Enablers";
 	public static String gravGenL = "Gravel Ore Enablers";
