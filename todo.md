@@ -13,8 +13,6 @@ Latex Stuff
 Add Iridium Clay Sands
     --Spawn Code
     --Implement Spawning
-Add Poor Ores
-    --Confirm Sphalerite
 Add Gravel Ores
     --Confirm Cobaltite
 Check for Chalcocite/Cinnabar glitched Spawning
@@ -24,7 +22,6 @@ Colorizer
     --Implement on Blocks
     --Implement on Items
 Multi-layer Ore render
-New Material for Soil Ores
 
 v0.0.2.0
 World Gen
