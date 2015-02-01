@@ -19,17 +19,18 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.mechstoneworks.client.ClientProxy;
 
 public class BlockDecorStone extends Block {
-	public static final String[] rockNames = new String[]
-			{ "mica", "andesite", "rhyolite", "gabrro", "diorite", "dolomite", "chert", "phyllite", "kimberlite", "dacite", "serpentine", "larvikite", "schalstein", "greenschist", "hornblendeBiotiteGranite", "pitchstone" };
-	//public final String textureName;
-	//public final String localName;
+	public static final String[] rockNames = new String[] { "mica"/*, "andesite", "rhyolite", "gabrro", "diorite", "dolomite", "chert", "phyllite", "kimberlite", "dacite", "serpentine", "larvikite", "schalstein", "greenschist", "hornblendeBiotiteGranite", "pitchstone"*/ };
 	public IIcon[] icons;
 	public float[] hardness;
 	public float[] resistance;
 	public int[] blockLight;
 	Block dropBlock;
 
-	public BlockDecorStone(Material material, CreativeTabs tab, float[] hardness, float[] resistance, int[] light, String overlayLocation, String type, SoundType sound) {
+	public String overlayType;
+	@SideOnly(Side.CLIENT)
+	public IIcon overlayTexture;
+
+	public BlockDecorStone(Material material, CreativeTabs tab, float[] hardness, float[] resistance, int[] light, String overlayType, SoundType sound) {
 		super(material);
 		setCreativeTab(tab);
 		setStepSound(sound);
@@ -37,15 +38,12 @@ public class BlockDecorStone extends Block {
 		this.resistance = resistance;
 		blockLight = light;
 		dropBlock = this;
-
-
-		//textureName = texture;
-		//localName = name;
+		this.overlayType = overlayType;
 
 	}
 
-	public BlockDecorStone(Material material, CreativeTabs tab, float[] hardness, float[] resistance, int[] light, String overlayLocation, String type, SoundType sound, Block dropBlock) {
-		this(material, tab, hardness, resistance, light, overlayLocation, type, sound);
+	public BlockDecorStone(Material material, CreativeTabs tab, float[] hardness, float[] resistance, int[] light, String overlayType, SoundType sound, Block dropBlock) {
+		this(material, tab, hardness, resistance, light, overlayType, sound);
 		this.dropBlock = dropBlock;
 	}
 
@@ -114,7 +112,6 @@ public class BlockDecorStone extends Block {
 		return 1;
 	}
 
-
 	//public String getUnlocalizedName() {
 		//return "tile." + localName;
 	//}
@@ -123,16 +120,17 @@ public class BlockDecorStone extends Block {
 		return meta;
 	}
 
-
+	public IIcon getOverlayTexture() {
+		return overlayTexture;
+	}
 
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
 		this.icons = new IIcon[rockNames.length];
-
 		for(int i = 0; i < this.icons.length; ++i) {
-			this.icons[i] = iconRegister.registerIcon("mechanicsstoneworks:" + textureName + "_" + rockNames[i]);
+			this.icons[i] = iconRegister.registerIcon("mechanicsstoneworks:rocks/" + rockNames[i]);
 		}
-
+		overlayTexture = iconRegister.registerIcon("mechanicsstoneworks:overlays/" + overlayType);
 	}
 
 	@SideOnly(Side.CLIENT)

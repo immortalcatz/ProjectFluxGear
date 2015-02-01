@@ -110,8 +110,8 @@ sourceSets {
         resources {
             srcDir 'resources'
         }
-		//IntelliJ be derping...
-		output.resourcesDir = output.classesDir
+		//IntelliJ 14 be derping...
+		//output.resourcesDir = output.classesDir
     }
 }
 

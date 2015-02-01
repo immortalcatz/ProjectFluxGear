@@ -25,12 +25,11 @@ public class FluxGearTab extends CreativeTabs{
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem() {
 		if (display != null) {
-			return getIconItemStack().getItem();
+			return display.getItem();
 		} else {
-			return defaultItem;
+			return Items.potato;
 		}
 	}
-
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -40,7 +39,4 @@ public class FluxGearTab extends CreativeTabs{
 
 	private ItemStack display;
 	private String name;
-
-	// If it is null, use this
-	public Item defaultItem = Items.potato;
 }

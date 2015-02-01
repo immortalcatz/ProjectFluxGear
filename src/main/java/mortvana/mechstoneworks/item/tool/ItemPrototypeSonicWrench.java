@@ -3,6 +3,7 @@ package mortvana.mechstoneworks.item.tool;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -20,8 +21,6 @@ import mortvana.fluxgearcore.item.ItemFluxGear;
 import mortvana.fluxgearcore.util.helper.BlockHelper;
 import mortvana.fluxgearcore.util.helper.ServerHelper;
 import cofh.api.block.IDismantleable;
-
-import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 
 import Reika.RotaryCraft.API.Screwdriverable;
 import Reika.RotaryCraft.API.ShaftMachine;
@@ -75,7 +74,7 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 
 	public ItemPrototypeSonicWrench() {
 		super("projectfluxgear");
-		setCreativeTab(MechanicsStoneworks.generalTab);
+		setCreativeTab(CreativeTabs.tabTools);
 		setMaxStackSize(1);
 	}
 

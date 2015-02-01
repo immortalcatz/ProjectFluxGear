@@ -15,7 +15,6 @@ import net.minecraft.util.IIcon;
 import mortvana.mechstoneworks.common.MechanicsStoneworks;
 
 public class BlockPaintedStone extends Block {
-	public static final String[] colorNames = new String[]{"white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "silver", "aqua", "purple", "blue", "brown", "green", "red", "black"};
 	public final String textureName;
 	public final String localName;
 	public IIcon[] icons;
@@ -23,7 +22,7 @@ public class BlockPaintedStone extends Block {
 
 	public BlockPaintedStone(Material material, float hardness, String texture, String name) {
 		super(material);
-		setHardness(hardness).setCreativeTab(MechanicsStoneworks.paintedStoneTab);
+		setHardness(hardness).setCreativeTab(CreativeTabs.tabDecorations);
 		textureName = texture;
 		localName = name;
 		dropBlock = this;
@@ -32,6 +31,10 @@ public class BlockPaintedStone extends Block {
 	public BlockPaintedStone(Material material, float hardness, String texture, String name, Block dropBlock) {
 		this(material, hardness, texture, name);
 		this.dropBlock = dropBlock;
+	}
+
+	public BlockPaintedStone(String texture, String name) {
+		this(Material.rock, 1.5F, texture, name);
 	}
 
 	public String getUnlocalizedName() {
@@ -48,10 +51,10 @@ public class BlockPaintedStone extends Block {
 
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
-		this.icons = new IIcon[colorNames.length];
+		icons = new IIcon[16];
 
 		for(int i = 0; i < this.icons.length; ++i) {
-			this.icons[i] = iconRegister.registerIcon("paintedstone:" + textureName + "_" + colorNames[i]);
+			this.icons[i] = iconRegister.registerIcon("mechstoneworks:" + textureName + "_" + MechanicsStoneworks.colorNames[i]);
 		}
 
 	}

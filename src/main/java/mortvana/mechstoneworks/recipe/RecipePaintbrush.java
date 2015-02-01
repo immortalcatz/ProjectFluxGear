@@ -14,6 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
+import mortvana.mechstoneworks.common.MechStoneworksContent;
 import mortvana.mechstoneworks.common.MechanicsStoneworks;
 import mortvana.mechstoneworks.item.tool.ItemPaintbrush;
 
@@ -66,7 +67,7 @@ public class RecipePaintbrush implements IRecipe {
 
 	}
 
-	RecipePaintbrush(ShapelessRecipes recipe, Map<ItemStack, String> replacements) {
+	public RecipePaintbrush(ShapelessRecipes recipe, Map<ItemStack, String> replacements) {
 		input = new ArrayList();
 		output = recipe.getRecipeOutput();
 		Iterator i$ = recipe.recipeItems.iterator();
@@ -99,6 +100,76 @@ public class RecipePaintbrush implements IRecipe {
 
 	public ItemStack getRecipeOutput() {
 		return output;
+	}
+
+
+
+	ItemStack paintbrush;
+	ItemStack dye;
+
+	public boolean matches(InventoryCrafting inventoryCrafting, World world) {
+
+		/*int countDye = 0;
+		ItemStack tempStack;
+		boolean foundBrush = false;
+
+		for (int i = 0; i < inventoryCrafting.getSizeInventory(); ++i) {
+			tempStack = inventoryCrafting.getStackInSlot(i);
+			if (tempStack instanceof ItemStack) {
+				if (tempStack.getItem() == paintbrush.getItem()) {
+					if (foundBrush) {
+						return false;
+					}
+					foundBrush = true;
+				} else if (tempStack.getItem() == dye.getItem() && tempStack.getItemDamage() == dye.getItemDamage() /*&& countDye < 1702* /) {
+					++countDye;
+				} else {
+					return false;
+				}
+			}
+			if (countDye > 0 && foundBrush) {
+				return true;
+			}
+		}
+		return false;*/
+
+
+		ArrayList required = new ArrayList(this.input);
+
+		for(int x = 0; x < inventoryCrafting.getSizeInventory(); ++x) {
+			ItemStack slot = inventoryCrafting.getStackInSlot(x);
+			if(slot != null) {
+				boolean inRecipe = false;
+				Iterator req = required.iterator();
+
+				while(req.hasNext()) {
+					boolean match = false;
+					Object next = req.next();
+					if(next instanceof ItemStack) {
+						match = this.checkItemEquals((ItemStack)next, slot);
+					} else {
+						ItemStack item;
+						if(next instanceof ArrayList) {
+							for(Iterator i$ = ((ArrayList)next).iterator(); i$.hasNext(); match = match || this.checkItemEquals(item, slot)) {
+								item = (ItemStack)i$.next();
+							}
+						}
+					}
+
+					if(match) {
+						inRecipe = true;
+						required.remove(next);
+						break;
+					}
+				}
+
+				if(!inRecipe) {
+					return false;
+				}
+			}
+		}
+
+		return required.isEmpty();
 	}
 
 	public ItemStack getCraftingResult(InventoryCrafting crafting) {
@@ -140,47 +211,8 @@ public class RecipePaintbrush implements IRecipe {
 		}
 	}
 
-	public boolean matches(InventoryCrafting var1, World world) {
-		ArrayList required = new ArrayList(this.input);
-
-		for(int x = 0; x < var1.getSizeInventory(); ++x) {
-			ItemStack slot = var1.getStackInSlot(x);
-			if(slot != null) {
-				boolean inRecipe = false;
-				Iterator req = required.iterator();
-
-				while(req.hasNext()) {
-					boolean match = false;
-					Object next = req.next();
-					if(next instanceof ItemStack) {
-						match = this.checkItemEquals((ItemStack)next, slot);
-					} else {
-						ItemStack item;
-						if(next instanceof ArrayList) {
-							for(Iterator i$ = ((ArrayList)next).iterator(); i$.hasNext(); match = match || this.checkItemEquals(item, slot)) {
-								item = (ItemStack)i$.next();
-							}
-						}
-					}
-
-					if(match) {
-						inRecipe = true;
-						required.remove(next);
-						break;
-					}
-				}
-
-				if(!inRecipe) {
-					return false;
-				}
-			}
-		}
-
-		return required.isEmpty();
-	}
-
 	private boolean checkItemEquals(ItemStack target, ItemStack input) {
-			return input.getItem() == MechanicsStoneworks.paintbrush ? !input.hasTagCompound() || input.getTagCompound().getInteger("PaintType") == 0 || input.getTagCompound().getInteger("PaintType") == type : target.copy() == input.copy() && (target.getItemDamage() == 32767 || target.getItemDamage() == input.getItemDamage());
+			return input.getItem() == MechStoneworksContent.paintbrush ? !input.hasTagCompound() || input.getTagCompound().getInteger("PaintType") == 0 || input.getTagCompound().getInteger("PaintType") == type : target.copy() == input.copy() && (target.getItemDamage() == 32767 || target.getItemDamage() == input.getItemDamage());
 	}
 
 	public ArrayList getInput() {

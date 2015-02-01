@@ -11,10 +11,10 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import mantle.debug.DebugData;
-import mantle.debug.IDebuggable;
+//import mantle.debug.DebugData;
+//import mantle.debug.IDebuggable;
 
-public abstract class InventoryLogic extends TileEntity implements IInventory, IDebuggable {
+public abstract class InventoryLogic extends TileEntity implements IInventory/*, IDebuggable*/ {
 	protected ItemStack[] inventory;
 	protected String invName;
 	protected int stackSizeLimit;
@@ -184,11 +184,11 @@ public abstract class InventoryLogic extends TileEntity implements IInventory, I
 
 	public void removeBlock () {}
 
-	/* IDebuggable */
+	/* IDebuggable * /
 	@Override
 	public DebugData getDebugInfo (EntityPlayer player) {
 		String[] strs = new String[1];
 		strs[0] = "invName: " + invName + ", inventory.length: " + inventory.length + ", stackSizeLimit: " + stackSizeLimit;
 		return new DebugData(player, getClass(), strs);
-	}
+	}*/
 }

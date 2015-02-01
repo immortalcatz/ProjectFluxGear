@@ -101,14 +101,14 @@ public class MechStoneworksTweaks {
 			/*if (FluxGearCore.isArtificeLoaded) {
 				//TODO: Add Stuff
 			}*/
-			if (FluxGearCore.isThermalFoundationLoaded) {
+			if (FluxGearCore.isThermalExpansionLoaded) {
 				OreDictionary.registerOre("dustWood", new ItemStack(GameRegistry.findItem("ThermalExpansion", "material"), 1, 512));
 				OreDictionary.registerOre("itemSlag", new ItemStack(GameRegistry.findItem("ThermalExpansion", "material"), 1, 514));
 			}
 		}
 		if (FluxGearCore.isThermalExpansionLoaded) {
 			if (MechStoneworksConfig.harderActivatorRecipe) {
-				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("ThermalExpansion", "Device"), 1, 2), "scs", "tpt", "sns", 's', OreDictionary.getOres("ingotSteel").isEmpty() ? "ingotInvar" : "ingotSteel", 'p', Blocks.piston, 't', "gearTin", 'c', Blocks.chest, 'n', thermalexpansion.item.TEItems.pneumaticServo));
+				//TODO: Dederp TE GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("ThermalExpansion", "Device"), 1, 2), "scs", "tpt", "sns", 's', OreDictionary.getOres("ingotSteel").isEmpty() ? "ingotInvar" : "ingotSteel", 'p', Blocks.piston, 't', "gearTin", 'c', Blocks.chest, 'n', thermalexpansion.item.TEItems.pneumaticServo));
 			}
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("ThermalExpansion", "material"), 1, 513), "sss", "s s", "sss", 's', "dustWood"));
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(GameRegistry.findItem("ThermalExpansion", "florb"), 1, 0), "dustWood", "itemSlag", "slimeball"));
@@ -176,7 +176,7 @@ public class MechStoneworksTweaks {
 		if (FluxGearCore.isExtraUtilitiesLoaded) {
 			if (MechStoneworksConfig.nerfEnderQuarry) {
 				// Ender Mining Mechanism
-				GameRegistry.addRecipe(new ShapedOreRecipe(MechStoneworksContent.enderMiningCore, "pws", "dbd", "cec", 'p', new ItemStack(GameRegistry.findItem("ExtraUtilities", "destructionpickaxe"), 1, 0), 'w', new ItemStack(GameRegistry.findItem("ExtraUtilities", "builderswand"), 1, 0), 's', new ItemStack(GameRegistry.findItem("ExtraUtilities", "erosionShovel"), 1, 0), 'd', new ItemStack(GameRegistry.findItem("ExtraUtilities", "dark_portal")) , 'b', Blocks.iron_bars, 'c', MechStoneworksContent.enderCompCore, 'e', FluxGearCore.isThermalExpansionLoaded ? thermalexpansion.block.cell.BlockCell.cellResonant.copy() : MechStoneworksContent.enderCompCore));
+				GameRegistry.addRecipe(new ShapedOreRecipe(MechStoneworksContent.enderMiningCore, "pws", "dbd", "cec", 'p', new ItemStack(GameRegistry.findItem("ExtraUtilities", "destructionpickaxe"), 1, 0), 'w', new ItemStack(GameRegistry.findItem("ExtraUtilities", "builderswand"), 1, 0), 's', new ItemStack(GameRegistry.findItem("ExtraUtilities", "erosionShovel"), 1, 0), 'd', new ItemStack(GameRegistry.findItem("ExtraUtilities", "dark_portal")) , 'b', Blocks.iron_bars, 'c', MechStoneworksContent.enderCompCore, 'e', /*FluxGearCore.isThermalExpansionLoaded ? thermalexpansion.block.cell.BlockCell.cellResonant.copy() :*/ MechStoneworksContent.enderCompCore)); //TODO: Dederp TE
 				// Ender Quarry
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("ExtraUtilities", "enderQuarry"), 1, 0), "oqo", "cdc", "plp", 'o', new ItemStack(GameRegistry.findItem("ExtraUtilities", "decorativeBlock1"), 1, 1), 'q', new ItemStack(GameRegistry.findItem("ExtraUtilities", "cobblestone_compressed"), 1, 11), 'c', MechStoneworksContent.enderCompCore, 'd', new ItemStack(GameRegistry.findItem("ExtraUtilities", "decorativeBlock1"), 1, 12), 'l', MechStoneworksContent.enderMiningCore, 'p', GameRegistry.findItem("ExtraUtilities", "enderThermicPump") == null ? new ItemStack(GameRegistry.findItem("ExtraUtilities", "decorativeBlock1"), 1, 12) : GameRegistry.findItem("ExtraUtilities", "enderThermicPump")));
 				// Ender Computation Matrix

@@ -1,10 +1,13 @@
 package mortvana.mechstoneworks.common;
 
 import java.io.File;
+import java.lang.reflect.Field;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.Mod;
@@ -13,6 +16,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.common.MinecraftForge;
 
 import mortvana.fluxgearcore.common.FluxGearCore;
@@ -21,9 +25,9 @@ import mortvana.fluxgearcore.gui.FluxGearTab;
 import mortvana.mechstoneworks.client.ClientProxy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import tconstruct.library.TConstructRegistry;
+/*import tconstruct.library.TConstructRegistry;
 import tconstruct.library.crafting.Detailing;
-import tconstruct.tools.TinkerTools;
+import tconstruct.library.tools.ToolCore;*/
 
 @Mod(modid = MechanicsStoneworks.modID, name = "Mechanic's Stoneworks", version = MechanicsStoneworks.version, dependencies = MechanicsStoneworks.dependencies)
 public class MechanicsStoneworks {
@@ -39,16 +43,16 @@ public class MechanicsStoneworks {
 	public static CommonProxy proxy;
 
 	public static final String[] dyeTypes = new String[] { "White", "Orange", "Magenta", "LightBlue", "Yellow", "Lime", "Pink", "Gray", "LightGray", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black" };
+	public static final String[] colorNames = new String[] { "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "silver", "aqua", "purple", "blue", "brown", "green", "red", "black" };
+
 
 	public static MechStoneworksContent content;
 
 	public static final Logger logger = LogManager.getLogger(modID);
-	public static CreativeTabs generalTab = new FluxGearTab("MechStoneworks-General", "mechanicsStoneworks.generalTab", MechStoneworksContent.disassemblyCore);
-	public static CreativeTabs paintedStoneTab = new FluxGearTab("MechStoneworks-PaintedStone", "mechanicsStoneworks.paintedStoneTab", new ItemStack(MechStoneworksContent.coloredStone, 1, 13));
-	public static CreativeTabs stonesTab = new FluxGearTab("MechStoneworks-Stone", "mechanicsStoneworks.stoneTab", new ItemStack(MechStoneworksContent.coloredStone, 1, 10));
+	//public static CreativeTabs generalTab = new FluxGearTab("MechStoneworks-General", "mechanicsStoneworks.generalTab", new ItemStack(Items.potato));
+	//public static CreativeTabs paintedStoneTab = new FluxGearTab("MechStoneworks-PaintedStone", "mechanicsStoneworks.paintedStoneTab", new ItemStack(MechStoneworksContent.coloredStone/*, 1, 13*/));
+	//public static CreativeTabs stonesTab = new FluxGearTab("MechStoneworks-Stone", "mechanicsStoneworks.stoneTab", new ItemStack(Blocks.obsidian/*MechStoneworksContent.coloredStone, 1, 10*/));
 	//public static CreativeTabs stairSlabTab = new FluxGearTab("", "", null);
-
-
 
 	public MechanicsStoneworks() {
 	}
@@ -66,17 +70,18 @@ public class MechanicsStoneworks {
 	public void init(FMLInitializationEvent event) {
 		ClientProxy.registerRenderPassing();
 
-		if(FluxGearCore.isTinkersLoaded) {
+		//TODO: mDerpohouse!!!!!!!!!!!!!!
+		/*if(FluxGearCore.isTinkersLoaded) {
+			ToolCore chisel = (ToolCore) GameRegistry.findItem("TConstruct", "chisel");
 			Detailing chiseling = TConstructRegistry.getChiselDetailing();
 
 			for(int i = 0; i < 16; ++i) {
-				chiseling.addDetailing(content.coloredStone, i, content.coloredStoneBrick, i, TinkerTools.chisel);
-				chiseling.addDetailing(content.coloredStoneBrick, i, content.coloredStoneRoad, i, TinkerTools.chisel);
-				chiseling.addDetailing(content.coloredStoneRoad, i, content.coloredStoneFancyBrick, i, TinkerTools.chisel);
-				chiseling.addDetailing(content.coloredStoneFancyBrick, i, content.coloredStoneSquareBrick, i, TinkerTools.chisel);
+				chiseling.addDetailing(content.coloredStone, i, content.coloredStoneBrick, i, chisel);
+				chiseling.addDetailing(content.coloredStoneBrick, i, content.coloredStoneRoad, i, chisel);
+				chiseling.addDetailing(content.coloredStoneRoad, i, content.coloredStoneFancyBrick, i, chisel);
+				chiseling.addDetailing(content.coloredStoneFancyBrick, i, content.coloredStoneSquareBrick, i, chisel);
 			}
-		}
-
+		}*/
 	}
 
 	@EventHandler
@@ -122,7 +127,7 @@ public class MechanicsStoneworks {
 						} else if(block == Blocks.brick_block) {
 							++amount;
 							world.setBlock(x + xPos, y + yPos, z + zPos, content.clayBrickSmall, inputMeta, 3);
-						} else if(FluxGearCore.isTinkersLoaded && block == TinkerTools.multiBrickFancy) {
+						} else if(FluxGearCore.isTinkersLoaded && block == GameRegistry.findBlock("TConstruct", "decoration.multibrickfancy")) {
 							meta = world.getBlockMetadata(x + xPos, y + yPos, z + zPos);
 							if(meta == 14) {
 								++amount;

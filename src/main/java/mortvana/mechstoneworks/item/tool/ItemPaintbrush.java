@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -29,7 +30,7 @@ public class ItemPaintbrush extends Item {
 	public ItemPaintbrush() {
 		super();
 		dyeType = new ItemStack(Items.dye);
-		setCreativeTab(MechanicsStoneworks.generalTab).setMaxDamage(1728);
+		setCreativeTab(CreativeTabs.tabTools).setMaxDamage(1728);
 		maxStackSize = 1;
 
 	}
@@ -103,8 +104,8 @@ public class ItemPaintbrush extends Item {
 
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iiconRegister) {
-		itemIcon = iiconRegister.registerIcon("paintedstone:paintbrush");
-		bristles = iiconRegister.registerIcon("paintedstone:paintbristles");
+		itemIcon = iiconRegister.registerIcon("mechstoneworks:paintbrush");
+		bristles = iiconRegister.registerIcon("mechstoneworks:paintbristles");
 	}
 
 	@SideOnly(Side.CLIENT)

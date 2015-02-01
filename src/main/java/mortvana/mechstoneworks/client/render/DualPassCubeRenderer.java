@@ -5,15 +5,18 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
+import mortvana.fluxgearcore.util.helper.DrawingHelper;
+
+import mortvana.mechstoneworks.block.BlockDecorStone;
 import mortvana.mechstoneworks.client.ClientProxy;
 
 public class DualPassCubeRenderer implements ISimpleBlockRenderingHandler {
+
 	Block renderBlock;
 	Block renderOverlay;
 
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
-
 	}
 
 	@Override
@@ -24,7 +27,7 @@ public class DualPassCubeRenderer implements ISimpleBlockRenderingHandler {
 			renderer.renderStandardBlock(renderBlock, x, y, z);
 		} else if(ClientProxy.renderPass == 1) {
 			// We are rendering the transparent part of it, lets render it, or at least the visible part...
-			renderer.renderStandardBlock(renderOverlay, x, y, z);
+			DrawingHelper.renderAllFaces(renderer, block, x,y, z,((BlockDecorStone) block).getOverlayTexture());
 		}
 		return true;
 	}

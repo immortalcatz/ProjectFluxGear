@@ -2,6 +2,7 @@ package mortvana.mechstoneworks.common;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,7 +24,7 @@ public class MechStoneworksContent {
 
 	public void loadStuff() {
 
-		itemMaterial = (ItemFluxGear) new ItemFluxGear("assets/fluxgeartweaks").setUnlocalizedName("material").setCreativeTab(MechanicsStoneworks.generalTab);
+		itemMaterial = (ItemFluxGear) new ItemFluxGear("assets/fluxgeartweaks").setUnlocalizedName("material").setCreativeTab(CreativeTabs.tabMisc);
 
 		multicoreProcessor = itemMaterial.addItem(0, "multicoreProcessor");
 		disassemblyCore = itemMaterial.addItem(1, "disassemblyCore");
@@ -31,6 +32,8 @@ public class MechStoneworksContent {
 		enderCompCore = itemMaterial.addItem(3, "enderCompCore");
 
 		registerRocks();
+
+		//TODO: Make Flux Gear Style
 
 		coloredCobble = new BlockPaintedStone(Material.rock, 2.0F, "stone_cobble", "stone.cobble").setBlockName("paintedstone.cobble");
 		GameRegistry.registerBlock(coloredCobble, ItemBlockPaintedStone.class, "paintedstone.cobble");
@@ -41,22 +44,22 @@ public class MechStoneworksContent {
 		coloredMossCobble = new BlockPaintedStone(Material.rock, 2.0F, "stone_mosscobble", "stone.mosscobble").setBlockName("paintedstone.mosscobble");
 		GameRegistry.registerBlock(coloredMossCobble, ItemBlockPaintedStone.class, "paintedstone.mosscobble");
 
-		coloredStoneBrick = new BlockPaintedStone(Material.rock, 1.5F, "stone_brick", "stone.brick").setBlockName("paintedstone.brick");
+		coloredStoneBrick = new BlockPaintedStone("stone_brick", "stone.brick").setBlockName("paintedstone.brick");
 		GameRegistry.registerBlock(coloredStoneBrick, ItemBlockPaintedStone.class, "paintedstone.brick");
 
-		coloredMossStoneBrick = new BlockPaintedStone(Material.rock, 1.5F, "stone_mossbrick", "stone.mossbrick").setBlockName("paintedstone.mossbrick");
+		coloredMossStoneBrick = new BlockPaintedStone("stone_mossbrick", "stone.mossbrick").setBlockName("paintedstone.mossbrick");
 		GameRegistry.registerBlock(coloredMossStoneBrick, ItemBlockPaintedStone.class, "paintedstone.mossbrick");
 
-		coloredCrackedStoneBrick = new BlockPaintedStone(Material.rock, 1.5F, "stone_crackedbrick", "stone.crackedbrick").setBlockName("paintedstone.crackedbrick");
+		coloredCrackedStoneBrick = new BlockPaintedStone("stone_crackedbrick", "stone.crackedbrick").setBlockName("paintedstone.crackedbrick");
 		GameRegistry.registerBlock(coloredCrackedStoneBrick, ItemBlockPaintedStone.class, "paintedstone.crackedbrick");
 
-		coloredStoneRoad = new BlockPaintedStone(Material.rock, 1.5F, "stone_road", "stone.road").setBlockName("paintedstone.road");
+		coloredStoneRoad = new BlockPaintedStone("stone_road", "stone.road").setBlockName("paintedstone.road");
 		GameRegistry.registerBlock(coloredStoneRoad, ItemBlockPaintedStone.class, "paintedstone.road");
 
-		coloredStoneFancyBrick = new BlockPaintedStone(Material.rock, 1.5F, "stone_fancy", "stone.fancy").setBlockName("paintedstone.fancy");
+		coloredStoneFancyBrick = new BlockPaintedStone("stone_fancy", "stone.fancy").setBlockName("paintedstone.fancy");
 		GameRegistry.registerBlock(coloredStoneFancyBrick, ItemBlockPaintedStone.class, "paintedstone.fancy");
 
-		coloredStoneSquareBrick = new BlockPaintedStone(Material.rock, 1.5F, "stone_square", "stone.chiseled").setBlockName("paintedstone.chiseled");
+		coloredStoneSquareBrick = new BlockPaintedStone("stone_square", "stone.chiseled").setBlockName("paintedstone.chiseled");
 		GameRegistry.registerBlock(coloredStoneSquareBrick, ItemBlockPaintedStone.class, "paintedstone.chiseled");
 
 		clayBrickSmall = new BlockPaintedStone(Material.rock, 2.0F, "clay_smallbrick", "clay.brick").setBlockName("paintedstone.clay.smallbrick");
@@ -65,7 +68,7 @@ public class MechStoneworksContent {
 		paintbrush = new ItemPaintbrush().setUnlocalizedName("paintedstone.brush");
 		GameRegistry.registerItem(paintbrush, "paintbrush");
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(paintbrush), "w", "s", 'w', new ItemStack(Blocks.wool, 1, 32767), 's', "stickWood"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(paintbrush), "w", "s", 'w', new ItemStack(Blocks.wool, 1, WILD), 's', "stickWood"));
 
 		for(int i = 0; i < 16; ++i) {
 			FurnaceRecipes.smelting().func_151393_a(coloredCobble, new ItemStack(coloredStone, 1, i), 0.2F);
@@ -107,11 +110,13 @@ public class MechStoneworksContent {
 	}
 
 	public void registerRocks() {
-		//stoneRaw = new BlockDecorStone(Material.rock, stoneHardness, /*stoneResistance,*/ "stone_raw", "stone.raw" /*, overlay, */).setBlockName("mechanicsstoneworks.decorStoneRaw");
+		stoneCobble = new BlockDecorStone(Material.rock, CreativeTabs.tabBlock, stoneHardness, stoneResistance, stoneLight, "cobble", Block.soundTypeStone).setBlockName("mechanicsstoneworks.decorStoneRaw");
 	}
 
 	//For Now
-	public static float stoneHardness = 1.5F;
+	public static float[] stoneHardness = {1.5F};
+	public static float[] stoneResistance = {5};
+	public static int[] stoneLight = { 0 };
 
 	public static Block coloredStone;
 	public static Block coloredCobble;
