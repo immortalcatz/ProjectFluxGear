@@ -8,7 +8,7 @@ import net.minecraftforge.fluids.FluidStack;
  * @author King Lemming
  * 
  */
-public interface IEnderFluidHandler extends IEnderAttuned {
+public interface IEnderFluidHandler extends cofh.api.transport.IEnderAttuned {
 
 	/**
 	 * Return whether or not the Ender Attuned object can currently send FluidStacks.

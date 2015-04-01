@@ -11,7 +11,7 @@ import net.minecraft.tileentity.TileEntity;
  * @author azanor
  *
  * Custom tile entity class I use for most of my tile entities. Setup in such a way that only 
- * the nbt data within readCustomNBT / writeCustomNBT will be sent to the gui when the tile
+ * the nbt data within readCustomNBT / writeCustomNBT will be sent to the client when the tile
  * updates. Apart from all the normal TE data that gets sent that is.
  * 
  */

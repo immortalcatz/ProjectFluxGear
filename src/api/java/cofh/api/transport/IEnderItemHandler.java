@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
  * @author King Lemming
  * 
  */
-public interface IEnderItemHandler extends IEnderAttuned {
+public interface IEnderItemHandler extends cofh.api.transport.IEnderAttuned {
 
 	/**
 	 * Return whether or not the Ender Attuned object can currently send ItemStacks.

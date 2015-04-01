@@ -6,7 +6,7 @@ package cofh.api.transport;
  * @author King Lemming
  * 
  */
-public interface IEnderEnergyHandler extends IEnderAttuned {
+public interface IEnderEnergyHandler extends cofh.api.transport.IEnderAttuned {
 
 	/**
 	 * Return whether or not the Ender Attuned object can currently send energy (Redstone Flux).

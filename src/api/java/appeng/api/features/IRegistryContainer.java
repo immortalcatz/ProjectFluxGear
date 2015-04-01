@@ -65,12 +65,12 @@ public interface IRegistryContainer
 	IPlayerRegistry players();
 
 	/**
-	 * get access to the ae2 recipe api
+	 * get access to the ae2 recipe appeng.api
 	 */
 	IRecipeHandlerRegistry recipes();
 
 	/**
-	 * get access to the world-gen api.
+	 * get access to the world-gen appeng.api.
 	 */
 	IWorldGen worldgen();
 }

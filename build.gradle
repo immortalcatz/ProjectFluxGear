@@ -44,11 +44,18 @@ repositories {
         name "IC2"
         url "http://maven.ic2.player.to/"
     }
+	maven {
+		name "Enderio FS"
+		url "http://maven.tterrag.com"
+	}
 }
 
 // Load ForgeGradle
 // Apply the forge plugin - this adds all the magic for automatically obfuscating, deobfuscating, etc.
 apply plugin: 'forge'
+// Apply the CurseForge plugin - this automatically uploads to betas to CurseForge (Not yet used)
+//apply plugin: 'curseforge'
+
 
 // Define the .properties file
 ext.configFile = file "build.properties"
@@ -83,6 +90,10 @@ dependencies {
     compile "codechicken:NotEnoughItems:${config.minecraft_version}-${config.NEI_version}:dev"
 	compile "codechicken:ForgeMultipart:${config.minecraft_version}-${config.FMP_version}:dev"
 	compile "mcp.mobius.waila:Waila:${config.waila_version}:dev"
+	compile "com.mod-buildcraft:buildcraft:${config.buildcraft_version}:dev"
+	compile "tterrag.core:ttCore:MC${config.waila_version}-${config.ttCore_version}:deobf"
+	compile "com.enderio:EnderIO:${config.minecraft_version}-${config.enderio_version}:dev"
+	compile "net.sengir.forestry:forestry_1.7.10:${config.forestry_version}:dev"
     //compile "net.industrial-craft:industrialcraft-2:${config.ic2_version}:dev"
     compile fileTree(dir: 'lib', include: '*.jar')
 	//deployerJars 'org.apache.maven.wagon:wagon-ssh:2.2'
@@ -206,7 +217,7 @@ task deobfJar(type: Jar) {
 // Create API library jar
 /*task libJar(type: Jar) {
     from(sourceSets.main.java) {
-        include "mortvana/projectfluxgear/lib/*"
+        include "mortvana/mortvana.projectfluxgear/lib/*"
     }
     classifier = 'lib'
 	version = "${project.minecraft.version}-${project.version}"

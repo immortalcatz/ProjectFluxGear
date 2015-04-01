@@ -2,7 +2,7 @@ package appeng.api;
 
 /**
  * 
- * Entry point for api.
+ * Entry point for appeng.api.
  * 
  * Available IMCs:
  * 

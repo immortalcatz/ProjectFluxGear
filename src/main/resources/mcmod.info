@@ -1,10 +1,10 @@
 [
     {
-        "modid": "ThermalTinkerer",
+        "modid": "ProjectFluxGear",
         "name": "Project Flux Gear",
         "description": "A unique kind of insane in Thermal Expansion addon form.",
-        "version": "0.1.0.2",
-        "credits": "Team CoFH, Tiktalik",
+        "version": "0.0.0.0",
+        "credits": "Glassmaker, Team CoFH, Tiktalik, Azanor, Blorph, System Zee (syszee/ztrx), TheMike (TrainerGuy22), and of course, the Great Almighty Alchemist of OP-ness, x3n0ph0b3 himself",
         "logoFile": "",
         "mcversion": "1.7.10",
         "url": "",
@@ -13,16 +13,12 @@
             "Mortvana",
 			"Gyro",
 			"Drullkus",
-			"Blorph"
+			"MasterAbdoTGM50"
         ],
         "parent": "",
         "screenshots": [],
         "dependencies": [
-            "MinecraftForge",
-			"CoFHLib",
-			"CoFHCore",
-			"ThermalFoundation",
-			"ThermalExpansion"
+            "MinecraftForge"
         ]
     }
 ]
