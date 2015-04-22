@@ -1,9 +1,10 @@
 package mortvana.projectfluxgear.api.item.tool;
 
-import cofh.api.item.IToolHammer;
-import appeng.api.implementations.items.IAEWrench;
-import buildcraft.api.tools.IToolWrench;
-import crazypants.enderio.api.tool.ITool;
-import mekanism.api.IMekWrench;
-
-public interface IFluxGearWrench extends IAEWrench, IMekWrench, IToolHammer, IToolWrench, ITool {}
+public interface IFluxGearWrench {
+	public boolean isPFGWrench();
+	public void onLeftWhack();
+	public void onRightWhack();
+	public void onSneakLeftWhack();
+	public void onSneakRightWhack();
+	public void hideFacades();
+}

@@ -8,7 +8,7 @@ import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.dashboard.common.MeltedDashboardLib;
+import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 
 public class FallingBlockFluxGear extends BlockFalling {
 	/**
@@ -62,7 +62,7 @@ public class FallingBlockFluxGear extends BlockFalling {
 			canSpawn = true;
 			beaconBase = false;
 			isColorized = false;
-			MeltedDashboardLib.log.warn(wrong);
+			ProjectFluxGear.logger.warn(wrong);
 		}
 	}
 
@@ -124,5 +124,5 @@ public class FallingBlockFluxGear extends BlockFalling {
 	public boolean isColorized;
 	public boolean canSpawn;
 	public boolean beaconBase;
-	public static String wrong /*= "" + "Somebody registered their block wrong with Flux Gear Core"*/;
+	public static String wrong = "Mortvana registered a block wrong in Project Flux Gear... Derp";
 }

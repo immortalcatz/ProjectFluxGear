@@ -27,19 +27,21 @@ public class GyroDerpExeption extends Exception{
         if (line == 11) derp = "It goes up to eleven.";
         if (line == 12) derp = "I came in like a twerking dragon...";
         if (line == 13) derp = "MANDATORY FUN!!!!";
-        if (line == 14) derp = "Eat Wall Street";
-        if (line == 15) derp = "Eat a Wall Street";
-        if (line == 16) derp = "I'm high on Bismuth";
+        if (line == 14) derp = "Eat Wall Street?";
+        if (line == 15) derp = "Eat *A* Wall Street!";
+        if (line == 16) derp = "I'm high on Bismuth!";
         if (line == 17) derp = "Now Rassilon had a buddy called Omega~ His interstellar science would amaze ya'!~";
         if (line == 18) derp = "Gyro, no, we store it in NBT :V";
         if (line == 19) derp = "The darkness heralds only one thing, the end of time itself.";
-        if (line == 20) derp = "Eat weapons grade Plutonium";
+        if (line == 20) derp = "Eat weapons grade Plutonium...";
+	    if (line == 21) derp = "Go eat some Polonium!";
+	    if (line == 22) derp = "Every cloud has a Strontium lining.";
         System.err.println(derp);
     }
 
     @Override
     public String getMessage() {
-        return "Gyro ate the Congealed Blood Blocks again";
+        return "Gyro ate the Congealed Blood again";
     }
 
 }

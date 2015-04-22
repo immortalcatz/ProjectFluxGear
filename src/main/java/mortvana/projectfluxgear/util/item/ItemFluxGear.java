@@ -43,11 +43,11 @@ public class ItemFluxGear extends Item {
 
     public ItemStack addItem(int number, String name, int rarity, boolean register) {
 
-        if (itemMap.containsKey(Integer.valueOf(number))) {
+        if (itemMap.containsKey(number)) {
             return null;
         }
-        itemMap.put(Integer.valueOf(number), new ItemEntry(name, rarity));
-        itemList.add(Integer.valueOf(number));
+        itemMap.put(number, new ItemEntry(name, rarity));
+        itemList.add(number);
         //colorizerList.add(Boolean.FALSE);
 
         ItemStack item = new ItemStack(this, 1, number);
@@ -59,12 +59,12 @@ public class ItemFluxGear extends Item {
 
     public ItemStack addColorizedItem(int metadata, String name, int rarity, int color, String texture, boolean register) {
 
-        if (itemMap.containsKey(Integer.valueOf(metadata))) {
+        if (itemMap.containsKey(metadata)) {
             return null;
         }
-        itemMap.put(Integer.valueOf(metadata), new ItemEntry(name, rarity));
-        itemList.add(Integer.valueOf(metadata));
-        //colorizerMap.put(Integer.valueOf(metadata), new ColorEntry(texture, color));
+        itemMap.put(metadata, new ItemEntry(name, rarity));
+        itemList.add(metadata);
+        //colorizerMap.put(metadata, new ColorEntry(texture, color));
         //colorizerList.add(Boolean.TRUE);
 
         ItemStack item = new ItemStack(this, 1, metadata);
@@ -162,7 +162,7 @@ public class ItemFluxGear extends Item {
     public String getRawName(ItemStack stack) {
 
         int i = ItemHelper.getItemDamage(stack);
-        if (!itemMap.containsKey(Integer.valueOf(i))) {
+        if (!itemMap.containsKey(i)) {
             return "invalid";
         }
         return itemMap.get(i).name;
@@ -187,7 +187,7 @@ public class ItemFluxGear extends Item {
              public String getUnlocalizedName(ItemStack stack) {
 
         int i = ItemHelper.getItemDamage(stack);
-        if (!itemMap.containsKey(Integer.valueOf(i))) {
+        if (!itemMap.containsKey(i)) {
             return "item.invalid";
         }
         return new StringBuilder().append(getUnlocalizedName()).append('.').append(itemMap.get(i).name).toString();
@@ -197,7 +197,7 @@ public class ItemFluxGear extends Item {
     public EnumRarity getRarity(ItemStack stack) {
 
         int i = stack.getItemDamage();
-        if (!itemMap.containsKey(Integer.valueOf(i))) {
+        if (!itemMap.containsKey(i)) {
             return EnumRarity.common;
         }
         return EnumRarity.values()[itemMap.get(stack.getItemDamage()).rarity];
