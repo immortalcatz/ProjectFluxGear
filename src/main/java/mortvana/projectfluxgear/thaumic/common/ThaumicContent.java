@@ -11,12 +11,13 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraftforge.common.util.EnumHelper;
 
+import magicbees.api.MagicBeesAPI;
 import mortvana.projectfluxgear.core.common.FluxGearContent;
 import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 import mortvana.projectfluxgear.thaumic.util.ItemWardenArmor;
 import mortvana.projectfluxgear.thaumic.util.research.FluxGearResearchItem;
 import mortvana.projectfluxgear.to_refactor.block.tile.TileWitor;
-import mortvana.projectfluxgear.to_refactor.common.FluxGearContent_;
+import mortvana.projectfluxgear.to_refactor.FluxGearContent_;
 import mortvana.projectfluxgear.thaumic.entity.EntityPurity;
 import mortvana.projectfluxgear.thaumic.item.armor.*;
 import mortvana.projectfluxgear.thaumic.item.baubles.ItemLoveRing;
@@ -45,9 +46,24 @@ public class ThaumicContent {
 	public static final Aspect FLUX = new Aspect("fluctuatio", 0xAD0200, new Aspect[] {MAGNET, Aspect.MECHANISM}, new ResourceLocation("projectfluxgear", "textures/aspects/fluctuatio.png"), 771);
 	public static final Aspect REVELATIONS = new Aspect("revelatio", 0x3971AD, new Aspect[] {Aspect.ELDRITCH, Aspect.MIND}, new ResourceLocation("projectfluxgear", "textures/aspects/revelatiofez.png"), 771);
 
+	public static ResearchItem researchTorch;
+	public static Aspect tempus;
+	public static AspectList torchInfusionAspects;
+	public static ItemStack[] torchInfusionComponents;
+
 	public static final String category = "FLUXGEAR";
 	
 	public static ItemArmor.ArmorMaterial materialWarden = EnumHelper.addArmorMaterial("WARDEN", 50, new int[] {3, 8, 6, 3}, 0);
+
+	public static void determineTempus() {
+		// Thanks for the API hook, Myst!
+		Object protoTempus = MagicBeesAPI.thaumcraftAspectTempus;
+		if (protoTempus != null) {
+			tempus = (Aspect) protoTempus;
+		} else {
+			tempus = Aspect.VOID;
+		}
+	}
 
 	public static void loadBlocks() {
 
@@ -86,11 +102,11 @@ public class ThaumicContent {
 	}
 
 	public static void loadBasicRecipes() {
-		GameRegistry.addShapedRecipe(new ItemStack(ModContent.blockInfusedQuartzNormal), "XX", "XX", 'X', new ItemStack(ModContent.itemResource, 1, 2));
-		GameRegistry.addShapedRecipe(new ItemStack(ModContent.blockInfusedQuartzChiseled), "X", "X", 'X', new ItemStack(ModContent.blockInfusedQuartzSlab));
-		GameRegistry.addShapedRecipe(new ItemStack(ModContent.blockInfusedQuartzPillar, 2), "X", "X", 'X', new ItemStack(ModContent.blockInfusedQuartzNormal));
-		GameRegistry.addShapedRecipe(new ItemStack(ModContent.blockInfusedQuartzSlab, 6), "XXX", 'X', new ItemStack(ModContent.blockInfusedQuartzNormal));
-		GameRegistry.addShapedRecipe(new ItemStack(ModContent.blockInfusedQuartzStair, 4), "X  ", "XX ", "XXX", 'X', new ItemStack(ModContent.blockInfusedQuartzNormal));
+		GameRegistry.addShapedRecipe(new ItemStack(blockInfusedQuartzNormal), "XX", "XX", 'X', new ItemStack(itemResource, 1, 2));
+		GameRegistry.addShapedRecipe(new ItemStack(blockInfusedQuartzChiseled), "X", "X", 'X', new ItemStack(blockInfusedQuartzSlab));
+		GameRegistry.addShapedRecipe(new ItemStack(blockInfusedQuartzPillar, 2), "X", "X", 'X', new ItemStack(blockInfusedQuartzNormal));
+		GameRegistry.addShapedRecipe(new ItemStack(blockInfusedQuartzSlab, 6), "XXX", 'X', new ItemStack(blockInfusedQuartzNormal));
+		GameRegistry.addShapedRecipe(new ItemStack(blockInfusedQuartzStair, 4), "X  ", "XX ", "XXX", 'X', new ItemStack(blockInfusedQuartzNormal));
 	}
 	
 	public static void loadThaumicRecipes() {
@@ -145,6 +161,14 @@ public class ThaumicContent {
 		researchLore3.setPages(new ResearchPage("0"), new ResearchPage("1"), new ResearchPage("2"), new ResearchPage("3"), new ResearchPage("4"), new ResearchPage("5"));
 		researchLore4 = new FluxGearResearchItem("LORE4", category, new AspectList().add(WARDEN, 4).add(Aspect.MIND, 4), 2, 4, 3, new ItemStack(itemWardenAmulet)).setParents("LORE3").setRound().setSpecial().registerResearchItem();
 		researchLore4.setPages(new ResearchPage("0"), new ResearchPage("1"), new ResearchPage("2"), new ResearchPage("3"));
+	}
+
+	public static void loadTimeyWimey() {
+		torchInfusionComponents =  new ItemStack[] { new ItemStack(GameRegistry.findItem("MagicBees", "jellyBabies")), new ItemStack(GameRegistry.findItem("RotaryCraft", "rotarycraft_item_gearunits"), 1, 15), new ItemStack(GameRegistry.findItem("RotaryCraft", "rotarycraft_item_borecraft"), 1, 15), new ItemStack(GameRegistry.findItem("RotaryCraft", "rotarycraft_item_machine"), 1, 103), new ItemStack(GameRegistry.findItem("ChromatiCraft", "chromaticraft_item_placer"), 1, 9), new ItemStack(GameRegistry.findItem("ProjRed|Illumination", "projectred.illumination.cagelamp2")), new ItemStack(GameRegistry.findItem("Thaumcraft", "blockMetalDevice"), 1, 3), new ItemStack(GameRegistry.findItem("ThermalExpansion", "Frame"), 1, 9), new ItemStack(GameRegistry.findItem("EnderIO", "itemMaterial"), 1, 8), new ItemStack(GameRegistry.findItem("BigReactors", "BRMetalBlock"), 1, 4), FluxGearContent_.timeyWimeyCarboard, FluxGearContent_.timeyWimeyCarboard, new ItemStack(Items.clock), new ItemStack(Items.clock), new ItemStack(Items.clock), new ItemStack(Items.clock) };
+		torchInfusionAspects = new AspectList().add(Aspect.ELDRITCH, 16).add(Aspect.MECHANISM, 16).add(Aspect.ENERGY, 24).add(Aspect.ARMOR, 8).add(Aspect.AURA, 8).add(Aspect.HARVEST, 16).add(Aspect.LIGHT, 8).add(tempus, 32);
+		researchTorch = new FluxGearResearchItem("TIMEYWIMEY", "ELDRITCH", new AspectList().add(Aspect.ELDRITCH, 16).add(Aspect.MECHANISM, 16).add(Aspect.ENERGY, 24).add(Aspect.ARMOR, 8).add(Aspect.AURA, 8).add(Aspect.HARVEST, 16).add(Aspect.LIGHT, 8).add(tempus, 32), -5, 5, 3, new ItemStack(FluxGearContent_.timeyWimeyTorch)).setSpecial().setParents("ADVALCHEMYFURNACE", "OUTERREV").setConcealed().registerResearchItem();
+		researchTorch.setPages(new ResearchPage("0"), new ResearchPage(ThaumcraftApi.addInfusionCraftingRecipe("TIMEYWIMEY", new ItemStack(FluxGearContent_.timeyWimeyTorch), 10, torchInfusionAspects, new ItemStack(GameRegistry.findItem("ExtraUtilities", "magnumTorch")), torchInfusionComponents)));
+		ThaumcraftApi.addInfusionCraftingRecipe("TIMEYWIMEY", new ItemStack(FluxGearContent_.timeyWimeyTorch), 10, torchInfusionAspects, new ItemStack(GameRegistry.findItem("ExtraUtilities", "magnumTorch")), torchInfusionComponents);
 	}
 
 	public static void loadAspects() {

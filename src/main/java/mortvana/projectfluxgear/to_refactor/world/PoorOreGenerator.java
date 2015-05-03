@@ -7,7 +7,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType;
 
-import mortvana.projectfluxgear.to_refactor.common.FluxGearContent_;
+import mortvana.projectfluxgear.to_refactor.FluxGearContent_;
 import mortvana.projectfluxgear.util.helper.LoadedHelper;
 import mortvana.projectfluxgear.util.world.PoorNetherOreGenerator;
 

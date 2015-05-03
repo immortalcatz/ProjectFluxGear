@@ -9,7 +9,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-import mortvana.projectfluxgear.to_refactor.common.FluxGearContent_;
+import mortvana.projectfluxgear.to_refactor.FluxGearContent_;
 import mortvana.projectfluxgear.to_refactor.util.chemistry.reaction.IBioactive;
 import cofh.core.fluid.BlockFluidCoFHBase;
 

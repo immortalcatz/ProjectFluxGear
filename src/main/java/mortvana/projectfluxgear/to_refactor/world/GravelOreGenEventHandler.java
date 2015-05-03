@@ -10,7 +10,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate;
 
 import mortvana.projectfluxgear.core.common.config.FluxGearConfig;
-import mortvana.projectfluxgear.to_refactor.common.FluxGearContent_;
+import mortvana.projectfluxgear.to_refactor.FluxGearContent_;
 import mortvana.projectfluxgear.util.helper.LoadedHelper;
 import mortvana.projectfluxgear.util.world.SurfaceOreGen;
 

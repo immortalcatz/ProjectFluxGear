@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.to_refactor.common;
+package mortvana.projectfluxgear.to_refactor;
 
 import java.util.ArrayList;
 
@@ -10,6 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import cpw.mods.fml.common.IFuelHandler;
@@ -21,6 +22,9 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import mortvana.projectfluxgear.core.common.ProjectFluxGear;
+import mortvana.projectfluxgear.util.block.ores.BasicOreEntry;
+import mortvana.projectfluxgear.util.block.ores.OreBlockEntry;
+import mortvana.projectfluxgear.util.block.ores.OrePair;
 import mortvana.projectfluxgear.util.item.ItemFluxGear;
 import mortvana.projectfluxgear.to_refactor.block.*;
 import mortvana.projectfluxgear.core.common.config.FluxGearConfigTweaks;
@@ -33,7 +37,6 @@ import mortvana.projectfluxgear.to_refactor.util.legacy.block.BlockBase;
 import mortvana.projectfluxgear.to_refactor.util.legacy.fluid.BlockFluidClassicWS;
 import mortvana.projectfluxgear.to_refactor.util.legacy.fluid.BlockFluidReactive;
 import mortvana.projectfluxgear.to_refactor.block.tile.TileTimeyWimey;
-import mortvana.projectfluxgear.to_refactor.RecipePaintbrush;
 import mortvana.projectfluxgear.to_refactor.util.chemistry.reaction.ReactionSpec;
 import mortvana.projectfluxgear.util.handler.DispenserEmptyBucketHandler;
 import mortvana.projectfluxgear.util.handler.DispenserFilledBucketHandler;
@@ -77,7 +80,6 @@ public class FluxGearContent_ implements IFuelHandler{
     }
 
     public void postInit() {
-	    loadOreDict();
         aluminiumArc();
 	    postInitTimeyWimey();
         //modIntegration();
@@ -87,6 +89,74 @@ public class FluxGearContent_ implements IFuelHandler{
 	    }
 	    postInitMisc();
     }
+
+
+
+	//I know this is in the wrong spot, but one must do the things in the name of science!
+	
+	public static BasicOreEntry chalcocite = new BasicOreEntry(oreChalcocite, 1, "oreChalcocite");
+	public static BasicOreEntry cassiterite = new BasicOreEntry(oreCassiterite, 1, "oreCassiterite");
+	public static BasicOreEntry galena = new BasicOreEntry(oreGalena, 2, "oreGalena");
+	public static BasicOreEntry acanthite = new BasicOreEntry(oreAcanthite, 2, "oreAcanthite");
+	public static BasicOreEntry garnierite = new BasicOreEntry(oreGarnierite, 2, "oreGarnierite");
+	public static BasicOreEntry sphalerite = new BasicOreEntry(oreSphalerite, 1, "oreSphalerite");
+	public static BasicOreEntry bismuthinite = new BasicOreEntry(oreBismuthinite, 1, "oreBismuthinite");
+	public static BasicOreEntry pyrolustite = new BasicOreEntry(orePyrolusite, 1, "orePyrolustite");
+	public static BasicOreEntry bauxite = new BasicOreEntry(oreBauxite, 1, "oreBauxite");
+	public static BasicOreEntry cooperite = new BasicOreEntry(oreCooperite, 2, "oreCooperite");
+	public static BasicOreEntry braggite = new BasicOreEntry(oreBraggite, 2, "oreBraggite");
+	public static BasicOreEntry molybdenite = new BasicOreEntry(oreMolybdenite, 2, "oreMolybdenite");
+	public static BasicOreEntry cobaltite = new BasicOreEntry(oreCobaltite, 2, "oreCobaltite");
+	public static BasicOreEntry wolframite = new BasicOreEntry(oreWolframite, 3, "oreWolframite");
+	public static BasicOreEntry ilmenite = new BasicOreEntry(oreIlmenite, 2, "oreIlmenite");
+	public static BasicOreEntry chromite = new BasicOreEntry(oreChromite, 2, "oreChromite");
+
+	public static BasicOreEntry cinnabar = new BasicOreEntry(oreCinnabar, 2, "oreCinnabar");
+	public static BasicOreEntry pitchblende = new BasicOreEntry(orePitchblende, 2, "orePitchblende");
+	public static BasicOreEntry monazite = new BasicOreEntry(oreMonazite, 2, "oreMonazite");
+	public static BasicOreEntry nierdermayrite = new BasicOreEntry(oreNiedermayrite, 2, "oreNierdermayrite");
+	public static BasicOreEntry greenockite = new BasicOreEntry(oreGreenockite, 2, "oreGreenockite");
+	public static BasicOreEntry gaotaiite = new BasicOreEntry(oreGaotaiite, 3, "oreGaotaiite");
+	public static BasicOreEntry osarsite = new BasicOreEntry(oreOsarsite, 2, "oreOsarsite");
+	public static BasicOreEntry znamenskyite = new BasicOreEntry(oreZnamenskyite, 2, "oreZnamenskyite");
+	public static BasicOreEntry gallobeudanite = new BasicOreEntry(oreGallobeudanite, 2, "oreGallobeudanite");
+	public static BasicOreEntry tetrahedrite = new BasicOreEntry(oreTertahedrite, 1, "oreTetrahedrite");
+	public static BasicOreEntry tennantite = new BasicOreEntry(oreTennantite, 1, "oreTennantite");
+	public static BasicOreEntry santafeite = new BasicOreEntry(oreSantafeite, 2, "oreSantafeite");
+	public static BasicOreEntry magnetite = new BasicOreEntry(oreMagnetite, 2, "oreMagnetite");
+	public static BasicOreEntry dioptase = new BasicOreEntry(oreDioptase, 3, "oreDioptase");
+	public static BasicOreEntry pyrope = new BasicOreEntry(orePyrope, 3, "orePyrope");
+	public static BasicOreEntry myuvil = new BasicOreEntry(oreMyuvil, 3, "oreMyuvil");
+
+	public static BasicOreEntry iridiumSands = new BasicOreEntry(blockIridiumSands, 3, "oreIridiumSands");
+	public static BasicOreEntry poorIridiumSands = new BasicOreEntry(blockPoorIridiumSands, 3, "orePoorIridiumSands");
+	public static BasicOreEntry aluminosilicateSludge = new BasicOreEntry(blockAluminosilicateSludge , 0, "blockAluminosilicateSludge");
+
+	public static BasicOreEntry[] metaOresMain = new BasicOreEntry[] { chalcocite, cassiterite, galena, acanthite, garnierite, sphalerite, bismuthinite, pyrolustite, bauxite, cooperite, braggite, molybdenite, cobaltite, wolframite, ilmenite, chromite };
+	public static BasicOreEntry[] metaOresAux = new BasicOreEntry[] { cinnabar, pitchblende, monazite, nierdermayrite, greenockite, gaotaiite, osarsite, znamenskyite, gallobeudanite, tetrahedrite, tennantite, santafeite, magnetite, dioptase, pyrope, myuvil };
+	public static BasicOreEntry[] metaOresEarthen = new BasicOreEntry[] { iridiumSands, poorIridiumSands, aluminosilicateSludge };
+
+	public static OreBlockEntry oreEntryMain = new OreBlockEntry(blockOreMain, ItemBlockOreMain.class, "OreMain", "pickaxe");
+	public static OreBlockEntry oreEntryAux = new OreBlockEntry(blockOreAux, ItemBlockOreAux.class, "OreAux", "pickaxe");
+	public static OreBlockEntry oreEntryEarthen = new OreBlockEntry(blockEarthen, ItemBlockEarthen.class, "Earthen", "shovel");
+
+	public static OrePair mainOres = new OrePair(oreEntryMain, metaOresMain);
+	public static OrePair auxOres = new OrePair(oreEntryAux, metaOresAux);
+	public static OrePair earthenOres = new OrePair(oreEntryEarthen, metaOresEarthen);
+
+	public void loadOres() {
+		OrePair[] ores = new OrePair[] { mainOres, auxOres, earthenOres };
+		for (int q = 0; q < ores.length; q++) {
+			OreBlockEntry oreBlock = ores[q].block;
+			BasicOreEntry[] metaOres = ores[q].ores;
+			GameRegistry.registerBlock(oreBlock.block, oreBlock.itemblock, oreBlock.name);
+			for (int i = 0; i < ores[q].ores.length; i++) {
+				metaOres[i].itemstack = new ItemStack(oreBlock.block, 1, i);
+				oreBlock.block.setHarvestLevel(oreBlock.toolType, metaOres[i].harvestLevel, i);
+				ItemHelper.registerWithHandlers(metaOres[i].oreDict, metaOres[i].itemstack);
+			}
+		}
+	}
 
     public void loadBlocks() {
 
@@ -118,41 +188,118 @@ public class FluxGearContent_ implements IFuelHandler{
         //blockTemporalPylon.preInit();
         //woodenTileEntity.preInit();
 
-        GameRegistry.registerBlock(blockOreMain, ItemBlockOreMain.class, "OreMain");
-        oreChalcocite = new ItemStack(blockOreMain, 1, 0);
-        oreCassiterite = new ItemStack(blockOreMain, 1, 1);
-        oreGalena = new ItemStack(blockOreMain, 1, 2);
-        oreAcanthite = new ItemStack(blockOreMain, 1, 3);
-        oreGarnierite = new ItemStack(blockOreMain, 1, 4);
-        oreSphalerite = new ItemStack(blockOreMain, 1, 5);
-        oreBismuthinite = new ItemStack(blockOreMain, 1, 6);
-        orePyrolusite = new ItemStack(blockOreMain, 1, 7);
-        oreBauxite = new ItemStack(blockOreMain, 1, 8);
-        oreCooperite = new ItemStack(blockOreMain, 1, 9);
-        oreBraggite = new ItemStack(blockOreMain, 1, 10);
-        oreMolybdenite = new ItemStack(blockOreMain, 1, 11);
-        oreCobaltite = new ItemStack(blockOreMain, 1, 12);
-        oreWolframite = new ItemStack(blockOreMain, 1, 13);
-        oreIlmenite = new ItemStack(blockOreMain, 1, 14);
-        oreChromite = new ItemStack(blockOreMain, 1, 15);
+	    int i;
+	    for (i = 0; i < 16; i++) {
+		    blockPoorOreMain.setHarvestLevel("pickaxe", MAINHARVLV[i], i);
+		    blockPoorOreAux.setHarvestLevel("pickaxe", AUXHARVLV[i], i);
+		    blockGravelOreMain.setHarvestLevel("shovel", MAINHARVLV[i], i);
+		    blockGravelOreAux.setHarvestLevel("shovel", AUXHARVLV[i], i);
+	    }
 
-        GameRegistry.registerBlock(blockOreAux, ItemBlockOreAux.class, "OreAux");
-        oreCinnabar = new ItemStack(blockOreAux, 1, 0);
-        orePitchblende = new ItemStack(blockOreAux, 1, 1);
-        oreMonazite = new ItemStack(blockOreAux, 1, 2);
-        oreNiedermayrite = new ItemStack(blockOreAux, 1, 3);
-        oreGreenockite = new ItemStack(blockOreAux, 1, 4);
-        oreGaotaiite = new ItemStack(blockOreAux, 1, 5);
-        oreOsarsite = new ItemStack(blockOreAux, 1, 6);
-        oreZnamenskyite = new ItemStack(blockOreAux, 1, 7);
-        oreGallobeudanite = new ItemStack(blockOreAux, 1, 8);
-        oreTertahedrite = new ItemStack(blockOreAux, 1, 9);
-        oreTennantite = new ItemStack(blockOreAux, 1, 10);
-        oreSantafeite = new ItemStack(blockOreAux, 1, 11);
-        oreMagnetite = new ItemStack(blockOreAux, 1, 12);
-        oreDioptase = new ItemStack(blockOreAux, 1, 13);
-        orePyrope = new ItemStack(blockOreAux, 1, 14);
-        oreMyuvil = new ItemStack(blockOreAux, 1, 15);
+
+
+	    //Lame-man's Ores
+	    OreDictionary.registerOre("oreCopper", oreChalcocite);
+	    OreDictionary.registerOre("oreTin", oreCassiterite);
+	    OreDictionary.registerOre("oreLead", oreGalena);
+	    OreDictionary.registerOre("oreSilver", oreAcanthite);
+	    OreDictionary.registerOre("oreNickel", oreGarnierite);
+	    OreDictionary.registerOre("oreZinc", oreSphalerite);
+	    OreDictionary.registerOre("oreBismuth", oreBismuthinite);
+	    OreDictionary.registerOre("oreManganese", orePyrolusite);
+	    OreDictionary.registerOre("oreAluminium", oreBauxite);
+	    OreDictionary.registerOre("orePlatinum", oreCooperite);
+	    OreDictionary.registerOre("orePalladium", oreBraggite);
+	    OreDictionary.registerOre("oreMolybdenum", oreMolybdenite);
+	    OreDictionary.registerOre("oreNaturalCobalt", oreCobaltite);
+	    OreDictionary.registerOre("oreTungsten", oreWolframite);
+	    OreDictionary.registerOre("oreTitanium", oreIlmenite);
+	    OreDictionary.registerOre("oreChromium", oreChromite);
+
+	    OreDictionary.registerOre("oreMercury", oreCinnabar);
+	    OreDictionary.registerOre("oreUranium", orePitchblende);
+	    OreDictionary.registerOre("oreCadmium", oreGreenockite);
+	    OreDictionary.registerOre("oreTellurium", oreGaotaiite);
+	    OreDictionary.registerOre("oreOsmium", oreOsarsite);
+	    OreDictionary.registerOre("oreIndium", oreZnamenskyite);
+	    OreDictionary.registerOre("oreGallium", oreGallobeudanite);
+	    OreDictionary.registerOre("oreCopper", oreTertahedrite);
+	    OreDictionary.registerOre("oreCopper", oreTennantite);
+	    OreDictionary.registerOre("oreVanadium", oreSantafeite);
+
+	    GameRegistry.registerBlock(blockPoorOreMain, ItemBlockPoorOreMain.class, "PoorOreMain");
+	    orePoorChalcocite = new ItemStack(blockPoorOreMain, 1, 0);
+	    orePoorCassiterite = new ItemStack(blockPoorOreMain, 1, 1);
+	    orePoorGalena = new ItemStack(blockPoorOreMain, 1, 2);
+	    orePoorAcanthite = new ItemStack(blockPoorOreMain, 1, 3);
+	    orePoorGarnierite = new ItemStack(blockPoorOreMain, 1, 4);
+	    orePoorSphalerite = new ItemStack(blockPoorOreMain, 1, 5);
+	    orePoorBismuthinite = new ItemStack(blockPoorOreMain, 1, 6);
+	    orePoorPyrolusite = new ItemStack(blockPoorOreMain, 1, 7);
+	    orePoorBauxite = new ItemStack(blockPoorOreMain, 1, 8);
+	    orePoorCooperite = new ItemStack(blockPoorOreMain, 1, 9);
+	    orePoorBraggite = new ItemStack(blockPoorOreMain, 1, 10);
+	    orePoorMolybdenite = new ItemStack(blockPoorOreMain, 1, 11);
+	    orePoorCobaltite = new ItemStack(blockPoorOreMain, 1, 12);
+	    orePoorWolframite = new ItemStack(blockPoorOreMain, 1, 13);
+	    orePoorIlmenite = new ItemStack(blockPoorOreMain, 1, 14);
+	    orePoorChromite = new ItemStack(blockPoorOreMain, 1, 15);
+
+	    GameRegistry.registerBlock(blockPoorOreAux, ItemBlockPoorOreAux.class, "PoorOreAux");
+	    orePoorCinnabar = new ItemStack(blockPoorOreAux, 1, 0);
+	    orePoorPitchblende = new ItemStack(blockPoorOreAux, 1, 1);
+	    orePoorMonazite = new ItemStack(blockPoorOreAux, 1, 2);
+	    orePoorNiedermayrite = new ItemStack(blockPoorOreAux, 1, 3);
+	    orePoorGreenockite = new ItemStack(blockPoorOreAux, 1, 4);
+	    orePoorGaotaiite = new ItemStack(blockPoorOreAux, 1, 5);
+	    orePoorOsarsite = new ItemStack(blockPoorOreAux, 1, 6);
+	    orePoorZnamenskyite = new ItemStack(blockPoorOreAux, 1, 7);
+	    orePoorGallobeudanite = new ItemStack(blockPoorOreAux, 1, 8);
+	    orePoorTertahedrite = new ItemStack(blockPoorOreAux, 1, 9);
+	    orePoorTennantite = new ItemStack(blockPoorOreAux, 1, 10);
+	    orePoorSantafeite = new ItemStack(blockPoorOreAux, 1, 11);
+	    orePoorMagnetite = new ItemStack(blockPoorOreAux, 1, 12);
+	    orePoorDioptase = new ItemStack(blockPoorOreAux, 1, 13);
+	    orePoorPyrope = new ItemStack(blockPoorOreAux, 1, 14);
+	    orePoorMyuvil = new ItemStack(blockPoorOreAux, 1, 15);
+
+	    GameRegistry.registerBlock(blockGravelOreMain, ItemBlockGravelOreMain.class, "GravelOreMain");
+	    oreGravelChalcocite = new ItemStack(blockGravelOreMain, 1, 0);
+	    oreGravelCassiterite = new ItemStack(blockGravelOreMain, 1, 1);
+	    oreGravelGalena = new ItemStack(blockGravelOreMain, 1, 2);
+	    oreGravelAcanthite = new ItemStack(blockGravelOreMain, 1, 3);
+	    oreGravelGarnierite = new ItemStack(blockGravelOreMain, 1, 4);
+	    oreGravelSphalerite = new ItemStack(blockGravelOreMain, 1, 5);
+	    oreGravelBismuthinite = new ItemStack(blockGravelOreMain, 1, 6);
+	    oreGravelPyrolusite = new ItemStack(blockGravelOreMain, 1, 7);
+	    oreGravelBauxite = new ItemStack(blockGravelOreMain, 1, 8);
+	    oreGravelCooperite = new ItemStack(blockGravelOreMain, 1, 9);
+	    oreGravelBraggite = new ItemStack(blockGravelOreMain, 1, 10);
+	    oreGravelMolybdenite = new ItemStack(blockGravelOreMain, 1, 11);
+	    oreGravelCobaltite = new ItemStack(blockGravelOreMain, 1, 12);
+	    oreGravelWolframite = new ItemStack(blockGravelOreMain, 1, 13);
+	    oreGravelIlmenite = new ItemStack(blockGravelOreMain, 1, 14);
+	    oreGravelChromite = new ItemStack(blockGravelOreMain, 1, 15);
+
+	    GameRegistry.registerBlock(blockGravelOreAux, ItemBlockGravelOreAux.class, "GravelOreAux");
+	    oreGravelCinnabar = new ItemStack(blockGravelOreAux, 1, 0);
+	    oreGravelPitchblende = new ItemStack(blockGravelOreAux, 1, 1);
+	    oreGravelMonazite = new ItemStack(blockGravelOreAux, 1, 2);
+	    oreGravelNiedermayrite = new ItemStack(blockGravelOreAux, 1, 3);
+	    oreGravelGreenockite = new ItemStack(blockGravelOreAux, 1, 4);
+	    oreGravelGaotaiite = new ItemStack(blockGravelOreAux, 1, 5);
+	    oreGravelOsarsite = new ItemStack(blockGravelOreAux, 1, 6);
+	    oreGravelZnamenskyite = new ItemStack(blockGravelOreAux, 1, 7);
+	    oreGravelGallobeudanite = new ItemStack(blockGravelOreAux, 1, 8);
+	    oreGravelTertahedrite = new ItemStack(blockGravelOreAux, 1, 9);
+	    oreGravelTennantite = new ItemStack(blockGravelOreAux, 1, 10);
+	    oreGravelSantafeite = new ItemStack(blockGravelOreAux, 1, 11);
+	    oreGravelMagnetite = new ItemStack(blockGravelOreAux, 1, 12);
+	    oreGravelDioptase = new ItemStack(blockGravelOreAux, 1, 13);
+	    oreGravelPyrope = new ItemStack(blockGravelOreAux, 1, 14);
+	    oreGravelMyuvil = new ItemStack(blockGravelOreAux, 1, 15);
+
+
 
         GameRegistry.registerBlock(blockStorageMain, ItemBlockStorageMain.class, "StorageMain");
         blockCopper = new ItemStack(blockStorageMain, 1, 0);
@@ -262,92 +409,7 @@ public class FluxGearContent_ implements IFuelHandler{
         blockNichrome = new ItemStack(blockStorageAdv, 1, 14);
         blockPolycarbide = new ItemStack(blockStorageAdv, 1, 15);
 
-        GameRegistry.registerBlock(blockEarthen, ItemBlockEarthen.class, "Earthen");
-        blockIridiumSands = new ItemStack(blockEarthen, 1, 0);
-        blockPoorIridiumSands = new ItemStack(blockEarthen, 1, 1);
-        blockAluminosilicateSludge = new ItemStack(blockEarthen, 1, 2);
 
-        GameRegistry.registerBlock(blockPoorOreMain, ItemBlockPoorOreMain.class, "PoorOreMain");
-        orePoorChalcocite = new ItemStack(blockPoorOreMain, 1, 0);
-        orePoorCassiterite = new ItemStack(blockPoorOreMain, 1, 1);
-        orePoorGalena = new ItemStack(blockPoorOreMain, 1, 2);
-        orePoorAcanthite = new ItemStack(blockPoorOreMain, 1, 3);
-        orePoorGarnierite = new ItemStack(blockPoorOreMain, 1, 4);
-        orePoorSphalerite = new ItemStack(blockPoorOreMain, 1, 5);
-        orePoorBismuthinite = new ItemStack(blockPoorOreMain, 1, 6);
-        orePoorPyrolusite = new ItemStack(blockPoorOreMain, 1, 7);
-        orePoorBauxite = new ItemStack(blockPoorOreMain, 1, 8);
-        orePoorCooperite = new ItemStack(blockPoorOreMain, 1, 9);
-        orePoorBraggite = new ItemStack(blockPoorOreMain, 1, 10);
-        orePoorMolybdenite = new ItemStack(blockPoorOreMain, 1, 11);
-        orePoorCobaltite = new ItemStack(blockPoorOreMain, 1, 12);
-        orePoorWolframite = new ItemStack(blockPoorOreMain, 1, 13);
-        orePoorIlmenite = new ItemStack(blockPoorOreMain, 1, 14);
-        orePoorChromite = new ItemStack(blockPoorOreMain, 1, 15);
-
-        GameRegistry.registerBlock(blockPoorOreAux, ItemBlockPoorOreAux.class, "PoorOreAux");
-        orePoorCinnabar = new ItemStack(blockPoorOreAux, 1, 0);
-        orePoorPitchblende = new ItemStack(blockPoorOreAux, 1, 1);
-        orePoorMonazite = new ItemStack(blockPoorOreAux, 1, 2);
-        orePoorNiedermayrite = new ItemStack(blockPoorOreAux, 1, 3);
-        orePoorGreenockite = new ItemStack(blockPoorOreAux, 1, 4);
-        orePoorGaotaiite = new ItemStack(blockPoorOreAux, 1, 5);
-        orePoorOsarsite = new ItemStack(blockPoorOreAux, 1, 6);
-        orePoorZnamenskyite = new ItemStack(blockPoorOreAux, 1, 7);
-        orePoorGallobeudanite = new ItemStack(blockPoorOreAux, 1, 8);
-        orePoorTertahedrite = new ItemStack(blockPoorOreAux, 1, 9);
-        orePoorTennantite = new ItemStack(blockPoorOreAux, 1, 10);
-        orePoorSantafeite = new ItemStack(blockPoorOreAux, 1, 11);
-        orePoorMagnetite = new ItemStack(blockPoorOreAux, 1, 12);
-        orePoorDioptase = new ItemStack(blockPoorOreAux, 1, 13);
-        orePoorPyrope = new ItemStack(blockPoorOreAux, 1, 14);
-        orePoorMyuvil = new ItemStack(blockPoorOreAux, 1, 15);
-
-        GameRegistry.registerBlock(blockGravelOreMain, ItemBlockGravelOreMain.class, "GravelOreMain");
-        oreGravelChalcocite = new ItemStack(blockGravelOreMain, 1, 0);
-        oreGravelCassiterite = new ItemStack(blockGravelOreMain, 1, 1);
-        oreGravelGalena = new ItemStack(blockGravelOreMain, 1, 2);
-        oreGravelAcanthite = new ItemStack(blockGravelOreMain, 1, 3);
-        oreGravelGarnierite = new ItemStack(blockGravelOreMain, 1, 4);
-        oreGravelSphalerite = new ItemStack(blockGravelOreMain, 1, 5);
-        oreGravelBismuthinite = new ItemStack(blockGravelOreMain, 1, 6);
-        oreGravelPyrolusite = new ItemStack(blockGravelOreMain, 1, 7);
-        oreGravelBauxite = new ItemStack(blockGravelOreMain, 1, 8);
-        oreGravelCooperite = new ItemStack(blockGravelOreMain, 1, 9);
-        oreGravelBraggite = new ItemStack(blockGravelOreMain, 1, 10);
-        oreGravelMolybdenite = new ItemStack(blockGravelOreMain, 1, 11);
-        oreGravelCobaltite = new ItemStack(blockGravelOreMain, 1, 12);
-        oreGravelWolframite = new ItemStack(blockGravelOreMain, 1, 13);
-        oreGravelIlmenite = new ItemStack(blockGravelOreMain, 1, 14);
-        oreGravelChromite = new ItemStack(blockGravelOreMain, 1, 15);
-
-        GameRegistry.registerBlock(blockGravelOreAux, ItemBlockGravelOreAux.class, "GravelOreAux");
-        oreGravelCinnabar = new ItemStack(blockGravelOreAux, 1, 0);
-        oreGravelPitchblende = new ItemStack(blockGravelOreAux, 1, 1);
-        oreGravelMonazite = new ItemStack(blockGravelOreAux, 1, 2);
-        oreGravelNiedermayrite = new ItemStack(blockGravelOreAux, 1, 3);
-        oreGravelGreenockite = new ItemStack(blockGravelOreAux, 1, 4);
-        oreGravelGaotaiite = new ItemStack(blockGravelOreAux, 1, 5);
-        oreGravelOsarsite = new ItemStack(blockGravelOreAux, 1, 6);
-        oreGravelZnamenskyite = new ItemStack(blockGravelOreAux, 1, 7);
-        oreGravelGallobeudanite = new ItemStack(blockGravelOreAux, 1, 8);
-        oreGravelTertahedrite = new ItemStack(blockGravelOreAux, 1, 9);
-        oreGravelTennantite = new ItemStack(blockGravelOreAux, 1, 10);
-        oreGravelSantafeite = new ItemStack(blockGravelOreAux, 1, 11);
-        oreGravelMagnetite = new ItemStack(blockGravelOreAux, 1, 12);
-        oreGravelDioptase = new ItemStack(blockGravelOreAux, 1, 13);
-        oreGravelPyrope = new ItemStack(blockGravelOreAux, 1, 14);
-        oreGravelMyuvil = new ItemStack(blockGravelOreAux, 1, 15);
-
-        int i;
-        for (i = 0; i < 16; i++) {
-            blockOreMain.setHarvestLevel("pickaxe", MAINHARVLV[i], i);
-            blockOreAux.setHarvestLevel("pickaxe", AUXHARVLV[i], i);
-            blockPoorOreMain.setHarvestLevel("pickaxe", MAINHARVLV[i], i);
-            blockPoorOreAux.setHarvestLevel("pickaxe", AUXHARVLV[i], i);
-            blockGravelOreMain.setHarvestLevel("shovel", MAINHARVLV[i], i);
-            blockGravelOreAux.setHarvestLevel("shovel", AUXHARVLV[i], i);
-        }
 
     }
 
@@ -434,73 +496,16 @@ public class FluxGearContent_ implements IFuelHandler{
 		stoneCobble = new BlockDecorStone(Material.rock, CreativeTabs.tabBlock, stoneHardness, stoneResistance, stoneLight, "cobble", Block.soundTypeStone).setBlockName("mechanicsstoneworks.decorStoneRaw");
 	}
 
-    public static final int[] MAINHARVLV = { 1, 1, 2, 2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 3, 2, 2 };
-    public static final int[] AUXHARVLV = { 2, 2, 2, 2, 2, 3, 2, 2, 2, 1, 1, 2, 2, 3, 3, 3 };
-
     public void registerBlocks() {
-        // OreDict Ores
-        ItemHelper.registerWithHandlers("oreChalcocite", oreChalcocite);
-        ItemHelper.registerWithHandlers("oreCassiterite", oreCassiterite);
-        ItemHelper.registerWithHandlers("oreGalena", oreGalena);
-        ItemHelper.registerWithHandlers("oreAcanthite", oreAcanthite);
-        ItemHelper.registerWithHandlers("oreGarnierite", oreGarnierite);
-        ItemHelper.registerWithHandlers("oreSphalerite", oreSphalerite);
-        ItemHelper.registerWithHandlers("oreBismuthinite", oreBismuthinite);
-        ItemHelper.registerWithHandlers("orePyrolusite", orePyrolusite);
-        ItemHelper.registerWithHandlers("oreBauxite", oreBauxite);
-        ItemHelper.registerWithHandlers("oreCooperite", oreCooperite);
-        ItemHelper.registerWithHandlers("oreBraggite", oreBraggite);
-        ItemHelper.registerWithHandlers("oreMolybdenite", oreMolybdenite);
-        ItemHelper.registerWithHandlers("oreCobaltite", oreCobaltite);
-        ItemHelper.registerWithHandlers("oreWolframite", oreWolframite);
-        ItemHelper.registerWithHandlers("oreIlmenite", oreIlmenite);
-        ItemHelper.registerWithHandlers("oreChromite", oreChromite);
 
-        ItemHelper.registerWithHandlers("oreCinnabar", oreCinnabar);
-        ItemHelper.registerWithHandlers("orePitchblende", orePitchblende);
-        ItemHelper.registerWithHandlers("oreMonazite", oreMonazite);
-        ItemHelper.registerWithHandlers("oreNiedermayrite", oreNiedermayrite);
-        ItemHelper.registerWithHandlers("oreGreenockite", oreGreenockite);
-        ItemHelper.registerWithHandlers("oreGaotaiite", oreGaotaiite);
-        ItemHelper.registerWithHandlers("oreOsarsite", oreOsarsite);
-        ItemHelper.registerWithHandlers("oreZnamenskyite", oreZnamenskyite);
-        ItemHelper.registerWithHandlers("oreGallobeudanite", oreGallobeudanite);
-        ItemHelper.registerWithHandlers("oreTetrahedrite", oreTertahedrite);
-        ItemHelper.registerWithHandlers("oreTennantite", oreTennantite);
-        ItemHelper.registerWithHandlers("oreSantafeite", oreSantafeite);
-        ItemHelper.registerWithHandlers("oreMagnetite", oreMagnetite);
-        ItemHelper.registerWithHandlers("oreDioptase", oreDioptase);
-        ItemHelper.registerWithHandlers("orePyrope", orePyrope);
-        ItemHelper.registerWithHandlers("oreMyuvil", oreMyuvil);
 
-        //Lame-man's Ores
-        OreDictionary.registerOre("oreCopper", oreChalcocite);
-        OreDictionary.registerOre("oreTin", oreCassiterite);
-        OreDictionary.registerOre("oreLead", oreGalena);
-        OreDictionary.registerOre("oreSilver", oreAcanthite);
-        OreDictionary.registerOre("oreNickel", oreGarnierite);
-        OreDictionary.registerOre("oreZinc", oreSphalerite);
-        OreDictionary.registerOre("oreBismuth", oreBismuthinite);
-        OreDictionary.registerOre("oreManganese", orePyrolusite);
-        OreDictionary.registerOre("oreAluminium", oreBauxite);
-        OreDictionary.registerOre("orePlatinum", oreCooperite);
-        OreDictionary.registerOre("orePalladium", oreBraggite);
-        OreDictionary.registerOre("oreMolybdenum", oreMolybdenite);
-        OreDictionary.registerOre("oreNaturalCobalt", oreCobaltite);
-        OreDictionary.registerOre("oreTungsten", oreWolframite);
-        OreDictionary.registerOre("oreTitanium", oreIlmenite);
-        OreDictionary.registerOre("oreChromium", oreChromite);
 
-        OreDictionary.registerOre("oreMercury", oreCinnabar);
-        OreDictionary.registerOre("oreUranium", orePitchblende);
-        OreDictionary.registerOre("oreCadmium", oreGreenockite);
-        OreDictionary.registerOre("oreTellurium", oreGaotaiite);
-        OreDictionary.registerOre("oreOsmium", oreOsarsite);
-        OreDictionary.registerOre("oreIndium", oreZnamenskyite);
-        OreDictionary.registerOre("oreGallium", oreGallobeudanite);
-        OreDictionary.registerOre("oreCopper", oreTertahedrite);
-        OreDictionary.registerOre("oreCopper", oreTennantite);
-        OreDictionary.registerOre("oreVanadium", oreSantafeite);
+
+
+
+
+
+
 
         //Ore Storage Blocks
         ItemHelper.registerWithHandlers("blockCopper", blockCopper);

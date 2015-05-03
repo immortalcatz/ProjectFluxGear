@@ -7,12 +7,13 @@ import mortvana.projectfluxgear.core.common.config.FluxGearConfig;
 import mortvana.projectfluxgear.core.common.config.FluxGearConfigTweaks;
 import mortvana.projectfluxgear.core.common.config.FluxGearConfigWorld;
 import mortvana.projectfluxgear.to_refactor.block.tile.TileTimeyWimey;
-import mortvana.projectfluxgear.to_refactor.common.FluxGearContent_;
+import mortvana.projectfluxgear.to_refactor.FluxGearContent_;
 import mortvana.projectfluxgear.thaumic.world.ExubituraGenerator;
 import mortvana.projectfluxgear.to_refactor.util.gui.FluxGearTab;
 import mortvana.projectfluxgear.to_refactor.world.PoorOreGenerator;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -30,6 +31,8 @@ import net.minecraftforge.common.MinecraftForge;
 import mortvana.projectfluxgear.to_refactor.world.FluxGearWorldGenerator;
 import mortvana.projectfluxgear.to_refactor.world.GravelOreGenEventHandler;
 
+import mortvana.projectfluxgear.util.block.material.MaterialSoilOre;
+import mortvana.projectfluxgear.util.handler.DummyHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -81,7 +84,8 @@ public class ProjectFluxGear {
 	public static final CreativeTabs stonesTab = new FluxGearTab("PFG-Stone", "fluxgear.stoneTab", new ItemStack(Blocks.obsidian));
     //MOAR Tabs?
 
-	//public static Material soilOre = new MaterialSoilOre();
+	public static Material soilOre = new MaterialSoilOre();
+	public static DummyHandler handler = new DummyHandler();
 
     //public static FluxGearCompat compat = new FluxGearCompat();
 
@@ -311,7 +315,7 @@ public class ProjectFluxGear {
 	public static boolean enableOpSecureAccess = false;
 	public static boolean enableOpSecureAccessWarning = true;
 
-	// This is this way so one can read it, even if yhe formatting is horrid.
+	// This is this way so one can read it, even if the formatting is horrid.
 	public static final String dependencies =
 					"required-after:CoFHCore;" +
 					"after:ThermalExpansion;" +
@@ -327,5 +331,6 @@ public class ProjectFluxGear {
 					"after:Mekanism;" +
 					"after:EnderStorage;" +
 					"after:StevesFactoryManager;" +
-					"after:RotaryCraft";
+					"after:RotaryCraft" +
+					"after:MagicBees[2.3.0,)"; //Required for Tempus in the API
 }

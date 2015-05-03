@@ -10,7 +10,7 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 
-import mortvana.projectfluxgear.to_refactor.common.FluxGearContent_;
+import mortvana.projectfluxgear.to_refactor.FluxGearContent_;
 
 public class FluxGearWorldGenerator implements IWorldGenerator{
 
