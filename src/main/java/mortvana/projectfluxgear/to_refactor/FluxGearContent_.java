@@ -3,6 +3,7 @@ package mortvana.projectfluxgear.to_refactor;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -10,7 +11,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import cpw.mods.fml.common.IFuelHandler;
@@ -22,9 +22,9 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import mortvana.projectfluxgear.core.common.ProjectFluxGear;
-import mortvana.projectfluxgear.util.block.ores.BasicOreEntry;
-import mortvana.projectfluxgear.util.block.ores.OreBlockEntry;
-import mortvana.projectfluxgear.util.block.ores.OrePair;
+import mortvana.projectfluxgear.core.util.dynreg.OreEntries;
+import mortvana.projectfluxgear.util.block.BlockContainerFluxGear;
+import mortvana.projectfluxgear.util.helper.OreHelper.*;
 import mortvana.projectfluxgear.util.item.ItemFluxGear;
 import mortvana.projectfluxgear.to_refactor.block.*;
 import mortvana.projectfluxgear.core.common.config.FluxGearConfigTweaks;
@@ -44,7 +44,7 @@ import mortvana.projectfluxgear.util.helper.ItemHelper;
 import cofh.core.fluid.BlockFluidCoFHBase;
 
 import mortvana.projectfluxgear.to_refactor.block.BlockPFGBasic.*;
-import mortvana.projectfluxgear.to_refactor.block.itemblock.ItemBlockPFGBasic.*;
+import mortvana.projectfluxgear.core.util.dynreg.ManualBlockEntries.*;
 import mortvana.projectfluxgear.core.common.config.FluxGearConfig;
 import mortvana.projectfluxgear.to_refactor.fluid.BlockFluidAcid;
 import mortvana.projectfluxgear.to_refactor.fluid.BlockFluidSmog;
@@ -92,140 +92,10 @@ public class FluxGearContent_ implements IFuelHandler{
 
 
 
-	//I know this is in the wrong spot, but one must do the things in the name of science!
 
-	public static BasicOreEntry chalcocite = new BasicOreEntry(oreChalcocite, 1, "oreChalcocite", "oreCopper");
-	public static BasicOreEntry cassiterite = new BasicOreEntry(oreCassiterite, 1, "oreCassiterite", "oreTin");
-	public static BasicOreEntry galena = new BasicOreEntry(oreGalena, 2, "oreGalena", "oreLead");
-	public static BasicOreEntry acanthite = new BasicOreEntry(oreAcanthite, 2, "oreAcanthite", "oreSilver");
-	public static BasicOreEntry garnierite = new BasicOreEntry(oreGarnierite, 2, "oreGarnierite", "oreNickel");
-	public static BasicOreEntry sphalerite = new BasicOreEntry(oreSphalerite, 1, "oreSphalerite", "oreZinc");
-	public static BasicOreEntry bismuthinite = new BasicOreEntry(oreBismuthinite, 1, "oreBismuthinite", "oreBismuth");
-	public static BasicOreEntry pyrolustite = new BasicOreEntry(orePyrolusite, 1, "orePyrolustite", "oreManganese");
-	public static BasicOreEntry bauxite = new BasicOreEntry(oreBauxite, 1, "oreBauxite");
-	public static BasicOreEntry cooperite = new BasicOreEntry(oreCooperite, 2, "oreCooperite", "orePlatinum");
-	public static BasicOreEntry braggite = new BasicOreEntry(oreBraggite, 2, "oreBraggite");
-	public static BasicOreEntry molybdenite = new BasicOreEntry(oreMolybdenite, 2, "oreMolybdenite", "oreMolybdenum");
-	public static BasicOreEntry cobaltite = new BasicOreEntry(oreCobaltite, 2, "oreCobaltite", "oreNaturalCobalt");
-	public static BasicOreEntry wolframite = new BasicOreEntry(oreWolframite, 3, "oreWolframite", "oreTungsten");
-	public static BasicOreEntry ilmenite = new BasicOreEntry(oreIlmenite, 2, "oreIlmenite", "oreTitanium");
-	public static BasicOreEntry chromite = new BasicOreEntry(oreChromite, 2, "oreChromite", "oreChromium");
-
-	public static BasicOreEntry cinnabar = new BasicOreEntry(oreCinnabar, 2, "oreCinnabar", "oreMercury");
-	public static BasicOreEntry pitchblende = new BasicOreEntry(orePitchblende, 2, "orePitchblende", "oreUranium");
-	public static BasicOreEntry monazite = new BasicOreEntry(oreMonazite, 2, "oreMonazite");
-	public static BasicOreEntry nierdermayrite = new BasicOreEntry(oreNiedermayrite, 2, "oreNierdermayrite");
-	public static BasicOreEntry greenockite = new BasicOreEntry(oreGreenockite, 2, "oreGreenockite");
-	public static BasicOreEntry gaotaiite = new BasicOreEntry(oreGaotaiite, 3, "oreGaotaiite");
-	public static BasicOreEntry osarsite = new BasicOreEntry(oreOsarsite, 2, "oreOsarsite", "oreOsmium");
-	public static BasicOreEntry znamenskyite = new BasicOreEntry(oreZnamenskyite, 2, "oreZnamenskyite");
-	public static BasicOreEntry gallobeudanite = new BasicOreEntry(oreGallobeudanite, 2, "oreGallobeudanite");
-	public static BasicOreEntry tetrahedrite = new BasicOreEntry(oreTertahedrite, 1, "oreTetrahedrite", "oreCopper");
-	public static BasicOreEntry tennantite = new BasicOreEntry(oreTennantite, 1, "oreTennantite", "oreCopper");
-	public static BasicOreEntry santafeite = new BasicOreEntry(oreSantafeite, 2, "oreSantafeite", "oreVanadium");
-	public static BasicOreEntry magnetite = new BasicOreEntry(oreMagnetite, 2, "oreMagnetite");
-	public static BasicOreEntry dioptase = new BasicOreEntry(oreDioptase, 3, "oreDioptase");
-	public static BasicOreEntry pyrope = new BasicOreEntry(orePyrope, 3, "orePyrope");
-	public static BasicOreEntry myuvil = new BasicOreEntry(oreMyuvil, 3, "oreMyuvil");
-
-	public static BasicOreEntry poorChalcocite = new BasicOreEntry(orePoorChalcocite, 1, "orePoorChalcocite", "orePoorCopper");
-	public static BasicOreEntry poorCassiterite = new BasicOreEntry(orePoorCassiterite, 1, "orePoorCassiterite", "orePoorTin");
-	public static BasicOreEntry poorGalena = new BasicOreEntry(orePoorGalena, 2, "orePoorGalena", "orePoorLead");
-	public static BasicOreEntry poorAcanthite = new BasicOreEntry(orePoorAcanthite, 2, "orePoorAcanthite", "orePoorSilver");
-	public static BasicOreEntry poorGarnierite = new BasicOreEntry(orePoorGarnierite, 2, "orePoorGarnierite", "orePoorNickel");
-	public static BasicOreEntry poorSphalerite = new BasicOreEntry(orePoorSphalerite, 1, "orePoorSphalerite", "orePoorZinc");
-	public static BasicOreEntry poorBismuthinite = new BasicOreEntry(orePoorBismuthinite, 1, "orePoorBismuthinite", "orePoorBismuth");
-	public static BasicOreEntry poorPyrolustite = new BasicOreEntry(orePoorPyrolusite, 1, "orePoorPyrolustite", "orePoorManganese");
-	public static BasicOreEntry poorBauxite = new BasicOreEntry(orePoorBauxite, 1, "orePoorBauxite");
-	public static BasicOreEntry poorCooperite = new BasicOreEntry(orePoorCooperite, 2, "orePoorCooperite", "orePoorPlatinum");
-	public static BasicOreEntry poorBraggite = new BasicOreEntry(orePoorBraggite, 2, "orePoorBraggite");
-	public static BasicOreEntry poorMolybdenite = new BasicOreEntry(orePoorMolybdenite, 2, "orePoorMolybdenite", "orePoorMolybdenum");
-	public static BasicOreEntry poorCobaltite = new BasicOreEntry(orePoorCobaltite, 2, "orePoorCobaltite", "orePoorNaturalCobalt");
-	public static BasicOreEntry poorWolframite = new BasicOreEntry(orePoorWolframite, 3, "orePoorWolframite", "orePoorTungsten");
-	public static BasicOreEntry poorIlmenite = new BasicOreEntry(orePoorIlmenite, 2, "orePoorIlmenite", "orePoorTitanium");
-	public static BasicOreEntry poorChromite = new BasicOreEntry(orePoorChromite, 2, "orePoorChromite", "orePoorChromium");
-
-	public static BasicOreEntry poorCinnabar = new BasicOreEntry(orePoorCinnabar, 2, "orePoorCinnabar", "orePoorMercury");
-	public static BasicOreEntry poorPitchblende = new BasicOreEntry(orePoorPitchblende, 2, "orePoorPitchblende", "orePoorUranium");
-	public static BasicOreEntry poorMonazite = new BasicOreEntry(orePoorMonazite, 2, "orePoorMonazite");
-	public static BasicOreEntry poorNierdermayrite = new BasicOreEntry(orePoorNiedermayrite, 2, "orePoorNierdermayrite");
-	public static BasicOreEntry poorGreenockite = new BasicOreEntry(orePoorGreenockite, 2, "orePoorGreenockite");
-	public static BasicOreEntry poorGaotaiite = new BasicOreEntry(orePoorGaotaiite, 3, "orePoorGaotaiite");
-	public static BasicOreEntry poorOsarsite = new BasicOreEntry(orePoorOsarsite, 2, "orePoorOsarsite", "orePoorOsmium");
-	public static BasicOreEntry poorZnamenskyite = new BasicOreEntry(orePoorZnamenskyite, 2, "orePoorZnamenskyite");
-	public static BasicOreEntry poorGallobeudanite = new BasicOreEntry(orePoorGallobeudanite, 2, "orePoorGallobeudanite");
-	public static BasicOreEntry poorTetrahedrite = new BasicOreEntry(orePoorTertahedrite, 1, "orePoorTetrahedrite", "orePoorCopper");
-	public static BasicOreEntry poorTennantite = new BasicOreEntry(orePoorTennantite, 1, "orePoorTennantite", "orePoorCopper");
-	public static BasicOreEntry poorSantafeite = new BasicOreEntry(orePoorSantafeite, 2, "orePoorSantafeite", "orePoorVanadium");
-	public static BasicOreEntry poorMagnetite = new BasicOreEntry(orePoorMagnetite, 2, "orePoorMagnetite");
-	public static BasicOreEntry poorDioptase = new BasicOreEntry(orePoorDioptase, 3, "orePoorDioptase");
-	public static BasicOreEntry poorPyrope = new BasicOreEntry(orePoorPyrope, 3, "orePoorPyrope");
-	public static BasicOreEntry poorMyuvil = new BasicOreEntry(orePoorMyuvil, 3, "orePoorMyuvil");
-
-	public static BasicOreEntry gravelChalcocite = new BasicOreEntry(oreGravelChalcocite, 1, "oreChalcocite", "oreCopper");
-	public static BasicOreEntry gravelCassiterite = new BasicOreEntry(oreGravelCassiterite, 1, "oreCassiterite", "oreTin");
-	public static BasicOreEntry gravelGalena = new BasicOreEntry(oreGravelGalena, 2, "oreGalena", "oreLead");
-	public static BasicOreEntry gravelAcanthite = new BasicOreEntry(oreGravelAcanthite, 2, "oreAcanthite", "oreSilver");
-	public static BasicOreEntry gravelGarnierite = new BasicOreEntry(oreGravelGarnierite, 2, "oreGarnierite", "oreNickel");
-	public static BasicOreEntry gravelSphalerite = new BasicOreEntry(oreGravelSphalerite, 1, "oreSphalerite", "oreZinc");
-	public static BasicOreEntry gravelBismuthinite = new BasicOreEntry(oreGravelBismuthinite, 1, "oreBismuthinite", "oreBismuth");
-	public static BasicOreEntry gravelPyrolustite = new BasicOreEntry(oreGravelPyrolusite, 1, "orePyrolustite", "oreManganese");
-	public static BasicOreEntry gravelBauxite = new BasicOreEntry(oreGravelBauxite, 1, "oreBauxite");
-	public static BasicOreEntry gravelCooperite = new BasicOreEntry(oreGravelCooperite, 2, "oreCooperite", "orePlatinum");
-	public static BasicOreEntry gravelBraggite = new BasicOreEntry(oreGravelBraggite, 2, "oreBraggite");
-	public static BasicOreEntry gravelMolybdenite = new BasicOreEntry(oreGravelMolybdenite, 2, "oreMolybdenite", "oreMolybdenum");
-	public static BasicOreEntry gravelCobaltite = new BasicOreEntry(oreGravelCobaltite, 2, "oreCobaltite", "oreNaturalCobalt");
-	public static BasicOreEntry gravelWolframite = new BasicOreEntry(oreGravelWolframite, 3, "oreWolframite", "oreTungsten");
-	public static BasicOreEntry gravelIlmenite = new BasicOreEntry(oreGravelIlmenite, 2, "oreIlmenite", "oreTitanium");
-	public static BasicOreEntry gravelChromite = new BasicOreEntry(oreGravelChromite, 2, "oreChromite", "oreChromium");
-
-	public static BasicOreEntry gravelCinnabar = new BasicOreEntry(oreGravelCinnabar, 2, "oreCinnabar", "oreMercury");
-	public static BasicOreEntry gravelPitchblende = new BasicOreEntry(oreGravelPitchblende, 2, "orePitchblende", "oreUranium");
-	public static BasicOreEntry gravelMonazite = new BasicOreEntry(oreGravelMonazite, 2, "oreMonazite");
-	public static BasicOreEntry gravelNierdermayrite = new BasicOreEntry(oreGravelNiedermayrite, 2, "oreNierdermayrite");
-	public static BasicOreEntry gravelGreenockite = new BasicOreEntry(oreGravelGreenockite, 2, "oreGreenockite");
-	public static BasicOreEntry gravelGaotaiite = new BasicOreEntry(oreGravelGaotaiite, 3, "oreGaotaiite");
-	public static BasicOreEntry gravelOsarsite = new BasicOreEntry(oreGravelOsarsite, 2, "oreOsarsite", "oreOsmium");
-	public static BasicOreEntry gravelZnamenskyite = new BasicOreEntry(oreGravelZnamenskyite, 2, "oreZnamenskyite");
-	public static BasicOreEntry gravelGallobeudanite = new BasicOreEntry(oreGravelGallobeudanite, 2, "oreGallobeudanite");
-	public static BasicOreEntry gravelTetrahedrite = new BasicOreEntry(oreGravelTertahedrite, 1, "oreTetrahedrite", "oreCopper");
-	public static BasicOreEntry gravelTennantite = new BasicOreEntry(oreGravelTennantite, 1, "oreTennantite", "oreCopper");
-	public static BasicOreEntry gravelSantafeite = new BasicOreEntry(oreGravelSantafeite, 2, "oreSantafeite", "oreVanadium");
-	public static BasicOreEntry gravelMagnetite = new BasicOreEntry(oreGravelMagnetite, 2, "oreMagnetite");
-	public static BasicOreEntry gravelDioptase = new BasicOreEntry(oreGravelDioptase, 3, "oreDioptase");
-	public static BasicOreEntry gravelPyrope = new BasicOreEntry(oreGravelPyrope, 3, "orePyrope");
-	public static BasicOreEntry gravelMyuvil = new BasicOreEntry(oreGravelMyuvil, 3, "oreMyuvil");
-	
-	public static BasicOreEntry iridiumSands = new BasicOreEntry(blockIridiumSands, 3, "oreIridiumSands");
-	public static BasicOreEntry poorIridiumSands = new BasicOreEntry(blockPoorIridiumSands, 3, "orePoorIridiumSands");
-	public static BasicOreEntry aluminosilicateSludge = new BasicOreEntry(blockAluminosilicateSludge , 0, "blockAluminosilicateSludge");
-
-	public static BasicOreEntry[] metaOresMain = new BasicOreEntry[] { chalcocite, cassiterite, galena, acanthite, garnierite, sphalerite, bismuthinite, pyrolustite, bauxite, cooperite, braggite, molybdenite, cobaltite, wolframite, ilmenite, chromite };
-	public static BasicOreEntry[] metaOresAux = new BasicOreEntry[] { cinnabar, pitchblende, monazite, nierdermayrite, greenockite, gaotaiite, osarsite, znamenskyite, gallobeudanite, tetrahedrite, tennantite, santafeite, magnetite, dioptase, pyrope, myuvil };
-	public static BasicOreEntry[] metaOresEarthen = new BasicOreEntry[] { iridiumSands, poorIridiumSands, aluminosilicateSludge };
-	public static BasicOreEntry[] metaPoorOresMain = new BasicOreEntry[] { poorChalcocite, poorCassiterite, poorGalena, poorAcanthite, poorGarnierite, poorSphalerite, poorBismuthinite, poorPyrolustite, poorBauxite, poorCooperite, poorBraggite, poorMolybdenite, poorCobaltite, poorWolframite, poorIlmenite, poorChromite };
-	public static BasicOreEntry[] metaPoorOresAux = new BasicOreEntry[] { poorCinnabar, poorPitchblende, poorMonazite, poorNierdermayrite, poorGreenockite, poorGaotaiite, poorOsarsite, poorZnamenskyite, poorGallobeudanite, poorTetrahedrite, poorTennantite, poorSantafeite, poorMagnetite, poorDioptase, poorPyrope, poorMyuvil };
-	public static BasicOreEntry[] metaGravelOresMain = new BasicOreEntry[] { gravelChalcocite, gravelCassiterite, gravelGalena, gravelAcanthite, gravelGarnierite, gravelSphalerite, gravelBismuthinite, gravelPyrolustite, gravelBauxite, gravelCooperite, gravelBraggite, gravelMolybdenite, gravelCobaltite, gravelWolframite, gravelIlmenite, gravelChromite };
-	public static BasicOreEntry[] metaGravelOresAux = new BasicOreEntry[] { gravelCinnabar, gravelPitchblende, gravelMonazite, gravelNierdermayrite, gravelGreenockite, gravelGaotaiite, gravelOsarsite, gravelZnamenskyite, gravelGallobeudanite, gravelTetrahedrite, gravelTennantite, gravelSantafeite, gravelMagnetite, gravelDioptase, gravelPyrope, gravelMyuvil };
-	
-	public static OreBlockEntry oreEntryMain = new OreBlockEntry(blockOreMain, ItemBlockOreMain.class, "OreMain", "pickaxe");
-	public static OreBlockEntry oreEntryAux = new OreBlockEntry(blockOreAux, ItemBlockOreAux.class, "OreAux", "pickaxe");
-	public static OreBlockEntry oreEntryEarthen = new OreBlockEntry(blockEarthen, ItemBlockEarthen.class, "Earthen", "shovel");
-	public static OreBlockEntry oreEntryPoorMain = new OreBlockEntry(blockPoorOreMain, ItemBlockPoorOreMain.class, "PoorOreMain", "pickaxe");
-	public static OreBlockEntry oreEntryPoorAux = new OreBlockEntry(blockPoorOreAux, ItemBlockPoorOreAux.class, "PoorOreAux", "pickaxe");
-	public static OreBlockEntry oreEntryGravelMain = new OreBlockEntry(blockGravelOreMain, ItemBlockGravelOreMain.class, "GravelOreMain", "shovel");
-	public static OreBlockEntry oreEntryGravelAux = new OreBlockEntry(blockGravelOreAux, ItemBlockGravelOreAux.class, "GravelOreAux", "shovel");
-	
-	public static OrePair mainOres = new OrePair(oreEntryMain, metaOresMain);
-	public static OrePair auxOres = new OrePair(oreEntryAux, metaOresAux);
-	public static OrePair earthenOres = new OrePair(oreEntryEarthen, metaOresEarthen);
-	public static OrePair mainPoorOres = new OrePair(oreEntryPoorMain, metaPoorOresMain);
-	public static OrePair auxPoorOres = new OrePair(oreEntryPoorAux, metaPoorOresAux);
-	public static OrePair mainGravelOres = new OrePair(oreEntryGravelMain, metaGravelOresMain);
-	public static OrePair auxGravelOres = new OrePair(oreEntryGravelAux, metaGravelOresAux);
 
 	public void loadOres() {
-		OrePair[] ores = new OrePair[] { mainOres, auxOres, earthenOres, mainPoorOres, auxPoorOres, mainGravelOres, auxPoorOres };
+		OrePair[] ores = OreEntries.ores;
 		for (int q = 0; q < ores.length; q++) {
 			OreBlockEntry oreBlock = ores[q].block;
 			BasicOreEntry[] metaOres = ores[q].ores;
@@ -240,6 +110,9 @@ public class FluxGearContent_ implements IFuelHandler{
 			}
 		}
 	}
+
+	public static BlockContainerFluxGear metaTest;
+
 
     public void loadBlocks() {
 	    OreDictionary.registerOre("oreAluminium", oreBauxite);
@@ -280,6 +153,10 @@ public class FluxGearContent_ implements IFuelHandler{
 
         //blockTemporalPylon.preInit();
         //woodenTileEntity.preInit();
+
+	    metaTest = new BlockContainerFluxGear(Material.iron, ProjectFluxGear.generalTab, tileMetalBlock);
+	    GameRegistry.registerBlock(metaTest, metaTest.getLocalizedName());
+	    GameRegistry.registerTileEntity(TileMetalBlock.class, "tileMetalBlock");
 
         GameRegistry.registerBlock(blockStorageMain, ItemBlockStorageMain.class, "StorageMain");
         blockCopper = new ItemStack(blockStorageMain, 1, 0);
@@ -335,7 +212,7 @@ public class FluxGearContent_ implements IFuelHandler{
         blockElectriplatinum = new ItemStack(blockAlloyMain, 1, 14);
         blockMithril = new ItemStack(blockAlloyMain, 1, 15);
 
-        GameRegistry.registerBlock(blockAlloyAux, ItemBlockAlloyAux.class, "AlloyAux");
+        GameRegistry.registerBlock(blockAlloyAux, itemBlockAlloyAux, "AlloyAux");
         blockTechnomancy = new ItemStack(blockAlloyAux, 1, 0);
         blockResonantTechnomancy = new ItemStack(blockAlloyAux, 1, 1);
         blockTungstenBlazing = new ItemStack(blockAlloyAux, 1, 2);

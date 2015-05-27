@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.to_refactor.block.itemblock;
+package mortvana.projectfluxgear.core.util.dynreg;
 
 import net.minecraft.block.Block;
 
@@ -6,8 +6,8 @@ import mortvana.projectfluxgear.util.block.AdvItemBlockFluxGear;
 
 import mortvana.projectfluxgear.to_refactor.block.BlockPFGBasic;
 
-public class ItemBlockPFGBasic {
-	public ItemBlockPFGBasic() {}
+public class ManualBlockEntries {
+	public ManualBlockEntries() {}
 
 	public static class ItemBlockOreMain extends AdvItemBlockFluxGear {
 		public ItemBlockOreMain(Block block) {
