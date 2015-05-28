@@ -22,7 +22,7 @@ import net.minecraftforge.common.util.RotationHelper;
 import net.minecraftforge.fluids.Fluid;
 
 import mortvana.projectfluxgear.to_refactor.util.legacy.block.BlockContainerBase;
-import mortvana.projectfluxgear.util.helper.BlockHelper;
+import mortvana.projectfluxgear.util.helper.cofh.BlockHelper;
 
 import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 

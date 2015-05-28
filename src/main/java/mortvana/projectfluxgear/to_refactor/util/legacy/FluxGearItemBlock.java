@@ -5,7 +5,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-import mortvana.projectfluxgear.util.helper.StringHelper;
+import mortvana.projectfluxgear.util.helper.cofh.StringHelper;
 
 public class FluxGearItemBlock extends ItemBlock{
 

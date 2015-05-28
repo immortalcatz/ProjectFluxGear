@@ -17,7 +17,7 @@ import mortvana.projectfluxgear.util.block.AdvBlockFluxGear;
 import mortvana.projectfluxgear.util.block.EnumBlockType;
 import mortvana.projectfluxgear.util.block.FallingBlockFluxGear;
 import mortvana.dashboard.common.MeltedDashboardLib;
-import mortvana.projectfluxgear.util.helper.StringHelper;
+import mortvana.projectfluxgear.util.helper.cofh.StringHelper;
 
 import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 

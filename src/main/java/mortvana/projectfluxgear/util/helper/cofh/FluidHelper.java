@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.util.helper;
+package mortvana.projectfluxgear.util.helper.cofh;
 
 import java.io.DataInput;
 import java.io.DataOutput;

@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.projectfluxgear.util.helper.StringHelper;
+import mortvana.projectfluxgear.util.helper.cofh.StringHelper;
 
 /**
  * An advanced version of BlockFluxGear using metadata arrays to initialize common things internally.

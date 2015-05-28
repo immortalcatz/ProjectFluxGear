@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.util.helper;
+package mortvana.projectfluxgear.util.helper.cofh;
 
 public final class ColorHelper {
 	//TODO: Switch to hexadecimal

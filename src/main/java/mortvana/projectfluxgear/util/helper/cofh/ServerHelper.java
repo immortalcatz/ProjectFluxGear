@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.util.helper;
+package mortvana.projectfluxgear.util.helper.cofh;
 
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.entity.player.EntityPlayer;

@@ -2,15 +2,16 @@ package mortvana.projectfluxgear.util.helper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ListIterator;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 
-public class TweakHelper {
+public class RecipeHelper {
 
-	private static ArrayList<ItemStack> recipesToRemove = new ArrayList<ItemStack>();
+	private static ArrayList<ItemStack> recipesToRemoveAll = new ArrayList<ItemStack>();
 	private static HashMap<ItemStack, HashMap<Integer, String[]>> removalReasons = new HashMap<ItemStack, HashMap<Integer, String[]>>();
 
 	public enum TweakReason {
@@ -31,7 +32,7 @@ public class TweakHelper {
 	 * @param itemstack - ItemStack to remove all recipes for
 	 */
 	public static void markItemForRecipeRemoval(ItemStack itemstack) {
-		recipesToRemove.add(itemstack);
+		recipesToRemoveAll.add(itemstack);
 	}
 
 	/**
@@ -42,10 +43,10 @@ public class TweakHelper {
 	 * @param details - String... of details to add to the tooltip
 	 */
 	public static void markItemForRecipeRemoval(ItemStack itemstack, TweakReason action, String... details) {
-		recipesToRemove.add(itemstack);
+		recipesToRemoveAll.add(itemstack);
 	}
 
-	public static void removeRecipes() {
+	public static void removeAnyRecipe() {
 		ListIterator<IRecipe> iterator = CraftingManager.getInstance().getRecipeList().listIterator();
 		while (iterator.hasNext()) {
 			IRecipe r = iterator.next();
@@ -53,7 +54,7 @@ public class TweakHelper {
 				iterator.remove();
 			}
 		}
-		recipesToRemove.clear();
+		recipesToRemoveAll.clear();
 	}
 
 	static boolean canRemoveRecipe(IRecipe r) {
@@ -62,7 +63,7 @@ public class TweakHelper {
 			if (output == null || output.getItem() == null)
 				return false;
 
-			for (ItemStack recipe : recipesToRemove) {
+			for (ItemStack recipe : recipesToRemoveAll) {
 				if (recipe.isItemEqual(output)) {
 					return true;
 				}
@@ -74,5 +75,15 @@ public class TweakHelper {
 			return false;
 		}
 	}
+
+	// Other Implementations
+
+	public static void removeShapedRecipes(List<ItemStack> removalList) {
+		for (ItemStack stack : removalList) {
+			recipesToRemoveAll.add(stack);
+		}
+	}
+
+
 
 }

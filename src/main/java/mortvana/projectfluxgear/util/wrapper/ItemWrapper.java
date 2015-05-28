@@ -3,7 +3,7 @@ package mortvana.projectfluxgear.util.wrapper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import mortvana.projectfluxgear.util.helper.ItemHelper;
+import mortvana.projectfluxgear.util.helper.cofh.ItemHelper;
 
 public final class ItemWrapper {
 	public Item item;

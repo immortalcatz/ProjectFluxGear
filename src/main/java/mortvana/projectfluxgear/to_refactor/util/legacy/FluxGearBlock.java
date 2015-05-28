@@ -13,7 +13,7 @@ import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.projectfluxgear.util.helper.StringHelper;
+import mortvana.projectfluxgear.util.helper.cofh.StringHelper;
 
 public abstract class FluxGearBlock extends Block {
 

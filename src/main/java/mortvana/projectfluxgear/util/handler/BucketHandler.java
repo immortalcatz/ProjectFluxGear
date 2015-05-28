@@ -20,7 +20,7 @@ import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.IFluidBlock;
 
-import mortvana.projectfluxgear.util.helper.ServerHelper;
+import mortvana.projectfluxgear.util.helper.cofh.ServerHelper;
 import mortvana.projectfluxgear.util.wrapper.BlockWrapper;
 import mortvana.projectfluxgear.util.wrapper.ItemWrapper;
 

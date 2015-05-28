@@ -3,7 +3,6 @@ package mortvana.projectfluxgear.to_refactor;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -40,7 +39,7 @@ import mortvana.projectfluxgear.to_refactor.block.tile.TileTimeyWimey;
 import mortvana.projectfluxgear.to_refactor.util.chemistry.reaction.ReactionSpec;
 import mortvana.projectfluxgear.util.handler.DispenserEmptyBucketHandler;
 import mortvana.projectfluxgear.util.handler.DispenserFilledBucketHandler;
-import mortvana.projectfluxgear.util.helper.ItemHelper;
+import mortvana.projectfluxgear.util.helper.cofh.ItemHelper;
 import cofh.core.fluid.BlockFluidCoFHBase;
 
 import mortvana.projectfluxgear.to_refactor.block.BlockPFGBasic.*;

@@ -13,9 +13,9 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
-import mortvana.projectfluxgear.util.helper.ItemHelper;
-import mortvana.projectfluxgear.util.helper.SecurityHelper;
-import mortvana.projectfluxgear.util.helper.StringHelper;
+import mortvana.projectfluxgear.util.helper.cofh.ItemHelper;
+import mortvana.projectfluxgear.util.helper.cofh.SecurityHelper;
+import mortvana.projectfluxgear.util.helper.cofh.StringHelper;
 
 import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;

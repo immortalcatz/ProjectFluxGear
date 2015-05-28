@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.util.helper;
+package mortvana.projectfluxgear.util.helper.cofh;
 
 public class MathHelper {
 	public static float pointDistancePlane(double x1, double y1, double x2, double y2) {

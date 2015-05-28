@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 
-import mortvana.projectfluxgear.util.helper.ItemHelper;
+import mortvana.projectfluxgear.util.helper.cofh.ItemHelper;
 
 public class AdvItemBlockFluxGear extends ItemBlockFluxGear {
 

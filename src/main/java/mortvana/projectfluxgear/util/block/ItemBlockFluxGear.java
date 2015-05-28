@@ -7,8 +7,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import mortvana.projectfluxgear.util.helper.SecurityHelper;
-import mortvana.projectfluxgear.util.helper.StringHelper;
+import mortvana.projectfluxgear.util.helper.cofh.SecurityHelper;
+import mortvana.projectfluxgear.util.helper.cofh.StringHelper;
 
 public class ItemBlockFluxGear extends ItemBlock {
 
