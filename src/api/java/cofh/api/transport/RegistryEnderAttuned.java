@@ -1,7 +1,5 @@
 package cofh.api.transport;
 
-import gnu.trove.map.hash.THashMap;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,22 +8,68 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
 
 public final class RegistryEnderAttuned {
 
-	public static Map<String, Map<Integer, List<cofh.api.transport.IEnderItemHandler>>> inputItem = new THashMap<String, Map<Integer, List<cofh.api.transport.IEnderItemHandler>>>();
-	public static Map<String, Map<Integer, List<cofh.api.transport.IEnderFluidHandler>>> inputFluid = new THashMap<String, Map<Integer, List<cofh.api.transport.IEnderFluidHandler>>>();
-	public static Map<String, Map<Integer, List<cofh.api.transport.IEnderEnergyHandler>>> inputEnergy = new THashMap<String, Map<Integer, List<cofh.api.transport.IEnderEnergyHandler>>>();
+	public static Map<String, Map<Integer, List<IEnderItemHandler>>> inputItem = new HashMap<String, Map<Integer, List<IEnderItemHandler>>>();
+	public static Map<String, Map<Integer, List<IEnderFluidHandler>>> inputFluid = new HashMap<String, Map<Integer, List<IEnderFluidHandler>>>();
+	public static Map<String, Map<Integer, List<IEnderEnergyHandler>>> inputEnergy = new HashMap<String, Map<Integer, List<IEnderEnergyHandler>>>();
 
-	public static Map<String, Map<Integer, List<cofh.api.transport.IEnderItemHandler>>> outputItem = new THashMap<String, Map<Integer, List<cofh.api.transport.IEnderItemHandler>>>();
-	public static Map<String, Map<Integer, List<cofh.api.transport.IEnderFluidHandler>>> outputFluid = new THashMap<String, Map<Integer, List<cofh.api.transport.IEnderFluidHandler>>>();
-	public static Map<String, Map<Integer, List<cofh.api.transport.IEnderEnergyHandler>>> outputEnergy = new THashMap<String, Map<Integer, List<cofh.api.transport.IEnderEnergyHandler>>>();
+	public static Map<String, Map<Integer, List<IEnderItemHandler>>> outputItem = new HashMap<String, Map<Integer, List<IEnderItemHandler>>>();
+	public static Map<String, Map<Integer, List<IEnderFluidHandler>>> outputFluid = new HashMap<String, Map<Integer, List<IEnderFluidHandler>>>();
+	public static Map<String, Map<Integer, List<IEnderEnergyHandler>>> outputEnergy = new HashMap<String, Map<Integer, List<IEnderEnergyHandler>>>();
+
+	public static Map<String, Map<Integer, EnderDestination>> outputTeleport = new HashMap<String, Map<Integer, EnderDestination>>();
 
 	public static Configuration linkConf;
 
 	public static Map<String, String> clientFrequencyNames = new LinkedHashMap<String, String>();
 	public static Map<String, String> clientFrequencyNamesReversed = new LinkedHashMap<String, String>();
+
+	private static class EnderDestination {
+
+		private final int dimension;
+		private final int x, y, z;
+		private IEnderDestination output;
+
+		public EnderDestination(IEnderDestination output) {
+
+			x = output.x();
+			y = output.y();
+			z = output.z();
+			dimension = output.dimension();
+			this.output = output;
+		}
+
+		public boolean hasOutput() {
+
+			return DimensionManager.isDimensionRegistered(dimension);
+		}
+
+		public IEnderDestination getOutput() {
+
+			if (output == null || output.isNotValid()) {
+				output = null;
+				if (!DimensionManager.isDimensionRegistered(dimension)) {
+					return null;
+				}
+				WorldServer world = DimensionManager.getWorld(dimension);
+				if (world == null) {
+					DimensionManager.initDimension(dimension);
+					world = DimensionManager.getWorld(dimension);
+				}
+				TileEntity te = world.getTileEntity(x, y, z);
+				if (te instanceof IEnderDestination) {
+					output = (IEnderDestination) te;
+				}
+			}
+			return output;
+		}
+	}
 
 	public static void clear() {
 
@@ -37,7 +81,7 @@ public final class RegistryEnderAttuned {
 		outputEnergy.clear();
 	}
 
-	public static List<cofh.api.transport.IEnderItemHandler> getLinkedItemInputs(cofh.api.transport.IEnderItemHandler theAttuned) {
+	public static List<IEnderItemHandler> getLinkedItemInputs(IEnderItemHandler theAttuned) {
 
 		if (inputItem.get(theAttuned.getChannelString()) == null) {
 			return null;
@@ -45,7 +89,7 @@ public final class RegistryEnderAttuned {
 		return inputItem.get(theAttuned.getChannelString()).get(theAttuned.getFrequency());
 	}
 
-	public static List<cofh.api.transport.IEnderItemHandler> getLinkedItemOutputs(cofh.api.transport.IEnderItemHandler theAttuned) {
+	public static List<IEnderItemHandler> getLinkedItemOutputs(IEnderItemHandler theAttuned) {
 
 		if (outputItem.get(theAttuned.getChannelString()) == null) {
 			return null;
@@ -53,7 +97,7 @@ public final class RegistryEnderAttuned {
 		return outputItem.get(theAttuned.getChannelString()).get(theAttuned.getFrequency());
 	}
 
-	public static List<cofh.api.transport.IEnderFluidHandler> getLinkedFluidInputs(cofh.api.transport.IEnderFluidHandler theAttuned) {
+	public static List<IEnderFluidHandler> getLinkedFluidInputs(IEnderFluidHandler theAttuned) {
 
 		if (inputFluid.get(theAttuned.getChannelString()) == null) {
 			return null;
@@ -61,7 +105,7 @@ public final class RegistryEnderAttuned {
 		return inputFluid.get(theAttuned.getChannelString()).get(theAttuned.getFrequency());
 	}
 
-	public static List<cofh.api.transport.IEnderFluidHandler> getLinkedFluidOutputs(cofh.api.transport.IEnderFluidHandler theAttuned) {
+	public static List<IEnderFluidHandler> getLinkedFluidOutputs(IEnderFluidHandler theAttuned) {
 
 		if (outputFluid.get(theAttuned.getChannelString()) == null) {
 			return null;
@@ -69,7 +113,7 @@ public final class RegistryEnderAttuned {
 		return outputFluid.get(theAttuned.getChannelString()).get(theAttuned.getFrequency());
 	}
 
-	public static List<cofh.api.transport.IEnderEnergyHandler> getLinkedEnergyInputs(cofh.api.transport.IEnderEnergyHandler theAttuned) {
+	public static List<IEnderEnergyHandler> getLinkedEnergyInputs(IEnderEnergyHandler theAttuned) {
 
 		if (inputEnergy.get(theAttuned.getChannelString()) == null) {
 			return null;
@@ -77,7 +121,7 @@ public final class RegistryEnderAttuned {
 		return inputEnergy.get(theAttuned.getChannelString()).get(theAttuned.getFrequency());
 	}
 
-	public static List<cofh.api.transport.IEnderEnergyHandler> getLinkedEnergyOutputs(cofh.api.transport.IEnderEnergyHandler theAttuned) {
+	public static List<IEnderEnergyHandler> getLinkedEnergyOutputs(IEnderEnergyHandler theAttuned) {
 
 		if (outputEnergy.get(theAttuned.getChannelString()) == null) {
 			return null;
@@ -85,15 +129,40 @@ public final class RegistryEnderAttuned {
 		return outputEnergy.get(theAttuned.getChannelString()).get(theAttuned.getFrequency());
 	}
 
+	public static boolean hasDestination(IEnderDestination theAttuned) {
+
+		return hasDestination(theAttuned, true);
+	}
+
+	public static boolean hasDestination(IEnderDestination theAttuned, boolean to) {
+
+		Map<Integer, EnderDestination> map = outputTeleport.get(theAttuned.getChannelString());
+		if (map == null) {
+			return false;
+		}
+		EnderDestination dest = map.get(to ? theAttuned.getDestination() : theAttuned.getFrequency());
+		return dest == null ? false : dest.hasOutput();
+	}
+
+	public static IEnderDestination getDestination(IEnderDestination theAttuned) {
+
+		Map<Integer, EnderDestination> map = outputTeleport.get(theAttuned.getChannelString());
+		if (map == null) {
+			return null;
+		}
+		EnderDestination dest = map.get(theAttuned.getDestination());
+		return dest == null ? null : dest.getOutput();
+	}
+
 	/* HELPER FUNCTIONS */
-	public static void addItemHandler(cofh.api.transport.IEnderItemHandler theAttuned) {
+	public static void addItemHandler(IEnderItemHandler theAttuned) {
 
 		if (theAttuned.canSendItems()) {
 			if (inputItem.get(theAttuned.getChannelString()) == null) {
-				inputItem.put(theAttuned.getChannelString(), new HashMap<Integer, List<cofh.api.transport.IEnderItemHandler>>());
+				inputItem.put(theAttuned.getChannelString(), new HashMap<Integer, List<IEnderItemHandler>>());
 			}
 			if (inputItem.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()) == null) {
-				inputItem.get(theAttuned.getChannelString()).put(theAttuned.getFrequency(), new ArrayList<cofh.api.transport.IEnderItemHandler>());
+				inputItem.get(theAttuned.getChannelString()).put(theAttuned.getFrequency(), new ArrayList<IEnderItemHandler>());
 			}
 			if (!inputItem.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()).contains(theAttuned)) {
 				inputItem.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()).add(theAttuned);
@@ -101,10 +170,10 @@ public final class RegistryEnderAttuned {
 		}
 		if (theAttuned.canReceiveItems()) {
 			if (outputItem.get(theAttuned.getChannelString()) == null) {
-				outputItem.put(theAttuned.getChannelString(), new HashMap<Integer, List<cofh.api.transport.IEnderItemHandler>>());
+				outputItem.put(theAttuned.getChannelString(), new HashMap<Integer, List<IEnderItemHandler>>());
 			}
 			if (outputItem.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()) == null) {
-				outputItem.get(theAttuned.getChannelString()).put(theAttuned.getFrequency(), new ArrayList<cofh.api.transport.IEnderItemHandler>());
+				outputItem.get(theAttuned.getChannelString()).put(theAttuned.getFrequency(), new ArrayList<IEnderItemHandler>());
 			}
 			if (!outputItem.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()).contains(theAttuned)) {
 				outputItem.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()).add(theAttuned);
@@ -112,14 +181,14 @@ public final class RegistryEnderAttuned {
 		}
 	}
 
-	public static void addFluidHandler(cofh.api.transport.IEnderFluidHandler theAttuned) {
+	public static void addFluidHandler(IEnderFluidHandler theAttuned) {
 
 		if (theAttuned.canSendFluid()) {
 			if (inputFluid.get(theAttuned.getChannelString()) == null) {
-				inputFluid.put(theAttuned.getChannelString(), new HashMap<Integer, List<cofh.api.transport.IEnderFluidHandler>>());
+				inputFluid.put(theAttuned.getChannelString(), new HashMap<Integer, List<IEnderFluidHandler>>());
 			}
 			if (inputFluid.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()) == null) {
-				inputFluid.get(theAttuned.getChannelString()).put(theAttuned.getFrequency(), new ArrayList<cofh.api.transport.IEnderFluidHandler>());
+				inputFluid.get(theAttuned.getChannelString()).put(theAttuned.getFrequency(), new ArrayList<IEnderFluidHandler>());
 			}
 			if (!inputFluid.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()).contains(theAttuned)) {
 				inputFluid.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()).add(theAttuned);
@@ -127,10 +196,10 @@ public final class RegistryEnderAttuned {
 		}
 		if (theAttuned.canReceiveFluid()) {
 			if (outputFluid.get(theAttuned.getChannelString()) == null) {
-				outputFluid.put(theAttuned.getChannelString(), new HashMap<Integer, List<cofh.api.transport.IEnderFluidHandler>>());
+				outputFluid.put(theAttuned.getChannelString(), new HashMap<Integer, List<IEnderFluidHandler>>());
 			}
 			if (outputFluid.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()) == null) {
-				outputFluid.get(theAttuned.getChannelString()).put(theAttuned.getFrequency(), new ArrayList<cofh.api.transport.IEnderFluidHandler>());
+				outputFluid.get(theAttuned.getChannelString()).put(theAttuned.getFrequency(), new ArrayList<IEnderFluidHandler>());
 			}
 			if (!outputFluid.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()).contains(theAttuned)) {
 				outputFluid.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()).add(theAttuned);
@@ -138,14 +207,14 @@ public final class RegistryEnderAttuned {
 		}
 	}
 
-	public static void addEnergyHandler(cofh.api.transport.IEnderEnergyHandler theAttuned) {
+	public static void addEnergyHandler(IEnderEnergyHandler theAttuned) {
 
 		if (theAttuned.canSendEnergy()) {
 			if (inputEnergy.get(theAttuned.getChannelString()) == null) {
-				inputEnergy.put(theAttuned.getChannelString(), new HashMap<Integer, List<cofh.api.transport.IEnderEnergyHandler>>());
+				inputEnergy.put(theAttuned.getChannelString(), new HashMap<Integer, List<IEnderEnergyHandler>>());
 			}
 			if (inputEnergy.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()) == null) {
-				inputEnergy.get(theAttuned.getChannelString()).put(theAttuned.getFrequency(), new ArrayList<cofh.api.transport.IEnderEnergyHandler>());
+				inputEnergy.get(theAttuned.getChannelString()).put(theAttuned.getFrequency(), new ArrayList<IEnderEnergyHandler>());
 			}
 			if (!inputEnergy.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()).contains(theAttuned)) {
 				inputEnergy.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()).add(theAttuned);
@@ -153,10 +222,10 @@ public final class RegistryEnderAttuned {
 		}
 		if (theAttuned.canReceiveEnergy()) {
 			if (outputEnergy.get(theAttuned.getChannelString()) == null) {
-				outputEnergy.put(theAttuned.getChannelString(), new HashMap<Integer, List<cofh.api.transport.IEnderEnergyHandler>>());
+				outputEnergy.put(theAttuned.getChannelString(), new HashMap<Integer, List<IEnderEnergyHandler>>());
 			}
 			if (outputEnergy.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()) == null) {
-				outputEnergy.get(theAttuned.getChannelString()).put(theAttuned.getFrequency(), new ArrayList<cofh.api.transport.IEnderEnergyHandler>());
+				outputEnergy.get(theAttuned.getChannelString()).put(theAttuned.getFrequency(), new ArrayList<IEnderEnergyHandler>());
 			}
 			if (!outputEnergy.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()).contains(theAttuned)) {
 				outputEnergy.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()).add(theAttuned);
@@ -164,7 +233,17 @@ public final class RegistryEnderAttuned {
 		}
 	}
 
-	public static void removeItemHandler(cofh.api.transport.IEnderItemHandler theAttuned) {
+	public static void addDestination(IEnderDestination theAttuned) {
+
+		if (!hasDestination(theAttuned, false)) {
+			if (outputTeleport.get(theAttuned.getChannelString()) == null) {
+				outputTeleport.put(theAttuned.getChannelString(), new HashMap<Integer, EnderDestination>());
+			}
+			outputTeleport.get(theAttuned.getChannelString()).put(theAttuned.getFrequency(), new EnderDestination(theAttuned));
+		}
+	}
+
+	public static void removeItemHandler(IEnderItemHandler theAttuned) {
 
 		if (inputItem.get(theAttuned.getChannelString()) != null) {
 			if (inputItem.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()) != null) {
@@ -184,7 +263,7 @@ public final class RegistryEnderAttuned {
 		}
 	}
 
-	public static void removeFluidHandler(cofh.api.transport.IEnderFluidHandler theAttuned) {
+	public static void removeFluidHandler(IEnderFluidHandler theAttuned) {
 
 		if (inputFluid.get(theAttuned.getChannelString()) != null) {
 			if (inputFluid.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()) != null) {
@@ -204,7 +283,7 @@ public final class RegistryEnderAttuned {
 		}
 	}
 
-	public static void removeEnergyHandler(cofh.api.transport.IEnderEnergyHandler theAttuned) {
+	public static void removeEnergyHandler(IEnderEnergyHandler theAttuned) {
 
 		if (inputEnergy.get(theAttuned.getChannelString()) != null) {
 			if (inputEnergy.get(theAttuned.getChannelString()).get(theAttuned.getFrequency()) != null) {
@@ -224,29 +303,52 @@ public final class RegistryEnderAttuned {
 		}
 	}
 
-	public static void add(cofh.api.transport.IEnderAttuned theAttuned) {
+	public static void removeDestination(IEnderDestination theAttuned) {
 
-		if (theAttuned instanceof cofh.api.transport.IEnderItemHandler) {
-			addItemHandler((cofh.api.transport.IEnderItemHandler) theAttuned);
+		Map<Integer, EnderDestination> map = outputTeleport.get(theAttuned.getChannelString());
+		if (map == null) {
+			return;
 		}
-		if (theAttuned instanceof cofh.api.transport.IEnderFluidHandler) {
-			addFluidHandler((cofh.api.transport.IEnderFluidHandler) theAttuned);
+		EnderDestination dest = map.get(theAttuned.getFrequency());
+		if (dest == null) {
+			return;
 		}
-		if (theAttuned instanceof cofh.api.transport.IEnderEnergyHandler) {
-			addEnergyHandler((cofh.api.transport.IEnderEnergyHandler) theAttuned);
+		if (dest.dimension == theAttuned.dimension()) {
+			if (dest.x == theAttuned.x() && dest.y == theAttuned.x() && dest.z == theAttuned.x()) {
+				map.remove(theAttuned.getFrequency());
+			}
 		}
 	}
 
-	public static void remove(cofh.api.transport.IEnderAttuned theAttuned) {
+	public static void add(IEnderAttuned theAttuned) {
 
-		if (theAttuned instanceof cofh.api.transport.IEnderItemHandler) {
+		if (theAttuned instanceof IEnderItemHandler) {
+			addItemHandler((IEnderItemHandler) theAttuned);
+		}
+		if (theAttuned instanceof IEnderFluidHandler) {
+			addFluidHandler((IEnderFluidHandler) theAttuned);
+		}
+		if (theAttuned instanceof IEnderEnergyHandler) {
+			addEnergyHandler((IEnderEnergyHandler) theAttuned);
+		}
+		if (theAttuned instanceof IEnderDestination) {
+			addDestination((IEnderDestination) theAttuned);
+		}
+	}
+
+	public static void remove(IEnderAttuned theAttuned) {
+
+		if (theAttuned instanceof IEnderItemHandler) {
 			removeItemHandler((IEnderItemHandler) theAttuned);
 		}
-		if (theAttuned instanceof cofh.api.transport.IEnderFluidHandler) {
+		if (theAttuned instanceof IEnderFluidHandler) {
 			removeFluidHandler((IEnderFluidHandler) theAttuned);
 		}
-		if (theAttuned instanceof cofh.api.transport.IEnderEnergyHandler) {
+		if (theAttuned instanceof IEnderEnergyHandler) {
 			removeEnergyHandler((IEnderEnergyHandler) theAttuned);
+		}
+		if (theAttuned instanceof IEnderDestination) {
+			removeDestination((IEnderDestination) theAttuned);
 		}
 	}
 
