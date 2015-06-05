@@ -1,6 +1,6 @@
-package mortvana.projectfluxgear.oreberries.common;
+package mortvana.projectfluxgear.world.common;
 
-public class OreberriesContent {
+public class WorldContent {
 
 	public static void preInit() {
 

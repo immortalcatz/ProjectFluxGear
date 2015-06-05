@@ -32,16 +32,9 @@ public class FluxGearConfig {
 	public static boolean useThaumicTooltips;
 
 	public static void loadConfig (File file) {
-		ProjectFluxGear.logger.info("Loading configuration from disk.");
-		config = new Configuration(file);
-		config.load();
-
-		doTweaks = config.get("Tweaks", "Enable Tweaks", false, "Off by default, these tweaks are individually toggleable.").getBoolean(false);
-		enableDebug = config.get("DebugHelpers", "Enable Debug", false).getBoolean(false);
 		cobaltAssimilation = config.get("Misc", "Cobalt Assimilation", false).getBoolean(false);
 		autoBalanceEnergy = config.get("Solar Panels", "Balance Energy", true, "Neighboring Solar Panels share their RF (Like old RedPower 2 ones).").getBoolean(true);
 		solarPanelHeight = config.getFloat("Solar Panel Height", "Solar Panels", 0.375F, 0.1F, 1.0F, "Height of a Solar Panel");
-		achievementsEnabled = config.get("Misc", "Enable Achievements", false, "Enable Project Flux Gear Achievements").getBoolean(false);
 		thermiteFuelValue = config.get("Misc", "Furnace fuel value of Thermite", 5000, "200 is 1 smelting operation, 5000 is 25, setting this to 0 disable Thermite as fuel").getInt(5000);
 		mbPerBloodDonation = config.get("Blood", "Blood Donation Station milibuckets of blood per donation", 200).getInt(200);
 		dmgPerBloodDonation = config.get("Blood", "Blood Donation Station damage per donation", 2).getInt(2);
@@ -52,13 +45,6 @@ public class FluxGearConfig {
 		thaumicTorch = config.get("Timey-Wimey Torches", "Thaumic Timey-Wimey Torches", true, "Would you like a jelly baby?").getBoolean(true);
 		blacklistedBlocks = config.getStringList("Blacklisted Blocks", "Timey-Wimey Torches", new String[]{}, "Format as modid:unlocalizedname, for example Forestry:beehives or ThermalExpansion:Dynamo");
 		blacklistedTiles = config.getStringList("Blacklisted TileEntities", "Timey-Wimey Torches", new String[]{}, "Format as the fully qualified class name, for example Reika.RotaryCraft.Blocks.BlockEngine or xreliquary.blocks.BlockWraithNode");
-
-		silenceEnvChecks = config.get("Environment", "unsupportedLogging", false).getBoolean(false);
-		seaLevel = config.get("Misc", "Sea Level", 64, "Offered for mods that alter world heights, looking at you TFC").getInt(64);
-
-		if (config.hasChanged())
-			config.save();
-		ProjectFluxGear.logger.info("Configuration load completed.");
 	}
 
 	public static Configuration getConfig() {

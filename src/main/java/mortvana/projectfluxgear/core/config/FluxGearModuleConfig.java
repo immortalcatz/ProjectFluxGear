@@ -16,7 +16,7 @@ public class FluxGearModuleConfig {
 		config.load();
 
 			enableDecor = config.get("Modules", "Enable Decor Module", true, "Contains pretty stones, and other shinies.").getBoolean(true);
-			enableTech = config.get("Modules", "Enable Project FLUX Gear", true, "The heart of the mod, contains all that delicious, insane technology!").getBoolean(true);
+			enableTech = config.get("Modules", "Enable Project FLUX Gear", true, "The heart of the mod, contains all that delicious, insane science and alchemy!").getBoolean(true);
 			enableTinkers = config.get("Modules", "Enable Tinker's Armory", true, "The spleen of the mod, because pick-mattocks! REQUIRES TINKER'S CONSTRUCT").getBoolean(true);
 			enableThaumic = config.get("Modules", "Enable Thaumic Revelations", true, "The soul of the mod, now with more doom and alchemy! REQUIRES THAUMCRAFT").getBoolean(true);
 			enableTweaks = config.get("Modules", "Enable MortTweaks", false, "Mortvana's silly tweaks, disabled by default out of courtesy").getBoolean(false);
