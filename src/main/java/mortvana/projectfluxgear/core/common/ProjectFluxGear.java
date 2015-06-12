@@ -39,7 +39,7 @@ public class ProjectFluxGear {
 	public static ProjectFluxGear instance;
 	public static Random random = new Random();
 
-	@SidedProxy(clientSide = "mortvana.projectfluxgear.core.network.ClientProxy", serverSide = "mortvana.projectfluxgear.cor.network.CommonProxy", modId = MOD_ID)
+	@SidedProxy(clientSide = "mortvana.projectfluxgear.core.network.ClientProxy", serverSide = "mortvana.projectfluxgear.core.network.CommonProxy", modId = MOD_ID)
 	public static CommonProxy proxy;
 
 	public ProjectFluxGear() {
@@ -53,16 +53,19 @@ public class ProjectFluxGear {
 
 		FluxGearModuleConfig.loadConfig(new File(event.getModConfigurationDirectory().getAbsolutePath() + "/Mortvana/ProjectFluxGear-Modules.cfg"));
 		ModuleLoader.preInit(event);
+		FluxGearCoreContent.preInit();
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		ModuleLoader.init(event);
+		FluxGearCoreContent.init();
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		ModuleLoader.postInit(event);
+		FluxGearCoreContent.postInit();
 	}
 
 

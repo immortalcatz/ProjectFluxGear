@@ -8,7 +8,7 @@ import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import oldcode.projectfluxgear.core.common.ProjectFluxGear;
+import oldcode.projectfluxgear.core.ProjectFluxGear;
 
 public class FallingBlockFluxGear extends BlockFalling {
 	/**

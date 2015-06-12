@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import oldcode.projectfluxgear.core.common.ProjectFluxGear;
+import oldcode.projectfluxgear.core.ProjectFluxGear;
 import mortvana.projectfluxgear.util.helper.PacketHelper;
 import mortvana.projectfluxgear.util.helper.SubtileHelper;
 

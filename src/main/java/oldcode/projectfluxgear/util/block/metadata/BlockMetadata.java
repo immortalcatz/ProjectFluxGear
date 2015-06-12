@@ -16,7 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import oldcode.projectfluxgear.core.common.ProjectFluxGear;
+import oldcode.projectfluxgear.core.ProjectFluxGear;
 
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 

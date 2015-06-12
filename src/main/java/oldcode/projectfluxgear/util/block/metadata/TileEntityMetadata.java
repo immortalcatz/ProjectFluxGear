@@ -7,7 +7,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 
-import oldcode.projectfluxgear.core.common.ProjectFluxGear;
+import oldcode.projectfluxgear.core.ProjectFluxGear;
 import mortvana.projectfluxgear.util.network.packet.MessageMetadata;
 
 public class TileEntityMetadata extends TileEntity {

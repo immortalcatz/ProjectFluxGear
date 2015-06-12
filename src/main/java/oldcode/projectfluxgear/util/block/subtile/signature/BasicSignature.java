@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import oldcode.projectfluxgear.core.common.ProjectFluxGear;
+import oldcode.projectfluxgear.core.ProjectFluxGear;
 
 public class BasicSignature extends SubtileSignature {
 

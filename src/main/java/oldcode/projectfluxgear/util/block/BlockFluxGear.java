@@ -9,10 +9,10 @@ import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import oldcode.projectfluxgear.core.common.ProjectFluxGear;
+import oldcode.projectfluxgear.core.ProjectFluxGear;
 
 /**
- * An advanced version of Block for use is many common situations.
+ * An advanced version of Block for use in many common situations.
  *
  * @author Mortvana
  */
