@@ -10,7 +10,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
-import mortvana.unrefactored.trevelations.common.TRevelations;
 
 public class ItemWardenAmulet extends Item implements IBauble {
 

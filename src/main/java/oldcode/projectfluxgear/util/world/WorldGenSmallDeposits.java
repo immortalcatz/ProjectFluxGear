@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import mortvana.projectfluxgear.util.helper.WorldHelper;
+import mortvana.projectfluxgear.util.helpers.WorldHelper;
 
 /**
  *

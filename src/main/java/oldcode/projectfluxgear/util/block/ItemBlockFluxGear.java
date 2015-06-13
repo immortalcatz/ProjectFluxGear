@@ -3,12 +3,14 @@ package oldcode.projectfluxgear.util.block;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import mortvana.projectfluxgear.util.helper.cofh.SecurityHelper;
-import mortvana.projectfluxgear.util.helper.cofh.StringHelper;
+import oldcode.projectfluxgear.util.helper.SecurityHelper;
+import oldcode.projectfluxgear.util.helper.StringHelper;
+import oldcode.projectfluxgear.util.helper.ItemHelper;
 
 public class ItemBlockFluxGear extends ItemBlock {
 
@@ -49,5 +51,26 @@ public class ItemBlockFluxGear extends ItemBlock {
 			((EntityItem)entity).lifespan = 2147483647;
 		}
 		return null;
+	}
+
+	public String unlocalizedName;
+	public String[] blockNames;
+	public int[] blockRarities;
+
+	public ItemBlockFluxGear(Block block, String unlocName, String[] blockNames, int[] blockRarities) {
+		this(block);
+		unlocalizedName = unlocName;
+		this.blockNames = blockNames;
+		this.blockRarities = blockRarities;
+	}
+
+	@Override
+	public String getUnlocalizedName(ItemStack item) {
+		return unlocalizedName + blockNames[ItemHelper.getItemDamage(item)] + ".name";
+	}
+
+	@Override
+	public EnumRarity getRarity(ItemStack stack) {
+		return EnumRarity.values()[blockRarities[ItemHelper.getItemDamage(stack)]];
 	}
 }

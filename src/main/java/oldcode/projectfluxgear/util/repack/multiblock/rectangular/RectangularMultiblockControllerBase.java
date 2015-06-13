@@ -4,8 +4,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import oldcode.projectfluxgear.util.world.CoordTriplet;
-import mortvana.projectfluxgear.util.repack.multiblock.MultiblockControllerBase;
-import mortvana.projectfluxgear.util.repack.multiblock.MultiblockValidationException;
+import oldcode.projectfluxgear.util.repack.multiblock.MultiblockControllerBase;
+import oldcode.projectfluxgear.util.repack.multiblock.MultiblockValidationException;
 
 public abstract class RectangularMultiblockControllerBase extends MultiblockControllerBase {
 

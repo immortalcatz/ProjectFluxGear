@@ -9,7 +9,6 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.chunk.IChunkProvider;
 
-import mortvana.dashboard.common.MeltedDashboardLib;
 import oldcode.projectfluxgear.util.world.CoordTriplet;
 
 /**

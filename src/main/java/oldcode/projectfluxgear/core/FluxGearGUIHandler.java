@@ -5,9 +5,9 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
-import mortvana.projectfluxgear.thaumic.client.GuiWaslieHammer;
-import mortvana.projectfluxgear.core.common.ProjectFluxGear;
-import mortvana.projectfluxgear.thaumic.inventory.ContainerHammer;
+import oldcode.projectfluxgear.thaumic.GuiWaslieHammer;
+import oldcode.projectfluxgear.core.ProjectFluxGear;
+import oldcode.projectfluxgear.thaumic.ContainerHammer;
 
 public class FluxGearGUIHandler implements IGuiHandler {
 

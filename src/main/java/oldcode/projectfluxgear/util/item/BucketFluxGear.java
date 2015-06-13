@@ -7,8 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-import mortvana.fluxgearzee.util.ItemFluxGear;
-import mortvana.projectfluxgear.util.handler.BucketHandler;
+import oldcode.projectfluxgear.util.handler.BucketHandler;
 
 public class BucketFluxGear extends ItemFluxGear {
 	Item container;

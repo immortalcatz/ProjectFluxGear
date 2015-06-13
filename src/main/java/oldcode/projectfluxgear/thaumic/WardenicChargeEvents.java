@@ -8,8 +8,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
-import mortvana.projectfluxgear.thaumic.util.ItemWardenArmor;
-
 public class WardenicChargeEvents {
 
 	private Random random = new Random();

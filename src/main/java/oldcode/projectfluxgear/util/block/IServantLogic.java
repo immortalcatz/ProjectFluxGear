@@ -2,7 +2,7 @@ package oldcode.projectfluxgear.util.block;
 
 import net.minecraft.world.World;
 
-import mortvana.projectfluxgear.util.coords.CoordTuple;
+import oldcode.projectfluxgear.util.world.CoordTuple;
 
 public interface IServantLogic {
 	public CoordTuple getMasterPosition ();

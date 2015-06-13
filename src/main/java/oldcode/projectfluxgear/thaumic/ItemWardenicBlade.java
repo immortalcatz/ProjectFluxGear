@@ -17,7 +17,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import oldcode.projectfluxgear.api.DamageSourceFluxGear;
 import oldcode.projectfluxgear.core.ProjectFluxGear;
-import mortvana.projectfluxgear.thaumic.util.wardenic.WardenicChargeHelper;
 
 public class ItemWardenicBlade extends Item {
 

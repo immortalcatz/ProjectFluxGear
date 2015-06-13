@@ -5,7 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 
 /**
- * An advanced version of Block for use in many common situations.
+ * A simple, yet advanced version of Block for use in many common situations.
  *
  * @author Mortvana
  */

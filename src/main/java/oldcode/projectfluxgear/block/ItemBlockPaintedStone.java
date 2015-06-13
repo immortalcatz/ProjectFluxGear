@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-import mortvana.mechstoneworks.common.MechanicsStoneworks;
+import oldcode.projectfluxgear.core.ProjectFluxGear;
 
 public class ItemBlockPaintedStone extends ItemBlock {
 	public ItemBlockPaintedStone(Block block) {
@@ -17,6 +17,6 @@ public class ItemBlockPaintedStone extends ItemBlock {
 	}
 
 	public String getUnlocalizedName(ItemStack par1ItemStack) {
-		return super.getUnlocalizedName() + "." + MechanicsStoneworks.colorNames[par1ItemStack.getItemDamage()];
+		return super.getUnlocalizedName() + "." + ProjectFluxGear.colorNames[par1ItemStack.getItemDamage()];
 	}
 }

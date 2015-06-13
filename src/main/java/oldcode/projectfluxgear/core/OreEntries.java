@@ -1,8 +1,8 @@
 package oldcode.projectfluxgear.core;
 
-import mortvana.projectfluxgear.to_refactor.FluxGearContent_;
-import mortvana.projectfluxgear.core.util.dynreg.ManualBlockEntries.*;
-import mortvana.projectfluxgear.util.helper.OreHelper;
+import oldcode.projectfluxgear.FluxGearContent_;
+import oldcode.projectfluxgear.core.ManualBlockEntries.*;
+import oldcode.projectfluxgear.util.helper.OreHelper;
 
 public class OreEntries {
 

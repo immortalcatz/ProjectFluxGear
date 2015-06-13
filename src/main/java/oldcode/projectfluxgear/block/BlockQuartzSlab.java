@@ -11,8 +11,7 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.unrefactored.trevelations.common.ModContent;
-import mortvana.unrefactored.trevelations.common.TRevelations;
+import oldcode.projectfluxgear.thaumic.ThaumicContent;
 
 public class BlockQuartzSlab extends BlockSlab {
 
@@ -31,19 +30,19 @@ public class BlockQuartzSlab extends BlockSlab {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int par1, int par2) {
 
-		return ModContent.blockInfusedQuartzNormal.getBlockTextureFromSide(par1);
+		return ThaumicContent.blockInfusedQuartzNormal.getBlockTextureFromSide(par1);
 
 	}
 
 	@Override
 	public Item getItemDropped(int par1, Random par2, int par3) {
-		return Item.getItemFromBlock(ModContent.blockInfusedQuartzSlab);
+		return Item.getItemFromBlock(ThaumicContent.blockInfusedQuartzSlab);
 	}
 
 	@Override
 	public ItemStack createStackedBlock(int par1) {
 
-		return new ItemStack(ModContent.blockInfusedQuartzSlab);
+		return new ItemStack(ThaumicContent.blockInfusedQuartzSlab);
 
 	}
 

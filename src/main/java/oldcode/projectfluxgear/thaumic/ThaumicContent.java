@@ -13,10 +13,8 @@ import net.minecraftforge.common.util.EnumHelper;
 
 import oldcode.projectfluxgear.core.FluxGearContent;
 import oldcode.projectfluxgear.core.ProjectFluxGear;
-import mortvana.projectfluxgear.to_refactor.block.tile.TileWitor;
-import mortvana.projectfluxgear.to_refactor.FluxGearContent_;
-import mortvana.projectfluxgear.thaumic.entity.EntityPurity;
-import mortvana.projectfluxgear.thaumic.item.armor.*;
+import oldcode.projectfluxgear.block.BlockWitor.TileWitor;
+import oldcode.projectfluxgear.FluxGearContent_;
 import oldcode.projectfluxgear.util.item.EnumArmorType;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;

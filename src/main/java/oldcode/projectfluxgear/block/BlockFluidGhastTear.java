@@ -7,7 +7,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import cofh.core.fluid.BlockFluidCoFHBase;
 
-import mortvana.projectfluxgear.to_refactor.FluxGearContent_;
+import oldcode.projectfluxgear.FluxGearContent_;
 
 public class BlockFluidGhastTear extends BlockFluidCoFHBase {
 

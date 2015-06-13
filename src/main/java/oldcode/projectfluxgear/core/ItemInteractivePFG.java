@@ -9,8 +9,7 @@ import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.IFluidBlock;
 
-import mortvana.projectfluxgear.core.common.ProjectFluxGear;
-import mortvana.projectfluxgear.util.item.ItemFluxGear;
+import oldcode.projectfluxgear.util.item.ItemFluxGear;
 
 public class ItemInteractivePFG extends ItemFluxGear {
 

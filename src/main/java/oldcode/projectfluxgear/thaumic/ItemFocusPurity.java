@@ -8,7 +8,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 import oldcode.projectfluxgear.core.ProjectFluxGear;
-import mortvana.projectfluxgear.thaumic.entity.EntityPurity;
+import oldcode.projectfluxgear.thaumic.EntityPurity;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.wands.FocusUpgradeType;

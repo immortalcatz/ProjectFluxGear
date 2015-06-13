@@ -7,8 +7,6 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.unrefactored.trevelations.common.TRevelations;
-
 public class BlockQuartzChiseled extends Block {
 
 	public IIcon topIcon;

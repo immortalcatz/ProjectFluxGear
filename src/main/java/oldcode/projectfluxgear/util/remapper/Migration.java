@@ -9,8 +9,6 @@ import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
 import cpw.mods.fml.common.event.FMLMissingMappingsEvent.MissingMapping;
 
-import mortvana.dashboard.common.MeltedDashboardLib;
-
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 

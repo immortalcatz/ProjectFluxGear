@@ -4,9 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.IIcon;
 
-import mortvana.projectfluxgear.core.common.ProjectFluxGear;
-import mortvana.projectfluxgear.util.block.AdvBlockFluxGear;
-import mortvana.projectfluxgear.util.block.EnumBlockType;
+import oldcode.projectfluxgear.core.ProjectFluxGear;
+import oldcode.projectfluxgear.util.block.BlockFluxGear;
 
 public class BlockEntries {
 	// TEXTURE LOCATIONS
@@ -77,7 +76,7 @@ public class BlockEntries {
 	public static final IIcon[] TEXTURES_FULL = new IIcon[16];
 	public static final IIcon[] TEXTURES_EARTH = new IIcon[NAMES_EARTH.length];
 
-	public static Block blockOreMain = new AdvBlockFluxGear(Material.rock, ProjectFluxGear.tabWorld, EnumBlockType.ORE, NAMES_ORES_MAIN, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_MAIN, TEXTURE_LOCATION_ORE).setBlockName("mortvana.projectfluxgear.oreMain");
-	public static Block blockOreAux = new AdvBlockFluxGear(Material.rock, ProjectFluxGear.tabWorld, EnumBlockType.ORE, NAMES_ORES_AUX, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_AUX, TEXTURE_LOCATION_ORE).setBlockName("mortvana.projectfluxgear.oreAux");
+	public static Block blockOreMain = new BlockFluxGear(Material.rock, ProjectFluxGear.tabWorld, BlockFluxGear.EnumBlockType.ORE, NAMES_ORES_MAIN, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_MAIN, TEXTURE_LOCATION_ORE).setBlockName("mortvana.projectfluxgear.oreMain");
+	public static Block blockOreAux = new BlockFluxGear(Material.rock, ProjectFluxGear.tabWorld, BlockFluxGear.EnumBlockType.ORE, NAMES_ORES_AUX, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_AUX, TEXTURE_LOCATION_ORE).setBlockName("mortvana.projectfluxgear.oreAux");
 
 }

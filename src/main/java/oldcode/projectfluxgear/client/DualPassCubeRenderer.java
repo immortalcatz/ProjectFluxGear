@@ -5,10 +5,10 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
+import oldcode.projectfluxgear.core.ClientProxy;
 import oldcode.projectfluxgear.util.helper.DrawingHelper;
 
 import oldcode.projectfluxgear.block.BlockDecorStone;
-import mortvana.mechstoneworks.client.ClientProxy;
 
 public class DualPassCubeRenderer implements ISimpleBlockRenderingHandler {
 

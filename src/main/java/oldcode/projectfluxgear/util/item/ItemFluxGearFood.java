@@ -13,13 +13,12 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
-import mortvana.projectfluxgear.util.helper.cofh.ItemHelper;
-import mortvana.projectfluxgear.util.helper.cofh.SecurityHelper;
-import mortvana.projectfluxgear.util.helper.cofh.StringHelper;
+import oldcode.projectfluxgear.util.helper.ItemHelper;
+import oldcode.projectfluxgear.util.helper.SecurityHelper;
+import oldcode.projectfluxgear.util.helper.StringHelper;
 
 import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
-import mortvana.fluxgearzee.util.ItemEntry;
 
 //TODO: Use stuff we learned here on ItemBlocks and Blocks
 public class ItemFluxGearFood extends ItemFood {

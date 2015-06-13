@@ -1,13 +1,11 @@
 package oldcode.projectfluxgear.thaumic;
 
-import mortvana.projectfluxgear.to_refactor.thaumic.ModResearch;
-import mortvana.projectfluxgear.thaumic.util.wardenic.upgrade.*;
 import thaumcraft.api.aspects.Aspect;
 
 public class WardenicUpgrades {
 
 	//TODO: Generalize this for future uses *cough* Alchemic Tools *cough*
-	public static final WardenicUpgrade WARDEN = new WardenicUpgradeWarden(ModResearch.EXUBITOR);
+	public static final WardenicUpgrade WARDEN = new WardenicUpgradeWarden(EXUBITOR);
 	public static final WardenicUpgrade FIRE = new WardenicUpgradeFire(Aspect.FIRE);
 	public static final WardenicUpgrade ARMOR = new WardenicUpgradeArmor(Aspect.ARMOR);
 	public static final WardenicUpgrade WATER = new WardenicUpgradeWater(Aspect.WATER);

@@ -3,11 +3,11 @@ package oldcode.projectfluxgear.core;
 import java.io.File;
 import java.util.Random;
 
-import mortvana.projectfluxgear.to_refactor.block.tile.TileTimeyWimey;
-import mortvana.projectfluxgear.to_refactor.FluxGearContent_;
-import mortvana.projectfluxgear.thaumic.world.ExubituraGenerator;
-import mortvana.projectfluxgear.to_refactor.util.gui.FluxGearTab;
-import mortvana.projectfluxgear.to_refactor.world.PoorOreGenerator;
+import oldcode.projectfluxgear.block.TileTimeyWimey;
+import oldcode.projectfluxgear.FluxGearContent_;
+import oldcode.projectfluxgear.thaumic.ExubituraGenerator;
+import oldcode.projectfluxgear.util.inventory.FluxGearTab;
+import oldcode.projectfluxgear.PoorOreGenerator;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -18,16 +18,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.Mod.*;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.common.MinecraftForge;
 
-import mortvana.projectfluxgear.to_refactor.world.FluxGearWorldGenerator;
-import mortvana.projectfluxgear.to_refactor.world.GravelOreGenEventHandler;
+import oldcode.projectfluxgear.FluxGearWorldGenerator;
+import oldcode.projectfluxgear.GravelOreGenEventHandler;
 
-import mortvana.projectfluxgear.util.block.material.MaterialSoilOre;
-import mortvana.projectfluxgear.util.handler.DummyHandler;
+import oldcode.projectfluxgear.util.block.MaterialSoilOre;
+import oldcode.projectfluxgear.util.handler.DummyHandler;
 import oldcode.projectfluxgear.thaumic.ThaumicContent;
 
 public class ProjectFluxGear {
@@ -35,12 +36,14 @@ public class ProjectFluxGear {
 
     public static final boolean debugWorldGen = true;
 
+	public static final String modID = "";
+
     @Instance(modID)
     public static ProjectFluxGear instance;
 	public static Random random = new Random();
 
-	//public static final String[] dyeTypes = new String[] { "White", "Orange", "Magenta", "LightBlue", "Yellow", "Lime", "Pink", "Gray", "LightGray", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black" };
-	//public static final String[] colorNames = new String[] { "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "silver", "aqua", "purple", "blue", "brown", "green", "red", "black" };
+	public static final String[] dyeTypes = new String[] { "White", "Orange", "Magenta", "LightBlue", "Yellow", "Lime", "Pink", "Gray", "LightGray", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black" };
+	public static final String[] colorNames = new String[] { "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "silver", "aqua", "purple", "blue", "brown", "green", "red", "black" };
 
 	@SidedProxy(clientSide = "mortvana.mortvana.projectfluxgear.core.client.ClientProxy", serverSide = "mortvana.mortvana.projectfluxgear.core.common.CommonProxy")
     public static CommonProxy proxy;

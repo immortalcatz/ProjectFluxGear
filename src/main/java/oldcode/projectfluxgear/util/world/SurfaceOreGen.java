@@ -8,7 +8,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import mortvana.dashboard.common.FluxGearCoreConfig;
+import mortvana.projectfluxgear.core.config.FluxGearCoreConfig;
 
 public class SurfaceOreGen extends WorldGenerator{
 

@@ -4,7 +4,6 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
-import mortvana.projectfluxgear.thaumic.inventory.ContainerHammer;
 import org.lwjgl.opengl.GL11;
 
 public class GuiWaslieHammer extends GuiContainer {

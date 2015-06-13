@@ -7,8 +7,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-import mortvana.unrefactored.trevelations.common.ModContent;
-import mortvana.unrefactored.trevelations.common.TRevelations;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.wands.FocusUpgradeType;
@@ -23,7 +21,7 @@ public class ItemFocusIllumination extends ItemFocusBasic {
 
 		super();
 		setUnlocalizedName("itemFocusIllumination");
-		setCreativeTab(TRevelations.tabTRevelations);
+		setCreativeTab(mortvana.projectfluxgear.thaumic.common.ThaumicContent.thaumicRevelationsTab);
 
 	}
 
@@ -75,7 +73,7 @@ public class ItemFocusIllumination extends ItemFocusBasic {
 						if (mop.sideHit == 5) {
 							x++;
 						}
-						world.setBlock(x, y, z, ModContent.blockWitor, 0, 2);
+						world.setBlock(x, y, z, ThaumicContent.blockWitor, 0, 2);
 					}
 				}
 			}

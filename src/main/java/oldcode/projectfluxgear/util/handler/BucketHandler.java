@@ -21,8 +21,8 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.IFluidBlock;
 
 import oldcode.projectfluxgear.util.helper.ServerHelper;
-import mortvana.projectfluxgear.util.wrapper.BlockWrapper;
-import mortvana.projectfluxgear.util.wrapper.ItemWrapper;
+import oldcode.projectfluxgear.util.block.BlockWrapper;
+import oldcode.projectfluxgear.util.item.ItemWrapper;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;

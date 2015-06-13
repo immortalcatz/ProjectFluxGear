@@ -1,12 +1,15 @@
 package mortvana.projectfluxgear.core.common;
 
 import net.minecraft.init.Items;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+
+import mortvana.projectfluxgear.util.block.metadata.TileEntityMetadata;
 
 public class FluxGearCoreContent {
 
 	public static void preInit() {
-
+		GameRegistry.registerTileEntity(TileEntityMetadata.class, "TileMetadata");
 	}
 
 	public static void init() {

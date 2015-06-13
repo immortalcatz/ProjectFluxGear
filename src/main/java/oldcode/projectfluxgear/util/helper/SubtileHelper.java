@@ -9,8 +9,7 @@ import cpw.mods.fml.common.Loader;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import oldcode.projectfluxgear.util.block.SubtileEntity;
-import mortvana.projectfluxgear.util.block.subtile.signature.*;
+import oldcode.projectfluxgear.util.block.*;
 
 public class SubtileHelper {
 

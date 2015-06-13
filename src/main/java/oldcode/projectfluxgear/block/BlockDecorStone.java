@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.mechstoneworks.client.ClientProxy;
+import oldcode.projectfluxgear.core.ClientProxy;
 
 public class BlockDecorStone extends Block {
 	public static final String[] rockNames = new String[] { "mica"/*, "andesite", "rhyolite", "gabrro", "diorite", "dolomite", "chert", "phyllite", "kimberlite", "dacite", "serpentine", "larvikite", "schalstein", "greenschist", "hornblendeBiotiteGranite", "pitchstone"*/ };

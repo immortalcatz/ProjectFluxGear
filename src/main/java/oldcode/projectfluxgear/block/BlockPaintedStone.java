@@ -12,7 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import mortvana.mechstoneworks.common.MechanicsStoneworks;
+import oldcode.projectfluxgear.core.ProjectFluxGear;
 
 public class BlockPaintedStone extends Block {
 	public final String textureName;
@@ -54,7 +54,7 @@ public class BlockPaintedStone extends Block {
 		icons = new IIcon[16];
 
 		for(int i = 0; i < this.icons.length; ++i) {
-			this.icons[i] = iconRegister.registerIcon("mortvana.mechstoneworks:" + textureName + "_" + MechanicsStoneworks.colorNames[i]);
+			this.icons[i] = iconRegister.registerIcon("mortvana.mechstoneworks:" + textureName + "_" + ProjectFluxGear.colorNames[i]);
 		}
 
 	}

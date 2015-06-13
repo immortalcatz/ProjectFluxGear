@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
-import mortvana.fluxgearzee.util.ServerHelper;
+import oldcode.projectfluxgear.util.helper.ServerHelper;
 
 public class BlockTimeyWimey extends BlockTorch implements ITileEntityProvider{
 	public BlockTimeyWimey() {

@@ -12,9 +12,6 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import mortvana.projectfluxgear.core.common.FluxGearContent;
-import mortvana.projectfluxgear.core.common.ProjectFluxGear;
-
 public class BlockPlant extends Block implements IPlantable {
 	public BlockPlant() {
 		super(Material.plants);

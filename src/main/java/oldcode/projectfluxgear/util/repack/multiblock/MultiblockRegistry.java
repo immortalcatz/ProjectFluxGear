@@ -5,8 +5,6 @@ import java.util.Set;
 
 import net.minecraft.world.World;
 
-import mortvana.dashboard.common.MeltedDashboardLib;
-
 /**
  * This is a very static singleton registry class which directs incoming events to sub-objects, which
  * actually manage each individual world's multiblocks.

@@ -10,10 +10,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.client.event.TextureStitchEvent;
 
-import mortvana.projectfluxgear.util.network.packet.MessageBase;
-import mortvana.projectfluxgear.util.network.proxy.IFluxGearProxy;
+import oldcode.projectfluxgear.util.MessageBase;
 
-public class CommonProxy implements IGuiHandler, IFluxGearProxy {
+public class CommonProxy implements IGuiHandler, MessageBase.IFluxGearProxy {
 
 	public void registerEntities() {
 
