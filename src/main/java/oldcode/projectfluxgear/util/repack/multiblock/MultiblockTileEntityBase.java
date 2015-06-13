@@ -10,7 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.chunk.IChunkProvider;
 
 import mortvana.dashboard.common.MeltedDashboardLib;
-import oldcode.projectfluxgear.util.coords.CoordTriplet;
+import oldcode.projectfluxgear.util.world.CoordTriplet;
 
 /**
  * Base logic class for Multiblock-connected tile entities. Most multiblock machines

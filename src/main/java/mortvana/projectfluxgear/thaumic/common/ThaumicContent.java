@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import magicbees.api.MagicBeesAPI;
-import oldcode.projectfluxgear.util.gui.FluxGearTab;
+import oldcode.projectfluxgear.util.inventory.FluxGearTab;
 import thaumcraft.api.aspects.Aspect;
 
 public class ThaumicContent {

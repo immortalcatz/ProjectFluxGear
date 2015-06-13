@@ -25,8 +25,8 @@ import Reika.RotaryCraft.API.ShaftMachine;
 import ic2.api.tile.IWrenchable;
 import main.flowstoneenergy.core.interfaces.IFlowWrenchable;
 import oldcode.projectfluxgear.api.IFluxGearAdvOmniwrench;
-import oldcode.projectfluxgear.util.helper.cofh.BlockHelper;
-import oldcode.projectfluxgear.util.helper.cofh.ServerHelper;
+import oldcode.projectfluxgear.util.helper.BlockHelper;
+import oldcode.projectfluxgear.util.helper.ServerHelper;
 import oldcode.projectfluxgear.util.item.ItemFluxGear;
 import pneumaticCraft.api.block.IPneumaticWrenchable;
 

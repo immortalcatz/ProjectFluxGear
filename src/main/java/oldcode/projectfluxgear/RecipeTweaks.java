@@ -12,7 +12,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import oldcode.projectfluxgear.core.FluxGearConfigTweaks;
-import oldcode.projectfluxgear.util.helper.cofh.ItemHelper;
+import oldcode.projectfluxgear.util.helper.ItemHelper;
 import oldcode.projectfluxgear.util.helper.LoadedHelper;
 import oldcode.projectfluxgear.util.helper.RecipeHelper;
 

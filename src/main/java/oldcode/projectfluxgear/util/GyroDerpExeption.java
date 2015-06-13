@@ -36,6 +36,10 @@ public class GyroDerpExeption extends Exception{
         if (line == 20) derp = "Eat weapons grade Plutonium...";
 	    if (line == 21) derp = "Go eat some Polonium!";
 	    if (line == 22) derp = "Every cloud has a Strontium lining.";
+	    if (line == 23) derp = "You sir, are a person with a face!";
+	    if (line == 24) derp = "22 kids go into the water, 29 kids come out of the water...";
+	    if (line == 25) derp = "Meglos, the Evil, Sentient Cactus!~";
+	    if (line == 26) derp = "sqrt(-1) like π";
         System.err.println(derp);
     }
 

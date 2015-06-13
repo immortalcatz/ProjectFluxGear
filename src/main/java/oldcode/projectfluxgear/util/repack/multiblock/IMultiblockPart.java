@@ -5,7 +5,7 @@ import java.util.Set;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
-import oldcode.projectfluxgear.util.coords.CoordTriplet;
+import oldcode.projectfluxgear.util.world.CoordTriplet;
 
 /**
  * Basic interface for a multiblock machine part. This is defined as an abstract class

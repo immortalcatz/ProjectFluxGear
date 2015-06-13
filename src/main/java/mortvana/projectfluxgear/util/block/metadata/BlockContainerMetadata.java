@@ -5,9 +5,16 @@ import java.util.ArrayList;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import net.minecraftforge.event.ForgeEventFactory;
+
+import mortvana.projectfluxgear.util.helpers.ServerHelper;
 
 public abstract class BlockContainerMetadata extends BlockContainer {
 
@@ -45,8 +52,45 @@ public abstract class BlockContainerMetadata extends BlockContainer {
 	}
 	// TODO: Expand this as FluxGearBlock adds more constructors
 
-	//public boolean removedByPlayer(World world, int x, int y, int z, EntityPlayer player) {
-	//	ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
-	//	TileEntityMetadata tile = (TileEntityMetadata) getTileEntity(world, x, y, z);
-	//}
+	public boolean removedByPlayer(World world, int x, int y, int z, EntityPlayer player) {
+		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		TileEntityMetadata tile = (TileEntityMetadata) getTileEntity(world, x, y, z);
+		if (tile != null && !tile.hasDropped) {
+			drops = world.getBlock(x, y, z).getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), EnchantmentHelper.getFortuneModifier(player));
+		}
+		boolean hasBeenBroken = world.setBlockToAir(x, y, z);
+		if (hasBeenBroken && ServerHelper.isServerWorld(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
+			for (ItemStack drop : drops) {
+				float chance = ForgeEventFactory.fireBlockHarvesting(drops, world, this, x, y, z, world.getBlockMetadata(x, y, z), EnchantmentHelper.getFortuneModifier(player), 1.0F, false, player);
+				if (world.rand.nextFloat() <= chance) {
+					dropBlockAsItem(world, x, y, z, drop);
+				}
+
+			}
+			tile.hasDropped = true;
+		}
+		return hasBeenBroken;
+	}
+
+	public void dropBlockAsItemWithChance(World world, int x, int y, int z, int meta, float chance, int fortune) {
+		TileEntityMetadata tile = (TileEntityMetadata) world.getTileEntity(x, y, z);
+		if (tile != null && !tile.hasDropped) {
+			super.dropBlockAsItemWithChance(world, x, y, z, meta, chance, fortune);
+		}
+	}
+
+	public TileEntity getTileEntity(IBlockAccess world, int x, int y, int z) {
+		TileEntity tile = world.getTileEntity(x, y, z);
+		BlockContainer block = (BlockContainer) world.getBlock(x, y, z);
+		if (tile == null || (block instanceof BlockContainerMetadata && !tile.getClass().isAssignableFrom(((BlockContainerMetadata) block).getTileEntityClass()))) {
+			tile = block.createNewTileEntity(null, world.getBlockMetadata(x, y, z));
+			if (world instanceof World) {
+				tile = block.createNewTileEntity((World) world, world.getBlockMetadata(x, y, z));
+				((World) world).setTileEntity(x, y, z, tile);
+			}
+		}
+		return tile;
+	}
+
+	public abstract Class<? extends TileEntity> getTileEntityClass();
 }

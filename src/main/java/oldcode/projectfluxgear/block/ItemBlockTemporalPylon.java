@@ -4,8 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-import oldcode.projectfluxgear.util.helper.cofh.ItemHelper;
-import oldcode.projectfluxgear.util.helper.cofh.StringHelper;
+import oldcode.projectfluxgear.util.helper.ItemHelper;
+import oldcode.projectfluxgear.util.helper.StringHelper;
 
 import mortvana.projectfluxgear.to_refactor.block.BlockTemporalPylon;
 

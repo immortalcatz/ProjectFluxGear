@@ -2,7 +2,6 @@ package oldcode.projectfluxgear.util.helper;
 
 import java.util.List;
 
-import oldcode.projectfluxgear.util.helper.cofh.MathHelper;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

@@ -1,5 +1,6 @@
 package mortvana.projectfluxgear.core.common;
 
+import javax.swing.plaf.PanelUI;
 import java.io.File;
 import java.util.Random;
 
@@ -40,6 +41,7 @@ public class ProjectFluxGear {
 	@Instance
 	public static ProjectFluxGear instance;
 	public static Random random = new Random();
+	public static final int WILDCARD = Short.MAX_VALUE; //32767
 
 	@SidedProxy(clientSide = "mortvana.projectfluxgear.core.network.ClientProxy", serverSide = "mortvana.projectfluxgear.core.network.CommonProxy", modId = MOD_ID)
 	public static CommonProxy proxy;
@@ -71,7 +73,6 @@ public class ProjectFluxGear {
 		ModuleLoader.postInit(event);
 		FluxGearCoreContent.postInit();
 	}
-
 
 	// This is this way so one can read it, even if the formatting is horrid.
 	public static final String MOD_DEPENDENCIES = "";//"required-after:CoFHCore;" +

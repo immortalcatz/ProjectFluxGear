@@ -11,7 +11,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 
 import mortvana.dashboard.common.MeltedDashboardLib;
-import oldcode.projectfluxgear.util.coords.CoordTriplet;
+import oldcode.projectfluxgear.util.world.CoordTriplet;
 
 /**
  * This class contains the base logic for "multiblock controllers". Conceptually, they are

@@ -14,8 +14,8 @@ import net.minecraftforge.common.ISpecialArmor;
 
 import mortvana.projectfluxgear.thaumic.common.ThaumicContent;
 import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
-import oldcode.projectfluxgear.util.item.armor.EnumArmorType;
-import oldcode.projectfluxgear.util.item.armor.ItemArmorFluxGear;
+import oldcode.projectfluxgear.util.item.EnumArmorType;
+import oldcode.projectfluxgear.util.item.ItemArmorFluxGear;
 import thaumcraft.api.IVisDiscountGear;
 import thaumcraft.api.aspects.Aspect;
 

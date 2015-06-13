@@ -3,7 +3,7 @@ package oldcode.projectfluxgear.util.repack.multiblock.rectangular;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import oldcode.projectfluxgear.util.coords.CoordTriplet;
+import oldcode.projectfluxgear.util.world.CoordTriplet;
 import mortvana.projectfluxgear.util.repack.multiblock.MultiblockControllerBase;
 import mortvana.projectfluxgear.util.repack.multiblock.MultiblockValidationException;
 

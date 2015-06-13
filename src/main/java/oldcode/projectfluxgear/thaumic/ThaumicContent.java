@@ -11,14 +11,13 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraftforge.common.util.EnumHelper;
 
-import magicbees.api.MagicBeesAPI;
 import oldcode.projectfluxgear.core.FluxGearContent;
 import oldcode.projectfluxgear.core.ProjectFluxGear;
 import mortvana.projectfluxgear.to_refactor.block.tile.TileWitor;
 import mortvana.projectfluxgear.to_refactor.FluxGearContent_;
 import mortvana.projectfluxgear.thaumic.entity.EntityPurity;
 import mortvana.projectfluxgear.thaumic.item.armor.*;
-import oldcode.projectfluxgear.util.item.armor.EnumArmorType;
+import oldcode.projectfluxgear.util.item.EnumArmorType;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
