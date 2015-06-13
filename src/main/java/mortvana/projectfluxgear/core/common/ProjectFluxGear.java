@@ -15,6 +15,8 @@ import net.minecraftforge.common.MinecraftForge;
 import mortvana.projectfluxgear.core.config.FluxGearModuleConfig;
 import mortvana.projectfluxgear.core.module.ModuleLoader;
 import mortvana.projectfluxgear.core.network.CommonProxy;
+import mortvana.projectfluxgear.core.network.FluxGearPacketHandler_;
+import mortvana.projectfluxgear.util.network.FluxGearMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -41,6 +43,8 @@ public class ProjectFluxGear {
 
 	@SidedProxy(clientSide = "mortvana.projectfluxgear.core.network.ClientProxy", serverSide = "mortvana.projectfluxgear.core.network.CommonProxy", modId = MOD_ID)
 	public static CommonProxy proxy;
+
+	public static FluxGearPacketHandler_<FluxGearMessage> packetHandler;
 
 	public ProjectFluxGear() {
 

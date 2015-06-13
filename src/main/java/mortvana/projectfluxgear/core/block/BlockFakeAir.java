@@ -1,11 +1,8 @@
-package mortvana.projectfluxgear.thaumic.block;
+package mortvana.projectfluxgear.core.block;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
@@ -19,8 +16,8 @@ import mortvana.projectfluxgear.thaumic.common.ThaumicContent;
 import oldcode.projectfluxgear.util.block.BlockFluxGear;
 import thaumcraft.common.config.Config;
 
-public class BlockThaumicAir extends BlockFluxGear {
-	public BlockThaumicAir() {
+public class BlockFakeAir extends BlockFluxGear {
+	public BlockFakeAir() {
 		super(Config.airyMaterial, ThaumicContent.thaumicRevelationsTab);
 		setTickRandomly(true).setLightLevel(15).setStepSound(new SoundType("cloth", 0.0F, 1.0F)).setBlockName("blockThaumicAir").setBlockBounds(0.3F, 0.3F, 0.3F, 0.7F, 0.7F, 0.7F);
 	}

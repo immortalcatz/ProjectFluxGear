@@ -11,27 +11,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import oldcode.projectfluxgear.core.ProjectFluxGear;
 
-/**
- * An advanced version of Block for use in many common situations.
- *
- * @author Mortvana
- */
+
 public class BlockFluxGear extends Block {
-
-	/**
-	 * The really simple way to initialize a block.
-	 * Uses common defaults.
-	 * @param material The material of the block.
-	 * @param tab The creative tab the block is under.
-	 */
-	public BlockFluxGear(Material material, CreativeTabs tab) {
-		super(material);
-		setCreativeTab(tab);
-
-		canSpawn = true;
-		beaconBase = false;
-		isColorized = false;
-	}
 
 	/**
 	 * The simple way to initialize a block.
@@ -125,11 +106,6 @@ public class BlockFluxGear extends Block {
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
 
 	}*/
-
-	@Override
-	public int damageDropped(int i) {
-		return i;
-	}
 
 	public boolean isColorized;
 	public boolean canSpawn;
