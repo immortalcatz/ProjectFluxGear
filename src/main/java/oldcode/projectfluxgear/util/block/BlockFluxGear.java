@@ -1,5 +1,7 @@
 package oldcode.projectfluxgear.util.block;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -18,7 +20,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import oldcode.projectfluxgear.core.ProjectFluxGear;
+import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 import oldcode.projectfluxgear.util.helper.StringHelper;
 
 @Deprecated
@@ -92,18 +94,16 @@ public class BlockFluxGear extends Block {
 
 	public BlockFluxGear(Material material, String texDir) {
 		super(material);
-		this.texDir = texDir;
+		textureLocation = texDir;
 	}
 
-	@Override
-	public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z) {
-		return canSpawn;
-	}
-
-	@Override
 	public boolean isBeaconBase(IBlockAccess worldObj, int x, int y, int z, int beaconX, int beaconY, int beaconZ) {
 
 		return beaconBase;
+	}
+
+	public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z) {
+		return canSpawn;
 	}
 
 	@Override

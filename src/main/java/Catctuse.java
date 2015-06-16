@@ -451,11 +451,19 @@ public class Catctuse {
 		oreMetebelisSapphire(Breaks hypnotic spells, enhanced intelligence & psychic powers, only source of Fluon Radiation)
 
 		oreTrisilicate(Hardest form of salt)
-		oreNikolite
+		oreNikolite/oreTeslatite/oreElectrotine
 		oreSoarynium
 		oreNigelite
 
+		orePentlandite
+		oreOnyx
+		oreMalachite
+		oreTelluriumDeposit
 
+		oreCarbonado
+		oreAmethyst
+		oreTanzanite
+		oreVoidstone
 		*/
 	}
 
