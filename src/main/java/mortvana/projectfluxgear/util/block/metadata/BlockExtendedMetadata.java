@@ -30,7 +30,7 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 
 	public HashMap<Integer, Integer> harvestLevels = new HashMap<Integer, Integer>();
 	public HashMap<Integer, String> harvestTools = new HashMap<Integer, String>();
-	private static final int WILDCARD = ProjectFluxGear.WILDCARD;
+	final int WILDCARD = ProjectFluxGear.WILDCARD;
 
 
 	public BlockExtendedMetadata(Material material) {

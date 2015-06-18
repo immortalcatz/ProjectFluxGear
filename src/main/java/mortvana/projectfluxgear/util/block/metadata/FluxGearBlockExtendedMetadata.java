@@ -2,6 +2,7 @@ package mortvana.projectfluxgear.util.block.metadata;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -15,8 +16,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
+import net.minecraftforge.oredict.OreDictionary;
 
 import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 import mortvana.projectfluxgear.util.helpers.StringHelper;
@@ -36,7 +41,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 	public HashMap<Integer, Boolean> beaconBase = new HashMap<Integer, Boolean>();
 	public HashMap<Integer, Boolean> mobSpawns = new HashMap<Integer, Boolean>();
 	public HashMap<Integer, Integer> colorData = new HashMap<Integer, Integer>();
-	public HashMap<Integer, IIcon> icons = new HashMap<Integer, IIcon>();
+	public HashMap<Integer, IIcon> blockIcons = new HashMap<Integer, IIcon>();
 
 	public TileEntityMetadata providerTile;
 	public String textureBase;
@@ -181,6 +186,12 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 		harvestLevels.put(metadata, miningLevel);
 	}
 
+	public static void registerWithHandlers(String oreDictName, ItemStack var1) {
+		OreDictionary.registerOre(oreDictName, var1);
+		GameRegistry.registerCustomItemStack(oreDictName, var1);
+		FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", var1);
+	}
+
 	public void setBlockHardness(int metadata, float blockHardness) {
 		this.blockHardness.put(metadata, blockHardness);
 	}
@@ -296,12 +307,12 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 	}
 
 	//TODO: This
-	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+	/*public void getSubBlocks(Item item, CreativeTabs tab, List list) {
 
 		for (int i = 0; i < names.length; i++) {
 			list.add(new ItemStack(item, 1, i));
 		}
-	}
+	}*/
 
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
@@ -310,17 +321,44 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int metadata) {
-			return (icons.get(metadata));
+			return (blockIcons.get(metadata));
 	}
 
-	//TODO: This
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister ir) {
+	public void registerBlockIcons(IIconRegister register) {
 
-		for (int i = 0; i < names.length; i++) {
-			textures[i] = ir.registerIcon(textureBase + oldcode.projectfluxgear.util.helper.StringHelper.camelCase(names[i]));
+		switch (textCasing) {
+			case CAMEL:
+				for (Entry<Integer, String> textures : textureNames.entrySet()) {
+					Integer metadata = textures.getKey();
+					String texture = textures.getValue();
+					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.util.helper.StringHelper.camelCase(texture));
+					blockIcons.put(metadata, icon);
+				}
+
+			case TITLE:
+				for (Entry<Integer, String> textures : textureNames.entrySet()) {
+					Integer metadata = textures.getKey();
+					String texture = textures.getValue();
+					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.util.helper.StringHelper.titleCase(texture));
+					blockIcons.put(metadata, icon);
+				}
+
+			/*case CAPITAL:
+				for (Entry<Integer, String> textures : textureNames.entrySet()) {
+					Integer metadata = textures.getKey();
+					String texture = textures.getValue();
+					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.util.helper.StringHelper.camelCase(texture));
+					blockIcons.put(metadata, icon);
+				}
+
+			case LOWER:
+				for (Entry<Integer, String> textures : textureNames.entrySet()) {
+					Integer metadata = textures.getKey();
+					String texture = textures.getValue();
+					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.util.helper.StringHelper.camelCase(texture));
+					blockIcons.put(metadata, icon);
+				}*/
 		}
 	}
-
-
 }

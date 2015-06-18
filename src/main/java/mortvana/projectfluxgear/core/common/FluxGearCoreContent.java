@@ -4,20 +4,26 @@ import net.minecraft.init.Items;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
+import mortvana.projectfluxgear.util.block.metadata.FluxGearBlockExtendedMetadata;
 import mortvana.projectfluxgear.util.block.metadata.TileEntityMetadata;
+import mortvana.projectfluxgear.util.registry.DynamicMaterialRegistry;
 
 public class FluxGearCoreContent {
 
+	public static DynamicMaterialRegistry dynMatReg;
+
 	public static void preInit() {
-		GameRegistry.registerTileEntity(TileEntityMetadata.class, "TileMetadata");
 	}
 
 	public static void init() {
 		loadVanillaOreDict();
+		initCoreBlocks();
+		dynMatReg = new DynamicMaterialRegistry(metaStorageBlock);
+		registerMaterials();
 	}
 
 	public static void postInit() {
-
+		dynMatReg.postInit();
 	}
 
 	public static void loadVanillaOreDict() {
@@ -25,4 +31,14 @@ public class FluxGearCoreContent {
 		OreDictionary.registerOre("dustBlaze", Items.blaze_powder);
 	}
 
+	public static void initCoreBlocks() {
+		GameRegistry.registerTileEntity(TileEntityMetadata.class, "TileMetadata");
+	}
+
+	public static void registerMaterials() {
+
+		dynMatReg.sortEntries();
+	}
+
+	public static FluxGearBlockExtendedMetadata metaStorageBlock;
 }
