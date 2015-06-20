@@ -1,7 +1,6 @@
 package mortvana.projectfluxgear.util.block.metadata;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map.Entry;
 
 import net.minecraft.block.material.Material;
@@ -9,7 +8,6 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -24,8 +22,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 import mortvana.projectfluxgear.core.common.ProjectFluxGear;
-import mortvana.projectfluxgear.util.helpers.StringHelper;
 import mortvana.projectfluxgear.util.helpers.StringHelper.*;
+import oldcode.projectfluxgear.StringHelper;
 
 public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 
@@ -332,7 +330,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 				for (Entry<Integer, String> textures : textureNames.entrySet()) {
 					Integer metadata = textures.getKey();
 					String texture = textures.getValue();
-					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.util.helper.StringHelper.camelCase(texture));
+					IIcon icon = register.registerIcon(textureBase + StringHelper.camelCase(texture));
 					blockIcons.put(metadata, icon);
 				}
 
@@ -340,7 +338,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 				for (Entry<Integer, String> textures : textureNames.entrySet()) {
 					Integer metadata = textures.getKey();
 					String texture = textures.getValue();
-					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.util.helper.StringHelper.titleCase(texture));
+					IIcon icon = register.registerIcon(textureBase + StringHelper.titleCase(texture));
 					blockIcons.put(metadata, icon);
 				}
 
@@ -348,7 +346,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 				for (Entry<Integer, String> textures : textureNames.entrySet()) {
 					Integer metadata = textures.getKey();
 					String texture = textures.getValue();
-					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.util.helper.StringHelper.camelCase(texture));
+					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.helper.StringHelper.camelCase(texture));
 					blockIcons.put(metadata, icon);
 				}
 
@@ -356,7 +354,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 				for (Entry<Integer, String> textures : textureNames.entrySet()) {
 					Integer metadata = textures.getKey();
 					String texture = textures.getValue();
-					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.util.helper.StringHelper.camelCase(texture));
+					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.helper.StringHelper.camelCase(texture));
 					blockIcons.put(metadata, icon);
 				}*/
 		}

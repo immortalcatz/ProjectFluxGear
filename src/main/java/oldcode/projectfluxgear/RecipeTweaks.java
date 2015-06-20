@@ -11,12 +11,10 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import oldcode.projectfluxgear.core.FluxGearConfigTweaks;
-import oldcode.projectfluxgear.util.helper.ItemHelper;
-import oldcode.projectfluxgear.util.helper.LoadedHelper;
-import oldcode.projectfluxgear.util.helper.RecipeHelper;
+import mortvana.projectfluxgear.util.helpers.LoadedHelper;
 
 public class RecipeTweaks {
+	final int WILD = Short.MAX_VALUE;
 	public void removal() {
 	if (FluxGearConfigTweaks.tweakJABBA && LoadedHelper.isJABBALoaded) {
 		RecipeHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("JABBA", "barrel"), WILD, 0), RecipeHelper.TweakReason.CHANGED, "Recipe changed to be cheaper");

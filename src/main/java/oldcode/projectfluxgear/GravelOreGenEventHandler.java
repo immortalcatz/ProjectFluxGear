@@ -2,19 +2,13 @@ package oldcode.projectfluxgear;
 
 import java.util.Random;
 
-import oldcode.projectfluxgear.core.ProjectFluxGear;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate;
 
-import oldcode.projectfluxgear.core.FluxGearConfig;
-import mortvana.projectfluxgear.to_refactor.FluxGearContent_;
-import oldcode.projectfluxgear.util.helper.LoadedHelper;
-import oldcode.projectfluxgear.util.world.SurfaceOreGen;
-
-import oldcode.projectfluxgear.core.FluxGearConfigWorld;
+import mortvana.projectfluxgear.util.helpers.LoadedHelper;
 
 public class GravelOreGenEventHandler {
 

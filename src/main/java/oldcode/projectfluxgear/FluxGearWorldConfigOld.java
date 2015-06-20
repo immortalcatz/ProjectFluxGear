@@ -5,8 +5,6 @@ import java.io.IOException;
 
 import net.minecraftforge.common.config.Configuration;
 
-import oldcode.projectfluxgear.core.ProjectFluxGear;
-
 public class FluxGearWorldConfigOld {
 
 	public static Configuration configuration;

@@ -14,20 +14,19 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 import cofh.api.block.IDismantleable;
+import cofh.lib.audio.SoundBase;
+
 import Reika.RotaryCraft.API.Screwdriverable;
 import Reika.RotaryCraft.API.ShaftMachine;
 import ic2.api.tile.IWrenchable;
 import main.flowstoneenergy.core.interfaces.IFlowWrenchable;
-import oldcode.projectfluxgear.api.IFluxGearAdvOmniwrench;
-import oldcode.projectfluxgear.util.helper.BlockHelper;
-import oldcode.projectfluxgear.util.helper.ServerHelper;
-import oldcode.projectfluxgear.util.item.ItemFluxGear;
 import pneumaticCraft.api.block.IPneumaticWrenchable;
 
 /*
@@ -137,16 +136,18 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 
 			if (player.isSneaking()) {
 				world.setBlockMetadataWithNotify(x, y, z, BlockHelper.rotateVanillaBlockAlt(world, block, x, y, z), 3);
-				/*if (ServerHelper.isClientWorld(world)) {
+				//TODO: Fix
+				if (ServerHelper.isClientWorld(world)) {
 					String soundName = block.stepSound.getBreakSound();
 					FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.6F));
-				}*/
+				}
 			} else {
 				world.setBlockMetadataWithNotify(x, y, z, BlockHelper.rotateVanillaBlock(world, block, x, y, z), 3);
-				/*if (ServerHelper.isClientWorld(world)) {
+				//TODO: Fix
+				if (ServerHelper.isClientWorld(world)) {
 					String soundName = block.stepSound.getBreakSound();
 					FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.8F));
-				}*/
+				}
 			}
 			return ServerHelper.isServerWorld(world);
 		} else if (!player.isSneaking() && block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(hitSide))) {
@@ -203,7 +204,8 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 
 		if (block instanceof IPneumaticWrenchable && ServerHelper.isServerWorld(world)) {
 			if (((IPneumaticWrenchable) block).rotateBlock(world, player, x, y, z, ForgeDirection.getOrientation(hitSide))) {
-				//NetworkHandler.sendToAllAround(new PacketPlaySound(Sounds.PNEUMATIC_WRENCH, x, y, z, 1.0F, 1.0F, false), world);
+				//TODO: Fix
+				NetworkHandler.sendToAllAround(new PacketPlaySound(Sounds.PNEUMATIC_WRENCH, x, y, z, 1.0F, 1.0F, false), world);
 				return true;
 			}
 		}

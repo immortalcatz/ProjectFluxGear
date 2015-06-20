@@ -1,6 +1,8 @@
 package mortvana.projectfluxgear.util.helpers;
 
 public final class ColorHelper {
+	private ColorHelper() { /* Singleton */ }
+
 	public static final int COLOR_DYE_BLACK = 0x191919;
 	public static final int COLOR_DYE_RED = 0xCC4C4C;
 	public static final int COLOR_DYE_GREEN = 0x667F33;
@@ -39,8 +41,6 @@ public final class ColorHelper {
 
 	public static final int[] MC_DYE_COLORS = new int[] { 0x1E1B1B, 0xB3312C, 0x3B511A, 0x51301A, 0x253192, 0x7B2FBE, 0x287697, 0xABABAB, 0x434343, 0xD88198, 0x41CD34, 0xDECF2A, 0x6689D3, 0xC354CD, 0xEB8844, 0xF0F0F0 };
 
-	private ColorHelper() { /* Singleton */ }
-
 	public static int getDyeColor (int meta) {
 		if (meta >= 0 && meta <= 15) { //If meta is 0-15
 			return DYE_COLORS[meta];
@@ -73,6 +73,11 @@ public final class ColorHelper {
 		}
 	}
 
+	// Yes, this list is pre-localized to en_US and has no spaces. There are times when this is useful,
+	// such as in a config file. Localization there is messy and not strictly required.
+	public static final String[] WOOL_COLOR_NAMES = { "White", "Orange", "Magenta", "LightBlue", "Yellow", "Lime", "Pink", "Gray", "LightGray", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black" };
+
+
 	public static final int COLOR_MATERIAL_COPPER = 0xC95926;
 	public static final int COLOR_MATERIAL_TIN = 0x99AFAF;
 	public static final int COLOR_MATERIAL_LEAD = 0x544960;
@@ -88,6 +93,8 @@ public final class ColorHelper {
 	public static final int COLOR_MATERIAL_NEODYMIUM = 0x7A5D70;
 	public static final int COLOR_MATERIAL_TESSERACTIUM = 0x097261;
 	public static final int COLOR_MATERIAL_CADMIUM = 0x9BCCCC;
-	public static final int COLOR_MATERIAL_BRONZE= 0xBF813F;
+	public static final int COLOR_MATERIAL_BRONZE = 0xBF813F;
+
+	public static final int COLOR_MATERIAL_OSMIUM = 0x6C7B89;
 
 }

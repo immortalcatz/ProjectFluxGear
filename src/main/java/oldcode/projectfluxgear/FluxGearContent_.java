@@ -20,55 +20,32 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import oldcode.projectfluxgear.core.ProjectFluxGear;
-import oldcode.projectfluxgear.core.OreEntries;
-import oldcode.projectfluxgear.util.block.BlockContainerFluxGear;
-import oldcode.projectfluxgear.util.helper.OreHelper.*;
-import oldcode.projectfluxgear.util.item.ItemFluxGear;
-import mortvana.projectfluxgear.to_refactor.block.*;
-import oldcode.projectfluxgear.core.FluxGearConfigTweaks;
-import oldcode.projectfluxgear.util.helper.LoadedHelper;
-import oldcode.projectfluxgear.util.item.BucketFluxGear;
-import oldcode.projectfluxgear.weirdScienceLegacy.ContentRegistry;
-import oldcode.projectfluxgear.util.legacy.block.BlockBase;
-import oldcode.projectfluxgear.weirdScienceLegacy.BlockFluidClassicWS;
-import oldcode.projectfluxgear.weirdScienceLegacy.BlockFluidReactive;
-import oldcode.projectfluxgear.block.TileTimeyWimey;
-import oldcode.projectfluxgear.util.chemistry.reaction.ReactionSpec;
-import oldcode.projectfluxgear.util.handler.DispenserEmptyBucketHandler;
-import oldcode.projectfluxgear.util.handler.DispenserFilledBucketHandler;
-import oldcode.projectfluxgear.util.helper.ItemHelper;
 import cofh.core.fluid.BlockFluidCoFHBase;
 
-import oldcode.projectfluxgear.block.BlockPFGBasic.*;
-import oldcode.projectfluxgear.core.ManualBlockEntries.*;
-import oldcode.projectfluxgear.core.FluxGearConfig;
-import oldcode.projectfluxgear.block.BlockFluidAcid;
-import oldcode.projectfluxgear.block.BlockFluidSmog;
-import oldcode.projectfluxgear.core.ItemInteractivePFG;
-import mortvana.projectfluxgear.to_refactor.weirdScienceLegacy.*;
-import oldcode.projectfluxgear.util.PFGColors;
+import oldcode.projectfluxgear.PFGBlocks.*;
+import oldcode.projectfluxgear.ManualBlockEntries.*;
+import oldcode.projectfluxgear.OreHelper.*;
 
 public class FluxGearContent_ implements IFuelHandler{
 
 	public void preInit() {
         loadBlocks();
 		loadStones();
-        //loadMachines();
+        loadMachines();
         loadFluids();
         loadItems();
-	    //loadEnchants();
-		//loadTiles();
-        //loadAugments();
+	    loadEnchants();
+		loadTiles();
+        loadAugments();
 
     }
 
     public void init() {
         registerBlocks();
-        //initMachines();
-        //initTools();
-        //initAugments();
-        //addOreDict();
+        initMachines();
+        initTools();
+        initAugments();
+        addOreDict();
 	    metalCraftingRecipes();
         machineCraftingRecipes();
         otherCraftingRecipes();
@@ -79,7 +56,7 @@ public class FluxGearContent_ implements IFuelHandler{
     public void postInit() {
         aluminiumArc();
 	    postInitTimeyWimey();
-        //modIntegration();
+        modIntegration();
 	    if (FluxGearConfig.doTweaks) {
 		    removal();
 		    addition();
@@ -109,9 +86,6 @@ public class FluxGearContent_ implements IFuelHandler{
 	}
 
 	public static BlockContainerFluxGear metaTest;
-
-	// LordMortvanaVonMagnequaZzzzar
-	// Sleeping-16-year-old-Mortvana
 
     public void loadBlocks() {
 	    OreDictionary.registerOre("oreAluminium", oreBauxite);

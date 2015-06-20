@@ -54,7 +54,7 @@ public class FluxGearWorldGenerator implements IWorldGenerator{
 		dioptase = new WorldGenMinable(FluxGearContent_.blockOreAux, 13, 4, Blocks.stone);
 		pyrope = new WorldGenMinable(FluxGearContent_.blockOreAux, 14, 4, Blocks.netherrack);
 		myuvil = new WorldGenMinable(FluxGearContent_.blockOreAux, 15, 2, Blocks.stone);
-		//iridiumSands = new WorldGenDeposits(FluxGearContent.blockEarthen, 0, 1, Blocks.stone);
+		iridiumSands = new WorldGenDeposits(FluxGearContent.blockEarthen, 0, 1, Blocks.stone);
 
 	}
 
@@ -111,5 +111,5 @@ public class FluxGearWorldGenerator implements IWorldGenerator{
 	WorldGenMinable dioptase;
 	WorldGenMinable pyrope;
 	WorldGenMinable myuvil;
-	//WorldGenDeposits iridiumSands;
+	WorldGenDeposits iridiumSands;
 }

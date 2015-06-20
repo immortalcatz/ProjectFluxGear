@@ -19,8 +19,6 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import oldcode.projectfluxgear.core.ProjectFluxGear;
-
 public class ItemPaintbrush extends Item {
 	// Totally not for extending classes :P...
 	public static final int maxPaint = 1728;
@@ -59,7 +57,7 @@ public class ItemPaintbrush extends Item {
 			int type = stack.getTagCompound().getInteger("PaintType");
 				if(type != 0) {
 				int max = maxPaint - damage;
-				int amount = ProjectFluxGear.instance.colorStoneBlocks(world, x, y, z, type - 1, paintRadius, max);
+				int amount = PaintingHelper.colorStoneBlocks(world, x, y, z, type - 1, paintRadius, max);
 				if(amount > 0) {
 					if(!player.worldObj.isRemote) {
 						Block total = Blocks.stone;

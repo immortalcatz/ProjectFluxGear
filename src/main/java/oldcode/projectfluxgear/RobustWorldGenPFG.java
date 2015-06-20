@@ -87,8 +87,7 @@ public class RobustWorldGenPFG implements IWorldGenerator {
 	}
 
 	private Random getRandom(Random fmlRandom, int chunkX, int chunkZ) {
-		// Create our own random chunk seed, to get different random numbers
-		// than other mods.
+		// Create our own random chunk seed, to get different random numbers than other mods.
 		long seed = fmlRandom.nextLong();
 
 	// Get a different seed for each chunk based on ore Seed.

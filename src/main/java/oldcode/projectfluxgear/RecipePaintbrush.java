@@ -14,9 +14,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
-import mortvana.mechstoneworks.common.MechStoneworksContent;
-import oldcode.projectfluxgear.ItemPaintbrush;
-
 public class RecipePaintbrush implements IRecipe {
 	private ItemStack output = null;
 	private ArrayList<Object> input = new ArrayList<Object>();
@@ -108,7 +105,8 @@ public class RecipePaintbrush implements IRecipe {
 
 	public boolean matches(InventoryCrafting inventoryCrafting, World world) {
 
-		/*int countDye = 0;
+
+		int countDye = 0;
 		ItemStack tempStack;
 		boolean foundBrush = false;
 
@@ -120,7 +118,7 @@ public class RecipePaintbrush implements IRecipe {
 						return false;
 					}
 					foundBrush = true;
-				} else if (tempStack.getItem() == dye.getItem() && tempStack.getItemDamage() == dye.getItemDamage() /*&& countDye < 1702* /) {
+				} else if (tempStack.getItem() == dye.getItem() && tempStack.getItemDamage() == dye.getItemDamage() && countDye < 1702) {
 					++countDye;
 				} else {
 					return false;
@@ -130,8 +128,9 @@ public class RecipePaintbrush implements IRecipe {
 				return true;
 			}
 		}
-		return false;*/
+		return false;
 
+		///////////////////////////////////////////////////////////////////////////////
 
 		ArrayList required = new ArrayList(this.input);
 
@@ -211,7 +210,7 @@ public class RecipePaintbrush implements IRecipe {
 	}
 
 	private boolean checkItemEquals(ItemStack target, ItemStack input) {
-			return input.getItem() == MechStoneworksContent.paintbrush ? !input.hasTagCompound() || input.getTagCompound().getInteger("PaintType") == 0 || input.getTagCompound().getInteger("PaintType") == type : target.copy() == input.copy() && (target.getItemDamage() == 32767 || target.getItemDamage() == input.getItemDamage());
+			return input.getItem() == FluxGearContent_.paintbrush ? !input.hasTagCompound() || input.getTagCompound().getInteger("PaintType") == 0 || input.getTagCompound().getInteger("PaintType") == type : target.copy() == input.copy() && (target.getItemDamage() == 32767 || target.getItemDamage() == input.getItemDamage());
 	}
 
 	public ArrayList getInput() {

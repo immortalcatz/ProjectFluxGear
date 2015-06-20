@@ -40,58 +40,70 @@ public class DynamicMaterialRegistry {
 	 */
 	public void sortEntries() {
 		for (MaterialEntry entry : entriesToSort) {
-			if (!materialMap.containsKey(entry.materialID) && entry.materialName != "") {
-				if (!(entry.materialID < 0 || entry.materialType != null)) {
-					if (entry.materialBlockHardness < 0.0F && entry.materialBlockHardness != -1.0F) {
-						entry.materialBlockHardness = -1.0F;
+			int entryID = entry.materialID;
+			String entryName = entry.materialName;
+
+			if (!(materialMap.containsKey(entryID) && entryName.equals(""))) {
+				EnumMaterialType entryType = entry.materialType;
+				if (!(entryID < 0 || entryType != null)) {
+					float entryBlockHardness = entry.materialBlockHardness;
+					if (entryBlockHardness < 0.0F && entryBlockHardness != -1.0F) {
+						entryBlockHardness = -1.0F;
 					}
-					if (entry.materialBlastResistance < 0.0F && entry.materialBlastResistance!= -1.0F) {
-						entry.materialBlastResistance = -1.0F;
+					float entryBlastResistance = entry.materialBlastResistance;
+					if (entryBlastResistance < 0.0F && entryBlastResistance!= -1.0F) {
+						entryBlastResistance = -1.0F;
 					}
-					if (entry.materialRarity > 3 || entry.materialRarity < 0) {
-						entry.materialRarity = 0;
+					int entryRarity = entry.materialRarity;
+					if (entryRarity > 3 || entryRarity < 0) {
+						entryRarity = 0;
 					}
-					if (entry.materialBlockLight < 0 || entry.materialBlockLight > 15) {
-						entry.materialBlockLight = 0;
+					int entryBlockLight = entry.materialBlockLight;
+					if (entryBlockLight < 0 || entryBlockLight > 15) {
+						entryBlockLight = 0;
 					}
-					if (entry.materialRedstoneSignal < 0 || entry.materialRedstoneSignal > 15) {
-						entry.materialRedstoneSignal = 0;
+					int entryRedstoneSignal = entry.materialRedstoneSignal;
+					if (entryRedstoneSignal < 0 || entryRedstoneSignal > 15) {
+						entryRedstoneSignal = 0;
 					}
-					if (entry.materialHexColor < -1 || entry.materialHexColor > 0xFFFFFF) {
-						entry.materialHexColor = -1;
+					int entryHexColor = entry.materialHexColor;
+					if (entryHexColor < -1 || entryHexColor > 0xFFFFFF) {
+						entryHexColor = -1;
 					}
-					if (entry.materialMiningLevel < -1) {
-						entry.materialMiningLevel = -1;
+					int entryMiningLevel = entry.materialMiningLevel;
+					if (entryMiningLevel < -1) {
+						entryMiningLevel = -1;
 					}
+					String[] oreEntries = entry.materialOreDict;
 					if (FluxGearCoreConfig.registryOreDict) {
-						for (int i = 0; i < entry.materialOreDict.length; i++) {
-							String oreDictEntry = entry.materialOreDict[i];
+						for (int i = 0; i < oreEntries.length; i++) {
+							String oreDictEntry = oreEntries[i];
 							if (oreDictEntry.startsWith("block")) {
-								entry.materialOreDict[i] = oreDictEntry.replaceFirst("block", "");
+								oreEntries[i] = oreDictEntry.replaceFirst("block", "");
 							} else if (oreDictEntry.startsWith("ore")) {
-								entry.materialOreDict[i] = oreDictEntry.replaceFirst("ore", "");
+								oreEntries[i] = oreDictEntry.replaceFirst("ore", "");
 							} else if (oreDictEntry.startsWith("ingot")) {
-								entry.materialOreDict[i] = oreDictEntry.replaceFirst("ingot", "");
+								oreEntries[i] = oreDictEntry.replaceFirst("ingot", "");
 							} else if (oreDictEntry.startsWith("dust")) {
-								entry.materialOreDict[i] = oreDictEntry.replaceFirst("dust", "");
+								oreEntries[i] = oreDictEntry.replaceFirst("dust", "");
 							} else if (oreDictEntry.startsWith("nugget")) {
-								entry.materialOreDict[i] = oreDictEntry.replaceFirst("nugget", "");
+								oreEntries[i] = oreDictEntry.replaceFirst("nugget", "");
 							} else if (oreDictEntry.startsWith("log")) {
-								entry.materialOreDict[i] = oreDictEntry.replaceFirst("log", "");
+								oreEntries[i] = oreDictEntry.replaceFirst("log", "");
 							} else if (oreDictEntry.startsWith("item")) {
-								entry.materialOreDict[i] = oreDictEntry.replaceFirst("item", "");
+								oreEntries[i] = oreDictEntry.replaceFirst("item", "");
 							} else if (oreDictEntry.startsWith("gem")) {
-								entry.materialOreDict[i] = oreDictEntry.replaceFirst("gem", "");
+								oreEntries[i] = oreDictEntry.replaceFirst("gem", "");
 							} else if (oreDictEntry.startsWith("crystal")) {
-								entry.materialOreDict[i] = oreDictEntry.replaceFirst("crystal", "");
+								oreEntries[i] = oreDictEntry.replaceFirst("crystal", "");
 							}
 						}
 					}
 
-					materialMap.put(entry.materialID, entry);
+					materialMap.put(entryID, new MaterialEntry(entryID, entryType, entryName, entry.materialTexture, oreEntries, entryBlockHardness, entryBlastResistance, entryRarity, entryMiningLevel, entryBlockLight, entryRedstoneSignal, entryHexColor));
 				}
 			} else {
-				ProjectFluxGear.logger.error("Someone registered a material \"" + entry.materialName + "\" with the ID " + entry.materialID + ", this ID is already used by the material \"" + materialMap.get(entry.materialID).materialName + "\"! Skipping this entry!");
+				ProjectFluxGear.logger.error("Someone registered a material \"" + entryName + "\" with the ID " + entryID + ", this ID is already used by the material \"" + materialMap.get(entry.materialID).materialName + "\"! Skipping this entry!");
 			}
 			entriesToSort.remove(entry);
 		}
@@ -99,8 +111,8 @@ public class DynamicMaterialRegistry {
 	}
 
 	/**
-	 *  Automatically called during postInit, DO NOT CALL THIS YOURSELF, and we have a safeguard for that.
-	 *  Registers entries for associated types, so you don't have to!
+	 *  Automatically called during postInit, DO NOT CALL THIS YOURSELF, and we have a safeguard for that (because I
+	 *  know some idiot will try). Registers entries for associated types, so you don't have to!
 	 */
 	public void registerEntries() {
 		if (!initialized) {
@@ -154,6 +166,11 @@ public class DynamicMaterialRegistry {
 		}
 	}
 
+	@Deprecated
+	public void registerDynEMC(int ID, float EMC) {
+		//TODO: Figure out EE3's API
+	}
+
 	public void postInit() {
 		sortEntries();
 		registerEntries();
@@ -198,7 +215,12 @@ public class DynamicMaterialRegistry {
 	}
 
 	public enum EnumMaterialType {
-		MALLEABLE_METAL("MALLEABLE_METAL", EnumMaterialForm.BLOCK, EnumMaterialForm.INGOT, EnumMaterialForm.DUST, EnumMaterialForm.PLATE, EnumMaterialForm.NUTSNBOLTS, EnumMaterialForm.SHAFT, EnumMaterialForm.GEAR, EnumMaterialForm.FOIL, EnumMaterialForm.WASHER, EnumMaterialForm.BEARING);
+		MALLEABLE_METAL("MALLEABLE_METAL", EnumMaterialForm.BLOCK, EnumMaterialForm.INGOT, EnumMaterialForm.DUST, EnumMaterialForm.PLATE, EnumMaterialForm.NUTSNBOLTS, EnumMaterialForm.SHAFT, EnumMaterialForm.GEAR, EnumMaterialForm.FOIL, EnumMaterialForm.WASHER, EnumMaterialForm.BEARING),
+		WORKABLE_METAL("WORKABLE_METAL"), //Steel, etc.
+		INGOT_METAL("INGOT_METAL"), //Tellurium, etc.
+		GEM("GEM"), //Dioptase, etc.
+		DUST("DUST"); //Rust, etc.
+
 		// TODO: More types
 
 		public String internalName;
