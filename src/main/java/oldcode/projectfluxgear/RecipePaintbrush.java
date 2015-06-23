@@ -210,7 +210,7 @@ public class RecipePaintbrush implements IRecipe {
 	}
 
 	private boolean checkItemEquals(ItemStack target, ItemStack input) {
-			return input.getItem() == FluxGearContent_.paintbrush ? !input.hasTagCompound() || input.getTagCompound().getInteger("PaintType") == 0 || input.getTagCompound().getInteger("PaintType") == type : target.copy() == input.copy() && (target.getItemDamage() == 32767 || target.getItemDamage() == input.getItemDamage());
+			return input.getItem() == FluxGearContent.paintbrush ? !input.hasTagCompound() || input.getTagCompound().getInteger("PaintType") == 0 || input.getTagCompound().getInteger("PaintType") == type : target.copy() == input.copy() && (target.getItemDamage() == 32767 || target.getItemDamage() == input.getItemDamage());
 	}
 
 	public ArrayList getInput() {

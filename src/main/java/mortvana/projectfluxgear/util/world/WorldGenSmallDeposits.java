@@ -6,7 +6,7 @@
  * permission unless otherwise specified on the
  * license page at http://railcraft.info/wiki/info:license.
  */
-package oldcode.projectfluxgear;
+package mortvana.projectfluxgear.util.world;
 
 import java.util.Random;
 
@@ -18,13 +18,12 @@ import net.minecraftforge.common.util.ForgeDirection;
 import mortvana.projectfluxgear.util.helpers.WorldHelper;
 
 /**
- *
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class WorldGenSmallDeposits extends WorldGenerator {
 
-	private final Block ore, replace;
-	private final int meta, number;
+	public final Block ore, replace;
+	public final int meta, number;
 
 	public WorldGenSmallDeposits(Block ore, int meta, int number, Block replace) {
 		this.ore = ore;
@@ -38,19 +37,21 @@ public class WorldGenSmallDeposits extends WorldGenerator {
 		if (canGen(world, x, y, z)) {
 			placeOre(world, rand, x, y, z);
 			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
 
-	protected boolean canGen(World world, int x, int y, int z) {
+	public boolean canGen(World world, int x, int y, int z) {
 		return true;
 	}
 
-	private void placeOre(World world, Random rand, int x, int y, int z) {
+	public void placeOre(World world, Random rand, int x, int y, int z) {
 		for (int num = 0; num < number; num++) {
 			Block block = WorldHelper.getBlock(world, x, y, z);
-			if (block != null && block.isReplaceableOreGen(world, x, y, z, replace))
+			if (block != null && block.isReplaceableOreGen(world, x, y, z, replace)) {
 				world.setBlock(x, y, z, ore, meta, 2);
+			}
 
 			ForgeDirection dir = ForgeDirection.getOrientation(rand.nextInt(6));
 
@@ -58,8 +59,9 @@ public class WorldGenSmallDeposits extends WorldGenerator {
 			y = WorldHelper.getYOnSide(y, dir);
 			z = WorldHelper.getZOnSide(z, dir);
 
-			if (!world.blockExists(x, y, z))
+			if (!world.blockExists(x, y, z)) {
 				break;
+			}
 		}
 	}
 

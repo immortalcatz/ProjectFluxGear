@@ -117,8 +117,8 @@ public class PoorOreGenerator {
 	public static final int[] DENSITY = { 16, 12, 8, 7, 7, 9, 9, 9, 10, 2, 8, 6, 6, 2, 2, 2, 6, 12, 6, 6, 6, 8, 8, 8, 8, 7, 7, 6, 8, 4, 4, 2 };
 	public static final int[] SEED = { 682, 526, 261, 334, 706, 324, 282, 887, 712, 175, 803, 568, 767, 297, 740, 910, 720, 187, 633, 741, 934, 647, 218, 554, 505, 948, 499, 822, 291, 798, 274, 946 }; //THAT'S NUMBERWANG!
 
-	public static final Block MAIN = FluxGearContent_.blockPoorOreMain;
-	public static final Block AUX = FluxGearContent_.blockPoorOreAux;
+	public static final Block MAIN = FluxGearContent.blockPoorOreMain;
+	public static final Block AUX = FluxGearContent.blockPoorOreAux;
 
 	public static class PoorChalcociteGen extends PoorOreGenerator_ {
 		public static final int ID = 0;

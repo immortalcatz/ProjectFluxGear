@@ -21,8 +21,6 @@ public class FluxGearCoreConfig {
 			//enableAchievements = config.get("General", "Enable Project Flux Gear's Achievements", true, "Disable this if you are a derp and port this to 1.6.4 :P").getBoolean(true);
 			registryOreDict = config.get("General", "Force OreDict Propriety", false, "Enable this if someone registers there stuff wrong, and as such it has a broken OreDict entry.").getBoolean(false);
 
-			seaLevel = config.get("World", "World Sea Level", 63, "Offered for mods that alter world heights, looking at you TFC.").getInt(63);
-
 
 		if (config.hasChanged()) {
 			config.save();
@@ -36,6 +34,7 @@ public class FluxGearCoreConfig {
 	public static boolean enableAchievements;
 	public static boolean registryOreDict;
 
-	public static int seaLevel;
+	@Deprecated
+	public static int seaLevel = 63;
 
 }

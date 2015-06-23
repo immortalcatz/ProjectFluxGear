@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -27,6 +26,7 @@ import cofh.core.util.CoreUtils;
 import cofh.core.world.WorldHandler;
 
 import mortvana.projectfluxgear.core.common.FluxGearAchievements;
+import mortvana.projectfluxgear.util.helpers.LoadedHelper;
 
 public class ProjectFluxGear {
     public static final PacketPipeline packetPipeline = new PacketPipeline();
@@ -50,16 +50,16 @@ public class ProjectFluxGear {
 	    EnvironmentChecks.verifyEnvironmentSanity();
     }
 
-    public static FluxGearContent_ content = new FluxGearContent_();
+    public static FluxGearContent content = new FluxGearContent();
 
 	public String[] blacklistedBlocks;
 	public String[] blacklistedTiles;
 
     public static final GuiHandler guiHandler = new GuiHandler();
 
-    public static final CreativeTabs tabMaterials = new FluxGearTab("PFG-Materials", "fluxgear.materialsTab", FluxGearContent_.gemDioptase);
-    public static final CreativeTabs tabWorld = new FluxGearTab("PFG-World", "fluxgear.worldTab", FluxGearContent_.oreBauxite);
-    public static final CreativeTabs techTab = new FluxGearTab("PFG-Tech", "fluxgear.techTab", FluxGearContent_.toolProtoSonicWrench);
+    public static final CreativeTabs tabMaterials = new FluxGearTab("PFG-Materials", "fluxgear.materialsTab", FluxGearContent.gemDioptase);
+    public static final CreativeTabs tabWorld = new FluxGearTab("PFG-World", "fluxgear.worldTab", FluxGearContent.oreBauxite);
+    public static final CreativeTabs techTab = new FluxGearTab("PFG-Tech", "fluxgear.techTab", FluxGearContent.toolProtoSonicWrench);
 	public static final CreativeTabs generalTab = new FluxGearTab("PFG-General", "fluxgear.generalTab", new ItemStack(Items.potato));
 	public static final CreativeTabs stonesTab = new FluxGearTab("PFG-Stone", "fluxgear.stoneTab", new ItemStack(Blocks.obsidian));
 	public static final CreativeTabs thaumicTab = new FluxGearTab("PFG-Thaumic", "fluxgear.thaumicTab", new ItemStack(ThaumicContent.itemWardenAmulet));
@@ -121,7 +121,7 @@ public class ProjectFluxGear {
         MinecraftForge.TERRAIN_GEN_BUS.register(new GravelOreGenEventHandler());
 
 	    //TODO: mDerpohouse!!!!!!!!!!!!!!
-		if(FluxGearCore.isTinkersLoaded) {
+		if(LoadedHelper.isTinkersLoaded) {
 			ToolCore chisel = (ToolCore) GameRegistry.findItem("TConstruct", "chisel");
 			Detailing chiseling = TConstructRegistry.getChiselDetailing();
 

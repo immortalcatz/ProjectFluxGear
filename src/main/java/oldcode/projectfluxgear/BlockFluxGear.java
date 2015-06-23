@@ -349,7 +349,6 @@ public class BlockFluxGear extends Block {
 	public static final String[] rockNames = new String[] { "mica", "andesite", "rhyolite", "gabrro", "diorite", "dolomite", "chert", "phyllite", "kimberlite", "dacite", "serpentine", "larvikite", "schalstein", "greenschist", "hornblendeBiotiteGranite", "pitchstone" };
 	public static final String[] NAMES_ORES_MAIN = { "chalcocite", "cassiterite", "galena", "acanthite", "garnierite", "sphalerite", "bismuthinite", "pyrolusite", "bauxite", "cooperite", "braggite", "molybdenite", "cobaltite", "wolframite", "ilmenite", "chromite" };
 	public static final String[] NAMES_ORES_AUX = { "cinnabar", "pitchblende", "monazite", "niedermayrite", "greenockite", "gaotaiite", "osarsite", "znamenskyite", "gallobeudanite", "tetrahedrite", "tennantite", "santafeite", "magnetite", "dioptase", "pyrope", "myuvil" };
-	public static final String[] NAMES_STORE_MAIN = { "copper", "tin", "lead", "silver", "nickel", "zinc", "bismuth", "manganese", "aluminium", "platinum", "palladium", "molybdenum", "cobalt", "tungsten", "titanium", "chromium" };
 	public static final String[] NAMES_STORE_AUX = { "antimony", "arsenic", "neodymium", "tesseractium", "cadmium", "tellurium", "osmium", "iridium", "indium", "antimonialBronze", "arsenicalBronze", "vanadium", "unobtainium", "dioptase", "pyrope", "myuvil" };
 	public static final String[] NAMES_ALLOY_MAIN = { "bronze", "brass", "invar", "bismuthBronze", "cupronickel", "aluminiumBrass", "electrum", "dullRedsolder", "redsolder", "highCarbonSteel", "steel", "hsla", "stainlessSteel", "tungstenSteel", "electriplatinum", "mithril" };
 	public static final String[] NAMES_ALLOY_AUX = { "technomancy", "resonantTechnomancy", "tungstenBlazing", "platinumGelid", "silverLuminous", "electrumFlux", "molybdenumResonant", "chromiumCarbide", "bismuthBronzeColdfire", "pyrum", "gelinum", "lumium", "signalum", "enderium", "carbonite", "therminate" };
@@ -361,7 +360,6 @@ public class BlockFluxGear extends Block {
 
 	// Hardness
 	public static final float[] HARDNESS_ORES = { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
-	public static final float[] HARDNESS_STORE_MAIN = { 5, 5, 4, 5, 7, 5, 5, 5, 5, 5, 5, 6, 7, 10, 8, 7 };
 	public static final float[] HARDNESS_STORE_AUX = { 3, 3, 5, 8, 5, 5, 11, 13, 5, 6, 6, 7, 42, 7, 7, 4 };
 	public static final float[] HARDNESS_ALLOY_MAIN = { 5, 5, 6, 5, 5, 5, 5, 5, 5, 7, 8, 8, 8, 13, 6, 5 };
 	public static final float[] HARDNESS_ALLOY_AUX = { 7, 11, 13, 8, 8, 8, 13, 11, 16, 11, 6, 5, 5, 40, 7, 13 };
@@ -379,7 +377,6 @@ public class BlockFluxGear extends Block {
 
 	// Resistance
 	public static final float[] RESISTANCE_ORES = { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
-	public static final float[] RESISTANCE_STORE_MAIN = { 6, 6, 12, 6, 6, 6, 8, 6, 8, 6, 6, 7, 8, 25, 12, 10 };
 	public static final float[] RESISTANCE_STORE_AUX = { 5, 5, 8, 42, 6, 6, 13, 16, 6, 8, 8, 9, 500, 13, 13, 6 };
 	public static final float[] RESISTANCE_ALLOY_MAIN = { 7, 6, 8, 8, 6, 6, 6, 6, 6, 12, 13, 13, 13, 42, 8, 10 };
 	public static final float[] RESISTANCE_ALLOY_AUX = { 16, 128, 135, 85, 85, 85, 192, 192, 256, 35, 11, 9, 9, 120, 64, 128 };
@@ -391,7 +388,6 @@ public class BlockFluxGear extends Block {
 	// Light
 	public static final int[] LIGHT_ORES_MAIN = { 0, 0, 1, 4, 0, 0, 2, 0, 0, 4, 1, 2, 0, 0, 0, 0 };
 	public static final int[] LIGHT_ORES_AUX = { 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 8, 4, 4 };
-	public static final int[] LIGHT_STORE_MAIN = { 0, 0, 0, 4, 0, 0, 2, 0, 2, 4, 2, 0, 0, 0, 0, 0 };
 	public static final int[] LIGHT_STORE_AUX = { 0, 0, 0, 7, 0, 0, 1, 4, 0, 0, 0, 1, 15, 8, 4, 4 };
 	public static final int[] LIGHT_ALLOY_MAIN =  { 0, 0, 0, 2, 0, 2, 4, 2, 2, 0, 0, 0, 0, 0, 4, 2 };
 	public static final int[] LIGHT_ALLOY_AUX = { 4, 8, 12, 4, 15, 7, 4, 2, 15, 12, 4, 15, 7, 4, 2, 15 };
@@ -403,7 +399,6 @@ public class BlockFluxGear extends Block {
 	// Rarity
 	public static final int[] RARITY_ORES_MAIN = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 1, 1, 0 };
 	public static final int[] RARITY_ORES_AUX = { 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 2, 2, 1 };
-	public static final int[] RARITY_STORE_MAIN = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 1, 1, 1 };
 	public static final int[] RARITY_STORE_AUX = { 0, 0, 0, 2, 0, 0, 1, 2, 0, 0, 0, 1, 3, 2, 2, 1 };
 	public static final int[] RARITY_ALLOY_MAIN = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1 };
 	public static final int[] RARITY_ALLOY_AUX = { 1, 2, 2, 2, 2, 2, 3, 2, 3, 1, 1, 1, 1, 2, 1, 2 };
@@ -1757,7 +1752,7 @@ public class BlockFluxGear extends Block {
 		private /*static*/ int maxSmogHeight = 256;
 
 		public BlockFluidSmog(String fluidName) {
-			super("thermaltinkerer", FluxGearContent_.fluidSmog, materialFluidSmog, "smog");
+			super("thermaltinkerer", FluxGearContent.fluidSmog, materialFluidSmog, "smog");
 			setQuantaPerBlock(LEVELS);
 			setTickRate(20);
 
@@ -1885,7 +1880,7 @@ public class BlockFluxGear extends Block {
 		private /*static*/ boolean effect = true;
 
 		public BlockFluidGhastTear() {
-			super("thermaltinkerer", FluxGearContent_.fluidGhastTear, materialFluidGhastTear, "ghastTear");
+			super("thermaltinkerer", FluxGearContent.fluidGhastTear, materialFluidGhastTear, "ghastTear");
 			setQuantaPerBlock(LEVELS);
 			setTickRate(30);
 
@@ -2290,111 +2285,111 @@ public class BlockFluxGear extends Block {
 
 	/* *=-=-=-=* Ore Entries *=-=-=-=* */
 
-	public static BasicOreEntry chalcocite = new BasicOreEntry(FluxGearContent_.oreChalcocite, 1, "oreChalcocite", "oreCopper");
-	public static BasicOreEntry cassiterite = new BasicOreEntry(FluxGearContent_.oreCassiterite, 1, "oreCassiterite", "oreTin");
-	public static BasicOreEntry galena = new BasicOreEntry(FluxGearContent_.oreGalena, 2, "oreGalena", "oreLead");
-	public static BasicOreEntry acanthite = new BasicOreEntry(FluxGearContent_.oreAcanthite, 2, "oreAcanthite", "oreSilver");
-	public static BasicOreEntry garnierite = new BasicOreEntry(FluxGearContent_.oreGarnierite, 2, "oreGarnierite", "oreNickel");
-	public static BasicOreEntry sphalerite = new BasicOreEntry(FluxGearContent_.oreSphalerite, 1, "oreSphalerite", "oreZinc");
-	public static BasicOreEntry bismuthinite = new BasicOreEntry(FluxGearContent_.oreBismuthinite, 1, "oreBismuthinite", "oreBismuth");
-	public static BasicOreEntry pyrolustite = new BasicOreEntry(FluxGearContent_.orePyrolusite, 1, "orePyrolustite", "oreManganese");
-	public static BasicOreEntry bauxite = new BasicOreEntry(FluxGearContent_.oreBauxite, 1, "oreBauxite");
-	public static BasicOreEntry cooperite = new BasicOreEntry(FluxGearContent_.oreCooperite, 2, "oreCooperite", "orePlatinum");
-	public static BasicOreEntry braggite = new BasicOreEntry(FluxGearContent_.oreBraggite, 2, "oreBraggite");
-	public static BasicOreEntry molybdenite = new BasicOreEntry(FluxGearContent_.oreMolybdenite, 2, "oreMolybdenite", "oreMolybdenum");
-	public static BasicOreEntry cobaltite = new BasicOreEntry(FluxGearContent_.oreCobaltite, 2, "oreCobaltite", "oreNaturalCobalt");
-	public static BasicOreEntry wolframite = new BasicOreEntry(FluxGearContent_.oreWolframite, 3, "oreWolframite", "oreTungsten");
-	public static BasicOreEntry ilmenite = new BasicOreEntry(FluxGearContent_.oreIlmenite, 2, "oreIlmenite", "oreTitanium");
-	public static BasicOreEntry chromite = new BasicOreEntry(FluxGearContent_.oreChromite, 2, "oreChromite", "oreChromium");
+	public static BasicOreEntry chalcocite = new BasicOreEntry(FluxGearContent.oreChalcocite, 1, "oreChalcocite", "oreCopper");
+	public static BasicOreEntry cassiterite = new BasicOreEntry(FluxGearContent.oreCassiterite, 1, "oreCassiterite", "oreTin");
+	public static BasicOreEntry galena = new BasicOreEntry(FluxGearContent.oreGalena, 2, "oreGalena", "oreLead");
+	public static BasicOreEntry acanthite = new BasicOreEntry(FluxGearContent.oreAcanthite, 2, "oreAcanthite", "oreSilver");
+	public static BasicOreEntry garnierite = new BasicOreEntry(FluxGearContent.oreGarnierite, 2, "oreGarnierite", "oreNickel");
+	public static BasicOreEntry sphalerite = new BasicOreEntry(FluxGearContent.oreSphalerite, 1, "oreSphalerite", "oreZinc");
+	public static BasicOreEntry bismuthinite = new BasicOreEntry(FluxGearContent.oreBismuthinite, 1, "oreBismuthinite", "oreBismuth");
+	public static BasicOreEntry pyrolustite = new BasicOreEntry(FluxGearContent.orePyrolusite, 1, "orePyrolustite", "oreManganese");
+	public static BasicOreEntry bauxite = new BasicOreEntry(FluxGearContent.oreBauxite, 1, "oreBauxite");
+	public static BasicOreEntry cooperite = new BasicOreEntry(FluxGearContent.oreCooperite, 2, "oreCooperite", "orePlatinum");
+	public static BasicOreEntry braggite = new BasicOreEntry(FluxGearContent.oreBraggite, 2, "oreBraggite");
+	public static BasicOreEntry molybdenite = new BasicOreEntry(FluxGearContent.oreMolybdenite, 2, "oreMolybdenite", "oreMolybdenum");
+	public static BasicOreEntry cobaltite = new BasicOreEntry(FluxGearContent.oreCobaltite, 2, "oreCobaltite", "oreNaturalCobalt");
+	public static BasicOreEntry wolframite = new BasicOreEntry(FluxGearContent.oreWolframite, 3, "oreWolframite", "oreTungsten");
+	public static BasicOreEntry ilmenite = new BasicOreEntry(FluxGearContent.oreIlmenite, 2, "oreIlmenite", "oreTitanium");
+	public static BasicOreEntry chromite = new BasicOreEntry(FluxGearContent.oreChromite, 2, "oreChromite", "oreChromium");
 
-	public static BasicOreEntry cinnabar = new BasicOreEntry(FluxGearContent_.oreCinnabar, 2, "oreCinnabar", "oreMercury");
-	public static BasicOreEntry pitchblende = new BasicOreEntry(FluxGearContent_.orePitchblende, 2, "orePitchblende", "oreUranium");
-	public static BasicOreEntry monazite = new BasicOreEntry(FluxGearContent_.oreMonazite, 2, "oreMonazite");
-	public static BasicOreEntry nierdermayrite = new BasicOreEntry(FluxGearContent_.oreNiedermayrite, 2, "oreNierdermayrite");
-	public static BasicOreEntry greenockite = new BasicOreEntry(FluxGearContent_.oreGreenockite, 2, "oreGreenockite");
-	public static BasicOreEntry gaotaiite = new BasicOreEntry(FluxGearContent_.oreGaotaiite, 3, "oreGaotaiite");
-	public static BasicOreEntry osarsite = new BasicOreEntry(FluxGearContent_.oreOsarsite, 2, "oreOsarsite", "oreOsmium");
-	public static BasicOreEntry znamenskyite = new BasicOreEntry(FluxGearContent_.oreZnamenskyite, 2, "oreZnamenskyite");
-	public static BasicOreEntry gallobeudanite = new BasicOreEntry(FluxGearContent_.oreGallobeudanite, 2, "oreGallobeudanite");
-	public static BasicOreEntry tetrahedrite = new BasicOreEntry(FluxGearContent_.oreTertahedrite, 1, "oreTetrahedrite", "oreCopper");
-	public static BasicOreEntry tennantite = new BasicOreEntry(FluxGearContent_.oreTennantite, 1, "oreTennantite", "oreCopper");
-	public static BasicOreEntry santafeite = new BasicOreEntry(FluxGearContent_.oreSantafeite, 2, "oreSantafeite", "oreVanadium");
-	public static BasicOreEntry magnetite = new BasicOreEntry(FluxGearContent_.oreMagnetite, 2, "oreMagnetite");
-	public static BasicOreEntry dioptase = new BasicOreEntry(FluxGearContent_.oreDioptase, 3, "oreDioptase");
-	public static BasicOreEntry pyrope = new BasicOreEntry(FluxGearContent_.orePyrope, 3, "orePyrope");
-	public static BasicOreEntry myuvil = new BasicOreEntry(FluxGearContent_.oreMyuvil, 3, "oreMyuvil");
+	public static BasicOreEntry cinnabar = new BasicOreEntry(FluxGearContent.oreCinnabar, 2, "oreCinnabar", "oreMercury");
+	public static BasicOreEntry pitchblende = new BasicOreEntry(FluxGearContent.orePitchblende, 2, "orePitchblende", "oreUranium");
+	public static BasicOreEntry monazite = new BasicOreEntry(FluxGearContent.oreMonazite, 2, "oreMonazite");
+	public static BasicOreEntry nierdermayrite = new BasicOreEntry(FluxGearContent.oreNiedermayrite, 2, "oreNierdermayrite");
+	public static BasicOreEntry greenockite = new BasicOreEntry(FluxGearContent.oreGreenockite, 2, "oreGreenockite");
+	public static BasicOreEntry gaotaiite = new BasicOreEntry(FluxGearContent.oreGaotaiite, 3, "oreGaotaiite");
+	public static BasicOreEntry osarsite = new BasicOreEntry(FluxGearContent.oreOsarsite, 2, "oreOsarsite", "oreOsmium");
+	public static BasicOreEntry znamenskyite = new BasicOreEntry(FluxGearContent.oreZnamenskyite, 2, "oreZnamenskyite");
+	public static BasicOreEntry gallobeudanite = new BasicOreEntry(FluxGearContent.oreGallobeudanite, 2, "oreGallobeudanite");
+	public static BasicOreEntry tetrahedrite = new BasicOreEntry(FluxGearContent.oreTertahedrite, 1, "oreTetrahedrite", "oreCopper");
+	public static BasicOreEntry tennantite = new BasicOreEntry(FluxGearContent.oreTennantite, 1, "oreTennantite", "oreCopper");
+	public static BasicOreEntry santafeite = new BasicOreEntry(FluxGearContent.oreSantafeite, 2, "oreSantafeite", "oreVanadium");
+	public static BasicOreEntry magnetite = new BasicOreEntry(FluxGearContent.oreMagnetite, 2, "oreMagnetite");
+	public static BasicOreEntry dioptase = new BasicOreEntry(FluxGearContent.oreDioptase, 3, "oreDioptase");
+	public static BasicOreEntry pyrope = new BasicOreEntry(FluxGearContent.orePyrope, 3, "orePyrope");
+	public static BasicOreEntry myuvil = new BasicOreEntry(FluxGearContent.oreMyuvil, 3, "oreMyuvil");
 
-	public static BasicOreEntry poorChalcocite = new BasicOreEntry(FluxGearContent_.orePoorChalcocite, 1, "orePoorChalcocite", "orePoorCopper");
-	public static BasicOreEntry poorCassiterite = new BasicOreEntry(FluxGearContent_.orePoorCassiterite, 1, "orePoorCassiterite", "orePoorTin");
-	public static BasicOreEntry poorGalena = new BasicOreEntry(FluxGearContent_.orePoorGalena, 2, "orePoorGalena", "orePoorLead");
-	public static BasicOreEntry poorAcanthite = new BasicOreEntry(FluxGearContent_.orePoorAcanthite, 2, "orePoorAcanthite", "orePoorSilver");
-	public static BasicOreEntry poorGarnierite = new BasicOreEntry(FluxGearContent_.orePoorGarnierite, 2, "orePoorGarnierite", "orePoorNickel");
-	public static BasicOreEntry poorSphalerite = new BasicOreEntry(FluxGearContent_.orePoorSphalerite, 1, "orePoorSphalerite", "orePoorZinc");
-	public static BasicOreEntry poorBismuthinite = new BasicOreEntry(FluxGearContent_.orePoorBismuthinite, 1, "orePoorBismuthinite", "orePoorBismuth");
-	public static BasicOreEntry poorPyrolustite = new BasicOreEntry(FluxGearContent_.orePoorPyrolusite, 1, "orePoorPyrolustite", "orePoorManganese");
-	public static BasicOreEntry poorBauxite = new BasicOreEntry(FluxGearContent_.orePoorBauxite, 1, "orePoorBauxite");
-	public static BasicOreEntry poorCooperite = new BasicOreEntry(FluxGearContent_.orePoorCooperite, 2, "orePoorCooperite", "orePoorPlatinum");
-	public static BasicOreEntry poorBraggite = new BasicOreEntry(FluxGearContent_.orePoorBraggite, 2, "orePoorBraggite");
-	public static BasicOreEntry poorMolybdenite = new BasicOreEntry(FluxGearContent_.orePoorMolybdenite, 2, "orePoorMolybdenite", "orePoorMolybdenum");
-	public static BasicOreEntry poorCobaltite = new BasicOreEntry(FluxGearContent_.orePoorCobaltite, 2, "orePoorCobaltite", "orePoorNaturalCobalt");
-	public static BasicOreEntry poorWolframite = new BasicOreEntry(FluxGearContent_.orePoorWolframite, 3, "orePoorWolframite", "orePoorTungsten");
-	public static BasicOreEntry poorIlmenite = new BasicOreEntry(FluxGearContent_.orePoorIlmenite, 2, "orePoorIlmenite", "orePoorTitanium");
-	public static BasicOreEntry poorChromite = new BasicOreEntry(FluxGearContent_.orePoorChromite, 2, "orePoorChromite", "orePoorChromium");
+	public static BasicOreEntry poorChalcocite = new BasicOreEntry(FluxGearContent.orePoorChalcocite, 1, "orePoorChalcocite", "orePoorCopper");
+	public static BasicOreEntry poorCassiterite = new BasicOreEntry(FluxGearContent.orePoorCassiterite, 1, "orePoorCassiterite", "orePoorTin");
+	public static BasicOreEntry poorGalena = new BasicOreEntry(FluxGearContent.orePoorGalena, 2, "orePoorGalena", "orePoorLead");
+	public static BasicOreEntry poorAcanthite = new BasicOreEntry(FluxGearContent.orePoorAcanthite, 2, "orePoorAcanthite", "orePoorSilver");
+	public static BasicOreEntry poorGarnierite = new BasicOreEntry(FluxGearContent.orePoorGarnierite, 2, "orePoorGarnierite", "orePoorNickel");
+	public static BasicOreEntry poorSphalerite = new BasicOreEntry(FluxGearContent.orePoorSphalerite, 1, "orePoorSphalerite", "orePoorZinc");
+	public static BasicOreEntry poorBismuthinite = new BasicOreEntry(FluxGearContent.orePoorBismuthinite, 1, "orePoorBismuthinite", "orePoorBismuth");
+	public static BasicOreEntry poorPyrolustite = new BasicOreEntry(FluxGearContent.orePoorPyrolusite, 1, "orePoorPyrolustite", "orePoorManganese");
+	public static BasicOreEntry poorBauxite = new BasicOreEntry(FluxGearContent.orePoorBauxite, 1, "orePoorBauxite");
+	public static BasicOreEntry poorCooperite = new BasicOreEntry(FluxGearContent.orePoorCooperite, 2, "orePoorCooperite", "orePoorPlatinum");
+	public static BasicOreEntry poorBraggite = new BasicOreEntry(FluxGearContent.orePoorBraggite, 2, "orePoorBraggite");
+	public static BasicOreEntry poorMolybdenite = new BasicOreEntry(FluxGearContent.orePoorMolybdenite, 2, "orePoorMolybdenite", "orePoorMolybdenum");
+	public static BasicOreEntry poorCobaltite = new BasicOreEntry(FluxGearContent.orePoorCobaltite, 2, "orePoorCobaltite", "orePoorNaturalCobalt");
+	public static BasicOreEntry poorWolframite = new BasicOreEntry(FluxGearContent.orePoorWolframite, 3, "orePoorWolframite", "orePoorTungsten");
+	public static BasicOreEntry poorIlmenite = new BasicOreEntry(FluxGearContent.orePoorIlmenite, 2, "orePoorIlmenite", "orePoorTitanium");
+	public static BasicOreEntry poorChromite = new BasicOreEntry(FluxGearContent.orePoorChromite, 2, "orePoorChromite", "orePoorChromium");
 
-	public static BasicOreEntry poorCinnabar = new BasicOreEntry(FluxGearContent_.orePoorCinnabar, 2, "orePoorCinnabar", "orePoorMercury");
-	public static BasicOreEntry poorPitchblende = new BasicOreEntry(FluxGearContent_.orePoorPitchblende, 2, "orePoorPitchblende", "orePoorUranium");
-	public static BasicOreEntry poorMonazite = new BasicOreEntry(FluxGearContent_.orePoorMonazite, 2, "orePoorMonazite");
-	public static BasicOreEntry poorNierdermayrite = new BasicOreEntry(FluxGearContent_.orePoorNiedermayrite, 2, "orePoorNierdermayrite");
-	public static BasicOreEntry poorGreenockite = new BasicOreEntry(FluxGearContent_.orePoorGreenockite, 2, "orePoorGreenockite");
-	public static BasicOreEntry poorGaotaiite = new BasicOreEntry(FluxGearContent_.orePoorGaotaiite, 3, "orePoorGaotaiite");
-	public static BasicOreEntry poorOsarsite = new BasicOreEntry(FluxGearContent_.orePoorOsarsite, 2, "orePoorOsarsite", "orePoorOsmium");
-	public static BasicOreEntry poorZnamenskyite = new BasicOreEntry(FluxGearContent_.orePoorZnamenskyite, 2, "orePoorZnamenskyite");
-	public static BasicOreEntry poorGallobeudanite = new BasicOreEntry(FluxGearContent_.orePoorGallobeudanite, 2, "orePoorGallobeudanite");
-	public static BasicOreEntry poorTetrahedrite = new BasicOreEntry(FluxGearContent_.orePoorTertahedrite, 1, "orePoorTetrahedrite", "orePoorCopper");
-	public static BasicOreEntry poorTennantite = new BasicOreEntry(FluxGearContent_.orePoorTennantite, 1, "orePoorTennantite", "orePoorCopper");
-	public static BasicOreEntry poorSantafeite = new BasicOreEntry(FluxGearContent_.orePoorSantafeite, 2, "orePoorSantafeite", "orePoorVanadium");
-	public static BasicOreEntry poorMagnetite = new BasicOreEntry(FluxGearContent_.orePoorMagnetite, 2, "orePoorMagnetite");
-	public static BasicOreEntry poorDioptase = new BasicOreEntry(FluxGearContent_.orePoorDioptase, 3, "orePoorDioptase");
-	public static BasicOreEntry poorPyrope = new BasicOreEntry(FluxGearContent_.orePoorPyrope, 3, "orePoorPyrope");
-	public static BasicOreEntry poorMyuvil = new BasicOreEntry(FluxGearContent_.orePoorMyuvil, 3, "orePoorMyuvil");
+	public static BasicOreEntry poorCinnabar = new BasicOreEntry(FluxGearContent.orePoorCinnabar, 2, "orePoorCinnabar", "orePoorMercury");
+	public static BasicOreEntry poorPitchblende = new BasicOreEntry(FluxGearContent.orePoorPitchblende, 2, "orePoorPitchblende", "orePoorUranium");
+	public static BasicOreEntry poorMonazite = new BasicOreEntry(FluxGearContent.orePoorMonazite, 2, "orePoorMonazite");
+	public static BasicOreEntry poorNierdermayrite = new BasicOreEntry(FluxGearContent.orePoorNiedermayrite, 2, "orePoorNierdermayrite");
+	public static BasicOreEntry poorGreenockite = new BasicOreEntry(FluxGearContent.orePoorGreenockite, 2, "orePoorGreenockite");
+	public static BasicOreEntry poorGaotaiite = new BasicOreEntry(FluxGearContent.orePoorGaotaiite, 3, "orePoorGaotaiite");
+	public static BasicOreEntry poorOsarsite = new BasicOreEntry(FluxGearContent.orePoorOsarsite, 2, "orePoorOsarsite", "orePoorOsmium");
+	public static BasicOreEntry poorZnamenskyite = new BasicOreEntry(FluxGearContent.orePoorZnamenskyite, 2, "orePoorZnamenskyite");
+	public static BasicOreEntry poorGallobeudanite = new BasicOreEntry(FluxGearContent.orePoorGallobeudanite, 2, "orePoorGallobeudanite");
+	public static BasicOreEntry poorTetrahedrite = new BasicOreEntry(FluxGearContent.orePoorTertahedrite, 1, "orePoorTetrahedrite", "orePoorCopper");
+	public static BasicOreEntry poorTennantite = new BasicOreEntry(FluxGearContent.orePoorTennantite, 1, "orePoorTennantite", "orePoorCopper");
+	public static BasicOreEntry poorSantafeite = new BasicOreEntry(FluxGearContent.orePoorSantafeite, 2, "orePoorSantafeite", "orePoorVanadium");
+	public static BasicOreEntry poorMagnetite = new BasicOreEntry(FluxGearContent.orePoorMagnetite, 2, "orePoorMagnetite");
+	public static BasicOreEntry poorDioptase = new BasicOreEntry(FluxGearContent.orePoorDioptase, 3, "orePoorDioptase");
+	public static BasicOreEntry poorPyrope = new BasicOreEntry(FluxGearContent.orePoorPyrope, 3, "orePoorPyrope");
+	public static BasicOreEntry poorMyuvil = new BasicOreEntry(FluxGearContent.orePoorMyuvil, 3, "orePoorMyuvil");
 
-	public static BasicOreEntry gravelChalcocite = new BasicOreEntry(FluxGearContent_.oreGravelChalcocite, 1, "oreChalcocite", "oreCopper");
-	public static BasicOreEntry gravelCassiterite = new BasicOreEntry(FluxGearContent_.oreGravelCassiterite, 1, "oreCassiterite", "oreTin");
-	public static BasicOreEntry gravelGalena = new BasicOreEntry(FluxGearContent_.oreGravelGalena, 2, "oreGalena", "oreLead");
-	public static BasicOreEntry gravelAcanthite = new BasicOreEntry(FluxGearContent_.oreGravelAcanthite, 2, "oreAcanthite", "oreSilver");
-	public static BasicOreEntry gravelGarnierite = new BasicOreEntry(FluxGearContent_.oreGravelGarnierite, 2, "oreGarnierite", "oreNickel");
-	public static BasicOreEntry gravelSphalerite = new BasicOreEntry(FluxGearContent_.oreGravelSphalerite, 1, "oreSphalerite", "oreZinc");
-	public static BasicOreEntry gravelBismuthinite = new BasicOreEntry(FluxGearContent_.oreGravelBismuthinite, 1, "oreBismuthinite", "oreBismuth");
-	public static BasicOreEntry gravelPyrolustite = new BasicOreEntry(FluxGearContent_.oreGravelPyrolusite, 1, "orePyrolustite", "oreManganese");
-	public static BasicOreEntry gravelBauxite = new BasicOreEntry(FluxGearContent_.oreGravelBauxite, 1, "oreBauxite");
-	public static BasicOreEntry gravelCooperite = new BasicOreEntry(FluxGearContent_.oreGravelCooperite, 2, "oreCooperite", "orePlatinum");
-	public static BasicOreEntry gravelBraggite = new BasicOreEntry(FluxGearContent_.oreGravelBraggite, 2, "oreBraggite");
-	public static BasicOreEntry gravelMolybdenite = new BasicOreEntry(FluxGearContent_.oreGravelMolybdenite, 2, "oreMolybdenite", "oreMolybdenum");
-	public static BasicOreEntry gravelCobaltite = new BasicOreEntry(FluxGearContent_.oreGravelCobaltite, 2, "oreCobaltite", "oreNaturalCobalt");
-	public static BasicOreEntry gravelWolframite = new BasicOreEntry(FluxGearContent_.oreGravelWolframite, 3, "oreWolframite", "oreTungsten");
-	public static BasicOreEntry gravelIlmenite = new BasicOreEntry(FluxGearContent_.oreGravelIlmenite, 2, "oreIlmenite", "oreTitanium");
-	public static BasicOreEntry gravelChromite = new BasicOreEntry(FluxGearContent_.oreGravelChromite, 2, "oreChromite", "oreChromium");
+	public static BasicOreEntry gravelChalcocite = new BasicOreEntry(FluxGearContent.oreGravelChalcocite, 1, "oreChalcocite", "oreCopper");
+	public static BasicOreEntry gravelCassiterite = new BasicOreEntry(FluxGearContent.oreGravelCassiterite, 1, "oreCassiterite", "oreTin");
+	public static BasicOreEntry gravelGalena = new BasicOreEntry(FluxGearContent.oreGravelGalena, 2, "oreGalena", "oreLead");
+	public static BasicOreEntry gravelAcanthite = new BasicOreEntry(FluxGearContent.oreGravelAcanthite, 2, "oreAcanthite", "oreSilver");
+	public static BasicOreEntry gravelGarnierite = new BasicOreEntry(FluxGearContent.oreGravelGarnierite, 2, "oreGarnierite", "oreNickel");
+	public static BasicOreEntry gravelSphalerite = new BasicOreEntry(FluxGearContent.oreGravelSphalerite, 1, "oreSphalerite", "oreZinc");
+	public static BasicOreEntry gravelBismuthinite = new BasicOreEntry(FluxGearContent.oreGravelBismuthinite, 1, "oreBismuthinite", "oreBismuth");
+	public static BasicOreEntry gravelPyrolustite = new BasicOreEntry(FluxGearContent.oreGravelPyrolusite, 1, "orePyrolustite", "oreManganese");
+	public static BasicOreEntry gravelBauxite = new BasicOreEntry(FluxGearContent.oreGravelBauxite, 1, "oreBauxite");
+	public static BasicOreEntry gravelCooperite = new BasicOreEntry(FluxGearContent.oreGravelCooperite, 2, "oreCooperite", "orePlatinum");
+	public static BasicOreEntry gravelBraggite = new BasicOreEntry(FluxGearContent.oreGravelBraggite, 2, "oreBraggite");
+	public static BasicOreEntry gravelMolybdenite = new BasicOreEntry(FluxGearContent.oreGravelMolybdenite, 2, "oreMolybdenite", "oreMolybdenum");
+	public static BasicOreEntry gravelCobaltite = new BasicOreEntry(FluxGearContent.oreGravelCobaltite, 2, "oreCobaltite", "oreNaturalCobalt");
+	public static BasicOreEntry gravelWolframite = new BasicOreEntry(FluxGearContent.oreGravelWolframite, 3, "oreWolframite", "oreTungsten");
+	public static BasicOreEntry gravelIlmenite = new BasicOreEntry(FluxGearContent.oreGravelIlmenite, 2, "oreIlmenite", "oreTitanium");
+	public static BasicOreEntry gravelChromite = new BasicOreEntry(FluxGearContent.oreGravelChromite, 2, "oreChromite", "oreChromium");
 
-	public static BasicOreEntry gravelCinnabar = new BasicOreEntry(FluxGearContent_.oreGravelCinnabar, 2, "oreCinnabar", "oreMercury");
-	public static BasicOreEntry gravelPitchblende = new BasicOreEntry(FluxGearContent_.oreGravelPitchblende, 2, "orePitchblende", "oreUranium");
-	public static BasicOreEntry gravelMonazite = new BasicOreEntry(FluxGearContent_.oreGravelMonazite, 2, "oreMonazite");
-	public static BasicOreEntry gravelNierdermayrite = new BasicOreEntry(FluxGearContent_.oreGravelNiedermayrite, 2, "oreNierdermayrite");
-	public static BasicOreEntry gravelGreenockite = new BasicOreEntry(FluxGearContent_.oreGravelGreenockite, 2, "oreGreenockite");
-	public static BasicOreEntry gravelGaotaiite = new BasicOreEntry(FluxGearContent_.oreGravelGaotaiite, 3, "oreGaotaiite");
-	public static BasicOreEntry gravelOsarsite = new BasicOreEntry(FluxGearContent_.oreGravelOsarsite, 2, "oreOsarsite", "oreOsmium");
-	public static BasicOreEntry gravelZnamenskyite = new BasicOreEntry(FluxGearContent_.oreGravelZnamenskyite, 2, "oreZnamenskyite");
-	public static BasicOreEntry gravelGallobeudanite = new BasicOreEntry(FluxGearContent_.oreGravelGallobeudanite, 2, "oreGallobeudanite");
-	public static BasicOreEntry gravelTetrahedrite = new BasicOreEntry(FluxGearContent_.oreGravelTertahedrite, 1, "oreTetrahedrite", "oreCopper");
-	public static BasicOreEntry gravelTennantite = new BasicOreEntry(FluxGearContent_.oreGravelTennantite, 1, "oreTennantite", "oreCopper");
-	public static BasicOreEntry gravelSantafeite = new BasicOreEntry(FluxGearContent_.oreGravelSantafeite, 2, "oreSantafeite", "oreVanadium");
-	public static BasicOreEntry gravelMagnetite = new BasicOreEntry(FluxGearContent_.oreGravelMagnetite, 2, "oreMagnetite");
-	public static BasicOreEntry gravelDioptase = new BasicOreEntry(FluxGearContent_.oreGravelDioptase, 3, "oreDioptase");
-	public static BasicOreEntry gravelPyrope = new BasicOreEntry(FluxGearContent_.oreGravelPyrope, 3, "orePyrope");
-	public static BasicOreEntry gravelMyuvil = new BasicOreEntry(FluxGearContent_.oreGravelMyuvil, 3, "oreMyuvil");
+	public static BasicOreEntry gravelCinnabar = new BasicOreEntry(FluxGearContent.oreGravelCinnabar, 2, "oreCinnabar", "oreMercury");
+	public static BasicOreEntry gravelPitchblende = new BasicOreEntry(FluxGearContent.oreGravelPitchblende, 2, "orePitchblende", "oreUranium");
+	public static BasicOreEntry gravelMonazite = new BasicOreEntry(FluxGearContent.oreGravelMonazite, 2, "oreMonazite");
+	public static BasicOreEntry gravelNierdermayrite = new BasicOreEntry(FluxGearContent.oreGravelNiedermayrite, 2, "oreNierdermayrite");
+	public static BasicOreEntry gravelGreenockite = new BasicOreEntry(FluxGearContent.oreGravelGreenockite, 2, "oreGreenockite");
+	public static BasicOreEntry gravelGaotaiite = new BasicOreEntry(FluxGearContent.oreGravelGaotaiite, 3, "oreGaotaiite");
+	public static BasicOreEntry gravelOsarsite = new BasicOreEntry(FluxGearContent.oreGravelOsarsite, 2, "oreOsarsite", "oreOsmium");
+	public static BasicOreEntry gravelZnamenskyite = new BasicOreEntry(FluxGearContent.oreGravelZnamenskyite, 2, "oreZnamenskyite");
+	public static BasicOreEntry gravelGallobeudanite = new BasicOreEntry(FluxGearContent.oreGravelGallobeudanite, 2, "oreGallobeudanite");
+	public static BasicOreEntry gravelTetrahedrite = new BasicOreEntry(FluxGearContent.oreGravelTertahedrite, 1, "oreTetrahedrite", "oreCopper");
+	public static BasicOreEntry gravelTennantite = new BasicOreEntry(FluxGearContent.oreGravelTennantite, 1, "oreTennantite", "oreCopper");
+	public static BasicOreEntry gravelSantafeite = new BasicOreEntry(FluxGearContent.oreGravelSantafeite, 2, "oreSantafeite", "oreVanadium");
+	public static BasicOreEntry gravelMagnetite = new BasicOreEntry(FluxGearContent.oreGravelMagnetite, 2, "oreMagnetite");
+	public static BasicOreEntry gravelDioptase = new BasicOreEntry(FluxGearContent.oreGravelDioptase, 3, "oreDioptase");
+	public static BasicOreEntry gravelPyrope = new BasicOreEntry(FluxGearContent.oreGravelPyrope, 3, "orePyrope");
+	public static BasicOreEntry gravelMyuvil = new BasicOreEntry(FluxGearContent.oreGravelMyuvil, 3, "oreMyuvil");
 
-	public static BasicOreEntry iridiumSands = new BasicOreEntry(FluxGearContent_.blockIridiumSands, 3, "oreIridiumSands");
-	public static BasicOreEntry poorIridiumSands = new BasicOreEntry(FluxGearContent_.blockPoorIridiumSands, 3, "orePoorIridiumSands");
-	public static BasicOreEntry aluminosilicateSludge = new BasicOreEntry(FluxGearContent_.blockAluminosilicateSludge , 0, "blockAluminosilicateSludge");
+	public static BasicOreEntry iridiumSands = new BasicOreEntry(FluxGearContent.blockIridiumSands, 3, "oreIridiumSands");
+	public static BasicOreEntry poorIridiumSands = new BasicOreEntry(FluxGearContent.blockPoorIridiumSands, 3, "orePoorIridiumSands");
+	public static BasicOreEntry aluminosilicateSludge = new BasicOreEntry(FluxGearContent.blockAluminosilicateSludge , 0, "blockAluminosilicateSludge");
 
 	public static BasicOreEntry[] metaOresMain = new BasicOreEntry[] { chalcocite, cassiterite, galena, acanthite, garnierite, sphalerite, bismuthinite, pyrolustite, bauxite, cooperite, braggite, molybdenite, cobaltite, wolframite, ilmenite, chromite };
 	public static BasicOreEntry[] metaOresAux = new BasicOreEntry[] { cinnabar, pitchblende, monazite, nierdermayrite, greenockite, gaotaiite, osarsite, znamenskyite, gallobeudanite, tetrahedrite, tennantite, santafeite, magnetite, dioptase, pyrope, myuvil };
@@ -2405,13 +2400,13 @@ public class BlockFluxGear extends Block {
 	public static BasicOreEntry[] metaGravelOresAux = new BasicOreEntry[] { gravelCinnabar, gravelPitchblende, gravelMonazite, gravelNierdermayrite, gravelGreenockite, gravelGaotaiite, gravelOsarsite, gravelZnamenskyite, gravelGallobeudanite, gravelTetrahedrite, gravelTennantite, gravelSantafeite, gravelMagnetite, gravelDioptase, gravelPyrope, gravelMyuvil };
 
 	//I know this is in the wrong spot, but one must do the things in the name of science!
-	public static OreBlockEntry oreEntryMain = new OreBlockEntry(FluxGearContent_.blockOreMain, ManualBlockEntries.ItemBlockOreMain.class, "OreMain", "pickaxe");
-	public static OreBlockEntry oreEntryAux = new OreBlockEntry(FluxGearContent_.blockOreAux, ManualBlockEntries.ItemBlockOreAux.class, "OreAux", "pickaxe");
-	public static OreBlockEntry oreEntryEarthen = new OreBlockEntry(FluxGearContent_.blockEarthen, ManualBlockEntries.ItemBlockEarthen.class, "Earthen", "shovel");
-	public static OreBlockEntry oreEntryPoorMain = new OreBlockEntry(FluxGearContent_.blockPoorOreMain, ManualBlockEntries.ItemBlockPoorOreMain.class, "PoorOreMain", "pickaxe");
-	public static OreBlockEntry oreEntryPoorAux = new OreBlockEntry(FluxGearContent_.blockPoorOreAux, ManualBlockEntries.ItemBlockPoorOreAux.class, "PoorOreAux", "pickaxe");
-	public static OreBlockEntry oreEntryGravelMain = new OreBlockEntry(FluxGearContent_.blockGravelOreMain, ManualBlockEntries.ItemBlockGravelOreMain.class, "GravelOreMain", "shovel");
-	public static OreBlockEntry oreEntryGravelAux = new OreBlockEntry(FluxGearContent_.blockGravelOreAux, ManualBlockEntries.ItemBlockGravelOreAux.class, "GravelOreAux", "shovel");
+	public static OreBlockEntry oreEntryMain = new OreBlockEntry(FluxGearContent.blockOreMain, ManualBlockEntries.ItemBlockOreMain.class, "OreMain", "pickaxe");
+	public static OreBlockEntry oreEntryAux = new OreBlockEntry(FluxGearContent.blockOreAux, ManualBlockEntries.ItemBlockOreAux.class, "OreAux", "pickaxe");
+	public static OreBlockEntry oreEntryEarthen = new OreBlockEntry(FluxGearContent.blockEarthen, ManualBlockEntries.ItemBlockEarthen.class, "Earthen", "shovel");
+	public static OreBlockEntry oreEntryPoorMain = new OreBlockEntry(FluxGearContent.blockPoorOreMain, ManualBlockEntries.ItemBlockPoorOreMain.class, "PoorOreMain", "pickaxe");
+	public static OreBlockEntry oreEntryPoorAux = new OreBlockEntry(FluxGearContent.blockPoorOreAux, ManualBlockEntries.ItemBlockPoorOreAux.class, "PoorOreAux", "pickaxe");
+	public static OreBlockEntry oreEntryGravelMain = new OreBlockEntry(FluxGearContent.blockGravelOreMain, ManualBlockEntries.ItemBlockGravelOreMain.class, "GravelOreMain", "shovel");
+	public static OreBlockEntry oreEntryGravelAux = new OreBlockEntry(FluxGearContent.blockGravelOreAux, ManualBlockEntries.ItemBlockGravelOreAux.class, "GravelOreAux", "shovel");
 
 	public static OrePair mainOres = new OrePair(oreEntryMain, metaOresMain);
 	public static OrePair auxOres = new OrePair(oreEntryAux, metaOresAux);

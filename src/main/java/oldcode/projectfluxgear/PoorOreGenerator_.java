@@ -22,6 +22,7 @@ import net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType
 import net.minecraftforge.event.terraingen.TerrainGen;
 
 import com.google.common.collect.MapMaker;
+import mortvana.projectfluxgear.util.world.WorldGenSmallDeposits;
 
 /**
  *

@@ -75,32 +75,43 @@ public class DynamicMaterialRegistry {
 						entryMiningLevel = -1;
 					}
 					String[] oreEntries = entry.materialOreDict;
+					String[] newOreEntries;
 					if (FluxGearCoreConfig.registryOreDict) {
+
+						int q = 0;
 						for (int i = 0; i < oreEntries.length; i++) {
 							String oreDictEntry = oreEntries[i];
-							if (oreDictEntry.startsWith("block")) {
-								oreEntries[i] = oreDictEntry.replaceFirst("block", "");
+							if (oreDictEntry.equals("")) {
+								q++;
+							} else if (oreDictEntry.startsWith("block")) {
+								oreEntries[i-q] = oreDictEntry.replaceFirst("block", "");
 							} else if (oreDictEntry.startsWith("ore")) {
-								oreEntries[i] = oreDictEntry.replaceFirst("ore", "");
+								oreEntries[i-q] = oreDictEntry.replaceFirst("ore", "");
 							} else if (oreDictEntry.startsWith("ingot")) {
-								oreEntries[i] = oreDictEntry.replaceFirst("ingot", "");
+								oreEntries[i-q] = oreDictEntry.replaceFirst("ingot", "");
 							} else if (oreDictEntry.startsWith("dust")) {
-								oreEntries[i] = oreDictEntry.replaceFirst("dust", "");
+								oreEntries[i-q] = oreDictEntry.replaceFirst("dust", "");
 							} else if (oreDictEntry.startsWith("nugget")) {
-								oreEntries[i] = oreDictEntry.replaceFirst("nugget", "");
+								oreEntries[i-q] = oreDictEntry.replaceFirst("nugget", "");
 							} else if (oreDictEntry.startsWith("log")) {
-								oreEntries[i] = oreDictEntry.replaceFirst("log", "");
+								oreEntries[i-q] = oreDictEntry.replaceFirst("log", "");
 							} else if (oreDictEntry.startsWith("item")) {
-								oreEntries[i] = oreDictEntry.replaceFirst("item", "");
+								oreEntries[i-q] = oreDictEntry.replaceFirst("item", "");
 							} else if (oreDictEntry.startsWith("gem")) {
-								oreEntries[i] = oreDictEntry.replaceFirst("gem", "");
+								oreEntries[i-q] = oreDictEntry.replaceFirst("gem", "");
 							} else if (oreDictEntry.startsWith("crystal")) {
-								oreEntries[i] = oreDictEntry.replaceFirst("crystal", "");
+								oreEntries[i-q] = oreDictEntry.replaceFirst("crystal", "");
 							}
 						}
+						newOreEntries = new String[oreEntries.length - q];
+						for (int i = 0; i < newOreEntries.length; i++) {
+							newOreEntries[i] = oreEntries[i];
+						}
+					} else {
+						newOreEntries = oreEntries;
 					}
 
-					materialMap.put(entryID, new MaterialEntry(entryID, entryType, entryName, entry.materialTexture, oreEntries, entryBlockHardness, entryBlastResistance, entryRarity, entryMiningLevel, entryBlockLight, entryRedstoneSignal, entryHexColor));
+					materialMap.put(entryID, new MaterialEntry(entryID, entryType, entryName, entry.materialTexture, newOreEntries, entryBlockHardness, entryBlastResistance, entryRarity, entryMiningLevel, entryBlockLight, entryRedstoneSignal, entryHexColor));
 				}
 			} else {
 				ProjectFluxGear.logger.error("Someone registered a material \"" + entryName + "\" with the ID " + entryID + ", this ID is already used by the material \"" + materialMap.get(entry.materialID).materialName + "\"! Skipping this entry!");
@@ -153,15 +164,13 @@ public class DynamicMaterialRegistry {
 		}
 	}
 
-	public void registerWithHandlers() {
+	public void registerBlockWithHandlers() {
 		for (Entry<Integer, MaterialEntry> materials : materialMap.entrySet()) {
 			ItemStack itemstack = new ItemStack(block, 1, materials.getKey());
-			String[] oreDict = materials.getValue().materialOreDict;
-			String name = materials.getValue().materialName;
-			for (String oreDictEntry : oreDict) {
+			for (String oreDictEntry : materials.getValue().materialOreDict) {
 				OreDictionary.registerOre(oreDictEntry, itemstack);
 			}
-			GameRegistry.registerCustomItemStack(name, itemstack);
+			GameRegistry.registerCustomItemStack(materials.getValue().materialName, itemstack);
 			FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", itemstack);
 		}
 	}
@@ -174,7 +183,7 @@ public class DynamicMaterialRegistry {
 	public void postInit() {
 		sortEntries();
 		registerEntries();
-		registerWithHandlers();
+		registerBlockWithHandlers();
 	}
 
 	public static class MaterialEntry {
@@ -219,7 +228,8 @@ public class DynamicMaterialRegistry {
 		WORKABLE_METAL("WORKABLE_METAL"), //Steel, etc.
 		INGOT_METAL("INGOT_METAL"), //Tellurium, etc.
 		GEM("GEM"), //Dioptase, etc.
-		DUST("DUST"); //Rust, etc.
+		DUST("DUST"), //Rust, etc.
+		DUMMY("REMOVED"); //A dummy for future/undecided types;
 
 		// TODO: More types
 

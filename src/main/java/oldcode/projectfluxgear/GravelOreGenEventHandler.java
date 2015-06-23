@@ -12,39 +12,39 @@ import mortvana.projectfluxgear.util.helpers.LoadedHelper;
 
 public class GravelOreGenEventHandler {
 
-	public final SurfaceOreGen chalcociteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 0, FluxGearConfigWorld.gravelChalcociteSize, true);
-	public final SurfaceOreGen cassiteriteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 1, FluxGearConfigWorld.gravelCassiteriteSize, true);
-	public final SurfaceOreGen galenaGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 2, FluxGearConfigWorld.gravelGalenaSize, true);
-	public final SurfaceOreGen acanthiteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 3, FluxGearConfigWorld.gravelAcanthiteSize, true);
-	public final SurfaceOreGen garnieriteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 4, FluxGearConfigWorld.gravelGarnieriteSize, true);
-	public final SurfaceOreGen sphaleriteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 5, FluxGearConfigWorld.gravelSphaleriteSize, true);
-	public final SurfaceOreGen bismuthiniteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 6, FluxGearConfigWorld.gravelBismuthiniteSize, true);
-	public final SurfaceOreGen pyrolusiteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 7, FluxGearConfigWorld.gravelPyrolusiteSize, true);
-	public final SurfaceOreGen bauxiteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 8, FluxGearConfigWorld.gravelBauxiteSize, true);
-	public final SurfaceOreGen cooperiteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 9, FluxGearConfigWorld.gravelCooperiteSize, true);
-	public final SurfaceOreGen braggiteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 10, FluxGearConfigWorld.gravelBraggiteSize, true);
-	public final SurfaceOreGen molybdeniteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 11, FluxGearConfigWorld.gravelMolybdeniteSize, true);
-	public final SurfaceOreGen cobaltiteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 12, FluxGearConfigWorld.gravelCobaltiteSize, true);
-	public final SurfaceOreGen wolframiteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 13, FluxGearConfigWorld.gravelWolframiteSize, true);
-	public final SurfaceOreGen ilmeniteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 14, FluxGearConfigWorld.gravelIlmeniteSize, true);
-	public final SurfaceOreGen chromiteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreMain, 15, FluxGearConfigWorld.gravelChromiteSize, true);
+	public final SurfaceOreGen chalcociteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 0, FluxGearConfigWorld.gravelChalcociteSize, true);
+	public final SurfaceOreGen cassiteriteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 1, FluxGearConfigWorld.gravelCassiteriteSize, true);
+	public final SurfaceOreGen galenaGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 2, FluxGearConfigWorld.gravelGalenaSize, true);
+	public final SurfaceOreGen acanthiteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 3, FluxGearConfigWorld.gravelAcanthiteSize, true);
+	public final SurfaceOreGen garnieriteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 4, FluxGearConfigWorld.gravelGarnieriteSize, true);
+	public final SurfaceOreGen sphaleriteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 5, FluxGearConfigWorld.gravelSphaleriteSize, true);
+	public final SurfaceOreGen bismuthiniteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 6, FluxGearConfigWorld.gravelBismuthiniteSize, true);
+	public final SurfaceOreGen pyrolusiteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 7, FluxGearConfigWorld.gravelPyrolusiteSize, true);
+	public final SurfaceOreGen bauxiteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 8, FluxGearConfigWorld.gravelBauxiteSize, true);
+	public final SurfaceOreGen cooperiteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 9, FluxGearConfigWorld.gravelCooperiteSize, true);
+	public final SurfaceOreGen braggiteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 10, FluxGearConfigWorld.gravelBraggiteSize, true);
+	public final SurfaceOreGen molybdeniteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 11, FluxGearConfigWorld.gravelMolybdeniteSize, true);
+	public final SurfaceOreGen cobaltiteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 12, FluxGearConfigWorld.gravelCobaltiteSize, true);
+	public final SurfaceOreGen wolframiteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 13, FluxGearConfigWorld.gravelWolframiteSize, true);
+	public final SurfaceOreGen ilmeniteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 14, FluxGearConfigWorld.gravelIlmeniteSize, true);
+	public final SurfaceOreGen chromiteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreMain, 15, FluxGearConfigWorld.gravelChromiteSize, true);
 
-	public final SurfaceOreGen cinnabarGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 0, FluxGearConfigWorld.gravelCinnabarSize, true);
-	public final SurfaceOreGen pitchblendeGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 1, FluxGearConfigWorld.gravelPitchblendeSize, true);
-	public final SurfaceOreGen monaziteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 2, FluxGearConfigWorld.gravelMonaziteSize, true);
-	public final SurfaceOreGen niedermayriteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 3, FluxGearConfigWorld.gravelNiedermayriteSize, true);
-	public final SurfaceOreGen greenockiteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 4, FluxGearConfigWorld.gravelGreenockiteSize, true);
-	public final SurfaceOreGen gaotaiiteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 5, FluxGearConfigWorld.gravelGaotaiiteSize, true);
-	public final SurfaceOreGen osarsiteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 6, FluxGearConfigWorld.gravelOsarsiteSize, true);
-	public final SurfaceOreGen znamenskyiteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 7, FluxGearConfigWorld.gravelZnamenskyiteSize, true);
-	public final SurfaceOreGen gallobeudaniteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 8, FluxGearConfigWorld.gravelGallobeudaniteSize, true);
-	public final SurfaceOreGen tetrahedriteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 9, FluxGearConfigWorld.gravelTetrahedriteSize, true);
-	public final SurfaceOreGen tennantiteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 10, FluxGearConfigWorld.gravelTennantiteSize, true);
-	public final SurfaceOreGen santafeiteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 11, FluxGearConfigWorld.gravelSantafeiteSize, true);
-	public final SurfaceOreGen magnetiteGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 12, FluxGearConfigWorld.gravelMagnetiteSize, true);
-	public final SurfaceOreGen dioptaseGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 13, FluxGearConfigWorld.gravelDioptaseSize, true);
-	public final SurfaceOreGen pyropeGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 14, FluxGearConfigWorld.gravelPyropeSize, true);
-	public final SurfaceOreGen myuvilGravel = new SurfaceOreGen(FluxGearContent_.blockGravelOreAux, 15, FluxGearConfigWorld.gravelMyuvilSize, true);
+	public final SurfaceOreGen cinnabarGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 0, FluxGearConfigWorld.gravelCinnabarSize, true);
+	public final SurfaceOreGen pitchblendeGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 1, FluxGearConfigWorld.gravelPitchblendeSize, true);
+	public final SurfaceOreGen monaziteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 2, FluxGearConfigWorld.gravelMonaziteSize, true);
+	public final SurfaceOreGen niedermayriteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 3, FluxGearConfigWorld.gravelNiedermayriteSize, true);
+	public final SurfaceOreGen greenockiteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 4, FluxGearConfigWorld.gravelGreenockiteSize, true);
+	public final SurfaceOreGen gaotaiiteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 5, FluxGearConfigWorld.gravelGaotaiiteSize, true);
+	public final SurfaceOreGen osarsiteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 6, FluxGearConfigWorld.gravelOsarsiteSize, true);
+	public final SurfaceOreGen znamenskyiteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 7, FluxGearConfigWorld.gravelZnamenskyiteSize, true);
+	public final SurfaceOreGen gallobeudaniteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 8, FluxGearConfigWorld.gravelGallobeudaniteSize, true);
+	public final SurfaceOreGen tetrahedriteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 9, FluxGearConfigWorld.gravelTetrahedriteSize, true);
+	public final SurfaceOreGen tennantiteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 10, FluxGearConfigWorld.gravelTennantiteSize, true);
+	public final SurfaceOreGen santafeiteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 11, FluxGearConfigWorld.gravelSantafeiteSize, true);
+	public final SurfaceOreGen magnetiteGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 12, FluxGearConfigWorld.gravelMagnetiteSize, true);
+	public final SurfaceOreGen dioptaseGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 13, FluxGearConfigWorld.gravelDioptaseSize, true);
+	public final SurfaceOreGen pyropeGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 14, FluxGearConfigWorld.gravelPyropeSize, true);
+	public final SurfaceOreGen myuvilGravel = new SurfaceOreGen(FluxGearContent.blockGravelOreAux, 15, FluxGearConfigWorld.gravelMyuvilSize, true);
 	
 	@SubscribeEvent
 	public void onDecorationEvent(Decorate event) {

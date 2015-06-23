@@ -11,7 +11,7 @@ public class PaintingHelper {
 	public static int colorStoneBlocks(World world, int x, int y, int z, int inputMeta, int range, int maxBlocks) {
 		boolean changed = false;
 		int amount = 0;
-		FluxGearContent_ content = ProjectFluxGear.content;
+		FluxGearContent content = ProjectFluxGear.content;
 
 		for(int xPos = -range; xPos <= range && amount <= maxBlocks; ++xPos) {
 			for(int yPos = -range; yPos <= range && amount <= maxBlocks; ++yPos) {
