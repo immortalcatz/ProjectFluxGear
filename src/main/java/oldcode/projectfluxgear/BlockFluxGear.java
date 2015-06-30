@@ -2,9 +2,7 @@ package oldcode.projectfluxgear;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.*;
 
-import net.minecraft.block.*;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
@@ -40,7 +38,6 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.util.RotationHelper;
-import net.minecraftforge.fluids.*;
 
 import cofh.core.fluid.BlockFluidCoFHBase;
 
@@ -209,8 +206,6 @@ public class BlockFluxGear extends Block {
 		this.textureLocation = textureLocation;
 	}
 
-
-
 	public boolean isColorized;
 	public boolean canSpawn;
 	public boolean beaconBase;
@@ -273,7 +268,7 @@ public class BlockFluxGear extends Block {
 		}
 
 		//Make sure that the entries to canBlockGrass are still valid.
-		//canBlockGrass = !m.getCanBlockGrass();
+		canBlockGrass = !m.getCanBlockGrass();
 	}
 
 	@Override
@@ -336,7 +331,118 @@ public class BlockFluxGear extends Block {
 		this.droppedRandomBonus = droppedRandomBonus;
 	}
 
+	/* *=-=-=-=* Item Blocks *=-=-=-=* */
 
+	public class ItemBlockFluxGear extends ItemBlock {
+
+		public ItemBlockFluxGear (Block block) {
+			super(block);
+			setHasSubtypes(true);
+			setMaxDamage(0);
+		}
+
+		public ItemBlockFluxGear (Block block, boolean subTypes, int maxDamage) {
+			super(block);
+			setHasSubtypes(subTypes);
+			setMaxDamage(maxDamage);
+		}
+
+		public String getItemStackDisplayName(ItemStack item) {
+			return StringHelper.localize(this.getUnlocalizedName(item));
+		}
+
+		@Override
+		public int getMetadata(int i) {
+
+			return i;
+		}
+
+		public boolean hasCustomEntity(ItemStack itemstack) {
+			return SecurityHelper.isSecure(itemstack);
+		}
+
+		public boolean isItemTool(ItemStack itemstack) {
+			return false;
+		}
+
+		public Entity createEntity(World world, Entity entity, ItemStack itemstack) {
+			if(SecurityHelper.isSecure(itemstack)) {
+				entity.invulnerable = true;
+				entity.isImmuneToFire = true;
+				((EntityItem)entity).lifespan = 2147483647;
+			}
+			return null;
+		}
+
+		public String unlocalizedName;
+		public String[] blockNames;
+		public int[] blockRarities;
+
+		public ItemBlockFluxGear(Block block, String unlocName, String[] blockNames, int[] blockRarities) {
+			this(block);
+			unlocalizedName = unlocName;
+			this.blockNames = blockNames;
+			this.blockRarities = blockRarities;
+		}
+
+		@Override
+		public String getUnlocalizedName(ItemStack item) {
+			return unlocalizedName + blockNames[ItemHelper.getItemDamage(item)] + ".name";
+		}
+
+		@Override
+		public EnumRarity getRarity(ItemStack stack) {
+			return EnumRarity.values()[blockRarities[ItemHelper.getItemDamage(stack)]];
+		}
+
+	/**/
+
+		public FluxGearItemBlock(Block block, String sentBlockName, Class sentBlockClass) {
+
+			super(block);
+			blockName = sentBlockName;
+			blockClass = sentBlockClass;
+			setHasSubtypes(true);
+			setMaxDamage(0);
+		}
+
+		@Override
+		public String getItemStackDisplayName(ItemStack item) {
+
+			return StringHelper.localize(getUnlocalizedName(item));
+		}
+
+		@Override
+		public String getUnlocalizedName(ItemStack item) {
+
+			return null;//"tile." + blockName + "." + BlockOre.NAMES[ItemHelper.getItemDamage(item)] + ".name";
+		}
+
+
+		@Override
+		public EnumRarity getRarity(ItemStack stack) {
+
+			return null;//EnumRarity.values()[BlockOre.RARITY[ItemHelper.getItemDamage(stack)]];
+		}
+
+		public static String blockName;
+		public static Class blockClass;
+	}
+
+	public class ItemBlockPaintedStone extends ItemBlock {
+		public ItemBlockPaintedStone(Block block) {
+			super(block);
+			setMaxDamage(0).setHasSubtypes(true);
+		}
+
+		public int getMetadata(int meta) {
+			return meta;
+		}
+
+		public String getUnlocalizedName(ItemStack par1ItemStack) {
+			return super.getUnlocalizedName() + "." + oldcode.projectfluxgear.ProjectFluxGear.colorNames[par1ItemStack.getItemDamage()];
+		}
+	}
 
 	/* *=-=-=-=* Fields *=-=-=-=* */
 
@@ -410,6 +516,12 @@ public class BlockFluxGear extends Block {
 	// Other
 	public static final IIcon[] TEXTURES_FULL = new IIcon[16];
 	public static final IIcon[] TEXTURES_EARTH = new IIcon[NAMES_EARTH.length];
+
+	public static String unlocDefault = "tile.projectfluxgear.block.";
+	public static String unlocOre = "tile.projectfluxgear.ore.";
+	public static String unlocStore = "tile.projectfluxgear.storage.";
+	public static String unlocGravel = "tile.projectfluxgear.oreGravel.";
+	public static String unlocPoore = "tile.projectfluxgear.orePoor.";
 
 	//TODO: More Redstone Signal Stuff
 
@@ -664,7 +776,7 @@ public class BlockFluxGear extends Block {
 		}
 	}
 
-	public class BlockAlloyAux extends BlockFluxGear {
+	public static class BlockAlloyAux extends BlockFluxGear {
 
 		public BlockAlloyAux() {
 			super(Material.iron, oldcode.projectfluxgear.ProjectFluxGear.tabMaterials, EnumBlockType.STORAGE, NAMES_ALLOY_AUX, TEXTURES_FULL, HARDNESS_ALLOY_AUX, RESISTANCE_ALLOY_AUX, LIGHT_ALLOY_AUX, TEXTURE_LOCATION_BLOCK);
@@ -688,10 +800,10 @@ public class BlockFluxGear extends Block {
 	//BlockStorageRandom
 
 	//TODO: AdvFallingBlockFluxGear
-	public class BlockGravelOreMain extends FallingBlockFluxGear {
+	public static class BlockGravelOreMain extends FallingBlockFluxGear {
 
 		public BlockGravelOreMain() {
-			super(MeltedDashboardLib.soilOre, oldcode.projectfluxgear.ProjectFluxGear.tabWorld, EnumBlockType.SOIL_ORE);
+			super(materialSoilOre, oldcode.projectfluxgear.ProjectFluxGear.tabWorld, EnumBlockType.SOIL_ORE);
 			setBlockName("mortvana.projectfluxgear.gravelOreMain");
 		}
 
@@ -726,10 +838,10 @@ public class BlockFluxGear extends Block {
 		public /*static*/ final IIcon[] TEXTURES = new IIcon[NAMES_ORES_MAIN.length];
 	}
 
-	public class BlockGravelOreAux extends FallingBlockFluxGear {
+	public static class BlockGravelOreAux extends FallingBlockFluxGear {
 
 		public BlockGravelOreAux() {
-			super(MeltedDashboardLib.soilOre, oldcode.projectfluxgear.ProjectFluxGear.tabWorld, EnumBlockType.SOIL_ORE);
+			super(materialSoilOre, oldcode.projectfluxgear.ProjectFluxGear.tabWorld, EnumBlockType.SOIL_ORE);
 			setBlockName("mortvana.projectfluxgear.gravelOreAux");
 		}
 
@@ -1871,7 +1983,6 @@ public class BlockFluxGear extends Block {
 
 	}
 
-
 	public class BlockFluidGhastTear extends BlockFluidCoFHBase {
 
 		public static final int LEVELS = 6;
@@ -2274,14 +2385,26 @@ public class BlockFluxGear extends Block {
 
 	public static Block blockOreMain = new BlockFluxGear(Material.rock, oldcode.projectfluxgear.ProjectFluxGear.tabWorld, BlockFluxGear.EnumBlockType.ORE, NAMES_ORES_MAIN, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_MAIN, TEXTURE_LOCATION_ORE).setBlockName("mortvana.projectfluxgear.oreMain");
 	public static Block blockOreAux = new BlockFluxGear(Material.rock, oldcode.projectfluxgear.ProjectFluxGear.tabWorld, BlockFluxGear.EnumBlockType.ORE, NAMES_ORES_AUX, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_AUX, TEXTURE_LOCATION_ORE).setBlockName("mortvana.projectfluxgear.oreAux");
-	public static Block BlockStorageMain = new BlockFluxGear(Material.iron, oldcode.projectfluxgear.ProjectFluxGear.tabMaterials, EnumBlockType.STORAGE, NAMES_STORE_MAIN, TEXTURES_FULL, HARDNESS_STORE_MAIN, RESISTANCE_STORE_MAIN, LIGHT_STORE_MAIN, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.storageMain");
-	public static Block BlockStorageAux = new BlockFluxGear(Material.iron, oldcode.projectfluxgear.ProjectFluxGear.tabMaterials, EnumBlockType.STORAGE, NAMES_STORE_AUX, TEXTURES_FULL, HARDNESS_STORE_AUX, RESISTANCE_STORE_AUX, LIGHT_STORE_AUX, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.storageAux");
-	public static Block BlockAlloyMain = new BlockFluxGear(Material.iron, oldcode.projectfluxgear.ProjectFluxGear.tabMaterials, EnumBlockType.STORAGE, NAMES_ALLOY_MAIN, TEXTURES_FULL, HARDNESS_ALLOY_MAIN, RESISTANCE_ALLOY_MAIN, LIGHT_ALLOY_MAIN, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.alloyMain");
-	public static Block BlockStorageAdv = new BlockFluxGear(Material.iron, oldcode.projectfluxgear.ProjectFluxGear.tabMaterials, EnumBlockType.STORAGE, NAMES_STORE_ADV, TEXTURES_FULL, HARDNESS_STORE_ADV, RESISTANCE_STORE_ADV, LIGHT_STORE_ADV, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.storageAdv");
-	public static Block BlockStorageAlch = new  BlockFluxGear(Material.iron, oldcode.projectfluxgear.ProjectFluxGear.tabMaterials, EnumBlockType.STORAGE, NAMES_STORE_ALCH, TEXTURES_FULL, HARDNESS_STORE_ALCH, RESISTANCE_STORE_ALCH, LIGHT_STORE_ALCH, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.storageAux");
-	public static Block BlockEarthen = new BlockFluxGear(MeltedDashboardLib.soilOre, oldcode.projectfluxgear.ProjectFluxGear.tabMaterials, EnumBlockType.SOIL_ORE, NAMES_EARTH, TEXTURES_EARTH, HARDNESS_EARTH, RESISTANCE_EARTH, LIGHT_EARTH, TEXTURE_LOCATION_DEFAULT).setBlockName("mortvana.projectfluxgear.earthen");
-	public static Block BlockPoorOreMain = new BlockFluxGear(Material.rock, oldcode.projectfluxgear.ProjectFluxGear.tabWorld, EnumBlockType.ORE, NAMES_ORES_MAIN, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_MAIN, TEXTURE_LOCATION_POOR_ORE).setBlockName("mortvana.projectfluxgear.poorOreMain");
-	public static Block BlockPoorOreAux = new BlockFluxGear(Material.rock, oldcode.projectfluxgear.ProjectFluxGear.tabWorld, EnumBlockType.ORE, NAMES_ORES_AUX, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_AUX, TEXTURE_LOCATION_POOR_ORE).setBlockName("mortvana.projectfluxgear.poorOreAux");
+	public static Block blockStorageAux = new BlockFluxGear(Material.iron, oldcode.projectfluxgear.ProjectFluxGear.tabMaterials, EnumBlockType.STORAGE, NAMES_STORE_AUX, TEXTURES_FULL, HARDNESS_STORE_AUX, RESISTANCE_STORE_AUX, LIGHT_STORE_AUX, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.storageAux");
+	public static Block blockAlloyMain = new BlockFluxGear(Material.iron, oldcode.projectfluxgear.ProjectFluxGear.tabMaterials, EnumBlockType.STORAGE, NAMES_ALLOY_MAIN, TEXTURES_FULL, HARDNESS_ALLOY_MAIN, RESISTANCE_ALLOY_MAIN, LIGHT_ALLOY_MAIN, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.alloyMain");
+	public static Block blockStorageAdv = new BlockFluxGear(Material.iron, oldcode.projectfluxgear.ProjectFluxGear.tabMaterials, EnumBlockType.STORAGE, NAMES_STORE_ADV, TEXTURES_FULL, HARDNESS_STORE_ADV, RESISTANCE_STORE_ADV, LIGHT_STORE_ADV, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.storageAdv");
+	public static Block blockStorageAlch = new  BlockFluxGear(Material.iron, oldcode.projectfluxgear.ProjectFluxGear.tabMaterials, EnumBlockType.STORAGE, NAMES_STORE_ALCH, TEXTURES_FULL, HARDNESS_STORE_ALCH, RESISTANCE_STORE_ALCH, LIGHT_STORE_ALCH, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.storageAux");
+	public static Block blockEarthen = new BlockFluxGear(materialSoilOre, oldcode.projectfluxgear.ProjectFluxGear.tabMaterials, EnumBlockType.SOIL_ORE, NAMES_EARTH, TEXTURES_EARTH, HARDNESS_EARTH, RESISTANCE_EARTH, LIGHT_EARTH, TEXTURE_LOCATION_DEFAULT).setBlockName("mortvana.projectfluxgear.earthen");
+	public static Block blockPoorOreMain = new BlockFluxGear(Material.rock, oldcode.projectfluxgear.ProjectFluxGear.tabWorld, EnumBlockType.ORE, NAMES_ORES_MAIN, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_MAIN, TEXTURE_LOCATION_POOR_ORE).setBlockName("mortvana.projectfluxgear.poorOreMain");
+	public static Block blockPoorOreAux = new BlockFluxGear(Material.rock, oldcode.projectfluxgear.ProjectFluxGear.tabWorld, EnumBlockType.ORE, NAMES_ORES_AUX, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_AUX, TEXTURE_LOCATION_POOR_ORE).setBlockName("mortvana.projectfluxgear.poorOreAux");
+
+	public static ItemBlock itemblockOreMain = new ItemBlockFluxGear(blockOreMain, unlocOre, NAMES_ORES_MAIN, RARITY_ORES_MAIN);
+	public static ItemBlock itemblockOreAux = new ItemBlockFluxGear(blockOreAux, unlocOre, NAMES_ORES_AUX, RARITY_ORES_AUX);
+	public static ItemBlock ItemBlockStorageAux = new ItemBlockFluxGear(blockStorageAux, unlocStore, NAMES_STORE_AUX, RARITY_STORE_AUX);
+	public static ItemBlock ItemBlockAlloyMain = new ItemBlockFluxGear(blockAlloyMain, unlocStore, NAMES_ALLOY_MAIN, RARITY_ALLOY_MAIN);
+	public static ItemBlock ItemBlockAlloyAux = new ItemBlockFluxGear(new BlockAlloyAux(), unlocStore, NAMES_ALLOY_AUX, RARITY_ALLOY_AUX);
+	public static ItemBlock itemblockStorageAlch = new ItemBlockFluxGear(blockStorageAlch, unlocStore, NAMES_STORE_ALCH, RARITY_STORE_ALCH);
+	public static ItemBlock itemblockStorageAdv = new ItemBlockFluxGear(blockStorageAdv, unlocStore, NAMES_STORE_ADV, RARITY_STORE_ADV);
+	public static ItemBlock itemblockEarthen = new ItemBlockFluxGear(blockEarthen, unlocDefault, NAMES_EARTH, RARITY_EARTH);
+	public static ItemBlock itemblockGravelOreMain = new ItemBlockFluxGear(new BlockGravelOreMain(), unlocGravel, NAMES_ORES_MAIN, RARITY_ORES_MAIN);
+	public static ItemBlock itemblockGravelOreAux = new ItemBlockFluxGear(new BlockGravelOreAux(), unlocGravel, NAMES_ORES_AUX, RARITY_ORES_AUX);
+	public static ItemBlock itemblockPoorOreMain = new ItemBlockFluxGear(blockPoorOreMain, unlocPoore, NAMES_ORES_MAIN, RARITY_ORES_MAIN);
+	public static ItemBlock itemblockPoorOreAux = new ItemBlockFluxGear(blockPoorOreAux, unlocPoore, NAMES_ORES_AUX, RARITY_ORES_AUX);
 
 	/* *=-=-=-=* Ore Entries *=-=-=-=* */
 
@@ -2420,10 +2543,10 @@ public class BlockFluxGear extends Block {
 
 	public static class BasicOreEntry {
 
-		public static ItemStack itemstack;
-		public static int harvestLevel;
-		public static String oreDict;
-		public static String oreDict2;
+		public ItemStack itemstack;
+		public int harvestLevel;
+		public String oreDict;
+		public String oreDict2;
 
 		public BasicOreEntry(ItemStack itemstack, int harvestLevel, String oreDict, String oreDict2) {
 			this.itemstack = itemstack;
@@ -2438,10 +2561,10 @@ public class BlockFluxGear extends Block {
 	}
 
 	public static class OreBlockEntry {
-		public static Block block;
-		public static Class<? extends ItemBlock> itemblock;
-		public static String name;
-		public static String toolType;
+		public Block block;
+		public Class<? extends ItemBlock> itemblock;
+		public String name;
+		public String toolType;
 
 		public OreBlockEntry(Block block, Class<? extends ItemBlock> itemblock, String name, String toolType) {
 			this.block = block;

@@ -5,6 +5,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 import mortvana.projectfluxgear.util.block.metadata.FluxGearBlockExtendedMetadata;
+import mortvana.projectfluxgear.util.block.metadata.ItemBlockMetadata;
 import mortvana.projectfluxgear.util.block.metadata.TileEntityMetadata;
 import mortvana.projectfluxgear.util.registry.DynamicMaterialRegistry;
 
@@ -33,6 +34,8 @@ public class FluxGearCoreContent {
 
 	public static void initCoreBlocks() {
 		GameRegistry.registerTileEntity(TileEntityMetadata.class, "TileMetadata");
+
+		GameRegistry.registerBlock(metaStorageBlock, ItemBlockMetadata.class, "storageTest");
 	}
 
 	public static void registerMaterials() {

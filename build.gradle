@@ -89,10 +89,13 @@ dependencies {
 	compile "codechicken:CodeChickenCore:${config.minecraft_version}-${config.ccc_version}:dev"
     compile "codechicken:NotEnoughItems:${config.minecraft_version}-${config.NEI_version}:dev"
 	compile "codechicken:ForgeMultipart:${config.minecraft_version}-${config.FMP_version}:dev"
-	compile "mcp.mobius.waila:Waila:${config.waila_version}:dev"
+	compile('mcp.mobius.waila:Waila:${config.waila_version}:dev') {
+		exclude group: 'mcp.mobious.waila'
+	}
 	compile "com.mod-buildcraft:buildcraft:${config.buildcraft_version}:dev"
 	compile "tterrag.core:ttCore:MC${config.waila_version}-${config.ttCore_version}:deobf"
 	compile "com.enderio:EnderIO:${config.minecraft_version}-${config.enderio_version}:dev"
+	compile "com.enderio.core:EnderCore:${config.minecraft_version}-${config.endercore_version}:dev"
 	compile "net.sengir.forestry:forestry_1.7.10:${config.forestry_version}:dev"
     //compile "net.industrial-craft:industrialcraft-2:${config.ic2_version}:dev"
     compile fileTree(dir: 'lib', include: '*.jar')
@@ -114,6 +117,14 @@ minecraft {
     /*if (project.hasProperty("Mod_signature")) {
         replace "@FINGERPRINT@", project.Mod_signature
     }*/
+}
+
+apply plugin: 'idea'
+idea {
+    module {
+        sourceDirs += file('dummy')
+        sourceDirs += file('api')
+    }
 }
 
 sourceSets {

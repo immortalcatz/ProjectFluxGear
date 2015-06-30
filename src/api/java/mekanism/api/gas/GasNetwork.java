@@ -137,7 +137,7 @@ public class GasNetwork extends DynamicNetwork<IGasHandler, GasNetwork>
 
 	public int tickEmit(GasStack stack)
 	{
-		List<IGasHandler> availableAcceptors = new ArrayList<>();
+		List<IGasHandler> availableAcceptors = new ArrayList<IGasHandler>();
 
 		availableAcceptors.addAll(getAcceptors(stack.getGas()));
 

@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.tinker.common;
+package mortvana.projectfluxgear.tinkers.common;
 
 public class TinkersContent {
 

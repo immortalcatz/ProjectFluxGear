@@ -1,49 +1,49 @@
 package crazypants.enderio.api;
 
-import crazypants.enderio.conduit.redstone.InsulatedRedstoneConduit;
-import crazypants.enderio.fluid.FluidFuelRegister;
-import crazypants.enderio.item.ItemSoulVessel;
-import crazypants.enderio.machine.alloy.AlloyRecipeManager;
-import crazypants.enderio.machine.crusher.CrusherRecipeManager;
-import crazypants.enderio.machine.enchanter.EnchanterRecipeManager;
-import crazypants.enderio.machine.painter.PaintSourceValidator;
-import crazypants.enderio.machine.slicensplice.SliceAndSpliceRecipeManager;
-import crazypants.enderio.machine.soul.SoulBinderRecipeManager;
-import crazypants.enderio.machine.spawner.PoweredSpawnerConfig;
-import crazypants.enderio.machine.vat.VatRecipeManager;
-import crazypants.enderio.teleport.TravelController;
+/*import com.enderio.conduit.redstone.InsulatedRedstoneConduit;
+import com.enderio.fluid.FluidFuelRegister;
+import com.enderio.item.ItemSoulVessel;
+import com.enderio.machine.alloy.AlloyRecipeManager;
+import com.enderio.machine.crusher.CrusherRecipeManager;
+import com.enderio.machine.enchanter.EnchanterRecipeManager;
+import com.enderio.machine.painter.PaintSourceValidator;
+import com.enderio.machine.slicensplice.SliceAndSpliceRecipeManager;
+import com.enderio.machine.soul.SoulBinderRecipeManager;
+import com.enderio.machine.spawner.PoweredSpawnerConfig;
+import com.enderio.machine.vat.VatRecipeManager;
+import com.enderio.teleport.TravelController;*/
 
 /**
  * This class provides the keys for the IMC messages supported by EIO and links
  * the the details of how the messages are processed. It is preferable not to
  * refer to these constants directly to avoid a dependence on this class.
  */
-public final class IMC {
+public final class IMC { //TODO: Re @Link stuff when EIO gradles
 
   /**
    * Key for a string message to add Vat recipes. Calls
-   * {@link VatRecipeManager#addCustomRecipes(String)} with the string value of
+   * { @link VatRecipeManager#addCustomRecipes(String)} with the string value of
    * the message.
    */
   public static final String VAT_RECIPE = "recipe:vat";
 
   /**
    * Key for a string message to add SAGMill recipes. Calls
-   * {@link CrusherRecipeManager#addCustomRecipes(String)} with the string value
+   * { @link CrusherRecipeManager#addCustomRecipes(String)} with the string value
    * of the message.
    */
   public static final String SAG_RECIPE = "recipe:sagmill";
 
   /**
    * Key for a string message to add Alloy Smelter recipes. Calls
-   * {@link AlloyRecipeManager#addCustomRecipes(String)} with the string value
+   * { @link AlloyRecipeManager#addCustomRecipes(String)} with the string value
    * of the message.
    */
   public static final String ALLOY_RECIPE = "recipe:alloysmelter";
 
   /**
    * Key for a string message to add Enchanter recipes. Calls
-   * {@link EnchanterRecipeManager#addCustomRecipes(String)} with the string
+   * { @link EnchanterRecipeManager#addCustomRecipes(String)} with the string
    * value of the message. The supplied xml is treated as if it was loaded from
    * EnchanterRecipes_User.xm.
    */
@@ -51,14 +51,14 @@ public final class IMC {
 
   /**
    * Key for a string message to add Slice'N'Splice recipes. Calls
-   * {@link SliceAndSpliceRecipeManager#addCustomRecipes(String)} with the
+   * { @link SliceAndSpliceRecipeManager#addCustomRecipes(String)} with the
    * string value of the message.
    */
   public static final String SLINE_N_SPLICE_RECIPE = "recipe:slicensplice";
 
   /**
    * Key for an NBT message to add Soul Binder recipes. Calls
-   * {@link SoulBinderRecipeManager#addRecipeFromNBT(net.minecraft.nbt.NBTTagCompound)}
+   * { @link SoulBinderRecipeManager#addRecipeFromNBT(net.minecraft.nbt.NBTTagCompound)}
    * with the NBT value of the message.
    */
   public static final String SOUL_BINDER_RECIPE = "recipe:soulbinder";
@@ -66,20 +66,20 @@ public final class IMC {
   /**
    * Key for an ItemStack message to add an item to the Painters paint source
    * whitelist. Calls
-   * {@link PaintSourceValidator#addToWhitelist(net.minecraft.item.ItemStack)}
+   * { @link PaintSourceValidator#addToWhitelist(net.minecraft.item.ItemStack)}
    */
   public static final String PAINTER_WHITELIST_ADD = "painter:whitelist:add";
 
   /**
    * Key for an ItemStack message to add an item to the Painters paint source
    * blacklist. Calls
-   * {@link PaintSourceValidator#addToBlacklist(net.minecraft.item.ItemStack)}
+   * { @link PaintSourceValidator#addToBlacklist(net.minecraft.item.ItemStack)}
    */
   public static final String PAINTER_BLACKLIST_ADD = "painter:blacklist:add";
 
   /**
    * Key for a string message to add an entity to the Powered Spawner blacklist.
-   * Calls {@link PoweredSpawnerConfig#addToBlacklist(String)} with the string
+   * Calls { @link PoweredSpawnerConfig#addToBlacklist(String)} with the string
    * value of the message.
    */
   public static final String POWERED_SPAWNER_BLACKLIST_ADD = "poweredSpawner:blacklist:add";
@@ -87,28 +87,28 @@ public final class IMC {
   /**
    * Key for an NBT message to specify a cost multiplier for spawning an entity
    * in the Powered Spawner. Calls
-   * {@link PoweredSpawnerConfig#addEntityCostFromNBT(net.minecraft.nbt.NBTTagCompound)}
+   * { @link PoweredSpawnerConfig#addEntityCostFromNBT(net.minecraft.nbt.NBTTagCompound)}
    * with the NBT value of the message.
    */
   public static final String POWERED_SPAWNER_COST_MULTIPLIER = "poweredSpawner:costMultiplier";
 
   /**
    * Key for a string message to add an entity to the Soul Vial blacklist. Calls
-   * {@link ItemSoulVessel#addEntityToBlackList(String)} with the string value
+   * { @link ItemSoulVessel#addEntityToBlackList(String)} with the string value
    * of the message.
    */
   public static final String SOUL_VIAL_BLACKLIST = "soulVial:blacklist:add";
 
   /**
    * Key for an NBT message to register a fluid fuel. Calls
-   * {@link FluidFuelRegister#addFuel(net.minecraft.nbt.NBTTagCompound)} with
+   * { @link FluidFuelRegister#addFuel(net.minecraft.nbt.NBTTagCompound)} with
    * the NBT value of the message.
    */
   public static final String FLUID_FUEL_ADD = "fluidFuel:add";
 
   /**
    * Key for an NBT message to register a fluid coolant. Calls
-   * {@link FluidFuelRegister#addCoolant(net.minecraft.nbt.NBTTagCompound)} with
+   * { @link FluidFuelRegister#addCoolant(net.minecraft.nbt.NBTTagCompound)} with
    * the NBT value of the message.
    */
   public static final String FLUID_COOLANT_ADD = "fluidCoolant:add";
@@ -117,7 +117,7 @@ public final class IMC {
    * Key for a string message to add a block to the list of blocks that cannot
    * be teleported through using the Staff of Travel or Dark Steel Travel
    * Upgrade. Value must be in the form: 'modid:blockName' Calls
-   * {@link TravelController#addBlockToBlinkBlackList(String)} with the string
+   * { @link TravelController#addBlockToBlinkBlackList(String)} with the string
    * value of the message.
    */
   public static final String TELEPORT_BLACKLIST_ADD = "teleport:blacklist:add";
@@ -125,7 +125,7 @@ public final class IMC {
   /**
    * Key for an NBT message to register a block or tile entity as connectable to
    * insulated redstone conduits. Calls
-   * {@link InsulatedRedstoneConduit#addConnectableBlock(net.minecraft.nbt.NBTTagCompound)}
+   * { @link InsulatedRedstoneConduit#addConnectableBlock(net.minecraft.nbt.NBTTagCompound)}
    * with the NBT value of the message.
    */
   public static final String REDSTONE_CONNECTABLE_ADD = "redstone:connectable:add";

@@ -72,7 +72,7 @@ public class FluxGearConfigTweaks {
 		//invarBloodSigil = config.get("Blood Magic Tweaks", "Invar Fast Miner Sigil", true, "Sigil of the Fast Miner requires Invar tools instead of Iron ones.").getBoolean(true);
 
 		//stoneChanging = config.get("Multi-mod Tweaks", "Stone Transmutation", true, "Allow Mystical Stone Transmutation Paste.").getBoolean(true);
-		//oreDictStuff = config.get("Multi-mod Tweaks", "OreDict Stuff", true, "Adds various things to the Ore Dictionary.").getBoolean(true);
+		//aluminiumArc = config.get("Multi-mod Tweaks", "OreDict Stuff", true, "Adds various things to the Ore Dictionary.").getBoolean(true);
 
 		//osmiumIO = config.get("Enderio Tweaks", "OsmiumIO", false, "Machine Chassis use Osmium.").getBoolean(false);
 

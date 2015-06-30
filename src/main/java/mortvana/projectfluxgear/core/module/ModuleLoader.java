@@ -10,7 +10,7 @@ import mortvana.projectfluxgear.decor.common.FluxGearDecor;
 import mortvana.projectfluxgear.oreberries.common.Oreberries;
 import mortvana.projectfluxgear.tech.common.FluxGearTech;
 import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
-import mortvana.projectfluxgear.tinker.common.TinkersArmory;
+import mortvana.projectfluxgear.tinkers.common.TinkersArmory;
 import mortvana.projectfluxgear.tweaks.common.MortTweaks;
 import mortvana.projectfluxgear.world.common.FluxGearWorld;
 

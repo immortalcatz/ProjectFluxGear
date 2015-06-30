@@ -20,11 +20,11 @@ public class TransmitterNetworkRegistry
 	private static TransmitterNetworkRegistry INSTANCE = new TransmitterNetworkRegistry();
 	private static boolean loaderRegistered = false;
 
-	private HashSet<DynamicNetwork> networks = new HashSet<>();
-	private HashSet<DynamicNetwork> networksToChange = new HashSet<>();
+	private HashSet<DynamicNetwork> networks = new HashSet<DynamicNetwork>();
+	private HashSet<DynamicNetwork> networksToChange = new HashSet<DynamicNetwork>();
 
-	private HashSet<IGridTransmitter> invalidTransmitters = new HashSet<>();
-	private HashMap<Coord4D, IGridTransmitter> orphanTransmitters = new HashMap<>();
+	private HashSet<IGridTransmitter> invalidTransmitters = new HashSet<IGridTransmitter>();
+	private HashMap<Coord4D, IGridTransmitter> orphanTransmitters = new HashMap<Coord4D, IGridTransmitter>();
 
 	private Logger logger = LogManager.getLogger("MekanismTransmitters");
 
@@ -148,7 +148,7 @@ public class TransmitterNetworkRegistry
 	{
 		if(startOrphan.isValid() && startOrphan.isOrphan())
 		{
-			OrphanPathFinder<A, N> finder = new OrphanPathFinder<>(startOrphan);
+			OrphanPathFinder<A, N> finder = new OrphanPathFinder<A, N>(startOrphan);
 			finder.start();
 			N network;
 			
@@ -208,10 +208,10 @@ public class TransmitterNetworkRegistry
 	{
 		public IGridTransmitter<A, N> startPoint;
 
-		public HashSet<Coord4D> iterated = new HashSet<>();
+		public HashSet<Coord4D> iterated = new HashSet<Coord4D>();
 
-		public HashSet<IGridTransmitter<A, N>> connectedTransmitters = new HashSet<>();
-		public HashSet<N> networksFound = new HashSet<>();
+		public HashSet<IGridTransmitter<A, N>> connectedTransmitters = new HashSet<IGridTransmitter<A, N>>();
+		public HashSet<N> networksFound = new HashSet<N>();
 
 		public OrphanPathFinder(IGridTransmitter<A, N> start)
 		{

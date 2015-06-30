@@ -1,7 +1,7 @@
 package com.cricketcraft.chisel.api;
 
-import com.cricketcraft.chisel.carving.CarvableHelper;
-import com.cricketcraft.chisel.carving.CarvableVariation;
+//import com.cricketcraft.chisel.carving.CarvableHelper;
+//import com.cricketcraft.chisel.carving.CarvableVariation;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
@@ -11,10 +11,11 @@ import net.minecraft.world.IBlockAccess;
  */
 public interface ICarvable {
 
+	//TODO: Have Drullkus slap Cricket, no exceptions :V
 	/**
-	 * Gets a {@link CarvableVariation} from this block, based on metadata.
+	 * Gets a { @link CarvableVariation} from this block, based on metadata.
 	 * <p>
-	 * Typically you can refer this method to {@link CarvableHelper#getVariation(int)} but this method is provided for more complex metadata handling.
+	 * Typically you can refer this method to { @link CarvableHelper#getVariation(int)} but this method is provided for more complex metadata handling.
 	 * 
 	 * @param metadata
 	 *            The metadata of the block
@@ -28,16 +29,16 @@ public interface ICarvable {
 	 *            Z coord of the block
 	 * @param metadata
 	 *            The metadata of the block
-	 * @return The {@link CarvableVariation} that represents this block in the world.
+	 * @return The { @link CarvableVariation} that represents this block in the world.
 	 */
-	public CarvableVariation getVariation(IBlockAccess world, int x, int y, int z, int metadata);
+	//public CarvableVariation getVariation(IBlockAccess world, int x, int y, int z, int metadata);
 
 	/**
-	 * Gets the {@link CarvableVariation} for this block when it is in item form.
+	 * Gets the { @link CarvableVariation} for this block when it is in item form.
 	 * 
 	 * @param stack
 	 *            The {@link ItemStack} representing this block;
-	 * @return A {@link CarvableVariation}
+	 * @return A { @link CarvableVariation}
 	 */
-	public CarvableVariation getVariation(ItemStack stack);
+	//public CarvableVariation getVariation(ItemStack stack);
 }

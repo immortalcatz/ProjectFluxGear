@@ -14,6 +14,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
+
 @Deprecated
 public class BucketEventManager {
 	protected Map<ImmutablePair<Block, Integer>, ItemStack> fluidToBucket;
@@ -30,6 +31,7 @@ public class BucketEventManager {
 			return true;
 		}
 	}
+
 	@SubscribeEvent
 	public void bucketFill(FillBucketEvent event) {
 		if(!event.world.isRemote){ //Prevent stupid shit in single player.
@@ -46,14 +48,8 @@ public class BucketEventManager {
 					event.setResult(Result.ALLOW);
 					//Set the block to 0 so we don't just have infinite liquid.
 					event.world.setBlock(target.blockX, target.blockY, target.blockZ, Blocks.air);
-				} else {
-					//Nothing we recognize.
-					return;
-				}
-			} else {
-				//Not an acceptable event.
-				return;
-			}
+				} //Nothing we recognize.
+			} //Not an acceptable event.
 		}
 	}
 }

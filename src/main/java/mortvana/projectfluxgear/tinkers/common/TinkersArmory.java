@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.tinker.common;
+package mortvana.projectfluxgear.tinkers.common;
 
 import cpw.mods.fml.common.event.*;
 

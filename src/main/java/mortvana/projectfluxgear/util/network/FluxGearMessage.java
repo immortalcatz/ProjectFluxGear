@@ -149,7 +149,7 @@ public abstract class FluxGearMessage {
 		if (fluid == null) {
 			target.writeShort(-1);
 		} else {
-			target.writeShort(fluid.fluidID);
+			target.writeShort(fluid.getFluidID());
 			target.writeInt(fluid.amount);
 			writeNBTTagCompound(target, fluid.tag);
 		}

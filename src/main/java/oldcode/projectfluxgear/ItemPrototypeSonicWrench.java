@@ -71,7 +71,7 @@ import pneumaticCraft.api.block.IPneumaticWrenchable;
 public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearAdvOmniwrench {
 
 	public ItemPrototypeSonicWrench() {
-		super("mortvana/fluxgearzee");
+		super("oldcode/experditio");
 		setCreativeTab(CreativeTabs.tabTools);
 		setMaxStackSize(1);
 	}

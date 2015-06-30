@@ -36,7 +36,8 @@ public class DynamicMaterialRegistry {
 
 	/**
 	 * Sorts entries after the have been initialized, call after you register your blocks in *INIT*
-	 * This gets automatically called once during postInit, in case some dummy forgets to call it during init
+	 * This gets automatically called once during postInit,
+	 * in case some dummy (we all make mistakes) forgets to call it during init.
 	 */
 	public void sortEntries() {
 		for (MaterialEntry entry : entriesToSort) {
@@ -168,9 +169,9 @@ public class DynamicMaterialRegistry {
 		for (Entry<Integer, MaterialEntry> materials : materialMap.entrySet()) {
 			ItemStack itemstack = new ItemStack(block, 1, materials.getKey());
 			for (String oreDictEntry : materials.getValue().materialOreDict) {
-				OreDictionary.registerOre(oreDictEntry, itemstack);
+				OreDictionary.registerOre("block" + oreDictEntry, itemstack);
 			}
-			GameRegistry.registerCustomItemStack(materials.getValue().materialName, itemstack);
+			GameRegistry.registerCustomItemStack("block" + materials.getValue().materialName, itemstack);
 			FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", itemstack);
 		}
 	}

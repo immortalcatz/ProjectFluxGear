@@ -23,13 +23,13 @@ import cpw.mods.fml.common.eventhandler.Event;
 
 public abstract class DynamicNetwork<A, N extends DynamicNetwork<A, N>> implements IClientTicker, INetworkDataHandler
 {
-	public LinkedHashSet<IGridTransmitter<A, N>> transmitters = new LinkedHashSet<>();
-	public LinkedHashSet<IGridTransmitter<A, N>> transmittersToAdd = new LinkedHashSet<>();
-	public LinkedHashSet<IGridTransmitter<A, N>> transmittersAdded = new LinkedHashSet<>();
+	public LinkedHashSet<IGridTransmitter<A, N>> transmitters = new LinkedHashSet<IGridTransmitter<A, N>>();
+	public LinkedHashSet<IGridTransmitter<A, N>> transmittersToAdd = new LinkedHashSet<IGridTransmitter<A, N>>();
+	public LinkedHashSet<IGridTransmitter<A, N>> transmittersAdded = new LinkedHashSet<IGridTransmitter<A, N>>();
 
 	public HashMap<Coord4D, A> possibleAcceptors = new HashMap<Coord4D, A>();
 	public HashMap<Coord4D, EnumSet<ForgeDirection>> acceptorDirections = new HashMap<Coord4D, EnumSet<ForgeDirection>>();
-	public HashMap<IGridTransmitter<A, N>, EnumSet<ForgeDirection>> changedAcceptors = new HashMap<>();
+	public HashMap<IGridTransmitter<A, N>, EnumSet<ForgeDirection>> changedAcceptors = new HashMap<IGridTransmitter<A, N>, EnumSet<ForgeDirection>>();
 
 	private Set<DelayQueue> updateQueue = new LinkedHashSet<DelayQueue>();
 

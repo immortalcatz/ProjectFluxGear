@@ -31,9 +31,9 @@ public class BlockHelper {
 	public static final byte[] ROTATE_COUNTER_Y = new byte[]{(byte)0, (byte)1, (byte)5, (byte)4, (byte)2, (byte)3};
 	public static final byte[] ROTATE_COUNTER_Z = new byte[]{(byte)4, (byte)5, (byte)2, (byte)3, (byte)1, (byte)0};
 	public static final byte[] ROTATE_COUNTER_X = new byte[]{(byte)3, (byte)2, (byte)0, (byte)1, (byte)4, (byte)5};
-	public static final byte[] INVERT_AROUND_Y = new byte[]{ 0, (byte)1, (byte)3, (byte)2, (byte)5, (byte)4};
-	public static final byte[] INVERT_AROUND_Z = new byte[]{(byte)1, (byte)0, (byte)2, (byte)3, (byte)5, (byte)4};
-	public static final byte[] INVERT_AROUND_X = new byte[]{(byte)1, (byte)0, (byte)3, (byte)2, (byte)4, (byte)5};
+	public static final byte[] INVERT_AROUND_Y = new byte[]{ 0, 1, 3, 2, 5, 4};
+	public static final byte[] INVERT_AROUND_Z = new byte[]{ 1, 0, 2, 3, 5, 4};
+	public static final byte[] INVERT_AROUND_X = new byte[]{ 1, 0, 3, 2, 4, 5};
 	public static final byte[][] ICON_ROTATION_MAP = new byte[6][];
 
 	private BlockHelper() {

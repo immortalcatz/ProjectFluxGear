@@ -42,6 +42,7 @@ public class LoadedHelper {
 	public static boolean isChromatiCraftLoaded = Loader.isModLoaded("ChromatiCraft");
 	public static boolean isBoPLoaded = Loader.isModLoaded("BiomesOPlenty");
 	public static boolean isReliquaryLoaded = Loader.isModLoaded("xreliquary");
+	public static boolean isBotaniaLoaded = Loader.isModLoaded("Botania");
 
 	//Planned Stuff
 	public static boolean isDragonAPILoaded = Loader.isModLoaded("DragonAPI");

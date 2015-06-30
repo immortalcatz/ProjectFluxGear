@@ -22,8 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 import mortvana.projectfluxgear.core.common.ProjectFluxGear;
-import mortvana.projectfluxgear.util.helpers.StringHelper.*;
-import oldcode.projectfluxgear.StringHelper;
+import mortvana.projectfluxgear.util.helpers.StringHelper.EnumTextCasing;
 
 public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 
@@ -330,17 +329,17 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 				for (Entry<Integer, String> textures : textureNames.entrySet()) {
 					Integer metadata = textures.getKey();
 					String texture = textures.getValue();
-					IIcon icon = register.registerIcon(textureBase + StringHelper.camelCase(texture));
+					IIcon icon = register.registerIcon(textureBase + camelCase(texture));
 					blockIcons.put(metadata, icon);
 				}
 
-			case TITLE:
+			/*case TITLE:
 				for (Entry<Integer, String> textures : textureNames.entrySet()) {
 					Integer metadata = textures.getKey();
 					String texture = textures.getValue();
 					IIcon icon = register.registerIcon(textureBase + StringHelper.titleCase(texture));
 					blockIcons.put(metadata, icon);
-				}
+				}*/
 
 			/*case CAPITAL:
 				for (Entry<Integer, String> textures : textureNames.entrySet()) {
@@ -358,5 +357,10 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 					blockIcons.put(metadata, icon);
 				}*/
 		}
+	}
+
+	//Temporary
+	public static String camelCase(String var0) {
+		return var0.substring(0, 1).toLowerCase() + var0.substring(1);
 	}
 }

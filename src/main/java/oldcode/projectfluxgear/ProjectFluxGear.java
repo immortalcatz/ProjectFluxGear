@@ -13,7 +13,6 @@ import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod.*;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -27,6 +26,7 @@ import cofh.core.world.WorldHandler;
 
 import mortvana.projectfluxgear.core.common.FluxGearAchievements;
 import mortvana.projectfluxgear.util.helpers.LoadedHelper;
+import mortvana.projectfluxgear.util.helpers.TinkersHelper;
 
 public class ProjectFluxGear {
     public static final PacketPipeline packetPipeline = new PacketPipeline();
@@ -94,6 +94,7 @@ public class ProjectFluxGear {
 	        FluxGearAchievements.addAchievements();
         }
 
+	    MinecraftForge.EVENT_BUS.register(new FluxGearEvents());
     }
 
     @EventHandler
@@ -136,6 +137,7 @@ public class ProjectFluxGear {
 
     @EventHandler
     public void postInit (FMLPostInitializationEvent event) {
+	    TinkersHelper.addMaterialRenderMappings(event, ExPConfig.tinkersID_Plasteel, ExPConfig.tinkersID_ManaMithral, ExPConfig.tinkersID_Enderium, ExPConfig.tinkersID_Lumium, ExPConfig.tinkersID_Signalum);
 
 	    blacklistedBlocks = FluxGearConfig.blacklistedBlocks;
 	    blacklistedTiles = FluxGearConfig.blacklistedTiles;
@@ -154,6 +156,11 @@ public class ProjectFluxGear {
         packetPipeline.postInitialize();
 
     }
+
+	@EventHandler
+	public void loadComplete(FMLLoadCompleteEvent event) {
+
+	}
 
     @EventHandler
     public void remapEvent (FMLMissingMappingsEvent event) {
@@ -181,7 +188,7 @@ public class ProjectFluxGear {
 			logger.error("Could not find block: " + string + ", ignoring");
 			return;
 		}
-		logger.error("Blacklisting block: " + block.getUnlocalizedName());
+		logger.info("Blacklisting block: " + block.getUnlocalizedName());
 		TileTimeyWimey.blacklistBlock(block);
 	}
 
@@ -217,16 +224,16 @@ public class ProjectFluxGear {
 		try {
 			Class<?> clazz = this.getClass().getClassLoader().loadClass(string);
 			if (clazz == null) {
-				System.out.println("Class null: " + string);
+				logger.error("Class null: " + string);
 				return;
 			}
 			if (!TileEntity.class.isAssignableFrom(clazz)) {
-				System.out.println("Class not a TileEntity: " + string);
+				logger.error("Class not a TileEntity: " + string);
 				return;
 			}
 			TileTimeyWimey.blacklistTile((Class<? extends TileEntity>) clazz);
 		} catch (ClassNotFoundException e) {
-			System.out.println("Class not found: " + string + ", ignoring");
+			logger.error("Class not found: " + string + ", ignoring");
 		}
 	}
 
@@ -234,7 +241,7 @@ public class ProjectFluxGear {
 	public void imcMessage(FMLInterModComms.IMCEvent event) {
 		for (FMLInterModComms.IMCMessage message : event.getMessages()) {
 			if (!message.isStringMessage()) {
-				System.out.println("Received non-string message! Ignoring");
+				logger.error("Received non-string message! Ignoring");
 				continue;
 			}
 			final String string = message.getStringValue();

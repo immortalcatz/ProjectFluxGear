@@ -1,44 +1,21 @@
 package oldcode.projectfluxgear;
 
-import java.util.*;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.*;
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.*;
-import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.*;
-import cpw.mods.fml.relauncher.*;
 
-import net.minecraftforge.common.*;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.event.entity.living.*;
 
-import baubles.api.*;
 import mortvana.projectfluxgear.util.enums.EnumArmorType;
 import oldcode.projectfluxgear.BlockWitor.TileWitor;
-import thaumcraft.api.*;
-import thaumcraft.api.aspects.*;
-import thaumcraft.api.crafting.*;
-import thaumcraft.api.entities.*;
-import thaumcraft.api.research.*;
-import thaumcraft.api.wands.*;
 import thaumcraft.common.Thaumcraft;
-import thaumcraft.common.config.*;
-import thaumcraft.common.entities.monster.*;
 import thaumcraft.common.entities.monster.boss.EntityCultistLeader;
 import thaumcraft.common.items.wands.ItemWandCasting;
 
@@ -1223,7 +1200,16 @@ public class ThaumicContent {
 
 		@Override
 		public ResearchItem setPages(ResearchPage... pages) {
-			boolean checkInfusion = true;
+			for (ResearchPage page : pages) {
+				if (page.type == ResearchPage.PageType.TEXT) {
+					page.text = "fluxgearresearch.page." + key + "." + page.text + ".text";
+				}
+			}
+			checkInfusion(true, pages);
+			return super.setPages(pages);
+		}
+
+		public ResearchItem setPages(boolean checkInfusion, ResearchPage... pages) {
 			for (ResearchPage page : pages) {
 				if (page.type == ResearchPage.PageType.TEXT) {
 					page.text = "fluxgearresearch.page." + key + "." + page.text + ".text";
@@ -1233,28 +1219,17 @@ public class ThaumicContent {
 			return super.setPages(pages);
 		}
 
-		public ResearchItem setPages(boolean checkInfusion, ResearchPage... pages) {
-			boolean infusion = checkInfusion;
-			for (ResearchPage page : pages) {
-				if (page.type == ResearchPage.PageType.TEXT) {
-					page.text = "fluxgearresearch.page." + key + "." + page.text + ".text";
-				}
-			}
-			checkInfusion(infusion, pages);
-			return super.setPages(pages);
-		}
-
 		public void checkInfusion(boolean checkInfusion, ResearchPage... pages) {
-			boolean infusion = checkInfusion;
 			for (ResearchPage page : pages) {
-				if (infusion && page.type == ResearchPage.PageType.INFUSION_CRAFTING) {
+				if (checkInfusion && page.type == ResearchPage.PageType.INFUSION_CRAFTING) {
 					if (parentsHidden == null || parentsHidden.length == 0)
 						parentsHidden = new String[] { "INFUSION" };
 					else {
 						String[] newParents = new String[parentsHidden.length + 1];
 						newParents[0] = "INFUSION";
-						for (int i = 0; i < parentsHidden.length; i++)
+						for (int i = 0; i < parentsHidden.length; i++) {
 							newParents[i + 1] = parentsHidden[i];
+						}
 						parentsHidden = newParents;
 					}
 				}

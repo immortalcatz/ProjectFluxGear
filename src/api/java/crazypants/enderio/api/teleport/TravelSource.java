@@ -1,11 +1,11 @@
 package crazypants.enderio.api.teleport;
 
-import crazypants.enderio.EnderIO;
-import crazypants.enderio.config.Config;
+//import com.enderio.EnderIO;
+//import com.enderio.config.Config;
 
-public enum TravelSource {
+public enum TravelSource { //TODO: Fix
 
-  BLOCK(0, Config.travelAnchorMaxDistance),
+  /*BLOCK(0, Config.travelAnchorMaxDistance),
   STAFF(Config.travelStaffPowerPerBlockRF, Config.travelStaffMaxDistance),
   STAFF_BLINK(Config.travelStaffPowerPerBlockRF, Config.travelStaffMaxBlinkDistance),
   TELEPAD(0, 0, EnderIO.MODID + ":telepad.teleport");
@@ -36,6 +36,6 @@ public enum TravelSource {
 
   public boolean getConserveMomentum() {
     return this == STAFF_BLINK;
-  }
+  }*/
 
 }
