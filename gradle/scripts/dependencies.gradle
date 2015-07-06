@@ -88,18 +88,18 @@ dependencies {
     compile "mcp.mobius.waila:Waila:${WAILA_version}_${minecraft_version}:dev" //exclude group: 'mcp.mobius.waila'
     compile "mcp.mobius.jabba:Jabba:${JABBA_version}_${minecraft_version}:dev"
     compile "net.industrial-craft:industrialcraft-2:${ic2_version}-experimental:dev"
-    compile "tterrag.core:ttCore:MC${minecraft_version}-${ttCore_version}:deobf"
-    compile "com.enderio:EnderIO:${minecraft_version}-${enderio_version}:dev"
     compile "com.enderio.core:EnderCore:${minecraft_version}-${endercore_version}:dev"
+    compile "com.enderio:EnderIO:${minecraft_version}-${enderio_version}:dev"
     compile "net.sengir.forestry:forestry_${minecraft_version}:${forestry_version}:dev"
-    compile "net.mcft.copy.betterstorage:BetterStorage:${minecraft_version}-${betterStorage_version}:deobf"
+    //compile "net.mcft.copy.betterstorage:BetterStorage:${minecraft_version}-${betterStorage_version}:deobf"
     compile "inventorytweaks:InventoryTweaks:${invtweaks_version}:deobf"
-    compile "li.cil.oc:OpenComputers:MC${minecraft_version}-${openComputers_version}:dev"
+    //compile "li.cil.oc:OpenComputers:MC${minecraft_version}-${openComputers_version}:dev"
     compile "com.mod-buildcraft:buildcraft:${buildcraft_version}:dev"
 
     // FireBall's APIs
+    // Unused by default
     compile "li.cil.oc:OpenComputers:MC${minecraft_version}-${openComputers_version}:api"
-    compile "net.industrial-craft:industrialcraft-2:${ic2_version}-experimental:api"
+    //compile "net.industrial-craft:industrialcraft-2:${ic2_version}-experimental:api"
     compile "net.mcft.copy.betterstorage:BetterStorage:${minecraft_version}-${betterStorage_version}:api"
 
     /*// self compiled APIs

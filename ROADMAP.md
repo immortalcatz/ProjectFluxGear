@@ -27,4 +27,5 @@
 * Jetpacks!
 * Powered Tools and Armor!
 * Guide Book and Warden's Tome
-
+* OreGen and recipes moved to .json files
+* Ability to add Materials, Ores (for processing), and Transmutations via .json files

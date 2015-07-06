@@ -1,4 +1,4 @@
-package oldcode.projectfluxgear;
+package mortvana.projectfluxgear.util.inventory;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -7,9 +7,9 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class FluxGearTab extends CreativeTabs{
+public class FluxGearCreativeTab extends CreativeTabs {
 
-	public FluxGearTab(String internalName, String label, ItemStack icon) {
+	public FluxGearCreativeTab(String internalName, String label, ItemStack icon) {
 		super(internalName);
 		name = label;
 		display = icon;
