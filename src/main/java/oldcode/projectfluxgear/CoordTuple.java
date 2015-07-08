@@ -13,10 +13,7 @@ public class CoordTuple implements Comparable {
 	}
 
 	public boolean equalCoords (int posX, int posY, int posZ) {
-		if (this.x == posX && this.y == posY && this.z == posZ)
-			return true;
-		else
-			return false;
+		return this.x == posX && this.y == posY && this.z == posZ;
 	}
 
 	@Override

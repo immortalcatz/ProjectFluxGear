@@ -10,7 +10,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.client.event.TextureStitchEvent;
 
-public class CommonProxy implements IGuiHandler, MessageBase.IFluxGearProxy {
+public class CommonProxy implements IGuiHandler {
 
 	public void registerEntities() {
     }
@@ -22,17 +22,6 @@ public class CommonProxy implements IGuiHandler, MessageBase.IFluxGearProxy {
     public void registerSound() {
     }
 
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent
-    public void registerIcons(TextureStitchEvent.Pre event) {
-
-    }
-
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent
-    public void initializeIcons(TextureStitchEvent.Post event) {
-
-    }
 
     /* IGuiHandler */
 
@@ -65,29 +54,4 @@ public class CommonProxy implements IGuiHandler, MessageBase.IFluxGearProxy {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	public void preInit() {	}
-
-	public void init() {}
-
-	public void postInit() {}
-
-	public void sendToAll(MessageBase message) {
-
-	}
-
-	public void sendToPlayer(MessageBase message, EntityPlayer player) {
-
-	}
-
-	public void sendToServer(MessageBase message) {
-
-	}
-
-	public boolean isSimulating(World world) {
-		return true;
-	}
-
-	public World getWorld() {
-		return null;
-	}
 }

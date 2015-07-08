@@ -1,4 +1,4 @@
-package oldcode.projectfluxgear;
+package mortvana.projectfluxgear.tweaks.util;
 
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;

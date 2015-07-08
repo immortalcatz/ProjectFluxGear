@@ -2,7 +2,7 @@ package oldcode.projectfluxgear;
 
 import java.util.Random;
 
-public class GyroDerpExeption extends Exception{
+public class GyroDerpExeption extends Exception {
 
     public GyroDerpExeption() {
         super();

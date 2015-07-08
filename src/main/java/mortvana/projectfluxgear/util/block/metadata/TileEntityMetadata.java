@@ -25,10 +25,12 @@ public class TileEntityMetadata extends TileEntity {
 
 	public boolean hasDropped = false;
 
+	@Override
 	public boolean canUpdate() {
 		return false;
 	}
 
+	@Override
 	public Packet getDescriptionPacket() {
 		if (metadata == oldMetadata) {
 			return null;
@@ -48,11 +50,13 @@ public class TileEntityMetadata extends TileEntity {
 		this.metadata = metadata;
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		metadata = nbt.getInteger("Metadata");
 	}
 
+	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setInteger("Metadata", metadata);

@@ -39,7 +39,7 @@ public class TileTimeyWimey extends TileEntity {
 		if (!isActive || mode == 0 || speed == 0) {
 			return;
 		}
-		if (cachedMode != this.mode){
+		if (cachedMode != mode){
 			xMin = xCoord - mode;
 			yMin = yCoord - 1;
 			zMin = zCoord - mode;

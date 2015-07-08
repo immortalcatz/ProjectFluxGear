@@ -7,6 +7,8 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
+import mortvana.projectfluxgear.thaumic.client.gui.GuiWaslieHammer;
+
 public class FluxGearGUIHandler implements IGuiHandler {
 
 	public static void init() {

@@ -12,6 +12,7 @@ import tconstruct.library.tools.ToolCore;
 
 public class ActiveToolModFeedback extends ActiveToolMod {
 
+	@Override
 	public void afterBlockBreak(ToolCore tool, ItemStack itemstack, Block block, int x, int y, int z, EntityLivingBase entity) {
 		super.afterBlockBreak(tool, itemstack, block, x, y, z, entity);
 
@@ -21,6 +22,7 @@ public class ActiveToolModFeedback extends ActiveToolMod {
 		}
 	}
 
+	@Override
 	public int attackDamage(int modDamage, int currentDamage, ToolCore tool, NBTTagCompound nbt, NBTTagCompound toolNBT, ItemStack itemstack, EntityLivingBase player, Entity entity) {
 		if (hasFeedback(itemstack)) {
 			entity.attackEntityFrom(DamageSource.outOfWorld, 5.0F);

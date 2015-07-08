@@ -262,9 +262,9 @@ public enum Elements {
     $Ma(0, 0, -100, -1, null, "Anti-Magic", false),
     $Nt(0, -100000, 0, -1, null, "Anti-Neutronium", false);
 
-    public static Element get(String aMaterialName) {
-        Object tObject = GT_Utility.getFieldContent(Element.class, materialName, false, false);
-        if (tObject != null && tObject instanceof Element) return (Element) tObject;
+    public static Elements get(String aMaterialName) {
+        Object tObject = GT_Utility.getFieldContent(Elements.class, materialName, false, false);
+        if (tObject != null && tObject instanceof Elements) return (Elements) tObject;
         return _NULL;
     }
 
@@ -284,7 +284,7 @@ public enum Elements {
      * @param decayTo         String representing the Elements it decays to. Separated by an '&' Character.
      * @param name            Name of the Element
      */
-    private Element(long protons, long neutrons, long additionalMass, long halfLifeSeconds, String decayTo, String name, boolean isIsotope) {
+    private Elements(long protons, long neutrons, long additionalMass, long halfLifeSeconds, String decayTo, String name, boolean isIsotope) {
         protons = protons;
         neutrons = neutrons;
         additionalMass = additionalMass;

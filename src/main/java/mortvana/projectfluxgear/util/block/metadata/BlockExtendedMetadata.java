@@ -45,6 +45,12 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 		super(material, tab, hardness, resistance);
 	}
 
+	@Override
+	public TileEntity createNewTileEntity(World world, int meta) {
+		return new TileEntityMetadata();
+	}
+
+	@Override
 	public Class<? extends TileEntity> getTileEntityClass() {
 		return TileEntityMetadata.class;
 	}
@@ -61,10 +67,12 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 		return ForgeHooks.canHarvestBlock(this, player, meta);
 	}
 
+	@Override
 	public int getDamageValue(World world, int x, int y, int z) {
 		return getDroppedMetadata(world, x, y, z, getMetadata(world, x, y, z), 0);
 	}
 
+	@Override
 	public int getHarvestLevel(int meta) {
 		if (harvestLevels.containsKey(meta)) {
 			return harvestLevels.get(meta);
@@ -75,6 +83,7 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 		}
 	}
 
+	@Override
 	public String getHarvestTool(int meta) {
 		if (harvestTools.containsKey(meta)) {
 			return harvestTools.get(meta);
@@ -85,6 +94,7 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 		}
 	}
 
+	@Override
 	public boolean isToolEffective(String type, int meta) {
 		if (harvestTools.containsKey(meta)) {
 			return harvestTools.get(meta).equals(type);
@@ -95,11 +105,13 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 		}
 	}
 
+	@Override
 	public void setHarvestLevel(String tool, int level) {
 		harvestLevels.put(WILDCARD, level);
 		harvestTools.put(WILDCARD, tool);
 	}
 
+	@Override
 	public void setHarvestLevel(String tool, int level, int meta) {
 		harvestLevels.put(meta, level);
 		harvestTools.put(meta, tool);
@@ -121,6 +133,7 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 		}
 	}
 
+	@Override
 	public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
 		int metadata = getMetadata(world, x, y, z);
 		float hardness = getBlockHardness(world, x, y, z);
@@ -134,6 +147,7 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 		}
 	}
 
+	@Override
 	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 		TileEntityMetadata tile = (TileEntityMetadata) world.getTileEntity(x, y, z);
@@ -154,6 +168,7 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 		return hasBeenBroken;
 	}
 
+	@Override
 	public void dropBlockAsItemWithChance(World world, int x, int y, int z, int meta, float chance, int fortune) {
 		TileEntityMetadata tile = (TileEntityMetadata) world.getTileEntity(x, y, z);
 		if (tile != null && !tile.hasDropped) {
@@ -162,6 +177,7 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 
 	}
 
+	@Override
 	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
 		ArrayList<ItemStack> stacks = new ArrayList<ItemStack>(); // Have some Retcon, courtesy of Captain Jack Harkness.
 		int count = quantityDropped(metadata, fortune, world.rand);
@@ -172,21 +188,25 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 		return stacks;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean addDestroyEffects(World world, int x, int y, int z, int meta, EffectRenderer renderer) {
 		return ParticleHelper.addBlockDestroyEffects(world, x, y, z, meta, renderer, this, getMetadata(world, x, y, z), 2);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean addHitEffects(World world, MovingObjectPosition target, EffectRenderer renderer) {
 		return ParticleHelper.addBlockHitEffects(world, target, renderer, getMetadata(world, target.blockX, target.blockY, target.blockZ), 2);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
 		return getIcon(side, getMetadata(world, x, y, z));
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister register) {
 	}

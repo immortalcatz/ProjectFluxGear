@@ -22,6 +22,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import cofh.core.fluid.BlockFluidCoFHBase;
 
+import mortvana.projectfluxgear.tweaks.util.TweakItemRegistry;
 import mortvana.projectfluxgear.util.helpers.CraftingHelper;
 import mortvana.projectfluxgear.util.helpers.LoadedHelper;
 import mortvana.projectfluxgear.util.helpers.TweakHelper;
@@ -2532,10 +2533,10 @@ public class FluxGearContent implements IFuelHandler {
         fluidBlood.setUnlocalizedName("fluidBlood");
 
         //Register fluids.
-        cr.RegisterFluid(fluidAcid);
-        cr.RegisterFluid(fluidBase);
+        cr.registerFluid(fluidAcid);
+        cr.registerFluid(fluidBase);
         //cr.RegisterFluid(fluidSmog);
-        cr.RegisterFluid(fluidBlood);
+        cr.registerFluid(fluidBlood);
 
         //Init fluid blocks.
         //Fluids used must be registered first.
@@ -2549,7 +2550,7 @@ public class FluxGearContent implements IFuelHandler {
                 return new BlockGasSmog(config, name, fluid);
             }
         }, "Smog", fluidSmog, smogDetailDefault);
-        cr.GeneralRegister(smogManager);
+        cr.generalRegister(smogManager);
         //Slaving multiple block IDs to one set of behavior is such a pain in this game.
         ((BlockGasSmog) smogManager.blocks.get(0)).setBlockAcid(acidBlock); /**/
 
@@ -2582,16 +2583,16 @@ public class FluxGearContent implements IFuelHandler {
         }/**/
 
         //Register normal fluid blocks
-        cr.RegisterBlock(acidBlock);
-        cr.RegisterBlock(baseBlock);
-        cr.RegisterBlock(bloodBlock);
+        cr.registerBlock(acidBlock);
+        cr.registerBlock(baseBlock);
+        cr.registerBlock(bloodBlock);
 
         BlockBase aluminiumSludge = new BlockBase("Aluminosilicate Sludge", Material.clay);
         aluminiumSludge.setBlockTextureName("gui:aluminosilicate_sludge");
         aluminiumSludge.harvestType = "shovel";
         aluminiumSludge.harvestLevel = 0;
         aluminiumSludge.setHardness(0.3F);
-        cr.RegisterBlock(aluminiumSludge);
+        cr.registerBlock(aluminiumSludge);
 
         ((BlockGasSmog) smogManager.blocks.get(0)).blockRust = blockRust;
         ((BlockGasSmog) smogManager.blocks.get(0)).metaRust = 0;
@@ -2601,7 +2602,7 @@ public class FluxGearContent implements IFuelHandler {
         BlockNitrateEngine nitrateEngineBlock = new BlockNitrateEngine("Nitrate Engine", Material.rock);
         nitrateEngineBlock.setBlockName("blockNitrateEngine");
         //nitrateEngineBlock.setWaste(fluidSmog);
-        cr.RegisterBlock(nitrateEngineBlock);
+        cr.registerBlock(nitrateEngineBlock);
 
         BlockBloodEngine bloodEngineBlock = new BlockBloodEngine("Hemoionic Dynamo", Material.rock);
         bloodEngineBlock.setBlockTextureName("gui:genericmachine");
@@ -2616,7 +2617,7 @@ public class FluxGearContent implements IFuelHandler {
         bloodEngineBlock.addSidesTextureName("gui:blood_tank_6");
         bloodEngineBlock.addSidesTextureName("gui:blood_tank_7");
         bloodEngineBlock.addSidesTextureName("gui:blood_tank_8");
-        cr.RegisterBlock(bloodEngineBlock);
+        cr.registerBlock(bloodEngineBlock);
 
         BlockBloodDonation donationBlock = new BlockBloodDonation("Blood Donation Station", Material.rock);
         donationBlock.setBlockName("blockBloodDonation");
@@ -2633,7 +2634,7 @@ public class FluxGearContent implements IFuelHandler {
         donationBlock.addSidesTextureName("gui:blood_tank_6");
         donationBlock.addSidesTextureName("gui:blood_tank_7");
         donationBlock.addSidesTextureName("gui:blood_tank_8");
-        cr.RegisterBlock(donationBlock);
+        cr.registerBlock(donationBlock);
 
         BlockOccultEngine occultEngineBlock = new BlockOccultEngine("Occult Engine", Material.rock);
         occultEngineBlock.setBlockTextureName("gui:occultengine_bottom");
@@ -2645,16 +2646,16 @@ public class FluxGearContent implements IFuelHandler {
         occultEngineBlock.addSidesTextureName("gui:occultengine_4");
         occultEngineBlock.addSidesTextureName("gui:occultengine_5");
         occultEngineBlock.addSidesTextureName("gui:occultengine_6");
-        cr.RegisterBlock(occultEngineBlock);
+        cr.registerBlock(occultEngineBlock);
 
         BlockGunpowderEngine gunpowderEngineBlock = new BlockGunpowderEngine("Blast Engine", Material.rock);
         gunpowderEngineBlock.setBlockName("blockGunpowderEngine");
-        cr.RegisterBlock(gunpowderEngineBlock);
+        cr.registerBlock(gunpowderEngineBlock);
 
         BlockFuelBurner fuelBurnerBlock = new BlockFuelBurner("Fuel Burner", Material.rock);
         fuelBurnerBlock.setBlockName("blockFuelBurner");
         fuelBurnerBlock.setBlockTextureName("gui:retardcube");
-        cr.RegisterBlock(fuelBurnerBlock);
+        cr.registerBlock(fuelBurnerBlock);
 
         //Init and register items.
         TileEntityGunpowderEngine.thermite = itemThermite;
@@ -2662,18 +2663,18 @@ public class FluxGearContent implements IFuelHandler {
         //Register chemistry.
         //Clay to slurry reaction.
         ReactionSpec clayDissolve = new ReactionSpec(fluidAcid, new ItemStack(Items.clay_ball), aluminiumSludge, null, false, true, 0, 4); //Require 4 clay and delete the clay item when the reaction takes place.
-        cr.RegisterReaction(clayDissolve);
+        cr.registerReaction(clayDissolve);
 
         //Alum to aluminum dust reaction.
         ReactionSpec alumDissolve = new ReactionSpec(fluidBase, new ItemStack(itemAlum), null, dustAluminium, true, false);
-        cr.RegisterReaction(alumDissolve);
+        cr.registerReaction(alumDissolve);
 
         //Acids and bases kill grass dead.
         ReactionSpec grassDissolveAcid = new ReactionSpec(fluidAcid, Blocks.grass, null, Blocks.dirt, false, true);
-        cr.RegisterReaction(grassDissolveAcid);
+        cr.registerReaction(grassDissolveAcid);
 
         ReactionSpec grassDissolveBase = new ReactionSpec(fluidBase, Blocks.grass, null, Blocks.dirt, false, true);
-        cr.RegisterReaction(grassDissolveBase);
+        cr.registerReaction(grassDissolveBase);
 
         ArrayList<ItemStack> aluminiumIngots = OreDictionary.getOres("ingotAluminium");
         aluminiumIngots.addAll(OreDictionary.getOres("ingotAluminum"));
@@ -2688,7 +2689,7 @@ public class FluxGearContent implements IFuelHandler {
                 aluminumDissolve.soluteMin = 1; //Should be 1 to 1
                 aluminumDissolve.soluteAffected = true;
                 aluminumDissolve.solventAffected = false;
-                cr.RegisterReaction(aluminumDissolve);
+                cr.registerReaction(aluminumDissolve);
             }
         }
 
@@ -2702,7 +2703,7 @@ public class FluxGearContent implements IFuelHandler {
                 aluminumDissolve.soluteMin = 1; //Should be 1 to 1
                 aluminumDissolve.soluteAffected = true;
                 aluminumDissolve.solventAffected = false;
-                cr.RegisterReaction(aluminumDissolve);
+                cr.registerReaction(aluminumDissolve);
             }
         }
 

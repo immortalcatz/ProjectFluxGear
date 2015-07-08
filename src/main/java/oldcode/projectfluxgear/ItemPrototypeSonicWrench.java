@@ -1,32 +1,33 @@
 package oldcode.projectfluxgear;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 import cofh.api.block.IDismantleable;
-import cofh.lib.audio.SoundBase;
 
 import Reika.RotaryCraft.API.Screwdriverable;
 import Reika.RotaryCraft.API.ShaftMachine;
 import ic2.api.tile.IWrenchable;
 import main.flowstoneenergy.core.interfaces.IFlowWrenchable;
+import mortvana.projectfluxgear.api.item.tool.wrench.EnumWrenchMode;
+import mortvana.projectfluxgear.api.item.tool.wrench.IFluxGearAdvOmniwrench;
+import mortvana.projectfluxgear.core.common.ProjectFluxGear;
+import mortvana.projectfluxgear.util.helpers.ServerHelper;
+import mortvana.projectfluxgear.util.helpers.WrenchingHelper;
 import pneumaticCraft.api.block.IPneumaticWrenchable;
 
 /*
@@ -40,6 +41,7 @@ import pneumaticCraft.api.block.IPneumaticWrenchable;
  *             Applied Energistics Wrench
  *             Mekanism Wrench
  *             Ender IO Compatable Facade Viewing Wrench
+ *             Flux Gear Standard Wrench
  *         Project:Red Screwdriver
  *         Hairy Spice Wrench
  *         Professor Flaxbeard's Wondrous Steam Power Mod Wrench
@@ -53,19 +55,32 @@ import pneumaticCraft.api.block.IPneumaticWrenchable;
  * Crude RotaryCraft Screwdriver
  *
  * Planned to Work as:
- * Carpenter's Blocks Chisel (Once I add modes)
- * Mekanism Configurator (Once I add modes)
+ * [API] Carpenter's Blocks Chisel (Once I add modes)
+ * [HARDCODE] Mekanism Configurator (Once I add modes)
  * Enhanced Portals Painter (Once I add modes)
  * Thaumcraft Wand (For Rotations)
  * Advanced EnderIO Support (Sometime in the future?)
- * Chisel Chisel (I don't care that it doesn't make sense!)
- * Applied Energistics Network Tool (Once I add modes)
+ * [API] Chisel Chisel (I don't care that it doesn't make sense!)
+ * [HARDCODE] Applied Energistics Network Tool (Once I add modes)
  * Project Flux Gear Paintbrush (Because we can, for the good of all of us, except the ones who are Gregs)
  *
  * May Work as:
- * Full RotaryCraft Screwdriver (If Reika made stuff streamlined enough to fully integrate, or I have nothing else to do... maybe someday...)
- * BiblioCraft Screwgun (No API :c)
- * BluePower Screwdriver (NO SCREWDRIVER API, MAYBE EVENTUALLY)
+ * [HARDCODE] Full RotaryCraft Screwdriver (If Reika made stuff streamlined enough to fully integrate, or I have nothing else to do... maybe someday...)
+ * [HARDCODE] BiblioCraft Screwgun (No API :c)
+ * [HARDCODE] BluePower Screwdriver (NO SCREWDRIVER API, MAYBE EVENTUALLY)
+ *
+ * Might Work as, because I am silly:
+ * Botania Wand of the Forest? (This wrench works as a chisel, so this is nothing new :P)
+ * Blood Magic Alchemy Tools (Science, yo... Well, alchemy... Actually it's alchemical wizardry)
+ * Thaumometer (Just why?)
+ * TE Multimeter (Actually makes sense...)
+ * IE Voltmeter thingy (Come on...)
+ * RoC Angular Transducer (Keep it up...)
+ * A way of healing (You've... What, what?)
+ * A geiger counter (Umm...)
+ * A walkman! (Shit, you're just going mad, Mortvana)
+ * That stupid Essentia Pipe thing
+ * A Golem bell (With Soaryn-grade dinging)
  */
 
 public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearAdvOmniwrench {
@@ -108,104 +123,75 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 		TileEntity tile = world.getTileEntity(x, y, z);
 		int meta = world.getBlockMetadata(x, y, z);
 
-		/* IDismantleable Compat */
-		if (ServerHelper.isServerWorld(world) && player.isSneaking() && block instanceof IDismantleable && ((IDismantleable) block).canDismantle(player, world, x, y, z)) {
-			((IDismantleable)block).dismantleBlock(player, world, x, y, z, false);
-			return true;
-		}
 
-		/* Crude RotaryCraft Screwdriver Support */
-		if (tile instanceof ShaftMachine) {
-			ShaftMachine machine = (ShaftMachine) tile;
-			machine.setIORenderAlpha(512);
-			world.markBlockForUpdate(x, y, z);
-		}
-		if (tile instanceof Screwdriverable) {
-			Screwdriverable screwdriverable = (Screwdriverable) tile;
-			boolean flag;
-			if (player.isSneaking()) {
-				flag = screwdriverable.onShiftRightClick(world, x, y, z, ForgeDirection.VALID_DIRECTIONS[hitSide]);
-			} else {
-				flag = screwdriverable.onRightClick(world, x, y, z, ForgeDirection.VALID_DIRECTIONS[hitSide]);
-			}
-			return flag;
-		}
-
-		/* Rotation Handling */
-		if (BlockHelper.canRotate(block)) {
-
-			if (player.isSneaking()) {
-				world.setBlockMetadataWithNotify(x, y, z, BlockHelper.rotateVanillaBlockAlt(world, block, x, y, z), 3);
-				//TODO: Fix
-				if (ServerHelper.isClientWorld(world)) {
-					String soundName = block.stepSound.getBreakSound();
-					FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.6F));
+		if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("Mode")) {
+			NBTTagCompound nbt = stack.stackTagCompound;
+			if (nbt.getByte("Mode") == EnumWrenchMode.STANDARD.ordinal()) {
+				/* IDismantleable Compat */
+				if (ServerHelper.isServerWorld(world) && player.isSneaking() && block instanceof IDismantleable && ((IDismantleable) block).canDismantle(player, world, x, y, z)) {
+					WrenchingHelper.handleDismantling(world, x, y, z, player, block);
 				}
-			} else {
-				world.setBlockMetadataWithNotify(x, y, z, BlockHelper.rotateVanillaBlock(world, block, x, y, z), 3);
-				//TODO: Fix
-				if (ServerHelper.isClientWorld(world)) {
-					String soundName = block.stepSound.getBreakSound();
-					FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.8F));
-				}
-			}
-			return ServerHelper.isServerWorld(world);
-		} else if (!player.isSneaking() && block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(hitSide))) {
-			player.swingItem();
-			return ServerHelper.isServerWorld(world);
-		}
 
-		/* Flowstone Energy Compat */
-		if (block instanceof IFlowWrenchable) {
-			if (player.isSneaking()) {
-				world.setBlockToAir(x, y, z);
-				if (ServerHelper.isServerWorld(world)) {
-					world.spawnEntityInWorld(new EntityItem(world, (double) x, (double) y, (double) z, new ItemStack(block, 1, meta)));
-				}
-			}
-		}
-
-		/* Industrial Craft 2 */
-		if (tile instanceof IWrenchable) {
-			IWrenchable wrenchable = (IWrenchable) tile;
-			if (player.isSneaking()) {
-				hitSide = BlockHelper.SIDE_OPPOSITE[hitSide];
-			}
-			if (wrenchable.wrenchCanSetFacing(player, hitSide)) {
-				if (ServerHelper.isServerWorld(world)) {
-					wrenchable.setFacing((short) hitSide);
-				}
-			} else if (wrenchable.wrenchCanRemove(player)) {
-				ItemStack dropBlock = wrenchable.getWrenchDrop(player);
-
-				if (dropBlock != null) {
-					world.setBlockToAir(x, y, z);
-					if (ServerHelper.isServerWorld(world)) {
-						List<ItemStack> drops = block.getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-						if (drops.isEmpty()) {
-							drops.add(dropBlock);
-						} else {
-							drops.set(0, dropBlock);
-						}
-						for (ItemStack drop : drops) {
-							float f = 1.0F;
-							double x2 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
-							double y2 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
-							double z2 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
-							EntityItem entity = new EntityItem(world, x + x2, y + y2, z + z2, drop);
-							entity.delayBeforeCanPickup = 10;
-							world.spawnEntityInWorld(entity);
-						}
+				/* Crude RotaryCraft Screwdriver Support */
+				if (nbt.hasKey("RotaryScrewdiver")) {
+					if (tile instanceof ShaftMachine) {
+						WrenchingHelper.handleShaftMachine(tile, world, x, y, z);
+					}
+					if (tile instanceof Screwdriverable) {
+						WrenchingHelper.handleScrewdriving(tile, world, x, y, z, player, hitSide);
 					}
 				}
+
+				/* Flowstone Energy Compat */
+				if (nbt.hasKey("FlowstoneEnergyWrench") && block instanceof IFlowWrenchable && player.isSneaking()) {
+					WrenchingHelper.handleFlowWrenching(world, x, y, z, block, meta);
+				}
+
+				/* Industrial Craft 2 */
+				if (nbt.hasKey("IndustrialCraftWrench") && tile instanceof IWrenchable) {
+					WrenchingHelper.handleIndustrialWrenching(tile, world, x, y, z, player, block, hitSide);
+				}
 			}
-			return ServerHelper.isServerWorld(world);
+
+			if (nbt.getByte("Mode") == EnumWrenchMode.CONFIGURATION.ordinal()) {
+
+			}
+
+			if (nbt.getByte("Mode") == EnumWrenchMode.ROTATION.ordinal()) {
+
+			}
+
+			if (nbt.getByte("Mode") == EnumWrenchMode.INFORMATION.ordinal()) {
+				/* Rotation Handling */
+				if (BlockHelper.canRotate(block)) {
+
+					if (player.isSneaking()) {
+						world.setBlockMetadataWithNotify(x, y, z, BlockHelper.rotateVanillaBlockAlt(world, block, x, y, z), 3);
+						//TODO: Fix
+						/*if (ServerHelper.isClientWorld(world)) {
+							String soundName = block.stepSound.getBreakSound();
+							FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.6F));
+						}*/
+					} else {
+						world.setBlockMetadataWithNotify(x, y, z, BlockHelper.rotateVanillaBlock(world, block, x, y, z), 3);
+						//TODO: Fix
+						/*if (ServerHelper.isClientWorld(world)) {
+							String soundName = block.stepSound.getBreakSound();
+							FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.8F));
+						}*/
+					}
+					return ServerHelper.isServerWorld(world);
+				} else if (!player.isSneaking() && block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(hitSide))) {
+					player.swingItem();
+					return ServerHelper.isServerWorld(world);
+				}
+			}
 		}
 
 		if (block instanceof IPneumaticWrenchable && ServerHelper.isServerWorld(world)) {
 			if (((IPneumaticWrenchable) block).rotateBlock(world, player, x, y, z, ForgeDirection.getOrientation(hitSide))) {
 				//TODO: Fix
-				NetworkHandler.sendToAllAround(new PacketPlaySound(Sounds.PNEUMATIC_WRENCH, x, y, z, 1.0F, 1.0F, false), world);
+				//NetworkHandler.sendToAllAround(new PacketPlaySound(Sounds.PNEUMATIC_WRENCH, x, y, z, 1.0F, 1.0F, false), world);
 				return true;
 			}
 		}
@@ -214,10 +200,11 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 
 	/* PneumaticCraft Drone Compat */
 	@Override
-	public boolean itemInteractionForEntity(ItemStack iStack, EntityPlayer player, EntityLivingBase entity){
-		if(!player.worldObj.isRemote) {
+	public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity) {
+		if(itemstack.hasTagCompound() && itemstack.stackTagCompound.hasKey("PneumaticWrench") && !player.worldObj.isRemote) {
 			if(entity.isEntityAlive() && entity instanceof IPneumaticWrenchable) {
 				if(((IPneumaticWrenchable)entity).rotateBlock(entity.worldObj, player, 0, 0, 0, ForgeDirection.UNKNOWN)) {
+					//TODO: Fix
 					//NetworkHandler.sendToAllAround(new PacketPlaySound(Sounds.PNEUMATIC_WRENCH, entity.posX, entity.posY, entity.posZ, 1.0F, 1.0F, false), entity.worldObj);
 					return true;
 				}
@@ -226,13 +213,38 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 		return false;
 	}
 
+	public boolean hasNBT(ItemStack itemstack, String nbtKey) {
+		return itemstack.getItem() instanceof ItemPrototypeSonicWrench && itemstack.hasTagCompound() && itemstack.getTagCompound().hasKey(nbtKey);
+	}
+
+	public boolean isMode(ItemStack itemstack, EnumWrenchMode... modes) {
+		for (EnumWrenchMode mode : modes) {
+			if (itemstack.getItem() instanceof ItemPrototypeSonicWrench) {
+				ItemPrototypeSonicWrench wrench = (ItemPrototypeSonicWrench) itemstack.getItem();
+				if (wrench.getWrenchMode(itemstack).equals(mode)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public EnumWrenchMode getWrenchMode(ItemStack wrench) {
+		if (wrench.getItem() instanceof ItemPrototypeSonicWrench && wrench.hasTagCompound() && wrench.stackTagCompound.hasKey("Mode")) {
+			return EnumWrenchMode.values() [wrench.stackTagCompound.getByte("Mode")];
+		} else {
+			return EnumWrenchMode.STANDARD;
+			ProjectFluxGear.logger.error("Your wrench lacks the proper NBT key for its mode. This shouldn't happen.");
+		}
+	}
+
 	/* ICarpentersHammer (Carpenter's Blocks) */
 	@Override
 	public void onHammerUse(World world, EntityPlayer player) {}
 
 	@Override
 	public boolean canUseHammer(World world, EntityPlayer player) {
-		return true;
+		return hasNBT(player.getCurrentEquippedItem(), "CarpentersHammer") && isMode(player.getCurrentEquippedItem(), EnumWrenchMode.STANDARD);
 	}
 
 	/* IScrewdriver (Project:Red) */
@@ -242,7 +254,7 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 	/* IToolCrowbar (RailCraft) */
 	@Override
 	public boolean canWhack(EntityPlayer player, ItemStack wrench, int x, int y, int z) {
-		return true;
+		return hasNBT(wrench, "RailcraftCrowbar") && isMode(wrench, EnumWrenchMode.STANDARD);
 	}
 
 	@Override
@@ -252,7 +264,7 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 
 	@Override
 	public boolean canLink(EntityPlayer player, ItemStack wrench, EntityMinecart cart) {
-		return player.isSneaking();
+		return player.isSneaking() && hasNBT(wrench, "RailcraftCrowbar") && isMode(wrench, EnumWrenchMode.STANDARD);
 	}
 
 	@Override
@@ -262,7 +274,7 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 
 	@Override
 	public boolean canBoost(EntityPlayer player, ItemStack wrench, EntityMinecart cart) {
-		return !player.isSneaking();
+		return !player.isSneaking() && hasNBT(wrench, "RailcraftCrowbar") && isMode(wrench, EnumWrenchMode.STANDARD);
 	}
 
 	@Override
@@ -282,7 +294,7 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 	/* IToolHammer (CoFH Mods) */
 	@Override
 	public boolean isUsable(ItemStack wrench, EntityLivingBase entityLiving, int x, int y, int z) {
-		return true;
+		return isMode(wrench, EnumWrenchMode.STANDARD);
 	}
 
 	@Override
@@ -291,19 +303,19 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 	/* IAEWrench (Applied Energistics 2) */
 	@Override
 	public boolean canWrench(ItemStack wrench, EntityPlayer player, int x, int y, int z) {
-		return true;
+		return hasNBT(wrench, "AEWrench") && isMode(wrench, EnumWrenchMode.STANDARD);
 	}
 
 	/* IWrench (Hairy Spice) */
 	@Override
 	public boolean isWrench(ItemStack wrench) {
-		return true;
+		return hasNBT(wrench, "HairySpiceWrench") && isMode(wrench, EnumWrenchMode.STANDARD);
 	}
 
 	/* IToolHammer (Extra Trees) */
 	@Override
 	public boolean isActive(ItemStack wrench) {
-		return true;
+		return hasNBT(wrench, "ExtraTreesHammer") && isMode(wrench, EnumWrenchMode.STANDARD);
 	}
 
 	@Override
@@ -312,18 +324,18 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 	/* IMekWrench (Mekanism) */
 	@Override
 	public boolean canUseWrench(EntityPlayer player, int x, int y, int z) {
-		return true;
+		return hasNBT(player.getCurrentEquippedItem(), "MekanismWrench") && isMode(player.getCurrentEquippedItem(), EnumWrenchMode.STANDARD);
 	}
 
 	/* ITool (Ender IO) */
 	@Override
 	public boolean canUse(ItemStack stack, EntityPlayer player, int x, int y, int z) {
-		return true;
+		return hasNBT(stack, "EnderIOWrench") && isMode(stack, EnumWrenchMode.STANDARD);
 	}
 
 	@Override
 	public boolean shouldHideFacades(ItemStack stack, EntityPlayer player) {
-		return true;
+		return hasNBT(stack, "EnderIOWrench") && hasNBT(stack, "HideFacades");
 	}
 
 	@Override
@@ -331,22 +343,18 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 
 	/* IFluxGearWrench (Project Flux Gear) */
 	@Override
-	public boolean isPFGWrench() {
-		return true;
+	public boolean isPFGWrench(ItemStack wrench) {
+		return isMode(wrench, EnumWrenchMode.STANDARD);
 	}
 
 	@Override
-	public void onLeftWhack() {}
+	public boolean hideFacades(ItemStack wrench) {
+		return hasNBT(wrench, "HideFacades");
+	}
 
 	@Override
-	public void onRightWhack() {}
+	public void onLeftClick() {}
 
 	@Override
-	public void onSneakLeftWhack() {}
-
-	@Override
-	public void onSneakRightWhack() {}
-
-	@Override
-	public void hideFacades() {}
+	public void onRightClick() {}
 }

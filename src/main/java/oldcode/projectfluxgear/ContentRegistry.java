@@ -74,20 +74,20 @@ public class ContentRegistry implements IFuelHandler {
         reactants = new ArrayList<IReactionReceiver>(8);
     }
 
-    public void GeneralRegister (Object reg) {
+    public void generalRegister (Object reg) {
         //Don't just silently break if we're overwriting things.
         if (reg instanceof IReactionReceiver) {
-            RegisterReactionReceiver((IReactionReceiver) reg);
+            registerReactionReceiver((IReactionReceiver) reg);
         }
     }
 
-    public void RegisterSounds (ISoundProvider prov) {
+    public void registerSounds (ISoundProvider prov) {
         soundNames.addAll(prov.getSounds());
     }
 
     //Automatically calls RegisterRegistrable if the fluid is a registrable.
-    public boolean RegisterFluid (Fluid fluid) {
-        GeneralRegister(fluid);
+    public boolean registerFluid (Fluid fluid) {
+        generalRegister(fluid);
         fluidsToRegister.add(fluid);//
 
         FluidRegistry.registerFluid(fluid);
@@ -95,10 +95,10 @@ public class ContentRegistry implements IFuelHandler {
     }
 
     //Automatically calls RegisterRegistrable if the block is a registrable and RegisterSounds if ISoundProvider.
-    public boolean RegisterBlock (Block block) {
-        GeneralRegister(block);
+    public boolean registerBlock (Block block) {
+        generalRegister(block);
         if (block instanceof ISoundProvider) {
-            RegisterSounds((ISoundProvider) block);
+            registerSounds((ISoundProvider) block);
         }
         if (block instanceof ITileEntityProvider) {
             //Check to see if this provides us with associated tile entities.
@@ -106,7 +106,7 @@ public class ContentRegistry implements IFuelHandler {
             TileEntity addition = ourBlock.createNewTileEntity(null, 0);
             if (addition != null) {
                 //Do configuration for configgable tile entities here.
-                GeneralRegister(addition);
+                generalRegister(addition);
                 tileentitiesToRegister.add(addition);
             }
         }
@@ -114,15 +114,15 @@ public class ContentRegistry implements IFuelHandler {
         return true;
     }
 
-    protected void FinalizeTileEntities () {
+    protected void finalizeTileEntities () {
         for (int i = 0; i < tileentitiesToRegister.size(); ++i) {
             TileEntity te = tileentitiesToRegister.get(i);
         }
     }
 
     //Registers everything we've been given so far with
-    public void FinalizeContent () {
-        FinalizeTileEntities();
+    public void finalizeContent () {
+        finalizeTileEntities();
 
         //This is where you can tell Gyro is used to the horrible place that is C++.
         itemsToRegister = null;
@@ -134,12 +134,11 @@ public class ContentRegistry implements IFuelHandler {
     }
 
     //Chemistry stuff goes here:
-    public void RegisterReactionReceiver (IReactionReceiver rec)
-    {
+    public void registerReactionReceiver (IReactionReceiver rec) {
         reactants.add(rec);
     }
 
-    public void RegisterReaction (IReactionSpec reaction) {
+    public void registerReaction (IReactionSpec reaction) {
         for (IReactionReceiver rec : reactants) {
             rec.registerReaction(reaction);
         }

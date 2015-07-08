@@ -5,6 +5,8 @@ import net.minecraft.init.Items;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.common.MinecraftForge;
 
+import mortvana.projectfluxgear.thaumic.client.render.RenderPurity;
+
 public class ClientProxy extends CommonProxy {
 
 	public static int renderPass;

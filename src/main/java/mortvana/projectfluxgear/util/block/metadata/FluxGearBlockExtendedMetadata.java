@@ -237,6 +237,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 		return providerTile;
 	}
 
+	@Override
 	public float getBlockHardness(World world, int x, int y, int z) {
 		int meta = getMetadata(world, x, y, z);
 		if (blockHardness.containsKey(meta)) {
@@ -248,6 +249,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 		}
 	}
 
+	@Override
 	public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
 		int meta = getMetadata(world, x, y, z);
 		if (blastResistance.containsKey(meta)) {
@@ -259,6 +261,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 		}
 	}
 
+	@Override
 	public int getLightValue(IBlockAccess world, int x, int y, int z) {
 		int meta = getMetadata(world, x, y, z);
 		if (blockLight.containsKey(meta)) {
@@ -270,7 +273,8 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 		}
 	}
 
-	public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z) {
+	@Override
+	public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side) {
 		int meta = getMetadata(world, x, y, z);
 		if (redstoneSignal.containsKey(meta)) {
 			return redstoneSignal.get(meta);
@@ -281,6 +285,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 		}
 	}
 
+	@Override
 	public boolean isBeaconBase(IBlockAccess world, int x, int y, int z, int beaconX, int beaconY, int beaconZ) {
 		int meta = getMetadata(world, x, y, z);
 		if (beaconBase.containsKey(meta)) {
@@ -292,6 +297,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 		}
 	}
 
+	@Override
 	public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z) {
 		int meta = getMetadata(world, x, y, z);
 		if (mobSpawns.containsKey(meta)) {
@@ -311,16 +317,19 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 		}
 	}*/
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
 		return getIcon(side, getMetadata(world, x, y, z));
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int metadata) {
 			return (blockIcons.get(metadata));
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister register) {
 

@@ -20,52 +20,21 @@ public abstract class FluxGearMessageTile extends FluxGearMessage {
 		this.z = z;
 	}
 
+	@Override
 	public void encodeTo(ByteBuf target) {
 		target.writeInt(x);
 		target.writeShort(y);
 		target.writeInt(z);
 	}
 
+	@Override
 	public void decodeFrom(ByteBuf source) {
 		x = source.readInt();
 		y = source.readShort();
 		z = source.readInt();
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public abstract void handle();
-
-	public static class FluxGearMessageMetadata extends FluxGearMessageTile {
-
-		public int metadata;
-
-		public FluxGearMessageMetadata() { /* Singleton */ }
-
-		public FluxGearMessageMetadata(int x, int y, int z, int metadata) {
-			super(x, y, z);
-			this.metadata = metadata;
-		}
-
-		public void encodeTo(ByteBuf target) {
-			super.encodeTo(target);
-			target.writeShort(metadata);
-		}
-
-		public void decodeFrom(ByteBuf source) {
-			super.decodeFrom(source);
-			metadata = source.readUnsignedShort();
-		}
-
-		@SideOnly(Side.CLIENT)
-		public void handle() {
-			World world = WorldHelper.getWorld();
-			TileEntityMetadata tile = (TileEntityMetadata) world.getTileEntity(x, y, z);
-			if (tile == null) {
-				tile = new TileEntityMetadata();
-				world.setTileEntity(x, y, z, tile);
-			}
-			tile.setTileMetadata(metadata);
-			world.markBlockForUpdate(x, y, z);
-		}
-	}
 }

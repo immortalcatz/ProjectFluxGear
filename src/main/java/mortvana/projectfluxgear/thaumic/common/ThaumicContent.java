@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import magicbees.api.MagicBeesAPI;
-//import oldcode.projectfluxgear.FluxGearTab;
+import mortvana.projectfluxgear.util.inventory.FluxGearCreativeTab;
 import thaumcraft.api.aspects.Aspect;
 
 public class ThaumicContent {
@@ -20,7 +20,7 @@ public class ThaumicContent {
 
 	public static Aspect tempus;
 
-	//public static CreativeTabs thaumicRevelationsTab = new FluxGearTab("PFG-Thaumic", "fluxgear.tabThaumic", new ItemStack(oldcode.projectfluxgear.ThaumicContent.itemWardenAmulet));
+	public static CreativeTabs thaumicRevelationsTab = new FluxGearCreativeTab("PFG-Thaumic", "fluxgear.tabThaumic", new ItemStack(oldcode.projectfluxgear.ThaumicContent.itemWardenAmulet));
 
 	public static void preInit() {
 

@@ -12,7 +12,7 @@ import net.minecraftforge.fluids.FluidStack;
 import org.lwjgl.input.Keyboard;
 
 public final class StringHelper {
-	public static final String BLACK = "\u00a70";
+	/*public static final String BLACK = "\u00a70";
 	public static final String BLUE = "\u00a71";
 	public static final String GREEN = "\u00a72";
 	public static final String TEAL = "\u00a73";
@@ -33,7 +33,7 @@ public final class StringHelper {
 	public static final String STRIKETHROUGH = "\u00a7m";
 	public static final String UNDERLINE = "\u00a7n";
 	public static final String ITALIC = "\u00a7o";
-	public static final String END = "\u00a7r";
+	public static final String END = "\u00a7r";*/
 	public static final String[] ROMAN_NUMERAL = new String[]{"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
 	public static boolean displayShiftForDetail = true;
 	public static boolean displayStackCount = false;
@@ -66,9 +66,6 @@ public final class StringHelper {
 		return var0.substring(0, 1).toUpperCase() + var0.substring(1);
 	}
 
-	public static String localize(String var0) {
-		return StatCollector.translateToLocal(var0);
-	}
 
 	public static String getFluidName(FluidStack var0) {
 		Fluid var1 = var0.getFluid();
@@ -176,5 +173,39 @@ public final class StringHelper {
 
 	public static String tutorialTabFluxRequired() {
 		return localize("info.cofh.tutorial.fluxRequired");
+	}
+
+	/** Color Coding * */
+	public static final String BLACK = (char) 167 + "0";
+	public static final String BLUE = (char) 167 + "1";
+	public static final String GREEN = (char) 167 + "2";
+	public static final String TEAL = (char) 167 + "3";
+	public static final String RED = (char) 167 + "4";
+	public static final String PURPLE = (char) 167 + "5";
+	public static final String ORANGE = (char) 167 + "6";
+	public static final String LIGHT_GRAY = (char) 167 + "7";
+	public static final String GRAY = (char) 167 + "8";
+	public static final String LIGHT_BLUE = (char) 167 + "9";
+	public static final String BRIGHT_GREEN = (char) 167 + "a";
+	public static final String BRIGHT_BLUE = (char) 167 + "b";
+	public static final String LIGHT_RED = (char) 167 + "c";
+	public static final String PINK = (char) 167 + "d";
+	public static final String YELLOW = (char) 167 + "e";
+	public static final String WHITE = (char) 167 + "f";
+
+	/** Text formatting * */
+	public static final String OBFUSCATED = (char) 167 + "k";
+	public static final String BOLD = (char) 167 + "l";
+	public static final String STRIKETHROUGH = (char) 167 + "m";
+	public static final String UNDERLINE = (char) 167 + "n";
+	public static final String ITALIC = (char) 167 + "o";
+	public static final String END = (char) 167 + "r";
+
+	/** Useful Tooltips **/
+	public static String shiftForMoreInfo = ORANGE + ITALIC + localize("info.pfg.tooltip.press") + " " + localize("info.pfg.key.shift") + " " + localize("info.pfg.tooltip.info");
+
+	/** Enable Localizationizing **/
+	public static String localize(String key) {
+		return StatCollector.translateToLocal(key);
 	}
 }

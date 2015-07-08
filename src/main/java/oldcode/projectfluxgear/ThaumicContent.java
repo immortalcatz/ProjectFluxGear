@@ -1,21 +1,58 @@
 package oldcode.projectfluxgear;
 
+import java.util.*;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.entity.passive.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
+import net.minecraftforge.common.ISpecialArmor;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
+import baubles.api.BaubleType;
+import baubles.api.IBauble;
 import mortvana.projectfluxgear.util.enums.EnumArmorType;
-import oldcode.projectfluxgear.BlockWitor.TileWitor;
+import thaumcraft.api.IVisDiscountGear;
+import thaumcraft.api.ThaumcraftApi;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.aspects.IEssentiaContainerItem;
+import thaumcraft.api.crafting.CrucibleRecipe;
+import thaumcraft.api.crafting.ShapedArcaneRecipe;
+import thaumcraft.api.entities.IEldritchMob;
+import thaumcraft.api.entities.ITaintedMob;
+import thaumcraft.api.research.*;
+import thaumcraft.api.wands.FocusUpgradeType;
+import thaumcraft.api.wands.ItemFocusBasic;
 import thaumcraft.common.Thaumcraft;
+import thaumcraft.common.config.*;
+import thaumcraft.common.entities.monster.*;
 import thaumcraft.common.entities.monster.boss.EntityCultistLeader;
 import thaumcraft.common.items.wands.ItemWandCasting;
 
@@ -41,7 +78,7 @@ public class ThaumicContent {
 		GameRegistry.registerBlock(blockInfusedQuartzStair, "blockInfusedQuartzStair");
 		GameRegistry.registerBlock(blockWitor, "blockWitor");
 
-		GameRegistry.registerTileEntity(TileWitor.class, "tileWitor");
+		GameRegistry.registerTileEntity(BlockFluxGear.TileWitor.class, "tileWitor");
 	}
 
 	public static void loadItems() {

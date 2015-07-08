@@ -52,6 +52,7 @@ public abstract class BlockContainerMetadata extends BlockContainer {
 	}
 	// TODO: Expand this as FluxGearBlock adds more constructors
 
+	@Override
 	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 		TileEntityMetadata tile = (TileEntityMetadata) getTileEntity(world, x, y, z);
@@ -72,6 +73,7 @@ public abstract class BlockContainerMetadata extends BlockContainer {
 		return hasBeenBroken;
 	}
 
+	@Override
 	public void dropBlockAsItemWithChance(World world, int x, int y, int z, int meta, float chance, int fortune) {
 		TileEntityMetadata tile = (TileEntityMetadata) world.getTileEntity(x, y, z);
 		if (tile != null && !tile.hasDropped) {
