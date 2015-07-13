@@ -1,14 +1,6 @@
 public class Catctuse {
 	public void dummyContent() {/*
 
-
-
-
-
-
-
-
-
 		00,000-00,499: Ingots
 		00,500-00,999: Dusts
 		01,000-01,499: Nuggets
@@ -70,8 +62,6 @@ public class Catctuse {
 		Bag full of Spiders
 		Natura Boats [Maple, Purple, Silver, Tiger, Willow, Blood, Sakura, Redwood, Eucalyptus]
 	*/}
-
-
 
 	//General Materials (ingot, dust,   nugget)
 	/*copper            (true,  true,   true)
@@ -301,28 +291,13 @@ public class Catctuse {
 		partHeadReader
 		partLaserDetector
 		partOblivionContinuum
-		shardWhitePointStarInert
-		shardWhitePointStar
-		gemWhitePointStar
-		gemWhitePointStarInfused
-		shardVoidInfernoStarInert
-		shardVoidInfernoStar
-		shardVoidInfernoStarActive
-		shardVoidInfernoStarEnergized
-		shardVoidInfernoStarResonant
-		shardVoidInfernoStarColdfire
-		shardVoidInfernoStarQuantum
-		shardVoidInfernoStarEntangled
-		gemVoidInfernoStarDull
-		gemVoidInfernoStar
-		gemVoidInfernoStarFluxed
 		partCapacitorLv1
 		//multicoreProcessor
 		//disassemblyCore
 		//enderMiningCore
 		//enderCompCore
 		partBlastMechanism
-		//heatingCoil
+		heatingCoil
 		//damascusSteelFrame
 		//ceramicPanel
 		//ceramicPanelRaw
@@ -343,41 +318,10 @@ public class Catctuse {
 		dustSawdust
 		itemCompressedSawdust
 		dustFlux
-		partNeutronResistantCasing
-		partHeatResistantPlating
 		partCarbonFiber
 		partCarbonMesh
 		partCarbonStrand
 		partExhaustTube
-		partUnfusedStarCapsule
-		partFusedStarCapsule
-		partPreparedStarCapsule
-		partInfusedStarCapsule
-		partMagnetarInACan
-		partUnfusedMagnetarCapsule
-		partFusedMagnetarCapsule
-		partPreparedMagnetarCapsule
-		partInfusedMagnetarCapsule
-		partUnfusedMagnetarMatrix
-		partFusedMagnetarMatrix
-		partRefinedMagnetarMatrix
-		partQuasarInACan
-		partUnfusedQuasarCapsule
-		partFusedQuasarCapsule
-		partPreparedQuasarCapsule
-		partInfusedQuasarCapsule
-		partUnfusedQuasarMatrix
-		partFusedQuasarMatrix
-		partRefinedQuasarMatrix
-		partUnfusedMagnequasarMatrix
-		partFusedMagnequasarMatrix
-		partReinforcedMagnequasarMatrix
-		partRefusedMagnequasarMatrix
-		partInfusedMagnequasarMatrix
-		partEnergizedMagnequasarMatrix
-		partRefinedMagnequasarMatrix
-		partSealedMagnequasarMatrix
-		partFinalizedMagnequasarMatrix
 		partAerothermicEngine
 		partEmptyEnderMagnetCore
 		partEnderMagnetCore

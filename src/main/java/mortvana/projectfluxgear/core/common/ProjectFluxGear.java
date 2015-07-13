@@ -51,7 +51,12 @@ public class ProjectFluxGear {
 
 	}
 
-	/** Initialization Sequence */
+	/* *=-=-=-=* Initialization Sequence *=-=-=-=* */
+	/**
+	 *  In the preInit step you only want to load configs, inform Forge if your mod has to be loaded after any others,
+	 *  and load any framework stuff. No heavy loading or registering should occur here, because that happens during
+	 *  init, as there is no guarantee stuff wont explode when they start Minecraft.
+	 */
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		MinecraftForge.EVENT_BUS.register(this);
@@ -61,12 +66,21 @@ public class ProjectFluxGear {
 		FluxGearCoreContent.preInit();
 	}
 
+	/**
+	 *  This is where all the heavy loading and registering of handlers goes. Initialization of blocks and items,
+	 *  TileEntity stuff, etc.
+	 */
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		ModuleLoader.init(event);
 		FluxGearCoreContent.init();
 	}
 
+
+	/**
+	 *  Stuff to do before finalizing, like intermod interactions.
+	 *  This is for things that need to wait until the game is almost done loading before initializing.
+	 */
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		ModuleLoader.postInit(event);
