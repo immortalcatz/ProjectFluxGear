@@ -4,7 +4,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
-import oldcode.projectfluxgear.ThaumicContent;
+import oldcode.legacy.common.ThaumicContent;
 import org.lwjgl.opengl.GL11;
 
 public class GuiWaslieHammer extends GuiContainer {

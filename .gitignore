@@ -29,14 +29,8 @@ out/
 /.project
 /.settings/
 #Possibly Redundant Stuff
-\run
-\.gradle
 \.idea
-\build
 \lib
-*.iml
-*.ipr
-*.iws
 \out
 \bin
 .classpath

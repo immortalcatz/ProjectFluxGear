@@ -20,7 +20,7 @@ public class ThaumicContent {
 
 	public static Aspect tempus;
 
-	public static CreativeTabs thaumicRevelationsTab = new FluxGearCreativeTab("PFG-Thaumic", "fluxgear.tabThaumic", new ItemStack(oldcode.projectfluxgear.ThaumicContent.itemWardenAmulet));
+	public static CreativeTabs thaumicRevelationsTab = new FluxGearCreativeTab("PFG-Thaumic", "fluxgear.tabThaumic", new ItemStack(oldcode.legacy.common.ThaumicContent.itemWardenAmulet));
 
 	public static void preInit() {
 
