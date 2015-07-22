@@ -4,7 +4,7 @@ import java.io.File;
 
 import cpw.mods.fml.common.event.*;
 
-import mortvana.projectfluxgear.core.common.ProjectFluxGear;
+import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.projectfluxgear.core.config.*;
 import mortvana.projectfluxgear.decor.common.FluxGearDecor;
 import mortvana.projectfluxgear.oreberries.common.Oreberries;
@@ -29,19 +29,19 @@ public class ModuleLoader {
 	public static void preInit(FMLPreInitializationEvent event) {
 
 		/** Initialize Variables */
-		moduleWorldEnabled = FluxGearModuleConfig.enableWorld;
-		moduleTechEnabled = FluxGearModuleConfig.enableTech;
-		moduleThaumicEnabled = FluxGearModuleConfig.enableThaumic;
-		moduleTinkersEnabled = FluxGearModuleConfig.enableTinkers;
-		moduleDecorEnabled = FluxGearModuleConfig.enableDecor;
-		moduleOreberriesEnabled = FluxGearModuleConfig.enableOreberries;
-		moduleTweaksEnabled = FluxGearModuleConfig.enableTweaks;
+		moduleWorldEnabled = FluxGearCoreConfig.enableWorld;
+		moduleTechEnabled = FluxGearCoreConfig.enableTech;
+		moduleThaumicEnabled = FluxGearCoreConfig.enableThaumic;
+		moduleTinkersEnabled = FluxGearCoreConfig.enableTinkers;
+		moduleDecorEnabled = FluxGearCoreConfig.enableDecor;
+		moduleOreberriesEnabled = FluxGearCoreConfig.enableOreberries;
+		moduleTweaksEnabled = FluxGearCoreConfig.enableTweaks;
 
 		if (moduleWorldEnabled && moduleTechEnabled) {
 			moduleTechSanity = true;
 		}
 		if (moduleTechEnabled && !moduleWorldEnabled) {
-			ProjectFluxGear.logger.warn("Caution, Wet Snake: The Tech Module is loaded, but the World Module is not, this will be 'fun'... With a capital derp...");
+			MeltedDashboardCore.logger.warn("Caution, Wet Snake: The Tech Module is loaded, but the World Module is not, this will be 'fun'... With a capital derp...");
 			moduleTechSanity = false;
 		}
 		

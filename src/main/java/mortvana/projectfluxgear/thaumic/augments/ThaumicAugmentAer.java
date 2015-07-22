@@ -6,7 +6,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-import mortvana.projectfluxgear.util.enums.EnumAugmentHolder;
+import mortvana.melteddashboard.util.enums.EnumAugmentHolder;
 import thaumcraft.api.aspects.Aspect;
 
 public class ThaumicAugmentAer extends ThaumicAugmentBase {

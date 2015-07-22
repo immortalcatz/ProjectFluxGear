@@ -4,44 +4,46 @@ import java.io.File;
 
 import net.minecraftforge.common.config.Configuration;
 
-import mortvana.projectfluxgear.core.common.ProjectFluxGear;
+import mortvana.melteddashboard.common.MeltedDashboardCore;
 
 public class FluxGearCoreConfig {
-
 	public static Configuration config;
 
 	public static void loadConfig(File file) {
-		ProjectFluxGear.logger.info("Loading Flux Gear Core Config");
+		MeltedDashboardCore.logger.info("Loading MortTweaks Config");
 		config = new Configuration(file);
 		config.load();
 
-		enableDebug = config.get("Debug", "Enable Debug", false, "Do not enable unless you know what you are doing.").getBoolean(false);
-		//unsupportedLogging = config.get("Debug", "Enable Environment Stability Logging", true, "Disable this if you hate people warning you about breaking things.").getBoolean(true);
-		debugWorldgen = config.get("Debug", "Enable Debug Worldgen", false, "For testing only, as it multiplies oregen drastically").getBoolean(false);
-
 		//enableAchievements = config.get("General", "Enable Project Flux Gear's Achievements", true, "Disable this if you are a derp and port this to 1.6.4 :P").getBoolean(true);
 
-		registryOreDict = config.get("Registry", "Force OreDict Propriety", false, "Enable this if someone registers there stuff wrong, and as such it has a broken OreDict entry.").getBoolean(false);
+		enableDecor = config.get("Modules", "Enable Decor Module", true, "Contains pretty stones, and other shinies.").getBoolean(true);
+		enableTech = config.get("Modules", "Enable Project FLUX Gear", true, "The heart of the mod, contains all that delicious, insane science and alchemy!").getBoolean(true);
+		enableTinkers = config.get("Modules", "Enable Tinker's Armory", true, "The spleen of the mod, because pick-mattocks! REQUIRES TINKER'S CONSTRUCT").getBoolean(true);
+		enableThaumic = config.get("Modules", "Enable Thaumic Revelations", true, "The soul of the mod, now with more doom and alchemy! REQUIRES THAUMCRAFT").getBoolean(true);
+		enableTweaks = config.get("Modules", "Enable MortTweaks", false, "Mortvana's silly tweaks, disabled by default out of courtesy").getBoolean(false);
+		enableWorld = config.get("Modules", "Enable World Module", true, "All non-decor world-gen and crops, required for our tech to be craftable").getBoolean(true);
+		enableOreberries = config.get("Modules", "Enable Oreberries", true, "IMC-based Oreberries, for science, yo! Now with extra Glassmakers!").getBoolean(true);
+
+
 		naturalAl = config.get("Registry", "Register Aluminium as NaturalAluminum", true, "Provided because I can?").getBoolean(true);
 		coAssimilation = config.get("Registry", "Cobalt Assimilation", false, "Is our NaturalCobalt the same as TiC Cobalt").getBoolean(false);
-
-		seaLevel = config.get("World", "World Sea Level", 63, "Offered for mods that alter world heights, looking at you TFC.").getInt(63);
 
 		if (config.hasChanged()) {
 			config.save();
 		}
-		ProjectFluxGear.logger.info("Flux Gear Core Config Loaded");
+		MeltedDashboardCore.logger.info("MortTweaks Config Loaded");
 	}
-
-	public static boolean enableDebug;
-	public static boolean unsupportedLogging;
-	public static boolean debugWorldgen;
 
 	public static boolean enableAchievements;
 
-	public static boolean registryOreDict;
+	public static boolean enableDecor;
+	public static boolean enableTech;
+	public static boolean enableTinkers;
+	public static boolean enableThaumic;
+	public static boolean enableTweaks;
+	public static boolean enableWorld;
+	public static boolean enableOreberries;
+
 	public static boolean naturalAl;
 	public static boolean coAssimilation;
-
-	public static int seaLevel;
 }

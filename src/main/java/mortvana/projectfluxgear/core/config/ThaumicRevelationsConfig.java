@@ -4,14 +4,14 @@ import java.io.File;
 
 import net.minecraftforge.common.config.Configuration;
 
-import mortvana.projectfluxgear.core.common.ProjectFluxGear;
+import mortvana.melteddashboard.common.MeltedDashboardCore;
 
 public class ThaumicRevelationsConfig {
 
 	public static Configuration config;
 
 	public static void loadConfig(File file) {
-		ProjectFluxGear.logger.info("Loading Thaumic Revelations Config");
+		MeltedDashboardCore.logger.info("Loading Thaumic Revelations Config");
 		config = new Configuration(file);
 		config.load();
 
@@ -20,6 +20,6 @@ public class ThaumicRevelationsConfig {
 		if (config.hasChanged()) {
 			config.save();
 		}
-		ProjectFluxGear.logger.info("Thaumic Revelations Config Loaded");
+		MeltedDashboardCore.logger.info("Thaumic Revelations Config Loaded");
 	}
 }

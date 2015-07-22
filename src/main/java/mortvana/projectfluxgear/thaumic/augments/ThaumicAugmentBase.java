@@ -9,7 +9,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
-import mortvana.projectfluxgear.util.enums.EnumAugmentHolder;
+import mortvana.melteddashboard.util.enums.EnumAugmentHolder;
 import thaumcraft.api.aspects.Aspect;
 
 public abstract class ThaumicAugmentBase {

@@ -6,11 +6,11 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
-import mortvana.projectfluxgear.util.block.metadata.FluxGearBlockExtendedMetadata;
-import mortvana.projectfluxgear.util.block.metadata.ItemBlockMetadata;
-import mortvana.projectfluxgear.util.block.metadata.TileEntityMetadata;
-import mortvana.projectfluxgear.util.inventory.FluxGearCreativeTab;
-import mortvana.projectfluxgear.util.registry.DynamicMaterialRegistry;
+import mortvana.melteddashboard.block.metadata.FluxGearBlockExtendedMetadata;
+import mortvana.melteddashboard.block.metadata.ItemBlockMetadata;
+import mortvana.melteddashboard.block.metadata.TileEntityMetadata;
+import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
+import mortvana.melteddashboard.registry.DynamicMaterialRegistry;
 
 public class FluxGearCoreContent {
 

@@ -1,11 +1,13 @@
 package mortvana.projectfluxgear.thaumic.common;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import magicbees.api.MagicBeesAPI;
-import mortvana.projectfluxgear.util.inventory.FluxGearCreativeTab;
+import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
+import mortvana.projectfluxgear.thaumic.item.ItemWardenAmulet;
 import thaumcraft.api.aspects.Aspect;
 
 public class ThaumicContent {
@@ -20,14 +22,12 @@ public class ThaumicContent {
 
 	public static Aspect tempus;
 
-	public static CreativeTabs thaumicRevelationsTab = new FluxGearCreativeTab("PFG-Thaumic", "fluxgear.tabThaumic", new ItemStack(oldcode.legacy.common.ThaumicContent.itemWardenAmulet));
-
 	public static void preInit() {
 
 	}
 
 	public static void init() {
-
+		itemWardenAmulet = new ItemWardenAmulet();
 	}
 
 	public static void postInit() {
@@ -43,4 +43,8 @@ public class ThaumicContent {
 			tempus = Aspect.VOID;
 		}
 	}
+
+	public static Item itemWardenAmulet;
+
+	public static CreativeTabs thaumicRevelationsTab = new FluxGearCreativeTab("PFG-Thaumic", "fluxgear.tabThaumic", new ItemStack(itemWardenAmulet));
 }
