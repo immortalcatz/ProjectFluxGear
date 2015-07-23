@@ -16,7 +16,6 @@ public enum EnumForms {
 	QUARTER_GEM,
 	SIXTH_GEM,
 	EIGTH_GEM,
-	GEM_SHARD,
 	// Nuts 'n' Bolts
 	BOLT,
 	NUT,

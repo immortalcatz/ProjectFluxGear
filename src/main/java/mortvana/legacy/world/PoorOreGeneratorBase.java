@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -29,7 +28,9 @@ import mortvana.legacy.util.random.NoiseGen;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public abstract class PoorOreGenerator_ {
+public abstract class PoorOreGeneratorBase {
+
+	protected Block replacedBlock;
 
 	private final EventType eventType;
 	private final WorldGenerator oreGen;
@@ -38,11 +39,11 @@ public abstract class PoorOreGenerator_ {
 
 	private final Map<World, NoiseGen> noiseMap = new MapMaker().weakKeys().makeMap();
 
-	public PoorOreGenerator_(EventType eventType, int density, int yLevel, int yRange, int noiseSeed, Block ore, int metadata) {
+	public PoorOreGeneratorBase(EventType eventType, int density, int yLevel, int yRange, int noiseSeed, Block ore, int metadata) {
 		this(eventType, 0.0025, 0.85, 0.65, density, yLevel, yRange, noiseSeed, ore, metadata);
 	}
 
-	public PoorOreGenerator_(EventType eventType, double scale, double denseArea, double fringeArea, int density, int yLevel, int yRange, int noiseSeed, Block ore, int metadata) {
+	public PoorOreGeneratorBase(EventType eventType, double scale, double denseArea, double fringeArea, int density, int yLevel, int yRange, int noiseSeed, Block ore, int metadata) {
 		this.eventType = eventType;
 		this.scale = scale;
 		this.denseArea = denseArea;
@@ -51,9 +52,9 @@ public abstract class PoorOreGenerator_ {
 		this.yRange = yRange;
 		this.noiseSeed = noiseSeed;
 		if (density >= 4)
-			oreGen = new WorldGenMinable(ore, metadata, density, Blocks.stone);
+			oreGen = new WorldGenMinable(ore, metadata, density, replacedBlock);
 		else
-			oreGen = new WorldGenSmallDeposits(ore, metadata, density, Blocks.stone);
+			oreGen = new WorldGenSmallDeposits(ore, metadata, density, replacedBlock);
 	}
 
 	@SubscribeEvent

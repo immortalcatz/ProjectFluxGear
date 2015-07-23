@@ -123,7 +123,7 @@ public class PoorOreGenerator {
 	public static final Block MAIN = FluxGearContent.blockPoorOreMain;
 	public static final Block AUX = FluxGearContent.blockPoorOreAux;
 
-	public static class PoorChalcociteGen extends PoorOreGenerator_ {
+	public static class PoorChalcociteGen extends PoorOreGeneratorBase {
 		public static final int ID = 0;
 		public PoorChalcociteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -131,7 +131,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorCassiteriteGen extends PoorOreGenerator_ {
+	public static class PoorCassiteriteGen extends PoorOreGeneratorBase {
 		public static final int ID = 1;
 		public PoorCassiteriteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -139,7 +139,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorGalenaGen extends PoorOreGenerator_ {
+	public static class PoorGalenaGen extends PoorOreGeneratorBase {
 		public static final int ID = 2;
 		public PoorGalenaGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -147,7 +147,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorAcanthiteGen extends PoorOreGenerator_ {
+	public static class PoorAcanthiteGen extends PoorOreGeneratorBase {
 		public static final int ID = 3;
 		public PoorAcanthiteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -155,7 +155,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorGarnieriteGen extends PoorOreGenerator_ {
+	public static class PoorGarnieriteGen extends PoorOreGeneratorBase {
 		public static final int ID = 4;
 		public PoorGarnieriteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -163,7 +163,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorSphaleriteGen extends PoorOreGenerator_ {
+	public static class PoorSphaleriteGen extends PoorOreGeneratorBase {
 		public static final int ID = 5;
 		public PoorSphaleriteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -171,7 +171,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorBismuthiniteGen extends PoorOreGenerator_ {
+	public static class PoorBismuthiniteGen extends PoorOreGeneratorBase {
 		public static final int ID = 6;
 		public PoorBismuthiniteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -179,7 +179,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorPyrolusiteGen extends PoorOreGenerator_ {
+	public static class PoorPyrolusiteGen extends PoorOreGeneratorBase {
 		public static final int ID = 7;
 		public PoorPyrolusiteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -187,7 +187,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorBauxiteGen extends PoorOreGenerator_ {
+	public static class PoorBauxiteGen extends PoorOreGeneratorBase {
 		public static final int ID = 8;
 		public PoorBauxiteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -195,7 +195,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorCooperiteGen extends PoorOreGenerator_ {
+	public static class PoorCooperiteGen extends PoorOreGeneratorBase {
 		public static final int ID = 9;
 		public PoorCooperiteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -203,7 +203,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorBraggriteGen extends PoorOreGenerator_ {
+	public static class PoorBraggriteGen extends PoorOreGeneratorBase {
 		public static final int ID = 10;
 		public PoorBraggriteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -211,7 +211,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorMolybdeniteGen extends PoorOreGenerator_ {
+	public static class PoorMolybdeniteGen extends PoorOreGeneratorBase {
 		public static final int ID = 11;
 		public PoorMolybdeniteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -219,7 +219,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorCobaltiteGen extends PoorOreGenerator_ {
+	public static class PoorCobaltiteGen extends PoorOreGeneratorBase {
 		public static final int ID = 12;
 		public PoorCobaltiteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -227,7 +227,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorWolframiteGen extends PoorOreGenerator_ {
+	public static class PoorWolframiteGen extends PoorOreGeneratorBase {
 		public static final int ID = 13;
 		public PoorWolframiteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -235,7 +235,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorIlmeniteGen extends PoorOreGenerator_ {
+	public static class PoorIlmeniteGen extends PoorOreGeneratorBase {
 		public static final int ID = 14;
 		public PoorIlmeniteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -243,7 +243,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorChromiteGen extends PoorOreGenerator_ {
+	public static class PoorChromiteGen extends PoorOreGeneratorBase {
 		public static final int ID = 15;
 		public PoorChromiteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], MAIN, ID % 16);
@@ -251,7 +251,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorCinnabarGen extends PoorOreGenerator_ {
+	public static class PoorCinnabarGen extends PoorOreGeneratorBase {
 		public static final int ID = 16;
 		public PoorCinnabarGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], AUX, ID % 16);
@@ -259,7 +259,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorPitchblendeGen extends PoorOreGenerator_ {
+	public static class PoorPitchblendeGen extends PoorOreGeneratorBase {
 		public static final int ID = 17;
 		public PoorPitchblendeGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], AUX, ID % 16);
@@ -267,7 +267,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorMonaziteGen extends PoorOreGenerator_ {
+	public static class PoorMonaziteGen extends PoorOreGeneratorBase {
 		public static final int ID = 18;
 		public PoorMonaziteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], AUX, ID % 16);
@@ -275,7 +275,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorNiedermayriteGen extends PoorOreGenerator_ {
+	public static class PoorNiedermayriteGen extends PoorOreGeneratorBase {
 		public static final int ID = 19;
 		public PoorNiedermayriteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], AUX, ID % 16);
@@ -283,7 +283,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorGreenockiteGen extends PoorOreGenerator_ {
+	public static class PoorGreenockiteGen extends PoorOreGeneratorBase {
 		public static final int ID = 20;
 		public PoorGreenockiteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], AUX, ID % 16);
@@ -291,7 +291,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorGaotaiiteGen extends PoorOreGenerator_ {
+	public static class PoorGaotaiiteGen extends PoorOreGeneratorBase {
 		public static final int ID = 21;
 		public PoorGaotaiiteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], AUX, ID % 16);
@@ -299,7 +299,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorOsarsiteGen extends PoorOreGenerator_ {
+	public static class PoorOsarsiteGen extends PoorOreGeneratorBase {
 		public static final int ID = 22;
 		public PoorOsarsiteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], AUX, ID % 16);
@@ -307,7 +307,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorZnamenskyiteGen extends PoorOreGenerator_ {
+	public static class PoorZnamenskyiteGen extends PoorOreGeneratorBase {
 		public static final int ID = 23;
 		public PoorZnamenskyiteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], AUX, ID % 16);
@@ -315,7 +315,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorGallobeudaniteGen extends PoorOreGenerator_ {
+	public static class PoorGallobeudaniteGen extends PoorOreGeneratorBase {
 		public static final int ID = 24;
 		public PoorGallobeudaniteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], AUX, ID % 16);
@@ -323,7 +323,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorTetrahediteGen extends PoorOreGenerator_ {
+	public static class PoorTetrahediteGen extends PoorOreGeneratorBase {
 		public static final int ID = 25;
 		public PoorTetrahediteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], AUX, ID % 16);
@@ -331,7 +331,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorTennantiteGen extends PoorOreGenerator_ {
+	public static class PoorTennantiteGen extends PoorOreGeneratorBase {
 		public static final int ID = 26;
 		public PoorTennantiteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], AUX, ID % 16);
@@ -339,7 +339,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorSantafeiteGen extends PoorOreGenerator_ {
+	public static class PoorSantafeiteGen extends PoorOreGeneratorBase {
 		public static final int ID = 27;
 		public PoorSantafeiteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], AUX, ID % 16);
@@ -347,7 +347,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorMagnetiteGen extends PoorOreGenerator_ {
+	public static class PoorMagnetiteGen extends PoorOreGeneratorBase {
 		public static final int ID = 28;
 		public PoorMagnetiteGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], AUX, ID % 16);
@@ -355,7 +355,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorDioptaseGen extends PoorOreGenerator_ {
+	public static class PoorDioptaseGen extends PoorOreGeneratorBase {
 		public static final int ID = 29;
 		public PoorDioptaseGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], AUX, ID % 16);
@@ -371,7 +371,7 @@ public class PoorOreGenerator {
 		}
 	}
 
-	public static class PoorMyuvilGen extends PoorOreGenerator_ {
+	public static class PoorMyuvilGen extends PoorOreGeneratorBase {
 		public static final int ID = 31;
 		public PoorMyuvilGen() {
 			super(theEvent, DENSITY[ID], Y_LEVEL[ID], Y_RANGE[ID], SEED[ID], AUX, ID % 16);
