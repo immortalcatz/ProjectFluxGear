@@ -5,8 +5,9 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
+import mortvana.legacy.block.BlockFluxGear;
+import mortvana.legacy.client.ClientProxy;
 import mortvana.legacy.util.helpers.DrawingHelper;
-import oldcode.projectfluxgear.ClientProxy;
 
 public class DualPassCubeRenderer implements ISimpleBlockRenderingHandler {
 
@@ -25,7 +26,7 @@ public class DualPassCubeRenderer implements ISimpleBlockRenderingHandler {
 			renderer.renderStandardBlock(renderBlock, x, y, z);
 		} else if(ClientProxy.renderPass == 1) {
 			// We are rendering the transparent part of it, lets render it, or at least the visible part...
-			DrawingHelper.renderAllFaces(renderer, block, x, y, z, ((BlockDecorStone) block).getOverlayTexture());
+			DrawingHelper.renderAllFaces(renderer, block, x, y, z, ((BlockFluxGear.BlockDecorStone) block).getOverlayTexture());
 		}
 		return true;
 	}

@@ -493,7 +493,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 	}
 
 	private void TurnBlockOff() {
-		if (wasRunningLastBurn == true) {
+		if (wasRunningLastBurn) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
 			if (block instanceof IBlockMetaPower) {
 				((IBlockMetaPower) block).recievePowerOff(worldObj, xCoord, yCoord, zCoord);
@@ -503,7 +503,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 	}
 
 	private void TurnBlockOn() {
-		if (wasRunningLastBurn == false) {
+		if (wasRunningLastBurn) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
 			if (block instanceof IBlockMetaPower) {
 				((IBlockMetaPower) block).recievePowerOn(worldObj, xCoord, yCoord, zCoord);
@@ -516,7 +516,6 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 	public void receiveByproduct(ItemStack byproductStack) {
 		if (byproductStack == null) {
 			// If we're just receiving a null value, do nothing with it.
-			return;
 		} else if (engineItemStacks[1] == null) { // Make sure we have a sand stack to add to.
 			engineItemStacks[1] = byproductStack;
 		} else {

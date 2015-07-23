@@ -4,7 +4,7 @@ public enum EnumMaterialForm {
 	BLOCK("BLOCK", EnumForms.BLOCK),
 	INGOT("INGOT", EnumForms.INGOT, EnumForms.CHUNK, EnumForms.NUGGET, EnumForms.CAST_INGOT, EnumForms.INGOT_PILE, EnumForms.LARGE_INGOT),
 	DUST("DUST", EnumForms.LARGE_DUST, EnumForms.DUST, EnumForms.HALF_DUST, EnumForms.THIRD_DUST, EnumForms.SMALL_DUST, EnumForms.FIFTH_DUST, EnumForms.SIXTH_DUST, EnumForms.EIGHTH_DUST, EnumForms.TINY_DUST, EnumForms.TENTH_DUST, EnumForms.SIXTEENTH_DUST, EnumForms.TWENTIETH_DUST, EnumForms.TWENTY_FIFTH_DUST, EnumForms.HUNDREDTH_DUST),
-	GEM("GEM", EnumForms.INGOT, EnumForms.CHUNK, EnumForms.NUGGET),
+	GEM("GEM", EnumForms.INGOT, EnumForms.CHUNK,  EnumForms.NUGGET, EnumForms.THIRD_GEM, EnumForms.QUARTER_GEM, EnumForms.SIXTH_GEM, EnumForms.EIGTH_GEM),
 	PLATE("PLATE", EnumForms.CASING, EnumForms.THIN_PLATE, EnumForms.PANEL, EnumForms.PLATE, EnumForms.DOUBLE_PLATE, EnumForms.THICK_PLATE, EnumForms.LARGE_PLATE, EnumForms.HEAVY_PLATE),
 	NUTSNBOLTS("NUTSNBOLTS", EnumForms.NUT, EnumForms.BOLT, EnumForms.SCREW),
 	SHAFT("SHAFT", EnumForms.ROD, EnumForms.SHAFT, EnumForms.LARGE_SHAFT),

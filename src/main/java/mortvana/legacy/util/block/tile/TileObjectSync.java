@@ -5,7 +5,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.legacy.common.FluxGearAddons;
+import mortvana.legacy.common.ProjectFluxGear;
 import mortvana.legacy.network.ObjectPacket;
 
 public abstract class TileObjectSync extends TileEntity {
@@ -17,7 +17,7 @@ public abstract class TileObjectSync extends TileEntity {
 	}
 
 	public Object sendObject(byte dataType, int index, Object object, NetworkRegistry.TargetPoint point) {
-		FluxGearAddons.network.sendToAllAround(new ObjectPacket(this, dataType, index, object), point);
+		ProjectFluxGear.network.sendToAllAround(new ObjectPacket(this, dataType, index, object), point);
 		return object;
 	}
 

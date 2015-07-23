@@ -7,6 +7,7 @@ import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.IIconProvider;
 import forestry.api.genetics.*;
+import mortvana.legacy.common.config.BeeConfig;
 import mortvana.legacy.util.LocalizationManager;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
@@ -330,16 +331,15 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider {
                 }
                 if (value <= 0f)
                 {
-                    if (itemStack.itemID == BeeConfig.fHoneyDrop.itemID)
+                    if (itemStack == BeeConfig.fHoneyDrop)
                     {
 
                     }
-                    else if (itemStack.itemID == BeeConfig.fHoneydew.itemID)
+                    else if (itemStack == BeeConfig.fHoneydew)
                     {
 
                     }
-                    else if (itemStack.itemID == BeeConfig.fBeeComb.itemID ||
-                            itemStack.itemID == Config.combs.itemID)
+                    else if (itemStack == BeeConfig.fBeeComb || itemStack == Config.combs)
                     {
                         value = 4f;
                     }
@@ -349,7 +349,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider {
                         {
                             if (OreDictionary.itemMatches(itemStack, catalyst.getKey(), false))
                             {
-                                value = catalyst.getValue().floatValue();
+                                value = catalyst.getValue();
                                 break;
                             }
                         }

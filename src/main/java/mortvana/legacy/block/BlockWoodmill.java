@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,9 +20,8 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-import oldcode.projectfluxgear.GuiHandler;
+import mortvana.legacy.common.ProjectFluxGear;
 import mortvana.legacy.common.config.MTConfig;
-import mortvana.legacy.common.MortTech;
 import mortvana.legacy.block.tileentity.TileWoodmill;
 
 public class BlockWoodmill extends BlockContainer {
@@ -110,7 +110,7 @@ public class BlockWoodmill extends BlockContainer {
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerIcons(IIconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("morttech:"+this.getUnlocalizedName());
         this.furnaceIconFront = par1IconRegister.registerIcon("morttech:"+this.getUnlocalizedName()+"_front");
@@ -129,7 +129,7 @@ public class BlockWoodmill extends BlockContainer {
 
             if (tileentityfurnace != null/* && !(par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof IWrench)*/)
             {
-                par5EntityPlayer.openGui(MortTech.INSTANCE, GuiHandler.woodMill, par1World, par2, par3, par4);
+                par5EntityPlayer.openGui(ProjectFluxGear.instance, GuiHandler.woodMill, par1World, par2, par3, par4);
             }
 
             return true;
@@ -173,7 +173,7 @@ public class BlockWoodmill extends BlockContainer {
 
         if (par6ItemStack.hasDisplayName())
         {
-            ((TileWoodmill)par1World.getBlockTileEntity(par2, par3, par4)).setGuiDisplayName(par6ItemStack.getDisplayName());
+            ((TileWoodmill)par1World.getTileEntity(par2, par3, par4)).setGuiDisplayName(par6ItemStack.getDisplayName());
         }
     }
 

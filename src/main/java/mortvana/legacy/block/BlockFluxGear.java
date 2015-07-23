@@ -2,10 +2,7 @@ package mortvana.legacy.block;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import net.minecraft.block.*;
 import net.minecraft.block.material.MapColor;
@@ -44,12 +41,13 @@ import net.minecraftforge.fluids.*;
 
 import cofh.core.fluid.BlockFluidCoFHBase;
 
+import mortvana.legacy.client.ClientProxy;
+import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 import mortvana.melteddashboard.block.FluxGearBlock;
 import mortvana.melteddashboard.util.helpers.ServerHelper;
 import mortvana.legacy.block.tileentity.*;
 import mortvana.legacy.common.FluxGearContent;
-import mortvana.legacy.common.ThaumicContent;
 import mortvana.legacy.util.block.FallingBlockFluxGear;
 import mortvana.legacy.util.block.tile.TileEntityBase;
 import mortvana.legacy.util.chemistry.IBioactive;
@@ -103,7 +101,7 @@ public class BlockFluxGear extends Block {
 			canSpawn = true;
 			beaconBase = false;
 			isColorized = false;
-			ProjectFluxGear.logger.warn(wrong);
+			MeltedDashboardCore.logger.warn(wrong);
 		}
 	}
 
@@ -656,17 +654,17 @@ public class BlockFluxGear extends Block {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public IIcon getIcon(int par1, int par2) {
-			return ThaumicContent.blockInfusedQuartzNormal.getBlockTextureFromSide(par1);
+			return FluxGearContent.blockInfusedQuartzNormal.getBlockTextureFromSide(par1);
 		}
 
 		@Override
 		public Item getItemDropped(int par1, Random par2, int par3) {
-			return Item.getItemFromBlock(ThaumicContent.blockInfusedQuartzSlab);
+			return Item.getItemFromBlock(FluxGearContent.blockInfusedQuartzSlab);
 		}
 
 		@Override
 		public ItemStack createStackedBlock(int par1) {
-			return new ItemStack(ThaumicContent.blockInfusedQuartzSlab);
+			return new ItemStack(FluxGearContent.blockInfusedQuartzSlab);
 		}
 
 		@Override
@@ -677,7 +675,7 @@ public class BlockFluxGear extends Block {
 
 	public class BlockQuartzStair extends BlockStairs {
 		public BlockQuartzStair() {
-			super(ThaumicContent.blockInfusedQuartzNormal, 0);
+			super(FluxGearContent.blockInfusedQuartzNormal, 0);
 			setBlockName("blockInfusedQuartzStair");
 			setCreativeTab(mortvana.projectfluxgear.thaumic.common.ThaumicContent.thaumicRevelationsTab);
 			setLightOpacity(0);

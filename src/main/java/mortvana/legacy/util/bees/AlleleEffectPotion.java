@@ -3,7 +3,8 @@ package mortvana.legacy.util.bees;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.genetics.IEffectData;
-import mortvana.legacy.item.ItemArmorApiarist;
+import mortvana.melteddashboard.intermod.forestry.bees.ApiaristHelper;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
@@ -46,7 +47,7 @@ public class AlleleEffectPotion extends AlleleEffect {
             if (e instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer)e;
                 if (this.isMalicious) {
-                    int armorPieces = ItemArmorApiarist.getNumberPiecesWorn(player);
+                    int armorPieces = ApiaristHelper.getNumberPiecesWorn(player);
                     int finalDuration = this.duration / 4 * (4 - armorPieces);
                     if (finalDuration > 0) {
                         player.addPotionEffect(new PotionEffect(this.potionId, finalDuration, 0));

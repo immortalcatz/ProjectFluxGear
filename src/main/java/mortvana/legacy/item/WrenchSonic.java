@@ -2,7 +2,7 @@ package mortvana.legacy.item;
 
 import ic2.api.tile.IWrenchable;
 import ic2.api.util.Keys;
-import mortvana.legacy.common.MortTech;
+import mortvana.legacy.common.ProjectFluxGear;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -56,13 +56,13 @@ public class WrenchSonic extends Item {
                 side += side % 2 * -2 + 1;
             }
             if (wrenchable.wrenchCanSetFacing(entityPlayer, side)){
-                if (MortTech.proxy.isSimulating()) {
+                if (ProjectFluxGear.proxy.isSimulating()) {
                     wrenchable.setFacing((short)side);
                 }
-                return MortTech.proxy.isSimulating();
+                return ProjectFluxGear.proxy.isSimulating();
             }
             if (wrenchable.wrenchCanRemove(entityPlayer)) {
-                if (MortTech.proxy.isSimulating()) {
+                if (ProjectFluxGear.proxy.isSimulating()) {
                     boolean dropOriginalBlock = false;
                     if ((wrenchable.getWrenchDropRate() < 1.0F) && (overrideWrenchSuccessRate(itemstack))) {
                         dropOriginalBlock = true;
@@ -82,11 +82,11 @@ public class WrenchSonic extends Item {
                     }
                     world.setBlockToAir(x, y, z);
                 }
-                return MortTech.proxy.isSimulating();
+                return ProjectFluxGear.proxy.isSimulating();
             }
         }
         if (block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side))) {
-            return MortTech.proxy.isSimulating();
+            return ProjectFluxGear.proxy.isSimulating();
         }
         return false;
     }

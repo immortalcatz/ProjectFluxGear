@@ -12,7 +12,7 @@ import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.common.MinecraftForge;
 
 import mortvana.legacy.common.config.FluxGearConfig;
-import mortvana.legacy.common.MortTech;
+import mortvana.melteddashboard.common.MeltedDashboardCore;
 
 /**
  * Environment Checks
@@ -43,15 +43,15 @@ public class EnvironmentChecks {
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT && FMLClientHandler.instance().hasOptifine() || Loader.isModLoaded("optifine")) {
             if (!FluxGearConfig.silenceEnvChecks)
-                FluxGearCore.log.error("[Environment Checks] Optifine detected. This may cause issues due to base edits or ASM usage.");
+                MeltedDashboardCore.logger.error("[Environment Checks] Optifine detected. This may cause issues due to base edits or ASM usage.");
             hasOptifine = true;
             modIds.add("optifine");
         }
 
 	    if (Loader.isModLoaded("gregtech_addon")){
-		    MortTech.logger.error("GREGORIOUS NERFBERG AHEAD!!!! TINKER FOR YOUR LIVES!!!!");
-		    MortTech.logger.error("MortTech and GregTech are incompatible for the following reasons:");
-		    MortTech.logger.error(modCompatDetails("GregTech", true));
+		    MeltedDashboardCore.logger.error("GREGORIOUS NERFBERG AHEAD!!!! TINKER FOR YOUR LIVES!!!!");
+		    MeltedDashboardCore.logger.error("MortTech and GregTech are incompatible for the following reasons:");
+		    MeltedDashboardCore.logger.error(modCompatDetails("GregTech", true));
 		    modIds.add("gregtech_addon");
 		    incompatibilities.add("GregTech");
 	    }
@@ -61,7 +61,7 @@ public class EnvironmentChecks {
             if (cl != null)
             {
                 if (!FluxGearConfig.silenceEnvChecks)
-                    FluxGearCore.log.error("[Environment Checks] Bukkit implementation detected. This may cause issues. Bukkit implementations include Craftbukkit and Cauldron(MCPC+).");
+                    MeltedDashboardCore.logger.error("[Environment Checks] Bukkit implementation detected. This may cause issues. Bukkit implementations include Craftbukkit and Cauldron(MCPC+).");
                 modIds.add("bukkit");
             }
         }

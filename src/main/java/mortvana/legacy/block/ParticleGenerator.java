@@ -1,4 +1,4 @@
-package mortvana.fluxgearaddons.block;
+package mortvana.legacy.block;
 
 import java.util.Random;
 
@@ -14,13 +14,12 @@ import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.fluxgearaddons.block.tileentity.TileEnergyStorageCore;
-import mortvana.fluxgearaddons.block.tileentity.TileParticleGenerator;
-import mortvana.fluxgearaddons.client.particle.ParticleCustom;
-import mortvana.fluxgearaddons.client.particle.ParticleHandler;
-import mortvana.fluxgearaddons.common.FluxGearAddons;
-import mortvana.fluxgearcore.block.BlockFluxGear;
-import mortvana.projectfluxgear.core.common.ProjectFluxGear;
+import mortvana.legacy.block.BlockFluxGear;
+import mortvana.legacy.block.tileentity.TileEnergyStorageCore;
+import mortvana.legacy.block.tileentity.TileParticleGenerator;
+import mortvana.legacy.client.particle.ParticleCustom;
+import mortvana.legacy.client.particle.ParticleHandler;
+import mortvana.legacy.common.ProjectFluxGear;
 
 public class ParticleGenerator extends BlockFluxGear {
 	public static Block instance;
@@ -35,7 +34,7 @@ public class ParticleGenerator extends BlockFluxGear {
 
 	@SideOnly(Side.CLIENT)
 	public void func_149651_a(IIconRegister iconRegister) {
-		this.field_149761_L = iconRegister.registerIcon(FluxGearAddons.RESOURCESPREFIX + "machine_side");
+		this.field_149761_L = iconRegister.registerIcon(ProjectFluxGear.RESOURCESPREFIX + "machine_side");
 	}
 
 	public boolean func_149727_a(World world, int x, int y, int z, EntityPlayer player, int side, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
@@ -131,7 +130,7 @@ public class ParticleGenerator extends BlockFluxGear {
 		int z1;
 		TileEnergyStorageCore tile;
 		for(z1 = x - 11; z1 <= x + 11; ++z1) {
-			if(world.getBlock(z1, y, z) == FluxGearAddons.energyStorageCore) {
+			if(world.getBlock(z1, y, z) == ProjectFluxGear.energyStorageCore) {
 				tile = world.getTileEntity(z1, y, z) != null && world.getTileEntity(z1, y, z) instanceof TileEnergyStorageCore?(TileEnergyStorageCore)world.getTileEntity(z1, y, z):null;
 				if(tile != null && !tile.isOnline()) {
 					if(player.capabilities.isCreativeMode) {
@@ -156,7 +155,7 @@ public class ParticleGenerator extends BlockFluxGear {
 		}
 
 		for(z1 = z - 11; z1 <= z + 11; ++z1) {
-			if(world.getBlock(x, y, z1) == FluxGearAddons.energyStorageCore) {
+			if(world.getBlock(x, y, z1) == ProjectFluxGear.energyStorageCore) {
 				tile = world.getTileEntity(x, y, z1) != null && world.getTileEntity(x, y, z1) instanceof TileEnergyStorageCore?(TileEnergyStorageCore)world.getTileEntity(x, y, z1):null;
 				if(tile != null && !tile.isOnline()) {
 					if(player.capabilities.isCreativeMode) {

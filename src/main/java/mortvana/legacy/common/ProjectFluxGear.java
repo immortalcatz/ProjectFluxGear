@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.*;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
@@ -18,20 +21,36 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.world.ChunkDataEvent;
 
 import cofh.core.CoFHProps;
 import cofh.core.util.CoreUtils;
 import cofh.core.world.WorldHandler;
 
+import mantle.lib.TabTools;
+
+import forestry.api.apiculture.IBeeRoot;
+import mortvana.legacy.block.*;
+import mortvana.legacy.block.itemblock.ItemBlockBasicOre;
+import mortvana.legacy.block.itemblock.ItemBlockComplexOre;
+import mortvana.legacy.block.itemblock.ItemBlockGemOre;
+import mortvana.legacy.common.config.*;
+import mortvana.legacy.gui.FluxGearGUIHandler;
+import mortvana.legacy.network.ObjectPacket;
+import mortvana.legacy.network.ObjectPacketHandler;
+import mortvana.legacy.network.ParticleGenPacket;
+import mortvana.legacy.network.ParticleGenPacketHandler;
+import mortvana.legacy.util.LocalizationManager;
+import mortvana.legacy.util.Modules;
+import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
 import mortvana.projectfluxgear.core.common.FluxGearAchievements;
 import mortvana.melteddashboard.util.helpers.LoadedHelper;
 import mortvana.melteddashboard.intermod.tinkers.TinkersHelper;
 import mortvana.legacy.block.tileentity.TileTimeyWimey;
-import mortvana.legacy.common.config.FluxGearConfig;
-import mortvana.legacy.common.config.FluxGearConfigTweaks;
-import mortvana.legacy.common.config.FluxGearConfigWorld;
 import mortvana.legacy.util.ContentRegistry;
 import mortvana.legacy.util.handlers.DummyHandler;
 import mortvana.legacy.util.helpers.StringHelper;
@@ -39,10 +58,29 @@ import mortvana.legacy.util.runtime.EnvironmentChecks;
 import mortvana.legacy.world.FluxGearWorldGenerator;
 import mortvana.legacy.world.GravelOreGenEventHandler;
 import mortvana.legacy.world.PoorOreGenerator;
+import mortvana.projectfluxgear.thaumic.common.ThaumicContent;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.crafting.Detailing;
 import tconstruct.library.tools.ToolCore;
-
+//Informs forge that this is a base mod class, and gives it some info for the
+//FML mod list. This is also where it looks to see if your client's version
+//matches the server's.
+@Mod(modid = ProjectFluxGear.modid, name = "MortTech", version = "0.0.0.1", dependencies = "required-after:Forge@[9.11,); required-after:Mantle; after:ForgeMutlipart", acceptedMinecraftVersions = VersionInfo.MCVersion)
+//
+//Informs forge of the requirements:
+//
+//clientSideRequired means players can't connect without it. True for things
+//that add new blocks/items, false for things like bukkit plugins.
+//
+//serverSideRequired means clients can't connect to servers that don't have it.
+//This isn't a strict restriction currently but it can cause problems if the
+//mod does anything potentially incompatible in its preInit function. True for
+//things that add new blocks/items, false for things like Rei's Minimap or
+//Inventory Tweaks.
+//@NetworkMod(clientSideRequired=true, serverSideRequired=true)
 public class ProjectFluxGear {
     public static final PacketPipeline packetPipeline = new PacketPipeline();
 
@@ -50,6 +88,9 @@ public class ProjectFluxGear {
 
 	public static final String modID = "";
 
+	// The instance of your mod that Forge uses.
+	// The instance of the mod that Forge will access. Note that it has to be
+	//set by hand in the preInit step.
     @Instance(modID)
     public static ProjectFluxGear instance;
 	public static Random random = new Random();
@@ -57,9 +98,21 @@ public class ProjectFluxGear {
 	public static final String[] dyeTypes = new String[] { "White", "Orange", "Magenta", "LightBlue", "Yellow", "Lime", "Pink", "Gray", "LightGray", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black" };
 	public static final String[] colorNames = new String[] { "white", "orange", "magenta", "lightblue", "yellow", "lime", "pink", "gray", "silver", "aqua", "purple", "blue", "brown", "green", "red", "black" };
 
+	//Tells Forge what classes to load for the client and server proxies. These
+	//execute side-specific code like registering renderers (for the client) or
+	//different tick handlers (for the server).
+	// Says where the client and server 'proxy' code is loaded.
 	@SidedProxy(clientSide = "mortvana.mortvana.projectfluxgear.core.client.ClientProxy", serverSide = "mortvana.mortvana.projectfluxgear.core.common.CommonProxy")
     public static CommonProxy proxy;
 	public SimpleNetworkWrapper wrapper;
+
+	//Shared mod Logger
+	public static final Logger logger = LogManager.getLogger("MortTech");
+	public static void log(Level level, String message) {
+		FMLLog.getLogger().log(level, "[MortTech] " + message);
+	}
+
+	public static IBeeRoot beeRoot;
 
 	public ProjectFluxGear() {
 	    EnvironmentChecks.verifyEnvironmentSanity();
@@ -70,26 +123,72 @@ public class ProjectFluxGear {
 	public String[] blacklistedBlocks;
 	public String[] blacklistedTiles;
 
-    public static final GuiHandler guiHandler = new GuiHandler();
+    public static final FluxGearGUIHandler guiHandler = new FluxGearGUIHandler();
 
-    public static final CreativeTabs tabMaterials = new FluxGearTab("PFG-Materials", "fluxgear.materialsTab", FluxGearContent.gemDioptase);
-    public static final CreativeTabs tabWorld = new FluxGearTab("PFG-World", "fluxgear.worldTab", FluxGearContent.oreBauxite);
-    public static final CreativeTabs techTab = new FluxGearTab("PFG-Tech", "fluxgear.techTab", FluxGearContent.toolProtoSonicWrench);
-	public static final CreativeTabs generalTab = new FluxGearTab("PFG-General", "fluxgear.generalTab", new ItemStack(Items.potato));
-	public static final CreativeTabs stonesTab = new FluxGearTab("PFG-Stone", "fluxgear.stoneTab", new ItemStack(Blocks.obsidian));
-	public static final CreativeTabs thaumicTab = new FluxGearTab("PFG-Thaumic", "fluxgear.thaumicTab", new ItemStack(ThaumicContent.itemWardenAmulet));
+    public static final CreativeTabs tabMaterials = new FluxGearCreativeTab("PFG-Materials", "fluxgear.materialsTab", FluxGearContent.gemDioptase);
+    public static final CreativeTabs tabWorld = new FluxGearCreativeTab("PFG-World", "fluxgear.worldTab", FluxGearContent.oreBauxite);
+    public static final CreativeTabs techTab = new FluxGearCreativeTab("PFG-Tech", "fluxgear.techTab", FluxGearContent.toolProtoSonicWrench);
+	public static final CreativeTabs generalTab = new FluxGearCreativeTab("PFG-General", "fluxgear.generalTab", new ItemStack(Items.potato));
+	public static final CreativeTabs stonesTab = new FluxGearCreativeTab("PFG-Stone", "fluxgear.stoneTab", new ItemStack(Blocks.obsidian));
+	public static final CreativeTabs thaumicTab = new FluxGearCreativeTab("PFG-Thaumic", "fluxgear.thaumicTab", new ItemStack(ThaumicContent.itemWardenAmulet));
     //MOAR Tabs?
 
 	public static DummyHandler handler = new DummyHandler();
+
+	public static final String RESOURCESPREFIX = "projectfluxgear:";
+
+	public static final String networkChannelName = "FluxGearAddons";
+	public static SimpleNetworkWrapper network;
 
     // Doctor Octoartifact, BLAAHHHH...
     public static ArrayList<String> sounds;// = CongealedBloodBlock.sounds;
     public static ContentRegistry weirdRegistry;
 
+	public static MTConfig config;
+	public static BlockBasicOre BasicOre;
+	public static BlockGemOre GemOre;
+	public static BlockComplexOre ComplexOre;
+	public static final String modid = "MortTech";
     /** Initialization Sequence */
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+	    File Config = new File(event.getModConfigurationDirectory() + "/MortTech/MortTech.cfg");
+	    MTConfig.init(new Configuration(Config));
+	    MTConfig.setConfigFolderBase(event.getModConfigurationDirectory());
+	    BlockHandler.registerBlocks(new GameRegistry());
+	    BlockHandler.setNames(new LanguageRegistry());
+
+	    BasicOre = new BlockBasicOre(3000, Material.rock).setUnlocalizedName("BasicOre");
+	    GemOre = new BlockBasicOre(3001, Material.rock).setUnlocalizedName("GemOre");
+	    ComplexOre = new BlockBasicOre(3002, Material.rock).setUnlocalizedName("ComplexOre");
+
+	    GameRegistry.registerBlock(BasicOre, ItemBlockBasicOre.class, modid + BasicOre.getUnlocalizedName().substring(5));
+	    GameRegistry.registerBlock(GemOre, ItemBlockGemOre.class, modid + GemOre.getUnlocalizedName().substring(5));
+	    GameRegistry.registerBlock(ComplexOre, ItemBlockComplexOre.class, modid + ComplexOre.getUnlocalizedName().substring(5));
+
+
+	    NetworkRegistry.instance().registerGuiHandler(INSTANCE, new FluxGearGUIHandler());
+	    proxy.registerRenderers();
+
+	    content.preInit();
+	    FluxGearContent.addOredictSupport();
+	    FluxGearContent.postIntermodCommunication();
+
+	    root = event.getModConfigurationDirectory();
+	    Config.setup(root + "/MortTech/");
+	    for(Modules.Module module: Modules.modules) {
+		    module.preInit();
+	    }
+	    FluxGearContent.componentsTab = new TabTools("MTComponents");
+	    FluxGearContent.toolsTab = new TabTools("MTTools");
+	    FluxGearContent.machineTab = new TabTools("MTMachines");
+
         MinecraftForge.EVENT_BUS.register(this);
+
+	    network = NetworkRegistry.INSTANCE.newSimpleChannel("FluxGearAddons");
+	    network.registerMessage(ParticleGenPacketHandler.class, ParticleGenPacket.class, 1, Side.SERVER);
+	    network.registerMessage(ObjectPacketHandler.class, ObjectPacket.class, 6, Side.CLIENT);
+	    //thing = new Thing();
 
         FluxGearConfig.loadConfig(new File(event.getModConfigurationDirectory().getAbsolutePath() + "/Mortvana/ProjectFluxGear-Main.cfg"));
         FluxGearConfigWorld.loadConfiguration(new File(event.getModConfigurationDirectory().getAbsolutePath() + "/Mortvana/ProjectFluxGear-World.cfg"));
@@ -97,7 +196,6 @@ public class ProjectFluxGear {
 
 	    FluxGearCompat.preInitCompat();
 	    FluxGearCompat.preInitIMC();
-        content.preInit();
 
         GameRegistry.registerWorldGenerator(new FluxGearWorldGenerator(), 1);
 	    GameRegistry.registerWorldGenerator(new ThaumicContent.ExubituraGenerator(), 1);
@@ -110,6 +208,18 @@ public class ProjectFluxGear {
         }
 
 	    MinecraftForge.EVENT_BUS.register(new FluxGearEvents());
+
+	    File config = new File(event.getModConfigurationDirectory() + "/Mortvana/Bees.cfg");
+	    BeeConfig.init(new Configuration(config));
+	    BeeConfig.setConfigFolderBase(event.getModConfigurationDirectory());
+
+	    // Compatibility Helpers
+	    //ForestryHelper.preInit();
+	    //BigReactorsHelper();
+
+	    LocalizationManager.setupLocalizationInfo();
+
+	    content.oreRegistry();
     }
 
     @EventHandler
@@ -148,6 +258,105 @@ public class ProjectFluxGear {
 				chiseling.addDetailing(content.coloredStoneFancyBrick, i, content.coloredStoneSquareBrick, i, chisel);
 			}
 		}
+
+	    BasicOre = new BlockBasicOre();
+	    GemOre = new BlockGemOre();
+	    ComplexOre = new BlockComplexOre();
+
+	    proxy.registerRenderers();
+
+	    GameRegistry.registerBlock(BasicOre, ItemBlockBasicOre.class, "BasicOre");
+	    GameRegistry.registerBlock(GemOre, ItemBlockGemOre.class, "GemOre");
+	    GameRegistry.registerBlock(ComplexOre, ItemBlockComplexOre.class, "ComplexOre");
+
+	    MinecraftForge.setBlockHarvestLevel(BasicOre, 0, "pickaxe", 1);
+	    MinecraftForge.setBlockHarvestLevel(BasicOre, 1, "pickaxe", 1);
+	    MinecraftForge.setBlockHarvestLevel(BasicOre, 2, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(BasicOre, 3, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(BasicOre, 4, "pickaxe", 1);
+	    MinecraftForge.setBlockHarvestLevel(BasicOre, 5, "pickaxe", 1);
+	    MinecraftForge.setBlockHarvestLevel(BasicOre, 6, "pickaxe", 1);
+	    MinecraftForge.setBlockHarvestLevel(BasicOre, 7, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(BasicOre, 8, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(BasicOre, 9, "pickaxe", 2);
+
+	    MinecraftForge.setBlockHarvestLevel(GemOre, 0, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(GemOre, 1, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(GemOre, 2, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(GemOre, 3, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(GemOre, 4, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(GemOre, 5, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(GemOre, 6, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(GemOre, 7, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(GemOre, 8, "pickaxe", 1);
+	    MinecraftForge.setBlockHarvestLevel(GemOre, 9, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(GemOre, 10, "pickaxe", 2);
+
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 0, "pickaxe", 1);
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 1, "pickaxe", 1);
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 2, "pickaxe", 1);
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 3, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 4, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 5, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 6, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 7, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 8, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 9, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 10, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 11, "pickaxe", 3);
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 12, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 13, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 14, "pickaxe", 2);
+	    MinecraftForge.setBlockHarvestLevel(ComplexOre, 15, "pickaxe", 2);
+
+	    LanguageRegistry.addName(new ItemStack(BasicOre, 1, 0), "Chalcopyrite Ore"); //ADD CHALCOCITE
+	    LanguageRegistry.addName(new ItemStack(BasicOre, 1, 1), "Cassiterite Ore");
+	    LanguageRegistry.addName(new ItemStack(BasicOre, 1, 2), "Argentite Ore"); //ACTUALLY ACANTHITE
+	    LanguageRegistry.addName(new ItemStack(BasicOre, 1, 3), "Galena Ore");
+	    LanguageRegistry.addName(new ItemStack(BasicOre, 1, 4), "Sphalerite Ore");
+	    LanguageRegistry.addName(new ItemStack(BasicOre, 1, 5), "Bismuthinite Ore");
+	    LanguageRegistry.addName(new ItemStack(BasicOre, 1, 6), "Garnierite Ore"); //ADD MILLERITE
+	    LanguageRegistry.addName(new ItemStack(BasicOre, 1, 7), "Chromite Ore");
+	    LanguageRegistry.addName(new ItemStack(BasicOre, 1, 8), "Cobaltite Ore");
+	    LanguageRegistry.addName(new ItemStack(BasicOre, 1, 9), "Wolframite Ore");
+
+	    LanguageRegistry.addName(new ItemStack(GemOre, 1, 0), "Dioptase Ore");
+	    LanguageRegistry.addName(new ItemStack(GemOre, 1, 1), "Ruby Ore");
+	    LanguageRegistry.addName(new ItemStack(GemOre, 1, 2), "Sapphire Ore");
+	    LanguageRegistry.addName(new ItemStack(GemOre, 1, 3), "Green Sapphire Ore");
+	    LanguageRegistry.addName(new ItemStack(GemOre, 1, 4), "Pink Sapphire Ore");
+	    LanguageRegistry.addName(new ItemStack(GemOre, 1, 5), "Purple Sapphire Ore");
+	    LanguageRegistry.addName(new ItemStack(GemOre, 1, 6), "Topaz Ore");
+	    LanguageRegistry.addName(new ItemStack(GemOre, 1, 7), "Tanzanite Ore");
+	    LanguageRegistry.addName(new ItemStack(GemOre, 1, 8), "Pyrope Ore");
+	    LanguageRegistry.addName(new ItemStack(GemOre, 1, 9), "Malachite Ore");
+	    LanguageRegistry.addName(new ItemStack(GemOre, 1, 10), "Uranite Ore");
+	    LanguageRegistry.addName(new ItemStack(GemOre, 1, 11), "Olivine Ore");
+	    LanguageRegistry.addName(new ItemStack(GemOre, 1, 12), "Soarynium Ore");
+
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 0), "Bauxite Ore");
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 1), "Monazite Ore");
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 2), "Chalcocite Ore");
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 3), "Millerite Ore");
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 4), "Bornite Ore");
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 5), "Limonite Ore");
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 6), "Magnetite Ore");
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 7), "Hematite Ore");
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 8), "Pyrolusite Ore");
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 9), "Molybdenite Ore");
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 10), "Cooprite Ore");
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 11), "Ilmenite Ore");
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 12), "Tetrahedrite Ore");
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 13), "Tennatite Ore");
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 14), "Pentalandite Ore");
+	    LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 15), "Nierdermayrite Ore");
+
+	    //GameRegistry.registerWorldGenerator(EventManager);
+
+
+	    // Compatibility Helpers
+	    //ForestryHelper.init();
+	    //BigReactorsHelper.init();
     }
 
     @EventHandler
@@ -170,6 +379,16 @@ public class ProjectFluxGear {
 
         packetPipeline.postInitialize();
 
+
+	    proxy.registerRenderer();
+	    BeeManager.ititializeBees();
+	    VersionInfo.doVersionCheck();
+	    // get bee root
+	    //beeRoot = (IBeeRoot) AlleleManager.alleleRegistry.getSpeciesRoot("rootBees");
+
+	    // init bee branches
+	    //branchTechnostatic = new BranchBees();
+	    //AlleleManager.alleleRegistry.getClassification("family.apidae").addMemberGroup(branchTechnostatic);
     }
 
 	@EventHandler
@@ -212,9 +431,34 @@ public class ProjectFluxGear {
 	}
 
 
+	public static BlockFluxGear invisibleMultiblock;
+	public static BlockFluxGear particleGenerator;
+	public static BlockFluxGear energyPylon;
+	public static BlockFluxGear energyStorageCore;
 
+/*public static void register(BlockFluxGear block) {
+		String name = block.getUnwrappedUnlocalizedName(block.func_149739_a());
+		GameRegistry.registerBlock(block, name.substring(name.indexOf(":") + 1));
+	}*/
 
-
+/*
+* ClientRegistry.bindTileEntitySpecialRenderer(TileEnergyStorageCore.class, new RenderTileEnergyStorageCore());
+* ClientRegistry.bindTileEntitySpecialRenderer(TileEnergyPylon.class, new RenderTileEnergyPylon());
+* MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.particleGenerator), new RenderParticleGen());
+*
+*
+* GameRegistry.registerTileEntity(TileEnergyStorageCore.class, References.RESOURCESPREFIX + "TileEnergyStorageCore");
+* GameRegistry.registerTileEntity(TileInvisibleMultiblock.class, References.RESOURCESPREFIX + "TileInvisibleMultiblock");
+* GameRegistry.registerTileEntity(TileEnergyPylon.class, References.RESOURCESPREFIX + "TileEnergyPylon");
+* GameRegistry.registerTileEntity(TileParticleGenerator.class, References.RESOURCESPREFIX + "TileParticleGenerator");
+*
+* add((Block)ModBlocks.particleGenerator, new Object[]{"RBR", "BCB", "RBR", Character.valueOf('R'), Blocks.redstone_block, Character.valueOf('B'), Items.blaze_rod, Character.valueOf('C'), ModItems.draconicCore});
+* add((Block)ModBlocks.energyStorageCore, new Object[]{"CCC", "SMS", "CCC", Character.valueOf('C'), ModItems.draconiumIngot, Character.valueOf('S'), ModItems.wyvernEnergyCore, Character.valueOf('M'), ModItems.wyvernCore});
+* addOre((ItemStack)(new ItemStack(ModBlocks.energyPylon, 2)), new Object[]{"IEI", "MCM", "IDI", Character.valueOf('I'), ModItems.draconiumIngot, Character.valueOf('E'), Items.ender_eye, Character.valueOf('C'), ModItems.draconicCore, Character.valueOf('D'), "gemDiamond", Character.valueOf('M'), "gemEmerald"});
+* addOre((Item)ModItems.draconicCore, new Object[]{"CSC", "SMS", "CSC", Character.valueOf('C'), "ingotGold", Character.valueOf('S'), ModItems.draconiumIngot, Character.valueOf('M'), "gemDiamond"});
+* add((Item)ModItems.wyvernCore, new Object[]{"CSC", "SMS", "CSC", Character.valueOf('C'), ModItems.draconiumIngot, Character.valueOf('S'), ModItems.draconicCore, Character.valueOf('M'), Items.nether_star});
+* add((ItemStack)ModItems.wyvernEnergyCore, new Object[]{"CSC", "SMS", "CSC", Character.valueOf('C'), ModItems.draconiumIngot, Character.valueOf('S'), Blocks.redstone_block, Character.valueOf('M'), ModItems.draconicCore});
+*/
 
 
 

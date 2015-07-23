@@ -1,7 +1,6 @@
 package mortvana.legacy.common;
 
 import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 import java.io.BufferedReader;
@@ -9,8 +8,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.logging.log4j.Logger;
 
 public class VersionInfo {
     public static final String ModName = "Mortvana's Bees";
@@ -61,7 +60,7 @@ public class VersionInfo {
         int[] value = new int[versionTokens.size()];
         for (int i = 0; i < value.length; ++i)
         {
-            value[i] = versionTokens.get(i).intValue();
+            value[i] = versionTokens.get(i);
         }
         return value;
     }
@@ -208,23 +207,23 @@ public class VersionInfo {
 
                 if (beforeTargetVersion(modVersion, latestModVersion))
                 {
-                    modLogger.log(Level.INFO, "An updated version of " + modName + " is available: " + latestModVersion + ".");
+                    modLogger.info("An updated version of " + modName + " is available: " + latestModVersion + ".");
                     newVersion = true;
                     if (criticalUpdate)
                     {
-                        modLogger.log(Level.INFO, "This update has been marked as CRITICAL and will ignore notification suppression.");
+                        modLogger.info("This update has been marked as CRITICAL and will ignore notification suppression.");
                     }
                     if (beforeTargetVersion(MCVersion, latestMCVersion))
                     {
                         newMinecraftVersion = true;
-                        modLogger.log(Level.INFO, "This update is for Minecraft " + latestMCVersion + ".");
+                        modLogger.info("This update is for Minecraft " + latestMCVersion + ".");
                     }
                 }
 
             }
             catch (Exception e)
             {
-                modLogger.log(Level.WARNING, "Version Check Failed: " + e.getMessage());
+                modLogger.warn("Version Check Failed: " + e.getMessage());
             }
             versionCheckComplete = true;
         }

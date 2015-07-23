@@ -2,11 +2,11 @@ package mortvana.legacy.item;
 
 import mantle.items.abstracts.CraftingItem;
 
-import mortvana.legacy.common.MTContent;
+import mortvana.legacy.common.FluxGearContent;
 
 public class ItemCrafting extends CraftingItem {
     public ItemCrafting() {
-        super(materialNames, getTextures(), "crafting/", "morttech", MTContent.componentsTab);
+        super(materialNames, getTextures(), "crafting/", "morttech", FluxGearContent.componentsTab);
     }
 
     private static String[] getTextures () {

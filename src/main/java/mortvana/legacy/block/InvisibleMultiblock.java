@@ -22,10 +22,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.legacy.block.tileentity.TileEnergyPylon;
 import mortvana.legacy.block.tileentity.TileEnergyStorageCore;
 import mortvana.legacy.block.tileentity.TileInvisibleMultiblock;
-import mortvana.legacy.common.FluxGearAddons;
 import mortvana.legacy.common.FluxGearContent;
+import mortvana.legacy.common.ProjectFluxGear;
 import mortvana.legacy.util.Utils;
-import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 
 public class InvisibleMultiblock extends BlockFluxGear {
 
@@ -39,7 +38,7 @@ public class InvisibleMultiblock extends BlockFluxGear {
 
 	@SideOnly(Side.CLIENT)
 	public void func_149651_a(IIconRegister iconRegister) {
-		this.field_149761_L = iconRegister.registerIcon(FluxGearAddons.RESOURCESPREFIX + "draconium_block_0");
+		this.field_149761_L = iconRegister.registerIcon(ProjectFluxGear.RESOURCESPREFIX + "draconium_block_0");
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -114,7 +113,7 @@ public class InvisibleMultiblock extends BlockFluxGear {
 	public void func_149695_a(World world, int x, int y, int z, Block p_149695_5_) {
 		int meta = world.getBlockMetadata(x, y, z);
 		if(meta != 0 && meta != 1) {
-			if(meta == 2 && world.getBlock(x, y + 1, z) != FluxGearAddons.energyPylon && world.getBlock(x, y - 1, z) != FluxGearAddons.energyPylon) {
+			if(meta == 2 && world.getBlock(x, y + 1, z) != ProjectFluxGear.energyPylon && world.getBlock(x, y - 1, z) != FluxGearAddons.energyPylon) {
 				world.setBlock(x, y, z, Blocks.glass);
 			}
 		} else {

@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import net.minecraftforge.common.config.Configuration;
 
-import mortvana.legacy.common.ProjectFluxGear;
+import mortvana.melteddashboard.common.MeltedDashboardCore;
 
 public class FluxGearWorldConfigOld {
 
@@ -14,13 +14,13 @@ public class FluxGearWorldConfigOld {
 	public static File configFolder;
 
 	public static void loadConfiguration(File mainConfigFolder) {
-		ProjectFluxGear.logger.info("Loading configuration from disk.");
+		MeltedDashboardCore.logger.info("Loading configuration from disk.");
 		try {
 			configFolder = new File(mainConfigFolder.getCanonicalPath(), "Mortvana");
 			if (!configFolder.exists())
 				configFolder.mkdirs();
 		} catch (IOException e) {
-			ProjectFluxGear.logger.error("Error getting/creating Project Flux Gear configuration directory: " + e.getMessage());
+			MeltedDashboardCore.logger.error("Error getting/creating Project Flux Gear configuration directory: " + e.getMessage());
 		}
 		configuration = new Configuration(new File(configFolder, ("ProjectFluxGear-World.cfg")));
 		configuration.load();

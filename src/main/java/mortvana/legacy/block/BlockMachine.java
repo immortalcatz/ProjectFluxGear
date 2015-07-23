@@ -14,9 +14,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import mortvana.legacy.common.MTContent;
-import mortvana.legacy.common.MortTech;
 import mortvana.legacy.block.tileentity.WoodmillLogic;
+import mortvana.legacy.common.FluxGearContent;
+import mortvana.legacy.common.ProjectFluxGear;
 
 public class BlockMachine extends InventoryBlock {
 
@@ -92,7 +92,7 @@ public class BlockMachine extends InventoryBlock {
     @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
 
-        BlockCrank cr = (BlockCrank) MTContent.tileCrank;
+        BlockCrank cr = (BlockCrank) FluxGearContent.tileCrank;
         NBTTagCompound c = cr.p.data;
 
         c = new NBTTagCompound();
@@ -105,7 +105,7 @@ public class BlockMachine extends InventoryBlock {
     @Override
     public Object getModInstance ()
     {
-        return MortTech.INSTANCE;
+        return ProjectFluxGear.instance;
     }
 
     //TODO

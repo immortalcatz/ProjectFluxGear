@@ -10,6 +10,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.legacy.block.BlockFluxGear;
 import mortvana.legacy.common.ProjectFluxGear;
+import mortvana.melteddashboard.common.MeltedDashboardCore;
 
 public class FallingBlockFluxGear extends BlockFalling {
 	/**
@@ -63,7 +64,7 @@ public class FallingBlockFluxGear extends BlockFalling {
 			canSpawn = true;
 			beaconBase = false;
 			isColorized = false;
-			ProjectFluxGear.logger.warn(wrong);
+			MeltedDashboardCore.logger.warn(wrong);
 		}
 	}
 

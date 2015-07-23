@@ -2,10 +2,8 @@ package mortvana.melteddashboard.util.helpers;
 
 public class StringHelper {
 
-	public static enum EnumTextCasing {
-		CAMEL,
-		TITLE,
-		CAPITAL,
-		LOWER;
+	// TODO: This.
+	public static String toTitleCase(String string) {
+		return string;
 	}
 }

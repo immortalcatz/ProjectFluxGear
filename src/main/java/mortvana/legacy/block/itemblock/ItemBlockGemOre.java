@@ -1,13 +1,14 @@
 package mortvana.legacy.block.itemblock;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockGemOre extends ItemBlock{
+public class ItemBlockGemOre extends ItemBlock {
 
-	public ItemBlockGemOre(int par1)
+	public ItemBlockGemOre(Block block)
 	{
-		super(par1);
+		super(block);
 		setHasSubtypes(true);
 	}
 

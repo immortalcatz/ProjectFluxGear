@@ -16,9 +16,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraftforge.common.util.ForgeDirection;
 
-import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 import mortvana.legacy.block.tileentity.TileEnergyStorageCore;
-import mortvana.legacy.common.FluxGearAddons;
+import mortvana.legacy.common.ProjectFluxGear;
 import mortvana.legacy.util.Utils;
 
 public class EnergyStorageCore extends BlockFluxGear {
@@ -30,7 +29,7 @@ public class EnergyStorageCore extends BlockFluxGear {
 
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
-		this.field_149761_L = iconRegister.registerIcon(FluxGearAddons.RESOURCESPREFIX + "energy_storage_core");
+		this.field_149761_L = iconRegister.registerIcon(ProjectFluxGear.RESOURCESPREFIX + "energy_storage_core");
 	}
 
 	public boolean hasTileEntity(int metadata) {
@@ -68,7 +67,7 @@ public class EnergyStorageCore extends BlockFluxGear {
 			ProjectFluxGear.logger.error("Missing Tile Entity at BlockEnergyStorageCore.shouldSideBeRendered");
 			return true;
 		} else {
-			return tile.isOnline()?false:super.shouldSideBeRendered(world, x, y, z, side);
+			return !tile.isOnline() && super.shouldSideBeRendered(world, x, y, z, side);
 		}
 	}
 

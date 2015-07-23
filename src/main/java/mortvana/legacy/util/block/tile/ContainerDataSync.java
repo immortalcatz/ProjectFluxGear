@@ -7,7 +7,7 @@ import net.minecraft.inventory.Container;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.legacy.common.FluxGearAddons;
+import mortvana.legacy.common.ProjectFluxGear;
 import mortvana.legacy.network.ObjectPacket;
 
 public abstract class ContainerDataSync extends Container {
@@ -15,11 +15,9 @@ public abstract class ContainerDataSync extends Container {
 	}
 
 	public Object sendObject(TileObjectSync tile, short dataType, int index, Object object) {
-		Iterator i$ = crafters.iterator();
 
-		while(i$.hasNext()) {
-			Object p = i$.next();
-			FluxGearAddons.network.sendTo(new ObjectPacket(tile, (byte)2, index, object), (EntityPlayerMP)p);
+		for (Object player : crafters) {
+			ProjectFluxGear.network.sendTo(new ObjectPacket(tile, (byte) 2, index, object), (EntityPlayerMP) player);
 		}
 
 		return object;

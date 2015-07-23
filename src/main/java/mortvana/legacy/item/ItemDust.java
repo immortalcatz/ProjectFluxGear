@@ -9,12 +9,12 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.legacy.common.MTContent;
+import mortvana.legacy.common.FluxGearContent;
 
 public class ItemDust extends CraftingItem {
 
 	public ItemDust() {
-        super(materialNames, getTextures(), "dusts/", "morttech", MTContent.componentsTab);
+        super(materialNames, getTextures(), "dusts/", "morttech", FluxGearContent.componentsTab);
     }
 
     private static String[] getTextures () {

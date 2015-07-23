@@ -1,6 +1,8 @@
 package mortvana.legacy.client;
 
 import com.google.common.collect.Lists;
+import mortvana.legacy.common.FluxGearContent;
+import mortvana.legacy.common.ProjectFluxGear;
 import mortvana.projectfluxgear.thaumic.client.render.RenderPurity;
 import mortvana.legacy.block.tileentity.TileCrank;
 import mortvana.legacy.block.tileentity.WoodmillLogic;
@@ -9,21 +11,19 @@ import mortvana.legacy.client.render.DualPassCubeRenderer;
 import mortvana.legacy.client.render.RenderCrank;
 import mortvana.legacy.client.render.RenderFleshGolem;
 import mortvana.legacy.common.CommonProxy;
-import mortvana.legacy.common.MortTech;
-import mortvana.legacy.common.ThaumicContent;
 import mortvana.legacy.entity.EntityFleshProjectile;
 import mortvana.legacy.entity.FleshGolem;
 import mortvana.legacy.gui.GuiWoodmill;
 import mortvana.legacy.util.MTControls;
 import mortvana.legacy.util.handlers.ClientTickHandler;
 import mortvana.legacy.util.handlers.MTKeyHandler;
-import oldcode.morttech.CommonProxy;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
@@ -40,6 +40,8 @@ import java.util.ArrayList;
 
 import net.minecraftforge.common.MinecraftForge;
 
+import mantle.lib.client.MantleClientRegistry;
+
 //The Client Proxy does all the things that should only be done client-side,
 //like registering client-side handlers and renderers.
 public class ClientProxy extends CommonProxy {
@@ -54,7 +56,7 @@ public class ClientProxy extends CommonProxy {
 		dualPassCubeID = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new DualPassCubeRenderer());
 
-		RenderingRegistry.registerEntityRenderingHandler(ThaumicContent.EntityPurity.class, new RenderPurity());
+		RenderingRegistry.registerEntityRenderingHandler(FluxGearContent.EntityPurity.class, new RenderPurity());
 		RenderingRegistry.registerEntityRenderingHandler(FleshGolem.class, new RenderFleshGolem());
 		RenderingRegistry.registerEntityRenderingHandler(EntityFleshProjectile.class, new RenderSnowball(Items.rotten_flesh));
 
@@ -66,7 +68,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerSound() {
 		System.out.println("THERMAL TINKERER - WEIRD SCIENCE LEGACY DEBUG: REGISTER SOUND CALLED");
-		MinecraftForge.EVENT_BUS.register(new EventSounds(ThermalTinkerer.sounds));
+		MinecraftForge.EVENT_BUS.register(new EventSounds(ProjectFluxGear.sounds));
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -100,7 +102,7 @@ public class ClientProxy extends CommonProxy {
 	Document readManual (String location, DocumentBuilderFactory dbFactory) {
 		try
 		{
-			InputStream stream = MortTech.class.getResourceAsStream(location);
+			InputStream stream = ProjectFluxGear.class.getResourceAsStream(location);
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = (Document) dBuilder.parse(stream);
 			doc.getDocumentElement().normalize();

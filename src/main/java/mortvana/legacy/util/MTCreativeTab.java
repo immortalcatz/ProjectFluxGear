@@ -2,9 +2,10 @@ package mortvana.legacy.util;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import mortvana.legacy.common.MortTech;
+import mortvana.legacy.common.ProjectFluxGear;
 
 public class MTCreativeTab extends CreativeTabs
 {
@@ -15,7 +16,7 @@ public class MTCreativeTab extends CreativeTabs
 	
 	public MTCreativeTab(String name)
 	{
-		super(name/"MortTechTab");
+		super(name/*"MortTechTab"*/);
 		LanguageRegistry.instance().addStringLocalization("itemGroup.MortTechTab", "MortTech");
 		LanguageRegistry.instance().addStringLocalization("itemGroup." + NAME, "en_US", "MortTech");
 	}
@@ -23,11 +24,11 @@ public class MTCreativeTab extends CreativeTabs
 @Override
 public ItemStack getIconItemStack() {
 	if (stack == null) {
-		stack = new ItemStack(MortTech.BasicOre);
+		stack = new ItemStack(ProjectFluxGear.BasicOre);
 	}
 	return stack;
 	//return new ItemStack(MortTech.GemOre);
-	          icon = new ItemStack(Item.potato);
+	          icon = new ItemStack(Items.potato);
 	return icon;
 	}
 

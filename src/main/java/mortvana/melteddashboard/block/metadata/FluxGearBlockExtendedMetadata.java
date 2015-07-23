@@ -21,9 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraftforge.oredict.OreDictionary;
 
-import mortvana.melteddashboard.common.MeltedDashboardCore;
-import mortvana.projectfluxgear.core.common.ProjectFluxGear;
-import mortvana.melteddashboard.util.helpers.StringHelper.EnumTextCasing;
+import mortvana.melteddashboard.util.enums.EnumTextCasing;
 
 public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 

@@ -3,7 +3,8 @@ package mortvana.legacy.util.bees;
 import forestry.api.apiculture.*;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
-import mortvana.legacy.common.MortvanaBees;
+import mortvana.legacy.common.ProjectFluxGear;
+
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -69,7 +70,7 @@ public class BeeMutation implements IBeeMutation {
 
     @Override
     public IBeeRoot getRoot() {
-        return MortvanaBees.beeRoot;
+        return ProjectFluxGear.beeRoot;
     }
 
     @Override

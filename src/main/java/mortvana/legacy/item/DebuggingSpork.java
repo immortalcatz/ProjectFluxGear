@@ -3,12 +3,12 @@ package mortvana.legacy.item;
 import mantle.items.abstracts.CraftingItem;
 import mantle.items.iface.IDebugItem;
 
-import mortvana.legacy.common.MTContent;
+import mortvana.legacy.common.FluxGearContent;
 
 public class DebuggingSpork extends CraftingItem implements IDebugItem {
 
     public DebuggingSpork() {
-        super(name, texture(), "tool/", "morttech", MTContent.toolsTab);
+        super(name, texture(), "tool/", "morttech", FluxGearContent.toolsTab);
     }
 
     static String[] name = new String [] {"debugging_spork"};

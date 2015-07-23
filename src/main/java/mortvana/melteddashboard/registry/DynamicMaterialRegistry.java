@@ -15,18 +15,24 @@ import gnu.trove.map.hash.THashMap;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.melteddashboard.common.MeltedDashboardConfig;
 import mortvana.melteddashboard.block.metadata.FluxGearBlockExtendedMetadata;
+import mortvana.melteddashboard.item.FluxGearItem;
+import mortvana.melteddashboard.util.helpers.StringHelper;
 
 public class DynamicMaterialRegistry {
 	public ArrayList<MaterialEntry> entriesToSort = new ArrayList<MaterialEntry>();
 	public TMap<Integer, MaterialEntry> materialMap = new THashMap<Integer, MaterialEntry>(2000);
 
+	public MaterialData data;
+	public IMaterialRegistryItems registry;
 	public FluxGearBlockExtendedMetadata block;
+
 	final int WILD = Short.MAX_VALUE;
 
 	private static boolean initialized = false;
 
-	public DynamicMaterialRegistry(FluxGearBlockExtendedMetadata block) {
-		this.block = block;
+	public DynamicMaterialRegistry(MaterialData data) {
+		this.data = data;
+		block = data.BASE_BLOCK;
 	}
 
 	public void addMaterial(MaterialEntry entry) {
@@ -130,57 +136,81 @@ public class DynamicMaterialRegistry {
 	}
 
 	/**
-	 *  Automatically called during postInit, DO NOT CALL THIS YOURSELF, and we have a safeguard for that (because I
-	 *  know some idiot will try). Registers entries for associated types, so you don't have to!
+	 *  Automatically called during postInit, DO NOT CALL THIS YOURSELF (unless it is your own registry).
+	 *  Registers entries for associated types, so you don't have to!
 	 */
 	public void registerEntries() {
-		if (!initialized) {
-			for (Entry<Integer, MaterialEntry> materials : materialMap.entrySet()) {
-				Integer id = materials.getKey();
-				MaterialEntry entry = materials.getValue();
-				if (id == entry.getMaterialID()) {
-					if (entry.getMaterialType().containsForm(EnumMaterialForm.BLOCK)) {
-						block.setData(id, entry.getMaterialTexture(), entry.getMaterialName());
-						if (entry.getMaterialBlockHardness() != -1.0F) {
-							block.setBlockHardness(id, entry.getMaterialBlockHardness());
-						}
-						if (entry.getMaterialBlastResistance() != -1.0F) {
-							block.setBlastResistance(id, entry.getMaterialBlastResistance());
-						}
-						if (entry.getMaterialRarity() != 0) {
-							block.setItemRarity(id, entry.getMaterialRarity());
-						}
-						if (entry.getMaterialBlockLight() != 0) {
-							block.setBlockLight(id, entry.getMaterialBlockLight());
-						}
-						if (entry.getMaterialRedstoneSignal() != 0) {
-							block.setRedstoneSignal(id, entry.getMaterialRedstoneSignal());
-						}
-						if (entry.getMaterialHexColor() != -1) {
-							block.setColorData(id, entry.getMaterialHexColor());
-						}
-						if (entry.getMaterialMiningLevel() != -1 && entry.getMaterialMiningLevel() != block.harvestLevels.get(WILD)) {
-							block.setMiningLevel(id, entry.getMaterialMiningLevel());
-						}
-					}
-					//if () {}
-				} else {
-					MeltedDashboardCore.logger.error("Someone messed with our registry, because " + id + " (Mapped ID) is not the same as " + entry.getMaterialID() + " (Expected ID)! Skipping this entry!");
-				}
-
+		for (Entry<Integer, MaterialEntry> materials : materialMap.entrySet()) {
+			Integer id = materials.getKey();
+			MaterialEntry entry = materials.getValue();
+			if (id == entry.getMaterialID()) {
+				delegateRegistration(id, entry);
+				registerCrafting(id, entry);
+			} else {
+				MeltedDashboardCore.logger.error("Someone messed with our registry, because " + id + " (Mapped ID) is not the same as " + entry.getMaterialID() + " (Expected ID)! Skipping this entry!");
 			}
-			initialized = true;
 		}
 	}
 
-	public void registerBlockWithHandlers() {
-		for (Entry<Integer, MaterialEntry> materials : materialMap.entrySet()) {
-			ItemStack itemstack = new ItemStack(block, 1, materials.getKey());
-			for (String oreDictEntry : materials.getValue().getMaterialOreDict()) {
-				OreDictionary.registerOre("block" + oreDictEntry, itemstack);
-			}
-			GameRegistry.registerCustomItemStack("block" + materials.getValue().getMaterialName(), itemstack);
-			FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", itemstack);
+	public void delegateRegistration(int id, MaterialEntry entry) {
+		EnumMaterialType type = entry.getMaterialType();
+		if (type.containsForm(EnumMaterialForm.BLOCK)) {
+			registerBlocks(id, entry);
+		}
+		if (type.containsForm(EnumMaterialForm.INGOT)) {
+			registerItem(id, entry, data.INGOT);
+			registerItem(id, entry, data.CHUNK);
+			registerItem(id, entry, data.NUGGET);
+			registerItem(id, entry, data.CAST_INGOT);
+			registerItem(id, entry, data.INGOT_PILE);
+			registerItem(id, entry, data.LARGE_INGOT);
+		}
+		if (type.containsForm(EnumMaterialForm.GEAR)) {
+			registerItem(id, entry, data.GEAR);
+			registerItem(id, entry, data.COG);
+		}
+	}
+
+	public void registerBlocks(int id, MaterialEntry entry) {
+		block.setData(id, entry.getMaterialTexture(), "block" + StringHelper.toTitleCase(entry.getMaterialName()));
+		if (entry.getMaterialBlockHardness() != -1.0F) {
+			block.setBlockHardness(id, entry.getMaterialBlockHardness());
+		}
+		if (entry.getMaterialBlastResistance() != -1.0F) {
+			block.setBlastResistance(id, entry.getMaterialBlastResistance());
+		}
+		if (entry.getMaterialRarity() != 0) {
+			block.setItemRarity(id, entry.getMaterialRarity());
+		}
+		if (entry.getMaterialBlockLight() != 0) {
+			block.setBlockLight(id, entry.getMaterialBlockLight());
+		}
+		if (entry.getMaterialRedstoneSignal() != 0) {
+			block.setRedstoneSignal(id, entry.getMaterialRedstoneSignal());
+		}
+		if (entry.getMaterialHexColor() != -1) {
+			block.setColorData(id, entry.getMaterialHexColor());
+		}
+		if (entry.getMaterialMiningLevel() != -1 && entry.getMaterialMiningLevel() != block.harvestLevels.get(WILD)) {
+			block.setMiningLevel(id, entry.getMaterialMiningLevel());
+		}
+		ItemStack itemstack = new ItemStack(block, 1, id);
+		for (String oreDictEntry : entry.getMaterialOreDict()) {
+			OreDictionary.registerOre("block" + oreDictEntry, itemstack);
+		}
+		GameRegistry.registerCustomItemStack("block" + StringHelper.toTitleCase(entry.getMaterialName()), itemstack);
+		FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", itemstack);
+	}
+
+	public void registerItem(int id, MaterialEntry entry, MaterialSet data) {
+		data.getItem().addRegistryItem(data.getOffset() + id, data.getPrefix() + StringHelper.toTitleCase(entry.getMaterialName()), entry.getMaterialRarity(), entry.getMaterialHexColor(), entry.getMaterialTexture(), entry.getMaterialOreDict());
+	}
+
+	public void registerCrafting(int id, MaterialEntry entry) {
+		String[] oredict = entry.getMaterialOreDict();
+		EnumMaterialType type = entry.getMaterialType();
+		if (type.containsForm(EnumMaterialForm.BLOCK) && type.containsForm(EnumMaterialForm.INGOT)) {
+
 		}
 	}
 
@@ -192,7 +222,6 @@ public class DynamicMaterialRegistry {
 	public void postInit() {
 		sortEntries();
 		registerEntries();
-		registerBlockWithHandlers();
 	}
 }
 

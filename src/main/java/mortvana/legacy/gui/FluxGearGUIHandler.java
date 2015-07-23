@@ -8,10 +8,10 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
-import mortvana.projectfluxgear.thaumic.client.gui.GuiWaslieHammer;
+import mortvana.legacy.client.GuiWaslieHammer;
 import mortvana.legacy.block.tileentity.ContainerWoodmill;
+import mortvana.legacy.common.FluxGearContent;
 import mortvana.legacy.common.ProjectFluxGear;
-import mortvana.legacy.common.ThaumicContent;
 import mortvana.legacy.block.tileentity.TileWoodmill;
 
 public class FluxGearGUIHandler implements IGuiHandler {
@@ -29,7 +29,7 @@ public class FluxGearGUIHandler implements IGuiHandler {
 
 		switch (ID) {
 			case 0:
-				return new ThaumicContent.ContainerHammer(player);
+				return new FluxGearContent.ContainerHammer(player);
 		}
 
 		TileEntity tileEntity = world.getTileEntity(x, y, z);

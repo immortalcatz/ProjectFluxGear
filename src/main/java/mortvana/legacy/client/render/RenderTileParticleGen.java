@@ -14,8 +14,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 
-import mortvana.fluxgearaddons.block.tileentity.TileEnergyStorageCore;
-import mortvana.fluxgearaddons.block.tileentity.TileParticleGenerator;
+import mortvana.legacy.block.tileentity.TileEnergyStorageCore;
+import mortvana.legacy.block.tileentity.TileParticleGenerator;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
