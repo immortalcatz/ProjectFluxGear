@@ -17,7 +17,7 @@ Please include the following:
 
 * Minecraft version
 * Forge version/build
-* ~~Melted Dashboard Lib or whatever I call it when it is a thing version~~
+* Melted Dashboard Core version
 * Project Flux Gear version
 * Versions of any mods potentially related to the issue 
 * Any relevant screenshots are greatly appreciated.
@@ -27,9 +27,9 @@ Please include the following:
 
 ##Licensing
 
-####Project Flux Gear is copyleft under the What is Mortvana Even Saying License:
+####Project Flux Gear is copyfree under the What is Mortvana Even Saying License:
 
-The code of Project Flux Gear in source and/or binary is the intellectual property of Team Magnequasar (Mortvana, MasterAbdoTGM50, Drullkus, and Gyro (Glassmaker, TheMike, Blorph, MysteriousAges, and Tiktalik get a mention too, as they are honorary members)). The end user (From here on know as "You") may not reproduce or modify Project Flux Gear for public distribution without prior permission. You can however redistribute official Project Flux Gear compiled binaries in modpacks with adequate permissions for other mods to be included. Any modpack using Project Flux Gear takes **full** responsibility for user support queries, and the **MODPACK TEAM** should report bugs to us (if you can properly report a bug, go ahead :P). For anyone else, we only support official builds from the main CI servers, or from CurseForge, not custom built jars. We also do not take bug reports for outdated versions of Minecraft. You are allowed to fork and modify Project Flux Gear, and submit Pull Requests, and even port it if the whole team happens to spontaneously implode and/or drop the project and/or wont updated to the horrible place called C++, I (Mortvana) mean 1.8. You can copy portions of code for use in other projects, or even use our (Team Magnequasar's) code as a dependency for other mods. Any contributions to this repository are automatically licensed under this license, so if you don't agree with it, you probably shouldn't contribute. Any code heavily copied from, derived from, or building on our code must be publicly visible; You keep rights to your OWN code, but you still should make your source visible (Honestly, you should do that either way :P). You are forbidden from claiming any code, which you did not write as your own. Also, just use common sense and follow Wheaton's Law.
+The code of Project Flux Gear in source and/or binary is the intellectual property of The Flux Tinkers (Mortvana, MasterAbdoTGM50, and Drullkus (Glassmaker, Gyro, TheMike, Blorph, MysteriousAges, and Tiktalik get a mention too, as they are honorary members)). The end user (From here on know as "You") may not reproduce or modify Project Flux Gear for public distribution without prior permission. You can however redistribute official Project Flux Gear compiled binaries in modpacks with adequate permissions for other mods to be included. Any modpack using Project Flux Gear takes **full** responsibility for user support queries, and the **MODPACK TEAM** should report bugs to us (if you can properly report a bug, go ahead :P). For anyone else, we only support official builds from the main CI servers, or from CurseForge, not custom built jars. We also do not take bug reports for outdated versions of Minecraft. You are allowed to fork and modify Project Flux Gear, and submit Pull Requests, and even port it if the whole team happens to spontaneously implode and/or drop the project and/or wont updated to the horrible place called C++, I (Mortvana) mean 1.8. You can copy portions of code for use in other projects, or even use our (Team Magnequasar's) code as a dependency for other mods. Any contributions to this repository are automatically licensed under this license, so if you don't agree with it, you probably shouldn't contribute. Any code heavily copied from, derived from, or building on our code must be publicly visible; You keep rights to your OWN code, but you still should make your source visible (Honestly, you should do that either way :P). You are forbidden from claiming any code, which you did not write as your own. Also, just use common sense and follow Wheaton's Law.
 
 #### In Human Readable Text:
 
@@ -50,5 +50,5 @@ If you have queries about any license, or the above support restrictions, or my 
 
 ##Legal Bullshit
 
-- So no-one get their kilt stuck in a jet engine about any license change or whatever, all code submitted is automagically licensed under my random licensing stuff, which shall always follow Wheaton's Law :P
+- So no-one gets their kilt stuck in a jet engine about any license change or whatever, all code submitted is automagically licensed under my random licensing stuff, which shall always follow Wheaton's Law :P
 - As per terms of the Railcraft licence, I must state that I have used Railcraft code in creating the Poor Ores, all code originally from Railcraft is marked as such in the class.

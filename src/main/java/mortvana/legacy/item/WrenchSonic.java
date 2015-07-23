@@ -1,7 +1,6 @@
 package mortvana.legacy.item;
 
 import ic2.api.tile.IWrenchable;
-import ic2.api.util.Keys;
 import mortvana.legacy.common.ProjectFluxGear;
 
 import net.minecraft.block.Block;
@@ -11,7 +10,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.List;
 
@@ -41,26 +39,6 @@ public class WrenchSonic extends Item {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if ((tileEntity instanceof IWrenchable)) {
             IWrenchable wrenchable = (IWrenchable)tileEntity;
-            if (Keys.instance.isAltKeyDown(entityPlayer)) {
-                for (int step = 1; step < 6; step++) {
-                    if (entityPlayer.isSneaking()) {
-                        side = (wrenchable.getFacing() + 6 - step) % 6;
-                    } else {
-                        side = (wrenchable.getFacing() + step) % 6;
-                    }
-                    if (wrenchable.wrenchCanSetFacing(entityPlayer, side)) {
-                        break;
-                    }
-                }
-            } else if (entityPlayer.isSneaking()) {
-                side += side % 2 * -2 + 1;
-            }
-            if (wrenchable.wrenchCanSetFacing(entityPlayer, side)){
-                if (ProjectFluxGear.proxy.isSimulating()) {
-                    wrenchable.setFacing((short)side);
-                }
-                return ProjectFluxGear.proxy.isSimulating();
-            }
             if (wrenchable.wrenchCanRemove(entityPlayer)) {
                 if (ProjectFluxGear.proxy.isSimulating()) {
                     boolean dropOriginalBlock = false;
@@ -82,13 +60,9 @@ public class WrenchSonic extends Item {
                     }
                     world.setBlockToAir(x, y, z);
                 }
-                return ProjectFluxGear.proxy.isSimulating();
             }
         }
-        if (block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side))) {
-            return ProjectFluxGear.proxy.isSimulating();
-        }
-        return false;
+	    return ProjectFluxGear.proxy.isSimulating();
     }
 
     public boolean overrideWrenchSuccessRate(ItemStack itemStack) {

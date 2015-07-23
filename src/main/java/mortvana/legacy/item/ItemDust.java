@@ -6,6 +6,7 @@ import mantle.items.abstracts.CraftingItem;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -55,224 +56,224 @@ public class ItemDust extends CraftingItem {
             //TODO
             //Finish This
         case 0:
-            list.add("Good for Making Paper or Charcoal.");
-            list.add("Also good for Cleaning up Puke.");
+            StatCollector.translateToLocal("Good for Making Paper or Charcoal.");
+            StatCollector.translateToLocal("Also good for Cleaning up Puke.");
             break;
         case 1:
-            list.add("Bad, Dirty Coal... ");
-            list.add("...Well it's Actually Lignite.");
+            StatCollector.translateToLocal("Bad, Dirty Coal... ");
+            StatCollector.translateToLocal("...Well it's Actually Lignite.");
             break;
         case 2:
-            list.add("Finely Ground and Quite Sooty.");
+            StatCollector.translateToLocal("Finely Ground and Quite Sooty.");
             break;
         case 3:
-            list.add("One day this may become a Diamond...");
+            StatCollector.translateToLocal("One day this may become a Diamond...");
             break;
         case 4:
-            list.add("Sharp and Abrasive.");
+            StatCollector.translateToLocal("Sharp and Abrasive.");
             break;
         case 5:
-            list.add("Soft and Moist.");
+            StatCollector.translateToLocal("Soft and Moist.");
             break;
         case 6:
-            list.add("Unfired Ceramic Powder.");
+            StatCollector.translateToLocal("Unfired Ceramic Powder.");
             break;
         case 7:
-            list.add("UUM Dust:");
-            list.add("Universally Used Metallic Dust");
+            StatCollector.translateToLocal("UUM Dust:");
+            StatCollector.translateToLocal("Universally Used Metallic Dust");
             break;
         case 8:
-            list.add("Overrated, but Shiny");
+            StatCollector.translateToLocal("Overrated, but Shiny");
             break;
         case 9:
-            list.add("There's no Bismuth...");
-            list.add("...like Show Bismuth.");
+            StatCollector.translateToLocal("There's no Bismuth...");
+            StatCollector.translateToLocal("...like Show Bismuth.");
             break;
         case 10:
-            list.add("Most Common of all the Metals...");
-            list.add("...Well, Non-Alkali Metals.");
+            StatCollector.translateToLocal("Most Common of all the Metals...");
+            StatCollector.translateToLocal("...Well, Non-Alkali Metals.");
             break;
         case 11:
-            list.add("It goes up to Eleven...");
+            StatCollector.translateToLocal("It goes up to Eleven...");
             break;
         case 12:
-            list.add("Common and Conductive.");
+            StatCollector.translateToLocal("Common and Conductive.");
             break;
         case 13:
-            list.add("Brittle and Slightly Vitreous.");
+            StatCollector.translateToLocal("Brittle and Slightly Vitreous.");
             break;
         case 14:
-            list.add("Brittle and Unstrurdy.");
+            StatCollector.translateToLocal("Brittle and Unstrurdy.");
             break;
         case 15:
-            list.add("Toxic and Dense.");
+            StatCollector.translateToLocal("Toxic and Dense.");
             break;
         case 16:
-            list.add("Most Conductive Elemental Metal...");
-            list.add("Most Reflective too.");
+            StatCollector.translateToLocal("Most Conductive Elemental Metal...");
+            StatCollector.translateToLocal("Most Reflective too.");
             break;
         case 17:
-            list.add("Hard, but not useful by itself.");
+            StatCollector.translateToLocal("Hard, but not useful by itself.");
             break;
         case 18:
-            list.add("High-Tech, but overrated.");
+            StatCollector.translateToLocal("High-Tech, but overrated.");
             break;
         case 19:
-            list.add("Incredibly Hard, but Brittle.");
+            StatCollector.translateToLocal("Incredibly Hard, but Brittle.");
             break;
         case 20:
-            list.add("The Period 5 PGM.");
+            StatCollector.translateToLocal("The Period 5 PGM.");
             break;
         case 21:
-            list.add("Rarest Element in the World.");
+            StatCollector.translateToLocal("Rarest Element in the World.");
             break;
         case 22:
-            list.add("It looks like Iron, but it isn't.");
-            list.add("Thermally Contractive.");
+            StatCollector.translateToLocal("It looks like Iron, but it isn't.");
+            StatCollector.translateToLocal("Thermally Contractive.");
             break;
         case 23:
-            list.add("A Good Alloying Agent.");
+            StatCollector.translateToLocal("A Good Alloying Agent.");
             break;
         case 24:
-            list.add("Slightly Blue, and Ferromagnetic.");
+            StatCollector.translateToLocal("Slightly Blue, and Ferromagnetic.");
             break;
         case 25:
-            list.add("Melts in your hand.");
+            StatCollector.translateToLocal("Melts in your hand.");
             break;
         case 26:
-            list.add("Good for Control Rods");
+            StatCollector.translateToLocal("Good for Control Rods");
             break;
         case 27:
-            list.add("Why not Catmium?");
+            StatCollector.translateToLocal("Why not Catmium?");
             break;
         case 28:
-            list.add("Useful for High-Tech Solars");
+            StatCollector.translateToLocal("Useful for High-Tech Solars");
             break;
         case 29:
-            list.add("Is this Crystalline Villager Blood?");
+            StatCollector.translateToLocal("Is this Crystalline Villager Blood?");
             break;
         case 30:
-            list.add("<INSERT WITTY COMMENT HERE>");
+            StatCollector.translateToLocal("<INSERT WITTY COMMENT HERE>");
             break;
         case 31:
-            list.add("Blue Powder... Let's Centrifuge It!");
+            StatCollector.translateToLocal("Blue Powder... Let's Centrifuge It!");
             break;
         case 32:
-            list.add("Shiny Shards of Crystalline Carbon.");
+            StatCollector.translateToLocal("Shiny Shards of Crystalline Carbon.");
             break;
         case 33:
-            list.add("Volcanic Glass.");
+            StatCollector.translateToLocal("Volcanic Glass.");
             break;
         case 34:
-            list.add("Just Stone Dust.");
+            StatCollector.translateToLocal("Just Stone Dust.");
             break;
         case 35:
-            list.add("Uncolored Aluminium Oxide");
+            StatCollector.translateToLocal("Uncolored Aluminium Oxide");
             break;
         case 36:
-            list.add("Bane of Greg's Infrastructure.");
+            StatCollector.translateToLocal("Bane of Greg's Infrastructure.");
             break;
         case 37:
-            list.add("<INSERT WITTY COMMENT HERE>");
+            StatCollector.translateToLocal("<INSERT WITTY COMMENT HERE>");
             break;
         case 38:
-            list.add("It was never");
-            list.add("Supposed to be Emerald.");
-            list.add("                          -Eloraam");
+            StatCollector.translateToLocal("It was never");
+            StatCollector.translateToLocal("Supposed to be Emerald.");
+            StatCollector.translateToLocal("                          -Eloraam");
             break;
         case 39:
-            list.add("NEC:");
-            list.add("Not Enough Chromium.");
+            StatCollector.translateToLocal("NEC:");
+            StatCollector.translateToLocal("Not Enough Chromium.");
             break;
         case 40:
-            list.add("THE PURPLE!!!!");
-            list.add("IT TASTES LIKE BURNING!!!!");
+            StatCollector.translateToLocal("THE PURPLE!!!!");
+            StatCollector.translateToLocal("IT TASTES LIKE BURNING!!!!");
             break;
         case 41:
-            list.add("Quite Abrasive.");
+            StatCollector.translateToLocal("Quite Abrasive.");
             break;
         case 42:
-            list.add("Mysticly Conductive.");
+            StatCollector.translateToLocal("Mysticly Conductive.");
             break;
         case 43:
-            list.add("The Dust of the Nether's Energy.");
+            StatCollector.translateToLocal("The Dust of the Nether's Energy.");
             break;
         case 44:
-            list.add("Fertilization Pulverization.");
+            StatCollector.translateToLocal("Fertilization Pulverization.");
             break;
         case 45:
-            list.add("Purple Quartz... OF DOOM!!!!");
+            StatCollector.translateToLocal("Purple Quartz... OF DOOM!!!!");
             break;
         case 46:
-            list.add("Orange Crystal Powder");
+            StatCollector.translateToLocal("Orange Crystal Powder");
             break;
         case 47:
-            list.add("Ooh, Purple!");
+            StatCollector.translateToLocal("Ooh, Purple!");
             break;
         case 48:
-            list.add("Ground Green Copper Gem.");
+            StatCollector.translateToLocal("Ground Green Copper Gem.");
             break;
         case 49:
-            list.add("The Dust of the Nether's Purity.");
+            StatCollector.translateToLocal("The Dust of the Nether's Purity.");
             break;
         case 50:
-            list.add("High-Tech Silicate!");
+            StatCollector.translateToLocal("High-Tech Silicate!");
             break;
         case 51:
-            list.add("Not so Gem-Grade Anymore!");
+            StatCollector.translateToLocal("Not so Gem-Grade Anymore!");
             break;
         case 52:
-            list.add("Magical Powder, for Making Alloys.");
+            StatCollector.translateToLocal("Magical Powder, for Making Alloys.");
             break;
         case 53:
-            list.add("INSERT WITTY COMMENT HERE");
+            StatCollector.translateToLocal("INSERT WITTY COMMENT HERE");
             break;
         case 54:
-            list.add("Kinda like Carbon.");
+            StatCollector.translateToLocal("Kinda like Carbon.");
             break;
         case 55:
-            list.add("So Stinky");
+            StatCollector.translateToLocal("So Stinky");
             break;
         case 56:
-            list.add("Science Goes Moo");
+            StatCollector.translateToLocal("Science Goes Moo");
             break;
         case 57:
-            list.add("The Most Common Nuclear Fuel.");
+            StatCollector.translateToLocal("The Most Common Nuclear Fuel.");
             break;
         case 58:
-            list.add("Radioactive Powder.");
+            StatCollector.translateToLocal("Radioactive Powder.");
             break;
         case 59:
-            list.add("For the Doc Brown in All of Us!");
+            StatCollector.translateToLocal("For the Doc Brown in All of Us!");
             break;
         case 60:
-            list.add("Shouldn't it be Pink?");
+            StatCollector.translateToLocal("Shouldn't it be Pink?");
             break;
         case 61:
-            list.add("Uranium's Beta Decay Product.");
+            StatCollector.translateToLocal("Uranium's Beta Decay Product.");
             break;
         case 62:
-            list.add("Actinium!");
+            StatCollector.translateToLocal("Actinium!");
             break;
         case 63:
-        	list.add("...<Something>, <Something>...");
-            list.add("It's Ferromagnetic!");
+        	StatCollector.translateToLocal("...<Something>, <Something>...");
+            StatCollector.translateToLocal("It's Ferromagnetic!");
             break;
         case 64:
-            list.add("...Radioactive, Radioactive");
-            list.add("Oohh, Ohh...");
+            StatCollector.translateToLocal("...Radioactive, Radioactive");
+            StatCollector.translateToLocal("Oohh, Ohh...");
             break;
         case 65:
-        	list.add("Mmm... Teleporty Dust.");
+        	StatCollector.translateToLocal("Mmm... Teleporty Dust.");
         	break;
         case 66:
-            list.add("I just bought some rocks from space!");
+            StatCollector.translateToLocal("I just bought some rocks from space!");
             break;
         case 67:
-            list.add("Potassium Nitrate.");
+            StatCollector.translateToLocal("Potassium Nitrate.");
             break;
         case 68:
-        	list.add("Made from Real Latex.");
+        	StatCollector.translateToLocal("Made from Real Latex.");
         	break;
         }
     }

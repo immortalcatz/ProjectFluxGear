@@ -55,7 +55,9 @@ import baubles.api.BaubleType;
 import baubles.api.IBauble;
 import mekanism.api.recipe.RecipeHelper;
 import mortvana.melteddashboard.intermod.thaumcraft.inventory.SlotEssentia;
+import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
 import mortvana.melteddashboard.util.FluxGearDamageSources;
+import mortvana.projectfluxgear.thaumic.common.ThaumicContent;
 import mortvana.projectfluxgear.thaumic.item.ItemWardenAmulet;
 import mortvana.projectfluxgear.tinkers.modifiers.ActiveToolModFeedback;
 import mortvana.projectfluxgear.tweaks.util.TweakItemRegistry;
@@ -125,6 +127,8 @@ public class FluxGearContent implements IFuelHandler {
 		loadTiles();
         loadAugments();
 		preInitMortTech();
+		addOreDictSupport();
+		postIntermodCommunication();
     }
 
     public void init() {
@@ -352,7 +356,7 @@ public class FluxGearContent implements IFuelHandler {
 			}
 			if (FluxGearConfigTweaks.harderDisassemblerRecipe) {
 				// Atomic Disassembler
-				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("Mekanism", "AtomicDisassembler"), 1, 100), "ata", "ada", " o ", 'd', ExPContent.disassemblyCore, 't', GameRegistry.findItem("Mekanism", "EnergyTablet"), 'o', "ingotRefinedObsidian", 'a', "alloyUltimate"));
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("Mekanism", "AtomicDisassembler"), 1, 100), "ata", "ada", " o ", 'd', disassemblyCore, 't', GameRegistry.findItem("Mekanism", "EnergyTablet"), 'o', "ingotRefinedObsidian", 'a', "alloyUltimate"));
 
 				// Disassembly Core
 				GameRegistry.addRecipe(new ShapedOreRecipe(disassemblyCore, "tst", "eae", "tst", 't', GameRegistry.findItem("Mekanism", "TeleportationCore"), 's', GameRegistry.findItem("Mekanism", "SpeedUpgrade"), 'e', GameRegistry.findItem("Mekanism", "EnergyUpgrade"), 'a', "alloyUltimate"));
@@ -493,8 +497,20 @@ public class FluxGearContent implements IFuelHandler {
 	}
 
 	/* Start MortTech */
+	public static BlockBasicOre BasicOre;
+	public static BlockGemOre GemOre;
+	public static BlockComplexOre ComplexOre;
+
 	public static void preInitMortTech() {
 		//Unlocalized Names
+		GameRegistry.registerBlock(woodmill, "woodmill");
+		GameRegistry.registerBlock(crank, "crank");
+		LanguageRegistry.addName(woodmill, "Woodmill");
+		LanguageRegistry.addName(crank, "Crank");
+
+		componentsTab = new TabTools("MTComponents");
+		toolsTab = new TabTools("MTTools");
+		machineTab = new TabTools("MTMachines");
 
 		//Class Registry
 		basicOre = new BlockBasicOre().setBlockName("BasicOre");
@@ -507,7 +523,13 @@ public class FluxGearContent implements IFuelHandler {
 		// GameRegistry.addRecipe(new ItemStack(snakeBag, 1, 0), "sss", "sss", "sss", 's', snake);
 
 		//Harvest Levels
+		BasicOre = new BlockBasicOre(3000, Material.rock).setUnlocalizedName("BasicOre");
+		GemOre = new BlockBasicOre(3001, Material.rock).setUnlocalizedName("GemOre");
+		ComplexOre = new BlockBasicOre(3002, Material.rock).setUnlocalizedName("ComplexOre");
 
+		GameRegistry.registerBlock(BasicOre, ItemBlockBasicOre.class, modid + BasicOre.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(GemOre, ItemBlockGemOre.class, modid + GemOre.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(ComplexOre, ItemBlockComplexOre.class, modid + ComplexOre.getUnlocalizedName().substring(5));
 
 		//Ore Dictionary
 
@@ -745,6 +767,100 @@ public class FluxGearContent implements IFuelHandler {
 		GameRegistry.registerItem(honeyComb, "mortvanaBeesHoneyComb");
 	}
 
+	public static void initMortTech() {
+		BasicOre = new BlockBasicOre();
+		GemOre = new BlockGemOre();
+		ComplexOre = new BlockComplexOre();
+
+		GameRegistry.registerBlock(BasicOre, ItemBlockBasicOre.class, "BasicOre");
+		GameRegistry.registerBlock(GemOre, ItemBlockGemOre.class, "GemOre");
+		GameRegistry.registerBlock(ComplexOre, ItemBlockComplexOre.class, "ComplexOre");
+
+		MinecraftForge.setBlockHarvestLevel(BasicOre, 0, "pickaxe", 1);
+		MinecraftForge.setBlockHarvestLevel(BasicOre, 1, "pickaxe", 1);
+		MinecraftForge.setBlockHarvestLevel(BasicOre, 2, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(BasicOre, 3, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(BasicOre, 4, "pickaxe", 1);
+		MinecraftForge.setBlockHarvestLevel(BasicOre, 5, "pickaxe", 1);
+		MinecraftForge.setBlockHarvestLevel(BasicOre, 6, "pickaxe", 1);
+		MinecraftForge.setBlockHarvestLevel(BasicOre, 7, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(BasicOre, 8, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(BasicOre, 9, "pickaxe", 2);
+
+		MinecraftForge.setBlockHarvestLevel(GemOre, 0, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(GemOre, 1, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(GemOre, 2, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(GemOre, 3, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(GemOre, 4, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(GemOre, 5, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(GemOre, 6, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(GemOre, 7, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(GemOre, 8, "pickaxe", 1);
+		MinecraftForge.setBlockHarvestLevel(GemOre, 9, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(GemOre, 10, "pickaxe", 2);
+
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 0, "pickaxe", 1);
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 1, "pickaxe", 1);
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 2, "pickaxe", 1);
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 3, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 4, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 5, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 6, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 7, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 8, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 9, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 10, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 11, "pickaxe", 3);
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 12, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 13, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 14, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(ComplexOre, 15, "pickaxe", 2);
+
+		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 0), "Chalcopyrite Ore"); //ADD CHALCOCITE
+		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 1), "Cassiterite Ore");
+		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 2), "Argentite Ore"); //ACTUALLY ACANTHITE
+		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 3), "Galena Ore");
+		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 4), "Sphalerite Ore");
+		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 5), "Bismuthinite Ore");
+		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 6), "Garnierite Ore"); //ADD MILLERITE
+		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 7), "Chromite Ore");
+		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 8), "Cobaltite Ore");
+		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 9), "Wolframite Ore");
+
+		LanguageRegistry.addName(new ItemStack(GemOre, 1, 0), "Dioptase Ore");
+		LanguageRegistry.addName(new ItemStack(GemOre, 1, 1), "Ruby Ore");
+		LanguageRegistry.addName(new ItemStack(GemOre, 1, 2), "Sapphire Ore");
+		LanguageRegistry.addName(new ItemStack(GemOre, 1, 3), "Green Sapphire Ore");
+		LanguageRegistry.addName(new ItemStack(GemOre, 1, 4), "Pink Sapphire Ore");
+		LanguageRegistry.addName(new ItemStack(GemOre, 1, 5), "Purple Sapphire Ore");
+		LanguageRegistry.addName(new ItemStack(GemOre, 1, 6), "Topaz Ore");
+		LanguageRegistry.addName(new ItemStack(GemOre, 1, 7), "Tanzanite Ore");
+		LanguageRegistry.addName(new ItemStack(GemOre, 1, 8), "Pyrope Ore");
+		LanguageRegistry.addName(new ItemStack(GemOre, 1, 9), "Malachite Ore");
+		LanguageRegistry.addName(new ItemStack(GemOre, 1, 10), "Uranite Ore");
+		LanguageRegistry.addName(new ItemStack(GemOre, 1, 11), "Olivine Ore");
+		LanguageRegistry.addName(new ItemStack(GemOre, 1, 12), "Soarynium Ore");
+
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 0), "Bauxite Ore");
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 1), "Monazite Ore");
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 2), "Chalcocite Ore");
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 3), "Millerite Ore");
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 4), "Bornite Ore");
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 5), "Limonite Ore");
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 6), "Magnetite Ore");
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 7), "Hematite Ore");
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 8), "Pyrolusite Ore");
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 9), "Molybdenite Ore");
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 10), "Cooprite Ore");
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 11), "Ilmenite Ore");
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 12), "Tetrahedrite Ore");
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 13), "Tennatite Ore");
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 14), "Pentalandite Ore");
+		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 15), "Nierdermayrite Ore");
+
+
+	}
+
 	public static Block basicOre;
 	public static Block gemOre;
 	public static Block complexOre;
@@ -768,7 +884,25 @@ public class FluxGearContent implements IFuelHandler {
 	public static Item wrenchSonic;
 	public static Item debugSpork;
 	public static Item honeyComb;
+
+	public static Block woodmill;
+	public static Block crank;
+
+
 	/* End MortTech */
+
+	public static BlockFluxGear invisibleMultiblock;
+	public static BlockFluxGear particleGenerator;
+	public static BlockFluxGear energyPylon;
+	public static BlockFluxGear energyStorageCore;
+
+	public static final CreativeTabs tabMaterials = new FluxGearCreativeTab("PFG-Materials", "fluxgear.materialsTab", FluxGearContent.gemDioptase);
+	public static final CreativeTabs tabWorld = new FluxGearCreativeTab("PFG-World", "fluxgear.worldTab", FluxGearContent.oreBauxite);
+	public static final CreativeTabs techTab = new FluxGearCreativeTab("PFG-Tech", "fluxgear.techTab", FluxGearContent.toolProtoSonicWrench);
+	public static final CreativeTabs generalTab = new FluxGearCreativeTab("PFG-General", "fluxgear.generalTab", new ItemStack(Items.potato));
+	public static final CreativeTabs stonesTab = new FluxGearCreativeTab("PFG-Stone", "fluxgear.stoneTab", new ItemStack(Blocks.obsidian));
+	public static final CreativeTabs thaumicTab = new FluxGearCreativeTab("PFG-Thaumic", "fluxgear.thaumicTab", new ItemStack(ThaumicContent.itemWardenAmulet));
+	//MOAR Tabs?
 
 
 	/* Thaumic Revelations */
@@ -4122,7 +4256,7 @@ public class FluxGearContent implements IFuelHandler {
         //Register aluminum ore dissolution.
         if (aluminiumOres.size() > 0) {
             for (ItemStack item : aluminiumOres) {
-                /* Note the stack size of 4: This allows ore quintupling early-game for those willing to spend the effort and fuel
+                /* Note the stack size of 5: This allows ore quintupling early-game for those willing to spend the effort and fuel
                  * to go the Ore -> Aluminosillicate Slurry -> Alum -> Dissolved Alum -> Aluminium Dust -> Aluminium Ingot path.
                  */
                 ReactionSpec aluminumDissolve = new ReactionSpec(fluidAcid, item.copy(), null, new ItemStack(aluminiumSludge, 5, 0));

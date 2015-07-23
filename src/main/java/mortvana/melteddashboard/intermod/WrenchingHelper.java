@@ -16,6 +16,9 @@ import cofh.api.block.IDismantleable;
 import Reika.RotaryCraft.API.Screwdriverable;
 import Reika.RotaryCraft.API.ShaftMachine;
 import ic2.api.tile.IWrenchable;
+import ic2.api.util.Keys;
+import mortvana.melteddashboard.util.helpers.KeyboardHelper;
+import mortvana.melteddashboard.util.helpers.RotationHelper;
 import mortvana.melteddashboard.util.helpers.ServerHelper;
 
 public class WrenchingHelper {
@@ -49,14 +52,25 @@ public class WrenchingHelper {
 		}
 	}
 
-	public static boolean handleIndustrialWrenching(TileEntity tile, World world, int x, int y, int z, EntityPlayer player, Block block, int hitSide) {
+	public static boolean handleIndustrialWrenching(TileEntity tile, World world, int x, int y, int z, EntityPlayer player, Block block, int side) {
 		IWrenchable wrenchable = (IWrenchable) tile;
-		if (player.isSneaking()) {
-			//hitSide = BlockHelper.SIDE_OPPOSITE[hitSide];
+		if (Keys.instance.isAltKeyDown(player)) {
+			for (int step = 1; step < 6; step++) {
+				if (player.isSneaking()) {
+					side = (wrenchable.getFacing() + 6 - step) % 6;
+				} else {
+					side = (wrenchable.getFacing() + step) % 6;
+				}
+				if (wrenchable.wrenchCanSetFacing(player, side)) {
+					break;
+				}
+			}
+		} else if (player.isSneaking()) {
+			//side = RotationHelper.SIDE_OPPOSITE[side];
 		}
-		if (wrenchable.wrenchCanSetFacing(player, hitSide)) {
+		if (wrenchable.wrenchCanSetFacing(player, side)) {
 			if (ServerHelper.isServerWorld(world)) {
-				wrenchable.setFacing((short) hitSide);
+				wrenchable.setFacing((short) side);
 			}
 		} else if (wrenchable.wrenchCanRemove(player)) {
 			ItemStack dropBlock = wrenchable.getWrenchDrop(player);

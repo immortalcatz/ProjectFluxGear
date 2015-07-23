@@ -25,6 +25,7 @@ import ic2.api.tile.IWrenchable;
 import main.flowstoneenergy.core.interfaces.IFlowWrenchable;
 import mortvana.melteddashboard.api.item.tool.wrench.EnumWrenchMode;
 import mortvana.melteddashboard.api.item.tool.wrench.IFluxGearAdvOmniwrench;
+import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 import mortvana.melteddashboard.util.helpers.ServerHelper;
 import mortvana.melteddashboard.intermod.WrenchingHelper;
@@ -125,7 +126,6 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 		TileEntity tile = world.getTileEntity(x, y, z);
 		int meta = world.getBlockMetadata(x, y, z);
 
-
 		if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("Mode")) {
 			NBTTagCompound nbt = stack.stackTagCompound;
 			if (nbt.getByte("Mode") == EnumWrenchMode.STANDARD.ordinal()) {
@@ -155,15 +155,9 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 				}
 			}
 
-			if (nbt.getByte("Mode") == EnumWrenchMode.CONFIGURATION.ordinal()) {
-
-			}
+			if (nbt.getByte("Mode") == EnumWrenchMode.CONFIGURATION.ordinal()) {}
 
 			if (nbt.getByte("Mode") == EnumWrenchMode.ROTATION.ordinal()) {
-
-			}
-
-			if (nbt.getByte("Mode") == EnumWrenchMode.INFORMATION.ordinal()) {
 				/* Rotation Handling */
 				if (BlockHelper.canRotate(block)) {
 
@@ -188,6 +182,7 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 					return ServerHelper.isServerWorld(world);
 				}
 			}
+			if (nbt.getByte("Mode") == EnumWrenchMode.INFORMATION.ordinal()) {}
 		}
 
 		if (block instanceof IPneumaticWrenchable && ServerHelper.isServerWorld(world)) {
@@ -216,7 +211,7 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 	}
 
 	public boolean hasNBT(ItemStack itemstack, String nbtKey) {
-		return itemstack.getItem() instanceof ItemPrototypeSonicWrench && itemstack.hasTagCompound() && itemstack.getTagCompound().hasKey(nbtKey);
+		return itemstack.getItem() instanceof ItemPrototypeSonicWrench && itemstack.hasTagCompound() && itemstack.getTagCompound().hasKey(nbtKey) && itemstack.getTagCompound().getBoolean(nbtKey);
 	}
 
 	public boolean isMode(ItemStack itemstack, EnumWrenchMode... modes) {
@@ -231,12 +226,16 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 		return false;
 	}
 
+	public boolean overrideIndustrialChance(ItemStack wrench) {
+		return hasNBT(wrench, "IC2Override");
+	}
+
 	public EnumWrenchMode getWrenchMode(ItemStack wrench) {
 		if (wrench.getItem() instanceof ItemPrototypeSonicWrench && wrench.hasTagCompound() && wrench.stackTagCompound.hasKey("Mode")) {
 			return EnumWrenchMode.values() [wrench.stackTagCompound.getByte("Mode")];
 		} else {
 			return EnumWrenchMode.STANDARD;
-			ProjectFluxGear.logger.error("Your wrench lacks the proper NBT key for its mode. This shouldn't happen.");
+			MeltedDashboardCore.logger.error("Your wrench lacks the proper NBT key for its mode. This shouldn't happen.");
 		}
 	}
 
