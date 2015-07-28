@@ -7,7 +7,9 @@ import cpw.mods.fml.common.Mod.*;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 
+import mortvana.melteddashboard.block.metadata.TileEntityMetadata;
 import mortvana.melteddashboard.network.FluxGearMessage;
 import mortvana.melteddashboard.network.FluxGearPacketHandler_;
 import org.apache.logging.log4j.LogManager;
@@ -42,7 +44,9 @@ public class MeltedDashboardCore {
 	 *  init, as there is no guarantee stuff wont explode when they start Minecraft.
 	 */
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {}
+	public void preInit(FMLPreInitializationEvent event) {
+		GameRegistry.registerTileEntity(TileEntityMetadata.class, "TileMetadata");
+	}
 
 	/**
 	 *  This is where all the heavy loading and registering of handlers goes. Initialization of blocks and items,

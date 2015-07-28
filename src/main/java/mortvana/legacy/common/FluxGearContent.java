@@ -12,9 +12,6 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -54,9 +51,13 @@ import mantle.lib.TabTools;
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
 import mekanism.api.recipe.RecipeHelper;
+import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.melteddashboard.intermod.thaumcraft.inventory.SlotEssentia;
+import mortvana.melteddashboard.intermod.thaumcraft.util.helpers.PurityHelper;
 import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
+import mortvana.melteddashboard.item.FluxGearItem;
 import mortvana.melteddashboard.util.FluxGearDamageSources;
+import mortvana.projectfluxgear.thaumic.augments.*;
 import mortvana.projectfluxgear.thaumic.common.ThaumicContent;
 import mortvana.projectfluxgear.thaumic.item.ItemWardenAmulet;
 import mortvana.projectfluxgear.tinkers.modifiers.ActiveToolModFeedback;
@@ -96,7 +97,6 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IEssentiaContainerItem;
 import thaumcraft.api.crafting.CrucibleRecipe;
 import thaumcraft.api.crafting.ShapedArcaneRecipe;
-import thaumcraft.api.entities.ITaintedMob;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchCategoryList;
 import thaumcraft.api.research.ResearchItem;
@@ -106,7 +106,6 @@ import thaumcraft.api.wands.ItemFocusBasic;
 import thaumcraft.common.Thaumcraft;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
-import thaumcraft.common.entities.monster.*;
 import thaumcraft.common.items.wands.ItemWandCasting;
 
 public class FluxGearContent implements IFuelHandler {
@@ -163,7 +162,7 @@ public class FluxGearContent implements IFuelHandler {
 
 	//@FormerClass(OreDictTweaks.addition)
 	public static void aluminiumArc_Tweaks() {
-		ExPerditio.logger.info("*Dalek Voice* Activating the Aluminium Arc!!!!");
+		MeltedDashboardCore.logger.info("*Dalek Voice* Activating the Aluminium Arc!!!!");
 		if (FluxGearConfigTweaks.aluminiumArc) {
 			if (LoadedHelper.isProjectRedExploration) {
 				CraftingHelper.registerOreDict(TweakItemRegistry.prMarbleSmooth, "marble", "blockMarble");
@@ -497,58 +496,37 @@ public class FluxGearContent implements IFuelHandler {
 	}
 
 	/* Start MortTech */
-	public static BlockBasicOre BasicOre;
-	public static BlockGemOre GemOre;
-	public static BlockComplexOre ComplexOre;
-
 	public static void preInitMortTech() {
-		//Unlocalized Names
-		GameRegistry.registerBlock(woodmill, "woodmill");
-		GameRegistry.registerBlock(crank, "crank");
-		LanguageRegistry.addName(woodmill, "Woodmill");
-		LanguageRegistry.addName(crank, "Crank");
-
 		componentsTab = new TabTools("MTComponents");
 		toolsTab = new TabTools("MTTools");
 		machineTab = new TabTools("MTMachines");
 
-		//Class Registry
 		basicOre = new BlockBasicOre().setBlockName("BasicOre");
-		gemOre = new BlockGemOre();
-		complexOre = new BlockComplexOre();
+		gemOre = new BlockBasicOre().setBlockName("GemOre");
+		complexOre = new BlockBasicOre().setBlockName("ComplexOre");
 
-		GameRegistry.registerBlock(basicOre, ItemBlockBasicOre.class, "BasicOre");
-		GameRegistry.registerBlock(gemOre, ItemBlockGemOre.class, "GemOre");
-		GameRegistry.registerBlock(complexOre, ItemBlockComplexOre.class, "ComplexOre");
+		GameRegistry.registerBlock(basicOre, ItemBlockBasicOre.class, ProjectFluxGear.modid + basicOre.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(gemOre, ItemBlockGemOre.class, ProjectFluxGear.modid + gemOre.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(complexOre, ItemBlockComplexOre.class, ProjectFluxGear.modid + complexOre.getUnlocalizedName().substring(5));
+
 		// GameRegistry.addRecipe(new ItemStack(snakeBag, 1, 0), "sss", "sss", "sss", 's', snake);
 
-		//Harvest Levels
-		BasicOre = new BlockBasicOre(3000, Material.rock).setUnlocalizedName("BasicOre");
-		GemOre = new BlockBasicOre(3001, Material.rock).setUnlocalizedName("GemOre");
-		ComplexOre = new BlockBasicOre(3002, Material.rock).setUnlocalizedName("ComplexOre");
+		itemDust = new ItemDust().setCreativeTab(componentsTab).setUnlocalizedName("dust");
+		GameRegistry.registerItem(itemDust, "dust");
 
-		GameRegistry.registerBlock(BasicOre, ItemBlockBasicOre.class, modid + BasicOre.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(GemOre, ItemBlockGemOre.class, modid + GemOre.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(ComplexOre, ItemBlockComplexOre.class, modid + ComplexOre.getUnlocalizedName().substring(5));
+		itemCrafting = new ItemCrafting().setCreativeTab(componentsTab).setUnlocalizedName("crafting");
+		GameRegistry.registerItem(itemCrafting, "crafting");
 
-		//Ore Dictionary
+		wrenchSonic = new WrenchSonic().setCreativeTab(componentsTab).setUnlocalizedName("wrenchSonic");
+		GameRegistry.registerItem(wrenchSonic, "sonicWrench");
 
-		//Registry Thing
-		tileMachineTier0 = new BlockWoodmill().setResistance(5.0f).setCreativeTab(MTCreativeTab.tab).setHardness(2.3f).setBlockName("Woodmill");
-		GameRegistry.registerBlock(tileMachineTier0, "Tier0Machine");
-		tileCrank = new BlockCrank().setResistance(5.0f).setHardness(2.3f).setCreativeTab(MTCreativeTab.tab).setBlockName("Crank");
-		GameRegistry.registerBlock(tileCrank, "Crank");
-		itemDust = new ItemDust().setCreativeTab(MTCreativeTab.tab).setUnlocalizedName("dust");
-		GameRegistry.registerItem(itemDust, "Dust");
-		wrenchSonic = new WrenchSonic().setCreativeTab(MTCreativeTab.tab).setUnlocalizedName("wrenchSonic");
-		GameRegistry.registerItem(wrenchSonic, "Sonic Wrench");
+		debugSpork = new DebuggingSpork().setCreativeTab(toolsTab).setUnlocalizedName("debuggingSpork");
+		GameRegistry.registerItem(debugSpork, "debuggingSpork");
 
-		LanguageRegistry.addName(tileMachineTier0, "Woodmill");
-		LanguageRegistry.addName(itemDust, "Sawdust");
-		LanguageRegistry.addName(tileCrank, "Crank");
-		LanguageRegistry.addName(wrenchSonic, "Sonic Wrench");
-
-		OreDictionary.registerOre("dustSawdust", itemDust);
+		GameRegistry.registerBlock(woodmill, "woodmill");
+		GameRegistry.registerBlock(crank, "crank");
+		LanguageRegistry.addName(woodmill, "Woodmill");
+		LanguageRegistry.addName(crank, "Crank");
 
 		GameRegistry.registerTileEntity(TileWoodmill.class, tileWoodmillID);
 
@@ -558,17 +536,18 @@ public class FluxGearContent implements IFuelHandler {
 		tileCrank = new BlockCrank(Material.wood).setResistance(5.0f).setCreativeTab(machineTab).setHardness(2.0f);
 		GameRegistry.registerBlock(tileCrank, "tempTE");
 
-		itemDust = new ItemDust().setCreativeTab(componentsTab).setUnlocalizedName("dust");
-		GameRegistry.registerItem(itemDust, "dust");
+		tileMachineTier0 = new BlockWoodmill().setResistance(5.0f).setCreativeTab(MTCreativeTab.tab).setHardness(2.3f).setBlockName("Woodmill");
+		GameRegistry.registerBlock(tileMachineTier0, "Tier0Machine");
 
-		wrenchSonic = new WrenchSonic().setCreativeTab(toolsTab).setUnlocalizedName("sonicWrench");
-		GameRegistry.registerItem(wrenchSonic, "sonicWrench");
+		tileCrank = new BlockCrank().setResistance(5.0f).setHardness(2.3f).setCreativeTab(MTCreativeTab.tab).setBlockName("Crank");
+		GameRegistry.registerBlock(tileCrank, "Crank");
 
-		debugSpork = new DebuggingSpork().setCreativeTab(toolsTab).setUnlocalizedName("debuggingSpork");
-		GameRegistry.registerItem(debugSpork, "debuggingSpork");
+		LanguageRegistry.addName(tileMachineTier0, "Woodmill");
+		LanguageRegistry.addName(itemDust, "Sawdust");
+		LanguageRegistry.addName(tileCrank, "Crank");
+		LanguageRegistry.addName(wrenchSonic, "Sonic Wrench");
 
-		itemCrafting = new ItemCrafting().setCreativeTab(componentsTab).setUnlocalizedName("crafting");
-		GameRegistry.registerItem(itemCrafting, "crafting");
+		OreDictionary.registerOre("dustSawdust", itemDust);
 
 		GameRegistry.registerCustomItemStack("dustSawdust", new ItemStack(itemDust, 1, 0));
 		GameRegistry.registerCustomItemStack("dustCoal", new ItemStack(itemDust, 1, 1));
@@ -641,15 +620,15 @@ public class FluxGearContent implements IFuelHandler {
 		GameRegistry.registerCustomItemStack("dustPlastic", new ItemStack(itemDust, 1, 68));
 
 
-        /*
+        
         //Tier 1
         GameRegistry.registerCustomItemStack("machineAlloyFurnace", new ItemStack(tileMachine, 1, 0));
         GameRegistry.registerCustomItemStack("machineGrinder", new ItemStack(tileMachine, 1, 1));
 
         //Tier 2
         GameRegistry.registerCustomItemStack("machineCrucible", new ItemStack(tileMachine, 1, 2));
-        GameRegistry.registerCustomItemStack("machineCasting", new ItemStack(tileMachine, 1, 3));*/
-		GameRegistry.registerCustomItemStack("machineWoodmill", new ItemStack(tileMachine, 1, 4));/*
+        GameRegistry.registerCustomItemStack("machineCasting", new ItemStack(tileMachine, 1, 3));
+		GameRegistry.registerCustomItemStack("machineWoodmill", new ItemStack(tileMachine, 1, 4));
         GameRegistry.registerCustomItemStack("machineStoneAnvil", new ItemStack(tileMachine, 1, 5));
         GameRegistry.registerCustomItemStack("machineBellows", new ItemStack(tileMachine, 1, 6));
         GameRegistry.registerCustomItemStack("machineCoolingBasin", new ItemStack(tileMachine, 1, 7));
@@ -688,7 +667,7 @@ public class FluxGearContent implements IFuelHandler {
         GameRegistry.registerCustomItemStack("machineAssembler", new ItemStack(tileMachine, 1, 11));
         GameRegistry.registerCustomItemStack("machineFurnace", new ItemStack(tileMachine, 1, 17));
         GameRegistry.registerCustomItemStack("machineRGrinder", new ItemStack(tileMachine, 1, 18));
-        */
+        
 
 		OreDictionary.registerOre("dustSawdust", new ItemStack(itemDust, 1, 0));
 		OreDictionary.registerOre("dustWood", new ItemStack(itemDust, 1, 0));
@@ -763,58 +742,45 @@ public class FluxGearContent implements IFuelHandler {
 		OreDictionary.registerOre("dustSaltpeter", new ItemStack(itemDust, 1, 67));
 		OreDictionary.registerOre("dustPlastic", new ItemStack(itemDust, 1, 68));
 
-		honeyComb = new Item().setUnlocalizedName("mortvanaBeesHoneyComb");
-		GameRegistry.registerItem(honeyComb, "mortvanaBeesHoneyComb");
-	}
+		basicOre.setHarvestLevel("pickaxe", 1, 0);
+		basicOre.setHarvestLevel("pickaxe", 1, 1);
+		MinecraftForge.setHarvestLevel(BasicOre, 2, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(BasicOre, 3, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(BasicOre, 4, "pickaxe", 1);
+		MinecraftForge.setHarvestLevel(BasicOre, 5, "pickaxe", 1);
+		MinecraftForge.setHarvestLevel(BasicOre, 6, "pickaxe", 1);
+		MinecraftForge.setHarvestLevel(BasicOre, 7, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(BasicOre, 8, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(BasicOre, 9, "pickaxe", 2);
 
-	public static void initMortTech() {
-		BasicOre = new BlockBasicOre();
-		GemOre = new BlockGemOre();
-		ComplexOre = new BlockComplexOre();
+		MinecraftForge.setHarvestLevel(GemOre, 0, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(GemOre, 1, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(GemOre, 2, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(GemOre, 3, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(GemOre, 4, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(GemOre, 5, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(GemOre, 6, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(GemOre, 7, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(GemOre, 8, "pickaxe", 1);
+		MinecraftForge.setHarvestLevel(GemOre, 9, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(GemOre, 10, "pickaxe", 2);
 
-		GameRegistry.registerBlock(BasicOre, ItemBlockBasicOre.class, "BasicOre");
-		GameRegistry.registerBlock(GemOre, ItemBlockGemOre.class, "GemOre");
-		GameRegistry.registerBlock(ComplexOre, ItemBlockComplexOre.class, "ComplexOre");
-
-		MinecraftForge.setBlockHarvestLevel(BasicOre, 0, "pickaxe", 1);
-		MinecraftForge.setBlockHarvestLevel(BasicOre, 1, "pickaxe", 1);
-		MinecraftForge.setBlockHarvestLevel(BasicOre, 2, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(BasicOre, 3, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(BasicOre, 4, "pickaxe", 1);
-		MinecraftForge.setBlockHarvestLevel(BasicOre, 5, "pickaxe", 1);
-		MinecraftForge.setBlockHarvestLevel(BasicOre, 6, "pickaxe", 1);
-		MinecraftForge.setBlockHarvestLevel(BasicOre, 7, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(BasicOre, 8, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(BasicOre, 9, "pickaxe", 2);
-
-		MinecraftForge.setBlockHarvestLevel(GemOre, 0, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(GemOre, 1, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(GemOre, 2, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(GemOre, 3, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(GemOre, 4, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(GemOre, 5, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(GemOre, 6, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(GemOre, 7, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(GemOre, 8, "pickaxe", 1);
-		MinecraftForge.setBlockHarvestLevel(GemOre, 9, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(GemOre, 10, "pickaxe", 2);
-
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 0, "pickaxe", 1);
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 1, "pickaxe", 1);
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 2, "pickaxe", 1);
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 3, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 4, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 5, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 6, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 7, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 8, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 9, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 10, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 11, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 12, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 13, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 14, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(ComplexOre, 15, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(ComplexOre, 0, "pickaxe", 1);
+		MinecraftForge.setHarvestLevel(ComplexOre, 1, "pickaxe", 1);
+		MinecraftForge.setHarvestLevel(ComplexOre, 2, "pickaxe", 1);
+		MinecraftForge.setHarvestLevel(ComplexOre, 3, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(ComplexOre, 4, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(ComplexOre, 5, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(ComplexOre, 6, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(ComplexOre, 7, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(ComplexOre, 8, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(ComplexOre, 9, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(ComplexOre, 10, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(ComplexOre, 11, "pickaxe", 3);
+		MinecraftForge.setHarvestLevel(ComplexOre, 12, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(ComplexOre, 13, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(ComplexOre, 14, "pickaxe", 2);
+		MinecraftForge.setHarvestLevel(ComplexOre, 15, "pickaxe", 2);
 
 		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 0), "Chalcopyrite Ore"); //ADD CHALCOCITE
 		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 1), "Cassiterite Ore");
@@ -827,38 +793,39 @@ public class FluxGearContent implements IFuelHandler {
 		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 8), "Cobaltite Ore");
 		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 9), "Wolframite Ore");
 
-		LanguageRegistry.addName(new ItemStack(GemOre, 1, 0), "Dioptase Ore");
-		LanguageRegistry.addName(new ItemStack(GemOre, 1, 1), "Ruby Ore");
-		LanguageRegistry.addName(new ItemStack(GemOre, 1, 2), "Sapphire Ore");
-		LanguageRegistry.addName(new ItemStack(GemOre, 1, 3), "Green Sapphire Ore");
-		LanguageRegistry.addName(new ItemStack(GemOre, 1, 4), "Pink Sapphire Ore");
-		LanguageRegistry.addName(new ItemStack(GemOre, 1, 5), "Purple Sapphire Ore");
-		LanguageRegistry.addName(new ItemStack(GemOre, 1, 6), "Topaz Ore");
-		LanguageRegistry.addName(new ItemStack(GemOre, 1, 7), "Tanzanite Ore");
-		LanguageRegistry.addName(new ItemStack(GemOre, 1, 8), "Pyrope Ore");
-		LanguageRegistry.addName(new ItemStack(GemOre, 1, 9), "Malachite Ore");
-		LanguageRegistry.addName(new ItemStack(GemOre, 1, 10), "Uranite Ore");
-		LanguageRegistry.addName(new ItemStack(GemOre, 1, 11), "Olivine Ore");
-		LanguageRegistry.addName(new ItemStack(GemOre, 1, 12), "Soarynium Ore");
+		LanguageRegistry.addName(new ItemStack(gemOre, 1, 0), "Dioptase Ore");
+		LanguageRegistry.addName(new ItemStack(gemOre, 1, 1), "Ruby Ore");
+		LanguageRegistry.addName(new ItemStack(gemOre, 1, 2), "Sapphire Ore");
+		LanguageRegistry.addName(new ItemStack(gemOre, 1, 3), "Green Sapphire Ore");
+		LanguageRegistry.addName(new ItemStack(gemOre, 1, 4), "Pink Sapphire Ore");
+		LanguageRegistry.addName(new ItemStack(gemOre, 1, 5), "Purple Sapphire Ore");
+		LanguageRegistry.addName(new ItemStack(gemOre, 1, 6), "Topaz Ore");
+		LanguageRegistry.addName(new ItemStack(gemOre, 1, 7), "Tanzanite Ore");
+		LanguageRegistry.addName(new ItemStack(gemOre, 1, 8), "Pyrope Ore");
+		LanguageRegistry.addName(new ItemStack(gemOre, 1, 9), "Malachite Ore");
+		LanguageRegistry.addName(new ItemStack(gemOre, 1, 10), "Uranite Ore");
+		LanguageRegistry.addName(new ItemStack(gemOre, 1, 11), "Olivine Ore");
+		LanguageRegistry.addName(new ItemStack(gemOre, 1, 12), "Soarynium Ore");
 
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 0), "Bauxite Ore");
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 1), "Monazite Ore");
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 2), "Chalcocite Ore");
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 3), "Millerite Ore");
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 4), "Bornite Ore");
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 5), "Limonite Ore");
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 6), "Magnetite Ore");
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 7), "Hematite Ore");
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 8), "Pyrolusite Ore");
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 9), "Molybdenite Ore");
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 10), "Cooprite Ore");
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 11), "Ilmenite Ore");
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 12), "Tetrahedrite Ore");
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 13), "Tennatite Ore");
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 14), "Pentalandite Ore");
-		LanguageRegistry.addName(new ItemStack(ComplexOre, 1, 15), "Nierdermayrite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 0), "Bauxite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 1), "Monazite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 2), "Chalcocite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 3), "Millerite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 4), "Bornite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 5), "Limonite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 6), "Magnetite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 7), "Hematite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 8), "Pyrolusite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 9), "Molybdenite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 10), "Cooprite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 11), "Ilmenite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 12), "Tetrahedrite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 13), "Tennatite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 14), "Pentalandite Ore");
+		LanguageRegistry.addName(new ItemStack(complexOre, 1, 15), "Nierdermayrite Ore");
 
-
+		honeyComb = new Item().setUnlocalizedName("mortvanaBeesHoneyComb");
+		GameRegistry.registerItem(honeyComb, "mortvanaBeesHoneyComb");
 	}
 
 	public static Block basicOre;
@@ -1066,13 +1033,13 @@ public class FluxGearContent implements IFuelHandler {
 	public static String category;
 
 	//TODO: Generalize this for future uses *cough* Alchemic Tools *cough*
-	public static final WardenicUpgrade UPGRADE_WARDEN = new WardenicUpgradeWarden(WARDEN);
-	public static final WardenicUpgrade UPGRADE_FIRE = new WardenicUpgradeFire(Aspect.FIRE);
-	public static final WardenicUpgrade UPGRADE_ARMOR = new WardenicUpgradeArmor(Aspect.ARMOR);
-	public static final WardenicUpgrade UPGRADE_WATER = new WardenicUpgradeWater(Aspect.WATER);
-	public static final WardenicUpgrade UPGRADE_AIR = new WardenicUpgradeAir(Aspect.AIR);
-	public static final WardenicUpgrade UPGRADE_EARTH = new WardenicUpgradeEarth(Aspect.EARTH);
-	public static final WardenicUpgrade UPGRADE_HEAL = new WardenicUpgradeHeal(Aspect.HEAL);
+	public static final ThaumicAugmentBase UPGRADE_WARDEN = new ThaumicAugmentExubitor(WARDEN);
+	public static final ThaumicAugmentBase UPGRADE_FIRE = new ThaumicAugmentIgnis(Aspect.FIRE);
+	public static final ThaumicAugmentBase UPGRADE_ARMOR = new ThaumicAugmentTutamen(Aspect.ARMOR);
+	public static final ThaumicAugmentBase UPGRADE_WATER = new ThaumicAugmentAqua(Aspect.WATER);
+	public static final ThaumicAugmentBase UPGRADE_AIR = new ThaumicAugmentAer(Aspect.AIR);
+	public static final ThaumicAugmentBase UPGRADE_EARTH = new ThaumicAugmentTerra(Aspect.EARTH);
+	public static final ThaumicAugmentBase UPGRADE_HEAL = new ThaumicAugmentSano(Aspect.HEAL);
 
 	public static void initWardenUpgrades() {
 		WardenicChargeHelper.addUpgrade(UPGRADE_WARDEN);
@@ -1150,7 +1117,7 @@ public class FluxGearContent implements IFuelHandler {
 
 			super();
 			setUnlocalizedName("itemWardenicBlade");
-			setCreativeTab(ProjectFluxGear.thaumicTab);
+			setCreativeTab(thaumicTab);
 			setMaxStackSize(1);
 
 			setFull3D();
@@ -1669,81 +1636,19 @@ public class FluxGearContent implements IFuelHandler {
 
 	}
 
-	public static class PurityHelper {
-
-		public static boolean isTainted(Entity entity) {
-			return entity instanceof ITaintedMob;
-		}
-
-		public static boolean isTainted(MovingObjectPosition mop) {
-			if (mop.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) {
-				if (mop.entityHit != null) {
-					return isTainted(mop.entityHit);
-				}
-			}
-			return false;
-		}
-
-		public static void purifyEntity(Entity toPurify) {
-			if (toPurify != null) {
-				World world = toPurify.worldObj;
-				if (isTainted(toPurify)) {
-					if (!world.isRemote) {
-						Entity purified = getPureState(toPurify);
-						purified.setPositionAndRotation(toPurify.posX, toPurify.posY, toPurify.posZ, toPurify.rotationYaw, toPurify.rotationPitch);
-
-						toPurify.setDead();
-						world.spawnEntityInWorld(purified);
-					}
-				}
-			}
-		}
-
-		public static void checkAndPurify(MovingObjectPosition mop) {
-			if (mop.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) {
-				purifyEntity(mop.entityHit);
-			}
-		}
-
-		public static Entity getPureState(Entity entity) {
-			if (entity instanceof EntityTaintChicken) {
-				return new EntityChicken(entity.worldObj);
-			}
-			if (entity instanceof EntityTaintCow) {
-				return new EntityCow(entity.worldObj);
-			}
-			if (entity instanceof EntityTaintCreeper) {
-				return new EntityCreeper(entity.worldObj);
-			}
-			if (entity instanceof EntityTaintPig) {
-				return new EntityPig(entity.worldObj);
-			}
-			if (entity instanceof EntityTaintSheep) {
-				return new EntitySheep(entity.worldObj);
-			}
-			if (entity instanceof EntityTaintSpider) {
-				return new EntitySpider(entity.worldObj);
-			}
-			if (entity instanceof EntityTaintVillager) {
-				return new EntityVillager(entity.worldObj);
-			}
-			return entity;
-		}
-	}
-
 	public static class WardenicChargeHelper {
 
-		public static HashMap<String, WardenicUpgrade> upgrades = new HashMap<String, WardenicUpgrade>();
+		public static HashMap<String, ThaumicAugmentBase> upgrades = new HashMap<String, ThaumicAugmentBase>();
 
-		public static void addUpgrade(WardenicUpgrade upgrade) {
+		public static void addUpgrade(ThaumicAugmentBase upgrade) {
 			addUpgrade(upgrade.aspect.getName(), upgrade);
 		}
 
-		public static void addUpgrade(String key, WardenicUpgrade upgrade) {
+		public static void addUpgrade(String key, ThaumicAugmentBase upgrade) {
 			upgrades.put(key, upgrade);
 		}
 
-		public static WardenicUpgrade getUpgrade(ItemStack stack) {
+		public static ThaumicAugmentBase getUpgrade(ItemStack stack) {
 			if (stack.stackTagCompound != null) {
 				if (stack.stackTagCompound.hasKey("upgrade")) {
 					return upgrades.get(stack.stackTagCompound.getString("upgrade"));
@@ -2009,7 +1914,6 @@ public class FluxGearContent implements IFuelHandler {
 
         blockOreMain = BlockFluxGear.blockOreMain;
         blockOreAux = BlockFluxGear.blockOreAux;
-        blockStorageMain = BlockFluxGear.blockStorageMain;
         blockStorageAux = BlockFluxGear.blockStorageAux;
         blockAlloyMain = BlockFluxGear.blockAlloyMain;
         blockAlloyAux = new BlockAlloyAux();
@@ -2032,7 +1936,7 @@ public class FluxGearContent implements IFuelHandler {
         blockTemporalPylon.preInit();
         woodenTileEntity.preInit();
 
-	    metaTest = new BlockContainerFluxGear(Material.iron, ProjectFluxGear.generalTab, tileMetalBlock);
+	    metaTest = new BlockContainerFluxGear(Material.iron, generalTab, tileMetalBlock);
 	    GameRegistry.registerBlock(metaTest, metaTest.getLocalizedName());
 	    GameRegistry.registerTileEntity(TileMetalBlock.class, "tileMetalBlock");
 
@@ -2320,10 +2224,10 @@ public class FluxGearContent implements IFuelHandler {
     }
 
     public void loadItems() {
-	    itemMaterial = (ItemFluxGear) new ItemFluxGear("fluxgear").setUnlocalizedName("material").setCreativeTab(ProjectFluxGear.tabMaterials);
-        itemBucket = (BucketFluxGear) new BucketFluxGear("src/main/oldcode/projectfluxgear").setUnlocalizedName("bucket").setCreativeTab(ProjectFluxGear.tabMaterials);
-        itemFood = (ItemFluxGear) new ItemFluxGear("src/main/oldcode/projectfluxgear").setUnlocalizedName("food").setCreativeTab(ProjectFluxGear.tabMaterials);
-        itemInteractive = (ItemInteractivePFG) new ItemInteractivePFG().setUnlocalizedName("interactive").setCreativeTab(ProjectFluxGear.tabMaterials);
+	    itemMaterial = (FluxGearItem) new FluxGearItem("fluxgear").setUnlocalizedName("material").setCreativeTab(tabMaterials);
+        itemBucket = (BucketFluxGear) new BucketFluxGear("src/main/oldcode/projectfluxgear").setUnlocalizedName("bucket").setCreativeTab(tabMaterials);
+        itemFood = (FluxGearItem) new FluxGearItem("src/main/oldcode/projectfluxgear").setUnlocalizedName("food").setCreativeTab(tabMaterials);
+        itemInteractive = (ItemInteractivePFG) new ItemInteractivePFG().setUnlocalizedName("interactive").setCreativeTab(tabMaterials);
         itemProtoSonicWrench = (ItemPrototypeSonicWrench) new ItemPrototypeSonicWrench().setUnlocalizedName("tool", "prototypeSonicWrench");
 
         //Buckets
@@ -3010,7 +2914,7 @@ public class FluxGearContent implements IFuelHandler {
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(itemInteractive, 1, 0), "dustRust", "dustAluminium"));
         GameRegistry.addRecipe(new ShapedOreRecipe(toolProtoSonicWrench, "B B", "ADA", " B ", 'B', "ingotBronze", 'A', "ingotAluminium", 'D', "gemDioptase"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(foodMelonPan, Items.bread, Items.melon));
-        if (FluxGearCore.isThermalExpansionLoaded) {
+        if (LoadedHelper.isThermalExpansionLoaded) {
             GameRegistry.addRecipe(new ShapedOreRecipe(toolProtoSonicWrench, "B B", "WDW", " B ", 'B', "ingotMithrilBronze", 'W', "ingotTungsten", 'D', "gemDioptase"));
         }
 
@@ -3194,9 +3098,9 @@ public class FluxGearContent implements IFuelHandler {
 
     // Base Items
     public static BucketFluxGear itemBucket;
-    public static ItemFluxGear itemMaterial; //If the item has no functionality itself (only used in crafting or as fuel, functionality is handled by an inventory, etc.) use this.
+    public static FluxGearItem itemMaterial; //If the item has no functionality itself (only used in crafting or as fuel, functionality is handled by an inventory, etc.) use this.
     public static ItemInteractivePFG itemInteractive;
-    public static ItemFluxGear /*FoodPFG*/ itemFood;
+    public static FluxGearItem /*FoodPFG*/ itemFood;
     public static ItemPrototypeSonicWrench itemProtoSonicWrench;
 	public static Item paintbrush;
 
@@ -3979,7 +3883,7 @@ public class FluxGearContent implements IFuelHandler {
 	public static Fluid fluidPlasteel;
 
 	public void loadStuff() {
-		itemMaterial = (ItemFluxGear) new ItemFluxGear("oldcode/experditio").setUnlocalizedName("material").setCreativeTab(CreativeTabs.tabMisc);
+		itemMaterial = (FluxGearItem) new FluxGearItem("oldcode/experditio").setUnlocalizedName("material").setCreativeTab(CreativeTabs.tabMisc);
 		itemProtoSonicWrench = (ItemPrototypeSonicWrench) new ItemPrototypeSonicWrench().setUnlocalizedName("tool", "prototypeSonicWrench");
 
 		toolProtoSonicWrench = itemProtoSonicWrench.addItem(0, "protoSonicWrench", 1);

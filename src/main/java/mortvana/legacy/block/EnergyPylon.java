@@ -13,16 +13,18 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.legacy.block.tileentity.TileEnergyPylon;
+import mortvana.legacy.common.FluxGearContent;
 import mortvana.legacy.common.ProjectFluxGear;
+import mortvana.melteddashboard.block.FluxGearBlock;
 
-public class EnergyPylon extends BlockFluxGear {
+public class EnergyPylon extends FluxGearBlock {
 	@SideOnly(Side.CLIENT)
 	public IIcon icon_active_face;
 	public IIcon icon_input;
 	public IIcon icon_output;
 
 	public EnergyPylon() {
-		super(Material.iron, ProjectFluxGear.tabMaterials);
+		super(Material.iron, FluxGearContent.tabMaterials);
 		setHardness(10.0F).setResistance(20.0F).setBlockName("energyPylon");
 		ModBlocks.register(this);
 	}
@@ -66,10 +68,10 @@ public class EnergyPylon extends BlockFluxGear {
 		if(meta == 0) {
 			if(world.getBlock(x, y + 1, z) == Blocks.glass) {
 				world.setBlockMetadataWithNotify(x, y, z, 1, 2);
-				world.setBlock(x, y + 1, z, ProjectFluxGear.invisibleMultiblock, 2, 2);
+				world.setBlock(x, y + 1, z, FluxGearContent.invisibleMultiblock, 2, 2);
 			} else if(world.getBlock(x, y - 1, z) == Blocks.glass) {
 				world.setBlockMetadataWithNotify(x, y, z, 2, 2);
-				world.setBlock(x, y - 1, z, ProjectFluxGear.invisibleMultiblock, 2, 2);
+				world.setBlock(x, y - 1, z, FluxGearContent.invisibleMultiblock, 2, 2);
 			}
 		} else {
 			thisTile = world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof TileEnergyPylon ? (TileEnergyPylon)world.getTileEntity(x, y, z) : null;
@@ -90,7 +92,7 @@ public class EnergyPylon extends BlockFluxGear {
 	}
 
 	private boolean isGlass(World world, int x, int y, int z) {
-		return world.getBlock(x, y, z) == ProjectFluxGear.invisibleMultiblock && world.getBlockMetadata(x, y, z) == 2;
+		return world.getBlock(x, y, z) == FluxGearContent.invisibleMultiblock && world.getBlockMetadata(x, y, z) == 2;
 	}
 
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {

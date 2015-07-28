@@ -1,4 +1,4 @@
-package mortvana.melteddashboard.intermod.forestry.bees;
+package mortvana.melteddashboard.intermod.forestry.bees.util.helpers;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

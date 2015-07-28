@@ -3,7 +3,7 @@ package mortvana.legacy.util.bees;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.genetics.IEffectData;
-import mortvana.melteddashboard.intermod.forestry.bees.ApiaristHelper;
+import mortvana.melteddashboard.intermod.forestry.bees.util.helpers.ApiaristHelper;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

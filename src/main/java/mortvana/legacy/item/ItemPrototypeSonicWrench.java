@@ -26,11 +26,11 @@ import main.flowstoneenergy.core.interfaces.IFlowWrenchable;
 import mortvana.melteddashboard.api.item.tool.wrench.EnumWrenchMode;
 import mortvana.melteddashboard.api.item.tool.wrench.IFluxGearAdvOmniwrench;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
+import mortvana.melteddashboard.item.FluxGearItem;
 import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 import mortvana.melteddashboard.util.helpers.ServerHelper;
 import mortvana.melteddashboard.intermod.WrenchingHelper;
 import mortvana.legacy.util.helpers.BlockHelper;
-import mortvana.legacy.util.item.ItemFluxGear;
 import pneumaticCraft.api.block.IPneumaticWrenchable;
 
 /*
@@ -86,10 +86,10 @@ import pneumaticCraft.api.block.IPneumaticWrenchable;
  * A Golem bell (With Soaryn-grade dinging)
  */
 
-public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearAdvOmniwrench {
+public class ItemPrototypeSonicWrench extends FluxGearItem implements IFluxGearAdvOmniwrench {
 
 	public ItemPrototypeSonicWrench() {
-		super("oldcode/experditio");
+		super("fluxgear");
 		setCreativeTab(CreativeTabs.tabTools);
 		setMaxStackSize(1);
 	}
@@ -234,8 +234,8 @@ public class ItemPrototypeSonicWrench extends ItemFluxGear implements IFluxGearA
 		if (wrench.getItem() instanceof ItemPrototypeSonicWrench && wrench.hasTagCompound() && wrench.stackTagCompound.hasKey("Mode")) {
 			return EnumWrenchMode.values() [wrench.stackTagCompound.getByte("Mode")];
 		} else {
-			return EnumWrenchMode.STANDARD;
 			MeltedDashboardCore.logger.error("Your wrench lacks the proper NBT key for its mode. This shouldn't happen.");
+			return EnumWrenchMode.STANDARD;
 		}
 	}
 

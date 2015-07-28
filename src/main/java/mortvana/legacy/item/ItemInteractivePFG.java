@@ -10,16 +10,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.IFluidBlock;
 
 import mortvana.legacy.common.FluxGearContent;
-import mortvana.legacy.util.item.ItemFluxGear;
-import mortvana.legacy.common.ProjectFluxGear;
+import mortvana.melteddashboard.item.FluxGearItem;
 
-public class ItemInteractivePFG extends ItemFluxGear {
+public class ItemInteractivePFG extends FluxGearItem {
 
 	public static Block congealedBlock = FluxGearContent.blockCongealedBlood;
 
 	public ItemInteractivePFG() {
 		super("projectfluxgear");
-		setCreativeTab(ProjectFluxGear.tabMaterials);
+		setCreativeTab(FluxGearContent.tabMaterials);
 		setMaxStackSize(1);
 	}
 

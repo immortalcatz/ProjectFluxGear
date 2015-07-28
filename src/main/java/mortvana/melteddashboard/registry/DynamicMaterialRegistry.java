@@ -15,7 +15,6 @@ import gnu.trove.map.hash.THashMap;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.melteddashboard.common.MeltedDashboardConfig;
 import mortvana.melteddashboard.block.metadata.FluxGearBlockExtendedMetadata;
-import mortvana.melteddashboard.item.FluxGearItem;
 import mortvana.melteddashboard.util.helpers.StringHelper;
 
 public class DynamicMaterialRegistry {
@@ -23,7 +22,6 @@ public class DynamicMaterialRegistry {
 	public TMap<Integer, MaterialEntry> materialMap = new THashMap<Integer, MaterialEntry>(2000);
 
 	public MaterialData data;
-	public IMaterialRegistryItems registry;
 	public FluxGearBlockExtendedMetadata block;
 
 	final int WILD = Short.MAX_VALUE;
@@ -32,7 +30,7 @@ public class DynamicMaterialRegistry {
 
 	public DynamicMaterialRegistry(MaterialData data) {
 		this.data = data;
-		block = data.BASE_BLOCK;
+		block = data.block;
 	}
 
 	public void addMaterial(MaterialEntry entry) {
@@ -128,7 +126,7 @@ public class DynamicMaterialRegistry {
 					MeltedDashboardCore.logger.error("Someone registered a nameless material with the ID " + entryID + ", skipping this entry!");
 				}
 			} else {
-				MeltedDashboardCore.logger.error("Some genius registered a null material... Yeah, don't do that.");
+				MeltedDashboardCore.logger.error("Some genius registered a null material... Yeah, don't do that. It's generally not a good idea.");
 			}
 			entriesToSort.remove(entry);
 		}
@@ -203,7 +201,7 @@ public class DynamicMaterialRegistry {
 	}
 
 	public void registerItem(int id, MaterialEntry entry, MaterialSet data) {
-		data.getItem().addRegistryItem(data.getOffset() + id, data.getPrefix() + StringHelper.toTitleCase(entry.getMaterialName()), entry.getMaterialRarity(), entry.getMaterialHexColor(), entry.getMaterialTexture(), entry.getMaterialOreDict());
+		data.getItem().addColorizedOreDictItem(data.getOffset() + id, data.getPrefix() + StringHelper.toTitleCase(entry.getMaterialName()), entry.getMaterialRarity(), data.getPrefix(), entry.getMaterialTexture(), entry.getMaterialHexColor(), entry.getMaterialOreDict());
 	}
 
 	public void registerCrafting(int id, MaterialEntry entry) {

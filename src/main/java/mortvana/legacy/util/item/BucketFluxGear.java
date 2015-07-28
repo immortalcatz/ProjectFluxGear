@@ -8,8 +8,9 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 import mortvana.legacy.util.handlers.BucketHandler;
+import mortvana.melteddashboard.item.FluxGearItem;
 
-public class BucketFluxGear extends ItemFluxGear {
+public class BucketFluxGear extends FluxGearItem {
 	Item container;
 
 	public BucketFluxGear() {

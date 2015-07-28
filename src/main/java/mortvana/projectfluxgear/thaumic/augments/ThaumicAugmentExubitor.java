@@ -18,8 +18,8 @@ import thaumcraft.common.entities.monster.EntityEldritchCrab;
 import thaumcraft.common.entities.monster.EntityInhabitedZombie;
 import thaumcraft.common.entities.monster.boss.EntityCultistLeader;
 
-public class ThaumicUpgradeExubitor extends ThaumicAugmentBase {
-	public ThaumicUpgradeExubitor(Aspect aspect) {
+public class ThaumicAugmentExubitor extends ThaumicAugmentBase {
+	public ThaumicAugmentExubitor(Aspect aspect) {
 		super(aspect);
 	}
 

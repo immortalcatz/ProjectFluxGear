@@ -10,28 +10,35 @@ import mortvana.melteddashboard.block.metadata.FluxGearBlockExtendedMetadata;
 import mortvana.melteddashboard.block.metadata.ItemBlockMetadata;
 import mortvana.melteddashboard.block.metadata.TileEntityMetadata;
 import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
+import mortvana.melteddashboard.item.FluxGearItem;
 import mortvana.melteddashboard.registry.DynamicMaterialRegistry;
+import mortvana.melteddashboard.registry.MaterialData;
 
 public class FluxGearCoreContent {
 
-	public static DynamicMaterialRegistry dynMatReg;
-
 	public static FluxGearCreativeTab dynMaterialTab = new FluxGearCreativeTab("PFG-DynamicMaterials", "fluxgear.dynMaterial", new ItemStack(Items.iron_ingot));
 
-
-
 	public static void preInit() {
+		preInitRegistry();
 	}
 
 	public static void init() {
 		loadVanillaOreDict();
-		initCoreBlocks();
-		dynMatReg = new DynamicMaterialRegistry(metaStorageBlock);
-		registerMaterials();
+	registerMaterials();
 	}
 
 	public static void postInit() {
 		dynMatReg.postInit();
+	}
+
+	public static void preInitRegistry() {
+		metaStorageBlock = new FluxGearBlockExtendedMetadata(Material.iron, dynMaterialTab, new TileEntityMetadata(), "fluxgear:block/", "DynamicStorageBlock");
+		GameRegistry.registerBlock(metaStorageBlock, ItemBlockMetadata.class, "storageTest");
+
+		registryIngot = new FluxGearItem();
+
+		materialData = new MaterialData(metaStorageBlock, registryIngot);
+		dynMatReg = new DynamicMaterialRegistry(materialData);
 	}
 
 	public static void loadVanillaOreDict() {
@@ -39,17 +46,13 @@ public class FluxGearCoreContent {
 		OreDictionary.registerOre("dustBlaze", Items.blaze_powder);
 	}
 
-	public static void initCoreBlocks() {
-		GameRegistry.registerTileEntity(TileEntityMetadata.class, "TileMetadata");
-
-		metaStorageBlock = new FluxGearBlockExtendedMetadata(Material.iron, dynMaterialTab, new TileEntityMetadata(), "fluxgear:block/", "DynamicStorageBlock");
-		GameRegistry.registerBlock(metaStorageBlock, ItemBlockMetadata.class, "storageTest");
-	}
-
 	public static void registerMaterials() {
 
 		dynMatReg.sortEntries();
 	}
 
+	public static DynamicMaterialRegistry dynMatReg;
+	public static MaterialData materialData;
 	public static FluxGearBlockExtendedMetadata metaStorageBlock;
+	public static FluxGearItem registryIngot;
 }

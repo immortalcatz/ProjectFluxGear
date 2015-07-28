@@ -13,7 +13,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.legacy.util.MTCreativeTab;
-import mortvana.legacy.common.MortTech;
+import mortvana.legacy.common.ProjectFluxGear;
 
 public class BlockBasicOre extends Block {
 
@@ -25,7 +25,7 @@ public class BlockBasicOre extends Block {
 		super(/*assignedBlockID, */Material.rock);
 		setHardness(3.0F);
 		setStepSound(Block.soundTypeStone);
-		setUnlocalizedName("BasicOre");
+		setBlockName("BasicOre");
 		setCreativeTab(MTCreativeTab.tab);
 		setResistance(5.0F);
 		GameRegistry.registerBlock(this, "BasicOre");
@@ -50,7 +50,7 @@ public class BlockBasicOre extends Block {
 			//icons[i] = par1IconRegister.registerIcon(getUnlocalizedName().substring(5) + i);
 		}
 
-		this.blockIcon = iconRegister.registerIcon(MortTech.modid + ":" + this.getUnlocalizedName().substring(5));
+		this.blockIcon = iconRegister.registerIcon(ProjectFluxGear.modid + ":" + this.getUnlocalizedName().substring(5));
 	}
 
     @Override
