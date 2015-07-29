@@ -34,6 +34,9 @@ public class MeltedDashboardCore {
 	public static Random random = new Random();
 	public static final int WILDCARD = Short.MAX_VALUE; //32767
 
+	@Instance
+	public static MeltedDashboardCore instance;
+
 	public static final Logger logger = LogManager.getLogger("Flux Gear");
 	public static FluxGearPacketHandler_<FluxGearMessage> packetHandler;
 

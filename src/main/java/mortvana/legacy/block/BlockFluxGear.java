@@ -2,9 +2,7 @@ package mortvana.legacy.block;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.*;
 
-import net.minecraft.block.*;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
@@ -18,7 +16,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
@@ -37,13 +34,11 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.util.RotationHelper;
-import net.minecraftforge.fluids.*;
 
 import cofh.core.fluid.BlockFluidCoFHBase;
 
 import mortvana.legacy.client.ClientProxy;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
-import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 import mortvana.melteddashboard.block.FluxGearBlock;
 import mortvana.melteddashboard.util.helpers.ServerHelper;
 import mortvana.legacy.block.tileentity.*;

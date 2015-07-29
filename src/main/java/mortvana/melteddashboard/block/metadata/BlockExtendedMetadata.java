@@ -45,15 +45,6 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 		super(material, tab, hardness, resistance);
 	}
 
-	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileEntityMetadata();
-	}
-
-	@Override
-	public Class<? extends TileEntity> getTileEntityClass() {
-		return TileEntityMetadata.class;
-	}
 
 	public int getPlacedMetadata(EntityPlayer player, ItemStack stack, World world, int x, int y, int z, int side, float xHit, float yHit, float zHit) {
 		return stack.getItemDamage();
@@ -96,13 +87,7 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 
 	@Override
 	public boolean isToolEffective(String type, int meta) {
-		if (harvestTools.containsKey(meta)) {
-			return harvestTools.get(meta).equals(type);
-		} else if (harvestTools.containsKey(WILD)) {
-			return harvestTools.get(WILD).equals(type);
-		} else {
-			return false;
-		}
+		return harvestTools.containsKey(meta) ? harvestTools.get(meta).equals(type) : (harvestTools.containsKey(WILD) && harvestTools.get(WILD).equals(type));
 	}
 
 	@Override
@@ -119,11 +104,7 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 
 	public int getMetadata(IBlockAccess world, int x, int y, int z) {
 		TileEntity tile = world.getTileEntity(x, y, z);
-		if (tile instanceof TileEntityMetadata) {
-			return ((TileEntityMetadata) tile).metadata;
-		} else {
-			return world.getBlockMetadata(x, y, z);
-		}
+		return tile instanceof TileEntityMetadata ? ((TileEntityMetadata) tile).getTileMetadata() : world.getBlockMetadata(x, y, z);
 	}
 
 	public void setMetadata(World world, int x, int y, int z, int meta) {
@@ -137,14 +118,7 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 	public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
 		int metadata = getMetadata(world, x, y, z);
 		float hardness = getBlockHardness(world, x, y, z);
-		if (hardness < 0.0F) {
-			return 0.0F;
-		}
-		if (!ForgeHooks.canHarvestBlock(this, player, metadata)) {
-			return player.getBreakSpeed(this, true, metadata, x, y, z) / hardness / 100F;
-		} else {
-			return player.getBreakSpeed(this, false, metadata, x, y, z) / hardness / 30F;
-		}
+		return hardness < 0.0F ? 0.0F : (!ForgeHooks.canHarvestBlock(this, player, metadata) ? player.getBreakSpeed(this, true, metadata, x, y, z) / hardness / 100F : player.getBreakSpeed(this, false, metadata, x, y, z) / hardness / 30F);
 	}
 
 	@Override
@@ -209,5 +183,21 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister register) {
+	}
+
+	//Tile Entity
+	@Override
+		 public TileEntity createNewTileEntity(World world, int meta) {
+		return new TileEntityMetadata();
+	}
+
+	@Override
+	public Class<? extends TileEntity> getTileEntityClass() {
+		return TileEntityMetadata.class;
+	}
+
+	@Override
+	public boolean hasTileEntity(int metadata) {
+		return true;
 	}
 }

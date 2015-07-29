@@ -1,7 +1,5 @@
 package mortvana.legacy.util.block.tile;
 
-import java.util.Iterator;
-
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
 import cpw.mods.fml.relauncher.Side;

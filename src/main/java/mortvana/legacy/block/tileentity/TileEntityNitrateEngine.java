@@ -17,7 +17,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.*;
 
 import cofh.api.energy.IEnergyHandler;
 

@@ -67,7 +67,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 		return new TileEntityMetadata();
 	}
 
-	//
+	// @Implemented
 	public boolean hasTileEntity(int meta) {
 		return true;
 	}
@@ -109,8 +109,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 		TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
 
 		if (tile != null && !tile.hasDroppedBlock()) {
-			int meta = block.getDroppedMeta(world.getBlockMetadata(x, y, z), tile.getTileMetadata());
-			array.add(TileEntityMetadata.getItemStack((Block) block, meta));
+			array.add(TileEntityMetadata.getItemStack((Block) block, tile.getTileMetadata()));
 		}
 		return array;
 	}

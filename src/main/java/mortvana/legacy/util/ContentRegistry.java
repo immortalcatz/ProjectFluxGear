@@ -129,12 +129,12 @@ public class ContentRegistry implements IFuelHandler {
         finalizeTileEntities();
 
         //This is where you can tell Gyro is used to the horrible place that is C++.
-        itemsToRegister = null;
+        /*itemsToRegister = null;
         blocksToRegister = null;
         fluidsToRegister = null;
         tileentitiesToRegister = null;
         recipesToRegister = null;
-        reactants = null;
+        reactants = null;*/
     }
 
     //Chemistry stuff goes here:
@@ -153,7 +153,7 @@ public class ContentRegistry implements IFuelHandler {
         if (fuelDataSimple.containsKey(fuel)) {
             return fuelDataSimple.get(fuel);
         }
-        ImmutablePair<Integer, Integer> itemDef = new ImmutablePair(fuel, fuel.getItemDamage());
+        ImmutablePair<Item, Integer> itemDef = new ImmutablePair(fuel, fuel.getItemDamage());
         if (fuelDataSpecific.containsKey(itemDef)) {
             return fuelDataSpecific.get(itemDef);
         }

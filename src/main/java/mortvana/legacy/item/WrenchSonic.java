@@ -42,11 +42,7 @@ public class WrenchSonic extends Item {
             if (wrenchable.wrenchCanRemove(entityPlayer)) {
                 if (ProjectFluxGear.proxy.isSimulating()) {
                     boolean dropOriginalBlock = false;
-                    if ((wrenchable.getWrenchDropRate() < 1.0F) && (overrideWrenchSuccessRate(itemstack))) {
-                        dropOriginalBlock = true;
-                    } else {
-                        dropOriginalBlock = world.rand.nextFloat() <= wrenchable.getWrenchDropRate();
-                    }
+	                dropOriginalBlock = (wrenchable.getWrenchDropRate() < 1.0F) && ((overrideWrenchSuccessRate(itemstack)) || (world.rand.nextFloat() <= wrenchable.getWrenchDropRate()));
                     List<ItemStack> drops = block.getBlockDropped(world, x, y, z, metaData, 0);
                     if (dropOriginalBlock) {
                         ItemStack wrenchDrop = wrenchable.getWrenchDrop(entityPlayer);

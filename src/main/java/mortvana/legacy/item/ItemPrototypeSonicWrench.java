@@ -27,7 +27,6 @@ import mortvana.melteddashboard.api.item.tool.wrench.EnumWrenchMode;
 import mortvana.melteddashboard.api.item.tool.wrench.IFluxGearAdvOmniwrench;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.melteddashboard.item.FluxGearItem;
-import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 import mortvana.melteddashboard.util.helpers.ServerHelper;
 import mortvana.melteddashboard.intermod.WrenchingHelper;
 import mortvana.legacy.util.helpers.BlockHelper;

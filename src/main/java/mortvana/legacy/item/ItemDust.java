@@ -109,7 +109,7 @@ public class ItemDust extends CraftingItem {
             StatCollector.translateToLocal("Toxic and Dense.");
             break;
         case 16:
-            StatCollector.translateToLocal("Most Conductive Elemental Metal...");
+            StatCollector.translateToLocal("Most Conductive Element...");
             StatCollector.translateToLocal("Most Reflective too.");
             break;
         case 17:

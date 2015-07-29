@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.event.ForgeEventFactory;
 
+import mortvana.melteddashboard.block.FluxGearBlock;
 import mortvana.melteddashboard.util.helpers.ServerHelper;
 
 public abstract class BlockContainerMetadata extends BlockContainer {

@@ -10,8 +10,6 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -20,7 +18,8 @@ import gnu.trove.map.hash.THashMap;
 import mortvana.legacy.util.helpers.ItemHelper;
 import mortvana.legacy.util.helpers.SecurityHelper;
 import mortvana.legacy.util.helpers.StringHelper;
-import mortvana.melteddashboard.item.FluxGearItem;
+import mortvana.melteddashboard.item.entry.ColorEntry;
+import mortvana.melteddashboard.item.entry.ItemEntry;
 
 //TODO: Use stuff we learned here on ItemBlocks and Blocks
 public class ItemFluxGearFood extends ItemFood {
@@ -30,9 +29,9 @@ public class ItemFluxGearFood extends ItemFood {
     protected String[] iconNames;
     protected IIcon[] icons;
 
-    public TMap<Integer, FluxGearItem.ItemEntry> itemMap = new THashMap<Integer, FluxGearItem.ItemEntry>();
+    public TMap<Integer, ItemEntry> itemMap = new THashMap<Integer, ItemEntry>();
     public ArrayList<Integer> itemList = new ArrayList<Integer>(); // This is actually more memory efficient than a LinkedHashMap
-    public TMap<Integer, FluxGearItem.ColorEntry> colorizerMap = new THashMap<Integer, FluxGearItem.ColorEntry>();
+    public TMap<Integer, ColorEntry> colorizerMap = new THashMap<Integer, ColorEntry>();
     public ArrayList<Boolean> colorizerList = new ArrayList<Boolean>();
 
     public boolean hasTextures = true;
@@ -54,7 +53,7 @@ public class ItemFluxGearFood extends ItemFood {
         if (itemMap.containsKey(number)) {
             return null;
         }
-        itemMap.put(number, new FluxGearItem.ItemEntry(name, rarity));
+        itemMap.put(number, new ItemEntry(name, rarity));
         itemList.add(number);
         colorizerList.add(Boolean.FALSE);
 
@@ -70,9 +69,9 @@ public class ItemFluxGearFood extends ItemFood {
         if (itemMap.containsKey(metadata)) {
             return null;
         }
-        itemMap.put(metadata, new FluxGearItem.ItemEntry(name, rarity));
+        itemMap.put(metadata, new ItemEntry(name, rarity));
         itemList.add(metadata);
-        colorizerMap.put(metadata, new FluxGearItem.ColorEntry(texture, color));
+        colorizerMap.put(metadata, new ColorEntry("", texture, color));
         colorizerList.add(Boolean.TRUE);
 
         ItemStack item = new ItemStack(this, 1, metadata);
@@ -256,8 +255,8 @@ public class ItemFluxGearFood extends ItemFood {
             return;
         }
         for (int i = 0; i < itemList.size(); i++) {
-            FluxGearItem.ItemEntry item = itemMap.get(itemList.get(i));
-            if (colorizerList.get(i)) {
+            ItemEntry item = itemMap.get(itemList.get(i));
+	        if (colorizerList.get(i)) {
                 item.icon = ir.registerIcon(modName + ":" + getUnlocalizedName().replace("item." + modName + ".", "") + "/" + StringHelper.camelCase(item.name/*Code Here*/));
             } else {
             item.icon = ir.registerIcon(modName + ":" + getUnlocalizedName().replace("item." + modName + ".", "") + "/" + StringHelper.camelCase(item.name));

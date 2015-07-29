@@ -21,6 +21,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
+import mortvana.melteddashboard.item.entry.ColorEntry;
+import mortvana.melteddashboard.item.entry.ItemEntry;
 
 /* Slightly Modified and Augmented Version of ItemBase from CoFH Core */
 public class FluxGearItem extends Item {
@@ -237,41 +239,5 @@ public class FluxGearItem extends Item {
 			}
 		}
 	}*/
-
-	public class ItemEntry {
-
-		public String name;
-		public IIcon icon;
-		public int rarity = 0;
-		public int maxDamage = 0;
-
-		public ItemEntry(String name, int rarity, int maxDamage) {
-			this.name = name;
-			this.rarity = rarity;
-			this.maxDamage = maxDamage;
-		}
-
-		public ItemEntry(String name, int rarity) {
-			this.name = name;
-			this.rarity = rarity;
-		}
-
-		public ItemEntry(String name) {
-			this.name = name;
-		}
-	}
-
-	public class ColorEntry {
-
-		public String template, texture;
-		public int color;
-
-		public ColorEntry(String template, String texture, int color) {
-			this.template = template;
-			this.texture = texture;
-			this.color = color;
-		}
-
-	}
 
 }
