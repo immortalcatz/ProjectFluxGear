@@ -12,6 +12,7 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -27,7 +28,6 @@ import cofh.core.world.WorldHandler;
 
 import forestry.api.apiculture.IBeeRoot;
 import mortvana.legacy.block.tileentity.TileTimeyWimey;
-import mortvana.legacy.common.config.*;
 import mortvana.legacy.gui.FluxGearGUIHandler;
 import mortvana.legacy.network.ObjectPacket;
 import mortvana.legacy.network.ObjectPacketHandler;
@@ -74,6 +74,7 @@ public class ProjectFluxGear {
     public static final boolean debugWorldGen = true;
 
 	public static final String modID = "";
+	public static final String modid = "MortTech";
 
 	// The instance of your mod that Forge uses.
 	// The instance of the mod that Forge will access. Note that it has to be
@@ -89,7 +90,7 @@ public class ProjectFluxGear {
 	//execute side-specific code like registering renderers (for the client) or
 	//different tick handlers (for the server).
 	// Says where the client and server 'proxy' code is loaded.
-	@SidedProxy(clientSide = "mortvana.mortvana.projectfluxgear.core.client.ClientProxy", serverSide = "mortvana.mortvana.projectfluxgear.core.common.CommonProxy")
+	@SidedProxy(clientSide = "mortvana.projectfluxgear.core.client.ClientProxy", serverSide = "mortvana.projectfluxgear.core.common.CommonProxy")
     public static CommonProxy proxy;
 	public SimpleNetworkWrapper wrapper;
 
@@ -112,7 +113,6 @@ public class ProjectFluxGear {
 
     public static final FluxGearGUIHandler guiHandler = new FluxGearGUIHandler();
 
-
 	public static DummyHandler handler = new DummyHandler();
 
 	public static final String RESOURCESPREFIX = "projectfluxgear:";
@@ -124,26 +124,24 @@ public class ProjectFluxGear {
     public static ArrayList<String> sounds;// = CongealedBloodBlock.sounds;
     public static ContentRegistry weirdRegistry;
 
-	public static MTConfig config;
+	public static FluxGearConfig config;
 
-	public static final String modid = "MortTech";
+
     /** Initialization Sequence */
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-	    File Config = new File(event.getModConfigurationDirectory() + "/MortTech/MortTech.cfg");
-	    MTConfig.init(new Configuration(Config));
-	    MTConfig.setConfigFolderBase(event.getModConfigurationDirectory());
+	    FluxGearConfig.setup(event.getModConfigurationDirectory() + "/MortTech/");
+	    FluxGearConfig.loadConfig(new File(event.getModConfigurationDirectory().getAbsolutePath() + "/Mortvana/ProjectFluxGear.cfg"));
+	    FluxGearConfigWorld.loadConfiguration(new File(event.getModConfigurationDirectory().getAbsolutePath() + "/Mortvana/ProjectFluxGear-World.cfg"));
 
 	    NetworkRegistry.instance().registerGuiHandler(INSTANCE, new FluxGearGUIHandler());
 	    proxy.registerRenderers();
 
-	    content.preInit();
-
-	    root = event.getModConfigurationDirectory();
-	    Config.setup(root + "/MortTech/");
 	    for(Modules.Module module: Modules.modules) {
 		    module.preInit();
 	    }
+
+	    content.preInit();
 
         MinecraftForge.EVENT_BUS.register(this);
 	    // Hey, listen. Hey, listen. Hey-- ARTIFACT DETECTED, EeEEXXxTtTEEeRRrMmMmIiIiNnNAAaA*boom*
@@ -155,10 +153,6 @@ public class ProjectFluxGear {
 	    network.registerMessage(ObjectPacketHandler.class, ObjectPacket.class, 6, Side.CLIENT);
 	    //thing = new Thing();
 
-        FluxGearConfig.loadConfig(new File(event.getModConfigurationDirectory().getAbsolutePath() + "/Mortvana/ProjectFluxGear-Main.cfg"));
-        FluxGearConfigWorld.loadConfiguration(new File(event.getModConfigurationDirectory().getAbsolutePath() + "/Mortvana/ProjectFluxGear-World.cfg"));
-	    FluxGearConfigTweaks.loadConfig(new File(event.getModConfigurationDirectory().getAbsolutePath() + "/Mortvana/ProjectFluxGear-Tweaks.cfg"));
-
 	    FluxGearCompat.preInitCompat();
 	    FluxGearCompat.preInitIMC();
 
@@ -168,10 +162,6 @@ public class ProjectFluxGear {
         if (FluxGearConfig.achievementsEnabled) {
 	        FluxGearAchievements.addAchievements();
         }
-
-	    File config = new File(event.getModConfigurationDirectory() + "/Mortvana/Bees.cfg");
-	    BeeConfig.init(new Configuration(config));
-	    BeeConfig.setConfigFolderBase(event.getModConfigurationDirectory());
 
 	    // Compatibility Helpers
 	    //ForestryHelper.preInit();
@@ -230,7 +220,7 @@ public class ProjectFluxGear {
 
     @EventHandler
     public void postInit (FMLPostInitializationEvent event) {
-	    TinkersHelper.addMaterialRenderMappings(event, ExPConfig.tinkersID_Plasteel, ExPConfig.tinkersID_ManaMithral, ExPConfig.tinkersID_Enderium, ExPConfig.tinkersID_Lumium, ExPConfig.tinkersID_Signalum);
+	    TinkersHelper.addMaterialRenderMappings(event, FluxGearConfig.tinkersID_Plasteel, FluxGearConfig.tinkersID_ManaMithral, FluxGearConfig.tinkersID_Enderium, FluxGearConfig.tinkersID_Lumium, FluxGearConfig.tinkersID_Signalum);
 
 	    blacklistedBlocks = FluxGearConfig.blacklistedBlocks;
 	    blacklistedTiles = FluxGearConfig.blacklistedTiles;

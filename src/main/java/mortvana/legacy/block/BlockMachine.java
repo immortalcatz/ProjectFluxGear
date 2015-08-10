@@ -20,16 +20,13 @@ import mortvana.legacy.common.ProjectFluxGear;
 
 public class BlockMachine extends InventoryBlock {
 
-    public BlockMachine(Material material)
-    {
+    public BlockMachine(Material material) {
         super(Material.iron);
     }
 
     @Override
-    public TileEntity createTileEntity (World world, int metadata)
-    {
-        switch (metadata)
-        {
+    public TileEntity createTileEntity (World world, int metadata) {
+        switch (metadata) {
             case 0:
                 return null; /*Alloy Furnace*/
             case 1:
@@ -46,8 +43,8 @@ public class BlockMachine extends InventoryBlock {
     }
 
     @Override
-    public TileEntity createNewTileEntity (World var1, int metadata){
-        switch (metadata){
+    public TileEntity createNewTileEntity (World var1, int metadata) {
+        switch (metadata) {
             case 0:
                 return null; /*Alloy Furnace*/
             case 1:
@@ -63,8 +60,7 @@ public class BlockMachine extends InventoryBlock {
         }
 
     @Override
-    public Integer getGui (World world, int x, int y, int z, EntityPlayer entityplayer)
-    {
+    public Integer getGui (World world, int x, int y, int z, EntityPlayer entityplayer) {
         int md = world.getBlockMetadata(x, y, z);
         switch (md){
             case 0:
@@ -92,10 +88,7 @@ public class BlockMachine extends InventoryBlock {
     @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
 
-        BlockCrank cr = (BlockCrank) FluxGearContent.tileCrank;
-        NBTTagCompound c = cr.p.data;
-
-        c = new NBTTagCompound();
+        NBTTagCompound c = (BlockCrank) FluxGearContent.tileCrank.p.data;
         int power = c.getInteger("power");
         System.out.println(c.getInteger("power" + "TTTTT"));
 
@@ -112,9 +105,7 @@ public class BlockMachine extends InventoryBlock {
     //Fix this so other machines will work
     @Override
     public String[] getTextureNames ()  {
-        String[] textureNames = { "woodmill_front", "woodmill_front_active", "woodmill_side", "woodmill_top" };
-
-        return textureNames;
+        return new String[] { "woodmill_front", "woodmill_front_active", "woodmill_side", "woodmill_top" };
     }
 
     @Override

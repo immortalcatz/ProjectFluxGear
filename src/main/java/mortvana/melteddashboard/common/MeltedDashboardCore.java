@@ -9,8 +9,9 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
+import mortvana.melteddashboard.api.MeltedDashboardAPI;
 import mortvana.melteddashboard.block.metadata.TileEntityMetadata;
-import mortvana.melteddashboard.network.FluxGearMessage;
+import mortvana.melteddashboard.network.message.old.FluxGearMessage;
 import mortvana.melteddashboard.network.FluxGearPacketHandler_;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,8 +23,8 @@ public class MeltedDashboardCore {
 	// It's a reminder that no matter where you look, you're going to find something and exclaim, "What fucking moron wrote this piece of shit!?"
 	//     -Skyboy026, November 9th, 2014
 
-	// "The phase 'only Botania' in my head has become a shampoo... or something"
-	// "I don't even know, but Botania is now a shampoo"
+	// The phase 'only Botania' in my head has become a shampoo... or something.
+	// I don't even know, but Botania is now a shampoo.
 	//      -MysteriousAges, Mid-March, 2015
 
 	public static final String MOD_ID = "MeltedDashboardCore";
@@ -34,11 +35,13 @@ public class MeltedDashboardCore {
 	public static Random random = new Random();
 	public static final int WILDCARD = Short.MAX_VALUE; //32767
 
-	@Instance
+	@Instance(MOD_ID)
 	public static MeltedDashboardCore instance;
 
 	public static final Logger logger = LogManager.getLogger("Flux Gear");
 	public static FluxGearPacketHandler_<FluxGearMessage> packetHandler;
+
+	public MeltedDashboardCore() {}
 
 	/* *=-=-=-=* Initialization Sequence *=-=-=-=* */
 	/**
@@ -48,6 +51,7 @@ public class MeltedDashboardCore {
 	 */
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		MeltedDashboardAPI.setMod(this);
 		GameRegistry.registerTileEntity(TileEntityMetadata.class, "TileMetadata");
 	}
 

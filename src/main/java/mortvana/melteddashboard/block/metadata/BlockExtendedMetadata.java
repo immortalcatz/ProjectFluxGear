@@ -21,10 +21,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.ForgeEventFactory;
 
-import cofh.lib.util.helpers.ServerHelper;
-
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.melteddashboard.util.helpers.ParticleHelper;
+import mortvana.melteddashboard.util.helpers.ServerHelper;
 
 public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 
@@ -114,11 +113,24 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 		}
 	}
 
+	public void setMetadata(TileEntity tile, int meta) {
+		if (tile instanceof TileEntityMetadata) {
+			((TileEntityMetadata) tile).setTileMetadata(meta);
+		}
+	}
+
 	@Override
 	public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
 		int metadata = getMetadata(world, x, y, z);
 		float hardness = getBlockHardness(world, x, y, z);
-		return hardness < 0.0F ? 0.0F : (!ForgeHooks.canHarvestBlock(this, player, metadata) ? player.getBreakSpeed(this, true, metadata, x, y, z) / hardness / 100F : player.getBreakSpeed(this, false, metadata, x, y, z) / hardness / 30F);
+
+		if (hardness < 0.0F ) {
+			return 0.0F;
+		} else if (ForgeHooks.canHarvestBlock(this, player, metadata)) {
+			return player.getBreakSpeed(this, false, metadata, x, y, z) / hardness / 30F;
+		} else {
+			return player.getBreakSpeed(this, true, metadata, x, y, z) / hardness / 100F;
+		}
 	}
 
 	@Override
@@ -187,7 +199,7 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 
 	//Tile Entity
 	@Override
-		 public TileEntity createNewTileEntity(World world, int meta) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileEntityMetadata();
 	}
 

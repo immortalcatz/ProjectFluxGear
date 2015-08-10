@@ -24,7 +24,7 @@ public class FluxGearCoreContent {
 
 	public static void init() {
 		loadVanillaOreDict();
-	registerMaterials();
+		registerMaterials();
 	}
 
 	public static void postInit() {

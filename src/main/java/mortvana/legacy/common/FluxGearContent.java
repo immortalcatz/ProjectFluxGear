@@ -70,7 +70,6 @@ import mortvana.legacy.block.itemblock.ItemBlockGemOre;
 import mortvana.legacy.block.tileentity.TileEntityGunpowderEngine;
 import mortvana.legacy.block.tileentity.TileTimeyWimey;
 import mortvana.legacy.block.tileentity.TileWoodmill;
-import mortvana.legacy.common.config.FluxGearConfig;
 import mortvana.legacy.common.config.FluxGearConfigTweaks;
 import mortvana.legacy.entity.EntityFleshProjectile;
 import mortvana.legacy.entity.FleshGolem;

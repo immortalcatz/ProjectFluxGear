@@ -10,7 +10,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import mortvana.legacy.common.config.FluxGearConfig;
+import mortvana.legacy.common.FluxGearConfig;
 import mortvana.legacy.block.tileentity.TileEntityBloodDonation;
 import mortvana.legacy.block.BlockFluxGear.BlockMetaTank;
 

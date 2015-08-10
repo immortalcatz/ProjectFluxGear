@@ -11,8 +11,8 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate;
 import mortvana.melteddashboard.util.helpers.LoadedHelper;
 import mortvana.legacy.common.FluxGearContent;
 import mortvana.legacy.common.ProjectFluxGear;
-import mortvana.legacy.common.config.FluxGearConfig;
-import mortvana.legacy.common.config.FluxGearConfigWorld;
+import mortvana.legacy.common.FluxGearConfig;
+import mortvana.legacy.common.FluxGearConfigWorld;
 
 public class GravelOreGenEventHandler {
 

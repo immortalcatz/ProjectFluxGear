@@ -20,7 +20,11 @@ public class CraftingHelper {
 		}
 	}
 
-	// Thermal Expansion
+	// Thermal Expansion IMC
+	public static void registerInductionSmelting(ItemStack input1, ItemStack input2, ItemStack output1, int flux) {
+		registerInductionSmelting(input1, input2, output1, null, 0, flux);
+	}
+
 	public static void registerInductionSmelting(ItemStack input1, ItemStack input2, ItemStack output1, ItemStack output2, int chance, int flux) {
 		NBTTagCompound nbt = new NBTTagCompound();
 
@@ -38,5 +42,7 @@ public class CraftingHelper {
 			FMLInterModComms.sendMessage("ThermalExpansion", "SmelterRecipe", nbt);
 		}
 	}
+
+	// Mekanism IMC
 
 }

@@ -3,8 +3,10 @@ package mortvana.legacy.util;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import mortvana.legacy.common.FluxGearContent;
 import mortvana.legacy.common.ProjectFluxGear;
 
 public class MTCreativeTab extends CreativeTabs
@@ -12,7 +14,6 @@ public class MTCreativeTab extends CreativeTabs
 	public static final String NAME = "MortTech";
 	public static MTCreativeTab instance;
 	public static ItemStack stack;
-	public static MTCreativeTab tab = new MTCreativeTab();
 	
 	public MTCreativeTab(String name)
 	{
@@ -21,20 +22,24 @@ public class MTCreativeTab extends CreativeTabs
 		LanguageRegistry.instance().addStringLocalization("itemGroup." + NAME, "en_US", "MortTech");
 	}
 	
-@Override
-public ItemStack getIconItemStack() {
-	if (stack == null) {
-		stack = new ItemStack(ProjectFluxGear.BasicOre);
-	}
-	return stack;
-	//return new ItemStack(MortTech.GemOre);
-	          icon = new ItemStack(Items.potato);
-	return icon;
+	@Override
+	public ItemStack getIconItemStack() {
+		if (stack == null) {
+			stack = new ItemStack(FluxGearContent.basicOre);
+		}
+		return stack;
+		//return new ItemStack(MortTech.GemOre);
+		//return new ItemStack(Items.potato);
 	}
 
-@Override
-public String getTranslatedTabLabel() {
-return "MortTech";
+	@Override
+	public Item getTabIconItem() {
+		return null;
+	}
+
+	@Override
+	public String getTranslatedTabLabel() {
+		return "MortTech";
 	}
 
 	public static MTCreativeTab instance() {

@@ -33,19 +33,16 @@ public class BlockBasicOre extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-    public IIcon getIcon (int side, int meta)
-    {
+    public IIcon getIcon (int side, int meta) {
         return icons[meta];
     }
 	
     @Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister)
-	{
-		icons = new IIcon[textureNames.length/*9*/];
+	public void registerIcons(IIconRegister iconRegister) {
+		icons = new IIcon[textureNames.length];
 		
-		for(int i = 0; i < icons.length; i++)
-		{
+		for(int i = 0; i < icons.length; i++) {
 			icons[i] = iconRegister.registerIcon("MortTech:" + textureNames[i]);
 			//icons[i] = par1IconRegister.registerIcon(getUnlocalizedName().substring(5) + i);
 		}
@@ -54,16 +51,13 @@ public class BlockBasicOre extends Block {
 	}
 
     @Override
-    public int damageDropped (int meta)
-    {
+    public int damageDropped (int meta) {
         return meta;
     }
     
     @Override
-    
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
-	{
+	public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
 		for(int i = 0; i < icons.length; i++) {
 			par3List.add(new ItemStack(par1, 1, i));
 		}

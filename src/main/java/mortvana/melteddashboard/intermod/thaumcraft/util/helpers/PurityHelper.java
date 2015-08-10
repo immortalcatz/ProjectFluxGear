@@ -14,11 +14,11 @@ import thaumcraft.common.entities.monster.*;
 public class PurityHelper {
 
 	public static boolean isTainted(Entity entity) {
-		return entity instanceof ITaintedMob;
+		return entity != null && entity instanceof ITaintedMob;
 	}
 
 	public static boolean isTainted(MovingObjectPosition mop) {
-		return mop.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY && mop.entityHit != null && isTainted(mop.entityHit);
+		return mop.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY && isTainted(mop.entityHit);
 	}
 
 	public static void purifyEntity(Entity toPurify) {

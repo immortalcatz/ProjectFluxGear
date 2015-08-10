@@ -24,7 +24,7 @@ public class ProjectFluxGear {
 	public static final String MOD_NAME = "Project Flux Gear";
 	public static final String MOD_VERSION = "vPO.TA.TO.RANDOM-DEV";
 
-	@Instance
+	@Instance(MOD_ID)
 	public static ProjectFluxGear instance;
 
 	@SidedProxy(clientSide = "mortvana.projectfluxgear.core.network.ClientProxy", serverSide = "mortvana.projectfluxgear.core.network.CommonProxy", modId = MOD_ID)
@@ -43,8 +43,8 @@ public class ProjectFluxGear {
 		MinecraftForge.EVENT_BUS.register(this);
 
 		FluxGearCoreConfig.loadConfig(new File(event.getModConfigurationDirectory().getAbsolutePath() + "/Mortvana/ProjectFluxGear-Core.cfg"));
-		ModuleLoader.preInit(event);
 		FluxGearCoreContent.preInit();
+		ModuleLoader.preInit(event);
 	}
 
 	/**

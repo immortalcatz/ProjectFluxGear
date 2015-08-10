@@ -10,16 +10,8 @@ public abstract class BaubleData {
 	public final BaubleType type;
 	public final boolean canEquip, canUnequip;
 
-	public BaubleData() {
-		this(null, true, true);
-	}
-
 	public BaubleData(BaubleType type) {
 		this(type, true, true);
-	}
-
-	public BaubleData(boolean canEquip, boolean canUnequip) {
-		this(null, canEquip, canUnequip);
 	}
 
 	public BaubleData(BaubleType type, boolean canEquip, boolean canUnequip) {

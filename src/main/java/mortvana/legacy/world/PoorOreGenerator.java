@@ -7,7 +7,7 @@ import net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType
 
 import mortvana.melteddashboard.util.helpers.LoadedHelper;
 import mortvana.legacy.common.FluxGearContent;
-import mortvana.legacy.common.config.FluxGearConfigWorld;
+import mortvana.legacy.common.FluxGearConfigWorld;
 import mortvana.legacy.common.ProjectFluxGear;
 
 public class PoorOreGenerator {

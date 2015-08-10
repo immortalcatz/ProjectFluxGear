@@ -57,7 +57,7 @@ public class SecurityHelper {
 	}
 
 	public static boolean isSecure(ItemStack var0) {
-		return var0.stackTagCompound == null?false:var0.stackTagCompound.hasKey("Secure");
+		return var0.stackTagCompound == null ? false : var0.stackTagCompound.hasKey("Secure");
 	}
 
 	public static ItemStack setSecure(ItemStack var0) {

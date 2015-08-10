@@ -11,7 +11,7 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.common.MinecraftForge;
 
-import mortvana.legacy.common.config.FluxGearConfig;
+import mortvana.legacy.common.FluxGearConfig;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 
 /**

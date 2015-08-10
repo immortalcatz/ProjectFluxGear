@@ -5,7 +5,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 
 import mortvana.melteddashboard.common.MeltedDashboardCore;
-import mortvana.melteddashboard.network.FluxGearMessageMetadata;
+import mortvana.melteddashboard.network.message.old.FluxGearMessageMetadata;
 
 public class TileEntityMetadata extends TileEntity {
 
