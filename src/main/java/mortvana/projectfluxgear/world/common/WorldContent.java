@@ -1,7 +1,10 @@
 package mortvana.projectfluxgear.world.common;
 
-import mortvana.melteddashboard.registry.EnumMaterialType;
-import mortvana.melteddashboard.registry.MaterialEntry;
+import net.minecraft.block.Block;
+
+import mortvana.melteddashboard.block.FluxGearBlock;
+import mortvana.melteddashboard.registry.material.EnumMaterialType;
+import mortvana.melteddashboard.registry.material.MaterialEntry;
 import mortvana.projectfluxgear.core.common.FluxGearCoreContent;
 import mortvana.projectfluxgear.core.config.FluxGearCoreConfig;
 import mortvana.projectfluxgear.api.RegistryColors;
@@ -9,22 +12,46 @@ import mortvana.projectfluxgear.api.RegistryColors;
 public class WorldContent {
 
 	public static void preInit() {
-
+		loadOres();
 	}
 
 	public static void init() {
-		registerMaterials();
-	}
-
-	public static void postInit() {
 		for (MaterialEntry material : materials) {
 			FluxGearCoreContent.dynMatReg.addMaterial(material);
 		}
 	}
 
+	public static void postInit() {
+	}
+
+	public static void loadOres() {
+	}
+
+
+
+
 	public static void registerMaterials() {
 
 	}
+
+
+	public static Block blockPrimaryOre;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	public static MaterialEntry copper = new MaterialEntry(0, EnumMaterialType.MALLEABLE_METAL, "copper", "copper", new String[] {"Copper"}, 5.0F, 6.0F, 0, 1, 0, 0, RegistryColors.COLOR_MATERIAL_COPPER);
 	public static MaterialEntry tin = new MaterialEntry(1, EnumMaterialType.DUMMY, "tin", "tin", new String[] {"Tin"}, 5.0F, 6.0F, 0, 1, 0, 0, RegistryColors.COLOR_MATERIAL_TIN);
@@ -43,5 +70,5 @@ public class WorldContent {
 	public static MaterialEntry titanium = new MaterialEntry(14, EnumMaterialType.DUMMY, "titanium", "titanium", new String[] {"Titanium"}, 8.0F, 12.0F, 1, 2, 0, 0/*, ColorHelper.COLOR_MATERIAL_*/);
 	public static MaterialEntry chromium = new MaterialEntry(15, EnumMaterialType.DUMMY, "chromium", "chromium", new String[] {"Chromium, Chrome"}, 7.0F, 10.0F, 1, 2, 0, 0/*, ColorHelper.COLOR_MATERIAL_*/);
 
-	public static MaterialEntry[] materials = new MaterialEntry[] { copper, tin, lead };
+	public static MaterialEntry[] materials = new MaterialEntry[] { copper, tin, lead, silver, nickel };
 }

@@ -11,8 +11,8 @@ import mortvana.melteddashboard.block.metadata.ItemBlockMetadata;
 import mortvana.melteddashboard.block.metadata.TileEntityMetadata;
 import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
 import mortvana.melteddashboard.item.FluxGearItem;
-import mortvana.melteddashboard.registry.DynamicMaterialRegistry;
-import mortvana.melteddashboard.registry.MaterialData;
+import mortvana.melteddashboard.registry.material.DynamicMaterialRegistry;
+import mortvana.melteddashboard.registry.material.MaterialData;
 
 public class FluxGearCoreContent {
 

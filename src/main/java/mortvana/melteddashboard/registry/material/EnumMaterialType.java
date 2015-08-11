@@ -1,4 +1,4 @@
-package mortvana.melteddashboard.registry;
+package mortvana.melteddashboard.registry.material;
 
 public enum EnumMaterialType {
 	MALLEABLE_METAL("MALLEABLE_METAL", EnumMaterialForm.BLOCK, EnumMaterialForm.INGOT, EnumMaterialForm.DUST, EnumMaterialForm.PLATE, EnumMaterialForm.NUTSNBOLTS, EnumMaterialForm.SHAFT, EnumMaterialForm.GEAR, EnumMaterialForm.FOIL, EnumMaterialForm.WASHER, EnumMaterialForm.BEARING),

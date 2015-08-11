@@ -1,4 +1,4 @@
-package mortvana.melteddashboard.registry;
+package mortvana.melteddashboard.registry.material;
 
 public class MaterialEntry {
 	public static int materialID;

@@ -1,4 +1,4 @@
-package mortvana.melteddashboard.registry;
+package mortvana.melteddashboard.registry.material;
 
 import mortvana.melteddashboard.block.metadata.FluxGearBlockExtendedMetadata;
 import mortvana.melteddashboard.item.FluxGearItem;

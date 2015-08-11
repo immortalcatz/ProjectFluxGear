@@ -5,20 +5,20 @@ import net.minecraft.client.particle.EntityFX;
 import net.minecraft.init.Items;
 import net.minecraft.world.World;
 
-public class TRParticle implements IParticleHandler {
+public class TRParticle /*implements IParticleHandler*/ {
 	public final int THROWN_FLESH_ID = ParticleRegistry.registerParticleHandler(this);
 
-	@Override
+	//@Override
 	public EntityFX getParticle(int id, World world, double x, double y, double z, double v4, double v5, double v6) {
 		return new EntityBreakingFX(world, x, y, z, Items.rotten_flesh, id == THROWN_FLESH_ID ? 0 : 1);
 	}
 
-	@Override
+	//@Override
 	public double getRenderDistance(int id) {
 		return 16;
 	}
 
-	@Override
+	//@Override
 	public int getMaxParticleSetting(int id) {
 		return 3;
 	}

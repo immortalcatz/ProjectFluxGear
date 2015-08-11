@@ -403,13 +403,14 @@ public class Catctuse {
 
 		orePentlandite
 		oreOnyx
-		oreMalachite
 		oreTelluriumDeposit
-
 		oreCarbonado
+
 		oreAmethyst
-		oreTanzanite
 		oreVoidstone
+
+		oreTanzanite
+		oreEuxenite
 		*/
 	}
 

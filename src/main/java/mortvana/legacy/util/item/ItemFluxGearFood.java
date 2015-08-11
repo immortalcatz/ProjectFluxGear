@@ -10,6 +10,11 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -197,17 +202,12 @@ public class ItemFluxGearFood extends ItemFood {
         if (!itemMap.containsKey(i)) {
             return "item.invalid";
         }
-        return new StringBuilder().append(getUnlocalizedName()).append('.').append(itemMap.get(i).name).toString();
+        return getUnlocalizedName() + "." + itemMap.get(i).name;
     }
 
     @Override
     public EnumRarity getRarity(ItemStack stack) {
-
-        int i = stack.getItemDamage();
-        if (!itemMap.containsKey(i)) {
-            return EnumRarity.common;
-        }
-        return EnumRarity.values()[itemMap.get(stack.getItemDamage()).rarity];
+        return itemMap.containsKey(stack.getItemDamage()) ? EnumRarity.values()[itemMap.get(stack.getItemDamage()).rarity] : EnumRarity.common;
     }
 
     @Override

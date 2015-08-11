@@ -1,9 +1,6 @@
 package mortvana.legacy.common;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
@@ -17,8 +14,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IFuelHandler;
@@ -54,6 +54,7 @@ import mortvana.melteddashboard.intermod.thaumcraft.util.helpers.PurityHelper;
 import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
 import mortvana.melteddashboard.item.FluxGearItem;
 import mortvana.melteddashboard.util.FluxGearDamageSources;
+import mortvana.projectfluxgear.thaumic.augments.*;
 import mortvana.projectfluxgear.thaumic.common.ThaumicContent;
 import mortvana.projectfluxgear.thaumic.item.ItemWardenAmulet;
 import mortvana.projectfluxgear.tinkers.modifiers.ActiveToolModFeedback;
@@ -70,13 +71,11 @@ import mortvana.legacy.block.itemblock.ItemBlockGemOre;
 import mortvana.legacy.block.tileentity.TileEntityGunpowderEngine;
 import mortvana.legacy.block.tileentity.TileTimeyWimey;
 import mortvana.legacy.block.tileentity.TileWoodmill;
-import mortvana.legacy.common.config.FluxGearConfigTweaks;
 import mortvana.legacy.entity.EntityFleshProjectile;
 import mortvana.legacy.entity.FleshGolem;
 import mortvana.legacy.item.*;
 import mortvana.legacy.recipe.RecipePaintbrush;
 import mortvana.legacy.util.ContentRegistry;
-import mortvana.legacy.util.MTCreativeTab;
 import mortvana.legacy.util.chemistry.ReactionSpec;
 import mortvana.legacy.util.handlers.DispenserEmptyBucketHandler;
 import mortvana.legacy.util.handlers.DispenserFilledBucketHandler;
@@ -151,14 +150,14 @@ public class FluxGearContent implements IFuelHandler {
 
 	//@FormerClass(TinkersTweaks.removal)
 	public static void smelteryGears() {
-		//if (FluxGearConfigTweaks.tinkersGears) {
+		//if (FluxGearConfig.tinkersGears) {
 		//}
 	}
 
 	//@FormerClass(OreDictTweaks.addition)
 	public static void aluminiumArc_Tweaks() {
 		MeltedDashboardCore.logger.info("*Dalek Voice* Activating the Aluminium Arc!!!!");
-		if (FluxGearConfigTweaks.aluminiumArc) {
+		if (FluxGearConfig.aluminiumArc) {
 			if (LoadedHelper.isProjectRedExploration) {
 				CraftingHelper.registerOreDict(TweakItemRegistry.prMarbleSmooth, "marble", "blockMarble");
 				CraftingHelper.registerOreDict(TweakItemRegistry.prBasaltSmooth, "basalt", "blockBasalt");
@@ -168,20 +167,20 @@ public class FluxGearContent implements IFuelHandler {
 
 	//@FormerClass(CoFHTweaks.addition)
 	public static void ptMithral() {
-		/*if (FluxGearConfigTweaks.ptMithralSmelter) {
+		/*if (FluxGearConfig.ptMithralSmelter) {
 			CraftingHelper.registerInductionSmelting(silverOre, platinumDust, platinumIngot, mithralOre, 10, 2000);
 		}
-		if (FluxGearConfigTweaks.ptMithralTransposer) {
+		if (FluxGearConfig.ptMithralTransposer) {
 
 		}*/
 	}
 
 	public static void removal() {
-		if (FluxGearConfigTweaks.tweakJABBA && LoadedHelper.isJABBALoaded) {
+		if (FluxGearConfig.tweakJABBA && LoadedHelper.isJABBALoaded) {
 			TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("JABBA", "barrel"), WILD, 0), TweakHelper.TweakReason.CHANGED, "Recipe changed to be cheaper");
 		}
 		if (LoadedHelper.isThermalExpansionLoaded) {
-			if (FluxGearConfigTweaks.harderActivatorRecipe) {
+			if (FluxGearConfig.harderActivatorRecipe) {
 				TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("ThermalExpansion", "Device"), WILD, 2), TweakHelper.TweakReason.CHANGED, "Recipe requires steel", "to make this a later game item");
 			}
 			TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("ThermalExpansion", "material"), WILD, 513), TweakHelper.TweakReason.NOTE, "Recipe edited to be", "ore dictionary.");
@@ -193,24 +192,24 @@ public class FluxGearContent implements IFuelHandler {
 			TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("magicalcrops", "magicalcrops_ModMagicSeedsPlatinum"), WILD, 0));
 		}
 		if (LoadedHelper.isBigReactorsLoaded) {
-			if (FluxGearConfigTweaks.steelReactorCasings && LoadedHelper.isSteelRegistered) {
+			if (FluxGearConfig.steelReactorCasings && LoadedHelper.isSteelRegistered) {
 				TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("BigReactors", "BRReactorPart"), WILD, 0), TweakHelper.TweakReason.CHANGED, "Recipe requires steel to", "make the mod later game");
 			}
-			if (FluxGearConfigTweaks.glassFuelRods) {
+			if (FluxGearConfig.glassFuelRods) {
 				TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("BigReactors", "YelloriumFuelRod"), WILD, 0), TweakHelper.TweakReason.CHANGED, "Recipe requires hardened glass", "to make the mod later game");
 			}
-			if (FluxGearConfigTweaks.fourReactorGlass) {
+			if (FluxGearConfig.fourReactorGlass) {
 				TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("BigReactors", "BRMultiblockGlass"), WILD, 0), TweakHelper.TweakReason.CHANGED, "Recipe output quadrupled", "to offset the expensive glass");
 				TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("BigReactors", "BRMultiblockGlass"), WILD, 1), TweakHelper.TweakReason.CHANGED, "Recipe output quadrupled", "to offset the expensive glass");
 			}
-			if (FluxGearConfigTweaks.mortvanaReactors&& !OreDictionary.getOres("ingotHSLA").isEmpty() && !OreDictionary.getOres("dustLead").isEmpty() && !OreDictionary.getOres("ingotTungsten").isEmpty() && !OreDictionary.getOres("element_Be").isEmpty() && LoadedHelper.isRedstoneArsenalLoaded && LoadedHelper.isLaserCraftLoaded) {
+			if (FluxGearConfig.mortvanaReactors&& !OreDictionary.getOres("ingotHSLA").isEmpty() && !OreDictionary.getOres("dustLead").isEmpty() && !OreDictionary.getOres("ingotTungsten").isEmpty() && !OreDictionary.getOres("element_Be").isEmpty() && LoadedHelper.isRedstoneArsenalLoaded && LoadedHelper.isLaserCraftLoaded) {
 				TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("BigReactors", "BRReactorPart"), WILD, 0), TweakHelper.TweakReason.CHANGED, "Recipe requires many resources", "to make the mod later game");
 				TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("BigReactors", "YelloriumFuelRod"), WILD, 0), TweakHelper.TweakReason.CHANGED, "Recipe requires hardened glass", "to make the mod later game");
 				TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("BigReactors", "BRMultiblockGlass"), WILD, 0), TweakHelper.TweakReason.CHANGED, "Recipe output quadrupled", "to offset the expensive glass");
 				TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("BigReactors", "BRMultiblockGlass"), WILD, 1), TweakHelper.TweakReason.CHANGED, "Recipe output quadrupled", "to offset the expensive glass");
 			}
 		}
-		if (LoadedHelper.isOpenBlocksLoaded && FluxGearConfigTweaks.redPowerBreakersAndDeployers) {
+		if (LoadedHelper.isOpenBlocksLoaded && FluxGearConfig.redPowerBreakersAndDeployers) {
 			if (GameRegistry.findItem("OpenBlocks", "blockbreaker") != null) {
 				TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("OpenBlocks", "blockbreaker"), WILD, 0), TweakHelper.TweakReason.CHANGED, "Recipe changed to bring back", "RP2-like recipes");
 			}
@@ -218,18 +217,18 @@ public class FluxGearContent implements IFuelHandler {
 				TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("OpenBlocks", "blockPlacer"), WILD, 0), TweakHelper.TweakReason.CHANGED, "Recipe changed to bring back", "RP2-like recipes");
 			}
 		}
-		if (FluxGearConfigTweaks.nerfEnderQuarry && LoadedHelper.isExtraUtilitiesLoaded) {
+		if (FluxGearConfig.nerfEnderQuarry && LoadedHelper.isExtraUtilitiesLoaded) {
 			TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("ExtraUtilities", "enderQuarry"), WILD, 0), TweakHelper.TweakReason.CHANGED, "Recipe changed to", "balance its power");
 		}
 		if (LoadedHelper.isMekanismLoaded) {
-			if (FluxGearConfigTweaks.harderDisassemblerRecipe) {
+			if (FluxGearConfig.harderDisassemblerRecipe) {
 				TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("Mekanism", "AtomicDisassembler"), WILD, 100), TweakHelper.TweakReason.CHANGED, "Changed to ensure", "balance with all other tools");
 			}
-			if (FluxGearConfigTweaks.nerfMiner) {
+			if (FluxGearConfig.nerfMiner) {
 				TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("Mekanism", "MachineBlock"), WILD, 4), TweakHelper.TweakReason.CHANGED, "Changed to balance better", "with other quarry-like blocks");
 			}
 		}
-		if (LoadedHelper.isStevesFactoryLoaded && LoadedHelper.isAppliedEnergisticsLoaded && FluxGearConfigTweaks.tweakSFM) {
+		if (LoadedHelper.isStevesFactoryLoaded && LoadedHelper.isAppliedEnergisticsLoaded && FluxGearConfig.tweakSFM) {
 			TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("StevesFactoryManager", "BlockMachineManagerName"), WILD, 0), TweakHelper.TweakReason.CHANGED, "Recipe changed to be AE-like", "to balance the vast capabilities", "of this normally cheap mod");
 			TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("StevesFactoryManager", "BlockCableName"), WILD, 0), TweakHelper.TweakReason.CHANGED, "Recipe changed to be AE-like", "to balance the vast capabilities", "of this normally cheap mod");
 			TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("StevesFactoryManager", "BlockCableRelayName"), WILD, 8), TweakHelper.TweakReason.CHANGED, "Recipe changed to be AE-like", "to balance the vast capabilities", "of this normally cheap mod");
@@ -244,14 +243,14 @@ public class FluxGearContent implements IFuelHandler {
 
 	public static void addition() {
 		if (LoadedHelper.isJABBALoaded) {
-			if (FluxGearConfigTweaks.tweakJABBA) {
+			if (FluxGearConfig.tweakJABBA) {
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("JABBA", "barrel"), 1, 0), "wsw", "wpw", "www", 'w', "logWood", 's', "slabWood", 'p', Items.paper));
 			}
-			if (FluxGearConfigTweaks.enderChestJABBA) {
+			if (FluxGearConfig.enderChestJABBA) {
 				OreDictionary.registerOre("transdimBlock", new ItemStack(GameRegistry.findItem("EnderStorage", "enderChest"), 1, Short.MAX_VALUE));
 			}
 		}
-		if (FluxGearConfigTweaks.aluminiumArc) {
+		if (FluxGearConfig.aluminiumArc) {
 			if (LoadedHelper.isProjectRedExploration) {
 				OreDictionary.registerOre("blockMarble", new ItemStack(GameRegistry.findItem("ProjRed|Exploration", "projectred.exploration.stone"), 1, 0));
 				OreDictionary.registerOre("marble", new ItemStack(GameRegistry.findItem("ProjRed|Exploration", "projectred.exploration.stone"), 1, 0));
@@ -267,7 +266,7 @@ public class FluxGearContent implements IFuelHandler {
 			}
 		}
 		if (LoadedHelper.isThermalExpansionLoaded) {
-			if (FluxGearConfigTweaks.harderActivatorRecipe) {
+			if (FluxGearConfig.harderActivatorRecipe) {
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("ThermalExpansion", "Device"), 1, 2), "scs", "tpt", "sns", 's', OreDictionary.getOres("ingotSteel").isEmpty() ? "ingotInvar" : "ingotSteel", 'p', Blocks.piston, 't', "gearTin", 'c', Blocks.chest, 'n', new ItemStack(GameRegistry.findItem("ThermalExpansion", "material"))));
 			}
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("ThermalExpansion", "material"), 1, 513), "sss", "s s", "sss", 's', "dustWood"));
@@ -285,19 +284,19 @@ public class FluxGearContent implements IFuelHandler {
 			//}
 		}
 		if (LoadedHelper.isBigReactorsLoaded) {
-			if (FluxGearConfigTweaks.steelReactorCasings && LoadedHelper.isSteelRegistered) {
+			if (FluxGearConfig.steelReactorCasings && LoadedHelper.isSteelRegistered) {
 				// Reactor Casing
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("BigReactors", "BRReactorPart"), 4, 0), "scs", "cuc", "scs", 's', "ingotSteel", 'c', "ingotGraphite", 'u', "ingotYellorium"));
 			}
-			if (FluxGearConfigTweaks.glassFuelRods && FluxGearConfigTweaks.steelReactorCasings && LoadedHelper.isSteelRegistered) {
+			if (FluxGearConfig.glassFuelRods && FluxGearConfig.steelReactorCasings && LoadedHelper.isSteelRegistered) {
 				// Yellorium Fuel Rod
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("BigReactors", "YelloriumFuelRod"), 1, 0), "csc", "gug", "csc", 'c', new ItemStack(GameRegistry.findItem("BigReactors", "BRMultiblockGlass"), 1, 0), 's', "ingotSteel", 'u', "ingotYellorium", 'g', "ingotGraphite"));
 			}
-			if (FluxGearConfigTweaks.glassFuelRods && (!FluxGearConfigTweaks.steelReactorCasings || (FluxGearConfigTweaks.steelReactorCasings && !LoadedHelper.isSteelRegistered))) {
+			if (FluxGearConfig.glassFuelRods && (!FluxGearConfig.steelReactorCasings || (FluxGearConfig.steelReactorCasings && !LoadedHelper.isSteelRegistered))) {
 				// Yellorium Fuel Rod
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("BigReactors", "YelloriumFuelRod"), 1, 0), "cic", "gug", "cic", 'c', new ItemStack(GameRegistry.findItem("BigReactors", "BRMultiblockGlass"), 1, 0), 's', "ingotIron", 'u', "ingotYellorium", 'g', "ingotGraphite"));
 			}
-			if (FluxGearConfigTweaks.fourReactorGlass) {
+			if (FluxGearConfig.fourReactorGlass) {
 				// Reactor Glass
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("BigReactors", "BRMultiblockGlass"), 4), " g ", "gcg", " g ", 'g', "glassHardened", 'c', new ItemStack(GameRegistry.findItem("BigReactors", "BRReactorPart"), 1, 0)));
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("BigReactors", "BRMultiblockGlass"), 4), " g ", "gcg", " g ", 'g', "glassReinforced", 'c', new ItemStack(GameRegistry.findItem("BigReactors", "BRReactorPart"), 1, 0)));
@@ -308,7 +307,7 @@ public class FluxGearContent implements IFuelHandler {
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("BigReactors", "BRMultiblockGlass"), 4, 1), " g ", "gcg", " g ", 'g', "glassHardened", 'c', new ItemStack(GameRegistry.findItem("BigReactors", "BRTurbinePart"), 1, 0)));
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("BigReactors", "BRMultiblockGlass"), 4, 1), " g ", "gcg", " g ", 'g', "glassReinforced", 'c', new ItemStack(GameRegistry.findItem("BigReactors", "BRTurbinePart"), 1, 0)));
 			}
-			if (FluxGearConfigTweaks.mortvanaReactors && !OreDictionary.getOres("ingotHSLA").isEmpty() && !OreDictionary.getOres("dustLead").isEmpty() && !OreDictionary.getOres("ingotTungsten").isEmpty() && !OreDictionary.getOres("element_Be").isEmpty() /*&& Loader.isModLoaded("RedstoneArsenal")*/) {
+			if (FluxGearConfig.mortvanaReactors && !OreDictionary.getOres("ingotHSLA").isEmpty() && !OreDictionary.getOres("dustLead").isEmpty() && !OreDictionary.getOres("ingotTungsten").isEmpty() && !OreDictionary.getOres("element_Be").isEmpty() /*&& Loader.isModLoaded("RedstoneArsenal")*/) {
 				// Yellorium Fuel Rod
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("BigReactors", "YelloriumFuelRod"), 1, 0), "csc", "gwg", "csc", 'c', new ItemStack(GameRegistry.findItem("BigReactors", "BRMultiblockGlass"), 1, 0), 's', "ingotHSLA", 'w', "ingotTungsten", 'g', "ingotGraphite"));
 				/// Reactor Glass
@@ -323,7 +322,7 @@ public class FluxGearContent implements IFuelHandler {
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("BigReactors", "BRReactorPart"), 4, 0), "sws", "cbc", "sws", 's', "ingotHSLA", 'c', "ingotGraphite", 'b', "element_Be", 'w', "ingotTungsten"));
 			}
 		}
-		if (LoadedHelper.isOpenBlocksLoaded && FluxGearConfigTweaks.redPowerBreakersAndDeployers) {
+		if (LoadedHelper.isOpenBlocksLoaded && FluxGearConfig.redPowerBreakersAndDeployers) {
 			if (GameRegistry.findItem("OpenBlocks", "blockbreaker") != null) {
 				// Block Breaker
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("OpenBlocks", "blockbreaker"), 1, 0), "cac", "cpc", "crc", 'c', "cobblestone", 'a', Items.iron_pickaxe, 'p', Blocks.piston, 'r', Items.redstone));
@@ -334,21 +333,21 @@ public class FluxGearContent implements IFuelHandler {
 			}
 		}
 		if (LoadedHelper.isExtraUtilitiesLoaded) {
-			if (FluxGearConfigTweaks.nerfEnderQuarry) {
+			if (FluxGearConfig.nerfEnderQuarry) {
 				// Ender Mining Mechanism
-				GameRegistry.addRecipe(new ShapedOreRecipe(ExPContent.enderMiningCore, "pws", "dbd", "cec", 'p', new ItemStack(GameRegistry.findItem("ExtraUtilities", "destructionpickaxe"), 1, 0), 'w', new ItemStack(GameRegistry.findItem("ExtraUtilities", "builderswand"), 1, 0), 's', new ItemStack(GameRegistry.findItem("ExtraUtilities", "erosionShovel"), 1, 0), 'd', new ItemStack(GameRegistry.findItem("ExtraUtilities", "dark_portal")) , 'b', Blocks.iron_bars, 'c', ExPContent.enderCompCore, 'e', LoadedHelper.isThermalExpansionLoaded ? new ItemStack(GameRegistry.findItem("ThermalExpansion", "Cell"), 1, 4) : ExPContent.enderCompCore));
+				GameRegistry.addRecipe(new ShapedOreRecipe(enderMiningCore, "pws", "dbd", "cec", 'p', new ItemStack(GameRegistry.findItem("ExtraUtilities", "destructionpickaxe"), 1, 0), 'w', new ItemStack(GameRegistry.findItem("ExtraUtilities", "builderswand"), 1, 0), 's', new ItemStack(GameRegistry.findItem("ExtraUtilities", "erosionShovel"), 1, 0), 'd', new ItemStack(GameRegistry.findItem("ExtraUtilities", "dark_portal")) , 'b', Blocks.iron_bars, 'c', ExPContent.enderCompCore, 'e', LoadedHelper.isThermalExpansionLoaded ? new ItemStack(GameRegistry.findItem("ThermalExpansion", "Cell"), 1, 4) : ExPContent.enderCompCore));
 				// Ender Quarry
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("ExtraUtilities", "enderQuarry"), 1, 0), "oqo", "cdc", "plp", 'o', new ItemStack(GameRegistry.findItem("ExtraUtilities", "decorativeBlock1"), 1, 1), 'q', new ItemStack(GameRegistry.findItem("ExtraUtilities", "cobblestone_compressed"), 1, 11), 'c', ExPContent.enderCompCore, 'd', new ItemStack(GameRegistry.findItem("ExtraUtilities", "decorativeBlock1"), 1, 12), 'l', ExPContent.enderMiningCore, 'p', GameRegistry.findItem("ExtraUtilities", "enderThermicPump") == null ? new ItemStack(GameRegistry.findItem("ExtraUtilities", "decorativeBlock1"), 1, 12) : GameRegistry.findItem("ExtraUtilities", "enderThermicPump")));
 				// Ender Computation Matrix
-				GameRegistry.addRecipe(new ShapedOreRecipe(ExPContent.enderCompCore, "wcw", "nen", "wcw", 'w', new ItemStack(GameRegistry.findItem("ExtraUtilities", "decorativeBlock1"), 1, 8), 'c', new ItemStack(GameRegistry.findItem("ExtraUtilities", "decorativeBlock1"), 1, 12), 'e', Items.ender_eye, 'n', new ItemStack(GameRegistry.findItem("ExtraUtilities", "decorativeBlock1"), 1, 11)));
+				GameRegistry.addRecipe(new ShapedOreRecipe(enderCompCore, "wcw", "nen", "wcw", 'w', new ItemStack(GameRegistry.findItem("ExtraUtilities", "decorativeBlock1"), 1, 8), 'c', new ItemStack(GameRegistry.findItem("ExtraUtilities", "decorativeBlock1"), 1, 12), 'e', Items.ender_eye, 'n', new ItemStack(GameRegistry.findItem("ExtraUtilities", "decorativeBlock1"), 1, 11)));
 			}
 		}
 		if (LoadedHelper.isMekanismLoaded) {
-			if (FluxGearConfigTweaks.nerfMiner) {
+			if (FluxGearConfig.nerfMiner) {
 				// Digital Miner
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("Mekanism", "MachineBlock"), 1, 4), "aca", "lrl", "mdm", 'a', "alloyUltimate", 'c', "circuitUltimate", 'l', new ItemStack(GameRegistry.findItem("Mekanism", "MachineBlock"), 1, 15), 'r', GameRegistry.findItem("Mekanism", "Robit"), 'm', new ItemStack(GameRegistry.findItem("Mekanism", "BasicBlock"), 1, 8), 'd', GameRegistry.findItem("Mekanism", "AtomicDisassembler")));
 			}
-			if (FluxGearConfigTweaks.harderDisassemblerRecipe) {
+			if (FluxGearConfig.harderDisassemblerRecipe) {
 				// Atomic Disassembler
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("Mekanism", "AtomicDisassembler"), 1, 100), "ata", "ada", " o ", 'd', disassemblyCore, 't', GameRegistry.findItem("Mekanism", "EnergyTablet"), 'o', "ingotRefinedObsidian", 'a', "alloyUltimate"));
 
@@ -356,7 +355,7 @@ public class FluxGearContent implements IFuelHandler {
 				GameRegistry.addRecipe(new ShapedOreRecipe(disassemblyCore, "tst", "eae", "tst", 't', GameRegistry.findItem("Mekanism", "TeleportationCore"), 's', GameRegistry.findItem("Mekanism", "SpeedUpgrade"), 'e', GameRegistry.findItem("Mekanism", "EnergyUpgrade"), 'a', "alloyUltimate"));
 			}
 
-			if (FluxGearConfigTweaks.mekCrushingHelper) {
+			if (FluxGearConfig.mekCrushingHelper) {
 				// Mekanism Crusher Recipes
 				ArrayList<ItemStack> oreIn, dustOut;
 				if (!(oreIn = OreDictionary.getOres("oreAluminum")).isEmpty() && !(dustOut = OreDictionary.getOres("dustAluminum")).isEmpty()) {
@@ -450,7 +449,7 @@ public class FluxGearContent implements IFuelHandler {
 			RecipeHelper.addCrusherRecipe(new ItemStack(Blocks.red_flower), new ItemStack(Items.dye, 2, 1));
 			RecipeHelper.addCrusherRecipe(new ItemStack(Blocks.yellow_flower), new ItemStack(Items.dye, 2, 11));
 		}
-		if (LoadedHelper.isStevesFactoryLoaded && LoadedHelper.isAppliedEnergisticsLoaded && FluxGearConfigTweaks.tweakSFM) {
+		if (LoadedHelper.isStevesFactoryLoaded && LoadedHelper.isAppliedEnergisticsLoaded && FluxGearConfig.tweakSFM) {
 			// Machine Inventory Manager
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("StevesFactoryManager", "BlockMachineManagerName"), 1, 0), "iii", "apf", "sis", 'p', multicoreProcessor, 'a', new ItemStack(GameRegistry.findItem("appliedenergistics2", "item.ItemMultiMaterial"), 1, 44), 'f', new ItemStack(GameRegistry.findItem("appliedenergistics2", "item.ItemMultiMaterial"), 1, 43), 'i', LoadedHelper.isSteelRegistered ? "ingotSteel" : "ingotIron", 's', "stone"));
 			// Inventory Cable
@@ -470,10 +469,10 @@ public class FluxGearContent implements IFuelHandler {
 			// Block Gate
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(GameRegistry.findItem("StevesFactoryManager", "BlockCableBreakerName"), 1, 0), new ItemStack(GameRegistry.findItem("StevesFactoryManager", "BlockCableName"), 1, 0), Items.iron_pickaxe, Blocks.dispenser, new ItemStack(GameRegistry.findItem("appliedenergistics2", "BlockInterface"), 1, 0)));
 		}
-		if (FluxGearConfigTweaks.wheatToSeeds) {
-			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.wheat_seeds, FluxGearConfigTweaks.wheatToSeedsAmount, 0), Items.wheat));
+		if (FluxGearConfig.wheatToSeeds) {
+			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.wheat_seeds, FluxGearConfig.wheatToSeedsAmount, 0), Items.wheat));
 		}
-		if (LoadedHelper.isRotaryCraftLoaded && LoadedHelper.isCopperRegistered && LoadedHelper.isNickelRegistered && LoadedHelper.isDamascusSteelRegistered && LoadedHelper.isInvarRegistered && FluxGearConfigTweaks.blastMechanism) {
+		if (LoadedHelper.isRotaryCraftLoaded && LoadedHelper.isCopperRegistered && LoadedHelper.isNickelRegistered && LoadedHelper.isDamascusSteelRegistered && LoadedHelper.isInvarRegistered && FluxGearConfig.blastMechanism) {
 			GameRegistry.addRecipe(new ShapelessOreRecipe(dustCupronickel, "dustCopper", "dustCopper", "dustCopper", "dustNickel"));
 			GameRegistry.addSmelting(dustCupronickel, ingotCupronickel, 0.0F);
 			GameRegistry.addRecipe(new ShapedOreRecipe(heatingCoil, "ccc", "rsr", "ccc", 'c', "ingotCupronickel", 'r', "dustRedstone", 's', LoadedHelper.isSiliconRegistered ? "itemSilicon" : Items.quartz));
@@ -485,7 +484,7 @@ public class FluxGearContent implements IFuelHandler {
 			ItemHelper.addStorageRecipe(ingotCupronickel, "nuggetCupronickel");
 			GameRegistry.addRecipe(new ShapedOreRecipe(dummyRotaryTitanium, "pcp", "dcd", "pcp", 'p', ceramicPanel, 'd', damascusSteelFrame, 'c', heatingCoil));
 		}
-		if (LoadedHelper.isThaumcraftLoaded && LoadedHelper.isEnderIOLoaded && LoadedHelper.isRotaryCraftLoaded && LoadedHelper.isExtraUtilitiesLoaded && LoadedHelper.isChromatiCraftLoaded && LoadedHelper.isMagicBeesLoaded && LoadedHelper.isProjectRedIllumination && FluxGearConfigTweaks.thaumicTorch) {
+		if (LoadedHelper.isThaumcraftLoaded && LoadedHelper.isEnderIOLoaded && LoadedHelper.isRotaryCraftLoaded && LoadedHelper.isExtraUtilitiesLoaded && LoadedHelper.isChromatiCraftLoaded && LoadedHelper.isMagicBeesLoaded && LoadedHelper.isProjectRedIllumination && FluxGearConfig.thaumicTorch) {
 			ThaumicThings.init();
 		}
 	}
@@ -528,14 +527,11 @@ public class FluxGearContent implements IFuelHandler {
 		tileMachine = new BlockMachine(Material.iron).setResistance(5.0f).setCreativeTab(machineTab).setHardness(2.5f);
 		GameRegistry.registerBlock(tileMachine, "machine");
 
-		tileCrank = new BlockCrank(Material.wood).setResistance(5.0f).setCreativeTab(machineTab).setHardness(2.0f);
-		GameRegistry.registerBlock(tileCrank, "tempTE");
+		tileCrank = new BlockCrank(Material.wood).setResistance(5.0f).setCreativeTab(machineTab).setHardness(2.3f).setBlockName("Crank");
+		GameRegistry.registerBlock(tileCrank, "tempCrank");
 
-		tileMachineTier0 = new BlockWoodmill().setResistance(5.0f).setCreativeTab(MTCreativeTab.tab).setHardness(2.3f).setBlockName("Woodmill");
+		tileMachineTier0 = new BlockWoodmill().setResistance(5.0f).setCreativeTab(machineTab).setHardness(2.3f).setBlockName("Woodmill");
 		GameRegistry.registerBlock(tileMachineTier0, "Tier0Machine");
-
-		tileCrank = new BlockCrank().setResistance(5.0f).setHardness(2.3f).setCreativeTab(MTCreativeTab.tab).setBlockName("Crank");
-		GameRegistry.registerBlock(tileCrank, "Crank");
 
 		LanguageRegistry.addName(tileMachineTier0, "Woodmill");
 		LanguageRegistry.addName(itemDust, "Sawdust");
@@ -614,8 +610,6 @@ public class FluxGearContent implements IFuelHandler {
 		GameRegistry.registerCustomItemStack("dustSaltpeter", new ItemStack(itemDust, 1, 67));
 		GameRegistry.registerCustomItemStack("dustPlastic", new ItemStack(itemDust, 1, 68));
 
-
-        
         //Tier 1
         GameRegistry.registerCustomItemStack("machineAlloyFurnace", new ItemStack(tileMachine, 1, 0));
         GameRegistry.registerCustomItemStack("machineGrinder", new ItemStack(tileMachine, 1, 1));
@@ -739,14 +733,14 @@ public class FluxGearContent implements IFuelHandler {
 
 		basicOre.setHarvestLevel("pickaxe", 1, 0);
 		basicOre.setHarvestLevel("pickaxe", 1, 1);
-		MinecraftForge.setHarvestLevel(BasicOre, 2, "pickaxe", 2);
-		MinecraftForge.setHarvestLevel(BasicOre, 3, "pickaxe", 2);
-		MinecraftForge.setHarvestLevel(BasicOre, 4, "pickaxe", 1);
-		MinecraftForge.setHarvestLevel(BasicOre, 5, "pickaxe", 1);
-		MinecraftForge.setHarvestLevel(BasicOre, 6, "pickaxe", 1);
-		MinecraftForge.setHarvestLevel(BasicOre, 7, "pickaxe", 2);
-		MinecraftForge.setHarvestLevel(BasicOre, 8, "pickaxe", 2);
-		MinecraftForge.setHarvestLevel(BasicOre, 9, "pickaxe", 2);
+		basicOre.setHarvestLevel("pickaxe", 2, 2);
+		basicOre.setHarvestLevel("pickaxe", 2, 3);
+		basicOre.setHarvestLevel("pickaxe", 1, 4);
+		basicOre.setHarvestLevel("pickaxe", 1, 5);
+		basicOre.setHarvestLevel("pickaxe", 1, 6);
+		basicOre.setHarvestLevel("pickaxe", 2, 7);
+		basicOre.setHarvestLevel("pickaxe", 2, 8);
+		basicOre.setHarvestLevel("pickaxe", 2, 9);
 
 		MinecraftForge.setHarvestLevel(GemOre, 0, "pickaxe", 2);
 		MinecraftForge.setHarvestLevel(GemOre, 1, "pickaxe", 2);
@@ -777,16 +771,16 @@ public class FluxGearContent implements IFuelHandler {
 		MinecraftForge.setHarvestLevel(ComplexOre, 14, "pickaxe", 2);
 		MinecraftForge.setHarvestLevel(ComplexOre, 15, "pickaxe", 2);
 
-		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 0), "Chalcopyrite Ore"); //ADD CHALCOCITE
-		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 1), "Cassiterite Ore");
-		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 2), "Argentite Ore"); //ACTUALLY ACANTHITE
-		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 3), "Galena Ore");
-		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 4), "Sphalerite Ore");
-		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 5), "Bismuthinite Ore");
-		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 6), "Garnierite Ore"); //ADD MILLERITE
-		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 7), "Chromite Ore");
-		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 8), "Cobaltite Ore");
-		LanguageRegistry.addName(new ItemStack(BasicOre, 1, 9), "Wolframite Ore");
+		LanguageRegistry.addName(new ItemStack(basicOre, 1, 0), "Chalcopyrite Ore"); //ADD CHALCOCITE
+		LanguageRegistry.addName(new ItemStack(basicOre, 1, 1), "Cassiterite Ore");
+		LanguageRegistry.addName(new ItemStack(basicOre, 1, 2), "Acanthite Ore");
+		LanguageRegistry.addName(new ItemStack(basicOre, 1, 3), "Galena Ore");
+		LanguageRegistry.addName(new ItemStack(basicOre, 1, 4), "Sphalerite Ore");
+		LanguageRegistry.addName(new ItemStack(basicOre, 1, 5), "Bismuthinite Ore");
+		LanguageRegistry.addName(new ItemStack(basicOre, 1, 6), "Garnierite Ore"); //ADD MILLERITE
+		LanguageRegistry.addName(new ItemStack(basicOre, 1, 7), "Chromite Ore");
+		LanguageRegistry.addName(new ItemStack(basicOre, 1, 8), "Cobaltite Ore");
+		LanguageRegistry.addName(new ItemStack(basicOre, 1, 9), "Wolframite Ore");
 
 		LanguageRegistry.addName(new ItemStack(gemOre, 1, 0), "Dioptase Ore");
 		LanguageRegistry.addName(new ItemStack(gemOre, 1, 1), "Ruby Ore");
@@ -1798,7 +1792,7 @@ public class FluxGearContent implements IFuelHandler {
 
 		@Override
 		public ResearchItem setPages(ResearchPage... pages) {
-			List<String> requirements = parentsHidden == null || parentsHidden.length == 0 ? new ArrayList() : new ArrayList(Arrays.asList(parentsHidden));
+			List<String> requirements = parentsHidden == null || parentsHidden.length == 0 ? new ArrayList<String>() : new ArrayList<String>(Arrays.asList(parentsHidden));
 			if (!isAutoUnlock())
 				for (String categoryStr : ResearchCategories.researchCategories.keySet()) {
 					ResearchCategoryList category = ResearchCategories.researchCategories.get(categoryStr);
@@ -2971,7 +2965,7 @@ public class FluxGearContent implements IFuelHandler {
 	}
 
 	public void postInitMisc() {
-		if (LoadedHelper.isThaumcraftLoaded && LoadedHelper.isEnderIOLoaded && LoadedHelper.isRotaryCraftLoaded && LoadedHelper.isExtraUtilitiesLoaded && LoadedHelper.isChromatiCraftLoaded && LoadedHelper.isMagicBeesLoaded && LoadedHelper.isProjectRedIllumination && FluxGearConfigTweaks.thaumicTorch) {
+		if (LoadedHelper.isThaumcraftLoaded && LoadedHelper.isEnderIOLoaded && LoadedHelper.isRotaryCraftLoaded && LoadedHelper.isExtraUtilitiesLoaded && LoadedHelper.isChromatiCraftLoaded && LoadedHelper.isMagicBeesLoaded && LoadedHelper.isProjectRedIllumination && FluxGearConfig.thaumicTorch) {
 			loadTimeyWimey();
 		}
 	}
@@ -3915,7 +3909,7 @@ public class FluxGearContent implements IFuelHandler {
 		boolean enderium = (LoadedHelper.isThermalExpansionLoaded || (LoadedHelper.isEnderIOLoaded && LoadedHelper.isThermalFoundationLoaded));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(timeyWimeyCarboard, "pep", "nbd", "prp", 'p', Items.paper, 'e', LoadedHelper.isThermalExpansionLoaded ? resEndBucket : LoadedHelper.isEnderIOLoaded ? endCrystal : Items.ender_eye, 'r', LoadedHelper.isEnderIOLoaded ? endCrystal : LoadedHelper.isThermalExpansionLoaded ? resEndBucket : Items.ender_eye, 'n', enderium ? "ingotEnderium" : LoadedHelper.isRedstoneArsenalLoaded ? fluxPlate : "ingotGold", 'd', LoadedHelper.isRedstoneArsenalLoaded ? fluxPlate : enderium ? "ingotEnderium" : "ingotGold", 'b', LoadedHelper.isTinkersLoaded ? new ItemStack(GameRegistry.findItem("TConstruct", "slime.gel"), 1, 2) : LoadedHelper.isMFRLoaded ? new ItemStack(GameRegistry.findItem("MineFactoryReloaded", "pinkslime.block")) : LoadedHelper.isReliquaryLoaded ? new ItemStack(GameRegistry.findItem("xreliquary", "mob_ingredient"), 1, 4) : LoadedHelper.isBloodMagicLoaded ? new ItemStack(GameRegistry.findItem("AWWayofTime", "standardBindingAgent")) : LoadedHelper.isMagicBeesLoaded ? new ItemStack(GameRegistry.findItem("MagicBees", "propolis")) : LoadedHelper.isExtraTreesLoaded ? new ItemStack(GameRegistry.findItem("BinnieCore", "containerBucket"), 1, 129) : LoadedHelper.isForestryLoaded ? new ItemStack(GameRegistry.findItem("Forestry", "propolis")) : LoadedHelper.isBoPLoaded ? new ItemStack(GameRegistry.findItem("BiomesOPlenty", "bopBucket")) : LoadedHelper.isMetallurgyLoaded ? new ItemStack(GameRegistry.findItem("Metallurgy", "tar")) : LoadedHelper.isEnderIOLoaded ? new ItemStack(GameRegistry.findItem("EnderIO", "itemMaterial"), 1, 1) : Items.magma_cream));
-		if (LoadedHelper.isForestryLoaded && FluxGearConfigTweaks.meadCardboard) {
+		if (LoadedHelper.isForestryLoaded && FluxGearConfig.meadCardboard) {
 			GameRegistry.addRecipe(new ShapedOreRecipe(timeyWimeyCarboard, "pep", "nbd", "prp", 'p', Items.paper, 'e', LoadedHelper.isThermalExpansionLoaded ? resEndBucket : LoadedHelper.isEnderIOLoaded ? endCrystal : Items.ender_eye, 'r', LoadedHelper.isEnderIOLoaded ? endCrystal : LoadedHelper.isThermalExpansionLoaded ? resEndBucket : Items.ender_eye, 'n', enderium ? "ingotEnderium" : LoadedHelper.isRedstoneArsenalLoaded ? fluxPlate : "ingotGold", 'd', LoadedHelper.isRedstoneArsenalLoaded ? fluxPlate : enderium ? "ingotEnderium" : "ingotGold", 'b', GameRegistry.findItem("Forestry", "beverage")));
 		}
 		String rs = "dustRedstone";
@@ -3925,13 +3919,13 @@ public class FluxGearContent implements IFuelHandler {
 
 	public static void registerMaterials() {
 		//ToolHandler.registerMaterials();
-		TinkersHelper.registerMaterial(FluxGearConfigTweaks.tinkersID_Plasteel, "materialPlasteel", 4, 1500, 700, 8, 1.3F, 2, 0x91A5B3, 0, 5.0F, 7, 4.0F, EnumChatFormatting.DARK_GRAY.toString());
-		TinkersHelper.registerMaterial(FluxGearConfigTweaks.tinkersID_ManaMithral, "materialManaMithral", 6, 2100, 1150, 14, 2.1F, 2, 0xC19BEB, 7, 8.0F, 10, 8.0F, EnumChatFormatting.AQUA.toString());
-		TinkersHelper.registerMaterial(FluxGearConfigTweaks.tinkersID_Enderium, "materialEnderium", 6, 1850, 2150, 16, 2.5F, 2, 0x148C99, 9, 0.2F, 6, 3.0F, EnumChatFormatting.DARK_AQUA.toString());
-		TinkersHelper.registerMaterial(FluxGearConfigTweaks.tinkersID_Lumium, "materialLumium", 3, 800, 1100, 6, 2.5F, 0, 0xFAFA9B, 2, 0.5F, 2, 8.0F, EnumChatFormatting.GOLD.toString());
-		TinkersHelper.registerMaterial(FluxGearConfigTweaks.tinkersID_Signalum, "materialSignalum", 3, 800, 1300, 11, 1.0F, 0, 0xF78B3E, 3, 0.8F, 3, 7.0F, EnumChatFormatting.RED.toString());
+		TinkersHelper.registerMaterial(FluxGearConfig.tinkersID_Plasteel, "materialPlasteel", 4, 1500, 700, 8, 1.3F, 2, 0x91A5B3, 0, 5.0F, 7, 4.0F, EnumChatFormatting.DARK_GRAY.toString());
+		TinkersHelper.registerMaterial(FluxGearConfig.tinkersID_ManaMithral, "materialManaMithral", 6, 2100, 1150, 14, 2.1F, 2, 0xC19BEB, 7, 8.0F, 10, 8.0F, EnumChatFormatting.AQUA.toString());
+		TinkersHelper.registerMaterial(FluxGearConfig.tinkersID_Enderium, "materialEnderium", 6, 1850, 2150, 16, 2.5F, 2, 0x148C99, 9, 0.2F, 6, 3.0F, EnumChatFormatting.DARK_AQUA.toString());
+		TinkersHelper.registerMaterial(FluxGearConfig.tinkersID_Lumium, "materialLumium", 3, 800, 1100, 6, 2.5F, 0, 0xFAFA9B, 2, 0.5F, 2, 8.0F, EnumChatFormatting.GOLD.toString());
+		TinkersHelper.registerMaterial(FluxGearConfig.tinkersID_Signalum, "materialSignalum", 3, 800, 1300, 11, 1.0F, 0, 0xF78B3E, 3, 0.8F, 3, 7.0F, EnumChatFormatting.RED.toString());
 
-		if (FluxGearConfigTweaks.tinkersID_Plasteel != -1) {
+		if (FluxGearConfig.tinkersID_Plasteel != -1) {
 			fluidPlastic = MiscHelper.registerColoredFluid("plastic", 0xABABAB);
 			fluidPlasteel = MiscHelper.registerColoredFluid("plasteel", 0x91A5B3);
 
@@ -3947,23 +3941,23 @@ public class FluxGearContent implements IFuelHandler {
 
 	public static void initMaterials() {
 
-		TinkersHelper.registerFullOreDictMaterial("ingotPlasteel", "materialPlasteel", FluxGearConfigTweaks.tinkersID_Plasteel);
-		TinkersHelper.registerFullOreDictMaterial("ingotManaMithral", "materialManaMithral", FluxGearConfigTweaks.tinkersID_ManaMithral);
-		TinkersHelper.registerFullOreDictMaterial("ingotEnderium", "materialEnderium", FluxGearConfigTweaks.tinkersID_Enderium);
-		TinkersHelper.registerFullOreDictMaterial("ingotLumium", "materialLumium", FluxGearConfigTweaks.tinkersID_Lumium);
-		TinkersHelper.registerFullOreDictMaterial("ingotSignalum", "materialSignalum", FluxGearConfigTweaks.tinkersID_Signalum);
+		TinkersHelper.registerFullOreDictMaterial("ingotPlasteel", "materialPlasteel", FluxGearConfig.tinkersID_Plasteel);
+		TinkersHelper.registerFullOreDictMaterial("ingotManaMithral", "materialManaMithral", FluxGearConfig.tinkersID_ManaMithral);
+		TinkersHelper.registerFullOreDictMaterial("ingotEnderium", "materialEnderium", FluxGearConfig.tinkersID_Enderium);
+		TinkersHelper.registerFullOreDictMaterial("ingotLumium", "materialLumium", FluxGearConfig.tinkersID_Lumium);
+		TinkersHelper.registerFullOreDictMaterial("ingotSignalum", "materialSignalum", FluxGearConfig.tinkersID_Signalum);
 
-		if (FluxGearConfigTweaks.tinkersID_Plasteel != -1) {
+		if (FluxGearConfig.tinkersID_Plasteel != -1) {
 			TinkersHelper.addOreDictSmelting("dustPlastic", "Plastic", TinkersHelper.getIngotFluidValue() / 4);
 			TinkersHelper.addOreDictSmelting("sheetPlastic", "Plastic", TinkersHelper.getIngotFluidValue() / 4);
 		}
 
-		TinkersHelper.registerCasting(fluidPlasteel, FluxGearConfigTweaks.tinkersID_Plasteel, ingotPlasteel, "Plasteel");
+		TinkersHelper.registerCasting(fluidPlasteel, FluxGearConfig.tinkersID_Plasteel, ingotPlasteel, "Plasteel");
 
-		TinkersHelper.registerCasting(TinkersHelper.moltenEnderium, FluxGearConfigTweaks.tinkersID_Enderium, "ingotEnderium");
-		TinkersHelper.registerCasting(TinkersHelper.moltenLumium, FluxGearConfigTweaks.tinkersID_Lumium, "ingotLumium");
-		TinkersHelper.registerCasting(TinkersHelper.moltenSignalum, FluxGearConfigTweaks.tinkersID_Signalum, "ingotSignalum");
-		TinkersHelper.registerCasting(TinkersHelper.moltenManaMithral, FluxGearConfigTweaks.tinkersID_ManaMithral, FluxGearConfigTweaks.tweakManaMithral ? "ingotManaMithral" : "ingotMithril");
+		TinkersHelper.registerCasting(TinkersHelper.moltenEnderium, FluxGearConfig.tinkersID_Enderium, "ingotEnderium");
+		TinkersHelper.registerCasting(TinkersHelper.moltenLumium, FluxGearConfig.tinkersID_Lumium, "ingotLumium");
+		TinkersHelper.registerCasting(TinkersHelper.moltenSignalum, FluxGearConfig.tinkersID_Signalum, "ingotSignalum");
+		TinkersHelper.registerCasting(TinkersHelper.moltenManaMithral, FluxGearConfig.tinkersID_ManaMithral, FluxGearConfig.tweakManaMithral ? "ingotManaMithral" : "ingotMithril");
 
 		TinkersHelper.addAlloying(new FluidStack(fluidPlasteel, 2), new FluidStack(TinkersHelper.moltenSteel, 2), new FluidStack(fluidPlastic, 1));
 		TinkersHelper.registerActiveToolMod(new ActiveToolModFeedback());
