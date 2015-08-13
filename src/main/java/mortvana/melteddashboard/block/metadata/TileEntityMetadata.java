@@ -5,7 +5,8 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 
 import mortvana.melteddashboard.common.MeltedDashboardCore;
-import mortvana.melteddashboard.network.message.old.FluxGearMessageMetadata;
+import mortvana.melteddashboard.network.FluxGearPacketWrangler;
+import mortvana.melteddashboard.network.message.MessageTileMetadata;
 
 public class TileEntityMetadata extends TileEntity {
 
@@ -36,7 +37,7 @@ public class TileEntityMetadata extends TileEntity {
 			return null;
 		}
 		oldMetadata = metadata;
-		return MeltedDashboardCore.packetHandler.getPacketToClient(new FluxGearMessageMetadata(xCoord, yCoord, zCoord, metadata));
+		return FluxGearPacketWrangler.INSTANCE.getPacketFrom(new MessageTileMetadata(this));
 	}
 
 	public int getTileMetadata() {
@@ -53,12 +54,12 @@ public class TileEntityMetadata extends TileEntity {
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		metadata = nbt.getInteger("Metadata");
+		metadata = nbt.getInteger("metadata");
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setInteger("Metadata", metadata);
+		nbt.setInteger("metadata", metadata);
 	}
 }

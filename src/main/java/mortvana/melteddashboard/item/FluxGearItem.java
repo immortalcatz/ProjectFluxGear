@@ -43,6 +43,12 @@ public class FluxGearItem extends Item {
 		setHasSubtypes(true);
 	}
 
+	public FluxGearItem(String modName, CreativeTabs tab) {
+		this.modName = modName;
+		setCreativeTab(tab);
+		setHasSubtypes(true);
+	}
+
 	// addItem(...) {}
 	public ItemStack addItem(int metadata, String name, int rarity, boolean register) {
 		if (itemMap.containsKey(metadata)) {

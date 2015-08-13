@@ -11,11 +11,15 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import mortvana.melteddashboard.api.MeltedDashboardAPI;
 import mortvana.melteddashboard.block.metadata.TileEntityMetadata;
-import mortvana.melteddashboard.network.message.old.FluxGearMessage;
-import mortvana.melteddashboard.network.FluxGearPacketHandler_;
+import mortvana.melteddashboard.network.FluxGearPacketWrangler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ *  Melted Dashboard Core! The library for those who like there code like Direwolf20 likes his games!
+ *
+ *  @author Mortvana
+ */
 @Mod(modid = MeltedDashboardCore.MOD_ID, name = MeltedDashboardCore.MOD_NAME, version = MeltedDashboardCore.MOD_VERSION, dependencies = MeltedDashboardCore.MOD_DEPENDENCIES)
 public class MeltedDashboardCore {
 	// Here's a way to help avoid frustration:
@@ -39,25 +43,26 @@ public class MeltedDashboardCore {
 	public static MeltedDashboardCore instance;
 
 	public static final Logger logger = LogManager.getLogger("Flux Gear");
-	public static FluxGearPacketHandler_<FluxGearMessage> packetHandler;
 
 	public MeltedDashboardCore() {}
 
 	/* *=-=-=-=* Initialization Sequence *=-=-=-=* */
 	/**
 	 *  In the preInit step you only want to load configs, inform Forge if your mod has to be loaded after any others,
-	 *  and load any framework stuff. No heavy loading or registering should occur here, because that happens during
-	 *  init, as there is no guarantee stuff wont explode when they start Minecraft.
+	 *  and load any framework stuff. No heavy loading or non-block/item registering should occur here, because that
+	 *  happens during init, as there is no guarantee stuff wont explode when they start Minecraft. Initialization of
+	 *  blocks and items, and maybe some TileEntity stuff, etc. goes here.
 	 */
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		MeltedDashboardAPI.setMod(this);
 		GameRegistry.registerTileEntity(TileEntityMetadata.class, "TileMetadata");
+		FluxGearPacketWrangler.initialize();
 	}
 
 	/**
-	 *  This is where all the heavy loading and registering of handlers goes. Initialization of blocks and items,
-	 *  TileEntity stuff, etc.
+	 *  This is where all the heavy loading and registering of handlers goes. Stuff like registering recipes, modules
+	 *  for tools, etc. should go here.
 	 */
 	@EventHandler
 	public void init(FMLInitializationEvent event) {}
@@ -68,4 +73,6 @@ public class MeltedDashboardCore {
 	 */
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {}
+
+
 }

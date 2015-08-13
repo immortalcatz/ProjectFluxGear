@@ -15,6 +15,7 @@ import gnu.trove.map.hash.THashMap;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.melteddashboard.common.MeltedDashboardConfig;
 import mortvana.melteddashboard.block.metadata.FluxGearBlockExtendedMetadata;
+import mortvana.melteddashboard.item.FluxGearItem;
 import mortvana.melteddashboard.util.helpers.StringHelper;
 
 public class DynamicMaterialRegistry {
@@ -23,6 +24,7 @@ public class DynamicMaterialRegistry {
 
 	public MaterialData data;
 	public FluxGearBlockExtendedMetadata block;
+	public FluxGearItem[] items;
 
 	final int WILD = Short.MAX_VALUE;
 
@@ -31,6 +33,7 @@ public class DynamicMaterialRegistry {
 	public DynamicMaterialRegistry(MaterialData data) {
 		this.data = data;
 		block = data.block;
+		items = data.items;
 	}
 
 	public void addMaterial(MaterialEntry entry) {
@@ -201,7 +204,7 @@ public class DynamicMaterialRegistry {
 	}
 
 	public void registerItem(int id, MaterialEntry entry, MaterialSet data) {
-		data.getItem().addColorizedOreDictItem(data.getOffset() + id, data.getPrefix() + StringHelper.toTitleCase(entry.getMaterialName()), entry.getMaterialRarity(), data.getPrefix(), entry.getMaterialTexture(), entry.getMaterialHexColor(), entry.getMaterialOreDict());
+		items[data.getIndex()].addColorizedOreDictItem(data.getOffset() + id, data.getPrefix() + StringHelper.toTitleCase(entry.getMaterialName()), entry.getMaterialRarity(), data.getPrefix(), entry.getMaterialTexture(), entry.getMaterialHexColor(), entry.getMaterialOreDict());
 	}
 
 	public void registerCrafting(int id, MaterialEntry entry) {

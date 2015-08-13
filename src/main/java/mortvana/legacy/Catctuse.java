@@ -392,7 +392,7 @@ public class Catctuse {
         oreMyuvil
 
 		oreJacenite(Rock that carries a powerful electromagnetic charge)
-		oreScryngetone(Ore of Jethrik, a rare, super-heavy, "stable" element, used in warpdrives and as a super fuel)
+		oreScryngetone(Ore of Jethrik, a rare, super-heavy, "stable" element, used in warpdrives and as a super fuel) (Iridiotungsten Hydroxyisobutylmetyl Jethrik Bismosubsalicyltrialuminosilicarbonate)
 		oreHymetusite(Radioactive dark-gray mineral, used as powerful fuel)
 		oreMetebelisSapphire(Breaks hypnotic spells, enhanced intelligence & psychic powers, only source of Fluon Radiation)
 

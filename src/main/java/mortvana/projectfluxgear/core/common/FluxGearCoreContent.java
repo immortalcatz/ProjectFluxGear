@@ -29,13 +29,15 @@ public class FluxGearCoreContent {
 
 	public static void postInit() {
 		dynMatReg.postInit();
+		registryIngot = dynMatReg.items[0];
 	}
 
 	public static void preInitRegistry() {
 		metaStorageBlock = new FluxGearBlockExtendedMetadata(Material.iron, dynMaterialTab, new TileEntityMetadata(), "fluxgear:block/", "DynamicStorageBlock");
 		GameRegistry.registerBlock(metaStorageBlock, ItemBlockMetadata.class, "storageTest");
 
-		registryIngot = new FluxGearItem();
+		registryIngot = new FluxGearItem("fluxgear", dynMaterialTab);
+		generalItem = new FluxGearItem();
 
 		materialData = new MaterialData(metaStorageBlock, registryIngot);
 		dynMatReg = new DynamicMaterialRegistry(materialData);
@@ -55,4 +57,5 @@ public class FluxGearCoreContent {
 	public static MaterialData materialData;
 	public static FluxGearBlockExtendedMetadata metaStorageBlock;
 	public static FluxGearItem registryIngot;
+	public static FluxGearItem generalItem;
 }
