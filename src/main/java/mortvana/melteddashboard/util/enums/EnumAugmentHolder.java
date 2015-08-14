@@ -1,6 +1,6 @@
 package mortvana.melteddashboard.util.enums;
 
-public enum  EnumAugmentHolder {
+public enum EnumAugmentHolder {
 	HELMET,
 	CHESTPLATE,
 	PANTS,

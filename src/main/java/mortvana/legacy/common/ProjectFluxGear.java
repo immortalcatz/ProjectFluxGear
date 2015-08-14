@@ -19,7 +19,6 @@ import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.world.ChunkDataEvent;
 
 import cofh.core.CoFHProps;
@@ -28,7 +27,7 @@ import cofh.core.world.WorldHandler;
 
 import forestry.api.apiculture.IBeeRoot;
 import mortvana.legacy.block.tileentity.TileTimeyWimey;
-import mortvana.legacy.gui.FluxGearGUIHandler;
+import mortvana.legacy.client.gui.FluxGearGUIHandler;
 import mortvana.legacy.network.ObjectPacket;
 import mortvana.legacy.network.ObjectPacketHandler;
 import mortvana.legacy.network.ParticleGenPacket;

@@ -58,11 +58,11 @@ public final class ItemWrapper {
 	}
 
 	public boolean equals(Object var1) {
-		return !(var1 instanceof ItemWrapper)?false:this.isEqual((ItemWrapper)var1);
+		return var1 instanceof ItemWrapper && this.isEqual((ItemWrapper) var1);
 	}
 
 	public int hashCode() {
-		return this.metadata & '\uffff' | this.getId() << 16;
+		return this.metadata | this.getId() << 16;
 	}
 
 	public String toString() {

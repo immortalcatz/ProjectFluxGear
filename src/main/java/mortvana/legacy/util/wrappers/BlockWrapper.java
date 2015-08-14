@@ -28,7 +28,7 @@ public final class BlockWrapper {
 	}
 
 	public boolean equals(Object var1) {
-		return !(var1 instanceof BlockWrapper) ? false : this.isEqual((BlockWrapper)var1);
+		return var1 instanceof BlockWrapper && this.isEqual((BlockWrapper) var1);
 	}
 
 	public int hashCode() {

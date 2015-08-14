@@ -1,6 +1,7 @@
 package mortvana.melteddashboard.block.metadata;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 
 import net.minecraft.block.material.Material;
@@ -8,6 +9,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -307,12 +309,11 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 	}
 
 	//TODO: This
-	/*public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-
-		for (int i = 0; i < names.length; i++) {
+	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+		/*for (int i = 0; i < names.length; i++) {
 			list.add(new ItemStack(item, 1, i));
-		}
-	}*/
+		}*/
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)

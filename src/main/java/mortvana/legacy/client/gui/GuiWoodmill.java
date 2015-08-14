@@ -1,4 +1,4 @@
-package mortvana.legacy.gui;
+package mortvana.legacy.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;

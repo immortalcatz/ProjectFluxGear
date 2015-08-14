@@ -1,4 +1,4 @@
-package mortvana.legacy.util.exectpions;
+package mortvana.melteddashboard.util.exectpions;
 
 import java.util.Random;
 

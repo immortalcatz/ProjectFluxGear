@@ -6,12 +6,12 @@ import net.minecraftforge.common.config.Configuration;
 
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 
-public class FluxGearWorldConfig {
+public class AppliedApiologyConfig {
 
 	public static Configuration config;
 
 	public static void loadConfig(File file) {
-		MeltedDashboardCore.logger.info("Loading Flux Gear World Config");
+		MeltedDashboardCore.logger.info("Loading Applied Apiology Config");
 		config = new Configuration(file);
 		config.load();
 
@@ -19,6 +19,6 @@ public class FluxGearWorldConfig {
 		if (config.hasChanged()) {
 			config.save();
 		}
-		MeltedDashboardCore.logger.info("Flux Gear World Config Loaded");
+		MeltedDashboardCore.logger.info("Applied Apiology Config Loaded");
 	}
 }

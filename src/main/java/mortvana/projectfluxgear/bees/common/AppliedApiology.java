@@ -1,18 +1,18 @@
-package mortvana.projectfluxgear.thaumic.common;
+package mortvana.projectfluxgear.bees.common;
 
 import cpw.mods.fml.common.event.*;
 
-public class ThaumicRevelations {
+public class AppliedApiology {
 
 	public static void preInit(FMLPreInitializationEvent event) {
-		ThaumicContent.preInit();
+		ApiologyContent.preInit();
 	}
 
 	public static void init(FMLInitializationEvent event) {
-		ThaumicContent.init();
+		ApiologyContent.init();
 	}
 
 	public static void postInit(FMLPostInitializationEvent event) {
-		ThaumicContent.postInit();
+		ApiologyContent.postInit();
 	}
 }

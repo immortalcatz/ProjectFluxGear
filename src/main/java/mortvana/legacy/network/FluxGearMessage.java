@@ -1,4 +1,4 @@
-package mortvana.melteddashboard.network.message.old;
+package mortvana.legacy.network;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

@@ -34,25 +34,6 @@ public class WorldHelper {
 		return z + side.offsetZ;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	/* *=-=-=-=* Tile Entity Retrieval *=-=-=-=* */
 	public static TileEntity getAdjacentTileEntity(World world, int x, int y, int z, ForgeDirection direction) {
 		x = getXOnSide(x, direction);

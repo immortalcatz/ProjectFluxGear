@@ -7,8 +7,8 @@ import baubles.api.BaubleType;
 
 public abstract class BaubleData {
 
-	public final BaubleType type;
-	public final boolean canEquip, canUnequip;
+	public BaubleType type;
+	public boolean canEquip, canUnequip;
 
 	public BaubleData(BaubleType type) {
 		this(type, true, true);
@@ -37,4 +37,14 @@ public abstract class BaubleData {
 	public abstract void onEquipped(ItemStack itemstack, EntityLivingBase player);
 
 	public abstract void onUnequipped(ItemStack itemstack, EntityLivingBase player);
+
+	public BaubleData setEquip(boolean canEquip) {
+		this.canEquip = canUnequip;
+		return this;
+	}
+
+	public BaubleData setUnequip(boolean canUnequip) {
+		this.canUnequip = canUnequip;
+		return this;
+	}
 }

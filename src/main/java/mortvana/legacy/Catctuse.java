@@ -356,6 +356,8 @@ public class Catctuse {
 		//itemGuayuleRubber
 	}
 
+	public static final String[] MORTTECH_CRAFTING_MATERIALS = new String[] {"gear", "shaft", "bevel_Mechanism", "small_Grinder", "ceramic_Plate", "ceramic_Slab", "invar_Chain", "ingot_Mould", "rope", "cutting_Blade"};
+
 	public void ores() {
 		/*
 		oreChalcocite

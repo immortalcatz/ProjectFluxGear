@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import mortvana.legacy.block.tileentity.TileWoodmill;
-import mortvana.legacy.gui.GuiWoodmill;
+import mortvana.legacy.client.gui.GuiWoodmill;
 
 public class WoodmillBlock extends Block {
 

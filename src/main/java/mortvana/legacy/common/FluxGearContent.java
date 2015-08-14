@@ -56,7 +56,7 @@ import mortvana.melteddashboard.item.FluxGearItem;
 import mortvana.melteddashboard.util.FluxGearDamageSources;
 import mortvana.projectfluxgear.thaumic.augments.*;
 import mortvana.projectfluxgear.thaumic.common.ThaumicContent;
-import mortvana.projectfluxgear.thaumic.item.ItemWardenAmulet;
+import mortvana.projectfluxgear.thaumic.item.ItemThaumicBauble;
 import mortvana.projectfluxgear.tinkers.modifiers.ActiveToolModFeedback;
 import mortvana.projectfluxgear.tweaks.util.TweakItemRegistry;
 import mortvana.melteddashboard.util.enums.EnumArmorType;
@@ -495,9 +495,9 @@ public class FluxGearContent implements IFuelHandler {
 		toolsTab = new TabTools("MTTools");
 		machineTab = new TabTools("MTMachines");
 
-		basicOre = new BlockBasicOre().setBlockName("BasicOre");
-		gemOre = new BlockBasicOre().setBlockName("GemOre");
-		complexOre = new BlockBasicOre().setBlockName("ComplexOre");
+		basicOre = new BlockMortTechOre("BasicOre", "chalcopyrite_ore", "cassiterite_ore", "argentite_ore", "galena_ore", "sphalerite_ore", "bismuthinite_ore", "garnierite_ore", "chromite_ore", "cobaltite_ore", "wolframite_ore");
+		gemOre = new BlockMortTechOre("GemOre", "dioptase_ore", "ruby_ore", "sapphire_ore", "green_sapphire_ore", "pink_sapphire_ore", "purple_sapphire_ore", "topaz_ore", "tanzanite_ore", "pyrope_ore", "malachite_ore", "olivine_ore", "super_sekrit_ore");
+		complexOre = new BlockMortTechOre("ComplexOre", "bauxite_ore", "monazite_ore", "chalcocite_ore", "millerite_ore", "bornite_ore", "limonite_ore", "magnetite_ore", "hematite_ore", "pyrolusite_ore", "molybdenite_ore", "cooprite_ore", "ilmenite_ore", "tetrahedrite_ore", "tennatite_ore", "pentalandite_ore", "nierdermayrite_ore");
 
 		GameRegistry.registerBlock(basicOre, ItemBlockBasicOre.class, ProjectFluxGear.modid + basicOre.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(gemOre, ItemBlockGemOre.class, ProjectFluxGear.modid + gemOre.getUnlocalizedName().substring(5));
@@ -508,8 +508,8 @@ public class FluxGearContent implements IFuelHandler {
 		itemDust = new ItemDust().setCreativeTab(componentsTab).setUnlocalizedName("dust");
 		GameRegistry.registerItem(itemDust, "dust");
 
-		itemCrafting = new ItemCrafting().setCreativeTab(componentsTab).setUnlocalizedName("crafting");
-		GameRegistry.registerItem(itemCrafting, "crafting");
+		//itemCrafting = new ItemCrafting().setCreativeTab(componentsTab).setUnlocalizedName("crafting");
+		//GameRegistry.registerItem(itemCrafting, "crafting");
 
 		wrenchSonic = new WrenchSonic().setCreativeTab(componentsTab).setUnlocalizedName("wrenchSonic");
 		GameRegistry.registerItem(wrenchSonic, "sonicWrench");
@@ -857,7 +857,7 @@ public class FluxGearContent implements IFuelHandler {
 	public static final CreativeTabs techTab = new FluxGearCreativeTab("PFG-Tech", "fluxgear.techTab", FluxGearContent.toolProtoSonicWrench);
 	public static final CreativeTabs generalTab = new FluxGearCreativeTab("PFG-General", "fluxgear.generalTab", new ItemStack(Items.potato));
 	public static final CreativeTabs stonesTab = new FluxGearCreativeTab("PFG-Stone", "fluxgear.stoneTab", new ItemStack(Blocks.obsidian));
-	public static final CreativeTabs thaumicTab = new FluxGearCreativeTab("PFG-Thaumic", "fluxgear.thaumicTab", new ItemStack(ThaumicContent.itemWardenAmulet));
+	public static final CreativeTabs thaumicTab = new FluxGearCreativeTab("PFG-Thaumic", "fluxgear.thaumicTab", new ItemStack(ThaumicContent.thaumicBauble));
 	//MOAR Tabs?
 
 
@@ -876,7 +876,7 @@ public class FluxGearContent implements IFuelHandler {
 
 		GameRegistry.registerItem(itemFocusPurity, "itemFocusPurity");
 		GameRegistry.registerItem(itemWardenSword, "itemWardenWeapon");
-		GameRegistry.registerItem(itemWardenAmulet, "itemWardenAmulet");
+		GameRegistry.registerItem(itemWardenAmulet, "thaumicBauble");
 		GameRegistry.registerItem(itemWardenHelm, "itemWardenHelm");
 		GameRegistry.registerItem(itemWardenChest, "itemWardenChest");
 		GameRegistry.registerItem(itemWardenLegs, "itemWardenLegs");
@@ -962,14 +962,13 @@ public class FluxGearContent implements IFuelHandler {
 	}
 
 	/* Items */
-	public static Item itemWardenAmulet = new ItemWardenAmulet();
+	public static Item itemWardenAmulet = new ItemThaumicBauble();
 	public static Item itemWardenSword = new ItemWardenicBlade();
 	public static Item itemFocusPurity = new ItemFocusPurity();
 	public static Item itemWardenHelm = new ItemWardenArmor(EnumArmorType.HELMET, "itemWardenHelm", "warden", "fluxgear:wardenhelm");
 	public static Item itemWardenChest = new ItemWardenArmor(EnumArmorType.CHESTPLATE, "itemWardenChest", "warden", "fluxgear:wardenchest");
 	public static Item itemWardenLegs = new ItemWardenArmor(EnumArmorType.PANTS, "itemWardenLegs", "warden", "fluxgear:wardenlegs");
 	public static Item itemWardenBoots = new ItemWardenArmor(EnumArmorType.BOOTS, "itemWardenBoots", "warden", "fluxgear:wardenboots");
-	public static Item itemLoveRing = new ItemLoveRing();
 	public static Item itemWaslieHammer = new ItemWaslieHammer();
 	public static Item itemFocusIllumination = new ItemFocusIllumination();
 
@@ -1049,56 +1048,6 @@ public class FluxGearContent implements IFuelHandler {
 	}
 
 	// TR Innerclasses...
-
-	public static class ItemLoveRing extends Item implements IBauble {
-
-		public ItemLoveRing() {
-
-			super();
-			setUnlocalizedName("itemLoveRing");
-			setCreativeTab(mortvana.projectfluxgear.thaumic.common.ThaumicContent.thaumicRevelationsTab);
-
-		}
-
-		@Override
-		public EnumRarity getRarity(ItemStack par1ItemStack) {return EnumRarity.epic;}
-
-		@Override
-		@SideOnly(Side.CLIENT)
-		public void registerIcons(IIconRegister register) {
-
-			itemIcon = register.registerIcon("trevelations:lovering");
-
-		}
-
-		@Override
-		public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-
-			world.playSoundAtEntity(player, "trevelations:abderp", 1, 1);
-
-			return super.onItemRightClick(stack, world, player);
-
-		}
-
-		@Override
-		public BaubleType getBaubleType(ItemStack itemStack) {return BaubleType.RING;}
-
-		@Override
-		public void onWornTick(ItemStack itemStack, EntityLivingBase entityLivingBase) {}
-
-		@Override
-		public void onEquipped(ItemStack itemStack, EntityLivingBase entityLivingBase) {}
-
-		@Override
-		public void onUnequipped(ItemStack itemStack, EntityLivingBase entityLivingBase) {}
-
-		@Override
-		public boolean canEquip(ItemStack itemStack, EntityLivingBase entityLivingBase) {return true;}
-
-		@Override
-		public boolean canUnequip(ItemStack itemStack, EntityLivingBase entityLivingBase) {return false;}
-
-	}
 
 	public static class ItemWardenicBlade extends Item {
 
@@ -1826,16 +1775,6 @@ public class FluxGearContent implements IFuelHandler {
 			return super.getPrefix() + ".vortex";
 		}
 	}
-
-
-
-
-
-
-
-
-
-
 
 	/* End Thaumic Revelations */
 

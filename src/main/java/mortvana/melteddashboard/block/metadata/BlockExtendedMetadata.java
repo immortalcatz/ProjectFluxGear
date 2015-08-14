@@ -2,6 +2,7 @@ package mortvana.melteddashboard.block.metadata;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
@@ -44,13 +45,8 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 		super(material, tab, hardness, resistance);
 	}
 
-
 	public int getPlacedMetadata(EntityPlayer player, ItemStack stack, World world, int x, int y, int z, int side, float xHit, float yHit, float zHit) {
 		return stack.getItemDamage();
-	}
-
-	public int getDroppedMetadata(World world, int x, int y, int z, int meta, int fortune) {
-		return meta;
 	}
 
 	public boolean shouldDropItems(World world, int x, int y, int z, int meta, EntityPlayer player, ItemStack stack) {
@@ -59,7 +55,7 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 
 	@Override
 	public int getDamageValue(World world, int x, int y, int z) {
-		return getDroppedMetadata(world, x, y, z, getMetadata(world, x, y, z), 0);
+		return getMetadata(world, x, y, z);
 	}
 
 	@Override
@@ -142,7 +138,7 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 		}
 		boolean hasBeenBroken = world.setBlockToAir(x, y, z);
 		if (hasBeenBroken && ServerHelper.isServerWorld(world)) {
-			if (drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode) && shouldDropItems(world, x, y, z, tile.getTileMetadata(), player, player.getCurrentEquippedItem())) {
+			if (drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode) && ForgeHooks.canHarvestBlock(this, player, tile.getTileMetadata())) {
 				for (ItemStack drop : drops) {
 					if (world.rand.nextFloat() <= ForgeEventFactory.fireBlockHarvesting(drops, world, this, x, y, z, tile.getTileMetadata(), EnchantmentHelper.getFortuneModifier(player), 1.0F, false, player)) {
 						dropBlockAsItem(world, x, y, z, drop);
@@ -160,7 +156,6 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 		if (tile != null && !tile.hasDropped) {
 			super.dropBlockAsItemWithChance(world, x, y, z, meta, chance, fortune);
 		}
-
 	}
 
 	@Override
@@ -169,10 +164,21 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 		int count = quantityDropped(metadata, fortune, world.rand);
 		Item item = getItemDropped(metadata, world.rand, fortune);
 		if (item != null) {
-			stacks.add(new ItemStack(item, count, getDroppedMetadata(world, x, y, z, metadata, fortune)));
+			stacks.add(new ItemStack(item, count, metadata));
 		}
+		//TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
+		//if (tile != null && !tile.hasDroppedBlock()) {
+		//	stacks.add(TileEntityMetadata.getItemStack((Block) block, tile.getTileMetadata()));
+		//}
 		return stacks;
 	}
+
+	@Override
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
+		List<ItemStack> list = getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+		return list.isEmpty() ? null : list.get(0);
+	}
+
 
 	@Override
 	@SideOnly(Side.CLIENT)

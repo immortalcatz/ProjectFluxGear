@@ -1,4 +1,4 @@
-package mortvana.legacy.gui;
+package mortvana.legacy.client.gui;
 
 import java.util.HashMap;
 
@@ -8,7 +8,6 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
-import mortvana.legacy.client.GuiWaslieHammer;
 import mortvana.legacy.block.tileentity.ContainerWoodmill;
 import mortvana.legacy.common.FluxGearContent;
 import mortvana.legacy.common.ProjectFluxGear;

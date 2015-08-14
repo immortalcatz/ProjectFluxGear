@@ -18,17 +18,13 @@ public class FluxGearCreativeTab extends CreativeTabs {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ItemStack getIconItemStack() {
-		return display;
+		return display == null ? new ItemStack(Items.potato) : display;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem() {
-		if (display != null) {
-			return display.getItem();
-		} else {
-			return Items.potato;
-		}
+		return display.getItem() == null ? Items.potato : display.getItem();
 	}
 
 	@Override

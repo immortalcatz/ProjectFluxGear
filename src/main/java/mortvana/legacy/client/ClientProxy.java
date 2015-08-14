@@ -13,7 +13,7 @@ import mortvana.legacy.client.render.RenderFleshGolem;
 import mortvana.legacy.common.CommonProxy;
 import mortvana.legacy.entity.EntityFleshProjectile;
 import mortvana.legacy.entity.FleshGolem;
-import mortvana.legacy.gui.GuiWoodmill;
+import mortvana.legacy.client.gui.GuiWoodmill;
 import mortvana.legacy.util.MTControls;
 import mortvana.legacy.util.handlers.ClientTickHandler;
 import mortvana.legacy.util.handlers.MTKeyHandler;

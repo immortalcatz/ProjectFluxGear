@@ -1,18 +1,18 @@
-package mortvana.projectfluxgear.thaumic.common;
+package mortvana.projectfluxgear.integration.common;
 
 import cpw.mods.fml.common.event.*;
 
-public class ThaumicRevelations {
+public class FluxGearIntegration {
 
 	public static void preInit(FMLPreInitializationEvent event) {
-		ThaumicContent.preInit();
+		IntegrationContent.preInit();
 	}
 
 	public static void init(FMLInitializationEvent event) {
-		ThaumicContent.init();
+		IntegrationContent.init();
 	}
 
 	public static void postInit(FMLPostInitializationEvent event) {
-		ThaumicContent.postInit();
+		IntegrationContent.postInit();
 	}
 }

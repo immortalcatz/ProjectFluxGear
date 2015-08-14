@@ -1,6 +1,5 @@
 package mortvana.legacy.item;
 
-import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -10,26 +9,17 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
-import cofh.api.block.IDismantleable;
-
-import Reika.RotaryCraft.API.Screwdriverable;
-import Reika.RotaryCraft.API.ShaftMachine;
-import ic2.api.tile.IWrenchable;
-import main.flowstoneenergy.core.interfaces.IFlowWrenchable;
 import mortvana.melteddashboard.api.item.tool.wrench.EnumWrenchMode;
 import mortvana.melteddashboard.api.item.tool.wrench.IFluxGearAdvOmniwrench;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.melteddashboard.item.FluxGearItem;
-import mortvana.melteddashboard.util.helpers.ServerHelper;
-import mortvana.melteddashboard.intermod.WrenchingHelper;
-import mortvana.legacy.util.helpers.BlockHelper;
+import mortvana.melteddashboard.intermod.wrenching.NBTWrenchingHelper;
 import pneumaticCraft.api.block.IPneumaticWrenchable;
 
 /*
@@ -121,77 +111,7 @@ public class ItemPrototypeSonicWrench extends FluxGearItem implements IFluxGearA
 	/* IWrenchable (IndustrialCraft), IDismantleable (CoFH Mods), IFlowWrench (Flowstone Energy), Screwdriverable (RotaryCraft) and Rotation Handling*/
 	@Override
 	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int hitSide, float hitX, float hitY, float hitZ) {
-		Block block = world.getBlock(x, y, z);
-		TileEntity tile = world.getTileEntity(x, y, z);
-		int meta = world.getBlockMetadata(x, y, z);
-
-		if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("Mode")) {
-			NBTTagCompound nbt = stack.stackTagCompound;
-			if (nbt.getByte("Mode") == EnumWrenchMode.STANDARD.ordinal()) {
-				/* IDismantleable Compat */
-				if (ServerHelper.isServerWorld(world) && player.isSneaking() && block instanceof IDismantleable && ((IDismantleable) block).canDismantle(player, world, x, y, z)) {
-					WrenchingHelper.handleDismantling(world, x, y, z, player, block);
-				}
-
-				/* Crude RotaryCraft Screwdriver Support */
-				if (nbt.hasKey("RotaryScrewdiver")) {
-					if (tile instanceof ShaftMachine) {
-						WrenchingHelper.handleShaftMachine(tile, world, x, y, z);
-					}
-					if (tile instanceof Screwdriverable) {
-						WrenchingHelper.handleScrewdriving(tile, world, x, y, z, player, hitSide);
-					}
-				}
-
-				/* Flowstone Energy Compat */
-				if (nbt.hasKey("FlowstoneEnergyWrench") && block instanceof IFlowWrenchable && player.isSneaking()) {
-					WrenchingHelper.handleFlowWrenching(world, x, y, z, block, meta);
-				}
-
-				/* Industrial Craft 2 */
-				if (nbt.hasKey("IndustrialCraftWrench") && tile instanceof IWrenchable) {
-					WrenchingHelper.handleIndustrialWrenching(tile, world, x, y, z, player, block, hitSide);
-				}
-			}
-
-			if (nbt.getByte("Mode") == EnumWrenchMode.CONFIGURATION.ordinal()) {}
-
-			if (nbt.getByte("Mode") == EnumWrenchMode.ROTATION.ordinal()) {
-				/* Rotation Handling */
-				if (BlockHelper.canRotate(block)) {
-
-					if (player.isSneaking()) {
-						world.setBlockMetadataWithNotify(x, y, z, BlockHelper.rotateVanillaBlockAlt(world, block, x, y, z), 3);
-						//TODO: Fix
-						/*if (ServerHelper.isClientWorld(world)) {
-							String soundName = block.stepSound.getBreakSound();
-							FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.6F));
-						}*/
-					} else {
-						world.setBlockMetadataWithNotify(x, y, z, BlockHelper.rotateVanillaBlock(world, block, x, y, z), 3);
-						//TODO: Fix
-						/*if (ServerHelper.isClientWorld(world)) {
-							String soundName = block.stepSound.getBreakSound();
-							FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.8F));
-						}*/
-					}
-					return ServerHelper.isServerWorld(world);
-				} else if (!player.isSneaking() && block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(hitSide))) {
-					player.swingItem();
-					return ServerHelper.isServerWorld(world);
-				}
-			}
-			if (nbt.getByte("Mode") == EnumWrenchMode.INFORMATION.ordinal()) {}
-		}
-
-		if (block instanceof IPneumaticWrenchable && ServerHelper.isServerWorld(world)) {
-			if (((IPneumaticWrenchable) block).rotateBlock(world, player, x, y, z, ForgeDirection.getOrientation(hitSide))) {
-				//TODO: Fix
-				//NetworkHandler.sendToAllAround(new PacketPlaySound(Sounds.PNEUMATIC_WRENCH, x, y, z, 1.0F, 1.0F, false), world);
-				return true;
-			}
-		}
-		return false;
+		return NBTWrenchingHelper.delegateWrenching(stack, player, world, x, y, z, hitSide);
 	}
 
 	/* PneumaticCraft Drone Compat */
@@ -234,8 +154,19 @@ public class ItemPrototypeSonicWrench extends FluxGearItem implements IFluxGearA
 			return EnumWrenchMode.values() [wrench.stackTagCompound.getByte("Mode")];
 		} else {
 			MeltedDashboardCore.logger.error("Your wrench lacks the proper NBT key for its mode. This shouldn't happen.");
+			NBTTagCompound nbt = new NBTTagCompound();
+			nbt.setByte("Mode", (byte) 0);
+			nbt = addModules(nbt); //Temporary, until I add modules
+			wrench.setTagCompound(nbt);
 			return EnumWrenchMode.STANDARD;
 		}
+	}
+
+	public NBTTagCompound addModules(NBTTagCompound nbt) {
+		String[] modules = new String[] { "CarpentersHammer", "RotaryScrewdriver", "FlowstoneEnergyWrench", "IndustrialCraftWrench", "RailcraftCrowbar", "AEWrench", "HairySpiceWrench", "ExtraTreesHammer", "MekanismWrench", "EnderIOWrench", "HideFacades", "PneumaticWrench", "IC2Override", "Chisel", "CarpentersChisel", "Configurator", "ThaumicWand", "EssentiaResonator", "Paintbrush", "EnhancedPortalsPainter", "AENetworkTool", "AdvEnderIOWrench", "Screwgun", "BluePowerScrewdriver", "BotaniaWand", "GolemBell", "Thaumometer", "TEMultimeter", "IEMultimeter", "Fluxmeter", "Pedometer", "AngularTransducer", "Healing", "GeigerCounter", "Walkman" };
+		for (String module : modules)
+			nbt.setBoolean(module, true);
+		return nbt;
 	}
 
 	/* ICarpentersHammer (Carpenter's Blocks) */

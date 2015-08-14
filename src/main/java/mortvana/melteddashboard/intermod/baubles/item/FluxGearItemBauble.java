@@ -3,6 +3,7 @@ package mortvana.melteddashboard.intermod.baubles.item;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
@@ -14,6 +15,18 @@ import mortvana.melteddashboard.item.FluxGearItem;
 public class FluxGearItemBauble extends FluxGearItem implements IBauble {
 
 	public Map<Integer, BaubleData> baubleData = new HashMap<Integer, BaubleData>();
+
+	public FluxGearItemBauble() {
+		super();
+	}
+
+	public FluxGearItemBauble(String modName) {
+		super(modName);
+	}
+
+	public FluxGearItemBauble(String modName, CreativeTabs tab) {
+		super(modName, tab);
+	}
 
 	@Override
 	public BaubleType getBaubleType(ItemStack itemstack) {
@@ -59,7 +72,13 @@ public class FluxGearItemBauble extends FluxGearItem implements IBauble {
 		return baubleData.containsKey(metadata);
 	}
 
-	public void addMetaBauble(int metadata, BaubleData data) {
+	public ItemStack addMetaBauble(int metadata, String name, BaubleData data) {
 		baubleData.put(metadata, data);
+		return addItem(metadata, name);
+	}
+
+	public ItemStack addMetaBauble(int metadata, String name, BaubleData data, int rarity) {
+		baubleData.put(metadata, data);
+		return addItem(metadata, name, rarity);
 	}
 }

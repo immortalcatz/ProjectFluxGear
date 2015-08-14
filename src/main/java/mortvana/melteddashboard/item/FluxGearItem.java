@@ -21,10 +21,12 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
+import mortvana.melteddashboard.common.MeltedDashboardConfig;
 import mortvana.melteddashboard.item.entry.ColorEntry;
 import mortvana.melteddashboard.item.entry.ItemEntry;
+import mortvana.melteddashboard.util.helpers.TextureHelper;
 
-/* Slightly Modified and Augmented Version of ItemBase from CoFH Core */
+/** Slightly Modified and Augmented Version of ItemBase from CoFH Core */
 public class FluxGearItem extends Item {
 	public TMap<Integer, ItemEntry> itemMap = new THashMap<Integer, ItemEntry>();
 	// This is actually more memory efficient than a LinkedHashMap, according to Lemming.
@@ -193,9 +195,9 @@ public class FluxGearItem extends Item {
 	@Override
 	public Entity createEntity(World world, Entity itemEntity, ItemStack itemstack) {
 		//if (SecurityHelper.isSecure(itemstack)) {
-			itemEntity.invulnerable = true;
-			itemEntity.isImmuneToFire = true;
-			((EntityItem) itemEntity).lifespan = Integer.MAX_VALUE;
+		//	itemEntity.invulnerable = true;
+		//	itemEntity.isImmuneToFire = true;
+		//	((EntityItem) itemEntity).lifespan = Integer.MAX_VALUE;
 		//}
 		return null;
 	}
@@ -222,28 +224,20 @@ public class FluxGearItem extends Item {
 			for (int i = 0; i < itemList.size(); i++) {
 				ItemEntry entry = itemMap.get(itemList.get(i));
 				if (colorMap.containsKey(i)) {
-
+					if (!MeltedDashboardConfig.minimalRegistry) {
+						String protoTexture = modName + ":" + colorMap.get(i).texture;
+						if (TextureHelper.itemTextureExists(protoTexture)) {
+							entry.icon = iconRegister.registerIcon(protoTexture);
+						} else {
+							entry.icon = iconRegister.registerIcon(modName + ":" + colorMap.get(i).template);
+						}
+					} else {
+						entry.icon = iconRegister.registerIcon(modName + ":" + colorMap.get(i).template);
+					}
 				} else {
-
+					entry.icon = iconRegister.registerIcon(modName + ":" + getUnlocalizedName().replace("item." + modName + ".", "") + "/" + /*StringHelper.camelCase(*/entry.name/*)*/);
 				}
 			}
 		}
 	}
-
-	/*@Override
-	public void registerIcons(IIconRegister ir) {
-
-		if (!hasTextures) {
-			return;
-		}
-		for (int i = 0; i < itemList.size(); i++) {
-			ItemEntry item = itemMap.get(itemList.get(i));
-			if (colorizerList.get(i)) {
-				item.icon = ir.registerIcon(modName + ":" + getUnlocalizedName().replace("item." + modName + ".", "") + "/" + StringHelper.camelCase(item.name/*Code Here*//*));
-			/*} else {
-				item.icon = ir.registerIcon(modName + ":" + getUnlocalizedName().replace("item." + modName + ".", "") + "/" + StringHelper.camelCase(item.name));
-			}
-		}
-	}*/
-
 }

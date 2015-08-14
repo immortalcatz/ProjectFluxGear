@@ -5,8 +5,10 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class LoadedHelper {
 	/* Loaded Mod Checker */
-	//public static boolean isArsMagicaLoaded = Loader.isModLoaded("arsmagica2");
-	//public static boolean isDartcraftLoaded = Loader.isModLoaded("Dartcraft");
+	@Deprecated // Will be used once Mithion releases 1.4.009
+	public static boolean isArsMagicaLoaded = Loader.isModLoaded("arsmagica2");
+	@Deprecated // Stuck in 1.6.4
+	public static boolean isDartcraftLoaded = Loader.isModLoaded("Dartcraft");
 	public static boolean isExtraTiCLoaded = Loader.isModLoaded("ExtraTiC");
 	public static boolean isForestryLoaded = Loader.isModLoaded("Forestry");
 	public static boolean isGrowthcraftLoaded = Loader.isModLoaded("Growthcraft");
@@ -43,6 +45,7 @@ public class LoadedHelper {
 	public static boolean isBoPLoaded = Loader.isModLoaded("BiomesOPlenty");
 	public static boolean isReliquaryLoaded = Loader.isModLoaded("xreliquary");
 	public static boolean isBotaniaLoaded = Loader.isModLoaded("Botania");
+	public static boolean isTFCLoaded = Loader.isModLoaded("terrafirmacraft");
 
 	//Planned Stuff
 	public static boolean isDragonAPILoaded = Loader.isModLoaded("DragonAPI");

@@ -1,4 +1,4 @@
-package mortvana.legacy.util.exectpions;
+package mortvana.melteddashboard.util.exectpions;
 
 import java.util.Random;
 
@@ -11,7 +11,7 @@ public class GyroDerpExeption extends Exception {
     @Override
     public void printStackTrace() {
         Random random = new Random();
-        int line = random.nextInt(20);
+        int line = random.nextInt(26);
         String derp = "Catctus";
         if (line ==  0) derp = "Gyro's unbalanced and his umbrella's a Psyduck~";
         if (line ==  1) derp = "Why does Gyro do the things?";

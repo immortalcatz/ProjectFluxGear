@@ -1,4 +1,4 @@
-package mortvana.melteddashboard.intermod;
+package mortvana.melteddashboard.intermod.wrenching;
 
 import java.util.List;
 

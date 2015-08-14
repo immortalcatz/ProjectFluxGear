@@ -1,4 +1,4 @@
-package mortvana.melteddashboard.network;
+package mortvana.legacy.network;
 
 import java.util.EnumMap;
 
@@ -12,7 +12,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import com.google.common.collect.Maps;
 import io.netty.channel.SimpleChannelInboundHandler;
-import mortvana.melteddashboard.network.message.old.FluxGearMessage;
 
 /**
  *  The underscore is because IntelliJ refuses to see this file without it, because reasons...

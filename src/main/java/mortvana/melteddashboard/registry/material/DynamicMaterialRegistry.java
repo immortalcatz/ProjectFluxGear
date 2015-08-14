@@ -131,9 +131,8 @@ public class DynamicMaterialRegistry {
 			} else {
 				MeltedDashboardCore.logger.error("Some genius registered a null material... Yeah, don't do that. It's generally not a good idea.");
 			}
-			entriesToSort.remove(entry);
 		}
-
+		entriesToSort.clear();
 	}
 
 	/**
@@ -222,7 +221,12 @@ public class DynamicMaterialRegistry {
 
 	public void postInit() {
 		sortEntries();
+		assertBlockStability();
 		registerEntries();
+	}
+
+	public void assertBlockStability() {
+		block.setMiningLevel(WILD, 0);
 	}
 }
 
