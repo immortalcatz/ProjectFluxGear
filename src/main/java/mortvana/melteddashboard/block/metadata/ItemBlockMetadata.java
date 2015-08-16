@@ -54,4 +54,9 @@ public class ItemBlockMetadata extends ItemBlock {
 		}
 		return true;
 	}
+
+	public static ItemStack withTag(ItemStack block, int metadata) {
+		block.stackTagCompound.setInteger("Metadata", metadata);
+		return block;
+	}
 }

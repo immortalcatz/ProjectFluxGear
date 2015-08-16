@@ -221,12 +221,7 @@ public class DynamicMaterialRegistry {
 
 	public void postInit() {
 		sortEntries();
-		assertBlockStability();
 		registerEntries();
-	}
-
-	public void assertBlockStability() {
-		block.setMiningLevel(WILD, 0);
 	}
 }
 

@@ -34,6 +34,7 @@ public class FluxGearCoreContent {
 
 	public static void preInitRegistry() {
 		metaStorageBlock = new FluxGearBlockExtendedMetadata(Material.iron, dynMaterialTab, new TileEntityMetadata(), "fluxgear:block/", "DynamicStorageBlock");
+			metaStorageBlock.setDefaultData(5.0F, 6.0F, 0, 0, true, false, 0, "pickaxe");
 		GameRegistry.registerBlock(metaStorageBlock, ItemBlockMetadata.class, "storageTest");
 
 		registryIngot = new FluxGearItem("fluxgear", dynMaterialTab);
@@ -49,7 +50,6 @@ public class FluxGearCoreContent {
 	}
 
 	public static void registerMaterials() {
-
 		dynMatReg.sortEntries();
 	}
 

@@ -1,6 +1,6 @@
 package mortvana.melteddashboard.block.metadata;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -23,21 +23,28 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraftforge.oredict.OreDictionary;
 
+import gnu.trove.map.TMap;
+import gnu.trove.map.hash.THashMap;
 import mortvana.melteddashboard.util.enums.EnumTextCasing;
 
 public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 
-	public HashMap<Integer, String> textureNames = new HashMap<Integer, String>();
-	public HashMap<Integer, String> blockNames = new HashMap<Integer, String>();
-	public HashMap<Integer, Float> blockHardness = new HashMap<Integer, Float>();
-	public HashMap<Integer, Float> blastResistance = new HashMap<Integer, Float>();
-	public HashMap<Integer, Integer> itemRarity = new HashMap<Integer, Integer>();
-	public HashMap<Integer, Integer> blockLight = new HashMap<Integer, Integer>();
-	public HashMap<Integer, Integer> redstoneSignal = new HashMap<Integer, Integer>();
-	public HashMap<Integer, Boolean> beaconBase = new HashMap<Integer, Boolean>();
-	public HashMap<Integer, Boolean> mobSpawns = new HashMap<Integer, Boolean>();
-	public HashMap<Integer, Integer> colorData = new HashMap<Integer, Integer>();
-	public HashMap<Integer, IIcon> blockIcons = new HashMap<Integer, IIcon>();
+	public List<Integer> metaBlocks = new ArrayList<Integer>();
+
+	public TMap<Integer, String> textureNames = new THashMap<Integer, String>();
+	public TMap<Integer, String> blockNames = new THashMap<Integer, String>();
+	public TMap<Integer, Float> blockHardness = new THashMap<Integer, Float>();
+	public TMap<Integer, Float> blastResistance = new THashMap<Integer, Float>();
+	public TMap<Integer, Integer> itemRarity = new THashMap<Integer, Integer>();
+	public TMap<Integer, Integer> blockLight = new THashMap<Integer, Integer>();
+	public TMap<Integer, Integer> redstoneSignal = new THashMap<Integer, Integer>();
+	public TMap<Integer, Boolean> beaconBase = new THashMap<Integer, Boolean>();
+	public TMap<Integer, Boolean> mobSpawns = new THashMap<Integer, Boolean>();
+	public TMap<Integer, Integer> colorData = new THashMap<Integer, Integer>();
+	public TMap<Integer, IIcon> blockIcons = new THashMap<Integer, IIcon>();
+
+	// Not internally used, provided for things like getters in registries.
+	public TMap<Integer, ItemStack> stackMap = new THashMap<Integer, ItemStack>();
 
 	public TileEntityMetadata providerTile;
 	public String textureBase;
@@ -51,141 +58,105 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 	}
 
 	public void setDefaultData(float blockHardness, float blastResistance) {
-		this.blockHardness.put(WILD, blockHardness);
-		this.blastResistance.put(WILD, blastResistance);
-		itemRarity.put(WILD, 0);
-		this.blockLight.put(WILD, 0);
-		this.redstoneSignal.put(WILD, 0);
-		this.beaconBase.put(WILD, false);
-		this.mobSpawns.put(WILD, true);
+		setDefaultData(blockHardness, blastResistance, 0, 0, false, true, 0, "pickaxe");
 	}
 
 	public void setDefaultData(float blockHardness, float blastResistance, boolean beaconBase, boolean mobSpawns) {
-		this.blockHardness.put(WILD, blockHardness);
-		this.blastResistance.put(WILD, blastResistance);
-		itemRarity.put(WILD, 0);
-		this.blockLight.put(WILD, 0);
-		this.redstoneSignal.put(WILD, 0);
-		this.beaconBase.put(WILD, beaconBase);
-		this.mobSpawns.put(WILD, mobSpawns);
+		setDefaultData(blockHardness, blastResistance, 0, 0, beaconBase, mobSpawns, 0, "pickaxe");
 	}
 
 	public void setDefaultData(float blockHardness, float blastResistance, int blockLight, int redstoneSignal, boolean beaconBase, boolean mobSpawns) {
-		this.blockHardness.put(WILD, blockHardness);
-		this.blastResistance.put(WILD, blastResistance);
-		itemRarity.put(WILD, 0);
-		this.blockLight.put(WILD, blockLight);
-		this.redstoneSignal.put(WILD, redstoneSignal);
-		this.beaconBase.put(WILD, beaconBase);
-		this.mobSpawns.put(WILD, mobSpawns);
+		setDefaultData(blockHardness, blastResistance, blockLight, redstoneSignal, beaconBase, mobSpawns, 0, "pickaxe");
+	}
+
+	public void setDefaultData(float blockHardness, float blastResistance, int blockLight, int redstoneSignal, boolean beaconBase, boolean mobSpawns, int miningLevel, String toolType) {
+		setBlockHardness(WILD, blockHardness);
+		setBlastResistance(WILD, blastResistance);
+		setItemRarity(WILD, 0);
+		setBlockLight(WILD, blockLight);
+		setRedstoneSignal(WILD, redstoneSignal);
+		setBeaconBase(WILD, beaconBase);
+		setMobSpawns(WILD, mobSpawns);
+		setMiningLevel(WILD, miningLevel);
+		setMiningTool(WILD, toolType);
 	}
 
 	public void setData(int metadata, String textureName, String blockName) {
-		textureNames.put(metadata, textureName);
-		blockNames.put(metadata, blockName);
+		addMetaBlock(metadata);
+		setTextureName(metadata, textureName);
+		setBlockName(metadata, blockName);
 	}
 
-	public void setData(int metadata, float blockHardness, float blastResistance, String textureName, String blockName) {
-		textureNames.put(metadata, textureName);
-		blockNames.put(metadata, blockName);
-		this.blockHardness.put(metadata, blockHardness);
-		this.blastResistance.put(metadata, blastResistance);
+	public void setData(int metadata, String textureName, String blockName, float blockHardness, float blastResistance) {
+		setData(metadata, textureName, blockName);
+		setBlockHardness(metadata, blockHardness);
+		setBlastResistance(metadata, blastResistance);
 	}
 
-	public void setData(int metadata, int miningLevel, float blockHardness, float blastResistance, String textureName, String blockName) {
-		textureNames.put(metadata, textureName);
-		blockNames.put(metadata, blockName);
-		this.blockHardness.put(metadata, blockHardness);
-		this.blastResistance.put(metadata, blastResistance);
-		harvestLevels.put(metadata, miningLevel);
+	public void setData(int metadata, String textureName, String blockName, int miningLevel, float blockHardness, float blastResistance) {
+		setData(metadata, textureName, blockName, blockHardness, blastResistance);
+		setMiningLevel(metadata, miningLevel);
 	}
 
-	public void setData(int metadata, float blockHardness, float blastResistance, int rarity, String textureName, String blockName) {
-		textureNames.put(metadata, textureName);
-		blockNames.put(metadata, blockName);
-		this.blockHardness.put(metadata, blockHardness);
-		this.blastResistance.put(metadata, blastResistance);
-		this.itemRarity.put(metadata, rarity);
+	public void setData(int metadata, String textureName, String blockName, float blockHardness, float blastResistance, int rarity) {
+		setData(metadata, textureName, blockName, blockHardness, blastResistance);
+		setItemRarity(metadata, rarity);
 	}
 
-	public void setData(int metadata, int miningLevel, float blockHardness, float blastResistance, int rarity, String textureName, String blockName) {
-		textureNames.put(metadata, textureName);
-		blockNames.put(metadata, blockName);
-		this.blockHardness.put(metadata, blockHardness);
-		this.blastResistance.put(metadata, blastResistance);
-		this.itemRarity.put(metadata, rarity);
-		harvestLevels.put(metadata, miningLevel);
+	public void setData(int metadata, String textureName, String blockName, int miningLevel, float blockHardness, float blastResistance, int rarity) {
+		setData(metadata, textureName, blockName, miningLevel, blockHardness, blastResistance);
+		setItemRarity(metadata, rarity);
 	}
 
-	public void setData(int metadata, int miningLevel, float blockHardness, float blastResistance, int rarity, int blockLight, int redstoneSignal, String textureName, String blockName) {
-		textureNames.put(metadata, textureName);
-		blockNames.put(metadata, blockName);
-		this.blockHardness.put(metadata, blockHardness);
-		this.blastResistance.put(metadata, blastResistance);
-		this.itemRarity.put(metadata, rarity);
-		this.blockLight.put(metadata, blockLight);
-		this.redstoneSignal.put(metadata, redstoneSignal);
-		harvestLevels.put(metadata, miningLevel);
+	public void setData(int metadata, String textureName, String blockName, int miningLevel, float blockHardness, float blastResistance, int rarity, int blockLight, int redstoneSignal) {
+		setData(metadata, textureName, blockName, miningLevel, blockHardness, blastResistance, rarity);
+		setBlockLight(metadata, blockLight);
+		setRedstoneSignal(metadata, redstoneSignal);
 	}
 
-	public void setData(int metadata, String textureName, String blockName, int hexColor) {
-		textureNames.put(metadata, textureName);
-		blockNames.put(metadata, blockName);
-		colorData.put(metadata, hexColor);
+	public void setData(int metadata, int hexColor, String textureName, String blockName) {
+		setData(metadata, textureName, blockName);
+		setColorData(metadata, hexColor);
 	}
 
-	public void setData(int metadata, float blockHardness, float blastResistance, String textureName, String blockName, int hexColor) {
-		textureNames.put(metadata, textureName);
-		blockNames.put(metadata, blockName);
-		this.blockHardness.put(metadata, blockHardness);
-		this.blastResistance.put(metadata, blastResistance);
-		colorData.put(metadata, hexColor);
+	public void setData(int metadata, int hexColor, String textureName, String blockName, float blockHardness, float blastResistance) {
+		setData(metadata, textureName, blockName, blockHardness, blastResistance);
+		setColorData(metadata, hexColor);
 	}
 
-	public void setData(int metadata, int miningLevel, float blockHardness, float blastResistance, String textureName, String blockName, int hexColor) {
-		textureNames.put(metadata, textureName);
-		blockNames.put(metadata, blockName);
-		this.blockHardness.put(metadata, blockHardness);
-		this.blastResistance.put(metadata, blastResistance);
-		colorData.put(metadata, hexColor);
-		harvestLevels.put(metadata, miningLevel);
+	public void setData(int metadata, int hexColor, String textureName, String blockName, int miningLevel, float blockHardness, float blastResistance) {
+		setData(metadata, textureName, blockName, miningLevel, blockHardness, blastResistance);
+		setColorData(metadata, hexColor);
 	}
 
-	public void setData(int metadata, float blockHardness, float blastResistance, int rarity, String textureName, String blockName, int hexColor) {
-		textureNames.put(metadata, textureName);
-		blockNames.put(metadata, blockName);
-		this.blockHardness.put(metadata, blockHardness);
-		this.blastResistance.put(metadata, blastResistance);
-		this.itemRarity.put(metadata, rarity);
-		colorData.put(metadata, hexColor);
+	public void setData(int metadata, int hexColor, String textureName, String blockName, float blockHardness, float blastResistance, int rarity) {
+		setData(metadata, textureName, blockName, blockHardness, blastResistance, rarity);
+		setColorData(metadata, hexColor);
 	}
 
-	public void setData(int metadata, int miningLevel, float blockHardness, float blastResistance, int rarity, String textureName, String blockName, int hexColor) {
-		textureNames.put(metadata, textureName);
-		blockNames.put(metadata, blockName);
-		this.blockHardness.put(metadata, blockHardness);
-		this.blastResistance.put(metadata, blastResistance);
-		this.itemRarity.put(metadata, rarity);
-		colorData.put(metadata, hexColor);
-		harvestLevels.put(metadata, miningLevel);
+	public void setData(int metadata, int hexColor, String textureName, String blockName, int miningLevel, float blockHardness, float blastResistance, int rarity) {
+		setData(metadata, textureName, blockName, miningLevel, blockHardness, blastResistance, rarity);
+		setColorData(metadata, hexColor);
 	}
 
-	public void setData(int metadata, int miningLevel, float blockHardness, float blastResistance, int rarity, int blockLight, int redstoneSignal, String textureName, String blockName, int hexColor) {
-		textureNames.put(metadata, textureName);
-		blockNames.put(metadata, blockName);
-		this.blockHardness.put(metadata, blockHardness);
-		this.blastResistance.put(metadata, blastResistance);
-		this.itemRarity.put(metadata, rarity);
-		this.blockLight.put(metadata, blockLight);
-		this.redstoneSignal.put(metadata, redstoneSignal);
-		colorData.put(metadata, hexColor);
-		harvestLevels.put(metadata, miningLevel);
+	public void setData(int metadata, int hexColor, String textureName, String blockName, int miningLevel, float blockHardness, float blastResistance, int rarity, int blockLight, int redstoneSignal) {
+		setData(metadata, textureName, blockName, miningLevel, blockHardness, blastResistance, rarity, blockLight, redstoneSignal);
+		setColorData(metadata, hexColor);
 	}
 
+	@Deprecated
 	public static void registerWithHandlers(String oreDictName, ItemStack var1) {
 		OreDictionary.registerOre(oreDictName, var1);
 		GameRegistry.registerCustomItemStack(oreDictName, var1);
 		FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", var1);
+	}
+
+	public void setTextureName(int metadata, String textureName) {
+		textureNames.put(metadata, textureName);
+	}
+
+	public void setBlockName(int metadata, String blockName) {
+		blockNames.put(metadata, blockName);
 	}
 
 	public void setBlockHardness(int metadata, float blockHardness) {
@@ -230,6 +201,12 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 
 	public void setTextureCasing(EnumTextCasing casing) {
 		textCasing = casing;
+	}
+
+	public void addMetaBlock(int metadata) {
+		if (!metaBlocks.contains(metadata)){
+			metaBlocks.add(metadata);
+		}
 	}
 
 	public TileEntity createNewTileEntity(World world, int p_149915_2_) {
@@ -309,10 +286,12 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 	}
 
 	//TODO: This
+	@Override
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-		/*for (int i = 0; i < names.length; i++) {
-			list.add(new ItemStack(item, 1, i));
-		}*/
+		for (int i : metaBlocks) {
+			//list.add(new ItemStack(item, 1, i));
+			list.add(ItemBlockMetadata.withTag(new ItemStack(item, 1, 0), i));
+		}
 	}
 
 	@Override
@@ -324,7 +303,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int metadata) {
-			return (blockIcons.get(metadata));
+		return (blockIcons.get(metadata));
 	}
 
 	@Override
