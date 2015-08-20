@@ -1,38 +1,44 @@
-package mortvana.melteddashboard.block;
+package mortvana.melteddashboard.block.metadata;
+
+import java.util.Map;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class FluxGearItemBlock extends ItemBlock {
+import gnu.trove.map.hash.THashMap;
 
-	public String unlocalizedName;
-	public String[] names;
-	public int[] rarities;
+public class FluxGearItemBlockExtendedMetadata extends ItemBlockMetadata {
 
-	public FluxGearItemBlock(Block block, String[] names, int[] rarities, String unlocalizedName) {
+	public Map<Integer, String> names;
+	public Map<Integer, Integer> rarities;
+
+	public FluxGearItemBlockExtendedMetadata(Block block, Map<Integer, String> names, Map<Integer, Integer> rarities) {
 		super(block);
 		setHasSubtypes(true);
 		setMaxDamage(0);
-		this.unlocalizedName = unlocalizedName;
 		this.names = names;
 		this.rarities = rarities;
 	}
 
-	@Override
-	public int getMetadata(int metadata) {
-		return metadata;
+	/**
+	 *  Dummy version of the constructor so FML stop complaining about illogical shit...
+	 *  A THashMap is a Map, and the arguments are CORRECT, okay FML.
+	 *  ONLY SUPPLY MAPS THAT ARE ACTUALLY CORRECT.
+	 */
+	@SuppressWarnings("unchecked")
+	public FluxGearItemBlockExtendedMetadata(Block block, THashMap names, THashMap rarities) {
+		this(block, (Map<Integer, String>) names, (Map<Integer, Integer>) rarities);
 	}
 
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
-		return unlocalizedName + names[itemstack.getItemDamage()] + ".name";
+		return super.getUnlocalizedName() + "." + names.get(itemstack.getItemDamage());
 	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack itemstack) {
-		return EnumRarity.values()[rarities[itemstack.getItemDamage()]];
+		return EnumRarity.values()[rarities.get(itemstack.getItemDamage())];
 	}
 
 	@Override

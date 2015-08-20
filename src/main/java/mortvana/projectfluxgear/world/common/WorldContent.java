@@ -68,7 +68,7 @@ public class WorldContent {
 	public static MaterialEntry cobalt = new MaterialEntry(12, EnumMaterialType.INGOT_METAL, "cobalt", "cobalt", new String[] {"NaturalCobalt", FluxGearCoreConfig.coAssimilation ? "Cobalt" : ""}, 7.0F, 8.0F, 1, 2, 0, 0/*, ColorHelper.COLOR_MATERIAL_*/);
 	public static MaterialEntry tungsten = new MaterialEntry(13, EnumMaterialType.INGOT_METAL, "tungsten", "tungsten", new String[] {"Tungsten"}, 10.0F, 25.0F, 1, 3, 0, 0/*, ColorHelper.COLOR_MATERIAL_*/);
 	public static MaterialEntry titanium = new MaterialEntry(14, EnumMaterialType.INGOT_METAL, "titanium", "titanium", new String[] {"Titanium"}, 8.0F, 12.0F, 1, 2, 0, 0/*, ColorHelper.COLOR_MATERIAL_*/);
-	public static MaterialEntry chromium = new MaterialEntry(15, EnumMaterialType.INGOT_METAL, "chromium", "chromium", new String[] {"Chromium, Chrome"}, 7.0F, 10.0F, 1, 2, 0, 0/*, ColorHelper.COLOR_MATERIAL_*/);
+	public static MaterialEntry chromium = new MaterialEntry(15, EnumMaterialType.INGOT_METAL, "chromium", "chromium", new String[] {"Chromium", "Chrome"}, 7.0F, 10.0F, 1, 2, 0, 0/*, ColorHelper.COLOR_MATERIAL_*/);
 
 	public static MaterialEntry[] materials = new MaterialEntry[] { copper, tin, lead, silver, nickel };
 }

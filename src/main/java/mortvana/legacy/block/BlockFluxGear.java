@@ -42,6 +42,7 @@ import net.minecraftforge.fluids.*;
 import cofh.core.fluid.BlockFluidCoFHBase;
 
 import mortvana.legacy.client.ClientProxy;
+import mortvana.legacy.common.ProjectFluxGear;
 import mortvana.melteddashboard.block.FluxGearItemBlock;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.melteddashboard.block.FluxGearBlock;
@@ -357,7 +358,7 @@ public class BlockFluxGear extends Block {
 		}
 
 		public String getUnlocalizedName(ItemStack par1ItemStack) {
-			return super.getUnlocalizedName() + "." + mortvana.legacy.common.ProjectFluxGear.colorNames[par1ItemStack.getItemDamage()];
+			return super.getUnlocalizedName() + "." + ProjectFluxGear.colorNames[par1ItemStack.getItemDamage()];
 		}
 	}
 

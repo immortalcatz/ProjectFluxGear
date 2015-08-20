@@ -172,7 +172,7 @@ public class DynamicMaterialRegistry {
 	}
 
 	public void registerBlocks(int id, MaterialEntry entry) {
-		block.setData(id, entry.getMaterialTexture(), "block" + StringHelper.toTitleCase(entry.getMaterialName()));
+		block.setData(id, entry.getMaterialTexture(), /*"block" +*/ StringHelper.toTitleCase(entry.getMaterialName()));
 		if (entry.getMaterialBlockHardness() != -1.0F) {
 			block.setBlockHardness(id, entry.getMaterialBlockHardness());
 		}

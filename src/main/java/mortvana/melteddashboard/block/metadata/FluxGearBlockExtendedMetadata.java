@@ -16,12 +16,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
-import net.minecraftforge.oredict.OreDictionary;
 
 import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
@@ -42,8 +38,6 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 	public TMap<Integer, Boolean> mobSpawns = new THashMap<Integer, Boolean>();
 	public TMap<Integer, Integer> colorData = new THashMap<Integer, Integer>();
 	public TMap<Integer, IIcon> blockIcons = new THashMap<Integer, IIcon>();
-
-	// Not internally used, provided for things like getters in registries.
 	public TMap<Integer, ItemStack> stackMap = new THashMap<Integer, ItemStack>();
 
 	public TileEntityMetadata providerTile;
@@ -144,13 +138,6 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 		setColorData(metadata, hexColor);
 	}
 
-	@Deprecated
-	public static void registerWithHandlers(String oreDictName, ItemStack var1) {
-		OreDictionary.registerOre(oreDictName, var1);
-		GameRegistry.registerCustomItemStack(oreDictName, var1);
-		FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", var1);
-	}
-
 	public void setTextureName(int metadata, String textureName) {
 		textureNames.put(metadata, textureName);
 	}
@@ -206,6 +193,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 	public void addMetaBlock(int metadata) {
 		if (!metaBlocks.contains(metadata)){
 			metaBlocks.add(metadata);
+			stackMap.put(metadata, ItemBlockMetadata.withTag(new ItemStack(this, 1, metadata), metadata));
 		}
 	}
 
@@ -287,10 +275,10 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 
 	//TODO: This
 	@Override
+	@SuppressWarnings("unchecked") //Stupid Mojang, why you so derpcode?
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
 		for (int i : metaBlocks) {
-			//list.add(new ItemStack(item, 1, i));
-			list.add(ItemBlockMetadata.withTag(new ItemStack(item, 1, 0), i));
+			list.add(stackMap.get(i));
 		}
 	}
 

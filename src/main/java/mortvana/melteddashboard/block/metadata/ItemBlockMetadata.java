@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -56,6 +57,9 @@ public class ItemBlockMetadata extends ItemBlock {
 	}
 
 	public static ItemStack withTag(ItemStack block, int metadata) {
+		if (!block.hasTagCompound()) {
+			block.stackTagCompound = new NBTTagCompound();
+		}
 		block.stackTagCompound.setInteger("Metadata", metadata);
 		return block;
 	}
