@@ -34,6 +34,7 @@ public class FluxGearCoreContent {
 
 	public static void postInit() {
 		dynMatReg.postInit();
+		//TODO: Is this needed?
 		registryIngot = dynMatReg.items[0];
 	}
 
