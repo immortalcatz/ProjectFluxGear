@@ -9,7 +9,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraftforge.common.BiomeDictionary;
-import mortvana.legacy.common.FluxGearContent;
+import mortvana.legacy.errored.core.common.FluxGearContent;
 
 public class FluxGearWorldGenerator implements IWorldGenerator{
 

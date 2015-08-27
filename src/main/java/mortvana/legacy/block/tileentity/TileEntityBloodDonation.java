@@ -6,6 +6,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
+import mortvana.legacy.block.BlockFluxGear.BlockMetaTank;
 import mortvana.legacy.util.ContentRegistry;
 import mortvana.legacy.util.block.tile.TileEntityBase;
 

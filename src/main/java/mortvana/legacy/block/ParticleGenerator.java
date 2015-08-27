@@ -14,12 +14,11 @@ import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.legacy.block.BlockFluxGear;
 import mortvana.legacy.block.tileentity.TileEnergyStorageCore;
 import mortvana.legacy.block.tileentity.TileParticleGenerator;
-import mortvana.legacy.client.particle.ParticleCustom;
-import mortvana.legacy.client.particle.ParticleHandler;
-import mortvana.legacy.common.ProjectFluxGear;
+import mortvana.legacy.refactored.fluxgearaddons.client.particle.ParticleCustom;
+import mortvana.legacy.refactored.fluxgearaddons.client.particle.ParticleHandler;
+import mortvana.legacy.errored.core.common.ProjectFluxGear;
 
 public class ParticleGenerator extends BlockFluxGear {
 	public static Block instance;

@@ -9,7 +9,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.legacy.block.BlockFluxGear;
-import mortvana.legacy.common.ProjectFluxGear;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 
 public class FallingBlockFluxGear extends BlockFalling {

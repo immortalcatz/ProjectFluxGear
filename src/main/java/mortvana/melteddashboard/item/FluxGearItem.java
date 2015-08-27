@@ -6,7 +6,6 @@ import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -38,22 +37,23 @@ public class FluxGearItem extends Item {
 
 	public FluxGearItem() {
 		setHasSubtypes(true);
+		setMaxDamage(0);
+		setMaxStackSize(64);
 	}
 
 	public FluxGearItem(String modName) {
+		this();
 		this.modName = modName;
-		setHasSubtypes(true);
 	}
 
 	public FluxGearItem(String modName, CreativeTabs tab) {
-		this.modName = modName;
+		this(modName);
 		setCreativeTab(tab);
-		setHasSubtypes(true);
 	}
 
 	// addItem(...) {}
 	public ItemStack addItem(int metadata, String name, int rarity, boolean register) {
-		if (itemMap.containsKey(metadata)) {
+		if (itemList.contains(metadata)) {
 			return null;
 		} else {
 			itemMap.put(metadata, new ItemEntry(name, rarity));
@@ -68,19 +68,11 @@ public class FluxGearItem extends Item {
 	}
 
 	public ItemStack addItem(int metadata, String name, int rarity) {
-		if (itemMap.containsKey(metadata)) {
-			return null;
-		} else {
-			itemMap.put(metadata, new ItemEntry(name, rarity));
-			itemList.add(metadata);
-			ItemStack stack = new ItemStack(this, 1, metadata);
-			GameRegistry.registerCustomItemStack(name, stack);
-			return stack;
-		}
+		return addItem(metadata, name, rarity, true);
 	}
 
 	public ItemStack addItem(int metadata, String name) {
-		return addItem(metadata, name, 0);
+		return addItem(metadata, name, 0, true);
 	}
 
 	// addColorizedItem(...) {}
@@ -92,51 +84,34 @@ public class FluxGearItem extends Item {
 		return stack;
 	}
 
-	public ItemStack addColorizedItem(int metadata, String name, int rarity, int color, String texture, String template) {
-		ItemStack stack = addItem(metadata, name, rarity);
-		if (stack != null) {
-			colorMap.put(metadata, new ColorEntry(template, texture, color));
-		}
-		return stack;
+	public ItemStack addColorizedItem(int metadata, String name, int rarity, String texture, String template, int color) {
+		return addColorizedItem(metadata, name, rarity, true, texture, template, color);
 	}
 
-	public ItemStack addColorizedItem(int metadata, String name, int color, String texture, String template) {
-		return addColorizedItem(metadata, name, 0, color, texture, template);
+	public ItemStack addColorizedItem(int metadata, String name, String texture, String template, int color) {
+		return addColorizedItem(metadata, name, 0, true, texture, template, color);
 	}
 
 	// addOreDictItem(...) {}
 	public ItemStack addOreDictItem(int metadata, String name, int rarity, boolean register, String... oreDict) {
 		ItemStack stack = addItem(metadata, name, rarity, register);
-		if (oreDict.length > 0) {
-			for (String oreDictEntry : oreDict) {
-				OreDictionary.registerOre(oreDictEntry, stack);
-			}
-		} else {
-			OreDictionary.registerOre(name, stack);
+		for (String oreDictEntry : oreDict) {
+			OreDictionary.registerOre(oreDictEntry, stack);
 		}
 		return stack;
 	}
 
 	public ItemStack addOreDictItem(int metadata, String name, int rarity, String... oreDict) {
-		ItemStack stack = addItem(metadata, name, rarity);
-		if (oreDict.length > 0) {
-			for (String oreDictEntry : oreDict) {
-				OreDictionary.registerOre(oreDictEntry, stack);
-			}
-		} else {
-			OreDictionary.registerOre(name, stack);
-		}
-		return stack;
+		return addOreDictItem(metadata, name, rarity, true, oreDict);
 	}
 
-
 	public ItemStack addOreDictItem(int metadata, String name, String... oreDict) {
-		return addOreDictItem(metadata, name, 0, oreDict);
+		return addOreDictItem(metadata, name, 0, true, oreDict);
 	}
 
 	// addColorizedOreDictItem(...) {}
-	public ItemStack addColorizedOreDictItem(int metadata, String name, String template, String texture, int color, String... oreDict) {
-		ItemStack stack = addColorizedItem(metadata, name, 0, color, texture, template);
+	public ItemStack addColorizedOreDictItem(int metadata, String name, int rarity, boolean register, String template, String texture, int color, String... oreDict) {
+		ItemStack stack = addColorizedItem(metadata, name, rarity, register, texture, template, color);
 		for (String oreDictEntry : oreDict) {
 			OreDictionary.registerOre(oreDictEntry, stack);
 		}
@@ -144,16 +119,19 @@ public class FluxGearItem extends Item {
 	}
 
 	public ItemStack addColorizedOreDictItem(int metadata, String name, int rarity, String template, String texture, int color, String... oreDict) {
-		ItemStack stack = addColorizedItem(metadata, name, rarity, color, texture, template);
-		for (String oreDictEntry : oreDict) {
-			OreDictionary.registerOre(oreDictEntry, stack);
-		}
-		return stack;
+		return addColorizedOreDictItem(metadata, name, rarity, true, texture, template, color, oreDict);
+	}
+
+	public ItemStack addColorizedOreDictItem(int metadata, String name, String template, String texture, int color, String... oreDict) {
+		return addColorizedOreDictItem(metadata, name, 0, true, template, texture, color, oreDict);
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
+		//MeltedDashboardCore.logger.debug("Getting sub items...");
 		for (int meta : itemList) {
+			//MeltedDashboardCore.logger.debug("Adding sub item with the metadata " + meta + " to the list for the creative tab.");
 			list.add(new ItemStack(item, 1, meta));
 		}
 	}
@@ -224,13 +202,9 @@ public class FluxGearItem extends Item {
 			for (int i = 0; i < itemList.size(); i++) {
 				ItemEntry entry = itemMap.get(itemList.get(i));
 				if (colorMap.containsKey(i)) {
-					if (!MeltedDashboardConfig.minimalRegistry) {
-						String protoTexture = modName + ":" + colorMap.get(i).texture;
-						if (TextureHelper.itemTextureExists(protoTexture)) {
-							entry.icon = iconRegister.registerIcon(protoTexture);
-						} else {
-							entry.icon = iconRegister.registerIcon(modName + ":" + colorMap.get(i).template);
-						}
+					String protoTexture = modName + ":" + colorMap.get(i).texture;
+					if (!MeltedDashboardConfig.minimalRegistry && TextureHelper.itemTextureExists(protoTexture)) {
+						entry.icon = iconRegister.registerIcon(protoTexture);
 					} else {
 						entry.icon = iconRegister.registerIcon(modName + ":" + colorMap.get(i).template);
 					}

@@ -10,32 +10,33 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import mortvana.legacy.common.FluxGearConfig;
+import mortvana.legacy.refactored.core.common.FluxGearConfig;
 import mortvana.legacy.block.tileentity.TileEntityBloodDonation;
-import mortvana.legacy.block.BlockFluxGear.BlockMetaTank;
+import mortvana.legacy.refactored.wierdscience.util.block.tileentity.BlockMetaTank;
 
 @Deprecated
 public class BlockBloodDonation extends BlockMetaTank {
 	
 	private static Fluid bloodFluid;
-	static FluxGearConfig cfg;
 	int maxStorage; //
 
 	public static void setFluid(Fluid newfluid) {
 		bloodFluid = newfluid;
 	}
+
 	public static void setDamagePer(int setDmg) {
-		cfg.dmgPerBloodDonation = setDmg;
+		FluxGearConfig.dmgPerBloodDonation = setDmg;
 	}
+
 	public static void setDonationAmt(int setAmt) {
-		cfg.mbPerBloodDonation = setAmt;
+		FluxGearConfig.mbPerBloodDonation = setAmt;
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {
 		TileEntityBloodDonation TE = new TileEntityBloodDonation();
-		TE.setBloodFluid(bloodFluid);
-		TE.setStorageCap(maxStorage);
+		TileEntityBloodDonation.setBloodFluid(bloodFluid);
+		TileEntityBloodDonation.setStorageCap(maxStorage);
 		return TE;
 	}
 
@@ -82,10 +83,10 @@ public class BlockBloodDonation extends BlockMetaTank {
 			//The player is not holding a bucket.
 			//Try to harm the player. Bucketlessness is a sin.
 		    float previousPlayerHealth = player.getHealth();
-			player.attackEntityFrom(DamageSource.magic, (float)cfg.dmgPerBloodDonation);
+			player.attackEntityFrom(DamageSource.magic, (float) FluxGearConfig.dmgPerBloodDonation);
 			//If the player has taken damage, fill the tank. (Prevent cheesing via fakeplayers.)
 			if(((player.getHealth() < previousPlayerHealth) || player.capabilities.isCreativeMode) && (donationEntity != null)) {
-				donationEntity.fillFromBlock(new FluidStack(bloodFluid, cfg.mbPerBloodDonation), true);
+				donationEntity.fillFromBlock(new FluidStack(bloodFluid, FluxGearConfig.mbPerBloodDonation), true);
 			}
 		    return true;
 		}

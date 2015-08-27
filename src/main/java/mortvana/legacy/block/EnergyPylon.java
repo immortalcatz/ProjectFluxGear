@@ -13,8 +13,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.legacy.block.tileentity.TileEnergyPylon;
-import mortvana.legacy.common.FluxGearContent;
-import mortvana.legacy.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.melteddashboard.block.FluxGearBlock;
 
 public class EnergyPylon extends FluxGearBlock {

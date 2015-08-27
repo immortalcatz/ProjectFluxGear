@@ -8,10 +8,10 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
-import mortvana.legacy.block.tileentity.ContainerWoodmill;
-import mortvana.legacy.common.FluxGearContent;
-import mortvana.legacy.common.ProjectFluxGear;
-import mortvana.legacy.block.tileentity.TileWoodmill;
+import mortvana.legacy.errored.morttech.inventory.ContainerWoodmill;
+import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import mortvana.legacy.errored.morttech.block.tileentity.TileWoodmill;
 
 public class FluxGearGUIHandler implements IGuiHandler {
 

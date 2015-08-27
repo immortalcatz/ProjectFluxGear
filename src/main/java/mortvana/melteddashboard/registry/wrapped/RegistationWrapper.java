@@ -2,6 +2,7 @@ package mortvana.melteddashboard.registry.wrapped;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -42,5 +43,13 @@ public class RegistationWrapper {
 		for (String name : oreDict) {
 			OreDictionary.registerOre(name, itemstack);
 		}
+	}
+
+	public static void addSmelting(ItemStack input, ItemStack output, float experience) {
+		FurnaceRecipes.smelting().func_151394_a(input, output, experience);
+	}
+
+	public static void registerSquareRecipe(ItemStack input, ItemStack output) {
+		GameRegistry.addRecipe(output, "##", "##", '#', input);
 	}
 }

@@ -12,9 +12,9 @@ import net.minecraft.util.AxisAlignedBB;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.legacy.client.particle.EnergyBeamParticle;
-import mortvana.legacy.client.particle.ParticleCustom;
-import mortvana.legacy.client.particle.ParticleHandler;
+import mortvana.legacy.refactored.fluxgearaddons.client.particle.EnergyBeamParticle;
+import mortvana.legacy.refactored.fluxgearaddons.client.particle.ParticleCustom;
+import mortvana.legacy.refactored.fluxgearaddons.client.particle.ParticleHandler;
 import mortvana.legacy.util.helpers.MultiblockHelper.TileLocation;
 
 public class TileParticleGenerator extends TileEntity{

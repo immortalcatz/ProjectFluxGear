@@ -6,8 +6,8 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import mortvana.melteddashboard.util.helpers.LoadedHelper;
-import mortvana.legacy.common.FluxGearContent;
-import mortvana.legacy.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.errored.core.common.ProjectFluxGear;
 
 public class PaintingHelper {
 	public static int colorStoneBlocks(World world, int x, int y, int z, int inputMeta, int range, int maxBlocks) {

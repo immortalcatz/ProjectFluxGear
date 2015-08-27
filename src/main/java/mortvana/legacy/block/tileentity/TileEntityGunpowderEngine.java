@@ -15,9 +15,10 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.FluidStack;
 
+import mortvana.legacy.refactored.wierdscience.block.tileentity.TileEntitySolidFueled;
 import mortvana.legacy.util.ContentRegistry;
-import mortvana.legacy.util.fuel.ISolidFuelInfo;
-import mortvana.legacy.util.fuel.SolidFuelInfo;
+import mortvana.legacy.refactored.wierdscience.util.fuel.ISolidFuelInfo;
+import mortvana.legacy.refactored.wierdscience.util.fuel.SolidFuelInfo;
 
 /*
  * A tile entity is essentially a bit of extra behavior and information that is associated with a block in the world.
@@ -388,7 +389,7 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 
 	//Do metadata things to our block, changing its textures based on if the engine is on or off.
 	private void TurnBlockOff() {
-		if (wasRunningLastBurn == true) {
+		if (wasRunningLastBurn) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
 			if (block instanceof IBlockMetaPower) {
 				((IBlockMetaPower) block).recievePowerOff(worldObj, xCoord, yCoord, zCoord);
@@ -399,7 +400,7 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 
 	//Do metadata things to our block, changing its textures based on if the engine is on or off.
 	private void TurnBlockOn() {
-		if (wasRunningLastBurn == false) {
+		if (!wasRunningLastBurn) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
 			if (block instanceof IBlockMetaPower) {
 				((IBlockMetaPower) block).recievePowerOn(worldObj, xCoord, yCoord, zCoord);

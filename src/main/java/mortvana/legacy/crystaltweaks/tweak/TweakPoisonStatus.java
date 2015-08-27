@@ -2,7 +2,7 @@ package mortvana.legacy.crystaltweaks.tweak;
 
 import net.minecraft.potion.Potion;
 
-import mortvana.legacy.crystaltweaks.common.MortTweaks;
+import mortvana.legacy.errored.morttweaks.common.MortTweaks;
 
 public class TweakPoisonStatus extends Potion {
 	public TweakPoisonStatus(int id, boolean badEffect, int color) {

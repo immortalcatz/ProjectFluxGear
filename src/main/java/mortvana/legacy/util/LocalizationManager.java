@@ -1,7 +1,7 @@
 package mortvana.legacy.util;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import mortvana.legacy.common.CommonProxy;
+import mortvana.legacy.refactored.core.common.CommonProxy;
 
 public class LocalizationManager {
     private enum Locale {

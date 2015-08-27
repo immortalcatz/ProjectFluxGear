@@ -1,17 +1,13 @@
 package mortvana.projectfluxgear.core.common;
 
-import java.util.Map;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
-import gnu.trove.map.TMap;
 import mortvana.melteddashboard.block.metadata.FluxGearBlockExtendedMetadata;
 import mortvana.melteddashboard.block.metadata.FluxGearItemBlockExtendedMetadata;
-import mortvana.melteddashboard.block.metadata.ItemBlockMetadata;
 import mortvana.melteddashboard.block.metadata.TileEntityMetadata;
 import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
 import mortvana.melteddashboard.item.FluxGearItem;

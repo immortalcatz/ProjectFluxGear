@@ -1,26 +1,28 @@
-package crystal.block;
+package mortvana.legacy.crystaltweaks.block;
 
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraftforge.common.ForgeDirection;
 
-import crystal.CrystalClimate;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import mortvana.legacy.crystaltweaks.CrystalClimate;
 
 public class Ash extends Block {
-	public Ash(int par1) {
-		super(par1, Material.sand);
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
-		this.setCreativeTab(CrystalClimate.tab);
-		this.setBlockBoundsForSnowDepth(0);
+	public Ash() {
+		super(Material.sand);
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
+		setCreativeTab(CrystalClimate.tab);
+		setBlockBoundsForSnowDepth(0);
 	}
 
 	/**
@@ -30,8 +32,7 @@ public class Ash extends Block {
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
 		int l = par1World.getBlockMetadata(par2, par3, par4) & 7;
 		float f = 0.125F;
-		return AxisAlignedBB.getAABBPool().getAABB((double) par2 + this.minX, (double) par3 + this.minY, (double) par4 + this.minZ, (double) par2 + this.maxX, (double) ((float) par3 + (float) l * f),
-				(double) par4 + this.maxZ);
+		return AxisAlignedBB.getAABBPool().getAABB((double) par2 + minX, (double) par3 + minY, (double) par4 + minZ, (double) par2 + maxX, (double) ((float) par3 + (float) l * f), (double) par4 + maxZ);
 	}
 
 	/**
@@ -53,7 +54,7 @@ public class Ash extends Block {
 	 * Sets the block's bounds for rendering it as an item
 	 */
 	public void setBlockBoundsForItemRender() {
-		this.setBlockBoundsForSnowDepth(0);
+		setBlockBoundsForSnowDepth(0);
 	}
 
 	/**
@@ -127,8 +128,8 @@ public class Ash extends Block {
 	/**
 	 * Returns the ID of the items to drop on destruction.
 	 */
-	public int idDropped(int par1, Random par2Random, int par3) {
-		return Item.snowball.itemID;
+	public Item itemDropped(int par1, Random par2Random, int par3) {
+		return Items.snowball;
 	}
 
 	/**

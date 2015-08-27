@@ -1,18 +1,18 @@
 package mortvana.legacy.client;
 
 import com.google.common.collect.Lists;
-import mortvana.legacy.common.FluxGearContent;
-import mortvana.legacy.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.projectfluxgear.thaumic.client.render.RenderPurity;
-import mortvana.legacy.block.tileentity.TileCrank;
-import mortvana.legacy.block.tileentity.WoodmillLogic;
+import mortvana.legacy.refactored.morttech.block.tileentity.TileCrank;
+import mortvana.legacy.refactored.morttech.block.tileentity.WoodmillLogic;
 import mortvana.legacy.client.particle.TRParticle;
 import mortvana.legacy.client.render.DualPassCubeRenderer;
 import mortvana.legacy.client.render.RenderCrank;
 import mortvana.legacy.client.render.RenderFleshGolem;
-import mortvana.legacy.common.CommonProxy;
-import mortvana.legacy.entity.EntityFleshProjectile;
-import mortvana.legacy.entity.FleshGolem;
+import mortvana.legacy.refactored.core.common.CommonProxy;
+import mortvana.legacy.errored.thaumicrevelations.entity.EntityFleshProjectile;
+import mortvana.legacy.errored.thaumicrevelations.entity.FleshGolem;
 import mortvana.legacy.client.gui.GuiWoodmill;
 import mortvana.legacy.util.MTControls;
 import mortvana.legacy.util.handlers.ClientTickHandler;

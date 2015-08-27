@@ -18,7 +18,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.IEnergyHandler;
 
 import mortvana.legacy.client.particle.EnergyTransferParticle;
-import mortvana.legacy.client.particle.ParticleHandler;
+import mortvana.legacy.refactored.fluxgearaddons.client.particle.ParticleHandler;
 import mortvana.legacy.util.block.tile.TileObjectSync;
 import mortvana.legacy.util.helpers.MultiblockHelper.TileLocation;
 

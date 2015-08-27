@@ -16,9 +16,9 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
-import mortvana.legacy.util.chemistry.IReactionReceiver;
-import mortvana.legacy.util.chemistry.IReactionSpec;
-import mortvana.legacy.util.sound.ISoundProvider;
+import mortvana.legacy.refactored.wierdscience.util.chemistry.IReactionReceiver;
+import mortvana.legacy.refactored.wierdscience.util.chemistry.IReactionSpec;
+import mortvana.legacy.refactored.wierdscience.util.sound.ISoundProvider;
 import mortvana.legacy.util.handlers.BucketEventHandler;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 

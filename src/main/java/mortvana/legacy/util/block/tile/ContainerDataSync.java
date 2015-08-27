@@ -5,7 +5,7 @@ import net.minecraft.inventory.Container;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.legacy.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.legacy.network.ObjectPacket;
 
 public abstract class ContainerDataSync extends Container {

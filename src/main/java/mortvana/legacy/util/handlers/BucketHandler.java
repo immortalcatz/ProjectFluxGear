@@ -40,9 +40,7 @@ public class BucketHandler {
 		}
 	}
 
-	@SubscribeEvent(
-			priority = EventPriority.HIGHEST
-	)
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onBucketFill(FillBucketEvent var1) {
 		if(!(ServerHelper.isClientWorld(var1.world) | var1.result != null) && var1.getResult() == Event.Result.DEFAULT) {
 			ItemStack var2 = var1.current;

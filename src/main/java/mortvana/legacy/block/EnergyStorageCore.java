@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import mortvana.legacy.block.tileentity.TileEnergyStorageCore;
-import mortvana.legacy.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.legacy.util.Utils;
 
 public class EnergyStorageCore extends BlockFluxGear {

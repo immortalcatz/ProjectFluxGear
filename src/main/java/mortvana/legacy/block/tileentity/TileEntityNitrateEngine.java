@@ -17,12 +17,14 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.*;
 
 import cofh.api.energy.IEnergyHandler;
 
+import mortvana.legacy.refactored.wierdscience.block.tileentity.TileEntitySolidFueled;
 import mortvana.legacy.util.ContentRegistry;
-import mortvana.legacy.util.fuel.ISolidFuelInfo;
-import mortvana.legacy.util.fuel.SolidFuelInfo;
+import mortvana.legacy.refactored.wierdscience.util.fuel.ISolidFuelInfo;
+import mortvana.legacy.refactored.wierdscience.util.fuel.SolidFuelInfo;
 
 public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IEnergyHandler, ISidedInventory, IFluidHandler, IFluidTank {
 	private static final int[] accessibleSlots = new int[] { 0, 1 };

@@ -11,7 +11,7 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 import io.netty.buffer.ByteBuf;
 import mortvana.legacy.util.block.metadata.BlockMetadata;
-import mortvana.legacy.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.common.ProjectFluxGear;
 
 public class MessageBase {
 	int id;

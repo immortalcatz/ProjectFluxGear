@@ -59,9 +59,10 @@ public class BucketFluxGear extends FluxGearItem {
 					++x;
 			}
 
-			return player.canPlayerEdit(x, y, z, position.sideHit, itemstack) && (world.isAirBlock(x, y, z) || !world.getBlock(x, y, z).getMaterial().isSolid()) ? (BucketHandler.emptyBucket(world, x, y, z, itemstack) && !player.capabilities.isCreativeMode ? new ItemStack(container) : itemstack) : itemstack;
-		} else {
-			return itemstack;
+			if ((player.canPlayerEdit(x, y, z, position.sideHit, itemstack) && (world.isAirBlock(x, y, z) || !world.getBlock(x, y, z).getMaterial().isSolid())) && (BucketHandler.emptyBucket(world, x, y, z, itemstack) && !player.capabilities.isCreativeMode)) {
+				return new ItemStack(container);
+			}
 		}
+		return itemstack;
 	}
 }

@@ -22,8 +22,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.legacy.block.tileentity.TileEnergyPylon;
 import mortvana.legacy.block.tileentity.TileEnergyStorageCore;
 import mortvana.legacy.block.tileentity.TileInvisibleMultiblock;
-import mortvana.legacy.common.FluxGearContent;
-import mortvana.legacy.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.legacy.util.Utils;
 
 public class InvisibleMultiblock extends BlockFluxGear {

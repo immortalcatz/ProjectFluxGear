@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import mortvana.legacy.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.common.ProjectFluxGear;
 
 /**
  * A singleton instance for a SubtileEntity, this is called for a few methods.

@@ -20,7 +20,7 @@ import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import mortvana.legacy.network.MessageBase;
-import mortvana.legacy.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import org.lwjgl.opengl.GL11;
 
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {

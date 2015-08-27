@@ -9,7 +9,7 @@ import cpw.mods.fml.common.IPlayerTracker;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 
-import mortvana.legacy.crystaltweaks.common.MortTweaks;
+import mortvana.legacy.errored.morttweaks.common.MortTweaks;
 
 public class TweakPlayerTracker implements IPlayerTracker {
 

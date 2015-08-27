@@ -21,7 +21,7 @@ public class BucketEventHandler {
 	
 	public BucketEventHandler() {
 		fluidToBucket = new HashMap<ImmutablePair<Block, Integer>, ItemStack>();
-	};
+	}
 	
 	public boolean addRecipe(Block sourceBlock, int meta, ItemStack bucket) {
 		if((sourceBlock == null) || (fluidToBucket.containsKey(new ImmutablePair<Block, Integer>(sourceBlock, meta)))) {

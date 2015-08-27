@@ -1,110 +1,90 @@
-package crystal.item;
+package mortvana.legacy.crystaltweaks.item;
 
 import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import crystal.block.CrystalBlock;
+import mortvana.legacy.crystaltweaks.block.CrystalBlock;
+import mortvana.melteddashboard.util.helpers.MiscHelper;
 
 public class CrystalBlockItem extends ItemBlock {
-	private int bID;
 
-	public CrystalBlockItem(int id) {
-		super(id);
+	public Block block;
+
+	public CrystalBlockItem(Block block) {
+		super(block);
 		setMaxDamage(0);
-		this.bID = id + 256;
+		this.block = block;
 		//setHasSubtypes(true);
 	}
 
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-		int i1 = world.getBlockId(x, y, z);
+		Block block = world.getBlock(x, y, z);
 
-		if (i1 == Block.snow.blockID && (world.getBlockMetadata(x, y, z) & 7) < 1) {
+		if (block == Blocks.snow_layer && (world.getBlockMetadata(x, y, z) & 7) < 1) {
 			side = 1;
-		} else
-			if (i1 != Block.vine.blockID && i1 != Block.tallGrass.blockID && i1 != Block.deadBush.blockID
-					&& (Block.blocksList[i1] == null || !Block.blocksList[i1].isBlockReplaceable(world, x, y, z))) {
-				if (side == 0) {
-					--y;
-				}
+		} else if (!MiscHelper.isBlockEqual(block, Blocks.vine, Blocks.tallgrass, Blocks.deadbush) && (Block.blocksList[block] == null || !Block.blocksList[block].isBlockReplaceable(world, x, y, z))) {
+			switch (side) {
+				case 0:
+					y--;
+				case 1:
+					y++;
+				case 2:
+					z--;
+				case 3:
+					z++;
+				case 4:
+					x--;
+				case 5:
+					x++;
+			}
+		}
 
-				if (side == 1) {
-					++y;
-				}
+		if (stack.stackSize == 0 || !player.canPlayerEdit(x, y, z, side, stack) || y == 255 && Block.blocksList[block].blockMaterial.isSolid()) {
+			return false;
+		} else if (world.canPlaceEntityOnSide(block, x, y, z, false, side, player, stack)) {
+			Block block2 = Block.blocksList[block];
 
-				if (side == 2) {
-					--z;
-				}
-
-				if (side == 3) {
-					++z;
-				}
-
-				if (side == 4) {
-					--x;
-				}
-
-				if (side == 5) {
-					++x;
-				}
+			int crystalValue = 0;
+			if (stack.hasTagCompound()) {
+				crystalValue = stack.getTagCompound().getInteger("Value");
 			}
 
-		if (stack.stackSize == 0) {
-			return false;
-		} else
-			if (!player.canPlayerEdit(x, y, z, side, stack)) {
-				return false;
-			} else
-				if (y == 255 && Block.blocksList[this.bID].blockMaterial.isSolid()) {
-					return false;
-				} else
-					if (world.canPlaceEntityOnSide(this.bID, x, y, z, false, side, player, stack)) {
-						Block block = Block.blocksList[this.bID];
+			int placeMeta = getBaseMeta(crystalValue);
 
-						int crystalValue = 0;
-						if (stack.hasTagCompound()) {
-							crystalValue = stack.getTagCompound().getInteger("Value");
-						}
+			if (placeBlockAt(stack, player, world, x, y, z, side, hitX, hitY, hitZ, placeMeta)) {
+				world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), block2.stepSound.getPlaceSound(), (block2.stepSound.getVolume() + 1.0F) / 2.0F, block2.stepSound.getPitch() * 0.8F);
+				--stack.stackSize;
 
-						int placeMeta = getBaseMeta(crystalValue);
-
-						if (placeBlockAt(stack, player, world, x, y, z, side, hitX, hitY, hitZ, placeMeta)) {
-							world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), block.stepSound.getPlaceSound(),
-									(block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
-							--stack.stackSize;
-
-							int height = CrystalBlock.getCrystalHeight(crystalValue);
-							if (height > 1) {
-								int localID = world.getBlockId(x, y + 1, z);
-								if (localID != Block.vine.blockID && localID != Block.tallGrass.blockID && localID != Block.deadBush.blockID
-										&& (Block.blocksList[localID] == null || !Block.blocksList[localID].isBlockReplaceable(world, x, y + 1, z))) {
-									placeBlockAt(stack, player, world, x, y + 1, z, side, hitX, hitY, hitZ, secondMeta(crystalValue));
-								}
-							}
-							if (height > 2) {
-								int localID = world.getBlockId(x, y + 2, z);
-								if (localID != Block.vine.blockID && localID != Block.tallGrass.blockID && localID != Block.deadBush.blockID
-										&& (Block.blocksList[localID] == null || !Block.blocksList[localID].isBlockReplaceable(world, x, y + 2, z))) {
-									placeBlockAt(stack, player, world, x, y + 2, z, side, hitX, hitY, hitZ, thirdMeta(crystalValue));
-								}
-							}
-							if (height > 3) {
-								int localID = world.getBlockId(x, y + 3, z);
-								if (localID != Block.vine.blockID && localID != Block.tallGrass.blockID && localID != Block.deadBush.blockID
-										&& (Block.blocksList[localID] == null || !Block.blocksList[localID].isBlockReplaceable(world, x, y + 3, z))) {
-									placeBlockAt(stack, player, world, x, y + 3, z, side, hitX, hitY, hitZ, topMeta(crystalValue));
-								}
-							}
-						}
-
-						return true;
-					} else {
-						return false;
+				int height = CrystalBlock.getCrystalHeight(crystalValue);
+				if (height > 1) {
+					Block localBlock = world.getBlock(x, y + 1, z);
+					if (!MiscHelper.isBlockEqual(localBlock, Blocks.vine, Blocks.tallgrass, Blocks.deadbush) && (Block.blocksList[localBlock] == null || !Block.blocksList[localBlock].isBlockReplaceable(world, x, y + 1, z))) {
+						placeBlockAt(stack, player, world, x, y + 1, z, side, hitX, hitY, hitZ, secondMeta(crystalValue));
 					}
+				}
+				if (height > 2) {
+					Block localBlock  = world.getBlock(x, y + 2, z);
+					if (!MiscHelper.isBlockEqual(localBlock, Blocks.vine, Blocks.tallgrass, Blocks.deadbush) && (Block.blocksList[localBlock] == null || !Block.blocksList[localBlock].isBlockReplaceable(world, x, y + 2, z))) {
+						placeBlockAt(stack, player, world, x, y + 2, z, side, hitX, hitY, hitZ, thirdMeta(crystalValue));
+					}
+				}
+				if (height > 3) {
+					Block localBlock  = world.getBlock(x, y + 3, z);
+					if (!MiscHelper.isBlockEqual(localBlock, Blocks.vine, Blocks.tallgrass, Blocks.deadbush) && (Block.blocksList[localBlock] == null || !Block.blocksList[localBlock].isBlockReplaceable(world, x, y + 3, z))) {
+						placeBlockAt(stack, player, world, x, y + 3, z, side, hitX, hitY, hitZ, topMeta(crystalValue));
+					}
+				}
+			}
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	int getBaseMeta(int crystalValue) {
@@ -154,10 +134,7 @@ public class CrystalBlockItem extends ItemBlock {
 	}
 
 	public int topMeta(int crystalValue) {
-		if (crystalValue >= 528) {
-			return 15;
-		}
-		return 14;
+		return crystalValue >= 528 ? 15 : 14;
 	}
 
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {

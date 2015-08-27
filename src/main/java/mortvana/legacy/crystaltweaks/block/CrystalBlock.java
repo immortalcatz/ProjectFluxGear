@@ -1,41 +1,42 @@
-package crystal.block;
+package mortvana.legacy.crystaltweaks.block;
 
 import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import crystal.CrystalClimate;
-import crystal.CrystalContent;
-import crystal.block.logic.CrystalLogic;
-import crystal.block.logic.RedstoneAggregator;
-import crystal.client.CrystalBlockRender;
+import mortvana.legacy.crystaltweaks.CrystalClimate;
+import mortvana.legacy.crystaltweaks.CrystalContent;
+import mortvana.legacy.errored.crystalclimate.block.tileentity.CrystalLogic;
+import mortvana.legacy.errored.crystalclimate.block.tileentity.RedstoneAggregator;
+import mortvana.legacy.refactored.crystalclimate.client.CrystalBlockRender;
+import mortvana.melteddashboard.util.helpers.ChatHelper;
 
 public class CrystalBlock extends BlockContainer {
 	String[] textureNames = {"redstone", "lightstone"};
-	Icon[] icons;
+	IIcon[] icons;
 
-	public CrystalBlock(int id) {
-		super(id, Material.glass);
-		this.setCreativeTab(CrystalClimate.tab);
-		setStepSound(soundGlassFootstep);
+	public CrystalBlock() {
+		super(Material.glass);
+		setCreativeTab(CrystalClimate.tab);
+		setStepSound(soundTypeGlass);
 	}
 
 	@Override
-	public Icon getIcon(int side, int meta) {
+	public IIcon getIcon(int side, int meta) {
 		return icons[0];
 	}
 
@@ -63,8 +64,8 @@ public class CrystalBlock extends BlockContainer {
 	}
 
 	@Override
-	public void registerIcons(IconRegister iconRegister) {
-		this.icons = new Icon[textureNames.length];
+	public void registerIcons(IIconRegister iconRegister) {
+		this.icons = new IIcon[textureNames.length];
 
 		for (int i = 0; i < this.icons.length; ++i) {
 			this.icons[i] = iconRegister.registerIcon("crystal:crystal_" + textureNames[i]);
@@ -72,7 +73,7 @@ public class CrystalBlock extends BlockContainer {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return null;
 	}
 
@@ -85,7 +86,7 @@ public class CrystalBlock extends BlockContainer {
 	public int getLightValue(IBlockAccess world, int x, int y, int z) {
 		//if (world.getBlockMetadata(x, y, z) == 0)
 		{
-			TileEntity logic = world.getBlockTileEntity(x, y, z);
+			TileEntity logic = world.getTileEntity(x, y, z);
 
 			if (logic != null && logic instanceof CrystalLogic) {
 				if (((CrystalLogic) logic).getActive()) {
@@ -114,15 +115,15 @@ public class CrystalBlock extends BlockContainer {
 		player.addExhaustion(0.025F);
 		int meta = world.getBlockMetadata(x, y, z);
 		if (meta <= 5) {
-			CrystalLogic logic = (CrystalLogic) world.getBlockTileEntity(x, y, z);
+			CrystalLogic logic = (CrystalLogic) world.getTileEntity(x, y, z);
 			int value = logic.getCrystalValue();
 
-			TileEntity aggregator = world.getBlockTileEntity(x, y - 1, z);
+			TileEntity aggregator = world.getTileEntity(x, y - 1, z);
 			if (aggregator instanceof RedstoneAggregator) {
 				value = ((RedstoneAggregator) aggregator).getCrystalValue();
 				((RedstoneAggregator) aggregator).harvestCrystal();
 			}
-			ItemStack stack = new ItemStack(Item.redstone, value / 10, 0);
+			ItemStack stack = new ItemStack(Items.redstone, value / 10, 0);
 
 			for (int i = 0; i < getCrystalHeight(value); i++)
 				world.setBlockToAir(x, y + i, z);
@@ -153,8 +154,8 @@ public class CrystalBlock extends BlockContainer {
             if (!player.capabilities.isCreativeMode || player.isSneaking())
                 dropBlock(world, x, y, z, stack);*/
 		} else {
-			Block below = Block.blocksList[world.getBlockId(x, y - 1, z)];
-			if (below == CrystalContent.crystalBlock) {
+			Block below = Block.blocksList[world.getBlock(x, y - 1, z)];
+			if (below == CrystalClimate.crystalBlock) {
 				below.removeBlockByPlayer(world, player, x, y - 1, z);
 			} else
 				world.setBlockToAir(x, y, z);
@@ -193,7 +194,7 @@ public class CrystalBlock extends BlockContainer {
 
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack) {
-		CrystalLogic logic = (CrystalLogic) world.getBlockTileEntity(x, y, z);
+		CrystalLogic logic = (CrystalLogic) world.getTileEntity(x, y, z);
 		logic.setActive(true);
 		if (stack.hasTagCompound()) {
 			int value = stack.getTagCompound().getInteger("Value");
@@ -209,20 +210,20 @@ public class CrystalBlock extends BlockContainer {
 		if (!player.worldObj.isRemote) {
 			int meta = world.getBlockMetadata(x, y, z);
 			if (meta > 5) {
-				Block block = Block.blocksList[world.getBlockId(x, y - 1, z)];
+				Block block = Block.blocksList[world.getBlock(x, y - 1, z)];
 				if (block == this)
 					block.onBlockActivated(world, x, y - 1, z, player, side, hitX, hitY, hitZ);
 			} else {
-				TileEntity te = world.getBlockTileEntity(x, y - 1, z);
+				TileEntity te = world.getTileEntity(x, y - 1, z);
 				float value = 0;
 				if (te instanceof RedstoneAggregator) {
 					value = ((RedstoneAggregator) te).getCrystalValue() / 10f;
 				} else {
-					CrystalLogic logic = (CrystalLogic) world.getBlockTileEntity(x, y, z);
+					CrystalLogic logic = (CrystalLogic) world.getTileEntity(x, y, z);
 					value = logic.getCrystalValue() / 10f;
 				}
 
-				player.addChatMessage(StatCollector.translateToLocal("tooltip.crystalvalue") + ": " + value);
+				ChatHelper.addChatMessage(player, StatCollector.translateToLocal("tooltip.crystalvalue") + ": " + value);
 			}
 
 		}
