@@ -11,6 +11,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 
 import mortvana.melteddashboard.util.CoordSet;
+import mortvana.melteddashboard.util.handlers.BucketHandler;
 
 
 public class FluxGearFluidContainer extends FluxGearItem {
@@ -54,7 +55,7 @@ public class FluxGearFluidContainer extends FluxGearItem {
 
 	public void registerFluidContainer(int metadata, String name, int rarity, Fluid fluid) {
 		ItemStack container = addItem(metadata, name, rarity);
-		//BucketHandler.registerBucket(fluid, 0, container);
+		BucketHandler.registerBucket(container, new ItemStack(this.container), fluid, fluid.getBlock(), 0);
 		FluidContainerRegistry.registerFluidContainer(fluid, container, new ItemStack(this.container));
 	}
 
@@ -62,14 +63,10 @@ public class FluxGearFluidContainer extends FluxGearItem {
 		MovingObjectPosition position = this.getMovingObjectPositionFromPlayer(world, player, false);
 		if (position != null && position.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
 			CoordSet coords = new CoordSet(position.blockX, position.blockY, position.blockZ).offsetCoordsBySide(position.sideHit);
-			int x = coords.getX();
-			int y = coords.getY();
-			int z = coords.getZ();
-
-			//if (!(!player.canPlayerEdit(x, y, z, position.sideHit, itemstack) || !world.isAirBlock(x, y, z) && world.getBlock(x, y, z).getMaterial().isSolid()) && (BucketHandler.emptyBucket(world, x, y, z, itemstack) && !player.capabilities.isCreativeMode) ) {
-			//	return new ItemStack(container);
-			//}
+			return BucketHandler.emptyContainer(world, coords.getX(), coords.getY(), coords.getZ(), position.sideHit, itemstack, player, canPlace);
 		}
 		return itemstack;
 	}
 }
+
+

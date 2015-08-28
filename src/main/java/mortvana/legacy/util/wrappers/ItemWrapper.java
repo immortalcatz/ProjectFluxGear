@@ -9,8 +9,8 @@ public final class ItemWrapper {
 	public Item item;
 	public int metadata;
 
-	public static ItemWrapper fromItemStack(ItemStack var0) {
-		return new ItemWrapper(var0);
+	public static ItemWrapper fromItemStack(ItemStack itemstack) {
+		return new ItemWrapper(itemstack);
 	}
 
 	public ItemWrapper(Item var1, int var2) {
