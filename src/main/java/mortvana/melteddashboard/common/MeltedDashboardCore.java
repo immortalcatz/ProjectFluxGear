@@ -9,9 +9,12 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
+import net.minecraftforge.common.MinecraftForge;
+
 import mortvana.melteddashboard.api.MeltedDashboardAPI;
 import mortvana.melteddashboard.block.metadata.TileEntityMetadata;
 import mortvana.melteddashboard.network.FluxGearPacketWrangler;
+import mortvana.melteddashboard.util.handlers.BucketHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -65,7 +68,9 @@ public class MeltedDashboardCore {
 	 *  for tools, etc. should go here.
 	 */
 	@EventHandler
-	public void init(FMLInitializationEvent event) {}
+	public void init(FMLInitializationEvent event) {
+		registerHandlers();
+	}
 
 	/**
 	 *  Stuff to do before finalizing, like intermod interactions.
@@ -74,5 +79,7 @@ public class MeltedDashboardCore {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {}
 
-
+	public void registerHandlers() {
+		MinecraftForge.EVENT_BUS.register(BucketHandler.class);
+	}
 }

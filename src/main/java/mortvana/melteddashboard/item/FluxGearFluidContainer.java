@@ -13,7 +13,6 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import mortvana.melteddashboard.util.CoordSet;
 import mortvana.melteddashboard.util.handlers.BucketHandler;
 
-
 public class FluxGearFluidContainer extends FluxGearItem {
 
 	public Item container;
@@ -32,7 +31,7 @@ public class FluxGearFluidContainer extends FluxGearItem {
 	}
 
 	public FluxGearFluidContainer(String modName) {
-		this();
+		this(Items.bucket);
 		this.modName = modName;
 	}
 
@@ -41,10 +40,6 @@ public class FluxGearFluidContainer extends FluxGearItem {
 		setMaxStackSize(1);
 		this.container = container;
 		setContainerItem(container);
-	}
-
-	public FluxGearFluidContainer() {
-		this(Items.bucket);
 	}
 
 	public FluxGearFluidContainer setFluidInteraction(boolean canPlace, boolean canPickup) {

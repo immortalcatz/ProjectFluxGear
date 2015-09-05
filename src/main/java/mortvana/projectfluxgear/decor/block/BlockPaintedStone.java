@@ -22,7 +22,7 @@ import mortvana.projectfluxgear.util.helpers.RecipeHelper;
 public class BlockPaintedStone extends Block {
 	public final String textureName;
 	public final String localName;
-	public IIcon[] icons;
+	public IIcon[] icons = new IIcon[16];
 	public Block dropBlock;
 
 	public BlockPaintedStone(Material material, float hardness, String texture, String name, Block dropBlock, String blockName) {

@@ -64,4 +64,10 @@ public class MathHelper {
 	}
 
 	/* *=-=-=-=* Unchecked Comparison *=-=-=-=* */
+
+	/* *=-=-=-=* Other *=-=-=-=* */
+
+	public static double offsetIntToFloat(int value) {
+		return (double)((float) value + 0.5F);
+	}
 }

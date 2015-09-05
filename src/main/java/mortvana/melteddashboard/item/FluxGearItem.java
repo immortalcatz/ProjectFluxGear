@@ -202,9 +202,8 @@ public class FluxGearItem extends Item {
 			for (int i = 0; i < itemList.size(); i++) {
 				ItemEntry entry = itemMap.get(itemList.get(i));
 				if (colorMap.containsKey(i)) {
-					String protoTexture = modName + ":" + colorMap.get(i).texture;
-					if (!MeltedDashboardConfig.minimalRegistry && TextureHelper.itemTextureExists(protoTexture)) {
-						entry.icon = iconRegister.registerIcon(protoTexture);
+					if (!MeltedDashboardConfig.minimalRegistry && hasTexture(i)) {
+						entry.icon = iconRegister.registerIcon(getIconFromMeta(i));
 					} else {
 						entry.icon = iconRegister.registerIcon(modName + ":" + colorMap.get(i).template);
 					}
@@ -213,5 +212,13 @@ public class FluxGearItem extends Item {
 				}
 			}
 		}
+	}
+
+	public String getIconFromMeta(int metadata) {
+		return modName + ":" + colorMap.get(metadata).texture;
+	}
+
+	public boolean hasTexture(int metadata) {
+		return TextureHelper.itemTextureExists(getIconFromMeta(metadata));
 	}
 }

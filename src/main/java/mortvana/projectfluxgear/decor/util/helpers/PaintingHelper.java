@@ -1,19 +1,79 @@
-package mortvana.legacy.util.helpers;
+package mortvana.projectfluxgear.decor.util.helpers;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.registry.GameRegistry;
 
-import mortvana.melteddashboard.util.helpers.LoadedHelper;
-import mortvana.legacy.errored.core.common.FluxGearContent;
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import gnu.trove.map.TMap;
+import gnu.trove.map.hash.THashMap;
+import mortvana.melteddashboard.util.helpers.ColorHelper;
+import mortvana.projectfluxgear.decor.item.ItemPaintbrush;
+import mortvana.projectfluxgear.decor.util.PaintEntry;
+
+import static mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper.offsetIntToFloat;
 
 public class PaintingHelper {
-	public static int colorStoneBlocks(World world, int x, int y, int z, int inputMeta, int range, int maxBlocks) {
+
+	public static TMap<Integer, PaintEntry> paintTypes = new THashMap<Integer, PaintEntry>();
+	public static Block.SoundType sound = Blocks.stone.stepSound;
+	static {
+		for (int i = 0; i < 16; i++) {
+			paintTypes.put(i, new PaintEntry(ColorHelper.LOWER_PAINT_NAMES[i], ColorHelper.MC_DYE_COLORS[i]));
+		}
+	}
+
+	public static boolean paintBlocks(World world, int x, int y, int z, ItemStack itemstack, EntityLivingBase player, int paintRadius) {
+		int damage = itemstack.getItemDamage();
+		if (itemstack.hasTagCompound()) {
+			int type = itemstack.getTagCompound().getInteger("PaintType");
+			if (paintTypes.containsKey(type) && itemstack.getItem() instanceof ItemPaintbrush) {
+				int amount = 0;//colorBlocks(world, x, y, z, type, paintRadius, ((ItemPaintbrush) itemstack.getItem()).maxPaint - damage);
+				if (amount > 0) {
+					if (!player.worldObj.isRemote) {
+						player.worldObj.playSoundEffect(offsetIntToFloat(x), offsetIntToFloat(y), offsetIntToFloat(z), sound.func_150496_b(), (sound.getVolume() + 1.0F) / 2.0F, sound.getPitch() * 0.8F);
+					}
+
+					if (amount + damage >= ((ItemPaintbrush) itemstack.getItem()).maxPaint) {
+						resetBrush(itemstack);
+					} else {
+						itemstack.damageItem(amount, player);
+					}
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public static void resetBrush(ItemStack itemstack) {
+		itemstack.setItemDamage(0);
+		itemstack.getTagCompound().setInteger("PaintType", -1);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*public static int colorStoneBlocks(World world, int x, int y, int z, int inputMeta, int range, int maxBlocks) {
 		boolean changed = false;
 		int amount = 0;
-		FluxGearContent content = ProjectFluxGear.content;
 
 		for(int xPos = -range; xPos <= range && amount <= maxBlocks; ++xPos) {
 			for(int yPos = -range; yPos <= range && amount <= maxBlocks; ++yPos) {
@@ -63,5 +123,5 @@ public class PaintingHelper {
 		}
 
 		return amount;
-	}
+	}*/
 }
