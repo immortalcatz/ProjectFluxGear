@@ -23,6 +23,7 @@ import gnu.trove.map.hash.THashMap;
 import mortvana.melteddashboard.common.MeltedDashboardConfig;
 import mortvana.melteddashboard.item.entry.ColorEntry;
 import mortvana.melteddashboard.item.entry.ItemEntry;
+import mortvana.melteddashboard.util.ColorLibrary;
 import mortvana.melteddashboard.util.helpers.TextureHelper;
 
 /** Slightly Modified and Augmented Version of ItemBase from CoFH Core */
@@ -127,7 +128,7 @@ public class FluxGearItem extends Item {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
+	//@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
 		//MeltedDashboardCore.logger.debug("Getting sub items...");
 		for (int meta : itemList) {
@@ -188,15 +189,17 @@ public class FluxGearItem extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean requiresMultipleRenderPasses() {
-		return true;
+		return false;
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int metadata) {
 		return itemMap.containsKey(metadata) ? itemMap.get(metadata).icon : null;
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
 		if (hasTextures) {
 			for (int i = 0; i < itemList.size(); i++) {
@@ -212,6 +215,26 @@ public class FluxGearItem extends Item {
 				}
 			}
 		}
+	}
+
+	@Override
+	public IIcon getIcon(ItemStack itemstack, int renderPass) {
+		int metadata = itemstack.getItemDamage();
+		//if (renderPass == 1) {
+			return itemMap.containsKey(metadata) ? itemMap.get(metadata).icon : null;
+		//} else {
+		//	return itemMap.containsKey(metadata) ? itemMap.get(metadata).icon : null;
+		//}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getColorFromItemStack(ItemStack itemstack, int renderPass) {
+		return renderPass == 1 ? getColor(itemstack) : ColorLibrary.CLEAR;
+	}
+
+	public int getColor(ItemStack itemstack) {
+		return colorMap.containsKey(itemstack.getItemDamage()) ? colorMap.get(itemstack.getItemDamage()).color : ColorLibrary.CLEAR;
 	}
 
 	public String getIconFromMeta(int metadata) {

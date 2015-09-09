@@ -40,7 +40,7 @@ public class ProjectFluxGear {
 	 */
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		MinecraftForge.EVENT_BUS.register(this);
+		//MinecraftForge.EVENT_BUS.register(this);
 
 		FluxGearCoreConfig.loadConfig(new File(event.getModConfigurationDirectory().getAbsolutePath() + "/Mortvana/ProjectFluxGear-Core.cfg"));
 		FluxGearCoreContent.preInit();

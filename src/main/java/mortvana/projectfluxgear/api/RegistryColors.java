@@ -1,5 +1,6 @@
 package mortvana.projectfluxgear.api;
 
+@Deprecated
 public final class RegistryColors {
 
 	public static final int COLOR_MATERIAL_COPPER = 0xC95926;
