@@ -17,6 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.melteddashboard.registry.wrapped.RegistationWrapper;
 import mortvana.melteddashboard.util.helpers.ColorHelper;
 import mortvana.projectfluxgear.decor.block.itemblock.ItemBlockPaintedStone;
+import mortvana.projectfluxgear.decor.common.DecorContent;
 import mortvana.projectfluxgear.util.helpers.RecipeHelper;
 
 public class BlockPaintedStone extends Block {
@@ -28,12 +29,13 @@ public class BlockPaintedStone extends Block {
 	public BlockPaintedStone(Material material, float hardness, String texture, String name, Block dropBlock, String blockName) {
 		super(material);
 		setHardness(hardness);
-		setCreativeTab(CreativeTabs.tabDecorations);
+		setCreativeTab(DecorContent.paintedStoneTab);
 		textureName = texture;
 		localName = name;
 		this.dropBlock = dropBlock;
 		setBlockName(blockName);
 		GameRegistry.registerBlock(this, ItemBlockPaintedStone.class, blockName);
+		RegistationWrapper.registerFMP(this, 16);
 	}
 
 	public String getUnlocalizedName() {
@@ -44,18 +46,13 @@ public class BlockPaintedStone extends Block {
 		return meta;
 	}
 
-	public Block blockDropped(int par1, Random par2Random, int par3) {
-		return dropBlock;
-	}
-
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
 		icons = new IIcon[16];
 
 		for(int i = 0; i < icons.length; i++) {
-			icons[i] = iconRegister.registerIcon("fluxgear:" + textureName + "_" + ColorHelper.LOWER_PAINT_NAMES[i]);
+			icons[i] = iconRegister.registerIcon("fluxgear:painted/" + textureName + "_" + ColorHelper.LOWER_PAINT_NAMES[i]);
 		}
-
 	}
 
 	@SideOnly(Side.CLIENT)

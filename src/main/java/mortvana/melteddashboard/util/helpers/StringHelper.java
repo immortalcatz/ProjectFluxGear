@@ -16,4 +16,6 @@ public class StringHelper {
 	public static String generalizeOreDictSting(String string) {
 		return '\u1F18' + toTitleCase(stripPrefixes(string));
 	}
+
+	//public static String
 }

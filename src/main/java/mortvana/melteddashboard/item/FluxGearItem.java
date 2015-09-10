@@ -156,7 +156,7 @@ public class FluxGearItem extends Item {
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
 		int meta = itemstack.getItemDamage();
-		return itemMap.containsKey(meta) ? itemMap.get(meta).name : "item.invalid";
+		return itemMap.containsKey(meta) ? "item." + itemMap.get(meta).name : "item.invalid";
 	}
 
 	@Override
@@ -230,7 +230,7 @@ public class FluxGearItem extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack itemstack, int renderPass) {
-		return renderPass == 1 ? getColor(itemstack) : ColorLibrary.CLEAR;
+		return renderPass == 1 && colorMap.containsKey(itemstack.getItemDamage()) ? getColor(itemstack) : ColorLibrary.CLEAR;
 	}
 
 	public int getColor(ItemStack itemstack) {

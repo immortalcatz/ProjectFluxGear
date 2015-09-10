@@ -23,9 +23,6 @@ public class FluxGearCoreContent {
 		preInitRegistry();
 
 		generalItem = (FluxGearItem) new FluxGearItem("fluxgear", componentsTab).setUnlocalizedName("generalMaterial");
-
-		generalItem.addItem(0, "dummy1");
-		dummy2 = generalItem.addItem(1, "dummy2");
 	}
 
 	public static void init() {
@@ -35,8 +32,6 @@ public class FluxGearCoreContent {
 
 	public static void postInit() {
 		dynMatReg.postInit();
-		//TODO: Is this needed?
-		registryIngot = dynMatReg.items[0];
 	}
 
 	public static void preInitRegistry() {

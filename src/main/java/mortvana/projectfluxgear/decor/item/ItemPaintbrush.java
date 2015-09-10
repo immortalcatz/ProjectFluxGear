@@ -18,6 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import mortvana.melteddashboard.common.MeltedDashboardCore;
+import mortvana.melteddashboard.util.ColorLibrary;
 import mortvana.melteddashboard.util.helpers.MiscHelper;
 import mortvana.projectfluxgear.decor.common.DecorContent;
 import mortvana.projectfluxgear.decor.util.helpers.PaintingHelper;
@@ -64,7 +65,7 @@ public class ItemPaintbrush extends Item {
 
 	@SideOnly(Side.CLIENT)
 	public int getColorForItemStack(ItemStack itemstack, int pass) {
-		return (pass == 1 && itemstack.hasTagCompound()) ? PaintingHelper.paintTypes.get(itemstack.getTagCompound().getInteger("PaintType")).color : 16777215;
+		return (pass == 1 && itemstack.hasTagCompound()) ? PaintingHelper.paintTypes.get(itemstack.getTagCompound().getInteger("PaintType")).color : ColorLibrary.CLEAR;
 	}
 
 	public String getItemDisplayName(ItemStack itemstack) {
@@ -77,7 +78,7 @@ public class ItemPaintbrush extends Item {
 		return this;
 	}
 
-		/*public String getItemDisplayName(ItemStack par1ItemStack) {
+	/*public String getItemDisplayName(ItemStack par1ItemStack) {
 		String base = ("" + StatCollector.translateToLocal(getUnlocalizedNameInefficiently(par1ItemStack) + ".name")).trim();
 		String color = this.getDyeName(par1ItemStack);
 		if(!color.equals("")) {

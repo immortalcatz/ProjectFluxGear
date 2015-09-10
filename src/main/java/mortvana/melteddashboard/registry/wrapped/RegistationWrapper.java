@@ -35,6 +35,12 @@ public class RegistationWrapper {
 		registerOreDict(itemstack, oreDict);
 	}
 
+	public static void registerFMP(Block block, int amount) {
+		for (int i = 0; i < amount; i++) {
+			registerFMP(new ItemStack(block, 1, i));
+		}
+	}
+
 	public static void registerFMP(ItemStack itemstack) {
 		FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", itemstack);
 	}
