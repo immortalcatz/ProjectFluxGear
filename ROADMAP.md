@@ -1,14 +1,14 @@
 ####v0.0.0.1:
-* All 9 ore blocks generate. (With Colorizer)
-* Creative tabs no longer shit themselves.
-* Painted Stone returns.
-* Items behave.
-* Exubitura generation.
-* Thaumcraft Aspects.
-* Multi-layer Ore render.
-* Ore Breaking Drops.
-* Dynamic Material Registry with Colorizer.
-* Entwined Ores.
+* [00/10] All 9 ore blocks generate. 
+* [09/10] Creative tabs no longer shit themselves.
+* [08/10] Painted Stone returns.
+* [08/10] Items behave.
+* [00/10] Exubitura generation.
+* [00/10] Thaumcraft Aspects.
+* [00/10] Multi-layer Ore render.
+* [00/10] Ore Breaking Drops (With Colorizer).
+* [06/10] Dynamic Material Registry with Colorizer.
+* [00/10] Entwined Ores.
 
 ####v0.0.0.2:
 * All fluids and buckets. (Including: Lye, Acid, Ghast Tear, Vodka, Etching Acid, Smog, Blood, Pyrotheum, Cyrotheum, Glowstone, Redstone, Ender, Carbon, Gelid Pyrotheum, Essence, Ectoplasm, Red Water, Unstable Flowstone, Empty Water, Unstable Ectoplasm, Acidic Essence, Mercury, Gallium, Biomass, Bioethanol)

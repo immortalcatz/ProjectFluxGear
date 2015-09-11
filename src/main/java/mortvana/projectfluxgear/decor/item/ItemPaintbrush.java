@@ -33,6 +33,7 @@ public class ItemPaintbrush extends Item {
 		setMaxStackSize(1);
 		setCreativeTab(DecorContent.paintedStoneTab);
 		setMaxDamage(maxPaint);
+		setUnlocalizedName("fluxgear.paintbrush");
 	}
 
 	public boolean onEntitySwing(EntityLivingBase entity, ItemStack itemstack) {
@@ -49,8 +50,8 @@ public class ItemPaintbrush extends Item {
 
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
-		itemIcon = iconRegister.registerIcon("fluxgear:paintbrush");
-		bristles = iconRegister.registerIcon("fluxgear:paintbrushbristles");
+		itemIcon = iconRegister.registerIcon("fluxgear:tools/paintbrush");
+		bristles = iconRegister.registerIcon("fluxgear:tools/paintbrushbristles");
 	}
 
 	@SideOnly(Side.CLIENT)

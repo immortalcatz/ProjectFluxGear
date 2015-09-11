@@ -5,9 +5,6 @@ itemGroup.fluxgear.thaumic=Thaumic Revelations
 itemGroup.fluxgear.paintedstone=Painted Stone
 
 # Painted Stones
-
-
-
 tile.stone.raw.white.name=Bright Stone
 tile.stone.raw.orange.name=Bronzed Stone
 tile.stone.raw.magenta.name=Lilac Stone
@@ -179,7 +176,7 @@ tile.clay.brick.red.name=Red Bricks
 tile.clay.brick.black.name=Black Bricks
 
 # Tools
-item.fluxgear.tool.brush.name=Painting Brush
+item.fluxgear.tool.paintbrush.name=Painting Brush
 
 
 

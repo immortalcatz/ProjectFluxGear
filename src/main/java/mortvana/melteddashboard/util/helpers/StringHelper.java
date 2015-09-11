@@ -17,5 +17,11 @@ public class StringHelper {
 		return '\u1F18' + toTitleCase(stripPrefixes(string));
 	}
 
-	//public static String
+	public static String createOreDictString(String prefix, String name) {
+		return prefix + name.replaceFirst("\u1F18", "");
+	}
+
+	public static String createSimpleOreDictString(String prefix, String name) {
+		return prefix + toTitleCase(stripPrefixes(name));
+	}
 }

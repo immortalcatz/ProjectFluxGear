@@ -195,7 +195,7 @@ public class FluxGearItem extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int metadata) {
-		return itemMap.containsKey(metadata) ? itemMap.get(metadata).icon : null;
+		return itemList.contains(metadata) ? itemMap.get(metadata).icon : null;
 	}
 
 	@Override
@@ -208,7 +208,7 @@ public class FluxGearItem extends Item {
 					if (!MeltedDashboardConfig.minimalRegistry && hasTexture(i)) {
 						entry.icon = iconRegister.registerIcon(getIconFromMeta(i));
 					} else {
-						entry.icon = iconRegister.registerIcon(modName + ":" + colorMap.get(i).template);
+						entry.icon = iconRegister.registerIcon(modName + ":grayscale/" + colorMap.get(i).template);
 					}
 				} else {
 					entry.icon = iconRegister.registerIcon(modName + ":" + getUnlocalizedName().replace("item." + modName + ".", "") + "/" + /*StringHelper.camelCase(*/entry.name/*)*/);
