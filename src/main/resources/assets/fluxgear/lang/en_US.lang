@@ -4,6 +4,15 @@ itemGroup.fluxgear.components=Flux Gear Components
 itemGroup.fluxgear.thaumic=Thaumic Revelations
 itemGroup.fluxgear.paintedstone=Painted Stone
 
+#Aspects / Research Categories
+tc.aspect.exubitor=Warden, Vigilance, Victory, Sacrifice
+tc.aspect.citrus=Citrus, Orange, Lemon
+tc.aspect.magnes=Magnet, Magnetism
+tc.aspect.fluctuatio=Flux, Fluctuation, Energy
+tc.aspect.revelatio=Revelations, Uncovering, Epiphany
+tc.research_category.FLUXGEAR=Thaumic Revelations
+
+
 # Painted Stones
 tile.stone.raw.white.name=Bright Stone
 tile.stone.raw.orange.name=Bronzed Stone
@@ -347,15 +356,8 @@ tile.blockInfusedQuartzChiseled.name=Chiseled Infused Quartz Block
 tile.blockInfusedQuartzPillar.name=Infused Quartz Pillar Block
 tile.blockWitor.name=Wardenic Light
 
-#Aspects
-tc.aspect.exubitor=Warden, Vigilance, Victory, Sacrifice
-tc.aspect.citrus=Citrus, Orange, Lemon
-tc.aspect.magnes=Magnet, Magnetism
-tc.aspect.fluctuatio=Flux, Fluctuation, Energy
-tc.aspect.revelatio=Revelations, Uncovering, Epiphany
-
 #Research
-tc.research_category.trevelations=Thaumic Revelations
+
 
 trresearch.name.TREVELATIONS=Thaumic Wardens
 trresearch.text.TREVELATIONS=Long forgotten to our ears

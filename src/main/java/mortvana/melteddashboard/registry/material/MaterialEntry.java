@@ -1,5 +1,7 @@
 package mortvana.melteddashboard.registry.material;
 
+import mortvana.melteddashboard.util.helpers.StringHelper;
+
 public class MaterialEntry {
 	public static int materialID;
 	public static EnumMaterialType materialType;
@@ -19,7 +21,7 @@ public class MaterialEntry {
 		materialType = type;
 		materialName = name;
 		materialTexture = texture;
-		materialOreDict = oreDict;
+		materialOreDict = StringHelper.generalizeOreDictStingArray(oreDict);
 		materialBlockHardness = blockHardness;
 		materialBlastResistance = blastResistance;
 		materialRarity = rarity;

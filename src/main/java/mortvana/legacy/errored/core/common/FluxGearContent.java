@@ -1481,12 +1481,12 @@ public class FluxGearContent implements IFuelHandler {
 		@Override
 		public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
-			int X = chunkX * 16 + random.nextInt(128);
-			int Z = chunkZ * 16 + random.nextInt(128);
-			int Y = world.getHeightValue(X, Z);
+			int x = chunkX * 16 + random.nextInt(128);
+			int z = chunkZ * 16 + random.nextInt(128);
+			int y = world.getHeightValue(x, z);
 
-			if (world.isAirBlock(X, Y, Z) && FluxGearContent.blockPlant.canBlockStay(world, X, Y, Z) && random.nextInt(1000) <= 10) {
-				world.setBlock(X, Y, Z, FluxGearContent.blockPlant, 0, 2);
+			if (world.isAirBlock(x, y, z) && FluxGearContent.blockPlant.canBlockStay(world, x, y, z) && random.nextInt(1000) <= 10) {
+				world.setBlock(x, y, z, FluxGearContent.blockPlant, 0, 2);
 			}
 		}
 	}

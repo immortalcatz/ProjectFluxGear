@@ -196,14 +196,14 @@ public class DynamicMaterialRegistry {
 		}
 		ItemStack itemstack = new ItemStack(block, 1, id);
 		for (String oreDictEntry : entry.getMaterialOreDict()) {
-			OreDictionary.registerOre("block" + oreDictEntry, itemstack);
+			OreDictionary.registerOre(StringHelper.createOreDictString("block", oreDictEntry), itemstack);
 		}
 		GameRegistry.registerCustomItemStack("block" + StringHelper.toTitleCase(entry.getMaterialName()), itemstack);
 		FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", itemstack);
 	}
 
 	public void registerItem(int id, MaterialEntry entry, MaterialSet data) {
-		items[data.getIndex()].addColorizedOreDictItem(data.getOffset() + id, data.getPrefix() + StringHelper.toTitleCase(entry.getMaterialName()), entry.getMaterialRarity(), data.getPrefix(), entry.getMaterialTexture(), entry.getMaterialHexColor(), entry.getMaterialOreDict());
+		items[data.getIndex()].addColorizedOreDictItem(data.getOffset() + id, data.getPrefix() + StringHelper.toTitleCase(entry.getMaterialName()), entry.getMaterialRarity(), data.getPrefix(), entry.getMaterialTexture(), entry.getMaterialHexColor(), StringHelper.createOreDictStringArray(data.getPrefix(), entry.getMaterialOreDict()));
 	}
 
 	public void registerCrafting(int id, MaterialEntry entry) {

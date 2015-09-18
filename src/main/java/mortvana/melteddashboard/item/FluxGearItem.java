@@ -156,7 +156,7 @@ public class FluxGearItem extends Item {
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
 		int meta = itemstack.getItemDamage();
-		return itemMap.containsKey(meta) ? "item." + itemMap.get(meta).name : "item.invalid";
+		return itemMap.containsKey(meta) ? "item." + modName + "." + itemMap.get(meta).name : "item." + modName + ".invalid";
 	}
 
 	@Override

@@ -40,7 +40,7 @@ public class FluxGearCoreConfig {
 
 	public static boolean enableWorld;
 	public static boolean enableTech;
-	public static boolean enableLighting;
+	public static boolean enableLighting; //Move to Tech
 	public static boolean enableDecor;
 	public static boolean enableOreberries;
 	public static boolean enableThaumic;

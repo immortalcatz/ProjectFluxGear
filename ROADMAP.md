@@ -3,11 +3,11 @@
 * [09/10] Creative tabs no longer shit themselves.
 * [08/10] Painted Stone returns.
 * [08/10] Items behave.
-* [00/10] Exubitura generation.
-* [00/10] Thaumcraft Aspects.
+* [05/10] Exubitura generation.
+* [10/10] Thaumcraft Aspects.
 * [00/10] Multi-layer Ore render.
 * [00/10] Ore Breaking Drops (With Colorizer).
-* [06/10] Dynamic Material Registry with Colorizer.
+* [07/10] Dynamic Material Registry with Colorizer.
 * [00/10] Entwined Ores.
 
 ####v0.0.0.2:
@@ -27,6 +27,7 @@
 * Register all alloys!
 * All trees, except Para Rubber Trees!
 * Crafting of Components
+* Fluid Effects
 
 ####v0.0.0.5:
 * Rubber Trees.
@@ -35,7 +36,8 @@
 * EMC Auto-Registry.
 
 ####v0.0.0.6:
-* Biome Specific Ores.
+* Biome Specific Ore Generation.
+* Extra Ores.
 * Dimension Black/Whitelist for Ores.
 * Retroactive World Generation.
 
