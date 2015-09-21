@@ -2,15 +2,21 @@ package mortvana.projectfluxgear.core.config;
 
 import java.io.File;
 
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.config.Configuration;
 
 import mortvana.melteddashboard.common.MeltedDashboardCore;
+import mortvana.melteddashboard.util.ConfigBase;
 
-public class OreberriesConfig {
+public class OreberriesConfig extends ConfigBase {
 
 	public static Configuration config;
 
-	public static void loadConfig(File file) {
+	public OreberriesConfig(FMLPreInitializationEvent event, String location) {
+		super(event, location);
+	}
+
+	public void loadConfig(File file) {
 		MeltedDashboardCore.logger.info("Loading Oreberries Config");
 		config = new Configuration(file);
 		config.load();

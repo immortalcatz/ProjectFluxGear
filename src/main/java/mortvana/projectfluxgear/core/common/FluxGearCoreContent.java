@@ -13,28 +13,30 @@ import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
 import mortvana.melteddashboard.item.FluxGearItem;
 import mortvana.melteddashboard.registry.material.DynamicMaterialRegistry;
 import mortvana.melteddashboard.registry.material.MaterialData;
+import mortvana.melteddashboard.util.ConfigBase;
+import mortvana.melteddashboard.util.IConfigInitialized;
 
-public class FluxGearCoreContent {
+public class FluxGearCoreContent implements IConfigInitialized {
 
 	public static FluxGearCreativeTab dynMaterialTab = new FluxGearCreativeTab("PFG-DynamicMaterials", "fluxgear.dynMaterial", new ItemStack(Items.iron_ingot));
 	public static FluxGearCreativeTab componentsTab = new FluxGearCreativeTab("PFG-Components", "fluxgear.components", new ItemStack(Items.potato));
 
-	public static void preInit() {
+	public void preInit(ConfigBase config) {
 		preInitRegistry();
 
 		generalItem = (FluxGearItem) new FluxGearItem("fluxgear", componentsTab).setUnlocalizedName("generalMaterial");
 	}
 
-	public static void init() {
+	public void init(ConfigBase config) {
 		loadVanillaOreDict();
 		registerMaterials();
 	}
 
-	public static void postInit() {
+	public void postInit(ConfigBase config) {
 		dynMatReg.postInit();
 	}
 
-	public static void preInitRegistry() {
+	public void preInitRegistry() {
 		metaStorageBlock = new FluxGearBlockExtendedMetadata(Material.iron, dynMaterialTab, new TileEntityMetadata(), "fluxgear:block/", "fluxgear.dynamicStorageBlock");
 		metaStorageBlock.setDefaultData(5.0F, 6.0F, 0, 0, true, false, 0, "pickaxe");
 		GameRegistry.registerBlock(metaStorageBlock, FluxGearItemBlockExtendedMetadata.class, "dynamicStorageBlock", metaStorageBlock.blockNames, metaStorageBlock.itemRarity);
@@ -45,12 +47,12 @@ public class FluxGearCoreContent {
 		dynMatReg = new DynamicMaterialRegistry(materialData);
 	}
 
-	public static void loadVanillaOreDict() {
+	public void loadVanillaOreDict() {
 		OreDictionary.registerOre("magmaCream", Items.magma_cream);
 		OreDictionary.registerOre("dustBlaze", Items.blaze_powder);
 	}
 
-	public static void registerMaterials() {
+	public void registerMaterials() {
 		dynMatReg.sortEntries();
 	}
 

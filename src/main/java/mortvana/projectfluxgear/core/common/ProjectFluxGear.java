@@ -1,7 +1,6 @@
 package mortvana.projectfluxgear.core.common;
 
 import java.io.File;
-import java.util.Random;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.*;
@@ -10,11 +9,17 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-import net.minecraftforge.common.MinecraftForge;
-
-import mortvana.projectfluxgear.core.config.FluxGearCoreConfig;
-import mortvana.projectfluxgear.core.module.ModuleLoader;
+import mortvana.melteddashboard.util.ModuleLoader;
+import mortvana.melteddashboard.util.helpers.LoadedHelper;
+import mortvana.projectfluxgear.core.config.*;
 import mortvana.projectfluxgear.core.network.CommonProxy;
+import mortvana.projectfluxgear.immersion.common.FluxGearImmersion;
+import mortvana.projectfluxgear.integration.common.FluxGearIntegration;
+import mortvana.projectfluxgear.oreberries.common.Oreberries;
+import mortvana.projectfluxgear.tech.common.FluxGearTech;
+import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
+import mortvana.projectfluxgear.tinkers.common.TinkersArmory;
+import mortvana.projectfluxgear.tweaks.common.MortTweaks;
 
 
 @Mod(modid = ProjectFluxGear.MOD_ID, name = ProjectFluxGear.MOD_NAME, version = ProjectFluxGear.MOD_VERSION, dependencies = ProjectFluxGear.MOD_DEPENDENCIES/*, guiFactory = "mortvana.projectfluxgear.core.client.config.ConfigGuiFactory"*/)
@@ -30,21 +35,30 @@ public class ProjectFluxGear {
 	@SidedProxy(clientSide = "mortvana.projectfluxgear.core.network.ClientProxy", serverSide = "mortvana.projectfluxgear.core.network.CommonProxy", modId = MOD_ID)
 	public static CommonProxy proxy;
 
+	public ModuleLoader moduleLoader = new ModuleLoader();
+
 	public ProjectFluxGear() {}
 
 	/* *=-=-=-=* Initialization Sequence *=-=-=-=* */
 	/**
 	 *  In the preInit step you only want to load configs, inform Forge if your mod has to be loaded after any others,
-	 *  and load any framework stuff. No heavy loading or registering should occur here, because that happens during
-	 *  init, as there is no guarantee stuff wont explode when they start Minecraft.
+	 *  and load any framework stuff. No heavy loading or registering should occur here, because that should happen
+	 *  during init, as there is no guarantee stuff wont explode when they start Minecraft.
 	 */
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		//MinecraftForge.EVENT_BUS.register(this);
 
-		FluxGearCoreConfig.loadConfig(new File(event.getModConfigurationDirectory().getAbsolutePath() + "/Mortvana/ProjectFluxGear-Core.cfg"));
-		FluxGearCoreContent.preInit();
-		ModuleLoader.preInit(event);
+		moduleLoader.addModule("Core", true, new FluxGearCoreContent(), new FluxGearCoreConfig(event, "/Mortvana/ProjectFluxGear-Core.cfg"));
+		moduleLoader.addModule("Tech", FluxGearCoreConfig.enableTech, new FluxGearTech(), new ProjectFluxGearConfig(event, "/Mortvana/ProjectFluxGear-Tech.cfg"));
+		moduleLoader.addModule("Immersion", FluxGearCoreConfig.enableImmersion, new FluxGearImmersion(), new FluxGearImmersionConfig(event, "/Mortvana/ProjectFluxGear-Immersion.cfg"));
+		moduleLoader.addModule("Oreberries", FluxGearCoreConfig.enableOreberries, new Oreberries(), new OreberriesConfig(event, "/Mortvana/ProjectFluxGear-Oreberries.cfg"));
+		moduleLoader.addModule("TRevelations", FluxGearCoreConfig.enableThaumic && LoadedHelper.isThaumcraftLoaded, new ThaumicRevelations(), new ThaumicRevelationsConfig(event, "/Mortvana/ProjectFluxGear-ThaumicRevelations.cfg"));
+		moduleLoader.addModule("TiArmory", FluxGearCoreConfig.enableTinkers && LoadedHelper.isTinkersLoaded, new TinkersArmory(), new TinkersArmoryConfig(event, "/Mortvana/ProjectFluxGear-TinkersArmory.cfg"));
+		moduleLoader.addModule("Integration", FluxGearCoreConfig.enableIntegration, new FluxGearIntegration(), new FluxGearIntegrationConfig(event, "/Mortvana/ProjectFluxGear-Integration.cfg"));
+		moduleLoader.addModule("MortTweaks", FluxGearCoreConfig.enableTweaks, new MortTweaks(), new MortTweaksConfig(event, "/Mortvana/ProjectFluxGear-MortTweaks.cfg"));
+
+		moduleLoader.preInit(event);
 	}
 
 	/**
@@ -53,10 +67,8 @@ public class ProjectFluxGear {
 	 */
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		ModuleLoader.init(event);
-		FluxGearCoreContent.init();
+		moduleLoader.init(event);
 	}
-
 
 	/**
 	 *  Stuff to do before finalizing, like intermod interactions.
@@ -64,8 +76,7 @@ public class ProjectFluxGear {
 	 */
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		ModuleLoader.postInit(event);
-		FluxGearCoreContent.postInit();
+		moduleLoader.postInit(event);
 	}
 
 	// This is this way so one can read it, even if the formatting is horrid.

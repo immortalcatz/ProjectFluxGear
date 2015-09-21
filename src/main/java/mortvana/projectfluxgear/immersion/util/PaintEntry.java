@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.decor.util;
+package mortvana.projectfluxgear.immersion.util;
 
 public class PaintEntry {
 

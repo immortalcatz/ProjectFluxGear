@@ -8,12 +8,12 @@ import net.minecraft.item.Item;
 
 import mortvana.melteddashboard.block.FluxGearBlock;
 import mortvana.projectfluxgear.core.common.FluxGearCoreContent;
-import mortvana.projectfluxgear.thaumic.common.ThaumicContent;
+import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
 
 public class BlockThaumicPlant extends FluxGearBlock {
 
 	public BlockThaumicPlant() {
-		super(Material.plants, ThaumicContent.thaumicRevelationsTab);
+		super(Material.plants, ThaumicRevelations.thaumicRevelationsTab);
 		setStepSound(Block.soundTypeGrass);
 	}
 

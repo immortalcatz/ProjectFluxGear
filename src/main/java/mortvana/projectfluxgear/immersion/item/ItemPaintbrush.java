@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.decor.item;
+package mortvana.projectfluxgear.immersion.item;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,8 +20,8 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.melteddashboard.util.ColorLibrary;
 import mortvana.melteddashboard.util.helpers.MiscHelper;
-import mortvana.projectfluxgear.decor.common.DecorContent;
-import mortvana.projectfluxgear.decor.util.helpers.PaintingHelper;
+import mortvana.projectfluxgear.immersion.common.FluxGearImmersion;
+import mortvana.projectfluxgear.immersion.util.helpers.PaintingHelper;
 
 public class ItemPaintbrush extends Item {
 	// Totally not for extending classes :P...
@@ -31,7 +31,7 @@ public class ItemPaintbrush extends Item {
 	public ItemPaintbrush() {
 		super();
 		setMaxStackSize(1);
-		setCreativeTab(DecorContent.paintedStoneTab);
+		setCreativeTab(FluxGearImmersion.paintedStoneTab);
 		setMaxDamage(maxPaint);
 		setUnlocalizedName("fluxgear.paintbrush");
 	}

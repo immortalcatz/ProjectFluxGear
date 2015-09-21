@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.decor.util.helpers;
+package mortvana.projectfluxgear.immersion.util.helpers;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
 import mortvana.melteddashboard.util.helpers.ColorHelper;
-import mortvana.projectfluxgear.decor.item.ItemPaintbrush;
-import mortvana.projectfluxgear.decor.util.PaintEntry;
+import mortvana.projectfluxgear.immersion.item.ItemPaintbrush;
+import mortvana.projectfluxgear.immersion.util.PaintEntry;
 
 import static mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper.offsetIntToFloat;
 

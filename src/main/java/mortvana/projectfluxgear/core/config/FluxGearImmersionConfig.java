@@ -8,23 +8,22 @@ import net.minecraftforge.common.config.Configuration;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.melteddashboard.util.ConfigBase;
 
-public class FluxGearIntegrationConfig extends ConfigBase {
+public class FluxGearImmersionConfig extends ConfigBase {
 
 	public static Configuration config;
 
-	public FluxGearIntegrationConfig(FMLPreInitializationEvent event, String location) {
+	public FluxGearImmersionConfig(FMLPreInitializationEvent event, String location) {
 		super(event, location);
 	}
 
 	public void loadConfig(File file) {
-		MeltedDashboardCore.logger.info("Loading Flux Gear Integration Config");
+		MeltedDashboardCore.logger.info("Loading Flux Gear Immersion Config");
 		config = new Configuration(file);
 		config.load();
-
 
 		if (config.hasChanged()) {
 			config.save();
 		}
-		MeltedDashboardCore.logger.info("Flux Gear World Integration Loaded");
+		MeltedDashboardCore.logger.info("Flux Gear Immersion Config Loaded");
 	}
 }

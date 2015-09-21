@@ -1,18 +1,19 @@
 package mortvana.projectfluxgear.tinkers.common;
 
-import cpw.mods.fml.common.event.*;
+import mortvana.melteddashboard.util.ConfigBase;
+import mortvana.melteddashboard.util.IConfigInitialized;
 
-public class TinkersArmory {
+public class TinkersArmory implements IConfigInitialized {
 
-	public static void preInit(FMLPreInitializationEvent event) {
-		TinkersContent.preInit();
+	public void preInit(ConfigBase config) {
+
 	}
 
-	public static void init(FMLInitializationEvent event) {
-		TinkersContent.init();
+	public void init(ConfigBase config) {
+
 	}
 
-	public static void postInit(FMLPostInitializationEvent event) {
-		TinkersContent.postInit();
+	public void postInit(ConfigBase config) {
+
 	}
 }

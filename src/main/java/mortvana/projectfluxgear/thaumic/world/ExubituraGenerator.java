@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
 
-import mortvana.projectfluxgear.thaumic.common.ThaumicContent;
+import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
 
 public class ExubituraGenerator implements IWorldGenerator {
 
@@ -17,8 +17,8 @@ public class ExubituraGenerator implements IWorldGenerator {
 		int z = chunkZ * 16 + random.nextInt(128);
 		int y = world.getHeightValue(x, z);
 
-		if (world.isAirBlock(x, y, z) && ThaumicContent.blockThaumicPlant.canBlockStay(world, x, y, z) && random.nextInt(1000) <= 10) {
-			world.setBlock(x, y, z, ThaumicContent.blockThaumicPlant, 8, 2);
+		if (world.isAirBlock(x, y, z) && ThaumicRevelations.blockThaumicPlant.canBlockStay(world, x, y, z) && random.nextInt(1000) <= 10) {
+			world.setBlock(x, y, z, ThaumicRevelations.blockThaumicPlant, 8, 2);
 		}
 	}
 }

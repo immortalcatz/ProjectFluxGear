@@ -2,15 +2,21 @@ package mortvana.projectfluxgear.core.config;
 
 import java.io.File;
 
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.config.Configuration;
 
 import mortvana.melteddashboard.common.MeltedDashboardCore;
+import mortvana.melteddashboard.util.ConfigBase;
 
-public class TinkersArmoryConfig {
+public class TinkersArmoryConfig extends ConfigBase {
 
 	public static Configuration config;
 
-	public static void loadConfig(File file) {
+	public TinkersArmoryConfig(FMLPreInitializationEvent event, String location) {
+		super(event, location);
+	}
+
+	public void loadConfig(File file) {
 		MeltedDashboardCore.logger.info("Loading Tinker's Armory Config");
 		config = new Configuration(file);
 		config.load();

@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.decor.block.itemblock;
+package mortvana.projectfluxgear.immersion.block.itemblock;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;

@@ -1,18 +1,19 @@
 package mortvana.projectfluxgear.integration.common;
 
-import cpw.mods.fml.common.event.*;
+import mortvana.melteddashboard.util.ConfigBase;
+import mortvana.melteddashboard.util.IConfigInitialized;
 
-public class FluxGearIntegration {
+public class FluxGearIntegration implements IConfigInitialized {
 
-	public static void preInit(FMLPreInitializationEvent event) {
-		IntegrationContent.preInit();
+	public void preInit(ConfigBase config) {
+
 	}
 
-	public static void init(FMLInitializationEvent event) {
-		IntegrationContent.init();
+	public void init(ConfigBase config) {
+
 	}
 
-	public static void postInit(FMLPostInitializationEvent event) {
-		IntegrationContent.postInit();
+	public void postInit(ConfigBase config) {
+
 	}
 }

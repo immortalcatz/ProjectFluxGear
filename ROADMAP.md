@@ -135,6 +135,14 @@
 * Solar/Lunar Array Cables and Redsolder Wire are now Ductworks compatible.
 
 
+
+
+
+
+
+
+
+
 ####v0.2.x.x:
 * Tools/Tool Parts and Armor
 * Guide Book and Warden's Tome

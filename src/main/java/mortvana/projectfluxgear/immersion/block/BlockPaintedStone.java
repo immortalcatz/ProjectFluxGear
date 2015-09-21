@@ -1,7 +1,6 @@
-package mortvana.projectfluxgear.decor.block;
+package mortvana.projectfluxgear.immersion.block;
 
 import java.util.List;
-import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -16,9 +15,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.melteddashboard.registry.wrapped.RegistationWrapper;
 import mortvana.melteddashboard.util.helpers.ColorHelper;
-import mortvana.projectfluxgear.decor.block.itemblock.ItemBlockPaintedStone;
-import mortvana.projectfluxgear.decor.common.DecorContent;
-import mortvana.projectfluxgear.util.helpers.RecipeHelper;
+import mortvana.projectfluxgear.immersion.block.itemblock.ItemBlockPaintedStone;
+import mortvana.projectfluxgear.immersion.common.FluxGearImmersion;
 
 public class BlockPaintedStone extends Block {
 	public final String textureName;
@@ -29,7 +27,7 @@ public class BlockPaintedStone extends Block {
 	public BlockPaintedStone(Material material, float hardness, String texture, String name, Block dropBlock, String blockName) {
 		super(material);
 		setHardness(hardness);
-		setCreativeTab(DecorContent.paintedStoneTab);
+		setCreativeTab(FluxGearImmersion.paintedStoneTab);
 		textureName = texture;
 		localName = name;
 		this.dropBlock = dropBlock;

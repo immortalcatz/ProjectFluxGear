@@ -1,18 +1,19 @@
 package mortvana.projectfluxgear.tweaks.common;
 
-import cpw.mods.fml.common.event.*;
+import mortvana.melteddashboard.util.ConfigBase;
+import mortvana.melteddashboard.util.IConfigInitialized;
 
-public class MortTweaks {
+public class MortTweaks implements IConfigInitialized {
 
-	public static void preInit(FMLPreInitializationEvent event) {
-		TweakContent.preInit();
+	public void preInit(ConfigBase config) {
+
 	}
 
-	public static void init(FMLInitializationEvent event) {
-		TweakContent.init();
+	public void init(ConfigBase config) {
+
 	}
 
-	public static void postInit(FMLPostInitializationEvent event) {
-		TweakContent.postInit();
+	public void postInit(ConfigBase config) {
+
 	}
 }

@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.decor.common;
+package mortvana.projectfluxgear.immersion.common;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -7,12 +7,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
-import mortvana.projectfluxgear.decor.block.BlockPaintedStone;
-import mortvana.projectfluxgear.decor.item.ItemPaintbrush;
+import mortvana.melteddashboard.util.ConfigBase;
+import mortvana.melteddashboard.util.IConfigInitialized;
+import mortvana.projectfluxgear.immersion.block.BlockPaintedStone;
+import mortvana.projectfluxgear.immersion.item.ItemPaintbrush;
 
-public class DecorContent {
+public class FluxGearImmersion implements IConfigInitialized {
 
-	public static void preInit() {
+	public void preInit(ConfigBase config) {
 		paintedStoneTab = new FluxGearCreativeTab("PFG-PaintedStone", "fluxgear.paintedstone", new ItemStack(Items.potato));
 
 		coloredCobble = new BlockPaintedStone(Material.rock, 2.0F, "stone_cobble", "stone.cobble", coloredCobble, "fluxgear.paintedcobble").addSmelting(coloredStone).addOreDict("cobblestone");
@@ -29,11 +31,11 @@ public class DecorContent {
 		paintbrush = new ItemPaintbrush().register();
 	}
 
-	public static void init() {
+	public void init(ConfigBase config) {
 
 	}
 
-	public static void postInit() {
+	public void postInit(ConfigBase config) {
 
 	}
 

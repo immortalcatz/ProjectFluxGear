@@ -1,18 +1,19 @@
 package mortvana.projectfluxgear.oreberries.common;
 
-import cpw.mods.fml.common.event.*;
+import mortvana.melteddashboard.util.ConfigBase;
+import mortvana.melteddashboard.util.IConfigInitialized;
 
-public class Oreberries {
+public class Oreberries implements IConfigInitialized {
 
-	public static void preInit(FMLPreInitializationEvent event) {
-		OreberriesContent.preInit();
+	public void preInit(ConfigBase config) {
+
 	}
 
-	public static void init(FMLInitializationEvent event) {
-		OreberriesContent.init();
+	public void init(ConfigBase config) {
+
 	}
 
-	public static void postInit(FMLPostInitializationEvent event) {
-		OreberriesContent.postInit();
+	public void postInit(ConfigBase config) {
+
 	}
 }
