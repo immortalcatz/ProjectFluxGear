@@ -187,8 +187,13 @@ tile.clay.brick.black.name=Black Bricks
 # Tools
 item.fluxgear.tool.paintbrush.name=Painting Brush
 
+# Registry
+pfgregistry.material.copper.name=Copper
+pfgregistry.material.platinum.name=Platinum
 
+pfgregistry.form.ingot.name=%%material Ingot
 
+#item.fluxgear
 
 
 

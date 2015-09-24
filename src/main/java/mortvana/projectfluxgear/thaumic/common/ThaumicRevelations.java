@@ -15,11 +15,9 @@ import magicbees.api.MagicBeesAPI;
 import mortvana.melteddashboard.intermod.baubles.item.FluxGearItemBauble;
 import mortvana.melteddashboard.intermod.baubles.util.DefaultBaubleData;
 import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
-import mortvana.melteddashboard.item.FluxGearItem;
 import mortvana.melteddashboard.util.ConfigBase;
 import mortvana.melteddashboard.util.IConfigInitialized;
 
-import mortvana.projectfluxgear.core.common.FluxGearCoreContent;
 import mortvana.projectfluxgear.thaumic.block.BlockThaumicPlant;
 import mortvana.projectfluxgear.thaumic.block.ItemBlockThaumicPlant;
 import mortvana.projectfluxgear.thaumic.item.ItemThaumicBauble;

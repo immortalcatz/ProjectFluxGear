@@ -10,20 +10,21 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import net.minecraftforge.oredict.OreDictionary;
-
 import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
 import mortvana.melteddashboard.common.MeltedDashboardConfig;
 import mortvana.melteddashboard.item.entry.ColorEntry;
 import mortvana.melteddashboard.item.entry.ItemEntry;
+import mortvana.melteddashboard.registry.wrapped.RegistationWrapper;
 import mortvana.melteddashboard.util.ColorLibrary;
+import mortvana.melteddashboard.util.helpers.StringHelper;
 import mortvana.melteddashboard.util.helpers.TextureHelper;
 
 /** Slightly Modified and Augmented Version of ItemBase from CoFH Core */
@@ -35,6 +36,7 @@ public class FluxGearItem extends Item {
 
 	public boolean hasTextures;
 	public String modName = "fluxgear";
+	public boolean registryItem = false;
 
 	public FluxGearItem() {
 		setHasSubtypes(true);
@@ -96,9 +98,7 @@ public class FluxGearItem extends Item {
 	// addOreDictItem(...) {}
 	public ItemStack addOreDictItem(int metadata, String name, int rarity, boolean register, String... oreDict) {
 		ItemStack stack = addItem(metadata, name, rarity, register);
-		for (String oreDictEntry : oreDict) {
-			OreDictionary.registerOre(oreDictEntry, stack);
-		}
+		RegistationWrapper.registerOreDict(stack, oreDict);
 		return stack;
 	}
 
@@ -113,9 +113,7 @@ public class FluxGearItem extends Item {
 	// addColorizedOreDictItem(...) {}
 	public ItemStack addColorizedOreDictItem(int metadata, String name, int rarity, boolean register, String template, String texture, int color, String... oreDict) {
 		ItemStack stack = addColorizedItem(metadata, name, rarity, register, texture, template, color);
-		for (String oreDictEntry : oreDict) {
-			OreDictionary.registerOre(oreDictEntry, stack);
-		}
+		RegistationWrapper.registerOreDict(stack, oreDict);
 		return stack;
 	}
 
@@ -130,9 +128,7 @@ public class FluxGearItem extends Item {
 	@Override
 	//@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
-		//MeltedDashboardCore.logger.debug("Getting sub items...");
 		for (int meta : itemList) {
-			//MeltedDashboardCore.logger.debug("Adding sub item with the metadata " + meta + " to the list for the creative tab.");
 			list.add(new ItemStack(item, 1, meta));
 		}
 	}
@@ -153,15 +149,39 @@ public class FluxGearItem extends Item {
 		return super.setUnlocalizedName(modName + "." + textureName);
 	}
 
-	@Override
-	public String getUnlocalizedName(ItemStack itemstack) {
-		int meta = itemstack.getItemDamage();
-		return itemMap.containsKey(meta) ? "item." + modName + "." + itemMap.get(meta).name : "item." + modName + ".invalid";
+	public FluxGearItem setRegistryItem(boolean isRegistryItem) {
+		registryItem = isRegistryItem;
+		return this;
 	}
 
 	@Override
-	public EnumRarity getRarity(ItemStack itemstack) {
-		int meta = itemstack.getItemDamage();
+	public String getUnlocalizedName(ItemStack stack) {
+		int meta = stack.getItemDamage();
+		return "item." + modName + (itemMap.containsKey(meta) ? "." + itemMap.get(meta).name : ".invalid");
+	}
+
+	@Override
+	public String getItemStackDisplayName (ItemStack stack) {
+		int meta = stack.getItemDamage();
+		if (itemList.contains(meta) && registryItem) {
+			String itemName = itemMap.get(meta).name;
+			if (StatCollector.canTranslate("item." + modName + "." + itemMap.get(meta).name + ".name")) { //Custom Name
+				return StatCollector.translateToLocal("item." + modName + "." + itemMap.get(meta).name + ".name");
+			} else  if (itemName.contains(".")) { //General Name
+				String[] split = itemName.replace('.', ':').split(":");
+				String form = split[0];
+				String material = split[1];
+				if (StatCollector.canTranslate("pfgregistry.form." + form + ".name")) {
+					return StatCollector.translateToLocal("pfgregistry.form." + form + ".name").replace("%%material", StatCollector.canTranslate("pfgregistry.material." + material + ".name") ? StatCollector.translateToLocal("pfgregistry.material." + material + ".name") : StringHelper.toTitleCase(material));
+				}
+			}
+		}
+		return super.getItemStackDisplayName(stack);
+	}
+
+	@Override
+	public EnumRarity getRarity(ItemStack stack) {
+		int meta = stack.getItemDamage();
 		return itemMap.containsKey(meta) ? EnumRarity.values()[itemMap.get(meta).rarity] : EnumRarity.common;
 	}
 
@@ -172,8 +192,8 @@ public class FluxGearItem extends Item {
 	}
 
 	@Override
-	public Entity createEntity(World world, Entity itemEntity, ItemStack itemstack) {
-		//if (SecurityHelper.isSecure(itemstack)) {
+	public Entity createEntity(World world, Entity itemEntity, ItemStack stack) {
+		//if (SecurityHelper.isSecure(stack)) {
 		//	itemEntity.invulnerable = true;
 		//	itemEntity.isImmuneToFire = true;
 		//	((EntityItem) itemEntity).lifespan = Integer.MAX_VALUE;
@@ -218,8 +238,8 @@ public class FluxGearItem extends Item {
 	}
 
 	@Override
-	public IIcon getIcon(ItemStack itemstack, int renderPass) {
-		int metadata = itemstack.getItemDamage();
+	public IIcon getIcon(ItemStack stack, int renderPass) {
+		int metadata = stack.getItemDamage();
 		//if (renderPass == 1) {
 			return itemMap.containsKey(metadata) ? itemMap.get(metadata).icon : null;
 		//} else {
@@ -229,12 +249,12 @@ public class FluxGearItem extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int getColorFromItemStack(ItemStack itemstack, int renderPass) {
-		return renderPass == 1 && colorMap.containsKey(itemstack.getItemDamage()) ? getColor(itemstack) : ColorLibrary.CLEAR;
+	public int getColorFromItemStack(ItemStack stack, int renderPass) {
+		return renderPass == 1 && colorMap.containsKey(stack.getItemDamage()) ? getColor(stack) : ColorLibrary.CLEAR;
 	}
 
-	public int getColor(ItemStack itemstack) {
-		return colorMap.containsKey(itemstack.getItemDamage()) ? colorMap.get(itemstack.getItemDamage()).color : ColorLibrary.CLEAR;
+	public int getColor(ItemStack stack) {
+		return colorMap.containsKey(stack.getItemDamage()) ? colorMap.get(stack.getItemDamage()).color : ColorLibrary.CLEAR;
 	}
 
 	public String getIconFromMeta(int metadata) {

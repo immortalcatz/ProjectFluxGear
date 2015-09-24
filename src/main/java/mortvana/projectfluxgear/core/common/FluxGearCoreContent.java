@@ -41,7 +41,7 @@ public class FluxGearCoreContent implements IConfigInitialized {
 		metaStorageBlock.setDefaultData(5.0F, 6.0F, 0, 0, true, false, 0, "pickaxe");
 		GameRegistry.registerBlock(metaStorageBlock, FluxGearItemBlockExtendedMetadata.class, "dynamicStorageBlock", metaStorageBlock.blockNames, metaStorageBlock.itemRarity);
 
-		registryIngot = (FluxGearItem) new FluxGearItem("fluxgear", dynMaterialTab).setUnlocalizedName("registryIngot");
+		registryIngot = (FluxGearItem) new FluxGearItem("fluxgear", dynMaterialTab).setRegistryItem(true).setUnlocalizedName("registryIngot");
 
 		materialData = new MaterialData(metaStorageBlock, registryIngot);
 		dynMatReg = new DynamicMaterialRegistry(materialData);
@@ -61,6 +61,4 @@ public class FluxGearCoreContent implements IConfigInitialized {
 	public static FluxGearBlockExtendedMetadata metaStorageBlock;
 	public static FluxGearItem registryIngot;
 	public static FluxGearItem generalItem;
-
-	public static ItemStack dummy2;
 }

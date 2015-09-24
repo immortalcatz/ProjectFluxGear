@@ -15,6 +15,7 @@
 * Thaumcraft Transmutations.
 * Basic Wands/Staves and Caps.
 * Connected Texture Storage Blocks.
+* Reimplement Wand Foci
 
 ####v0.0.0.3:
 * All crops!
@@ -48,8 +49,7 @@
 * Flux Capacitors / Batteries / Energy Crystals.
 
 ####v0.0.0.8:
-* Make sure issues #2 (TW #11) and #3 (TW #12) are fixed.
-* Connected Textures for Blocks.
+* Make sure issues and #3 (TW #12) is fixed.
 * (Legacy) Confirm Gravel Cobaltite Ore.
 * (Legacy) Check for Chalcocite/Cinnabar glitched Spawning.
 * Tooltips!
@@ -69,6 +69,8 @@
 * Tuberous Dynamo.
 * Expanded Module System.
 * Redsolder Wire.
+* Flux Furnace.
+* Sonic Lance.
 
 ####v0.0.1.1:
 * Tenebrous Dynamo.
@@ -84,16 +86,20 @@
 * Botanimancer's Dynamo.
 
 ####v0.0.1.3:
-* Quantum Cells/Capacitors (TE)
-* Sanguine and Botanical Flux Crystals
+* Quantum Cells/Capacitors (TE).
+* Sanguine and Botanical Flux Crystals.
 * Basic RF-Powered Jetpacks.
 * Music Discs.
 
 ####v0.0.1.4:
 * Tesla Turbine.
 * Tesla Turbine Rotors.
+* Turbine Reboiler.
+* Simple Condensator.
+* Heat Spreaders.
+* High-Speed Turbine Upgrade.
 * Kinetic Dynamo.
-* Magmatic Jetpack
+* Magmatic Jetpack.
 
 ####v0.0.1.5:
 * Essence Dynamo.
@@ -131,10 +137,10 @@
 * Autonomous Anvil.
 
 ####v0.0.2.0:
-* Now Requires DuctworksAPI
+* Now Requires DuctworksAPI.
 * Solar/Lunar Array Cables and Redsolder Wire are now Ductworks compatible.
-
-
+* Flux Gear Lexicon!
+* Scaffolds!
 
 
 
@@ -159,7 +165,6 @@ Crystallizer
 Duskpack
 Thermal Dynamo
 Vodkaic Dynamo
-Ingame Book
 
 [Code]
 Add Recipe Items

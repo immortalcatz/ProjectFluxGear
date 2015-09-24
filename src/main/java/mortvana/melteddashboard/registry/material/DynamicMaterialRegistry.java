@@ -5,22 +5,17 @@ import java.util.Map.Entry;
 
 import net.minecraft.item.ItemStack;
 
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.registry.GameRegistry;
-
-import net.minecraftforge.oredict.OreDictionary;
-
 import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
-import mortvana.melteddashboard.common.MeltedDashboardConfig;
 import mortvana.melteddashboard.block.metadata.FluxGearBlockExtendedMetadata;
 import mortvana.melteddashboard.item.FluxGearItem;
+import mortvana.melteddashboard.registry.wrapped.RegistationWrapper;
 import mortvana.melteddashboard.util.helpers.StringHelper;
 
 public class DynamicMaterialRegistry {
 	public ArrayList<MaterialEntry> entriesToSort = new ArrayList<MaterialEntry>();
-	public TMap<Integer, MaterialEntry> materialMap = new THashMap<Integer, MaterialEntry>(2000);
+	public final TMap<Integer, MaterialEntry> materialMap = new THashMap<Integer, MaterialEntry>(2000); //Lock the size at 2000
 
 	public MaterialData data;
 	public FluxGearBlockExtendedMetadata block;
@@ -54,6 +49,7 @@ public class DynamicMaterialRegistry {
 				if (!(materialMap.containsKey(entryID) && entryName.equals(""))) {
 					EnumMaterialType entryType = entry.getMaterialType();
 					if (entryID > -1 && entryID < 2000 && entryType != null) {
+						//TODO: Clamping
 						float entryBlockHardness = entry.getMaterialBlockHardness();
 						if (entryBlockHardness < 0.0F && entryBlockHardness != -1.0F) {
 							entryBlockHardness = -1.0F;
@@ -84,38 +80,18 @@ public class DynamicMaterialRegistry {
 						}
 						String[] oreEntries = entry.getMaterialOreDict();
 						String[] newOreEntries;
-						if (MeltedDashboardConfig.registryOreDict) {
 
-							int q = 0;
-							for (int i = 0; i < oreEntries.length; i++) {
-								String oreDictEntry = oreEntries[i];
-								if (oreDictEntry.equals("")) {
-									q++;
-								} else if (oreDictEntry.startsWith("block")) {
-									oreEntries[i-q] = oreDictEntry.replaceFirst("block", "");
-								} else if (oreDictEntry.startsWith("ore")) {
-									oreEntries[i-q] = oreDictEntry.replaceFirst("ore", "");
-								} else if (oreDictEntry.startsWith("ingot")) {
-									oreEntries[i-q] = oreDictEntry.replaceFirst("ingot", "");
-								} else if (oreDictEntry.startsWith("dust")) {
-									oreEntries[i-q] = oreDictEntry.replaceFirst("dust", "");
-								} else if (oreDictEntry.startsWith("nugget")) {
-									oreEntries[i-q] = oreDictEntry.replaceFirst("nugget", "");
-								} else if (oreDictEntry.startsWith("log")) {
-									oreEntries[i-q] = oreDictEntry.replaceFirst("log", "");
-								} else if (oreDictEntry.startsWith("item")) {
-									oreEntries[i-q] = oreDictEntry.replaceFirst("item", "");
-								} else if (oreDictEntry.startsWith("gem")) {
-									oreEntries[i-q] = oreDictEntry.replaceFirst("gem", "");
-								} else if (oreDictEntry.startsWith("crystal")) {
-									oreEntries[i-q] = oreDictEntry.replaceFirst("crystal", "");
-								}
+						int q = 0;
+						for (int i = 0; i < oreEntries.length; i++) {
+							String oreDictEntry = StringHelper.stripPrefixes(oreEntries[i]);
+							if (oreDictEntry.equals("")) {
+								q++;
+							} else {
+								oreEntries[i - q] = oreDictEntry;
 							}
-							newOreEntries = new String[oreEntries.length - q];
-							System.arraycopy(oreEntries, 0, newOreEntries, 0, newOreEntries.length);
-						} else {
-							newOreEntries = oreEntries;
 						}
+						newOreEntries = new String[oreEntries.length - q];
+						System.arraycopy(oreEntries, 0, newOreEntries, 0, newOreEntries.length);
 
 						materialMap.put(entryID, new MaterialEntry(entryID, entryType, entryName, entry.getMaterialTexture(), newOreEntries, entryBlockHardness, entryBlastResistance, entryRarity, entryMiningLevel, entryBlockLight, entryRedstoneSignal, entryHexColor));
 					} else if (entryID < 0 || entryID > 1999) {
@@ -141,7 +117,7 @@ public class DynamicMaterialRegistry {
 	 */
 	public void registerEntries() {
 		for (Entry<Integer, MaterialEntry> materials : materialMap.entrySet()) {
-			Integer id = materials.getKey();
+			int id = materials.getKey();
 			MaterialEntry entry = materials.getValue();
 			if (id == entry.getMaterialID()) {
 				delegateRegistration(id, entry);
@@ -195,15 +171,11 @@ public class DynamicMaterialRegistry {
 			block.setMiningLevel(id, entry.getMaterialMiningLevel());
 		}
 		ItemStack itemstack = new ItemStack(block, 1, id);
-		for (String oreDictEntry : entry.getMaterialOreDict()) {
-			OreDictionary.registerOre(StringHelper.createOreDictString("block", oreDictEntry), itemstack);
-		}
-		GameRegistry.registerCustomItemStack("block" + StringHelper.toTitleCase(entry.getMaterialName()), itemstack);
-		FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", itemstack);
+		RegistationWrapper.registerWithHandlers(itemstack, "block" + StringHelper.toTitleCase(entry.getMaterialName()), StringHelper.createOreDictStringArray("block", entry.getMaterialOreDict()));
 	}
 
 	public void registerItem(int id, MaterialEntry entry, MaterialSet data) {
-		items[data.getIndex()].addColorizedOreDictItem(data.getOffset() + id, data.getPrefix() + StringHelper.toTitleCase(entry.getMaterialName()), entry.getMaterialRarity(), data.getPrefix(), entry.getMaterialTexture(), entry.getMaterialHexColor(), StringHelper.createOreDictStringArray(data.getPrefix(), entry.getMaterialOreDict()));
+		items[data.getIndex()].addColorizedOreDictItem(data.getOffset() + id, data.getPrefix() + "." + StringHelper.toTitleCase(entry.getMaterialName()), entry.getMaterialRarity(), data.getPrefix(), entry.getMaterialTexture(), entry.getMaterialHexColor(), StringHelper.createOreDictStringArray(data.getPrefix(), entry.getMaterialOreDict()));
 	}
 
 	public void registerCrafting(int id, MaterialEntry entry) {
