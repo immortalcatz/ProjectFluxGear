@@ -1,22 +1,22 @@
-package mortvana.tweaks.tweak.block;
+package mortvana.legacy.errored.morttweaks.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockTNT;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TNTTweak extends BlockTNT {
+public class BlockTweakedTNT extends BlockTNT {
 
-	public TNTTweak(int par1) {
-		super(par1);
+	public BlockTweakedTNT() {
+		super();
 	}
 
 	@Override
@@ -54,8 +54,8 @@ public class TNTTweak extends BlockTNT {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		super.registerIcons(iconRegister);
-		Block.tnt.registerIcons(iconRegister);
+		Blocks.tnt.registerIcons(iconRegister);
 	}
 }

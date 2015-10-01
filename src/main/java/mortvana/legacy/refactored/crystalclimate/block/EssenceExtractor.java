@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.util.FakePlayer;
 
-import mortvana.legacy.crystaltweaks.CrystalClimate;
+import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
 import mortvana.legacy.refactored.crystalclimate.block.tileentity.EssenceExtractorLogic;
 
 public class EssenceExtractor extends BlockContainer {

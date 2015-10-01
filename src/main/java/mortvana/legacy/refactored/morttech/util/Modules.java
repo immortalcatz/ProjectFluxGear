@@ -1,4 +1,4 @@
-package mortvana.legacy.util;
+package mortvana.legacy.refactored.morttech.util;
 
 import java.util.ArrayList;
 

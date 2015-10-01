@@ -1,4 +1,4 @@
-package mortvana.legacy.util;
+package mortvana.legacy.errored.morttech.util;
 
 //TODO
 

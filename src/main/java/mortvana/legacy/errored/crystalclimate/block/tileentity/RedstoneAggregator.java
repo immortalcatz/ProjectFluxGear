@@ -13,7 +13,7 @@ import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.network.PacketDispatcher;
 
-import mortvana.legacy.crystaltweaks.CrystalClimate;
+import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
 
 public class RedstoneAggregator extends TileEntity {
 	short currentTime;

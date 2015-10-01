@@ -1,4 +1,4 @@
-package mortvana.legacy.util;
+package mortvana.legacy.errored.apiology.util;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import mortvana.legacy.refactored.core.common.CommonProxy;

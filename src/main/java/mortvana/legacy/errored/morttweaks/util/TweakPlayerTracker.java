@@ -1,4 +1,4 @@
-package mortvana.legacy.crystaltweaks.util;
+package mortvana.legacy.errored.morttweaks.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;

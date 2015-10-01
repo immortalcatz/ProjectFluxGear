@@ -4,7 +4,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import mortvana.legacy.crystaltweaks.CrystalClimate;
+import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
 
 public class TabCrystal extends CreativeTabs {
 

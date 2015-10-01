@@ -1,4 +1,4 @@
-package mortvana.legacy.crystaltweaks;
+package mortvana.legacy.errored.crystalclimate.common;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -24,6 +24,10 @@ import mortvana.legacy.refactored.crystalclimate.item.EssenceCrystal;
 import mortvana.legacy.refactored.crystalclimate.block.itemblock.TerraformerItem;
 import mortvana.legacy.refactored.crystalclimate.common.CrystalProxy;
 import mortvana.legacy.refactored.crystalclimate.util.TabCrystal;
+import mortvana.legacy.errored.crystalclimate.block.tileentity.*;
+import mortvana.legacy.refactored.crystalclimate.block.*;
+import mortvana.legacy.refactored.crystalclimate.block.tileentity.*;
+import mortvana.legacy.errored.crystalclimate.block.*;
 
 @Mod(modid = "CrystalClimate", name = "CrystalClimate", version = "Byakuren")
 public class CrystalClimate {
@@ -72,8 +76,8 @@ public class CrystalClimate {
 		finiteWaterFluid = new Fluid("water.finite");
 		if (!FluidRegistry.registerFluid(finiteWaterFluid))
 			finiteWaterFluid = FluidRegistry.getFluid("water.finite");
-		finiteWater = new FiniteWater(PHCrystal.finiteWater, finiteWaterFluid, Material.water).setUnlocalizedName(Block.waterStill.getUnlocalizedName()).setTextureName("water_still");
-		finiteWaterFluid.setBlockID(finiteWater).setUnlocalizedName(Block.waterStill.getUnlocalizedName());
+		finiteWater = new FiniteWater(PHCrystal.finiteWater, finiteWaterFluid, Material.water).setUnlocalizedName(Blocks.water.getUnlocalizedName()).setTextureName("water_still");
+		finiteWaterFluid.setBlockID(finiteWater).setUnlocalizedName(Blocks.water.getUnlocalizedName());
 		FluidContainerRegistry.registerFluidContainer(new FluidContainerRegistry.FluidContainerData(new FluidStack(finiteWaterFluid, 1000), new ItemStack(Item.bucketWater), new ItemStack(Item.bucketEmpty)));
 		GameRegistry.registerBlock(finiteWater, "water.finite");
 
@@ -90,10 +94,10 @@ public class CrystalClimate {
 	}
 
 	public static void createRecipes() {
-		GameRegistry.addRecipe(new ItemStack(CrystalContent.essenceExtractor, 1, 0), " b ", "eme", "mmm", 'b', Items.book, 'e', Items.emerald, 'm', Blocks.end_stone);
-		GameRegistry.addRecipe(new ItemStack(CrystalContent.sugarBlock, 1, 7), "###", "###", "###", '#', Items.sugar);
-		GameRegistry.addRecipe(new ItemStack(CrystalContent.aggregator, 1, 0), "#d#", "#r#", "#e#", '#', Items.quartz, 'd', Items.diamond, 'e', Items.ender_pearl, 'r', Blocks.redstone_block);
-		GameRegistry.addRecipe(new ItemStack(CrystalContent.aggregator, 1, 0), "#e#", "#r#", "#d#", '#', Items.quartz, 'd', Items.diamond, 'e', Items.ender_pearl, 'r', Blocks.redstone_block);
+		GameRegistry.addRecipe(new ItemStack(essenceExtractor, 1, 0), " b ", "eme", "mmm", 'b', Items.book, 'e', Items.emerald, 'm', Blocks.end_stone);
+		GameRegistry.addRecipe(new ItemStack(sugarBlock, 1, 7), "###", "###", "###", '#', Items.sugar);
+		GameRegistry.addRecipe(new ItemStack(aggregator, 1, 0), "#d#", "#r#", "#e#", '#', Items.quartz, 'd', Items.diamond, 'e', Items.ender_pearl, 'r', Blocks.redstone_block);
+		GameRegistry.addRecipe(new ItemStack(aggregator, 1, 0), "#e#", "#r#", "#d#", '#', Items.quartz, 'd', Items.diamond, 'e', Items.ender_pearl, 'r', Blocks.redstone_block);
 	}
 
 	public static Block essenceExtractor;

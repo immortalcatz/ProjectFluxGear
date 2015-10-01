@@ -7,7 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.legacy.client.ClientProxy;
-import mortvana.legacy.util.MTControls;
+import mortvana.legacy.errored.morttech.util.MTControls;
 
 //TODO: Must ImpliMint
 

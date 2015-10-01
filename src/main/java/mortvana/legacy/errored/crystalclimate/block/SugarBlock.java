@@ -1,28 +1,40 @@
-package mortvana.legacy.crystaltweaks.block;
+package mortvana.legacy.errored.crystalclimate.block;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import net.minecraftforge.common.util.ForgeDirection;
+import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
 
-import mortvana.legacy.crystaltweaks.CrystalClimate;
-
-public class Ash extends Block {
-	public Ash() {
-		super(Material.sand);
+public class SugarBlock extends Block {
+	public SugarBlock() {
+		super(Material.cloth);
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
 		setCreativeTab(CrystalClimate.tab);
 		setBlockBoundsForSnowDepth(0);
+	}
+
+	@SideOnly(Side.CLIENT)
+	/**
+	 * When this method is called, your block should register all the icons it needs with the given IconRegister. This
+	 * is the only chance you get to register icons.
+	 */
+	public void registerIcons(IIconRegister conRegister) {
+		blockIcon = conRegister.registerIcon("crystal:sugar");
 	}
 
 	/**
@@ -32,7 +44,7 @@ public class Ash extends Block {
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
 		int l = par1World.getBlockMetadata(par2, par3, par4) & 7;
 		float f = 0.125F;
-		return AxisAlignedBB.getAABBPool().getAABB((double) par2 + minX, (double) par3 + minY, (double) par4 + minZ, (double) par2 + maxX, (double) ((float) par3 + (float) l * f), (double) par4 + maxZ);
+		return AxisAlignedBB.getAABBPool().getAABB((double) par2 + this.minX, (double) par3 + this.minY, (double) par4 + this.minZ, (double) par2 + this.maxX, (double) ((float) par3 + (float) l * f), (double) par4 + this.maxZ);
 	}
 
 	/**
@@ -54,7 +66,7 @@ public class Ash extends Block {
 	 * Sets the block's bounds for rendering it as an item
 	 */
 	public void setBlockBoundsForItemRender() {
-		setBlockBoundsForSnowDepth(0);
+		this.setBlockBoundsForSnowDepth(7);
 	}
 
 	/**
@@ -73,14 +85,6 @@ public class Ash extends Block {
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, f, 1.0F);
 	}
 
-	public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side) {
-		int meta = world.getBlockMetadata(x, y, z);
-		if (meta == 7)
-			return true;
-
-		return false;
-	}
-
 	/**
 	 * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
 	 */
@@ -93,7 +97,7 @@ public class Ash extends Block {
 			return true;
 		if (!block.isLeaves(par1World, par2, par3 - 1, par4) && !Block.blocksList[l].isOpaqueCube())
 			return false;
-		return par1World.getBlockMaterial(par2, par3 - 1, par4).blocksMovement();
+		return par1World.getBlock(par2, par3 - 1, par4).getMaterial().blocksMovement();
 	}
 
 	/**
@@ -101,15 +105,25 @@ public class Ash extends Block {
 	 * their own) Args: x, y, z, neighbor blockID
 	 */
 	public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
-		this.canAshStay(par1World, par2, par3, par4);
+		this.canSugarStay(par1World, par2, par3, par4);
 	}
 
 	/**
 	 * Checks if this snow block can stay at this location.
 	 */
-	private boolean canAshStay(World par1World, int par2, int par3, int par4) {
-		if (!this.canPlaceBlockAt(par1World, par2, par3, par4)) {
-			par1World.setBlockToAir(par2, par3, par4);
+	private boolean canSugarStay(World world, int x, int y, int z) {
+		if (!this.canPlaceBlockAt(world, x, y, z)) {
+			int meta = world.getBlockMetadata(x, y, z);
+			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+			ItemStack itemstack = this.createStackedBlock(meta);
+
+			if (itemstack != null) {
+				items.add(itemstack);
+			}
+			for (ItemStack is : items) {
+				dropBlockAsItem(world, x, y, z, is);
+			}
+			world.setBlockToAir(x, y, z);
 			return false;
 		} else {
 			return true;
@@ -129,7 +143,7 @@ public class Ash extends Block {
 	 * Returns the ID of the items to drop on destruction.
 	 */
 	public Item itemDropped(int par1, Random par2Random, int par3) {
-		return Items.snowball;
+		return Items.sugar;
 	}
 
 	/**
@@ -151,5 +165,20 @@ public class Ash extends Block {
 	@Override
 	public int quantityDropped(int meta, int fortune, Random random) {
 		return (meta & 7) + 1;
+	}
+
+	@Override
+	public void getSubBlocks(int id, CreativeTabs tab, List list) {
+		list.add(new ItemStack(id, 1, 7));
+	}
+
+	@Override
+	public boolean isBlockReplaceable(World world, int x, int y, int z) {
+		return false;
+	}
+
+	@Override
+	public int getDamageValue(World par1World, int par2, int par3, int par4) {
+		return 7;
 	}
 }

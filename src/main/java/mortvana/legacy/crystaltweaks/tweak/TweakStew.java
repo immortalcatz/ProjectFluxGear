@@ -1,7 +1,8 @@
-package mortvana.tweaks.tweak;
+package mortvana.legacy.crystaltweaks.tweak;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSoup;
 import net.minecraft.item.ItemStack;
@@ -21,10 +22,10 @@ public class TweakStew extends ItemSoup {
 		if (!player.capabilities.isCreativeMode) {
 			--stack.stackSize;
 			if (stack.stackSize <= 0) {
-				if (!player.inventory.hasItem(Item.bowlEmpty.itemID))
-					return new ItemStack(Item.bowlEmpty);
+				if (!player.inventory.hasItem(Items.bowl))
+					return new ItemStack(Items.bowl);
 			}
-			if (!player.inventory.addItemStackToInventory(new ItemStack(Item.bowlEmpty))) {
+			if (!player.inventory.addItemStackToInventory(new ItemStack(Items.bowl))) {
 				if (!player.worldObj.isRemote) {
 					EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, stack);
 					entityitem.delayBeforeCanPickup = 10;

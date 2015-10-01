@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.morttech.inventory;
+package mortvana.legacy.refactored.morttech.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityEnchantmentTable;
 
-import mortvana.legacy.crystaltweaks.CrystalClimate;
+import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
 import mortvana.melteddashboard.util.helpers.ChatHelper;
 import mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper;
 

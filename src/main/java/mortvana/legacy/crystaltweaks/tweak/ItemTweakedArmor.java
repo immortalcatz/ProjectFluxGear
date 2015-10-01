@@ -7,8 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
 
-public class TweakArmor extends ItemArmor implements ISpecialArmor {
-	public TweakArmor(ArmorMaterial mat, int renderIndex, int armorType) {
+public class ItemTweakedArmor extends ItemArmor implements ISpecialArmor {
+	public ItemTweakedArmor(ArmorMaterial mat, int renderIndex, int armorType) {
 		super(mat, renderIndex, armorType);
 	}
 
@@ -44,7 +44,7 @@ public class TweakArmor extends ItemArmor implements ISpecialArmor {
 	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
 		if (slot != 1) {
 			ItemStack stack = player.getCurrentArmor(1);
-			if (stack != null && stack.getItem() instanceof TweakArmor)
+			if (stack != null && stack.getItem() instanceof ItemTweakedArmor)
 				return 0;
 			return disconnectedArmorDisplay(player, armor, slot);
 		}
@@ -69,7 +69,7 @@ public class TweakArmor extends ItemArmor implements ISpecialArmor {
 		boolean anyAlive = false;
 		for (int i = 0; i < 4; i++) {
 			ItemStack stack = armors[i];
-			if (stack != null && stack.getItem() instanceof TweakArmor) {
+			if (stack != null && stack.getItem() instanceof ItemTweakedArmor) {
 				types++;
 				max += stack.getMaxDamage();
 				damage += stack.getItemDamage();

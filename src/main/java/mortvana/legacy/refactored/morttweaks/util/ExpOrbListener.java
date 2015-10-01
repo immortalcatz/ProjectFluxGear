@@ -1,4 +1,4 @@
-package mortvana.legacy.crystaltweaks.util;
+package mortvana.legacy.refactored.morttweaks.util;
 
 import net.minecraft.entity.item.EntityXPOrb;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

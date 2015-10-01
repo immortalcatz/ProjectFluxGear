@@ -1,23 +1,24 @@
-package mortvana.tweaks.tweak;
+package mortvana.legacy.crystaltweaks.tweak;
 
+import mortvana.legacy.errored.morttweaks.common.MortTweaks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.FoodStats;
 
-public class FoodStatsTweak extends FoodStats {
+public class TweakedFoodStats extends FoodStats {
 	EntityPlayer player;
-	int maxFoodLevel = DiyoTweaks.maxFoodLevel;
-	int healLevel = DiyoTweaks.regenerationThreshold;
+	int maxFoodLevel = MortTweaks.maxFoodLevel;
+	int healLevel = MortTweaks.regenerationThreshold;
 
-	public FoodStatsTweak(EntityPlayer player) {
+	public TweakedFoodStats(EntityPlayer player) {
 		this.player = player;
 		this.foodLevel = maxFoodLevel;
 	}
 
 	@Override
 	public void addStats(int food, float saturation) {
-		if (DiyoTweaks.disableHunger)
-			player.heal(Math.min(food, DiyoTweaks.maxHungerHeal));
+		if (MortTweaks.disableHunger)
+			player.heal(Math.min(food, MortTweaks.maxHungerHeal));
 		else {
 			this.foodLevel = Math.min(food + this.foodLevel, maxFoodLevel);
 			this.foodSaturationLevel = Math.min(this.foodSaturationLevel + (float) food * saturation * 2.0F, (float) this.foodLevel);
@@ -27,7 +28,7 @@ public class FoodStatsTweak extends FoodStats {
 	//Override for custom effects
 	@Override
 	public void onUpdate(EntityPlayer ePlayer) {
-		if (DiyoTweaks.disableHunger) {
+		if (MortTweaks.disableHunger) {
 			foodLevel = 14;
 			foodSaturationLevel = 5.0F;
 			foodExhaustionLevel = 0F;
@@ -47,15 +48,15 @@ public class FoodStatsTweak extends FoodStats {
 					}
 			}
 
-			if ((DiyoTweaks.alwaysHungerRegenerate || this.foodLevel >= healLevel) && ePlayer.shouldHeal() && ePlayer.worldObj.getGameRules().getGameRuleBooleanValue("naturalRegeneration")) {
+			if ((MortTweaks.alwaysHungerRegenerate || this.foodLevel >= healLevel) && ePlayer.shouldHeal() && ePlayer.worldObj.getGameRules().getGameRuleBooleanValue("naturalRegeneration")) {
 				++this.foodTimer;
 				int timer = 80;
-				if (DiyoTweaks.alwaysHungerRegenerate)
+				if (MortTweaks.alwaysHungerRegenerate)
 					timer = 80 + (maxFoodLevel - foodLevel) * 10;
 
 				if (this.foodTimer >= timer) {
 					ePlayer.heal(1.0F);
-					this.addExhaustion(DiyoTweaks.foodExhaustion);
+					this.addExhaustion(MortTweaks.foodExhaustion);
 					this.foodTimer = 0;
 				}
 			} else
@@ -77,7 +78,7 @@ public class FoodStatsTweak extends FoodStats {
 
 	@Override
 	public void addExhaustion(float par1) {
-		if (!DiyoTweaks.disableHunger) {
+		if (!MortTweaks.disableHunger) {
 			if (player.isSprinting())
 				par1 /= 3;
 			super.addExhaustion(par1);
@@ -86,7 +87,7 @@ public class FoodStatsTweak extends FoodStats {
 
 	@Override
 	public boolean needFood() {
-		if (DiyoTweaks.disableHunger)
+		if (MortTweaks.disableHunger)
 			return (player.getHealth() < player.getMaxHealth());
 		else
 			return this.foodLevel < maxFoodLevel;

@@ -13,7 +13,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
-import mortvana.legacy.crystaltweaks.CrystalClimate;
+import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
 import mortvana.legacy.refactored.crystalclimate.common.CrystalProxy;
 import mortvana.legacy.refactored.crystalclimate.client.particle.*;
 import org.lwjgl.opengl.GL11;

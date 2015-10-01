@@ -10,7 +10,6 @@ import forestry.api.core.EnumTemperature;
 import forestry.api.core.IIconProvider;
 import forestry.api.genetics.*;
 import mortvana.legacy.errored.core.common.config.BeeConfig;
-import mortvana.legacy.util.LocalizationManager;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;

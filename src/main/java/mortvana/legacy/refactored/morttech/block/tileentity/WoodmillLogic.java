@@ -22,7 +22,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import mortvana.legacy.errored.morttech.inventory.ContainerWoodmill;
+import mortvana.legacy.refactored.morttech.inventory.ContainerWoodmill;
 import mortvana.legacy.errored.morttech.recipe.WoodmillRecipes;
 
 public class WoodmillLogic extends InventoryLogic implements IActiveLogic, IFacingLogic {

@@ -1,4 +1,4 @@
-package mortvana.legacy.client.particle;
+package mortvana.legacy.errored.thaumicrevelations.client.particle;
 
 import net.minecraft.client.particle.EntityBreakingFX;
 import net.minecraft.client.particle.EntityFX;

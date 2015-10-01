@@ -24,7 +24,7 @@ import mortvana.legacy.block.tileentity.TileEnergyStorageCore;
 import mortvana.legacy.block.tileentity.TileInvisibleMultiblock;
 import mortvana.legacy.errored.core.common.FluxGearContent;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
-import mortvana.legacy.util.Utils;
+import mortvana.legacy.refactored.fluxgearaddons.util.Utils;
 
 public class InvisibleMultiblock extends BlockFluxGear {
 

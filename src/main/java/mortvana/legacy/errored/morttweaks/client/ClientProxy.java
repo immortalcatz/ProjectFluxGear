@@ -15,7 +15,7 @@ import net.minecraftforge.common.MinecraftForge;
 import mortvana.legacy.errored.morttweaks.common.CommonProxy;
 import mortvana.legacy.errored.morttweaks.common.MortTweaks;
 import mortvana.legacy.refactored.morttweaks.gui.GuiIngameForgeFix;
-import mortvana.legacy.crystaltweaks.util.TweakTicker;
+import mortvana.legacy.errored.morttweaks.util.TweakTicker;
 
 public class ClientProxy extends CommonProxy {
 	Minecraft mc = Minecraft.getMinecraft();

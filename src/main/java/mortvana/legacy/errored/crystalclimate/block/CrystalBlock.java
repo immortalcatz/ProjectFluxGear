@@ -1,4 +1,4 @@
-package mortvana.legacy.crystaltweaks.block;
+package mortvana.legacy.errored.crystalclimate.block;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import mortvana.legacy.crystaltweaks.CrystalClimate;
+import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
 import mortvana.legacy.crystaltweaks.CrystalContent;
 import mortvana.legacy.errored.crystalclimate.block.tileentity.CrystalLogic;
 import mortvana.legacy.errored.crystalclimate.block.tileentity.RedstoneAggregator;

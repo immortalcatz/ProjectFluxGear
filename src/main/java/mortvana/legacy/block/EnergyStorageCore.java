@@ -18,7 +18,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import mortvana.legacy.block.tileentity.TileEnergyStorageCore;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
-import mortvana.legacy.util.Utils;
+import mortvana.legacy.refactored.fluxgearaddons.util.Utils;
 
 public class EnergyStorageCore extends BlockFluxGear {
 	public EnergyStorageCore() {

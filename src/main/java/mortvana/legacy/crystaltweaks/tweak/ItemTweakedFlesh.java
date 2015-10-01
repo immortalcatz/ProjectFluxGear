@@ -7,9 +7,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class TweakFlesh extends ItemFood {
+public class ItemTweakedFlesh extends ItemFood {
 
-	public TweakFlesh(int par2, float par3, boolean par4) {
+	public ItemTweakedFlesh(int par2, float par3, boolean par4) {
 		super(par2, par3, par4);
 	}
 

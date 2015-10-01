@@ -7,7 +7,7 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.BlockFluidFinite;
 import net.minecraftforge.fluids.Fluid;
 
-import mortvana.legacy.crystaltweaks.CrystalClimate;
+import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
 
 public class FiniteWater extends BlockFluidFinite {
 	public FiniteWater(Fluid fluid, Material material) {

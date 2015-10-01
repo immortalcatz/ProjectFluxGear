@@ -1,4 +1,4 @@
-package mortvana.legacy.util;
+package mortvana.legacy.refactored.fluxgearaddons.util;
 
 public class Utils {
 	public Utils() {

@@ -1,17 +1,18 @@
-package mortvana.tweaks.tweak.block;
+package mortvana.legacy.errored.morttweaks.block;
 
 import java.util.Random;
 
+import mortvana.legacy.errored.morttweaks.common.MortTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockReed;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TweakSugarCane extends BlockReed {
-	public TweakSugarCane(int id) {
-		super(id);
+public class BlockTweakedSugarCane extends BlockReed {
+	public BlockTweakedSugarCane(int id) {
+		super();
 		disableStats();
 	}
 
@@ -24,7 +25,7 @@ public class TweakSugarCane extends BlockReed {
 				;
 			}
 
-			if (l < DiyoTweaks.sugarCaneHeight) {
+			if (l < MortTweaks.sugarCaneHeight) {
 				int i1 = world.getBlockMetadata(x, y, z);
 
 				if (i1 == 15) {
@@ -38,7 +39,7 @@ public class TweakSugarCane extends BlockReed {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		super.registerIcons(iconRegister);
 		Block.reed.registerIcons(iconRegister);
 	}

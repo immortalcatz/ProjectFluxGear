@@ -6,7 +6,7 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleEffect;
 import forestry.api.genetics.IAlleleRegistry;
-import mortvana.legacy.util.LocalizationManager;
+import mortvana.legacy.errored.apiology.util.LocalizationManager;
 import net.minecraft.potion.Potion;
 
 public class Allele implements IAllele {

@@ -4,8 +4,8 @@ import net.minecraft.potion.Potion;
 
 import mortvana.legacy.errored.morttweaks.common.MortTweaks;
 
-public class TweakPoisonStatus extends Potion {
-	public TweakPoisonStatus(int id, boolean badEffect, int color) {
+public class TweakedPoisonStatus extends Potion {
+	public TweakedPoisonStatus(int id, boolean badEffect, int color) {
 		super(id, badEffect, color);
 		this.setEffectiveness(0.25D);
 	}

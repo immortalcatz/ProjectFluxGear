@@ -1,4 +1,4 @@
-package mortvana.legacy.crystaltweaks.item;
+package mortvana.legacy.errored.crystalclimate.block.itemblock;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import mortvana.legacy.crystaltweaks.block.CrystalBlock;
+import mortvana.legacy.errored.crystalclimate.block.CrystalBlock;
 import mortvana.melteddashboard.util.helpers.MiscHelper;
 
 public class CrystalBlockItem extends ItemBlock {

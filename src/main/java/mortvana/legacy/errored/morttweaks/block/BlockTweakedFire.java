@@ -1,23 +1,23 @@
-package mortvana.tweaks.tweak.block;
+package mortvana.legacy.errored.morttweaks.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFire;
 import net.minecraft.block.BlockPortal;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
-import static net.minecraftforge.common.ForgeDirection.*;
+import static net.minecraftforge.common.util.ForgeDirection.*;
 
-public class TweakFire extends BlockFire {
+public class BlockTweakedFire extends BlockFire {
 
-	public TweakFire(int par1) {
-		super(par1);
+	public BlockTweakedFire() {
 		disableStats();
 	}
 
-	public void registerIcons(IconRegister par1IconRegister) {
+	public void registerIcons(IIconRegister par1IconRegister) {
 		super.registerIcons(par1IconRegister);
-		Block.fire.registerIcons(par1IconRegister);
+		Blocks.fire.registerIcons(par1IconRegister);
 	}
 
 	@Override
