@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
-import mortvana.legacy.errored.core.common.config.MTConfig;
+import mortvana.legacy.clean.core.common.FluxGearConfig;
 import mortvana.legacy.errored.morttech.block.tileentity.TileWoodmill;
 
 public class BlockWoodmill extends BlockContainer {
@@ -175,17 +175,17 @@ public class BlockWoodmill extends BlockContainer {
      * different metadata value, but before the new metadata value is set. Args: World, x, y, z, old block ID, old
      * metadata
      */
-    public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
+    public void breakBlock(World world, int x, int y, int z, int par5, int par6)
     {
         if (!keepFurnaceInventory)
         {
-            TileWoodmill tileentityfurnace = (TileWoodmill)par1World.getBlockTileEntity(par2, par3, par4);
+            TileWoodmill tile = (TileWoodmill) world.getTileEntity(x, y, z);
 
-            if (tileentityfurnace != null)
+            if (tile != null)
             {
-                for (int j1 = 0; j1 < tileentityfurnace.getSizeInventory(); ++j1)
+                for (int j1 = 0; j1 < tile.getSizeInventory(); ++j1)
                 {
-                    ItemStack itemstack = tileentityfurnace.getStackInSlot(j1);
+                    ItemStack itemstack = tile.getStackInSlot(j1);
 
                     if (itemstack != null)
                     {
@@ -203,7 +203,7 @@ public class BlockWoodmill extends BlockContainer {
                             }
 
                             itemstack.stackSize -= k1;
-                            EntityItem entityitem = new EntityItem(par1World, (double)((float)par2 + f), (double)((float)par3 + f1), (double)((float)par4 + f2), new ItemStack(itemstack.itemID, k1, itemstack.getItemDamage()));
+                            EntityItem entityitem = new EntityItem(world, (double)((float)x + f), (double)((float)y + f1), (double)((float)z + f2), new ItemStack(itemstack.itemID, k1, itemstack.getItemDamage()));
 
                             if (itemstack.hasTagCompound())
                             {
@@ -214,16 +214,16 @@ public class BlockWoodmill extends BlockContainer {
                             entityitem.motionX = (double)((float)this.furnaceRand.nextGaussian() * f3);
                             entityitem.motionY = (double)((float)this.furnaceRand.nextGaussian() * f3 + 0.2F);
                             entityitem.motionZ = (double)((float)this.furnaceRand.nextGaussian() * f3);
-                            par1World.spawnEntityInWorld(entityitem);
+                            world.spawnEntityInWorld(entityitem);
                         }
                     }
                 }
 
-                par1World.func_96440_m(par2, par3, par4, par5);
+                world.func_96440_m(x, y, z, par5);
             }
         }
 
-        super.breakBlock(par1World, par2, par3, par4, par5, par6);
+        super.breakBlock(world, x, y, z, par5, par6);
     }
 
     /**
@@ -244,13 +244,11 @@ public class BlockWoodmill extends BlockContainer {
         return Container.calcRedstoneFromInventory((IInventory) par1World.getTileEntity(par2, par3, par4));
     }
 
-    @SideOnly(Side.CLIENT)
-
     /**
      * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
      */
-    public int idPicked(World par1World, int par2, int par3, int par4)
-    {
-        return MTConfig.tileMachineTier0ID;
+    @SideOnly(Side.CLIENT)
+    public int idPicked(World par1World, int par2, int par3, int par4) {
+        return FluxGearConfig.tileMachineTier0ID;
     }
 }

@@ -1,21 +1,21 @@
 package mortvana.legacy.errored.core.client;
 
 import com.google.common.collect.Lists;
-import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.clean.core.common.FluxGearContent;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.projectfluxgear.thaumic.client.render.RenderPurity;
-import mortvana.legacy.clean.morttech.block.tileentity.TileCrank;
-import mortvana.legacy.clean.morttech.block.tileentity.WoodmillLogic;
+import mortvana.legacy.clean.morttech.block.tile.TileCrank;
+import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
 import mortvana.legacy.errored.thaumicrevelations.client.particle.TRParticle;
 import mortvana.legacy.errored.projectfluxgear.client.render.DualPassCubeRenderer;
-import mortvana.legacy.errored.morttech.client.render.RenderCrank;
+import mortvana.legacy.clean.morttech.client.render.RenderCrank;
 import mortvana.legacy.clean.thaumicrevelations.client.render.RenderFleshGolem;
 import mortvana.legacy.clean.core.common.CommonProxy;
 import mortvana.legacy.errored.thaumicrevelations.entity.EntityFleshProjectile;
 import mortvana.legacy.errored.thaumicrevelations.entity.FleshGolem;
-import mortvana.legacy.clean.morttech.client.gui.GuiWoodmill;
+import mortvana.legacy.dependent.seconddegree.morttech.client.gui.GuiWoodmill;
 import mortvana.legacy.errored.morttech.util.MTControls;
-import mortvana.legacy.clean.morttech.util.handlers.ClientTickHandler;
+import mortvana.legacy.dependent.firstdegree.morttech.util.handlers.ClientTickHandler;
 import mortvana.legacy.clean.morttech.util.handlers.MTKeyHandler;
 
 import cpw.mods.fml.client.registry.ClientRegistry;

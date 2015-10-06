@@ -2,7 +2,7 @@ package mortvana.legacy.errored.apiology.util;
 
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.genetics.IAllele;
-import mortvana.legacy.clean.apiology.util.Allele;
+import mortvana.legacy.dependent.firstdegree.apiology.util.Allele;
 
 public class BeeGenomeManager {
 

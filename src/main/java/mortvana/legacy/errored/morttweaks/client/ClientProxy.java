@@ -14,7 +14,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import mortvana.legacy.errored.morttweaks.common.CommonProxy;
 import mortvana.legacy.errored.morttweaks.common.MortTweaks;
-import mortvana.legacy.clean.morttweaks.gui.GuiIngameForgeFix;
+import mortvana.legacy.dependent.firstdegree.morttweaks.gui.GuiIngameForgeFix;
 import mortvana.legacy.errored.morttweaks.util.TweakTicker;
 
 public class ClientProxy extends CommonProxy {

@@ -15,17 +15,13 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
-
-import mortvana.tweaks.common.MortTweaks;
 
 public class CommonProxy {
 
@@ -35,7 +31,7 @@ public class CommonProxy {
 
 	//Events
 
-    /*@ForgeSubscribe
+    /*@\SubscribeEvent
     public void creepSplosion (LivingDeathEvent event)
     {
         if (!event.entityLiving.worldObj.isRemote)// && event.entityLiving instanceof EntityCreeper)

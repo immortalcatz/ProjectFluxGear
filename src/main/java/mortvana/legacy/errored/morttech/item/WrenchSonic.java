@@ -35,7 +35,7 @@ public class WrenchSonic extends Item {
         if (block == null) {
             return false;
         }
-        int metaData = world.getBlockMetadata(x, y, z);
+        int metadata = world.getBlockMetadata(x, y, z);
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if ((tileEntity instanceof IWrenchable)) {
             IWrenchable wrenchable = (IWrenchable)tileEntity;
@@ -43,7 +43,7 @@ public class WrenchSonic extends Item {
                 if (ProjectFluxGear.proxy.isSimulating()) {
                     boolean dropOriginalBlock = false;
 	                dropOriginalBlock = (wrenchable.getWrenchDropRate() < 1.0F) && ((overrideWrenchSuccessRate(itemstack)) || (world.rand.nextFloat() <= wrenchable.getWrenchDropRate()));
-                    List<ItemStack> drops = block.getBlockDropped(world, x, y, z, metaData, 0);
+                    List<ItemStack> drops = block.getBlockDropped(world, x, y, z, metadata, 0);
                     if (dropOriginalBlock) {
                         ItemStack wrenchDrop = wrenchable.getWrenchDrop(entityPlayer);
                         if (wrenchDrop != null) {

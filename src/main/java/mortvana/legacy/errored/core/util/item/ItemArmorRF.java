@@ -2,9 +2,11 @@ package mortvana.legacy.errored.core.util.item;
 
 import java.util.List;
 
+import mortvana.melteddashboard.util.helpers.EnergyHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
@@ -32,7 +34,7 @@ public class ItemArmorRF extends ItemArmorAdv implements ISpecialArmor, IEnergyC
 
     public String[] textures = new String[2];
 
-    public ItemArmorRF(ArmorMaterial material, int type) {
+    public ItemArmorRF(ItemArmor.ArmorMaterial material, int type) {
 
         super(material, type);
     }

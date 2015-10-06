@@ -1,7 +1,5 @@
 package mortvana.legacy.errored.morttech.util;
 
-//TODO
-
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -16,6 +14,7 @@ import tconstruct.TConstruct;
 import tconstruct.client.tabs.TabRegistry;
 import tconstruct.common.TProxyCommon;
 
+//TODO
 public class MTControls extends MTKeyHandler {
     public static final String keybindCategory = "key.morttech.category";
     public static KeyBinding randomKey = new KeyBinding("key.lemmings", 24, keybindCategory);
@@ -31,13 +30,11 @@ public class MTControls extends MTKeyHandler {
 
     int currentTab = 1;
 
-    public MTControls()
-    {
+    public MTControls() {
         super(new KeyBinding[] { randomKey }, new boolean[] { false, false }, getVanillaKeyBindings(), new boolean[] { false, false });
     }
 
-    private static KeyBinding[] getVanillaKeyBindings ()
-    {
+    private static KeyBinding[] getVanillaKeyBindings () {
         mc = Minecraft.getMinecraft();
         jumpKey = mc.gameSettings.keyBindJump;
         invKey = mc.gameSettings.keyBindInventory;

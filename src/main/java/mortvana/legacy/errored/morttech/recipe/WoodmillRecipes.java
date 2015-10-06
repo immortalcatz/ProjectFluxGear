@@ -10,8 +10,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.*;
 
-public class WoodmillRecipes
-{
+public class WoodmillRecipes {
     private static final WoodmillRecipes cuttingBase = new WoodmillRecipes();
 
     /** The list of smelting results. */
@@ -23,13 +22,11 @@ public class WoodmillRecipes
     /**
      * Used to call methods addSmelting and getSmeltingResult.
      */
-    public static final WoodmillRecipes cutting()
-    {
+    public static final WoodmillRecipes cutting() {
         return cuttingBase;
     }
 
-    public WoodmillRecipes()
-    {
+    public WoodmillRecipes() {
         addAllLogs();
         this.addCutting(new ItemStack(Blocks.log, 1, 0), new ItemStack(Blocks.planks, 4, 0));
         this.addCutting(new ItemStack(Blocks.log, 1, 1), new ItemStack(Blocks.planks, 4, 1));
@@ -95,7 +92,7 @@ public class WoodmillRecipes
     {
         cuttingList.put(Arrays.asList(item, item.getItemDamage()),itemstack);
 	    this.smeltingList.put(Integer.valueOf(par1), par2ItemStack);
-	    this.experienceList.put(Integer.valueOf(par2ItemStack.itemID), Float.valueOf(par3));
+	    this.experienceList.put(Integer.valueOf(par2ItemStack.itemID), par3);
     }
 
     /**
@@ -123,13 +120,13 @@ public class WoodmillRecipes
     }
 
 	/**
- * Returns the smelting result of an item.
- * Deprecated in favor of a metadata sensitive version
- */
-@Deprecated
-public ItemStack getSmeltingResult(int par1)
+     * Returns the smelting result of an item.
+     * Deprecated in favor of a metadata sensitive version
+     */
+    @Deprecated
+    public ItemStack getSmeltingResult(int par1)
 {
-	return (ItemStack)this.smeltingList.get(Integer.valueOf(par1));
+	return (ItemStack)this.smeltingList.get(par1);
 }
 
 	public Map getSmeltingList()
@@ -140,14 +137,13 @@ public ItemStack getSmeltingResult(int par1)
 	@Deprecated //In favor of ItemStack sensitive version
 	public float getExperience(int par1)
 	{
-		return this.experienceList.containsKey(Integer.valueOf(par1)) ? ((Float)this.experienceList.get(Integer.valueOf(par1))).floatValue() : 0.0F;
+		return this.experienceList.containsKey(par1) ? ((Float)this.experienceList.get(Integer.valueOf(par1))).floatValue() : 0.0F;
 	}
 
 	/**
 	 * A metadata sensitive version of adding a furnace recipe.
 	 */
-	public void addSmelting(int itemID, int metadata, ItemStack itemstack, float experience)
-	{
+	public void addSmelting(int itemID, int metadata, ItemStack itemstack, float experience) {
 		metaSmeltingList.put(Arrays.asList(itemID, metadata), itemstack);
 		metaExperience.put(Arrays.asList(itemstack.itemID, itemstack.getItemDamage()), experience);
 	}
@@ -157,15 +153,12 @@ public ItemStack getSmeltingResult(int par1)
 	 * @param item The Source ItemStack
 	 * @return The result ItemStack
 	 */
-	public ItemStack getSmeltingResult(ItemStack item)
-	{
-		if (item == null)
-		{
+	public ItemStack getSmeltingResult(ItemStack item) {
+		if (item == null) {
 			return null;
 		}
 		ItemStack ret = (ItemStack)metaSmeltingList.get(Arrays.asList(item.itemID, item.getItemDamage()));
-		if (ret != null)
-		{
+		if (ret != null) {
 			return ret;
 		}
 		return (ItemStack)smeltingList.get(Integer.valueOf(item.itemID));
@@ -174,20 +167,16 @@ public ItemStack getSmeltingResult(int par1)
 	/**
 	 * Grabs the amount of base experience for this item to give when pulled from the furnace slot.
 	 */
-	public float getExperience(ItemStack item)
-	{
-		if (item == null || item.getItem() == null)
-		{
+	public float getExperience(ItemStack item) {
+		if (item == null || item.getItem() == null) {
 			return 0;
 		}
 		float ret = item.getItem().getSmeltingExperience(item);
-		if (ret < 0 && metaExperience.containsKey(Arrays.asList(item.itemID, item.getItemDamage())))
-		{
+		if (ret < 0 && metaExperience.containsKey(Arrays.asList(item.itemID, item.getItemDamage()))) {
 			ret = metaExperience.get(Arrays.asList(item.itemID, item.getItemDamage()));
 		}
-		if (ret < 0 && experienceList.containsKey(item.itemID))
-		{
-			ret = ((Float)experienceList.get(item.itemID)).floatValue();
+		if (ret < 0 && experienceList.containsKey(item.itemID)) {
+			ret = (Float) experienceList.get(item.itemID);
 		}
 		return (ret < 0 ? 0 : ret);
 	}

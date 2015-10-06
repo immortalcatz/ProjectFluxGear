@@ -2,7 +2,7 @@ package mortvana.legacy.errored.fluxgearaddons.block;
 
 import java.util.Random;
 
-import mortvana.legacy.errored.core.block.BlockFluxGear;
+import mortvana.legacy.clean.core.util.block.BlockFluxGear;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,8 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.legacy.errored.fluxgearaddons.block.tileentity.TileEnergyStorageCore;
 import mortvana.legacy.errored.fluxgearaddons.block.tileentity.TileParticleGenerator;
-import mortvana.legacy.clean.fluxgearaddons.client.particle.ParticleCustom;
-import mortvana.legacy.clean.fluxgearaddons.client.particle.ParticleHandler;
+import mortvana.legacy.dependent.firstdegree.fluxgearaddons.client.particle.*;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 
 public class BlockParticleGenerator extends BlockFluxGear {

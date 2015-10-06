@@ -1,7 +1,7 @@
 package mortvana.legacy.errored.weirdscience.block.fluid;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.clean.core.common.FluxGearContent;
 import mortvana.legacy.clean.wierdscience.util.chemistry.IBioactive;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;

@@ -2,6 +2,8 @@ package mortvana.legacy.errored.core.util.item;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import mortvana.melteddashboard.util.helpers.EnergyHelper;
+import mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;

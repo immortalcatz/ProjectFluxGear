@@ -18,8 +18,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.IEnergyHandler;
 
 import mortvana.legacy.errored.fluxgearaddons.client.particle.EnergyTransferParticle;
-import mortvana.legacy.clean.fluxgearaddons.client.particle.ParticleHandler;
-import mortvana.legacy.clean.fluxgearaddons.util.block.tile.TileObjectSync;
+import mortvana.legacy.dependent.firstdegree.fluxgearaddons.client.particle.ParticleHandler;
+import mortvana.legacy.dependent.firstdegree.fluxgearaddons.util.block.tile.TileObjectSync;
 import mortvana.legacy.clean.fluxgearaddons.util.helpers.MultiblockHelper.TileLocation;
 
 public class TileEnergyPylon extends TileObjectSync implements IEnergyHandler {

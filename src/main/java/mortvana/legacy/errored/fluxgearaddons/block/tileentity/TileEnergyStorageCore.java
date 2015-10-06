@@ -8,7 +8,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
 import mortvana.legacy.clean.fluxgearaddons.util.helpers.MultiblockHelper.TileLocation;
-import mortvana.legacy.clean.fluxgearaddons.util.block.tile.TileObjectSync;
+import mortvana.legacy.dependent.firstdegree.fluxgearaddons.util.block.tile.TileObjectSync;
 
 public class TileEnergyStorageCore extends TileObjectSync {
 	protected TileLocation[] stabilizers = new TileLocation[4];

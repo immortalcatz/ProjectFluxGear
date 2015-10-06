@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
-import mortvana.legacy.errored.core.block.BlockFluxGear;
+import mortvana.legacy.clean.core.util.block.BlockFluxGear;
 import mortvana.legacy.errored.core.client.ClientProxy;
 import mortvana.legacy.clean.projectfluxgear.util.helpers.DrawingHelper;
 

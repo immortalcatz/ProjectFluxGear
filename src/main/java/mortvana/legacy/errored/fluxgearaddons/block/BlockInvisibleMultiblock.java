@@ -2,7 +2,7 @@ package mortvana.legacy.errored.fluxgearaddons.block;
 
 import java.util.Random;
 
-import mortvana.legacy.errored.core.block.BlockFluxGear;
+import mortvana.legacy.clean.core.util.block.BlockFluxGear;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -23,7 +23,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.legacy.errored.fluxgearaddons.block.tileentity.TileEnergyPylon;
 import mortvana.legacy.errored.fluxgearaddons.block.tileentity.TileEnergyStorageCore;
 import mortvana.legacy.errored.fluxgearaddons.block.tileentity.TileInvisibleMultiblock;
-import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.clean.core.common.FluxGearContent;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.legacy.clean.fluxgearaddons.util.Utils;
 

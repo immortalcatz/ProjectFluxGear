@@ -2,16 +2,17 @@ package mortvana.legacy.errored.core.client.gui;
 
 import java.util.HashMap;
 
-import mortvana.legacy.clean.morttech.client.gui.GuiWoodmill;
-import mortvana.legacy.clean.thaumicrevelations.client.gui.GuiWaslieHammer;
+import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
+import mortvana.legacy.dependent.seconddegree.morttech.client.gui.GuiWoodmill;
+import mortvana.legacy.dependent.firstdegree.thaumicrevelations.client.gui.GuiWaslieHammer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
-import mortvana.legacy.clean.morttech.inventory.ContainerWoodmill;
-import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.dependent.firstdegree.morttech.inventory.ContainerWoodmill;
+import mortvana.legacy.clean.core.common.FluxGearContent;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.legacy.errored.morttech.block.tileentity.TileWoodmill;
 
@@ -35,7 +36,7 @@ public class FluxGearGUIHandler implements IGuiHandler {
 
 		TileEntity tileEntity = world.getTileEntity(x, y, z);
 		if (tileEntity instanceof TileWoodmill) {
-			return new ContainerWoodmill(player.inventory, (TileWoodmill) tileEntity);
+			return new ContainerWoodmill(player.inventory, (WoodmillLogic /*TileWoodmill*/) tileEntity);
 		}
 
 		return null;
@@ -52,7 +53,7 @@ public class FluxGearGUIHandler implements IGuiHandler {
 
 		TileEntity tileEntity = world.getTileEntity(x, y, z);
 		if (tileEntity instanceof TileWoodmill) {
-			return new GuiWoodmill(player.inventory, (TileWoodmill) tileEntity);
+			return new GuiWoodmill(player.inventory, (WoodmillLogic /*TileWoodmill*/) tileEntity);
 		}
 
 		return null;

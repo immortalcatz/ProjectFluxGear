@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
+import mortvana.legacy.clean.core.common.FluxGearContent;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -29,10 +30,10 @@ import forestry.api.apiculture.IBeeRoot;
 import mortvana.legacy.clean.fluxgeartweaks.block.tileentity.TileTimeyWimey;
 import mortvana.legacy.errored.core.client.gui.FluxGearGUIHandler;
 import mortvana.legacy.errored.apiology.common.VersionInfo;
-import mortvana.legacy.clean.fluxgearaddons.network.ObjectPacket;
-import mortvana.legacy.clean.fluxgearaddons.network.ObjectPacketHandler;
+import mortvana.legacy.dependent.seconddegree.fluxgearaddons.network.ObjectPacket;
+import mortvana.legacy.dependent.seconddegree.fluxgearaddons.network.ObjectPacketHandler;
 import mortvana.legacy.clean.fluxgearaddons.network.ParticleGenPacket;
-import mortvana.legacy.clean.fluxgearaddons.network.ParticleGenPacketHandler;
+import mortvana.legacy.dependent.firstdegree.fluxgearaddons.network.ParticleGenPacketHandler;
 import mortvana.legacy.clean.core.common.CommonProxy;
 import mortvana.legacy.clean.core.common.FluxGearConfig;
 import mortvana.legacy.clean.core.common.FluxGearConfigWorld;
@@ -43,12 +44,11 @@ import mortvana.legacy.clean.core.util.handlers.DummyHandler;
 import mortvana.legacy.clean.core.util.helpers.StringHelper;
 import mortvana.legacy.errored.core.util.runtime.EnvironmentChecks;
 import mortvana.legacy.errored.projectfluxgear.world.FluxGearWorldGenerator;
-import mortvana.legacy.clean.projectfluxgear.world.GravelOreGenEventHandler;
-import mortvana.legacy.clean.projectfluxgear.world.PoorOreGenerator;
+import mortvana.legacy.dependent.firstdegree.projectfluxgear.world.GravelOreGenEventHandler;
+import mortvana.legacy.dependent.firstdegree.projectfluxgear.world.PoorOreGenerator;
 import mortvana.melteddashboard.intermod.tinkers.TinkersHelper;
 import mortvana.melteddashboard.util.helpers.LoadedHelper;
 import mortvana.projectfluxgear.core.common.FluxGearAchievements;
-import mortvana.projectfluxgear.thaumic.common.ThaumicContent;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -160,7 +160,7 @@ public class ProjectFluxGear {
 	    FluxGearCompat.preInitIMC();
 
         GameRegistry.registerWorldGenerator(new FluxGearWorldGenerator(), 1);
-	    GameRegistry.registerWorldGenerator(new ThaumicContent.ExubituraGenerator(), 1);
+	    GameRegistry.registerWorldGenerator(new FluxGearContent.ExubituraGenerator(), 1);
 
         if (FluxGearConfig.achievementsEnabled) {
 	        FluxGearAchievements.addAchievements();

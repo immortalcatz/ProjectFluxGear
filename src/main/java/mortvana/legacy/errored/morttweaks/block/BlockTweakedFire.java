@@ -21,12 +21,12 @@ public class BlockTweakedFire extends BlockFire {
 	}
 
 	@Override
-	public void onBlockAdded(World par1World, int par2, int par3, int par4) {
-		if (par1World.provider.dimensionId > 0 || par1World.getBlockId(par2, par3 - 1, par4) != Block.obsidian.blockID || !((BlockPortal) Block.blocksList[90]).tryToCreatePortal(par1World, par2, par3, par4)) {
-			if (!par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4) && !this.canNeighborBurn(par1World, par2, par3, par4)) {
-				par1World.setBlockToAir(par2, par3, par4);
+	public void onBlockAdded(World world, int x, int y, int z) {
+		if (world.provider.dimensionId > 0 || world.getBlock(x, y - 1, z) != Blocks.obsidian || !((BlockPortal) Block.blocksList[90]).tryToCreatePortal(world, x, y, z)) {
+			if (!world.doesBlockHaveSolidTopSurface(x, y - 1, z) && !this.canNeighborBurn(world, x, y, z)) {
+				world.setBlockToAir(x, y, z);
 			} else {
-				par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, this.tickRate(par1World) + par1World.rand.nextInt(10));
+				world.scheduleBlockUpdate(x, y, z, this.blockID, this.tickRate(world) + world.rand.nextInt(10));
 			}
 		}
 	}

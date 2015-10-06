@@ -170,13 +170,16 @@ public class MortTweaks {
 	public void postInit(FMLPostInitializationEvent event) {
 		proxy.postInit();
 		if (alterStackSizes) {
-			Item.doorWood.setMaxStackSize(16);
-			Item.doorIron.setMaxStackSize(16);
+			Items.wooden_door.setMaxStackSize(16);
+			Items.iron_door.setMaxStackSize(16);
 			Items.boat.setMaxStackSize(16);
-			Item.minecartEmpty.setMaxStackSize(3);
-			Item.minecartCrate.setMaxStackSize(3);
-			Item.minecartPowered.setMaxStackSize(3);
-			Item.itemsList[Block.cake.blockID].setMaxStackSize(16);
+			Items.minecart.setMaxStackSize(3);
+			Items.chest_minecart.setMaxStackSize(3);
+			Items.furnace_minecart.setMaxStackSize(3);
+			Items.hopper_minecart.setMaxStackSize(3);
+			Items.tnt_minecart.setMaxStackSize(3);
+			Items.command_block_minecart.setMaxStackSize(3);
+			Item.itemsList[Blocks.cake.blockID].setMaxStackSize(16);
 		}
 
 		if (makeGuudFire) {
@@ -200,8 +203,8 @@ public class MortTweaks {
 		}
 
 		if (addNametagRecipe) {
-			OreDictionary.registerOre("slimeball", new ItemStack(Item.slimeBall));
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.nameTag), "P~ ", "~O ", "  ~", '~', Item.silk, 'P', Item.paper, 'O', "slimeball"));
+			OreDictionary.registerOre("slimeball", new ItemStack(Items.slime_ball));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.name_tag), "P~ ", "~O ", "  ~", '~', Item.silk, 'P', Item.paper, 'O', "slimeball"));
 		}
 
 		if (endermenDontPickUpBlocks) {

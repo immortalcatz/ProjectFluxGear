@@ -27,7 +27,7 @@ public class BlockTweakedTNT extends BlockTNT {
 	@Override
 	public boolean removeBlockByPlayer(World world, EntityPlayer player, int x, int y, int z) {
 		ItemStack stack = player != null ? player.getCurrentItemOrArmor(0) : null;
-		if (player == null || !player.capabilities.isCreativeMode && (stack == null || player == null || (!(stack.getItem() instanceof ItemShears) && !EnchantmentHelper.getSilkTouchModifier(player)))) {
+		if (player == null || !player.capabilities.isCreativeMode && (stack == null || (!(stack.getItem() instanceof ItemShears) && !EnchantmentHelper.getSilkTouchModifier(player)))) {
 			this.primeTnt(world, x, y, z, world.getBlockMetadata(x, y, z), player);
 			world.setBlockToAir(x, y, z);
 			return false;

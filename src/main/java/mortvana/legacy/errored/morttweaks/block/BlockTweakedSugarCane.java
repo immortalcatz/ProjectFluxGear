@@ -6,6 +6,7 @@ import mortvana.legacy.errored.morttweaks.common.MortTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockReed;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -41,6 +42,6 @@ public class BlockTweakedSugarCane extends BlockReed {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
 		super.registerIcons(iconRegister);
-		Block.reed.registerIcons(iconRegister);
+		Blocks.reeds.registerIcons(iconRegister);
 	}
 }
