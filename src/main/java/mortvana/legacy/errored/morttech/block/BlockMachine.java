@@ -14,7 +14,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import mortvana.legacy.refactored.morttech.block.tileentity.WoodmillLogic;
+import mortvana.legacy.clean.morttech.block.tileentity.WoodmillLogic;
 import mortvana.legacy.errored.core.common.FluxGearContent;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 

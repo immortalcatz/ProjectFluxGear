@@ -19,14 +19,14 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import mortvana.legacy.refactored.crystalclimate.block.itemblock.AggregatorItem;
-import mortvana.legacy.refactored.crystalclimate.item.EssenceCrystal;
-import mortvana.legacy.refactored.crystalclimate.block.itemblock.TerraformerItem;
-import mortvana.legacy.refactored.crystalclimate.common.CrystalProxy;
-import mortvana.legacy.refactored.crystalclimate.util.TabCrystal;
+import mortvana.legacy.clean.crystalclimate.block.itemblock.AggregatorItem;
+import mortvana.legacy.clean.crystalclimate.item.EssenceCrystal;
+import mortvana.legacy.clean.crystalclimate.block.itemblock.TerraformerItem;
+import mortvana.legacy.clean.crystalclimate.common.CrystalProxy;
+import mortvana.legacy.clean.crystalclimate.util.TabCrystal;
 import mortvana.legacy.errored.crystalclimate.block.tileentity.*;
-import mortvana.legacy.refactored.crystalclimate.block.*;
-import mortvana.legacy.refactored.crystalclimate.block.tileentity.*;
+import mortvana.legacy.clean.crystalclimate.block.*;
+import mortvana.legacy.clean.crystalclimate.block.tileentity.*;
 import mortvana.legacy.errored.crystalclimate.block.*;
 
 @Mod(modid = "CrystalClimate", name = "CrystalClimate", version = "Byakuren")

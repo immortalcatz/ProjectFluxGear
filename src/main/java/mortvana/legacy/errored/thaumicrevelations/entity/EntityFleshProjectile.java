@@ -7,7 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import mortvana.legacy.client.ClientProxy;
+import mortvana.legacy.errored.core.client.ClientProxy;
 import tconstruct.library.tools.AbilityHelper;
 
 public class EntityFleshProjectile extends EntityThrowableProjectile {

@@ -25,13 +25,13 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-import mortvana.legacy.crystaltweaks.tweak.ItemTweakedArmor;
-import mortvana.legacy.crystaltweaks.tweak.ItemTweakedFlesh;
-import mortvana.legacy.crystaltweaks.tweak.TweakedPoisonStatus;
+import mortvana.legacy.clean.morttweaks.item.ItemTweakedArmor;
+import mortvana.legacy.clean.morttweaks.item.ItemTweakedFlesh;
+import mortvana.legacy.clean.morttweaks.potion.TweakedPoisonStatus;
 import mortvana.legacy.errored.morttweaks.block.BlockTweakedTNT;
 import mortvana.legacy.errored.morttweaks.block.BlockTweakedSugarCane;
-import mortvana.legacy.crystaltweaks.tweak.entity.TweakZombie;
-import mortvana.legacy.refactored.morttweaks.util.ExpOrbListener;
+import mortvana.legacy.errored.morttweaks.entity.EntityTweakedZombie;
+import mortvana.legacy.clean.morttweaks.util.ExpOrbListener;
 import mortvana.legacy.errored.morttweaks.util.TweakPlayerTracker;
 
 @Mod(modid = "MortTweaks", name = "MortTweaks", version = "1.0.0.0", dependencies = "after:MineFactoryReloaded")
@@ -304,7 +304,7 @@ public class MortTweaks {
 		}
 
 		if (!Loader.isModLoaded("ZAMod") && !spawnZombieReinforcements || !keepBabyZombies || disableZombieFire) {
-			EntityList.addMapping(TweakZombie.class, "Zombie", 54, 44975, 7969893);
+			EntityList.addMapping(EntityTweakedZombie.class, "Zombie", 54, 44975, 7969893);
 		}
 
 		if (sugarCaneHeight != 3) {

@@ -14,7 +14,7 @@ import Reika.RotaryCraft.API.Screwdriverable;
 import Reika.RotaryCraft.API.ShaftMachine;
 import ic2.api.tile.IWrenchable;
 import main.flowstoneenergy.core.interfaces.IFlowWrenchable;
-//import mortvana.legacy.util.helpers.BlockHelper;
+//import mortvana.legacy.clean.core.util.helpers.BlockHelper;
 import mortvana.melteddashboard.util.helpers.ServerHelper;
 import pneumaticCraft.api.block.IPneumaticWrenchable;
 

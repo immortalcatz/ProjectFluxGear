@@ -11,7 +11,7 @@ import net.minecraft.potion.Potion;
 
 import mantle.common.network.AbstractPacket;
 
-import mortvana.legacy.util.handlers.MTKeyHandler;
+import mortvana.legacy.clean.morttech.util.handlers.MTKeyHandler;
 import tconstruct.TConstruct;
 import tconstruct.client.tabs.TabRegistry;
 import tconstruct.common.TProxyCommon;

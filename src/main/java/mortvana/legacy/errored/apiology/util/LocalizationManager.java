@@ -1,7 +1,7 @@
 package mortvana.legacy.errored.apiology.util;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import mortvana.legacy.refactored.core.common.CommonProxy;
+import mortvana.legacy.clean.core.common.CommonProxy;
 
 public class LocalizationManager {
     private enum Locale {

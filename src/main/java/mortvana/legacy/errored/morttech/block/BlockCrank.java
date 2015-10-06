@@ -15,7 +15,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import mortvana.legacy.errored.morttech.block.tileentity.TileWoodmill;
-import mortvana.legacy.refactored.morttech.block.tileentity.WoodmillLogic;
+import mortvana.legacy.clean.morttech.block.tileentity.WoodmillLogic;
 
 public class BlockCrank extends Block {
 

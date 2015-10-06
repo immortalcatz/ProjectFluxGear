@@ -22,7 +22,7 @@ import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
 import mortvana.legacy.crystaltweaks.CrystalContent;
 import mortvana.legacy.errored.crystalclimate.block.tileentity.CrystalLogic;
 import mortvana.legacy.errored.crystalclimate.block.tileentity.RedstoneAggregator;
-import mortvana.legacy.refactored.crystalclimate.client.CrystalBlockRender;
+import mortvana.legacy.clean.crystalclimate.client.CrystalBlockRender;
 import mortvana.melteddashboard.util.helpers.ChatHelper;
 
 public class CrystalBlock extends BlockContainer {
