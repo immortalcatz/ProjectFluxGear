@@ -1,6 +1,40 @@
 package mortvana.legacy.clean;
 
 public class Catctuse {
+
+	//Legacy Plugins and Modules
+	public enum Plugins {
+		Mystcraft,
+		Buildcraft,
+		AE2,
+		WAILA,
+		NEI,
+		Mek,
+		MFR,
+		IC3,
+		Tinkers,
+		TC4,
+		M4Synth,
+		Bees
+	}
+
+	public enum Modules {
+		WeirdScience,
+		TinkersDynamos,
+		Tools,
+		Tinkering,
+		Machines,
+		Dynamos,
+		Core,
+		Coilguns,
+		Chemistry,
+		Armor,
+		Alloys,
+		Stars,
+		Solar,
+		Atomic
+	}
+
 	public void dummyContent() {/*
 
 		00,000-00,499: Ingots
