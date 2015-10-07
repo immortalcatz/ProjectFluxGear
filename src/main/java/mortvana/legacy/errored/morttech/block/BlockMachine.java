@@ -15,7 +15,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
-import mortvana.legacy.clean.core.common.FluxGearContent;
+import mortvana.legacy.errored.core.common.FluxGearContent;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 
 public class BlockMachine extends InventoryBlock {

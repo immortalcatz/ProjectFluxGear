@@ -2,7 +2,6 @@ package mortvana.legacy.clean.core.util.repack.multiblock;
 
 import java.util.*;
 
-import mortvana.legacy.dependent.firstdegree.core.util.repack.multiblock.IMultiblockPart;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
@@ -25,16 +24,16 @@ public class MultiblockWorldRegistry {
 	// A list of orphan parts - parts which currently have no master, but should seek one this tick
 	// Indexed by the hashed chunk coordinate
 	// This can be added-to asynchronously via chunk loads!
-	private Set<IMultiblockPart> orphanedParts;
+	private Set<MultiblockPart> orphanedParts;
 
 	// A list of parts which have been detached during internal operations
-	private Set<IMultiblockPart> detachedParts;
+	private Set<MultiblockPart> detachedParts;
 
 	// A list of parts whose chunks have not yet finished loading
 	// They will be added to the orphan list when they are finished loading.
 	// Indexed by the hashed chunk coordinate
 	// This can be added-to asynchronously via chunk loads!
-	private HashMap<Long, Set<IMultiblockPart>> partsAwaitingChunkLoad;
+	private HashMap<Long, Set<MultiblockPart>> partsAwaitingChunkLoad;
 
 	// Mutexes to protect lists which may be changed due to asynchronous events, such as chunk loads
 	private Object partsAwaitingChunkLoadMutex;
@@ -45,9 +44,9 @@ public class MultiblockWorldRegistry {
 		controllers = new HashSet<MultiblockControllerBase>();
 		deadControllers = new HashSet<MultiblockControllerBase>();
 		dirtyControllers = new HashSet<MultiblockControllerBase>();
-		detachedParts = new HashSet<IMultiblockPart>();
-		orphanedParts = new HashSet<IMultiblockPart>();
-		partsAwaitingChunkLoad = new HashMap<Long, Set<IMultiblockPart>>();
+		detachedParts = new HashSet<MultiblockPart>();
+		orphanedParts = new HashSet<MultiblockPart>();
+		partsAwaitingChunkLoad = new HashMap<Long, Set<MultiblockPart>>();
 		partsAwaitingChunkLoadMutex = new Object();
 		orphanedPartsMutex = new Object();
 	}
@@ -82,7 +81,7 @@ public class MultiblockWorldRegistry {
 		// Merge pools - sets of adjacent machines which should be merged later on in processing
 		List<Set<MultiblockControllerBase>> mergePools = null;
 		if(orphanedParts.size() > 0) {
-			Set<IMultiblockPart> orphansToProcess = null;
+			Set<MultiblockPart> orphansToProcess = null;
 
 			// Keep the synchronized block small. We can't iterate over orphanedParts directly
 			// because the client does not know which chunks are actually loaded, so attachToNeighbors()
@@ -91,14 +90,14 @@ public class MultiblockWorldRegistry {
 			synchronized(orphanedPartsMutex) {
 				if(orphanedParts.size() > 0) {
 					orphansToProcess = orphanedParts;
-					orphanedParts = new HashSet<IMultiblockPart>();
+					orphanedParts = new HashSet<MultiblockPart>();
 				}
 			} if(orphansToProcess != null && orphansToProcess.size() > 0) {
 				Set<MultiblockControllerBase> compatibleControllers;
 
 				// Process orphaned blocks
 				// These are blocks that exist in a valid chunk and require a controller
-				for(IMultiblockPart orphan : orphansToProcess) {
+				for(MultiblockPart orphan : orphansToProcess) {
 					coord = orphan.getWorldLocation();
 					if(!chunkProvider.chunkExists(coord.getChunkX(), coord.getChunkZ())) {
 						continue;
@@ -187,7 +186,7 @@ public class MultiblockWorldRegistry {
 		// Any controllers which have had parts removed must be checked to see if some parts are no longer
 		// physically connected to their master.
 		if(dirtyControllers.size() > 0) {
-			Set<IMultiblockPart> newlyDetachedParts = null;
+			Set<MultiblockPart> newlyDetachedParts = null;
 			for(MultiblockControllerBase controller : dirtyControllers) {
 				// Tell the machine to check if any parts are disconnected.
 			// It should return a set of parts which are no longer connected.
@@ -223,7 +222,7 @@ public class MultiblockWorldRegistry {
 		// Process detached blocks
 		// Any blocks which have been detached this tick should be moved to the orphaned
 		// list, and will be checked next tick to see if their chunk is still loaded.
-		for(IMultiblockPart part : detachedParts) {
+		for(MultiblockPart part : detachedParts) {
 			// Ensure parts know they're detached
 			part.assertDetached();
 		}
@@ -237,15 +236,15 @@ public class MultiblockWorldRegistry {
 	 * If the chunk is not loaded, it will be added to a list of objects waiting for a chunkload.
 	 * @param part The part which is being added to this world.
 	 */
-	public void onPartAdded(IMultiblockPart part) {
+	public void onPartAdded(MultiblockPart part) {
 		CoordTriplet worldLocation = part.getWorldLocation();
 		if(!worldObj.getChunkProvider().chunkExists(worldLocation.getChunkX(), worldLocation.getChunkZ())) {
 		// Part goes into the waiting-for-chunk-load list
-			Set<IMultiblockPart> partSet;
+			Set<MultiblockPart> partSet;
 			long chunkHash = worldLocation.getChunkXZHash();
 			synchronized(partsAwaitingChunkLoadMutex) {
 				if(!partsAwaitingChunkLoad.containsKey(chunkHash)) {
-					partSet = new HashSet<IMultiblockPart>();
+					partSet = new HashSet<MultiblockPart>();
 					partsAwaitingChunkLoad.put(chunkHash, partSet);
 				} else {
 					partSet = partsAwaitingChunkLoad.get(chunkHash);
@@ -263,7 +262,7 @@ public class MultiblockWorldRegistry {
 	 * This part is removed from any lists in which it may be, and its machine is marked for recalculation.
 	 * @param part The part which is being removed.
 	 */
-	public void onPartRemovedFromWorld(IMultiblockPart part) {
+	public void onPartRemovedFromWorld(MultiblockPart part) {
 		CoordTriplet coord = part.getWorldLocation();
 		if(coord != null) {
 			long hash = coord.getChunkXZHash();
@@ -357,13 +356,13 @@ public class MultiblockWorldRegistry {
 	}
 
 	/* *** PRIVATE HELPERS *** */
-	private void addOrphanedPartThreadsafe(IMultiblockPart part) {
+	private void addOrphanedPartThreadsafe(MultiblockPart part) {
 		synchronized(orphanedPartsMutex) {
 			orphanedParts.add(part);
 		}
 	}
 
-	private void addAllOrphanedPartsThreadsafe(Collection<? extends IMultiblockPart> parts) {
+	private void addAllOrphanedPartsThreadsafe(Collection<? extends MultiblockPart> parts) {
 		synchronized(orphanedPartsMutex) {
 			orphanedParts.addAll(parts);
 		}

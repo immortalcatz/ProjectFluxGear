@@ -6,7 +6,7 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleEffect;
 import forestry.api.genetics.IAlleleRegistry;
-import mortvana.legacy.clean.apiology.util.AlleleEffectPotion;
+import mortvana.legacy.dependent.seconddegree.apiology.util.AlleleEffectPotion;
 import mortvana.legacy.errored.apiology.util.LocalizationManager;
 import net.minecraft.potion.Potion;
 

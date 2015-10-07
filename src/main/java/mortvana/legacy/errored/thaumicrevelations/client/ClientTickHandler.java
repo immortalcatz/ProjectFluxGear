@@ -17,12 +17,12 @@ public class ClientTickHandler implements ITickHandler {
 
 	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
 		Minecraft mc = Minecraft.getMinecraft();
-		if ((mc.currentScreen != null) && ((mc.currentScreen instanceof GuiResearchRecipe)) /* &&(!(mc.currentScreen instanceof GuiResearchPeripheral))*/) {
-			ResearchItem research = ReflectionHelper.getPrivateValue(GuiResearchRecipe.class, (GuiResearchRecipe)mc.currentScreen, 9);
+		//if ((mc.currentScreen != null) && ((mc.currentScreen instanceof GuiResearchRecipe)) /* &&(!(mc.currentScreen instanceof GuiResearchPeripheral))*/) {
+			//ResearchItem research = ReflectionHelper.getPrivateValue(GuiResearchRecipe.class, (GuiResearchRecipe)mc.currentScreen, 9);
 			//if ((research.key.equals("PERIPHERALS")) || (research.key.equals("GOLEM_CONNECTOR"))) {
 			//	mc.func_71373_a(new GuiResearchPeripheral(research));
 			//}
-		}
+		//}
 		//ToolModeHUDHandler.clientTick();
 
 		elapsedTicks += 1;

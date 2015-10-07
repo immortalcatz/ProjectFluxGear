@@ -13,7 +13,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.legacy.errored.fluxgearaddons.block.tileentity.TileEnergyPylon;
-import mortvana.legacy.clean.core.common.FluxGearContent;
+import mortvana.legacy.errored.core.common.FluxGearContent;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.melteddashboard.block.FluxGearBlock;
 

@@ -21,10 +21,10 @@ import net.minecraftforge.fluids.*;
 
 import cofh.api.energy.IEnergyHandler;
 
-import mortvana.legacy.clean.wierdscience.block.tileentity.TileEntitySolidFueled;
+import mortvana.legacy.clean.weirdscience.block.tile.TileEntitySolidFueled;
 import mortvana.legacy.errored.weirdscience.util.ContentRegistry;
-import mortvana.legacy.clean.wierdscience.util.fuel.ISolidFuelInfo;
-import mortvana.legacy.clean.wierdscience.util.fuel.SolidFuelInfo;
+import mortvana.legacy.clean.weirdscience.util.fuel.ISolidFuelInfo;
+import mortvana.legacy.clean.weirdscience.util.fuel.SolidFuelInfo;
 
 public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IEnergyHandler, ISidedInventory, IFluidHandler, IFluidTank {
 	private static final int[] accessibleSlots = new int[] { 0, 1 };

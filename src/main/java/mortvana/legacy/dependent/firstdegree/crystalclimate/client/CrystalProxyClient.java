@@ -1,6 +1,6 @@
 package mortvana.legacy.dependent.firstdegree.crystalclimate.client;
 
-import mortvana.legacy.clean.crystalclimate.client.CrystalBlockRender;
+import mortvana.legacy.dependent.seconddegree.crystalclimate.client.CrystalBlockRender;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;

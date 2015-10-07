@@ -4,7 +4,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import mortvana.legacy.clean.wierdscience.block.tile.TileEntityFuelBurner;
+import mortvana.legacy.clean.weirdscience.block.tile.TileEntityFuelBurner;
 import mortvana.legacy.errored.weirdscience.block.tileentity.BlockContainerBase;
 
 public class BlockFuelBurner extends BlockContainerBase {

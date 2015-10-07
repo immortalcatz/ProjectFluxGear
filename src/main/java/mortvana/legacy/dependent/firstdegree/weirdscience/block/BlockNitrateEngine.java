@@ -22,6 +22,7 @@ import net.minecraftforge.fluids.Fluid;
 
 import mortvana.legacy.errored.weirdscience.block.tileentity.BlockContainerBase;
 import mortvana.legacy.errored.weirdscience.block.tileentity.TileEntityNitrateEngine;
+import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.legacy.clean.core.util.helpers.BlockHelper;
 
 public class BlockNitrateEngine extends BlockContainerBase {
@@ -161,7 +162,7 @@ public class BlockNitrateEngine extends BlockContainerBase {
 		if (tileEntity == null || player.isSneaking()) {
 			return false;
 		}
-		player.openGui(mortvana.legacy.errored.core.common.ProjectFluxGear.instance, 0, world, x, y, z);
+		player.openGui(ProjectFluxGear.instance, 0, world, x, y, z);
 		return true;
 	}
 

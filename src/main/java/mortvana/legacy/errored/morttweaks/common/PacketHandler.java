@@ -40,7 +40,7 @@ public class PacketHandler implements IPacketHandler {
 
 			switch (packetID) {
 				case 1:
-					DiyoTweaks.overrideFoodStats(player);
+					MortTweaks.overrideFoodStats(player);
 					break;
 			}
 		} catch (Exception e) {
@@ -69,7 +69,7 @@ public class PacketHandler implements IPacketHandler {
 
 	Entity getEntity(World world, int id) {
 		for (Object o : world.loadedEntityList) {
-			if (((Entity) o).entityId == id)
+			if (((Entity) o).getEntityId() == id)
 				return (Entity) o;
 		}
 		return null;

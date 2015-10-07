@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
 
-import mortvana.legacy.dependent.firstdegree.core.util.repack.multiblock.IMultiblockPart;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -30,7 +29,7 @@ public abstract class MultiblockControllerBase {
 	// Disassembled -> Assembled; Assembled -> Disassembled OR Paused; Paused -> Assembled
 	protected enum AssemblyState { Disassembled, Assembled, Paused };
 	protected AssemblyState assemblyState;
-	protected HashSet<IMultiblockPart> connectedParts;
+	protected HashSet<MultiblockPart> connectedParts;
 
 	/** This is a deterministically-picked coordinate that identifies this
 	 * multiblock uniquely in its dimension.
@@ -67,7 +66,7 @@ public abstract class MultiblockControllerBase {
 	protected MultiblockControllerBase(World world) {
 		// Multiblock stuff
 		worldObj = world;
-		connectedParts = new HashSet<IMultiblockPart>();
+		connectedParts = new HashSet<MultiblockPart>();
 		referenceCoord = null;
 		assemblyState = AssemblyState.Disassembled;
 		minimumCoord = null;
@@ -88,7 +87,7 @@ public abstract class MultiblockControllerBase {
 	 * The part will be notified that the data has been used after this call completes.
 	 * @param part The NBT tag containing this controller's data.
 	 */
-	public abstract void onAttachedPartWithMultiblockData(IMultiblockPart part, NBTTagCompound data);
+	public abstract void onAttachedPartWithMultiblockData(MultiblockPart part, NBTTagCompound data);
 
 	/**
 	 * Check if a block is being tracked by this machine.
@@ -103,8 +102,8 @@ public abstract class MultiblockControllerBase {
 	 * Attach a new part to this machine.
 	 * @param part The part to add.
 	 */
-	public void attachBlock(IMultiblockPart part) {
-		IMultiblockPart candidate;
+	public void attachBlock(MultiblockPart part) {
+		MultiblockPart candidate;
 		CoordTriplet coord = part.getWorldLocation();
 		if(!connectedParts.add(part)) {
 			MeltedDashboardCore.logger.warn("[%s] Controller %s is double-adding part %d @ %s. This is unusual. If you encounter odd behavior, please tear down the machine and rebuild it.", (worldObj.isRemote ? "CLIENT" : "SERVER"), hashCode(), part.hashCode(), coord);
@@ -120,7 +119,7 @@ public abstract class MultiblockControllerBase {
 			part.becomeMultiblockSaveDelegate();
 		} else if(coord.compareTo(referenceCoord) < 0) {
 			TileEntity te = this.worldObj.getTileEntity(referenceCoord.x, referenceCoord.y, referenceCoord.z);
-			((IMultiblockPart)te).forfeitMultiblockSaveDelegate();
+			((MultiblockPart)te).forfeitMultiblockSaveDelegate();
 			referenceCoord = coord;
 			part.becomeMultiblockSaveDelegate();
 		} else {
@@ -141,13 +140,13 @@ public abstract class MultiblockControllerBase {
 	 * Called when a new part is added to the machine. Good time to register things into lists.
 	 * @param newPart The part being added.
 	 */
-	protected abstract void onBlockAdded(IMultiblockPart newPart);
+	protected abstract void onBlockAdded(MultiblockPart newPart);
 
 	/**
 	 * Called when a part is removed from the machine. Good time to clean up lists.
 	 * @param oldPart The part being removed.
 	 */
-	protected abstract void onBlockRemoved(IMultiblockPart oldPart);
+	protected abstract void onBlockRemoved(MultiblockPart oldPart);
 
 	/**
 	 * Called when a machine is assembled from a disassembled state.
@@ -176,7 +175,7 @@ public abstract class MultiblockControllerBase {
 	 * Do housekeeping/callbacks, also nulls min/max coords.
 	 * @param part The part being removed.
 	 */
-	private void onDetachBlock(IMultiblockPart part) {
+	private void onDetachBlock(MultiblockPart part) {
 		// Strip out this part
 		part.onDetached(this);
 		this.onBlockRemoved(part);
@@ -194,7 +193,7 @@ public abstract class MultiblockControllerBase {
 	 * @param part The part to detach from this machine.
 	 * @param chunkUnloading Is this entity detaching due to the chunk unloading? If true, the multiblock will be paused instead of broken.
 	 */
-	public void detachBlock(IMultiblockPart part, boolean chunkUnloading) {
+	public void detachBlock(MultiblockPart part, boolean chunkUnloading) {
 		if(chunkUnloading && this.assemblyState == AssemblyState.Assembled) {
 			this.assemblyState = AssemblyState.Paused;
 			this.onMachinePaused();
@@ -306,7 +305,7 @@ public abstract class MultiblockControllerBase {
 	 * Calls onMachineAssembled on all attached parts.
 	 */
 	private void assembleMachine(AssemblyState oldState) {
-		for(IMultiblockPart part : connectedParts) {
+		for(MultiblockPart part : connectedParts) {
 			part.onMachineAssembled(this);
 		}
 		this.assemblyState = AssemblyState.Assembled;
@@ -325,7 +324,7 @@ public abstract class MultiblockControllerBase {
 	 * Calls onMachineBroken on all attached parts.
 	 */
 	private void disassembleMachine() {
-		for(IMultiblockPart part : connectedParts) {
+		for(MultiblockPart part : connectedParts) {
 			part.onMachineBroken();
 		}
 		this.assemblyState = AssemblyState.Disassembled;
@@ -345,10 +344,10 @@ public abstract class MultiblockControllerBase {
 			throw new IllegalArgumentException("The controller with the lowest minimum-coord value must consume the one with the higher coords");
 		}
 		TileEntity te;
-		Set<IMultiblockPart> partsToAcquire = new HashSet<IMultiblockPart>(other.connectedParts);
+		Set<MultiblockPart> partsToAcquire = new HashSet<MultiblockPart>(other.connectedParts);
 		// releases all blocks and references gently so they can be incorporated into another multiblock
 		other._onAssimilated(this);
-		for(IMultiblockPart acquiredPart : partsToAcquire) {
+		for(MultiblockPart acquiredPart : partsToAcquire) {
 			// By definition, none of these can be the minimum block.
 			if(acquiredPart.isInvalid()) { continue; }
 			connectedParts.add(acquiredPart);
@@ -368,8 +367,8 @@ public abstract class MultiblockControllerBase {
 		if(referenceCoord != null) {
 			if(worldObj.getChunkProvider().chunkExists(referenceCoord.getChunkX(), referenceCoord.getChunkZ())) {
 				TileEntity te = this.worldObj.getTileEntity(referenceCoord.x, referenceCoord.y, referenceCoord.z);
-				if(te instanceof IMultiblockPart) {
-					((IMultiblockPart)te).forfeitMultiblockSaveDelegate();
+				if(te instanceof MultiblockPart) {
+					((MultiblockPart)te).forfeitMultiblockSaveDelegate();
 				}
 			}
 			this.referenceCoord = null;
@@ -528,7 +527,7 @@ public abstract class MultiblockControllerBase {
 	public void recalculateMinMaxCoords() {
 		minimumCoord = new CoordTriplet(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
 		maximumCoord = new CoordTriplet(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
-		for(IMultiblockPart part : connectedParts) {
+		for(MultiblockPart part : connectedParts) {
 			if(part.xCoord < minimumCoord.x) { minimumCoord.x = part.xCoord; }
 			if(part.xCoord > maximumCoord.x) { maximumCoord.x = part.xCoord; }
 			if(part.yCoord < minimumCoord.y) { minimumCoord.y = part.yCoord; }
@@ -616,7 +615,7 @@ public abstract class MultiblockControllerBase {
 	private String getPartsListString() {
 		StringBuilder sb = new StringBuilder();
 		boolean first = true;
-		for(IMultiblockPart part : connectedParts) {
+		for(MultiblockPart part : connectedParts) {
 			if(!first) {
 				sb.append(", ");
 			}
@@ -630,8 +629,8 @@ public abstract class MultiblockControllerBase {
 	 * Checks all of the parts in the controller. If any are dead or do not exist in the world, they are removed.
 	 */
 	private void auditParts() {
-		HashSet<IMultiblockPart> deadParts = new HashSet<IMultiblockPart>();
-		for(IMultiblockPart part : connectedParts) {
+		HashSet<MultiblockPart> deadParts = new HashSet<MultiblockPart>();
+		for(MultiblockPart part : connectedParts) {
 			if(part.isInvalid() || worldObj.getTileEntity(part.xCoord, part.yCoord, part.zCoord) != part) {
 				onDetachBlock(part);
 				deadParts.add(part);
@@ -646,7 +645,7 @@ public abstract class MultiblockControllerBase {
 	 * longer physically connected to the reference coordinate.
 	 * @return
 	 */
-	public Set<IMultiblockPart> checkForDisconnections() {
+	public Set<MultiblockPart> checkForDisconnections() {
 		if(!this.shouldCheckForDisconnections) {
 			return null;
 		} if(this.isEmpty()) {
@@ -660,11 +659,11 @@ public abstract class MultiblockControllerBase {
 		referenceCoord = null;
 
 		// Reset visitations and find the minimum coordinate
-		Set<IMultiblockPart> deadParts = new HashSet<IMultiblockPart>();
+		Set<MultiblockPart> deadParts = new HashSet<MultiblockPart>();
 		CoordTriplet c;
-		IMultiblockPart referencePart = null;
+		MultiblockPart referencePart = null;
 		int originalSize = connectedParts.size();
-		for(IMultiblockPart part : connectedParts) {
+		for(MultiblockPart part : connectedParts) {
 			// This happens during chunk unload.
 			if(!chunkProvider.chunkExists(part.xCoord >> 4, part.zCoord >> 4) || part.isInvalid()) {
 				deadParts.add(part);
@@ -698,9 +697,9 @@ public abstract class MultiblockControllerBase {
 		}
 
 		// Now visit all connected parts, breadth-first, starting from reference coord's part
-		IMultiblockPart part;
-		LinkedList<IMultiblockPart> partsToCheck = new LinkedList<IMultiblockPart>();
-		IMultiblockPart[] nearbyParts = null;
+		MultiblockPart part;
+		LinkedList<MultiblockPart> partsToCheck = new LinkedList<MultiblockPart>();
+		MultiblockPart[] nearbyParts = null;
 		int visitedParts = 0;
 		partsToCheck.add(referencePart);
 		while(!partsToCheck.isEmpty()) {
@@ -708,7 +707,7 @@ public abstract class MultiblockControllerBase {
 			part.setVisited();
 			visitedParts++;
 			nearbyParts = part.getNeighboringParts(); // Chunk-safe on server, but not on client
-			for(IMultiblockPart nearbyPart : nearbyParts) {
+			for(MultiblockPart nearbyPart : nearbyParts) {
 				// Ignore different machines
 				if(nearbyPart.getMultiblockController() != this) {
 					continue;
@@ -720,8 +719,8 @@ public abstract class MultiblockControllerBase {
 		}
 
 		// Finally, remove all parts that remain disconnected.
-		Set<IMultiblockPart> removedParts = new HashSet<IMultiblockPart>();
-		for(IMultiblockPart orphanCandidate : connectedParts) {
+		Set<MultiblockPart> removedParts = new HashSet<MultiblockPart>();
+		for(MultiblockPart orphanCandidate : connectedParts) {
 			if (!orphanCandidate.isVisited()) {
 				deadParts.add(orphanCandidate);
 				orphanCandidate.onOrphaned(this, originalSize, visitedParts);
@@ -751,16 +750,16 @@ public abstract class MultiblockControllerBase {
 	 * have a valid tile entity. Chunk-safe.
 	 * @return A set of all parts which still have a valid tile entity.
 	 */
-	public Set<IMultiblockPart> detachAllBlocks() {
-		if(worldObj == null) { return new HashSet<IMultiblockPart>(); }
+	public Set<MultiblockPart> detachAllBlocks() {
+		if(worldObj == null) { return new HashSet<MultiblockPart>(); }
 		IChunkProvider chunkProvider = worldObj.getChunkProvider();
-		for(IMultiblockPart part : connectedParts) {
+		for(MultiblockPart part : connectedParts) {
 			if(chunkProvider.chunkExists(part.xCoord >> 4, part.zCoord >> 4)) {
 				onDetachBlock(part);
 			}
 		}
-		Set<IMultiblockPart> detachedParts = connectedParts;
-		connectedParts = new HashSet<IMultiblockPart>();
+		Set<MultiblockPart> detachedParts = connectedParts;
+		connectedParts = new HashSet<MultiblockPart>();
 		return detachedParts;
 	}
 
@@ -775,7 +774,7 @@ public abstract class MultiblockControllerBase {
 		IChunkProvider chunkProvider = worldObj.getChunkProvider();
 		TileEntity theChosenOne = null;
 		referenceCoord = null;
-		for(IMultiblockPart part : connectedParts) {
+		for(MultiblockPart part : connectedParts) {
 			if(part.isInvalid() || !chunkProvider.chunkExists(part.xCoord >> 4, part.zCoord >> 4)) {
 				// Chunk is unloading, skip this coord to prevent chunk thrashing
 				continue;
@@ -784,7 +783,7 @@ public abstract class MultiblockControllerBase {
 				theChosenOne = part;
 			}
 		} if(theChosenOne != null) {
-			((IMultiblockPart)theChosenOne).becomeMultiblockSaveDelegate();
+			((MultiblockPart)theChosenOne).becomeMultiblockSaveDelegate();
 		}
 	}
 

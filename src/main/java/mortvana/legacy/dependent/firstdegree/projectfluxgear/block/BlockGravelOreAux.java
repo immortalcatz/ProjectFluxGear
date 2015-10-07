@@ -2,8 +2,8 @@ package mortvana.legacy.dependent.firstdegree.projectfluxgear.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mortvana.legacy.clean.core.common.FluxGearContent;
-import mortvana.legacy.dependent.firstdegree.core.util.block.FallingBlockFluxGear;
+import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.clean.core.util.block.FallingBlockFluxGear;
 import mortvana.legacy.clean.core.util.helpers.StringHelper;
 import mortvana.projectfluxgear.core.data.ItemBlockInformation;
 import net.minecraft.client.renderer.texture.IIconRegister;

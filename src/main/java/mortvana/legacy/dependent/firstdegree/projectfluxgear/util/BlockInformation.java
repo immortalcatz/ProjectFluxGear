@@ -2,7 +2,7 @@ package mortvana.legacy.dependent.firstdegree.projectfluxgear.util;
 
 import mortvana.legacy.clean.core.util.block.BlockFluxGear;
 import mortvana.legacy.clean.core.util.block.BlockFluxGear.EnumBlockType;
-import mortvana.legacy.clean.core.common.FluxGearContent;
+import mortvana.legacy.errored.core.common.FluxGearContent;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockAlloyAux;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreAux;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreMain;

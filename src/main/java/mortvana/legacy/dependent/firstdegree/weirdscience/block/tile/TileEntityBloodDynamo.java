@@ -1,12 +1,12 @@
 package mortvana.legacy.dependent.firstdegree.weirdscience.block.tile;
 
-import mortvana.legacy.clean.wierdscience.block.tile.TileEntityGenerator;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
-import mortvana.legacy.clean.core.util.block.BlockFluxGear.BlockMetaTank;
+import mortvana.legacy.clean.weirdscience.block.tile.TileEntityGenerator;
+import mortvana.legacy.dependent.firstdegree.weirdscience.util.block.tile.BlockMetaTank;
 import mortvana.legacy.errored.weirdscience.util.ContentRegistry;
 
 public class TileEntityBloodDynamo extends TileEntityGenerator implements IFluidHandler {

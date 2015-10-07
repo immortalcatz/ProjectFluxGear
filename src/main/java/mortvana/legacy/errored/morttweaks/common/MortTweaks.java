@@ -27,11 +27,11 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import mortvana.legacy.clean.morttweaks.item.ItemTweakedArmor;
 import mortvana.legacy.clean.morttweaks.item.ItemTweakedFlesh;
-import mortvana.legacy.clean.morttweaks.potion.TweakedPoisonStatus;
+import mortvana.legacy.dependent.firstdegree.morttweaks.potion.TweakedPoisonStatus;
 import mortvana.legacy.errored.morttweaks.block.BlockTweakedTNT;
 import mortvana.legacy.errored.morttweaks.block.BlockTweakedSugarCane;
 import mortvana.legacy.errored.morttweaks.entity.EntityTweakedZombie;
-import mortvana.legacy.clean.morttweaks.util.ExpOrbListener;
+import mortvana.legacy.dependent.firstdegree.morttweaks.util.ExpOrbListener;
 import mortvana.legacy.errored.morttweaks.util.TweakPlayerTracker;
 
 @Mod(modid = "MortTweaks", name = "MortTweaks", version = "1.0.0.0", dependencies = "after:MineFactoryReloaded")
@@ -42,7 +42,7 @@ public class MortTweaks {
 	/* TODO:
 	 *
 	 * Good:
-	 * Kill all achievements
+	 * //Kill all achievements
 	 * 2x2 trees
 	 * Right-click crops to harvest
 	 *
@@ -150,8 +150,8 @@ public class MortTweaks {
 		disableExp = config.get("Classic Mechanics", "Disable XP orbs", false).getBoolean(false);
 		fleshToFeathers = config.get("Classic Mechanics", "Flesh to Feathers", false, "Zombies drop feathers instead of rotten flesh").getBoolean(false);
 
-		int[] blacklist = config.get("Crosshair Tweaks", "Blacklist", new int[] {Item.map.itemID}, "Add block or item IDs that should not show the crosshair").getIntList();
-		int[] rangeTarget = config.get("Crosshair Tweaks", "Crosshair", new int[] {Item.bow.itemID, Item.snowball.itemID, Item.egg.itemID, Item.fishingRod.itemID, Item.enderPearl.itemID},
+		int[] blacklist = config.get("Crosshair Tweaks", "Blacklist", new int[] {Items.map.itemID}, "Add block or item IDs that should not show the crosshair").getIntList();
+		int[] rangeTarget = config.get("Crosshair Tweaks", "Crosshair", new int[] {Items.bow.itemID, Items.snowball.itemID, Items.egg.itemID, Items.fishing_rod.itemID, Items.ender_pearl.itemID},
 				"Add block or item IDs that should render a target crosshair").getIntList();
 
 		for (int i = 0; i < blacklist.length; i++)
@@ -184,27 +184,31 @@ public class MortTweaks {
 
 		if (makeGuudFire) {
 			Block.setBurnProperties(Blocks.planks, 25, 20);
-			Block.setBurnProperties(Block.woodDoubleSlab.blockID, 25, 20);
-			Block.setBurnProperties(Block.woodSingleSlab.blockID, 25, 20);
-			Block.setBurnProperties(Block.fence.blockID, 25, 20);
-			Block.setBurnProperties(Block.stairsWoodOak.blockID, 25, 20);
-			Block.setBurnProperties(Block.stairsWoodBirch.blockID, 25, 20);
-			Block.setBurnProperties(Block.stairsWoodSpruce.blockID, 25, 20);
-			Block.setBurnProperties(Block.stairsWoodJungle.blockID, 25, 20);
-			Block.setBurnProperties(Block.wood.blockID, 25, 5);
-			Block.setBurnProperties(Block.leaves.blockID, 90, 60);
-			Block.setBurnProperties(Block.bookShelf.blockID, 90, 20);
-			Block.setBurnProperties(Block.tnt.blockID, 45, 100);
-			Block.setBurnProperties(Block.tallGrass.blockID, 180, 100);
-			Block.setBurnProperties(Block.cloth.blockID, 90, 60);
-			Block.setBurnProperties(Block.vine.blockID, 45, 100);
-			Block.setBurnProperties(Block.coalBlock.blockID, 25, 5);
-			Block.setBurnProperties(Block.hay.blockID, 180, 20);
+			Block.setBurnProperties(Blocks.double_wooden_slab, 25, 20);
+			Block.setBurnProperties(Blocks.wooden_slab, 25, 20);
+			Block.setBurnProperties(Blocks.fence, 25, 20);
+			Block.setBurnProperties(Blocks.oak_stairs, 25, 20);
+			Block.setBurnProperties(Blocks.spruce_stairs, 25, 20);
+			Block.setBurnProperties(Blocks.birch_stairs, 25, 20);
+			Block.setBurnProperties(Blocks.jungle_stairs, 25, 20);
+			Block.setBurnProperties(Blocks.acacia_stairs, 25, 20);
+			Block.setBurnProperties(Blocks.dark_oak_stairs, 25, 20);
+			Block.setBurnProperties(Blocks.log, 25, 5);
+			Block.setBurnProperties(Blocks.log2, 25, 5);
+			Block.setBurnProperties(Blocks.leaves, 90, 60);
+			Block.setBurnProperties(Blocks.leaves2, 90, 60);
+			Block.setBurnProperties(Blocks.bookshelf, 90, 20);
+			Block.setBurnProperties(Blocks.tnt, 45, 100);
+			Block.setBurnProperties(Blocks.tallgrass, 180, 100);
+			Block.setBurnProperties(Blocks.wool, 90, 60);
+			Block.setBurnProperties(Blocks.vine, 45, 100);
+			Block.setBurnProperties(Blocks.coal_block, 25, 5);
+			Block.setBurnProperties(Blocks.hay_block, 180, 20);
 		}
 
 		if (addNametagRecipe) {
 			OreDictionary.registerOre("slimeball", new ItemStack(Items.slime_ball));
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.name_tag), "P~ ", "~O ", "  ~", '~', Item.silk, 'P', Item.paper, 'O', "slimeball"));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.name_tag), "P~ ", "~O ", "  ~", '~', Items.string, 'P', Items.paper, 'O', "slimeball"));
 		}
 
 		if (endermenDontPickUpBlocks) {
@@ -240,7 +244,7 @@ public class MortTweaks {
 		if (revertTNT) {
 			int id = Blocks.tnt.blockID;
 			Block.blocksList[id] = null;
-			Block.blocksList[id] = new BlockTweakedTNT(id).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("tnt").setTextureName("tnt");
+			Block.blocksList[id] = new BlockTweakedTNT().setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("tnt").setTextureName("tnt");
 		}
 
 		if (nastyFlesh) {
@@ -250,9 +254,8 @@ public class MortTweaks {
 		}
 
 		if (nerfFoodStackSize) {
-			Item[] nerfs = new Item[] {Item.appleRed, Item.bread, Item.porkRaw, Item.porkCooked, Item.appleGold, Item.fishRaw, Item.fishCooked, Item.cookie, Item.beefRaw, Item.beefCooked,
-					Item.chickenRaw, Item.chickenCooked, Item.rottenFlesh, Item.carrot, Item.potato, Item.bakedPotato, Item.goldenCarrot, Item.pumpkinPie};
-			Item[] bigNerfs = new Item[] {Item.cookie, Item.melon};
+			Item[] nerfs = new Item[] {Items.apple, Items.bread, Items.porkchop, Items.cooked_porkchop, Items.golden_apple, Items.fish, Items.cooked_fished, Items.beef, Items.cooked_beef, Items.chicken, Items.cooked_chicken, Items.rotten_flesh, Items.carrot, Items.potato, Items.baked_potato, Items.golden_carrot, Items.pumpkin_pie};
+			Item[] bigNerfs = new Item[] {Items.cookie, Items.melon};
 
 			for (int i = 0; i < nerfs.length; i++)
 				nerfs[i].setMaxStackSize(4);
@@ -260,6 +263,7 @@ public class MortTweaks {
 			for (int i = 0; i < bigNerfs.length; i++)
 				bigNerfs[i].setMaxStackSize(8);
 
+			//TODO: GameRegistry version
 			if (Loader.isModLoaded("TConstruct")) {
 				Object o = getStaticItem("strangeFood", "tconstruct.common.TContent");
 				if (o != null && o instanceof Item)
@@ -303,7 +307,7 @@ public class MortTweaks {
 
 		if (stackableSoup) {
 			Item.itemsList[26 + 256] = null;
-			Item.bowlSoup = new TweakStew(26, 6).setMaxStackSize(nerfFoodStackSize ? 4 : 64).setUnlocalizedName("mushroomStew").setTextureName("mushroom_stew");
+			Items.mushroom_stew = new ItemTweakStew(6).setMaxStackSize(nerfFoodStackSize ? 4 : 64).setUnlocalizedName("mushroomStew").setTextureName("mushroom_stew");
 		}
 
 		if (!Loader.isModLoaded("ZAMod") && !spawnZombieReinforcements || !keepBabyZombies || disableZombieFire) {

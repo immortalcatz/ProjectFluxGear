@@ -2,7 +2,6 @@ package mortvana.legacy.clean.core.util.repack.multiblock;
 
 import java.util.*;
 
-import mortvana.legacy.dependent.firstdegree.core.util.repack.multiblock.IMultiblockPart;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -17,7 +16,7 @@ import mortvana.legacy.clean.core.util.coordinates.CoordTriplet;
  * Base logic class for Multiblock-connected tile entities. Most multiblock machines
  * should derive from this and implement their game logic in certain abstract methods.
  */
-public abstract class MultiblockTileEntityBase extends IMultiblockPart {
+public abstract class MultiblockTileEntityBase extends MultiblockPart {
 
 	private MultiblockControllerBase controller;
 	private boolean visited;
@@ -43,8 +42,8 @@ public abstract class MultiblockTileEntityBase extends IMultiblockPart {
 		MultiblockControllerBase bestController = null;
 
 		// Look for a compatible controller in our neighboring parts.
-		IMultiblockPart[] partsToCheck = getNeighboringParts();
-		for(IMultiblockPart neighborPart : partsToCheck) {
+		MultiblockPart[] partsToCheck = getNeighboringParts();
+		for(MultiblockPart neighborPart : partsToCheck) {
 			if(neighborPart.isConnected()) {
 				MultiblockControllerBase candidate = neighborPart.getMultiblockController();
 				if(!candidate.getClass().equals(this.getMultiblockControllerType())) {
@@ -293,7 +292,7 @@ public abstract class MultiblockTileEntityBase extends IMultiblockPart {
 	public abstract MultiblockControllerBase createNewMultiblock();
 
 	@Override
-	public IMultiblockPart[] getNeighboringParts() {
+	public MultiblockPart[] getNeighboringParts() {
 		CoordTriplet[] neighbors = new CoordTriplet[] {
 				new CoordTriplet(this.xCoord-1, this.yCoord, this.zCoord),
 				new CoordTriplet(this.xCoord, this.yCoord-1, this.zCoord),
@@ -303,7 +302,7 @@ public abstract class MultiblockTileEntityBase extends IMultiblockPart {
 				new CoordTriplet(this.xCoord+1, this.yCoord, this.zCoord)
 		};
 		TileEntity te;
-		List<IMultiblockPart> neighborParts = new ArrayList<IMultiblockPart>();
+		List<MultiblockPart> neighborParts = new ArrayList<MultiblockPart>();
 		IChunkProvider chunkProvider = worldObj.getChunkProvider();
 		for(CoordTriplet neighbor : neighbors) {
 			if(!chunkProvider.chunkExists(neighbor.getChunkX(), neighbor.getChunkZ())) {
@@ -311,11 +310,11 @@ public abstract class MultiblockTileEntityBase extends IMultiblockPart {
 				continue;
 			}
 			te = this.worldObj.getTileEntity(neighbor.x, neighbor.y, neighbor.z);
-			if(te instanceof IMultiblockPart) {
-				neighborParts.add((IMultiblockPart)te);
+			if(te instanceof MultiblockPart) {
+				neighborParts.add((MultiblockPart)te);
 			}
 		}
-		IMultiblockPart[] tmp = new IMultiblockPart[neighborParts.size()];
+		MultiblockPart[] tmp = new MultiblockPart[neighborParts.size()];
 		return neighborParts.toArray(tmp);
 	}
 

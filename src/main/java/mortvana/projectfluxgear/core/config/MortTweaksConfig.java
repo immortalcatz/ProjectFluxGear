@@ -26,4 +26,6 @@ public class MortTweaksConfig extends ConfigBase {
 		}
 		MeltedDashboardCore.logger.info("MortTweaks Config Loaded");
 	}
+
+	public static boolean cobaltHijacking;
 }

@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.legacy.clean.core.util.helpers.PacketHelper;
-import mortvana.legacy.clean.core.util.helpers.SubtileHelper;
+import mortvana.legacy.dependent.seconddegree.core.util.helpers.SubtileHelper;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 
 /**

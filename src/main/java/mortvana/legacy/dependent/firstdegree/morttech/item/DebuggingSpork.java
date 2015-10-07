@@ -3,7 +3,7 @@ package mortvana.legacy.dependent.firstdegree.morttech.item;
 import mantle.items.abstracts.CraftingItem;
 import mantle.items.iface.IDebugItem;
 
-import mortvana.legacy.clean.core.common.FluxGearContent;
+import mortvana.legacy.errored.core.common.FluxGearContent;
 
 public class DebuggingSpork extends CraftingItem implements IDebugItem {
 

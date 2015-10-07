@@ -1,7 +1,7 @@
 package mortvana.legacy.dependent.firstdegree.weirdscience.block;
 
-import mortvana.legacy.clean.core.common.FluxGearContent;
-import mortvana.legacy.clean.wierdscience.util.sound.ISoundProvider;
+import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.clean.weirdscience.util.sound.ISoundProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 

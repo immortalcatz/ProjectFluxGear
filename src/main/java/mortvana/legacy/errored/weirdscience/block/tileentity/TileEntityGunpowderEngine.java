@@ -15,10 +15,10 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.FluidStack;
 
-import mortvana.legacy.clean.wierdscience.block.tileentity.TileEntitySolidFueled;
+import mortvana.legacy.clean.weirdscience.block.tile.TileEntitySolidFueled;
 import mortvana.legacy.errored.weirdscience.util.ContentRegistry;
-import mortvana.legacy.clean.wierdscience.util.fuel.ISolidFuelInfo;
-import mortvana.legacy.clean.wierdscience.util.fuel.SolidFuelInfo;
+import mortvana.legacy.clean.weirdscience.util.fuel.ISolidFuelInfo;
+import mortvana.legacy.clean.weirdscience.util.fuel.SolidFuelInfo;
 
 /*
  * A tile entity is essentially a bit of extra behavior and information that is associated with a block in the world.

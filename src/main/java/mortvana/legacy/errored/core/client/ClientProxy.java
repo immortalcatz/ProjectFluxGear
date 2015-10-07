@@ -1,13 +1,13 @@
 package mortvana.legacy.errored.core.client;
 
 import com.google.common.collect.Lists;
-import mortvana.legacy.clean.core.common.FluxGearContent;
+import mortvana.legacy.errored.core.common.FluxGearContent;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.projectfluxgear.thaumic.client.render.RenderPurity;
 import mortvana.legacy.clean.morttech.block.tile.TileCrank;
 import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
 import mortvana.legacy.errored.thaumicrevelations.client.particle.TRParticle;
-import mortvana.legacy.errored.projectfluxgear.client.render.DualPassCubeRenderer;
+import mortvana.legacy.dependent.firstdegree.projectfluxgear.client.render.DualPassCubeRenderer;
 import mortvana.legacy.clean.morttech.client.render.RenderCrank;
 import mortvana.legacy.clean.thaumicrevelations.client.render.RenderFleshGolem;
 import mortvana.legacy.clean.core.common.CommonProxy;

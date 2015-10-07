@@ -16,10 +16,10 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
-import mortvana.legacy.clean.wierdscience.util.chemistry.IReactionReceiver;
-import mortvana.legacy.clean.wierdscience.util.chemistry.IReactionSpec;
-import mortvana.legacy.clean.wierdscience.util.sound.ISoundProvider;
-import mortvana.legacy.clean.wierdscience.util.handlers.BucketEventHandler;
+import mortvana.legacy.clean.weirdscience.util.chemistry.IReactionReceiver;
+import mortvana.legacy.clean.weirdscience.util.chemistry.IReactionSpec;
+import mortvana.legacy.clean.weirdscience.util.sound.ISoundProvider;
+import mortvana.legacy.clean.weirdscience.util.handlers.BucketEventHandler;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 /**

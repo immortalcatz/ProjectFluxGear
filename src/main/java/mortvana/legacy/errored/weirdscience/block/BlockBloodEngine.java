@@ -13,8 +13,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
-import mortvana.legacy.clean.wierdscience.block.tileentity.TileEntityBloodDynamo;
-import mortvana.legacy.clean.wierdscience.util.block.tile.BlockMetaTank;
+import mortvana.legacy.dependent.firstdegree.weirdscience.block.tile.TileEntityBloodDynamo;
+import mortvana.legacy.dependent.firstdegree.weirdscience.util.block.tile.BlockMetaTank;
 
 public class BlockBloodEngine extends BlockMetaTank {
 

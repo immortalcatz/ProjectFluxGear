@@ -1,6 +1,6 @@
 package mortvana.legacy.dependent.firstdegree.thaumicrevelations.block;
 
-import mortvana.legacy.clean.core.common.FluxGearContent;
+import mortvana.legacy.errored.core.common.FluxGearContent;
 import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
 import net.minecraft.block.BlockStairs;
 

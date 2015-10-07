@@ -3,7 +3,6 @@ package mortvana.legacy.clean.core.util.repack.multiblock;
 import java.util.HashMap;
 import java.util.Set;
 
-import mortvana.legacy.dependent.firstdegree.core.util.repack.multiblock.IMultiblockPart;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import net.minecraft.world.World;
 
@@ -55,7 +54,7 @@ public class MultiblockRegistry {
 	 * @param world The world into which this part is loading.
 	 * @param part The part being loaded.
 	 */
-	public static void onPartAdded(World world, IMultiblockPart part) {
+	public static void onPartAdded(World world, MultiblockPart part) {
 		MultiblockWorldRegistry registry = getOrCreateRegistry(world);
 		registry.onPartAdded(part);
 	}
@@ -65,7 +64,7 @@ public class MultiblockRegistry {
 	 * @param world The world from which a multiblock part is being removed.
 	 * @param part The part being removed.
 	 */
-	public static void onPartRemovedFromWorld(World world, IMultiblockPart part) {
+	public static void onPartRemovedFromWorld(World world, MultiblockPart part) {
 		if(registries.containsKey(world)) {
 			registries.get(world).onPartRemovedFromWorld(part);
 		}

@@ -11,7 +11,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import mortvana.legacy.clean.wierdscience.util.block.tile.TileEntityBase;
+import mortvana.legacy.clean.weirdscience.util.block.tile.TileEntityBase;
 
 @Deprecated
 //TODO: I like to burn fascists

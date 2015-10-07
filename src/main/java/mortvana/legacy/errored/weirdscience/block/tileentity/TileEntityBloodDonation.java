@@ -1,14 +1,14 @@
 package mortvana.legacy.errored.weirdscience.block.tileentity;
 
+import mortvana.legacy.dependent.firstdegree.weirdscience.util.block.tile.BlockMetaTank;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
-import mortvana.legacy.clean.core.util.block.BlockFluxGear.BlockMetaTank;
 import mortvana.legacy.errored.weirdscience.util.ContentRegistry;
-import mortvana.legacy.clean.wierdscience.util.block.tile.TileEntityBase;
+import mortvana.legacy.clean.weirdscience.util.block.tile.TileEntityBase;
 
 public class TileEntityBloodDonation extends TileEntityBase implements IFluidHandler, IFluidTank{
 	
