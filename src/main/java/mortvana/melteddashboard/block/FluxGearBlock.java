@@ -2,7 +2,13 @@ package mortvana.melteddashboard.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.IIcon;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+import mortvana.melteddashboard.util.helpers.StringHelper;
 
 /**
  * A simple, yet advanced version of Block for use in many common situations.
@@ -10,6 +16,18 @@ import net.minecraft.creativetab.CreativeTabs;
  * @author Mortvana
  */
 public class FluxGearBlock extends Block {
+
+	public String textureLocation;
+
+	public IIcon[] icons;
+	public String[] names;
+
+	public boolean canSpawn = true;
+	public boolean beaconBase = false;
+	public boolean isColorized = false;
+	public boolean[] metaSpawn;
+	public boolean[] metaBeacon;
+	public int[] colors;
 
 	/**
 	 *  Literally just a wrapper for a default block, stupidly simple!
@@ -44,11 +62,38 @@ public class FluxGearBlock extends Block {
 		setResistance(resistance);
 	}
 
+	/**
+	 * The slightly more complex way to initialize a block.
+	 * Allows for more customization
+	 * @param material The material of the block.
+	 * @param tab The creative tab the block is under.
+	 * @param spawn Can mobs spawn on top of it.
+	 * @param base Is it usable as a beacon base.
+	 * @param colorized Set to true if you are using a simple colorizer.
+	 */
+	public FluxGearBlock(Material material, CreativeTabs tab, boolean spawn, boolean base, boolean colorized) {
+		super(material);
+		setCreativeTab(tab);
+
+		canSpawn = spawn;
+		beaconBase = base;
+		isColorized = colorized;
+	}
+
+
 	//public FluxGearBlock(Material material, CreativeTabs tab, EnumBlockType type)
 
 	@Override
 	public int damageDropped(int i) {
 		return i;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister iconRegister) {
+		//for (int i = 0; i < names.length; i++) {
+		//	icons[i] = iconRegister.registerIcon(textureLocation + StringHelper.toCamelCase(names[i]));
+		//}
 	}
 
 }
