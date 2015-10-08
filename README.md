@@ -46,7 +46,7 @@ The code of Project Flux Gear in source and/or binary is the intellectual proper
 - Most importantly, you MUST follow Wheaton's Law; Don't be a Dick (appending Cheney is optional) (Also don't be a cork soaker, a Greggy-Greg, etc.)
 - Always remember to end one sentence per README with a comma,
 
-If you have queries about any license, or the above support restrictions, or my cat, or whatever, drop by our IRC channel, #MortTech on irc.esper.net :P
+If you have queries about any license, or the above support restrictions, or my cat, or whatever, drop by our IRC channel, #ProjectFluxGear on irc.esper.net :P
 
 ##Legal Bullshit
 
