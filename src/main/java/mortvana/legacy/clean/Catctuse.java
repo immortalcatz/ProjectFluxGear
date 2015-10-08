@@ -442,53 +442,64 @@ public class Catctuse {
         oreCassiterite
         oreGalena
         oreAcanthite
+
         oreGarnierite
         oreSphalerite
         oreBismuthinite
         orePyrolusite
+
         oreBauxite
         oreCooperite
         oreBraggite
         oreMolybdenite
+
         oreCobaltite
         oreWolframite
         oreIlmenite
         oreChromite
+
+
+
+
+D		oreJacenite(Rock that carries a powerful electromagnetic charge)
+1.5C	oreScryngestone(Ore of Jethrik, a rare, super-heavy, "stable" element, used in warpdrives and as a super fuel) (Iridiotungsten Hydroxyisobutylmethylpolyjethrik Bismosubsalicyltrialuminosilicocarbonate)
+D       oreMagnetite
+1.5C	oreMetebelisSapphire(Breaks hypnotic spells, enhanced intelligence & psychic powers, only source of Fluon Radiation)
+
+RS		oreTrisilicate(Hardest form of salt)
+RS		oreNikolite/oreTeslatite/oreElectrotine
+RS      oreNiedermayrite
+RS		oreNigelite
+
+2D		oreAmethyst
+2D		oreOnyx
+RS		oreTelluriumDeposit
+D		oreCarbonado
+
+D		oreVoidstone
+D		oreDioptase
+D       orePyrope
+RS      oreMyuvil
+
+
+
+		oreHymetusite(Radioactive dark-gray mineral, used as powerful fuel)
         oreCinnabar
         orePitchblende
         oreMonazite
-        oreNiedermayrite
-        oreGreenockite
-        oreGaotaiite
-        oreOsarsite
-        oreZnamenskyite
-        oreGallobeudanite
-        oreTertahedrite
-        oreTennantite
-        oreSantafeite
-        oreMagnetite
-        oreDioptase
-        orePyrope
-        oreMyuvil
 
-		oreJacenite(Rock that carries a powerful electromagnetic charge)
-		oreScryngetone(Ore of Jethrik, a rare, super-heavy, "stable" element, used in warpdrives and as a super fuel) (Iridiotungsten Hydroxyisobutylmetyl Jethrik Bismosubsalicyltrialuminosilicarbonate)
-		oreHymetusite(Radioactive dark-gray mineral, used as powerful fuel)
-		oreMetebelisSapphire(Breaks hypnotic spells, enhanced intelligence & psychic powers, only source of Fluon Radiation)
+Fe      oreGreenockite
+Fe      oreGaotaiite
+Fe      oreOsarsite
+Fe      oreZnamenskyite
 
-		oreTrisilicate(Hardest form of salt)
-		oreNikolite/oreTeslatite/oreElectrotine
-		oreSoarynium
-		oreNigelite
+Fe      oreGallobeudanite
+Fe      oreTertahedrite
+Fe      oreTennantite
+Fe      oreSantafeite
 
-		orePentlandite
-		oreOnyx
-		oreTelluriumDeposit
-		oreCarbonado
-
-		oreAmethyst
-		oreVoidstone
-
+RS		oreSoarynium
+        orePentlandite
 		oreTanzanite
 		oreEuxenite
 		*/

@@ -1,14 +1,28 @@
 ####v0.0.0.1:
-* [00/10] All 9 ore blocks generate. 
+-Complete:
+* [10/10] Thaumcraft Aspects.
+
+-In Progress:
 * [09/10] Creative tabs no longer shit themselves.
 * [08/10] Painted Stone returns.
 * [08/10] Items behave.
 * [05/10] Exubitura generation.
-* [10/10] Thaumcraft Aspects.
+* [07/10] Dynamic Material Registry with Colorizer.
+
+-To Start:
+* [00/10] All 9 ore blocks generate.
 * [00/10] Multi-layer Ore render.
 * [00/10] Ore Breaking Drops (With Colorizer).
-* [07/10] Dynamic Material Registry with Colorizer.
 * [00/10] Entwined Ores.
+
+-Possible:
+* [00/10] Now Requires Melted Dashboard Core
+* [05/10] Expanded Module System.
+* [00/10] Iridium Clay Sand deposits. (Create Spawn Code and Implement Spawning)
+
+
+
+
 
 ####v0.0.0.2:
 * All fluids and buckets. (Including: Lye, Acid, Ghast Tear, Vodka, Etching Acid, Smog, Blood, Pyrotheum, Cyrotheum, Glowstone, Redstone, Ender, Carbon, Gelid Pyrotheum, Essence, Ectoplasm, Red Water, Unstable Flowstone, Empty Water, Unstable Ectoplasm, Acidic Essence, Mercury, Gallium, Biomass, Bioethanol)
@@ -22,7 +36,6 @@
 * Hemp Armor!
 * Give Thaumcraft Aspects to ores and such. (Ores, Ingots, Dusts, Nuggets, Blocks, etc.)
 * Foods!
-* Iridium Clay Sand deposits. (Create Spawn Code and Implement Spawning)
 
 ####v0.0.0.4:
 * Register all alloys!
@@ -64,10 +77,8 @@
 * Powered Tool/Armor Configs.
 
 ####v0.0.1.0:
-* Now Requires Melted Dashboard Core
 * Power Storage Blocks.
 * Tuberous Dynamo.
-* Expanded Module System.
 * Redsolder Wire.
 * Flux Furnace.
 * Sonic Lance.
