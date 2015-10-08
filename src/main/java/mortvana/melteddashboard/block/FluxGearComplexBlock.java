@@ -12,8 +12,7 @@ import mortvana.melteddashboard.common.MeltedDashboardCore;
 
 /**
  *  An easy to use, yet advanced version of Block for use in many situations.
- *  Contains automagic setting of meta-sensitive hardness, resistance, light emissions, redstone signals,
- *  beacon base-ness, mob spawnability, creative tabs, and names!
+ *  Contains
  *
  *  @author Mortvana
  */

@@ -24,45 +24,6 @@ import mortvana.legacy.clean.core.util.helpers.StringHelper;
 //TODO: I had class outside a funeral
 public class BlockFluxGear extends Block {
 
-	/**
-	 * The simple way to initialize a block.
-	 * Uses common for a type defaults.
-	 * @param material The material of the block.
-	 * @param tab The creative tab the block is under.
-	 * @param type Use a default type for ease of use.
-	 */
-	public BlockFluxGear(Material material, CreativeTabs tab, EnumBlockType type) {
-		super(material);
-		setCreativeTab(tab);
-
-		if (type == EnumBlockType.STORAGE) {
-			canSpawn = false;
-			beaconBase = true;
-			isColorized = false;
-			setHardness(5.0F);
-			setResistance(10.0F);
-			setStepSound(soundTypeMetal);
-		} else if (type == EnumBlockType.ORE) {
-			canSpawn = true;
-			beaconBase = false;
-			isColorized = false;
-			setHardness(3.0F);
-			setResistance(5.0F);
-			setStepSound(soundTypeMetal);
-		} else if (type == EnumBlockType.SOIL_ORE) {
-			canSpawn = true;
-			beaconBase = false;
-			isColorized = false;
-			setHardness(3.0F);
-			setResistance(5.0F);
-			setStepSound(soundTypeGravel);
-		} else {
-			canSpawn = true;
-			beaconBase = false;
-			isColorized = false;
-			MeltedDashboardCore.logger.warn(wrong);
-		}
-	}
 
 	/**
 	 * The slightly more complex way to initialize a block.
@@ -148,52 +109,20 @@ public class BlockFluxGear extends Block {
 		}
 	}
 
-	@Override
-	public float getBlockHardness(World world, int x, int y, int z) {
 
-		return hardness[world.getBlockMetadata(x, y, z)];
-	}
 
-	@Override
-	public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
-
-		return resistance[world.getBlockMetadata(x, y, z)];
-	}
-
-	/**
-	 * The only way, currently, to initialize a block with metadata things and automatic texture registration.
-	 * Uses common for a type defaults.
-	 *
-	 * @param material The material of the block.
-	 * @param tab      The creative tab the block is under.
-	 * @param type     Use a default type for ease of use.
-	 */
-	public BlockFluxGear(Material material, CreativeTabs tab, EnumBlockType type, String[] names, IIcon[] textures, float[] hardness, float[] resistance, int[] light, String textureLocation) {
-		this(material, tab, type);
-
-		this.names = names;
-		this.textures = textures;
-		this.hardness = hardness;
-		this.resistance = resistance;
-		blockLight = light;
-		this.textureLocation = textureLocation;
-	}
 
 	public boolean isColorized;
 	public boolean canSpawn;
 	public boolean beaconBase;
-	public static String wrong = "Mortvana registered a block wrong in Project Flux Gear... Derp";
+	public static String wrong = ;
 	public int[] blockLight;
 	public int[] rarity;
 	public String textureLocation;
 	public float[] hardness;
 	public float[] resistance;
 
-	public static enum EnumBlockType {
-		STORAGE,
-		ORE,
-		SOIL_ORE
-	}
+
 
 	/** *=-=-=-=* WEIRD SCIENCE LEGACY *=-=-=-=* */
 
