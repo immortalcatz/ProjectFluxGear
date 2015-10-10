@@ -21,7 +21,6 @@ import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.legacy.clean.core.util.helpers.StringHelper;
 
 @Deprecated
-//TODO: I had class outside a funeral
 public class BlockFluxGear extends Block {
 
 
@@ -55,15 +54,6 @@ public class BlockFluxGear extends Block {
 		textureLocation = texDir;
 	}
 
-	public boolean isBeaconBase(IBlockAccess worldObj, int x, int y, int z, int beaconX, int beaconY, int beaconZ) {
-
-		return beaconBase;
-	}
-
-	public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z) {
-		return canSpawn;
-	}
-
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass() {
@@ -81,17 +71,6 @@ public class BlockFluxGear extends Block {
 		for (int i = 0; i < names.length; i++) {
 			list.add(new ItemStack(item, 1, i));
 		}
-	}
-
-	@Override
-	public int getLightValue(IBlockAccess world, int x, int y, int z) {
-
-		return blockLight[world.getBlockMetadata(x, y, z)];
-	}
-
-	@Override
-	public int damageDropped(int i) {
-		return i;
 	}
 
 	@Override
@@ -115,7 +94,6 @@ public class BlockFluxGear extends Block {
 	public boolean isColorized;
 	public boolean canSpawn;
 	public boolean beaconBase;
-	public static String wrong = ;
 	public int[] blockLight;
 	public int[] rarity;
 	public String textureLocation;
@@ -144,10 +122,6 @@ public class BlockFluxGear extends Block {
 
 	public boolean isEnabled() {
 		return true;
-	}
-
-	public Material getMaterial() {
-		return this.blockMaterial;
 	}
 
 	public void setMaterial(Material m) {
@@ -207,14 +181,6 @@ public class BlockFluxGear extends Block {
 	@Override
 	public int quantityDropped(int meta, int fortune, Random random) {
 		return this.quantityDroppedWithBonus(fortune, random);
-	}
-
-	public int damageDropped2(int par1) {
-		if(this.itemDropped != null) {
-			return itemDropped.getItemDamage();
-		} else {
-			return super.damageDropped(par1);
-		}
 	}
 
 	public ItemStack getItemDropped() {

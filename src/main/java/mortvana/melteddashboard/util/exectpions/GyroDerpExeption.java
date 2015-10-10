@@ -1,6 +1,7 @@
 package mortvana.melteddashboard.util.exectpions;
 
-import java.util.Random;
+import mortvana.melteddashboard.common.MeltedDashboardCore;
+import mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper;
 
 public class GyroDerpExeption extends Exception {
 
@@ -10,42 +11,43 @@ public class GyroDerpExeption extends Exception {
 
     @Override
     public void printStackTrace() {
-        Random random = new Random();
-        int line = random.nextInt(26);
-        String derp = "Catctus";
-        if (line ==  0) derp = "Gyro's unbalanced and his umbrella's a Psyduck~";
-        if (line ==  1) derp = "Why does Gyro do the things?";
-        if (line ==  2) derp = "*sigh*";
-        if (line ==  3) derp = "GYROHOUSE!!!!";
-        if (line ==  4) derp = "ALL THE MANYULLYN ACCORDION~";
-        if (line ==  5) derp = "sqrt -Whenk... :V";
-        if (line ==  6) derp = "Merge? Move? Wear pants?";
-        if (line ==  7) derp = "Ask Gyro why he has so many interfaces...";
-        if (line ==  8) derp = "I don't even...";
-        if (line ==  9) derp = "...I only odd.";
-        if (line == 10) derp = "I like 3.141592...";
-        if (line == 11) derp = "It goes up to eleven.";
-        if (line == 12) derp = "I came in like a twerking dragon...";
-        if (line == 13) derp = "MANDATORY FUN!!!!";
-        if (line == 14) derp = "Eat Wall Street?";
-        if (line == 15) derp = "Eat *A* Wall Street!";
-        if (line == 16) derp = "I'm high on Bismuth!";
-        if (line == 17) derp = "Now Rassilon had a buddy called Omega~ His interstellar science would amaze ya'!~";
-        if (line == 18) derp = "Gyro, no, we store it in NBT :V";
-        if (line == 19) derp = "The darkness heralds only one thing, the end of time itself.";
-        if (line == 20) derp = "Eat weapons grade Plutonium...";
-	    if (line == 21) derp = "Go eat some Polonium!";
-	    if (line == 22) derp = "Every cloud has a Strontium lining.";
-	    if (line == 23) derp = "You sir, are a person with a face!";
-	    if (line == 24) derp = "22 kids go into the water, 29 kids come out of the water...";
-	    if (line == 25) derp = "Meglos, the Evil, Sentient Cactus!~";
-	    if (line == 26) derp = "sqrt(-1) like π";
-        System.err.println(derp);
+        MeltedDashboardCore.logger.error(derp[MathHelper.RANDOM.nextInt(derp.length)]);
     }
 
     @Override
     public String getMessage() {
-        return "Gyro ate the Congealed Blood again";
+        return "Gyro ate the Congealed Blood again...";
     }
 
+	public String[] derp = new String[] {
+			"Gyro's unbalanced and his umbrella's a Psyduck~",
+			"Why does Gyro do the things?",
+			"*sigh*",
+			"GYROHOUSE!!!!",
+			"ALL THE MANYULLYN ACCORDION~",
+			"sqrt -Whenk... :V",
+			"Merge? Move? Wear pants?",
+			"Ask Gyro why he has so many interfaces...",
+			"I don't even...",
+			"...I only odd.",
+			"I like 3.141592...",
+			"It goes up to eleven.",
+			"I came in like a twerking dragon...",
+			"MANDATORY FUN!!!!",
+			"Eat Wall Street?",
+			"Eat *A* Wall Street!",
+			"I'm high on Bismuth!",
+			"Now Rassilon had a buddy called Omega~ His interstellar science would amaze ya'!~",
+			"Gyro, no, we store it in NBT :V",
+			"The darkness heralds only one thing, the end of time itself.",
+			"Eat weapons grade Plutonium...",
+			"Go eat some Polonium!",
+			"Every cloud has a Strontium lining.",
+			"You sir, are a person with a face!",
+			"22 kids go into the water, 29 kids come out of the water, the Ice Cream Man eats the rest.",
+			"Meglos, the Evil, Sentient Cactus!~",
+			"sqrt(-1) like π",
+			"I had class outside a funeral.",
+			"Catctus."
+	};
 }

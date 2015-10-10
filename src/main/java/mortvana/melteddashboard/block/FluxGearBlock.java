@@ -1,5 +1,7 @@
 package mortvana.melteddashboard.block;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.*;
 
 import net.minecraft.block.Block;
@@ -28,7 +30,6 @@ import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
 
 import mortvana.melteddashboard.common.MeltedDashboardCore;
-import mortvana.melteddashboard.util.ColorLibrary;
 import mortvana.melteddashboard.util.data.*;
 import mortvana.melteddashboard.util.helpers.StringHelper;
 
@@ -70,15 +71,16 @@ public class FluxGearBlock extends Block {
 	public TMap<Integer, Boolean> burning = new THashMap<Integer, Boolean>(20);
 	
 	public TMap<Integer, Integer> droppedMeta = new THashMap<Integer, Integer>(20);
-	
-	
-	
+	public TMap<Integer, List<ItemStack>> droppedItems = new THashMap<Integer, List<ItemStack>>(20);
+
+	public static boolean finalMaterial = true;
+	public Boolean doesBlockGrass = null;
 	
 	
 	public MapColor[] mapColors;
 	public IIcon[][] sidedIcons;
 	public String name;
-	public TMap<Integer, List<ItemStack>> droppedBlocks;
+
 	
 	public List<Integer> renderInPasses = new ArrayList<Integer>(20);
 
@@ -209,13 +211,15 @@ public class FluxGearBlock extends Block {
 	//	resistance = new float[length];
 	//}
 
-	public void init() {
+	public FluxGearBlock init() {
 		blockHardness.putIfAbsent(WILD, 3.0F);
 		blastResistance.putIfAbsent(WILD, 5.0F);
 		droppedMeta.putIfAbsent(WILD, -1);
 		if (mobilityFlag == -1) {
 			mobilityFlag = super.getMobilityFlag();
 		}
+
+		return this;
 	}
 
 	/* Hardness Setters */
@@ -337,6 +341,54 @@ public class FluxGearBlock extends Block {
 
 
 
+
+
+
+
+
+	/*public FluxGearBlock setMaterial(Material material) {
+		if (finalMaterial) {
+			definalizeMaterial();
+		}
+
+		blockMaterial = material;
+		canBlockGrass = getCanBlockGrass();
+		return this;
+	}
+
+
+	public void definalizeMaterial() {
+		//Deep dark java reflection voodoo. A possible security exception, but done for the greater good.
+		Field material;
+		try {
+			//Assign field.
+			material = Block.class.getField("blockMaterial");
+			material.setAccessible(true);
+
+			//Modify field.
+			Field modifiers = Field.class.getDeclaredField("modifiers");
+			modifiers.setAccessible(true);
+			modifiers.setInt(material, material.getModifiers() & ~Modifier.FINAL);
+
+			finalMaterial = false;
+		} catch (Exception e) {
+			MeltedDashboardCore.logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+	}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 	/* Standard Meta-Sensitive Getters */
 	@Override
 	public float getBlockHardness(World world, int x, int y, int z) {
@@ -447,8 +499,9 @@ public class FluxGearBlock extends Block {
 		return dropsFromExplosion;
 	}
 
-	
-	
+	public boolean blocksGrass() {
+		return doesBlockGrass == null ? blockMaterial.getCanBlockGrass() : doesBlockGrass;
+	}
 	
 	/* Obscure Meta-Sensitive Getters */
 	@Override
@@ -528,10 +581,12 @@ public class FluxGearBlock extends Block {
 	/* Block Breaking */
 	@Override
 	public int damageDropped(int metadata) {
-		if (droppedMeta.containsKey(metadata)) {
+		if (droppedItems.containsKey(metadata) && droppedItems.get(metadata).size() == 1 && droppedItems.get(metadata).get(0) != null) {
+			return droppedItems.get(metadata).get(0).getItemDamage();
+		} else if (droppedMeta.containsKey(metadata)) {
 			return droppedMeta.get(metadata);
 		} else if (droppedMeta.containsKey(WILD)) {
-			if (droppedMeta.get(WILD) == -1) {
+			if (droppedMeta.get(WILD) == -1 || droppedMeta.get(WILD) == WILD) {
 				return metadata;
 			} else {
 				return droppedMeta.get(WILD);
@@ -606,7 +661,7 @@ public class FluxGearBlock extends Block {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
 		for (int i = 0; i < names.length; i++) {
-			icons[i] = iconRegister.registerIcon(textureLocation + StringHelper.toCamelCase(names[i]));
+			icons.put(i) = iconRegister.registerIcon(textureLocation + StringHelper.toCamelCase(names[i]));
 		}
 	}
 
@@ -636,7 +691,7 @@ public class FluxGearBlock extends Block {
 
 	/* UNSORTED */
 
-	//TODO
+	/*//TODO
 	public void dropBlockAsItemWithChance(World world, int x, int y, int z, int metadata, float chance, int fortune) {}
 
 	//TODO
@@ -655,13 +710,13 @@ public class FluxGearBlock extends Block {
 	public Item getItem(World world, int x, int y, int z) {}
 
 	public int getDamageValue(World world, int x, int y, int z) {}
-
+*/
 
 	/* Forge Hooked */
 
 
 
-	public boolean isAir(IBlockAccess world, int x, int y, int z) {}
+/*	public boolean isAir(IBlockAccess world, int x, int y, int z) {}
 
 	public boolean canHarvestBlock(IBlockAccess world, int x, int y, int z) {}
 
@@ -717,7 +772,7 @@ public class FluxGearBlock extends Block {
 
 	public boolean getWeakChanges(IBlockAccess world, int x, int y, int z) {}
 
-	//TODO: Harvest Extensions
+	//TODO: Harvest Extensions*/
 
 
 

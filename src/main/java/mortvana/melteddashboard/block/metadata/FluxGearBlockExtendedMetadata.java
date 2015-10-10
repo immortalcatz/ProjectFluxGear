@@ -301,10 +301,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 		switch (textCasing) {
 			case CAMEL:
 				for (Entry<Integer, String> textures : textureNames.entrySet()) {
-					Integer metadata = textures.getKey();
-					String texture = textures.getValue();
-					IIcon icon = register.registerIcon(textureBase + camelCase(texture));
-					blockIcons.put(metadata, icon);
+					blockIcons.put(textures.getKey(), register.registerIcon(textureBase + camelCase(textures.getValue())));
 				}
 
 			/*case TITLE:
@@ -313,9 +310,9 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 					String texture = textures.getValue();
 					IIcon icon = register.registerIcon(textureBase + StringHelper.titleCase(texture));
 					blockIcons.put(metadata, icon);
-				}*/
+				}
 
-			/*case CAPITAL:
+			case CAPITAL:
 				for (Entry<Integer, String> textures : textureNames.entrySet()) {
 					Integer metadata = textures.getKey();
 					String texture = textures.getValue();
