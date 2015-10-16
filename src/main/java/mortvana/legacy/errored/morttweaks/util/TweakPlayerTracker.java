@@ -43,7 +43,7 @@ public class TweakPlayerTracker implements IPlayerTracker {
 				ex.printStackTrace();
 			}
 			Packet250CustomPayload packet = new Packet250CustomPayload();
-			packet.channel = "DiyoTweaks";
+			packet.channel = "MortTweaks";
 			packet.data = bos.toByteArray();
 			packet.length = bos.size();
 

@@ -91,8 +91,8 @@ public class WoodmillRecipes {
     public void addCutting(ItemStack item, ItemStack itemstack, float par3)
     {
         cuttingList.put(Arrays.asList(item, item.getItemDamage()),itemstack);
-	    this.smeltingList.put(Integer.valueOf(par1), par2ItemStack);
-	    this.experienceList.put(Integer.valueOf(par2ItemStack.itemID), par3);
+	    this.smeltingList.put(par1, itemstack);
+	    this.experienceList.put(itemstack, par3);
     }
 
     /**

@@ -190,11 +190,11 @@ public class TileEntityBloodDynamo extends TileEntityGenerator implements IFluid
 	
 	public void updateTank() { 
 		if((!worldObj.isRemote) && (worldObj.getBlock(xCoord, yCoord, zCoord) instanceof BlockMetaTank)) {
-			BlockMetaTank bmt = (BlockMetaTank)(worldObj.getBlock(xCoord, yCoord, zCoord));
+			BlockMetaTank bmt = (BlockMetaTank) worldObj.getBlock(xCoord, yCoord, zCoord);
 			if(tank == null) {
 				bmt.setMetaByFillPercent(worldObj, xCoord, yCoord, zCoord, 0);
 			} else {
-				bmt.setMetaByFillPercent(worldObj, xCoord, yCoord, zCoord, (this.tank.amount*100)/this.tankCap);
+				bmt.setMetaByFillPercent(worldObj, xCoord, yCoord, zCoord, (this.tank.amount*100) / TileEntityBloodDynamo.tankCap);
 			}
 		}
 	}

@@ -14,7 +14,7 @@ public class ObjectPacketHandler implements IMessageHandler<ObjectPacket, IMessa
 
 	public IMessage onMessage(ObjectPacket message, MessageContext ctx) {
 		if(message.isContainerPacket) {
-			ContainerDataSync container = Minecraft.getMinecraft().thePlayer.openContainer instanceof ContainerDataSync ? (ContainerDataSync)Minecraft.getMinecraft().thePlayer.openContainer : null;
+			ContainerDataSync container = Minecraft.getMinecraft().thePlayer.openContainer instanceof ContainerDataSync ? (ContainerDataSync) Minecraft.getMinecraft().thePlayer.openContainer : null;
 			if(container == null) {
 				return null;
 			}
@@ -25,7 +25,7 @@ public class ObjectPacketHandler implements IMessageHandler<ObjectPacket, IMessa
 				return null;
 			}
 
-			((TileObjectSync)Minecraft.getMinecraft().theWorld.getTileEntity(message.x, message.y, message.z)).receiveObject(message.index, message.object);
+			((TileObjectSync) Minecraft.getMinecraft().theWorld.getTileEntity(message.x, message.y, message.z)).receiveObject(message.index, message.object);
 		}
 
 		return null;

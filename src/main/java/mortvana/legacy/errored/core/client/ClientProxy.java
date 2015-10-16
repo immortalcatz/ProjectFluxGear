@@ -22,6 +22,7 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.entity.RenderSnowball;
@@ -163,6 +164,8 @@ public class ClientProxy extends CommonProxy {
 	public void spawnParticle (String particle, double xPos, double yPos, double zPos, double velX, double velY, double velZ) {
 		this.doSpawnParticle(particle, xPos, yPos, zPos, velX, velY, velZ);
 	}
+
+	public Minecraft mc = Minecraft.getMinecraft();
 
 	/**We Don't Need No Stinking Particles!!!!*/
     public EntityFX doSpawnParticle (String par1Str, double par2, double par4, double par6, double par8, double par10, double par12)

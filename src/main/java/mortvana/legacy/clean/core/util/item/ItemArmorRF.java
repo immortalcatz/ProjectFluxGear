@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.core.util.item;
+package mortvana.legacy.clean.core.util.item;
 
 import java.util.List;
 

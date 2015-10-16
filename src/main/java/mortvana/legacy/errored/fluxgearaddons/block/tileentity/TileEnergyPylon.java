@@ -54,13 +54,10 @@ public class TileEnergyPylon extends TileObjectSync implements IEnergyHandler {
 			this.modelScale = 0.5F;
 		}
 
-		if(!this.field_145850_b.isRemote) {
-			if(this.active && !this.reciveEnergy) {
-				ForgeDirection[] arr$ = ForgeDirection.VALID_DIRECTIONS;
-				int len$ = arr$.length;
-
-				for(int i$ = 0; i$ < len$; ++i$) {
-					ForgeDirection d = arr$[i$];
+		if (!this.field_145850_b.isRemote) {
+			if (active && !reciveEnergy) {
+				for(int i = 0; i < ForgeDirection.VALID_DIRECTIONS.length; i++) {
+					ForgeDirection d = ForgeDirection.VALID_DIRECTIONS[i];
 					TileEntity tile = this.field_145850_b.getTileEntity(this.field_145851_c + d.offsetX, this.field_145848_d + d.offsetY, this.field_145849_e + d.offsetZ);
 					if(tile != null && tile instanceof IEnergyHandler) {
 						this.extractEnergy(d, ((IEnergyHandler)tile).receiveEnergy(d.getOpposite(), this.extractEnergy(d, 2147483647, true), false), false);

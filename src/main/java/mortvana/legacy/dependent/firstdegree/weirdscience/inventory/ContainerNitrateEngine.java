@@ -12,8 +12,7 @@ public class ContainerNitrateEngine extends Container {
 
 	protected TileEntityNitrateEngine tileEntity;
 
-	public ContainerNitrateEngine(InventoryPlayer inventoryPlayer,
-			TileEntityNitrateEngine te) {
+	public ContainerNitrateEngine(InventoryPlayer inventoryPlayer, TileEntityNitrateEngine te) {
 		tileEntity = te;
 
 		addSlotToContainer(new Slot(te, 0, 80, 17)); // Add the fuel slot.

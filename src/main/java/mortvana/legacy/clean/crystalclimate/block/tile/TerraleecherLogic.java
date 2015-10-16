@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.crystalclimate.block.tile;
+package mortvana.legacy.clean.crystalclimate.block.tile;
 
 import java.util.Random;
 
@@ -39,7 +39,7 @@ public class TerraleecherLogic extends TileEntity {
 	}
 
 	void eatBlock(int x, int z) {
-		Block block = Block.blocksList[worldObj.getBlock(x, yScan, z)];
+		Block block = worldObj.getBlock(x, yScan, z);
 		if (pass == 0) {
 			if (block != null && block != Blocks.stone && block != Blocks.netherrack && block != CrystalClimate.leechedStone && block.getBlockHardness(worldObj, x, yScan, z) >= 0 && block.getMaterial() == Material.rock) {
 				int meta = worldObj.getBlockMetadata(x, yScan, z);
@@ -68,8 +68,8 @@ public class TerraleecherLogic extends TileEntity {
 			if (y > 255)
 				break;
 
-			Block check = Block.blocksList[worldObj.getBlock(x, y, z)];
-			if (check == null || check.isBlockReplaceable(worldObj, x, y, z)) {
+			Block check = worldObj.getBlock(x, y, z);
+			if (check == null || check.isReplaceable(worldObj, x, y, z)) {
 				if (worldObj.setBlock(x, y, z, block, meta, 3))
 					placed = true;
 			}

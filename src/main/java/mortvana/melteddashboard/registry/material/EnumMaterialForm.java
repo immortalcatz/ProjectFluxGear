@@ -15,6 +15,7 @@ public enum EnumMaterialForm {
 
 	public String name;
 	public EnumForms[] subForms;
+
 	EnumMaterialForm(String name, EnumForms... subForms) {
 		this.name = name;
 		this.subForms = subForms;

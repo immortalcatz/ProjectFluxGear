@@ -1,18 +1,20 @@
 package mortvana.legacy.errored.morttweaks.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
 public class BlockTweakedPortal extends BlockPortal {
-	public BlockTweakedPortal(int id) {
+
+	public BlockTweakedPortal() {
 		super();
 	}
 
-	public void registerIcons(IIconRegister par1IconRegister) {
-		super.registerIcons(par1IconRegister);
-		Block.portal.registerIcons(par1IconRegister);
+	@Override
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
+		super.registerBlockIcons(par1IconRegister);
+		Blocks.portal.registerBlockIcons(par1IconRegister);
 	}
 
 	@Override

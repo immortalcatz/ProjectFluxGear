@@ -28,7 +28,7 @@ public class ItemBlockCrystal extends ItemBlock {
 
 		if (block == Blocks.snow_layer && (world.getBlockMetadata(x, y, z) & 7) < 1) {
 			side = 1;
-		} else if (!MiscHelper.isBlockEqual(block, Blocks.vine, Blocks.tallgrass, Blocks.deadbush) && (Block.blocksList[block] == null || !Block.blocksList[block].isBlockReplaceable(world, x, y, z))) {
+		} else if (!MiscHelper.isBlockEqual(block, Blocks.vine, Blocks.tallgrass, Blocks.deadbush) && block == null || !block.isReplaceable(world, x, y, z)) {
 			switch (side) {
 				case 0:
 					y--;
@@ -45,10 +45,9 @@ public class ItemBlockCrystal extends ItemBlock {
 			}
 		}
 
-		if (stack.stackSize == 0 || !player.canPlayerEdit(x, y, z, side, stack) || y == 255 && Block.blocksList[block].blockMaterial.isSolid()) {
+		if (stack.stackSize == 0 || !player.canPlayerEdit(x, y, z, side, stack) || y == 255 && block != null && block.getMaterial().isSolid()) {
 			return false;
 		} else if (world.canPlaceEntityOnSide(block, x, y, z, false, side, player, stack)) {
-			Block block2 = Block.blocksList[block];
 
 			int crystalValue = 0;
 			if (stack.hasTagCompound()) {
@@ -57,26 +56,26 @@ public class ItemBlockCrystal extends ItemBlock {
 
 			int placeMeta = getBaseMeta(crystalValue);
 
-			if (placeBlockAt(stack, player, world, x, y, z, side, hitX, hitY, hitZ, placeMeta)) {
-				world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), block2.stepSound.getPlaceSound(), (block2.stepSound.getVolume() + 1.0F) / 2.0F, block2.stepSound.getPitch() * 0.8F);
+			if (placeBlockAt(stack, player, world, x, y, z, side, hitX, hitY, hitZ, placeMeta) && block != null) {
+				world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), block.stepSound.getPlaceSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
 				--stack.stackSize;
 
 				int height = BlockCrystal.getCrystalHeight(crystalValue);
 				if (height > 1) {
 					Block localBlock = world.getBlock(x, y + 1, z);
-					if (!MiscHelper.isBlockEqual(localBlock, Blocks.vine, Blocks.tallgrass, Blocks.deadbush) && (Block.blocksList[localBlock] == null || !Block.blocksList[localBlock].isBlockReplaceable(world, x, y + 1, z))) {
+					if (!MiscHelper.isBlockEqual(localBlock, Blocks.vine, Blocks.tallgrass, Blocks.deadbush) && (localBlock == null || !localBlock.isReplaceable(world, x, y + 1, z))) {
 						placeBlockAt(stack, player, world, x, y + 1, z, side, hitX, hitY, hitZ, secondMeta(crystalValue));
 					}
 				}
 				if (height > 2) {
 					Block localBlock  = world.getBlock(x, y + 2, z);
-					if (!MiscHelper.isBlockEqual(localBlock, Blocks.vine, Blocks.tallgrass, Blocks.deadbush) && (Block.blocksList[localBlock] == null || !Block.blocksList[localBlock].isBlockReplaceable(world, x, y + 2, z))) {
+					if (!MiscHelper.isBlockEqual(localBlock, Blocks.vine, Blocks.tallgrass, Blocks.deadbush) && (localBlock == null || !localBlock.isReplaceable(world, x, y + 2, z))) {
 						placeBlockAt(stack, player, world, x, y + 2, z, side, hitX, hitY, hitZ, thirdMeta(crystalValue));
 					}
 				}
 				if (height > 3) {
 					Block localBlock  = world.getBlock(x, y + 3, z);
-					if (!MiscHelper.isBlockEqual(localBlock, Blocks.vine, Blocks.tallgrass, Blocks.deadbush) && (Block.blocksList[localBlock] == null || !Block.blocksList[localBlock].isBlockReplaceable(world, x, y + 3, z))) {
+					if (!MiscHelper.isBlockEqual(localBlock, Blocks.vine, Blocks.tallgrass, Blocks.deadbush) && (localBlock == null || !localBlock.isReplaceable(world, x, y + 3, z))) {
 						placeBlockAt(stack, player, world, x, y + 3, z, side, hitX, hitY, hitZ, topMeta(crystalValue));
 					}
 				}

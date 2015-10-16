@@ -574,10 +574,10 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 				// TODO: Redo gas code.
 				smogProduced = 0;
 
-				int fBlock = exhaustStack.getFluid().getBlockID();
-				if (Block.blocksList[fBlock] instanceof BlockGasBase) {
-					BlockGasBase ourWaste = (BlockGasBase)
-					Block.blocksList[fBlock]; for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
+				Fluid fluid = exhaustStack.getFluid();
+				if (fluid instanceof BlockGasBase) {
+					BlockGasBase ourWaste = (BlockGasBase) fluid;
+					for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
 						if (dir != ForgeDirection.UP) {
 							smogProduced = ourWaste.pushIntoBlock(worldObj, xCoord + dir.offsetX, yCoord  + dir.offsetY, zCoord + dir.offsetZ, smogProduced);
 							if(smogProduced <= 0) {

@@ -3,19 +3,26 @@ package mortvana.melteddashboard.util.data;
 import net.minecraft.util.IIcon;
 
 public class SidedIIcon {
-	public IIcon icon;
+
 	public IIcon[] sidedIcons = new IIcon[6];
 	public EnumSidedness sidedness;
 
-
 	public IIcon iconOnSide(int side) {
-
+		return sidedIcons[sidedness.getIconIndex(side)];
 	}
 
 	public enum EnumSidedness {
+		STANDARD(0, 0, 0, 0, 0, 0);
 
+		public int[] iconIndexes; //Technically the correct spelling.
 
+		//This will error if you supply a byte greater than 5...
+		EnumSidedness(int down, int up, int north, int south, int west, int east) {
+			iconIndexes = new int[] { down, up, north, south, west, east };
+		}
 
-		private EnumSidedness(int )
+		public int getIconIndex(int side) {
+			return iconIndexes[side];
+		}
 	}
 }

@@ -1,14 +1,16 @@
-package mortvana.legacy.dependent.firstdegree.projectfluxgear.block;
+package mortvana.legacy.errored.projectfluxgear.block;
 
 import mortvana.legacy.clean.core.util.block.BlockFluxGear;
 import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.melteddashboard.block.FluxGearBlock;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;
 
 public class BlockAlloyAux extends BlockFluxGear {
 
     public BlockAlloyAux() {
-        super(Material.iron, FluxGearContent.tabMaterials, EnumBlockType.STORAGE, NAMES_ALLOY_AUX, TEXTURES_FULL, HARDNESS_ALLOY_AUX, RESISTANCE_ALLOY_AUX, LIGHT_ALLOY_AUX, TEXTURE_LOCATION_BLOCK);
+        super(Material.iron, FluxGearContent.tabMaterials, FluxGearBlock.EnumBlockType.STORAGE, NAMES_ALLOY_AUX, TEXTURES_FULL, HARDNESS_ALLOY_AUX, RESISTANCE_ALLOY_AUX, LIGHT_ALLOY_AUX, TEXTURE_LOCATION_BLOCK);
         setBlockName("mortvana.projectfluxgear.alloyAux");
     }
 

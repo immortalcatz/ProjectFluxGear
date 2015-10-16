@@ -462,7 +462,7 @@ public class Catctuse {
 
 
 D		oreJacenite(Rock that carries a powerful electromagnetic charge)
-1.5C	oreScryngestone(Ore of Jethrik, a rare, super-heavy, "stable" element, used in warpdrives and as a super fuel) (Iridiotungsten Hydroxyisobutylmethylpolyjethrik Bismosubsalicyltrialuminosilicocarbonate)
+1.5C	oreScryngestone(Ore of Jethrik, a rare, super-heavy, "stable" element, used in warpdrives and as a super fuel) (Iridiotungsten Hydroxyisobutylpolydioxymethyljethrik Bismosubsalicyltrialuminosilicocarbonate)
 D       oreMagnetite
 1.5C	oreMetebelisSapphire(Breaks hypnotic spells, enhanced intelligence & psychic powers, only source of Fluon Radiation)
 

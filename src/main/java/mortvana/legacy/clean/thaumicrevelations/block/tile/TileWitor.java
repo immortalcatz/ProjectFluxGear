@@ -1,6 +1,8 @@
-package mortvana.legacy.errored.thaumicrevelations.block.tileentity;
+package mortvana.legacy.clean.thaumicrevelations.block.tile;
 
 import net.minecraft.tileentity.TileEntity;
+
+import thaumcraft.common.Thaumcraft;
 
 public class TileWitor extends TileEntity {
 

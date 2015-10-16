@@ -62,7 +62,7 @@ public class RedstoneAggregator extends TileEntity {
 	}
 
 	void eatSugar() {
-		if (Block.blocksList[worldObj.getBlock(nom[0], nom[1], nom[2])] == CrystalClimate.sugarBlock) {
+		if (worldObj.getBlock(nom[0], nom[1], nom[2]) == CrystalClimate.sugarBlock) {
 			int meta = worldObj.getBlockMetadata(nom[0], nom[1], nom[2]);
 			if (meta == 0) {
 				worldObj.setBlockToAir(nom[0], nom[1], nom[2]);
@@ -106,7 +106,7 @@ public class RedstoneAggregator extends TileEntity {
 				if (x == 0 && z == 0)
 					continue;
 
-				if (Block.blocksList[worldObj.getBlock(xCoord + x, yCoord - range, zCoord + z)] == CrystalClimate.sugarBlock) {
+				if (worldObj.getBlock(xCoord + x, yCoord - range, zCoord + z) == CrystalClimate.sugarBlock) {
 					nom = new int[] {xCoord + x, yCoord - range, zCoord + z};
 					return true;
 				}
@@ -128,15 +128,15 @@ public class RedstoneAggregator extends TileEntity {
 
 	void growCrystal() {
 		if (crystalValue < 10) {
-			Block block = Block.blocksList[worldObj.getBlockId(xCoord, yCoord + 1, zCoord)];
-			if (block == null || block.isAirBlock(worldObj, xCoord, yCoord + 1, zCoord) || block == CrystalClimate.crystalBlock) {
+			Block block = worldObj.getBlock(xCoord, yCoord + 1, zCoord);
+			if (block == null || worldObj.isAirBlock(xCoord, yCoord + 1, zCoord) || block == CrystalClimate.crystalBlock) {
 				worldObj.setBlock(xCoord, yCoord + 1, zCoord, CrystalClimate.crystalBlock, 0, 3);
 			} else {
 				crystalValue--;
 				blocked = true;
 			}
 		} else if (crystalValue == 10) {
-			Block block = Block.blocksList[worldObj.getBlock(xCoord, yCoord + 1, zCoord)];
+			Block block = worldObj.getBlock(xCoord, yCoord + 1, zCoord);
 			if (validBlock(block)) {
 				worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord, 1, 3);
 				//spawnNegativeAir(1, 1);
@@ -148,7 +148,7 @@ public class RedstoneAggregator extends TileEntity {
 				crystal.setCrystalValue(10);
 			}
 		} else if (crystalValue == 24) {
-			Block block = Block.blocksList[worldObj.getBlock(xCoord, yCoord + 1, zCoord)];
+			Block block = worldObj.getBlock(xCoord, yCoord + 1, zCoord);
 			if (validBlock(block)) {
 				worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord, 2, 3);
 				//spawnNegativeAir(2, 1);
@@ -160,7 +160,7 @@ public class RedstoneAggregator extends TileEntity {
 				crystal.setCrystalValue(24);
 			}
 		} else if (crystalValue == 48) {
-			Block block = Block.blocksList[worldObj.getBlock(xCoord, yCoord + 1, zCoord)];
+			Block block = worldObj.getBlock(xCoord, yCoord + 1, zCoord);
 			if (validBlock(block)) {
 				worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord, 3, 3);
 				//spawnNegativeAir(3, 1);
@@ -172,9 +172,9 @@ public class RedstoneAggregator extends TileEntity {
 				crystal.setCrystalValue(48);
 			}
 		} else if (crystalValue == 80) { //Transition
-			Block upperBlock = Block.blocksList[worldObj.getBlock(xCoord, yCoord + 2, zCoord)];
-			if (upperBlock == null || upperBlock.isAirBlock(worldObj, xCoord, yCoord + 2, zCoord)) {
-				Block block = Block.blocksList[worldObj.getBlock(xCoord, yCoord + 1, zCoord)];
+			Block upperBlock = worldObj.getBlock(xCoord, yCoord + 2, zCoord);
+			if (upperBlock == null || worldObj.isAirBlock(xCoord, yCoord + 2, zCoord)) {
+				Block block = worldObj.getBlock(xCoord, yCoord + 1, zCoord);
 				if (validBlock(block)) {
 					worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord, 4, 3);
 					worldObj.setBlock(xCoord, yCoord + 2, zCoord, CrystalClimate.crystalBlock, 6, 3);
@@ -191,8 +191,8 @@ public class RedstoneAggregator extends TileEntity {
 				blocked = true;
 			}
 		} else if (crystalValue == 120) {
-			Block block = Block.blocksList[worldObj.getBlock(xCoord, yCoord + 1, zCoord)];
-			Block upperBlock = Block.blocksList[worldObj.getBlock(xCoord, yCoord + 2, zCoord)];
+			Block block = worldObj.getBlock(xCoord, yCoord + 1, zCoord);
+			Block upperBlock = worldObj.getBlock(xCoord, yCoord + 2, zCoord);
 			if (validBlock(block) && validBlock(upperBlock)) {
 				worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord, 5, 3);
 				worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 2, zCoord, 7, 3);
@@ -205,7 +205,7 @@ public class RedstoneAggregator extends TileEntity {
 				crystal.setCrystalValue(120);
 			}
 		} else if (crystalValue == 168) {
-			Block block = Block.blocksList[worldObj.getBlock(xCoord, yCoord + 2, zCoord)];
+			Block block = worldObj.getBlock(xCoord, yCoord + 2, zCoord);
 			if (validBlock(block)) {
 				worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 2, zCoord, 8, 3);
 				//spawnNegativeAir(7, 1);
@@ -217,9 +217,9 @@ public class RedstoneAggregator extends TileEntity {
 				crystal.setCrystalValue(168);
 			}
 		} else if (crystalValue == 224) { //Transition
-			Block upperBlock = Block.blocksList[worldObj.getBlock(xCoord, yCoord + 3, zCoord)];
-			if (upperBlock == null || upperBlock.isAirBlock(worldObj, xCoord, yCoord + 3, zCoord)) {
-				Block block = Block.blocksList[worldObj.getBlock(xCoord, yCoord + 2, zCoord)];
+			Block upperBlock = worldObj.getBlock(xCoord, yCoord + 3, zCoord);
+			if (upperBlock == null || worldObj.isAirBlock(xCoord, yCoord + 3, zCoord)) {
+				Block block = worldObj.getBlock(xCoord, yCoord + 2, zCoord);
 				if (validBlock(block)) {
 					worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 2, zCoord, 9, 3);
 					worldObj.setBlock(xCoord, yCoord + 3, zCoord, CrystalClimate.crystalBlock, 10, 3);
@@ -236,7 +236,7 @@ public class RedstoneAggregator extends TileEntity {
 				blocked = true;
 			}
 		} else if (crystalValue == 288) {
-			Block block = Block.blocksList[worldObj.getBlock(xCoord, yCoord + 3, zCoord)];
+			Block block = worldObj.getBlock(xCoord, yCoord + 3, zCoord);
 			if (validBlock(block)) {
 				worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 3, zCoord, 11, 3);
 				//spawnNegativeAir(10, 1);
@@ -248,7 +248,7 @@ public class RedstoneAggregator extends TileEntity {
 				crystal.setCrystalValue(288);
 			}
 		} else if (crystalValue == 360) {
-			Block block = Block.blocksList[worldObj.getBlock(xCoord, yCoord + 3, zCoord)];
+			Block block = worldObj.getBlock(xCoord, yCoord + 3, zCoord);
 			if (validBlock(block)) {
 				worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 3, zCoord, 12, 3);
 				//spawnNegativeAir(11, 1);
@@ -260,9 +260,9 @@ public class RedstoneAggregator extends TileEntity {
 				crystal.setCrystalValue(360);
 			}
 		} else if (crystalValue == 440) {//Transition
-			Block upperBlock = Block.blocksList[worldObj.getBlock(xCoord, yCoord + 4, zCoord)];
-			if (upperBlock == null || upperBlock.isAirBlock(worldObj, xCoord, yCoord + 4, zCoord)) {
-				Block block = Block.blocksList[worldObj.getBlock(xCoord, yCoord + 3, zCoord)];
+			Block upperBlock = worldObj.getBlock(xCoord, yCoord + 4, zCoord);
+			if (upperBlock == null || worldObj.isAirBlock(xCoord, yCoord + 4, zCoord)) {
+				Block block = worldObj.getBlock(xCoord, yCoord + 3, zCoord);
 				if (validBlock(block)) {
 					worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 3, zCoord, 13, 3);
 					worldObj.setBlock(xCoord, yCoord + 4, zCoord, CrystalClimate.crystalBlock, 14, 3);
@@ -279,7 +279,7 @@ public class RedstoneAggregator extends TileEntity {
 				blocked = true;
 			}
 		} else if (crystalValue == 528) {
-			Block block = Block.blocksList[worldObj.getBlock(xCoord, yCoord + 4, zCoord)];
+			Block block = worldObj.getBlock(xCoord, yCoord + 4, zCoord);
 			if (validBlock(block)) {
 				worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 4, zCoord, 15, 3);
 				//spawnNegativeAir(15, 1);

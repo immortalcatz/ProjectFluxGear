@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.morttech.item;
+package mortvana.legacy.clean.morttech.item;
 
 import ic2.api.tile.IWrenchable;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
@@ -30,8 +31,7 @@ public class WrenchSonic extends Item {
     }
         
     public boolean onItemUseFirst(ItemStack itemstack, EntityPlayer entityPlayer, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        int blockId = world.getBlockId(x, y, z);
-        Block block = Block.blocksList[blockId];
+	    Block block = world.getBlock(x, y, z);
         if (block == null) {
             return false;
         }
@@ -41,9 +41,8 @@ public class WrenchSonic extends Item {
             IWrenchable wrenchable = (IWrenchable)tileEntity;
             if (wrenchable.wrenchCanRemove(entityPlayer)) {
                 if (ProjectFluxGear.proxy.isSimulating()) {
-                    boolean dropOriginalBlock = false;
-	                dropOriginalBlock = (wrenchable.getWrenchDropRate() < 1.0F) && ((overrideWrenchSuccessRate(itemstack)) || (world.rand.nextFloat() <= wrenchable.getWrenchDropRate()));
-                    List<ItemStack> drops = block.getBlockDropped(world, x, y, z, metadata, 0);
+                    boolean dropOriginalBlock = (wrenchable.getWrenchDropRate() < 1.0F) && ((overrideWrenchSuccessRate(itemstack)) || (world.rand.nextFloat() <= wrenchable.getWrenchDropRate()));
+                    ArrayList<ItemStack> drops = block.getDrops(world, x, y, z, metadata, 0);
                     if (dropOriginalBlock) {
                         ItemStack wrenchDrop = wrenchable.getWrenchDrop(entityPlayer);
                         if (wrenchDrop != null) {

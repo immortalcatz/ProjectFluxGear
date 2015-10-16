@@ -29,9 +29,10 @@ import mortvana.legacy.clean.morttweaks.item.ItemTweakedArmor;
 import mortvana.legacy.clean.morttweaks.item.ItemTweakedFlesh;
 import mortvana.legacy.dependent.firstdegree.morttweaks.potion.TweakedPoisonStatus;
 import mortvana.legacy.errored.morttweaks.block.BlockTweakedTNT;
-import mortvana.legacy.errored.morttweaks.block.BlockTweakedSugarCane;
+import mortvana.legacy.clean.morttweaks.block.BlockTweakedSugarCane;
 import mortvana.legacy.errored.morttweaks.entity.EntityTweakedZombie;
 import mortvana.legacy.dependent.firstdegree.morttweaks.util.ExpOrbListener;
+import mortvana.legacy.errored.morttweaks.item.ItemTweakedStew;
 import mortvana.legacy.errored.morttweaks.util.TweakPlayerTracker;
 
 @Mod(modid = "MortTweaks", name = "MortTweaks", version = "1.0.0.0", dependencies = "after:MineFactoryReloaded")
@@ -155,9 +156,9 @@ public class MortTweaks {
 				"Add block or item IDs that should render a target crosshair").getIntList();
 
 		for (int i = 0; i < blacklist.length; i++)
-			this.crosshairBlacklist[blacklist[i]] = true;
+			MortTweaks.crosshairBlacklist[blacklist[i]] = true;
 		for (int i = 0; i < rangeTarget.length; i++)
-			this.rangedCrosshair[rangeTarget[i]] = true;
+			MortTweaks.rangedCrosshair[rangeTarget[i]] = true;
 		config.save();
 
 		GameRegistry.registerPlayerTracker(new TweakPlayerTracker());
@@ -219,38 +220,36 @@ public class MortTweaks {
 			for (int i = 42; i <= 61; i++) {
 				Item.itemsList[i + 256] = null;
 			}
-			Items.leather_helmet = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 0)).setUnlocalizedName("helmetCloth").setTextureName("leather_helmet");
-			Items.leather_chestplate = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 1)).setUnlocalizedName("chestplateCloth").setTextureName("leather_chestplate");
-			Items.leather_leggings = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 2)).setUnlocalizedName("leggingsCloth").setTextureName("leather_leggings");
-			Items.leather_boots = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 3)).setUnlocalizedName("bootsCloth").setTextureName("leather_boots");
-			Items.chainmail_helmet = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 0)).setUnlocalizedName("helmetChain").setTextureName("chainmail_helmet");
-			Items.chainmail_chestplate = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 1)).setUnlocalizedName("chestplateChain").setTextureName("chainmail_chestplate");
-			Items.chainmail_leggings = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 2)).setUnlocalizedName("leggingsChain").setTextureName("chainmail_leggings");
-			Items.chainmail_boots = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 3)).setUnlocalizedName("bootsChain").setTextureName("chainmail_boots");
-			Items.iron_helmet = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.IRON, 2, 0)).setUnlocalizedName("helmetIron").setTextureName("iron_helmet");
-			Items.iron_chestplate = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.IRON, 2, 1)).setUnlocalizedName("chestplateIron").setTextureName("iron_chestplate");
-			Items.iron_leggings= (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.IRON, 2, 2)).setUnlocalizedName("leggingsIron").setTextureName("iron_leggings");
-			Items.iron_boots = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.IRON, 2, 3)).setUnlocalizedName("bootsIron").setTextureName("iron_boots");
-			Items.diamond_helmet = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 0)).setUnlocalizedName("helmetDiamond").setTextureName("diamond_helmet");
-			Items.diamond_chestplate = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 1)).setUnlocalizedName("chestplateDiamond").setTextureName("diamond_chestplate");
-			Items.diamond_leggings = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 2)).setUnlocalizedName("leggingsDiamond").setTextureName("diamond_leggings");
-			Items.diamond_boots = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 3)).setUnlocalizedName("bootsDiamond").setTextureName("diamond_boots");
-			Items.golden_helmet = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 0)).setUnlocalizedName("helmetGold").setTextureName("gold_helmet");
-			Items.golden_chestplate = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 1)).setUnlocalizedName("chestplateGold").setTextureName("gold_chestplate");
-			Items.golden_leggings = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 2)).setUnlocalizedName("leggingsGold").setTextureName("gold_leggings");
-			Items.golden_boots = (ItemArmor) (new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 3)).setUnlocalizedName("bootsGold").setTextureName("gold_boots");
+			Items.leather_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 0).setUnlocalizedName("helmetCloth").setTextureName("leather_helmet");
+			Items.leather_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 1).setUnlocalizedName("chestplateCloth").setTextureName("leather_chestplate");
+			Items.leather_leggings = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 2).setUnlocalizedName("leggingsCloth").setTextureName("leather_leggings");
+			Items.leather_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 3).setUnlocalizedName("bootsCloth").setTextureName("leather_boots");
+			Items.chainmail_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 0).setUnlocalizedName("helmetChain").setTextureName("chainmail_helmet");
+			Items.chainmail_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 1).setUnlocalizedName("chestplateChain").setTextureName("chainmail_chestplate");
+			Items.chainmail_leggings = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 2).setUnlocalizedName("leggingsChain").setTextureName("chainmail_leggings");
+			Items.chainmail_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 3).setUnlocalizedName("bootsChain").setTextureName("chainmail_boots");
+			Items.iron_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.IRON, 2, 0).setUnlocalizedName("helmetIron").setTextureName("iron_helmet");
+			Items.iron_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.IRON, 2, 1).setUnlocalizedName("chestplateIron").setTextureName("iron_chestplate");
+			Items.iron_leggings= (ItemArmor) new ItemTweakedArmor(ArmorMaterial.IRON, 2, 2).setUnlocalizedName("leggingsIron").setTextureName("iron_leggings");
+			Items.iron_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.IRON, 2, 3).setUnlocalizedName("bootsIron").setTextureName("iron_boots");
+			Items.diamond_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 0).setUnlocalizedName("helmetDiamond").setTextureName("diamond_helmet");
+			Items.diamond_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 1).setUnlocalizedName("chestplateDiamond").setTextureName("diamond_chestplate");
+			Items.diamond_leggings = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 2).setUnlocalizedName("leggingsDiamond").setTextureName("diamond_leggings");
+			Items.diamond_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 3).setUnlocalizedName("bootsDiamond").setTextureName("diamond_boots");
+			Items.golden_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 0).setUnlocalizedName("helmetGold").setTextureName("gold_helmet");
+			Items.golden_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 1).setUnlocalizedName("chestplateGold").setTextureName("gold_chestplate");
+			Items.golden_leggings = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 2).setUnlocalizedName("leggingsGold").setTextureName("gold_leggings");
+			Items.golden_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 3).setUnlocalizedName("bootsGold").setTextureName("gold_boots");
 		}
 
 		if (revertTNT) {
-			int id = Blocks.tnt.blockID;
-			Block.blocksList[id] = null;
-			Block.blocksList[id] = new BlockTweakedTNT().setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("tnt").setTextureName("tnt");
+			Blocks.tnt = new BlockTweakedTNT().setHardness(0.0F).setStepSound(Block.soundTypeGrass).setBlockName("tnt").setBlockTextureName("tnt");
 		}
 
 		if (nastyFlesh) {
-			Items.rotten_flesh = (new ItemTweakedFlesh(1, 0.1F, true)).setUnlocalizedName("rottenFlesh").setTextureName("rotten_flesh");
+			Items.rotten_flesh = new ItemTweakedFlesh(1, 0.1F, true).setUnlocalizedName("rottenFlesh").setTextureName("rotten_flesh");
 		} else if (disableHunger) {
-			Items.rotten_flesh = (new ItemFood(1, 0.1F, true)).setPotionEffect(Potion.poison.id, 5, 0, 0.8F).setUnlocalizedName("rottenFlesh").setTextureName("rotten_flesh");
+			Items.rotten_flesh = new ItemFood(1, 0.1F, true).setPotionEffect(Potion.poison.id, 5, 0, 0.8F).setUnlocalizedName("rottenFlesh").setTextureName("rotten_flesh");
 		}
 
 		if (nerfFoodStackSize) {
@@ -306,8 +305,7 @@ public class MortTweaks {
 		}
 
 		if (stackableSoup) {
-			Item.itemsList[26 + 256] = null;
-			Items.mushroom_stew = new ItemTweakStew(6).setMaxStackSize(nerfFoodStackSize ? 4 : 64).setUnlocalizedName("mushroomStew").setTextureName("mushroom_stew");
+			Items.mushroom_stew = new ItemTweakedStew(6).setMaxStackSize(nerfFoodStackSize ? 4 : 64).setUnlocalizedName("mushroomStew").setTextureName("mushroom_stew");
 		}
 
 		if (!Loader.isModLoaded("ZAMod") && !spawnZombieReinforcements || !keepBabyZombies || disableZombieFire) {
@@ -315,9 +313,7 @@ public class MortTweaks {
 		}
 
 		if (sugarCaneHeight != 3) {
-			int id = Block.reed.blockID;
-			Block.blocksList[id] = null;
-			Block.blocksList[id] = new BlockTweakedSugarCane(id).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("reeds").setTextureName("reeds");
+			Blocks.reeds = new BlockTweakedSugarCane().setHardness(0.0F).setStepSound(Block.soundTypeGrass).setBlockName("reeds").setBlockTextureName("reeds");
 		}
 
 		if (poisonTime != 25) {

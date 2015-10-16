@@ -1,7 +1,9 @@
-package mortvana.legacy.errored.thaumicrevelations.block;
+package mortvana.legacy.clean.thaumicrevelations.block;
 
-import mortvana.legacy.errored.thaumicrevelations.block.tileentity.TileWitor;
+import mortvana.legacy.clean.thaumicrevelations.block.tile.TileWitor;
 import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
+import thaumcraft.common.config.Config;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.tileentity.TileEntity;

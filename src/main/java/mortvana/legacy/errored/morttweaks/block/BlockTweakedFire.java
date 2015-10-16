@@ -15,18 +15,18 @@ public class BlockTweakedFire extends BlockFire {
 		disableStats();
 	}
 
-	public void registerIcons(IIconRegister par1IconRegister) {
-		super.registerIcons(par1IconRegister);
-		Blocks.fire.registerIcons(par1IconRegister);
+	public void registerBlockIcons(IIconRegister iconRegister) {
+		super.registerBlockIcons(iconRegister);
+		Blocks.fire.registerBlockIcons(iconRegister);
 	}
 
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z) {
-		if (world.provider.dimensionId > 0 || world.getBlock(x, y - 1, z) != Blocks.obsidian || !((BlockPortal) Block.blocksList[90]).tryToCreatePortal(world, x, y, z)) {
-			if (!world.doesBlockHaveSolidTopSurface(x, y - 1, z) && !this.canNeighborBurn(world, x, y, z)) {
+		if (world.provider.dimensionId > 0 || world.getBlock(x, y - 1, z) != Blocks.obsidian || !Blocks.portal.tryToCreatePortal(world, x, y, z)) {
+			if (!World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) && !this.canNeighborBurn(world, x, y, z)) {
 				world.setBlockToAir(x, y, z);
 			} else {
-				world.scheduleBlockUpdate(x, y, z, this.blockID, this.tickRate(world) + world.rand.nextInt(10));
+				world.scheduleBlockUpdate(x, y, z, this, tickRate(world) + world.rand.nextInt(10));
 			}
 		}
 	}

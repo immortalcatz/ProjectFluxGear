@@ -3,6 +3,7 @@ package mortvana.legacy.errored.morttweaks.common;
 import java.util.Iterator;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -65,8 +66,8 @@ public class CommonProxy {
 		} else if (MortTweaks.feathers && living.getClass() == EntityChicken.class) {
 			addDrops(event, new ItemStack(Items.feather, (random.nextInt(5) + random.nextInt(1 + event.lootingLevel) + random.nextInt(1 + event.lootingLevel) + 1)));
 		} else if (living instanceof EntityEnderman) {
-			int block = ((EntityEnderman) living).getCarried();
-			if (block != 0) {
+			Block block = ((EntityEnderman) living).getCarried();
+			if (block != null) {
 				addDrops(event, new ItemStack(block, 1, ((EntityEnderman) living).getCarryingData()));
 			}
 		} else if (MortTweaks.animalBones && living instanceof EntityAnimal) {

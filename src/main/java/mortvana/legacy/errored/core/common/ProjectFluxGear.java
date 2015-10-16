@@ -27,7 +27,7 @@ import cofh.core.world.WorldHandler;
 
 import forestry.api.apiculture.IBeeRoot;
 import mortvana.legacy.clean.fluxgeartweaks.block.tileentity.TileTimeyWimey;
-import mortvana.legacy.errored.core.client.gui.FluxGearGUIHandler;
+import mortvana.legacy.dependent.firstdegree.core.client.gui.FluxGearGUIHandler;
 import mortvana.legacy.errored.apiology.common.VersionInfo;
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.network.ObjectPacket;
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.network.ObjectPacketHandler;
@@ -242,7 +242,7 @@ public class ProjectFluxGear {
 
 
 	    proxy.registerRenderer();
-	    BeeManager.ititializeBees();
+	    BeeManager.initializeBees();
 	    VersionInfo.doVersionCheck();
 	    // get bee root
 	    //beeRoot = (IBeeRoot) AlleleManager.alleleRegistry.getSpeciesRoot("rootBees");

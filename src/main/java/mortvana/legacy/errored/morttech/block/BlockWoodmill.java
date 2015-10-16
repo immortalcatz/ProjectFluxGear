@@ -21,9 +21,11 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+import mortvana.legacy.dependent.firstdegree.core.client.gui.FluxGearGUIHandler;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.legacy.clean.core.common.FluxGearConfig;
 import mortvana.legacy.errored.morttech.block.tileentity.TileWoodmill;
+import mortvana.melteddashboard.api.item.tool.wrench.IFluxGearWrench;
 
 public class BlockWoodmill extends BlockContainer {
 
@@ -66,14 +68,14 @@ public class BlockWoodmill extends BlockContainer {
     /**
      * set a blocks direction
      */
-    private void setDefaultDirection(World par1World, int par2, int par3, int par4)
+    private void setDefaultDirection(World world, int par2, int par3, int par4)
     {
-        if (!par1World.isRemote)
+        if (!world.isRemote)
         {
-            int l = par1World.getBlockId(par2, par3, par4 - 1);
-            int i1 = par1World.getBlockId(par2, par3, par4 + 1);
-            int j1 = par1World.getBlockId(par2 - 1, par3, par4);
-            int k1 = par1World.getBlockId(par2 + 1, par3, par4);
+            int l = world.getBlockId(par2, par3, par4 - 1);
+            int i1 = world.getBlockId(par2, par3, par4 + 1);
+            int j1 = world.getBlockId(par2 - 1, par3, par4);
+            int k1 = world.getBlockId(par2 + 1, par3, par4);
             byte b0 = 3;
 
             if (Block.opaqueCubeLookup[l] && !Block.opaqueCubeLookup[i1])
@@ -96,7 +98,7 @@ public class BlockWoodmill extends BlockContainer {
                 b0 = 4;
             }
 
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, b0, 2);
+            world.setBlockMetadataWithNotify(par2, par3, par4, b0, 2);
         }
     }
 
@@ -122,8 +124,8 @@ public class BlockWoodmill extends BlockContainer {
             return true;
         } else {
             TileWoodmill tileentityfurnace = (TileWoodmill)par1World.getTileEntity(par2, par3, par4);
-            if (tileentityfurnace != null/* && !(par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof IWrench)*/) {
-                par5EntityPlayer.openGui(ProjectFluxGear.instance, GuiHandler.woodMill, par1World, par2, par3, par4);
+            if (tileentityfurnace != null && !(par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof IFluxGearWrench)) {
+                par5EntityPlayer.openGui(ProjectFluxGear.instance, FluxGearGUIHandler.woodmill, par1World, par2, par3, par4);
             }
             return true;
         }
@@ -203,7 +205,7 @@ public class BlockWoodmill extends BlockContainer {
                             }
 
                             itemstack.stackSize -= k1;
-                            EntityItem entityitem = new EntityItem(world, (double)((float)x + f), (double)((float)y + f1), (double)((float)z + f2), new ItemStack(itemstack.itemID, k1, itemstack.getItemDamage()));
+                            EntityItem entityitem = new EntityItem(world, (double)((float)x + f), (double)((float)y + f1), (double)((float)z + f2), new ItemStack(itemstack, k1, itemstack.getItemDamage()));
 
                             if (itemstack.hasTagCompound())
                             {

@@ -11,6 +11,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -55,14 +56,13 @@ public class BlockCrystal extends BlockContainer {
 	}
 
 	@Override
-	public void getSubBlocks(int id, CreativeTabs tab, List list) {
+	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
 	    /*for (int iter = 0; iter < 1; iter++)
         {
             list.add(new ItemStack(id, 1, iter));
         }*/
 	}
 
-	@Override
 	public void registerIcons(IIconRegister iconRegister) {
 		this.icons = new IIcon[textureNames.length];
 
@@ -153,7 +153,7 @@ public class BlockCrystal extends BlockContainer {
             if (!player.capabilities.isCreativeMode || player.isSneaking())
                 dropBlock(world, x, y, z, stack);*/
 		} else {
-			Block below = Block.blocksList[world.getBlock(x, y - 1, z)];
+			Block below = world.getBlock(x, y - 1, z);
 			if (below == CrystalClimate.crystalBlock) {
 				below.removeBlockByPlayer(world, player, x, y - 1, z);
 			} else
@@ -209,7 +209,7 @@ public class BlockCrystal extends BlockContainer {
 		if (!player.worldObj.isRemote) {
 			int meta = world.getBlockMetadata(x, y, z);
 			if (meta > 5) {
-				Block block = Block.blocksList[world.getBlock(x, y - 1, z)];
+				Block block = world.getBlock(x, y - 1, z);
 				if (block == this)
 					block.onBlockActivated(world, x, y - 1, z, player, side, hitX, hitY, hitZ);
 			} else {

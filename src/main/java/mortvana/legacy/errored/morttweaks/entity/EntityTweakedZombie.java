@@ -19,6 +19,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityTweakedZombie extends EntityZombie {
+
 	public EntityTweakedZombie(World par1World) {
 		super(par1World);
 	}
@@ -32,9 +33,9 @@ public class EntityTweakedZombie extends EntityZombie {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setAttribute(40.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.23000000417232513D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(3.0D);
+		getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23000000417232513D);
+		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(3.0D);
 		if (MortTweaks.spawnZombieReinforcements)
 			this.getAttributeMap().func_111150_b(field_110186_bp).setAttribute(this.rand.nextDouble() * 0.10000000149011612D);
 	}
@@ -44,38 +45,36 @@ public class EntityTweakedZombie extends EntityZombie {
 		if (!super.attackEntityFrom(damageSource, par2)) {
 			return false;
 		} else {
-			EntityLivingBase entitylivingbase = this.getAttackTarget();
+			EntityLivingBase entity = getAttackTarget();
 
-			if (entitylivingbase == null && this.getEntityToAttack() instanceof EntityLivingBase) {
-				entitylivingbase = (EntityLivingBase) this.getEntityToAttack();
+			if (entity == null && getEntityToAttack() instanceof EntityLivingBase) {
+				entity = (EntityLivingBase) getEntityToAttack();
 			}
 
-			if (entitylivingbase == null && damageSource.getEntity() instanceof EntityLivingBase) {
-				entitylivingbase = (EntityLivingBase) damageSource.getEntity();
+			if (entity == null && damageSource.getEntity() instanceof EntityLivingBase) {
+				entity = (EntityLivingBase) damageSource.getEntity();
 			}
 
-			if (MortTweaks.spawnZombieReinforcements && entitylivingbase != null && this.worldObj.difficultySetting >= 3
-					&& (double) this.rand.nextFloat() < this.getEntityAttribute(field_110186_bp).getAttributeValue()) {
-				int i = MathHelper.floor_double(this.posX);
-				int j = MathHelper.floor_double(this.posY);
-				int k = MathHelper.floor_double(this.posZ);
-				EntityZombie entityzombie = new EntityZombie(this.worldObj);
+			if (MortTweaks.spawnZombieReinforcements && entity != null && worldObj.difficultySetting.ordinal() >= 3 && (double) rand.nextFloat() < getEntityAttribute(field_110186_bp).getAttributeValue()) {
+				int i = MathHelper.floor_double(posX);
+				int j = MathHelper.floor_double(posY);
+				int k = MathHelper.floor_double(posZ);
+				EntityZombie zombie = new EntityZombie(worldObj);
 
 				for (int l = 0; l < 50; ++l) {
 					int i1 = i + MathHelper.getRandomIntegerInRange(this.rand, 7, 40) * MathHelper.getRandomIntegerInRange(this.rand, -1, 1);
 					int j1 = j + MathHelper.getRandomIntegerInRange(this.rand, 7, 40) * MathHelper.getRandomIntegerInRange(this.rand, -1, 1);
 					int k1 = k + MathHelper.getRandomIntegerInRange(this.rand, 7, 40) * MathHelper.getRandomIntegerInRange(this.rand, -1, 1);
 
-					if (this.worldObj.doesBlockHaveSolidTopSurface(i1, j1 - 1, k1) && this.worldObj.getBlockLightValue(i1, j1, k1) < 10) {
-						entityzombie.setPosition((double) i1, (double) j1, (double) k1);
+					if (World.doesBlockHaveSolidTopSurface(worldObj, i1, j1 - 1, k1) && this.worldObj.getBlockLightValue(i1, j1, k1) < 10) {
+						zombie.setPosition((double) i1, (double) j1, (double) k1);
 
-						if (this.worldObj.checkNoEntityCollision(entityzombie.boundingBox) && this.worldObj.getCollidingBoundingBoxes(entityzombie, entityzombie.boundingBox).isEmpty()
-								&& !this.worldObj.isAnyLiquid(entityzombie.boundingBox)) {
-							this.worldObj.spawnEntityInWorld(entityzombie);
-							entityzombie.setAttackTarget(entitylivingbase);
-							entityzombie.onSpawnWithEgg((EntityLivingData) null);
-							this.getEntityAttribute(field_110186_bp).applyModifier(new AttributeModifier("Zombie reinforcement caller charge", -0.05000000074505806D, 0));
-							entityzombie.getEntityAttribute(field_110186_bp).applyModifier(new AttributeModifier("Zombie reinforcement callee charge", -0.05000000074505806D, 0));
+						if (worldObj.checkNoEntityCollision(zombie.boundingBox) && worldObj.getCollidingBoundingBoxes(zombie, zombie.boundingBox).isEmpty() && !worldObj.isAnyLiquid(zombie.boundingBox)) {
+							worldObj.spawnEntityInWorld(zombie);
+							zombie.setAttackTarget(entity);
+							zombie.onSpawnWithEgg((EntityLivingData) null);
+							getEntityAttribute(field_110186_bp).applyModifier(new AttributeModifier("Zombie reinforcement caller charge", -0.05000000074505806D, 0));
+							zombie.getEntityAttribute(field_110186_bp).applyModifier(new AttributeModifier("Zombie reinforcement callee charge", -0.05000000074505806D, 0));
 							break;
 						}
 					}
@@ -87,9 +86,9 @@ public class EntityTweakedZombie extends EntityZombie {
 	}
 
 	@Override
-	public EntityLivingData onSpawnWithEgg(EntityLivingData par1EntityLivingData) {
+	public EntityLivingData onSpawnWithEgg(EntityLivingData entityData) {
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).applyModifier(new AttributeModifier("Random spawn bonus", this.rand.nextGaussian() * 0.05D, 1));
-		Object par1EntityLivingData1 = par1EntityLivingData;//super.onSpawnWithEgg(par1EntityLivingData);
+		Object par1EntityLivingData1 = entityData;//super.onSpawnWithEgg(par1EntityLivingData);
 		float f = this.worldObj.getLocationTensionFactor(this.posX, this.posY, this.posZ);
 		this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * f);
 
@@ -112,7 +111,7 @@ public class EntityTweakedZombie extends EntityZombie {
 		this.addRandomArmor();
 		this.enchantEquipment();
 
-		if (this.getCurrentItemOrArmor(4) == null) {
+		if (getCurrentItemOrArmor(4) == null) {
 			Calendar calendar = this.worldObj.getCurrentDate();
 
 			if (calendar.get(2) + 1 == 10 && calendar.get(5) == 31 && this.rand.nextFloat() < 0.25F) {
@@ -169,8 +168,7 @@ public class EntityTweakedZombie extends EntityZombie {
 
 			if (flag) {
 				if (i > 0) {
-					par1Entity.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F), 0.1D,
-							(double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F));
+					par1Entity.addVelocity((double) (-MathHelper.sin(rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F), 0.1D, (double) (MathHelper.cos(rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F));
 					this.motionX *= 0.6D;
 					this.motionZ *= 0.6D;
 				}

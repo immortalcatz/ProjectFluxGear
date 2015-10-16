@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.crystalclimate.block.tile;
+package mortvana.legacy.clean.crystalclimate.block.tile;
 
 import java.util.Random;
 
@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
 import mortvana.melteddashboard.util.helpers.MiscHelper;
@@ -115,7 +116,7 @@ public class TerraformerLogic extends TileEntity {
 
 	void snow() {
 		int x = xCoord + random.nextInt(25) - 12, y = yCoord + random.nextInt(6) - 1, z = zCoord + random.nextInt(25) - 12;
-		Block block = Block.blocksList[worldObj.getBlock(x, y, z)];
+		Block block = worldObj.getBlock(x, y, z);
 		if (MiscHelper.isBlockEqual(block, Blocks.water, Blocks.flowing_water, CrystalClimate.finiteWater)) {
 			worldObj.setBlock(x, y, z, Blocks.ice);
 		} else if (block == Blocks.snow_layer) {
@@ -125,8 +126,8 @@ public class TerraformerLogic extends TileEntity {
 			} else if (meta == 6) {
 				worldObj.setBlock(x, y, z, Blocks.snow);
 			}
-		} else if (block == null || block.isBlockReplaceable(worldObj, x, y, z)) {
-			if (worldObj.doesBlockHaveSolidTopSurface(x, y - 1, z)) {
+		} else if (block == null || block.isReplaceable(worldObj, x, y, z)) {
+			if (World.doesBlockHaveSolidTopSurface(worldObj, x, y - 1, z)) {
 				worldObj.setBlock(x, y, z, Blocks.snow_layer);
 			}
 		}
@@ -134,7 +135,7 @@ public class TerraformerLogic extends TileEntity {
 
 	void fume() {
 		int x = xCoord + random.nextInt(25) - 12, y = yCoord + random.nextInt(6) - 1, z = zCoord + random.nextInt(25) - 12;
-		Block block = Block.blocksList[worldObj.getBlock(x, y, z)];
+		Block block = worldObj.getBlock(x, y, z);
 		if (block == Blocks.water || block == Blocks.flowing_water) {
 			worldObj.setBlock(x, y, z, Blocks.lava);
 		} else if (block == CrystalClimate.ash) {
@@ -144,8 +145,8 @@ public class TerraformerLogic extends TileEntity {
 			} else if (meta == 6) {
 				worldObj.setBlock(x, y, z, CrystalClimate.ashBlock);
 			}
-		} else if (block == null || block.isBlockReplaceable(worldObj, x, y, z)) {
-			if (worldObj.doesBlockHaveSolidTopSurface(x, y - 1, z)) {
+		} else if (block == null || block.isReplaceable(worldObj, x, y, z)) {
+			if (World.doesBlockHaveSolidTopSurface(worldObj, x, y - 1, z)) {
 				if (random.nextInt(10) == 0) {
 					worldObj.setBlock(x, y, z, Blocks.lava);
 				} else {
@@ -158,19 +159,19 @@ public class TerraformerLogic extends TileEntity {
 	void wave() {
 		int x = xCoord + random.nextInt(5) - 2, y = yCoord, z = zCoord + random.nextInt(5) - 2;
 
-		Block block = Block.blocksList[worldObj.getBlock(x, y, z)];
+		Block block = worldObj.getBlock(x, y, z);
 		if (block == CrystalClimate.finiteWater) {
 			int meta = worldObj.getBlockMetadata(x, y, z);
 			if (meta < 7)
 				worldObj.setBlockMetadataWithNotify(x, y, z, meta + 1, 3);
-		} else if (block == null || block.isBlockReplaceable(worldObj, x, y, z)) {
+		} else if (block == null || block.isReplaceable(worldObj, x, y, z)) {
 			worldObj.setBlock(x, y, z, CrystalClimate.finiteWater);
 		}
 	}
 
 	void corrupt() {
 		int x = xCoord + random.nextInt(25) - 12, y = yCoord + random.nextInt(11) - 5, z = zCoord + random.nextInt(25) - 12;
-		Block block = Block.blocksList[worldObj.getBlock(x, y, z)];
+		Block block = worldObj.getBlock(x, y, z);
 		if (block != null) {
 			if (block == Blocks.stone)
 				worldObj.setBlock(x, y, z, Blocks.netherrack);
@@ -185,7 +186,6 @@ public class TerraformerLogic extends TileEntity {
 				} else if (material == Material.ground) {
 					worldObj.setBlock(x, y, z, Blocks.soul_sand);
 				} else if (material == Material.grass) {
-					Block grass = Block.blocksList[worldObj.getBlock(x, y + 1, z)];
 					if (block == Blocks.tallgrass) {
 						worldObj.setBlock(x, y, z, Blocks.deadbush);
 					}

@@ -10,6 +10,8 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+import cofh.core.fluid.BlockFluidCoFHBase;
+
 public class BlockFluidSmog extends BlockFluidCoFHBase implements IBioactive {
 
     public static final int LEVELS = 6;
@@ -56,8 +58,7 @@ public class BlockFluidSmog extends BlockFluidCoFHBase implements IBioactive {
             int expQuanta = -101;
             int y2 = y - densityDir;
 
-            if (world.getBlock(x, y2, z) == this || world.getBlock(x - 1, y2, z) == this || world.getBlock(x + 1, y2, z) == this
-                    || world.getBlock(x, y2, z - 1) == this || world.getBlock(x, y2, z + 1) == this) {
+            if (world.getBlock(x, y2, z) == this || world.getBlock(x - 1, y2, z) == this || world.getBlock(x + 1, y2, z) == this || world.getBlock(x, y2, z - 1) == this || world.getBlock(x, y2, z + 1) == this) {
                 expQuanta = quantaPerBlock - 1;
 
             } else {

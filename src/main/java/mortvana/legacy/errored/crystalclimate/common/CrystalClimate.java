@@ -19,7 +19,11 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+import mortvana.legacy.clean.crystalclimate.block.BlockAsh;
+import mortvana.legacy.clean.crystalclimate.block.BlockSugar;
 import mortvana.legacy.clean.crystalclimate.block.itemblock.*;
+import mortvana.legacy.clean.crystalclimate.block.tile.TerraformerLogic;
+import mortvana.legacy.clean.crystalclimate.block.tile.TerraleecherLogic;
 import mortvana.legacy.dependent.firstdegree.crystalclimate.item.ItemEssenceCrystal;
 import mortvana.legacy.clean.crystalclimate.common.CrystalProxy;
 import mortvana.legacy.dependent.firstdegree.crystalclimate.util.TabCrystal;
@@ -50,42 +54,42 @@ public class CrystalClimate {
 
 	public static void createContent() {
 		//Blocks
-		essenceExtractor = new BlockEssenceExtractor().setHardness(12f).setUnlocalizedName("extractor.essence");
+		essenceExtractor = new BlockEssenceExtractor().setHardness(12f).setBlockName("extractor.essence");
 		GameRegistry.registerBlock(essenceExtractor, "extractor.essence");
 		GameRegistry.registerTileEntity(EssenceExtractorLogic.class, "extractor.essence");
 
-		terraformer = new BlockTerraformer().setHardness(50f).setUnlocalizedName("terraformer");
+		terraformer = new BlockTerraformer().setHardness(50f).setBlockName("terraformer");
 		GameRegistry.registerBlock(terraformer, ItemBlockTerraformer.class, "terraformer");
 		GameRegistry.registerTileEntity(TerraformerLogic.class, "Crystal:Terraformer");
 		GameRegistry.registerTileEntity(TerraleecherLogic.class, "Crystal:Terraleecher");
 		GameRegistry.registerTileEntity(TerragrowerLogic.class, "Crystal:Terragrower");
 
-		aggregator = new BlockAggregator().setHardness(10f).setUnlocalizedName("aggregator.redstone");
+		aggregator = new BlockAggregator().setHardness(10f).setBlockName("aggregator.redstone");
 		GameRegistry.registerBlock(aggregator, ItemBlockAggregator.class, "aggregator");
 		GameRegistry.registerTileEntity(RedstoneAggregator.class, "aggregator.redstone");
 
-		crystalBlock = new BlockCrystal().setHardness(1.0f).setUnlocalizedName("crystal");
+		crystalBlock = new BlockCrystal().setHardness(1.0f).setBlockName("crystal");
 		GameRegistry.registerBlock(crystalBlock, ItemBlockCrystal.class, "crystalblock");
 		GameRegistry.registerTileEntity(CrystalLogic.class, "Crystal:Crystallogic");
 
-		ash = new BlockAsh().setHardness(0.1F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("ash").setTextureName("crystal:ash");
+		ash = new BlockAsh().setHardness(0.1F).setStepSound(Block.soundTypeSand).setBlockName("ash").setBlockTextureName("crystal:ash");
 		GameRegistry.registerBlock(ash, "ash");
-		ashBlock = new Block(Material.sand).setHardness(0.2F).setStepSound(Block.soundSandFootstep).setUnlocalizedName("ash").setCreativeTab(CrystalClimate.tab).setTextureName("crystal:ash");
+		ashBlock = new Block(Material.sand).setHardness(0.2F).setStepSound(Block.soundTypeSand).setUnlocalizedName("ash").setCreativeTab(CrystalClimate.tab).setTextureName("crystal:ash");
 		GameRegistry.registerBlock(ashBlock, "ashBlock");
 
 		finiteWaterFluid = new Fluid("water.finite");
-		if (!FluidRegistry.registerFluid(finiteWaterFluid))
+		if (!FluidRegistry.registerFluid(finiteWaterFluid)) {
 			finiteWaterFluid = FluidRegistry.getFluid("water.finite");
+		}
 		finiteWater = new BlockFiniteWater(finiteWater, finiteWaterFluid, Material.water).setUnlocalizedName(Blocks.water.getUnlocalizedName()).setTextureName("water_still");
 		finiteWaterFluid.setBlockID(finiteWater).setUnlocalizedName(Blocks.water.getUnlocalizedName());
-		FluidContainerRegistry.registerFluidContainer(new FluidContainerRegistry.FluidContainerData(new FluidStack(finiteWaterFluid, 1000), new ItemStack(Item.bucketWater), new ItemStack(Item.bucketEmpty)));
+		FluidContainerRegistry.registerFluidContainer(new FluidContainerRegistry.FluidContainerData(new FluidStack(finiteWaterFluid, 1000), new ItemStack(Items.water_bucket), new ItemStack(Items.bucket)));
 		GameRegistry.registerBlock(finiteWater, "water.finite");
 
-		leechedStone = new Block(Material.rock).setHardness(3F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("stone.leeched")
-				.setCreativeTab(CrystalClimate.tab).setTextureName("crystal:leechedstone");
+		leechedStone = new Block(Material.rock).setHardness(3F).setStepSound(Block.soundTypeStone).setUnlocalizedName("stone.leeched").setCreativeTab(CrystalClimate.tab).setTextureName("crystal:leechedstone");
 		GameRegistry.registerBlock(leechedStone, "leechedstone");
 
-		sugarBlock = new BlockSugar().setHardness(0.3F).setUnlocalizedName("sugar");
+		sugarBlock = new BlockSugar().setHardness(0.3F).setBlockName("sugar");
 		GameRegistry.registerBlock(sugarBlock, ItemBlockWithMetadata.class, "sugarblock");
 
 		//Items

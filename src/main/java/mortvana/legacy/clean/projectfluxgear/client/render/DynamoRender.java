@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.projectfluxgear.client.render;
+package mortvana.legacy.clean.projectfluxgear.client.render;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;

@@ -1,9 +1,11 @@
-package mortvana.legacy.errored.thaumicrevelations.block;
+package mortvana.legacy.clean.thaumicrevelations.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.melteddashboard.block.FluxGearBlock;
 import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
+import thaumcraft.common.config.Config;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;

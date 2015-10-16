@@ -1,7 +1,5 @@
 package mortvana.melteddashboard.block;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.*;
 
 import net.minecraft.block.Block;
@@ -12,18 +10,15 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import gnu.trove.map.TMap;
@@ -65,13 +60,37 @@ public class FluxGearBlock extends Block {
 	
 	public TMap<Integer, Boolean> climbable = new THashMap<Integer, Boolean>(20);
 	public TMap<Integer, Boolean> normalCube = new THashMap<Integer, Boolean>(20);
-	public TMap<Integer, DirectionalSolidityData> sideSolid = new THashMap<Integer, DirectionalSolidityData>(20);
+	public TMap<Integer, DirectionalBoolean> sideSolid = new THashMap<Integer, DirectionalBoolean>(20);
 	public TMap<Integer, Boolean> replaceable = new THashMap<Integer, Boolean>(20);
 	
 	public TMap<Integer, Boolean> burning = new THashMap<Integer, Boolean>(20);
-	
+	public TMap<Integer, DirectionalInteger> flammability = new THashMap<Integer, DirectionalInteger>(20);
+	public TMap<Integer, DirectionalBoolean> flammable = new THashMap<Integer, DirectionalBoolean>(20);
+	public TMap<Integer, DirectionalInteger> fireSpread = new THashMap<Integer, DirectionalInteger>(20);
+	public TMap<Integer, DirectionalBoolean> fireSource = new THashMap<Integer, DirectionalBoolean>(20);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public TMap<Integer, Integer> droppedMeta = new THashMap<Integer, Integer>(20);
 	public TMap<Integer, List<ItemStack>> droppedItems = new THashMap<Integer, List<ItemStack>>(20);
+
+
+
+
+
 
 	public static boolean finalMaterial = true;
 	public Boolean doesBlockGrass = null;
@@ -778,7 +797,7 @@ public class FluxGearBlock extends Block {
 
 	/* Enumerators */
 
-	public static enum EnumBlockType {
+	public enum EnumBlockType {
 		STORAGE,
 		ORE,
 		SOIL_ORE

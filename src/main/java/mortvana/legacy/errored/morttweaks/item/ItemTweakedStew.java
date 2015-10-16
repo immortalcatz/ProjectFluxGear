@@ -16,7 +16,7 @@ public class ItemTweakedStew extends ItemSoup {
 	public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
 		player.getFoodStats().addStats(this);
 		world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
-		this.onFoodEaten(stack, world, player);
+		onFoodEaten(stack, world, player);
 
 		if (!player.capabilities.isCreativeMode) {
 			--stack.stackSize;

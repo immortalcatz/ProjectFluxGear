@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.morttweaks.block;
+package mortvana.legacy.clean.morttweaks.block;
 
 import java.util.Random;
 
@@ -12,7 +12,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTweakedSugarCane extends BlockReed {
-	public BlockTweakedSugarCane(int id) {
+	public BlockTweakedSugarCane() {
 		super();
 		disableStats();
 	}
@@ -22,15 +22,14 @@ public class BlockTweakedSugarCane extends BlockReed {
 		if (world.isAirBlock(x, y + 1, z)) {
 			int l;
 
-			for (l = 1; world.getBlockId(x, y - l, z) == this.blockID; ++l) {
-				;
+			for (l = 1; world.getBlock(x, y - l, z) == this; l++) {
 			}
 
 			if (l < MortTweaks.sugarCaneHeight) {
 				int i1 = world.getBlockMetadata(x, y, z);
 
 				if (i1 == 15) {
-					world.setBlock(x, y + 1, z, this.blockID);
+					world.setBlock(x, y + 1, z, this);
 					world.setBlockMetadataWithNotify(x, y, z, 0, 4);
 				} else {
 					world.setBlockMetadataWithNotify(x, y, z, i1 + 1, 4);
@@ -39,9 +38,10 @@ public class BlockTweakedSugarCane extends BlockReed {
 		}
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
-		super.registerIcons(iconRegister);
-		Blocks.reeds.registerIcons(iconRegister);
+	public void registerBlockIcons(IIconRegister iconRegister) {
+		super.registerBlockIcons(iconRegister);
+		Blocks.reeds.registerBlockIcons(iconRegister);
 	}
 }

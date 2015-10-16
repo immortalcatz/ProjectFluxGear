@@ -1,6 +1,9 @@
 package mortvana.legacy.errored.projectfluxgear.block.fluid;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+
+import cofh.core.fluid.BlockFluidCoFHBase;
+
 import mortvana.legacy.errored.core.common.FluxGearContent;
 
 public class BlockFluidGhastTears extends BlockFluidCoFHBase {
@@ -11,7 +14,7 @@ public class BlockFluidGhastTears extends BlockFluidCoFHBase {
     private static boolean effect = true;
 
     public BlockFluidGhastTears() {
-        super("thermaltinkerer", FluxGearContent.fluidGhastTear, materialFluidGhastTear, "ghastTear");
+        super("thermaltinkerer", FluxGearContent.fluidGhastTear, materialFluidGhastTear, "ghastTears");
         setQuantaPerBlock(LEVELS);
         setTickRate(30);
 
