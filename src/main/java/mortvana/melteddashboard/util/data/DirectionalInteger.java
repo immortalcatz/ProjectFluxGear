@@ -10,6 +10,10 @@ public class DirectionalInteger {
 		values = new int[] { down, up, north, south, west, east };
 	}
 
+	public int valueOnSide(int side) {
+		return values[side];
+	}
+
 	public int valueOnSide(ForgeDirection side) {
 		return values[side.ordinal()];
 	}

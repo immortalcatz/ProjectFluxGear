@@ -14,9 +14,9 @@ public class SidedIIcon {
 	public enum EnumSidedness {
 		STANDARD(0, 0, 0, 0, 0, 0);
 
-		public int[] iconIndexes; //Technically the correct spelling.
+		public int[] iconIndexes; //Technically a correct spelling.
 
-		//This will error if you supply a byte greater than 5...
+		//This will error if you supply a int greater than 5...
 		EnumSidedness(int down, int up, int north, int south, int west, int east) {
 			iconIndexes = new int[] { down, up, north, south, west, east };
 		}

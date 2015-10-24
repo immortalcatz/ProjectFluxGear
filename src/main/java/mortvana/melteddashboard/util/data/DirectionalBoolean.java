@@ -10,6 +10,10 @@ public class DirectionalBoolean {
 		values = new boolean[] { down, up, north, south, west, east };
 	}
 
+	public boolean valueOnSide(int side) {
+		return values[side];
+	}
+
 	public boolean valueOnSide(ForgeDirection side) {
 		return values[side.ordinal()];
 	}
