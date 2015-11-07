@@ -1,8 +1,12 @@
 package mortvana.projectfluxgear.tech.common;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 
+import cpw.mods.fml.common.IFuelHandler;
+
+import mortvana.melteddashboard.block.FluxGearBlock;
 import mortvana.melteddashboard.registry.material.EnumMaterialType;
 import mortvana.melteddashboard.registry.material.MaterialEntry;
 import mortvana.melteddashboard.util.ColorLibrary;
@@ -12,12 +16,14 @@ import mortvana.projectfluxgear.core.common.FluxGearCoreContent;
 
 import static mortvana.projectfluxgear.core.common.FluxGearCoreContent.generalItem;
 
-public class FluxGearTech implements IConfigInitialized{
+public class FluxGearTech implements IConfigInitialized, IFuelHandler {
 
+	@Override
 	public void preInit(ConfigBase config) {
 
 	}
 
+	@Override
 	public void init(ConfigBase config) {
 		for (MaterialEntry material : materials) {
 			FluxGearCoreContent.dynMatReg.addMaterial(material);
@@ -25,11 +31,14 @@ public class FluxGearTech implements IConfigInitialized{
 		rawFilament = generalItem.addOreDictItem(17000, "unrifinedFilament", "partRawFilament");
 	}
 
+	@Override
 	public void postInit(ConfigBase config) {
 
 	}
 
-	public static void loadOres() {
+	@Override
+	public int getBurnTime(ItemStack fuel) {
+		return 0;
 	}
 
 
@@ -39,10 +48,15 @@ public class FluxGearTech implements IConfigInitialized{
 
 	}
 
-
-	public static Block blockPrimaryOre;
-
-
+	public static Block blockPrimaryOre = new FluxGearBlock(Material.iron);
+	public static Block blockSecondaryOre;
+	public static Block blockTertiaryOre;
+	public static Block blockPrimaryPoorOre;
+	public static Block blockSecondaryPoorOre;
+	public static Block blockTertiaryPoorOre;
+	public static Block blockPrimaryGravelOre;
+	public static Block blockSecondaryGravelOre;
+	public static Block blockTertiaryGravelOre;
 
 	public static ItemStack rawFilament;
 
@@ -64,4 +78,6 @@ public class FluxGearTech implements IConfigInitialized{
 	//public static MaterialEntry chromium = new MaterialEntry(15, EnumMaterialType.INGOT_METAL, "chromium", "chromium", new String[] {"Chromium", "Chrome"}, 7.0F, 10.0F, 1, 2, 0, 0/*, ColorHelper.COLOR_MATERIAL_*/);
 
 	public static MaterialEntry[] materials = new MaterialEntry[] { copper, tin, lead, silver, nickel, platinum };
+
+
 }

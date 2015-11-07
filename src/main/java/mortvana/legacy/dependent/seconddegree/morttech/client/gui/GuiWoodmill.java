@@ -14,10 +14,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiWoodmill extends GuiContainer {
-    private static final ResourceLocation furnaceGuiTextures = new ResourceLocation("morttech:woodmill");
-    private WoodmillLogic logic;
+    private static final ResourceLocation furnaceGuiTextures = new ResourceLocation("morttech:woodmill"/*"textures/gui/container/furnace.png"*/);
+    private WoodmillLogic /*TileWoodmill*/ logic;
 
-    public GuiWoodmill(InventoryPlayer inventory, WoodmillLogic woodmill) {
+    public GuiWoodmill(InventoryPlayer inventory, WoodmillLogic /*TileWoodmill*/ woodmill) {
         super(new ContainerWoodmill(inventory, woodmill));
         logic = woodmill;
     }
@@ -43,7 +43,7 @@ public class GuiWoodmill extends GuiContainer {
         int i1;
 
         if (logic.isWorking())  {
-            i1 = logic.gaugePowerScaled(12);
+            i1 = logic.gaugePowerScaled(12)/*furnaceInventory.getBurnTimeRemainingScaled(12)*/;
             drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
         }
 

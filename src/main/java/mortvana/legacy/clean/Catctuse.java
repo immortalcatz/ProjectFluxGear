@@ -458,9 +458,6 @@ public class Catctuse {
         oreIlmenite
         oreChromite
 
-
-
-
 D		oreJacenite(Rock that carries a powerful electromagnetic charge)
 1.5C	oreScryngestone(Ore of Jethrik, a rare, super-heavy, "stable" element, used in warpdrives and as a super fuel) (Iridiotungsten Hydroxyisobutylpolydioxymethyljethrik Bismosubsalicyltrialuminosilicocarbonate)
 D       oreMagnetite
@@ -498,10 +495,10 @@ Fe      oreTertahedrite
 Fe      oreTennantite
 Fe      oreSantafeite
 
-RS		oreSoarynium
         orePentlandite
 		oreTanzanite
 		oreEuxenite
+RS		oreSoarynium
 		*/
 	}
 

@@ -23,4 +23,8 @@ public class ItemEntry {
 	public ItemEntry(String name) {
 		this.name = name;
 	}
+
+	public void setIcon(IIcon icon) {
+		this.icon = icon;
+	}
 }

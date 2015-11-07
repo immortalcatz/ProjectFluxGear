@@ -16,27 +16,35 @@ import mortvana.legacy.errored.morttech.recipe.WoodmillRecipes;
 
 public class ContainerWoodmill extends Container {
     private WoodmillLogic woodmill;
-    private int progressTime;
-    private int powerTime;
-    private int powerGaugeTime;
+    private int progressTime /*lastCookTime*/;
+    private int powerTime /*lastBurnTime*/;
+    private int powerGaugeTime /*lastItemBurnTime*/;
 
-    public ContainerWoodmill(InventoryPlayer inventoryPlayer, WoodmillLogic TileEntityWoodmill) {
+    public ContainerWoodmill(InventoryPlayer inventoryPlayer, WoodmillLogic /*TileWoodmill*/ TileEntityWoodmill) {
         woodmill = TileEntityWoodmill;
         addSlotToContainer(new Slot(TileEntityWoodmill, 0, 56, 17));
         addSlotToContainer(new SlotFurnace(inventoryPlayer.player, TileEntityWoodmill, 1, 56, 53));
         addSlotToContainer(new SlotFurnace(inventoryPlayer.player, TileEntityWoodmill, 2, 116, 53));
         addSlotToContainer(new SlotFurnace(inventoryPlayer.player, TileEntityWoodmill, 3, 116, 35));
-        int i;
 
-        for (i = 0; i < 3; ++i) {
-            for (int j = 0; j < 9; ++j) {
-                this.addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-            }
-        }
+	    for (int i = 0; i < 9; i++) {
+		    for (int j = 0; j < 3; j++) {
+			    this.addSlotToContainer(new Slot(inventoryPlayer, i + j * 9 + 9, 8 + i * 18, 84 + j * 18)); //Make sure logic is sane
+		    }
+		    this.addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
+	    }
 
-        for (i = 0; i < 9; ++i) {
-            this.addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
-        }
+	    /*int i;
+
+	    for (i = 0; i < 3; ++i) {
+		    for (int j = 0; j < 9; ++j) {
+			    this.addSlotToContainer(new Slot(par1InventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+		    }
+	    }
+
+	    for (i = 0; i < 9; ++i) {
+		    this.addSlotToContainer(new Slot(par1InventoryPlayer, i, 8 + i * 18, 142));
+	    }*/
     }
 
     @Override
@@ -54,7 +62,7 @@ public class ContainerWoodmill extends Container {
     public void detectAndSendChanges () {
         super.detectAndSendChanges();
 
-        for (int i = 0; i < crafters.size(); ++i) {
+        for (int i = 0; i < crafters.size(); i++) {
             ICrafting icrafting = (ICrafting) crafters.get(i);
 
             if (progressTime != woodmill.progress) {
@@ -92,8 +100,8 @@ public class ContainerWoodmill extends Container {
     }
 
     @Override
-    public boolean canInteractWith (EntityPlayer par1EntityPlayer) {
-        return woodmill.isUseableByPlayer(par1EntityPlayer);
+    public boolean canInteractWith (EntityPlayer player) {
+        return woodmill.isUseableByPlayer(player);
     }
 
     /**
