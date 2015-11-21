@@ -2,7 +2,12 @@ package mortvana.legacy.clean.core.util.item;
 
 import java.util.List;
 
+import mortvana.melteddashboard.api.item.IFluxArmor;
 import mortvana.melteddashboard.util.helpers.EnergyHelper;
+import mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper;
+
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -21,16 +26,16 @@ import mortvana.legacy.clean.core.util.helpers.StringHelper;
  * All credits go to King Lemming, Zeldo Kavira, and Skyboy of Team CoFH
  */
 
-public class ItemArmorRF extends ItemArmorAdv implements ISpecialArmor, IEnergyContainerItem {
+public class ItemArmorRF extends ItemArmorAdv implements IFluxArmor {
 
     public static final ArmorProperties UNBLOCKABLE = new ArmorProperties(0, 0.0D, 0);
-    public static final ArmorProperties FLUX = new ArmorProperties(0, 0.5D, Integer.MAX_VALUE);
+    public static final ArmorProperties FLUX = new ArmorProperties(0, /*0.5D*/ 0.125D, Integer.MAX_VALUE);
 
     public int maxEnergy = 400000;
     public int maxTransfer = 2000;
 
     public double absorbRatio = 0.8D;
-    public int energyPerDamage = 80;
+    public int energyPerDamage = /*80*/ 160;
 
     public String[] textures = new String[2];
 
@@ -38,6 +43,10 @@ public class ItemArmorRF extends ItemArmorAdv implements ISpecialArmor, IEnergyC
 
         super(material, type);
     }
+
+	public ItemArmorRF setEnergyParams(int maxEnergy, int maxTransfer, int energyPerUse, int energyPerUseCharged) {
+
+	}
 
     @Override
     public boolean getIsRepairable(ItemStack itemToRepair, ItemStack stack) {
@@ -73,19 +82,19 @@ public class ItemArmorRF extends ItemArmorAdv implements ISpecialArmor, IEnergyC
         if (stack.stackTagCompound == null) {
             EnergyHelper.setDefaultEnergyTag(stack, 0);
         }
-        return 1 + maxEnergy - stack.stackTagCompound.getInteger("Energy");
+        return /*1 +*/ maxEnergy - stack.stackTagCompound.getInteger("Energy");
     }
 
     @Override
     public int getMaxDamage(ItemStack stack) {
 
-        return 1 + maxEnergy;
+        return /*1 +*/ maxEnergy;
     }
 
     @Override
     public boolean isDamaged(ItemStack stack) {
 
-        return stack.getItemDamage() != Short.MAX_VALUE;
+        return /*stack.getItemDamage() != Short.MAX_VALUE;*/ true;
     }
 
     protected int getBaseAbsorption() {
@@ -111,6 +120,11 @@ public class ItemArmorRF extends ItemArmorAdv implements ISpecialArmor, IEnergyC
         return 0;
     }
 
+	public int getEnergyPerDamage(ItemStack itemstack) {
+		int unbreakingLevel = MathHelper.clampInt(EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, itemstack), 0, 4);
+		return energyPerDamage * (5 - unbreakingLevel) / 5;
+	}
+
     /* ISpecialArmor */
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
@@ -120,26 +134,22 @@ public class ItemArmorRF extends ItemArmorAdv implements ISpecialArmor, IEnergyC
         } else if (source.isUnblockable()) {
             return UNBLOCKABLE;
         }
-        int absorbMax = energyPerDamage > 0 ? 25 * getEnergyStored(armor) / energyPerDamage : 0;
-        return new ArmorProperties(0, absorbRatio, absorbMax);
+        int absorbMax = getEnergyPerDamage(armor) > 0 ? 25 * getEnergyStored(armor) / energyPerDamage : 0;
+        return new ArmorProperties(0, absorbRatio * getArmorMaterial().getDamageReductionAmount(armorType), absorbMax);
     }
 
     @Override
     public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
-
-        if (getEnergyStored(armor) >= energyPerDamage) {
-            return Math.min(getBaseAbsorption(), 20) * getAbsorptionRatio() / 100;
-        }
-        return 0;
+		return getEnergyStored(armor) >= energyPerDamage ? Math.min(getBaseAbsorption(), 20) * getAbsorptionRatio() / 100 : 0;
     }
 
     @Override
     public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
 
         if (source.damageType.equals("flux")) {
-            receiveEnergy(stack, damage * energyPerDamage, false);
+            receiveEnergy(stack, damage * (source.getEntity() == null ? energyPerDamage / 2 : getEnergyPerDamage(stack)), false);
         } else {
-            extractEnergy(stack, damage * energyPerDamage, false);
+            extractEnergy(stack, damage * getEnergyPerDamage(stack), false);
         }
     }
 

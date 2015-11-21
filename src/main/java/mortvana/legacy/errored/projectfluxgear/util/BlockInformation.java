@@ -1,11 +1,13 @@
-package mortvana.legacy.dependent.firstdegree.projectfluxgear.util;
+package mortvana.legacy.errored.projectfluxgear.util;
 
 import mortvana.legacy.clean.core.util.block.BlockFluxGear;
-import mortvana.legacy.clean.core.util.block.BlockFluxGear.EnumBlockType;
 import mortvana.legacy.errored.core.common.FluxGearContent;
 import mortvana.legacy.errored.projectfluxgear.block.BlockAlloyAux;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreAux;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreMain;
+
+import mortvana.melteddashboard.block.FluxGearBlock;
+import mortvana.melteddashboard.block.FluxGearBlock.EnumBlockType;
 import mortvana.melteddashboard.block.FluxGearItemBlock;
 import mortvana.projectfluxgear.core.data.ItemBlockInformation;
 import net.minecraft.block.Block;
@@ -21,7 +23,7 @@ public class BlockInformation {
     // Materials
     public static final Material materialFluidGhastTear = new MaterialLiquid(MapColor.snowColor);
     public static final Material materialFluidSmog = new MaterialLiquid(MapColor.brownColor);
-    public static Material materialSoilOre = new Material(MapColor.sandColor)/*.setRequiresTool()*/;
+    public static Material materialSoilOre = new Material(MapColor.sandColor).setRequiresTool();
 
     // Names
     public static final String[] rockNames = new String[] { "mica", "andesite", "rhyolite", "gabrro", "diorite", "dolomite", "chert", "phyllite", "kimberlite", "dacite", "serpentine", "larvikite", "schalstein", "greenschist", "hornblendeBiotiteGranite", "pitchstone" };
@@ -96,15 +98,15 @@ public class BlockInformation {
     //TODO: More Redstone Signal Stuff
 	/* *=-=-=-=* Automagically Constructed Blocks *=-=-=-=* */
 
-    public static Block blockOreMain = new BlockFluxGear(Material.rock, FluxGearContent.tabWorld, EnumBlockType.ORE, ItemBlockInformation.BLOCK_NAMES_ORE_PRIMARY, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_MAIN, TEXTURE_LOCATION_ORE).setBlockName("mortvana.projectfluxgear.oreMain");
-    public static Block blockOreAux = new BlockFluxGear(Material.rock, FluxGearContent.tabWorld, EnumBlockType.ORE, ItemBlockInformation.BLOCK_NAMES_ORE_SECONDARY, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_AUX, TEXTURE_LOCATION_ORE).setBlockName("mortvana.projectfluxgear.oreAux");
-    public static Block blockStorageAux = new BlockFluxGear(Material.iron, FluxGearContent.tabMaterials, EnumBlockType.STORAGE, NAMES_STORE_AUX, TEXTURES_FULL, HARDNESS_STORE_AUX, RESISTANCE_STORE_AUX, LIGHT_STORE_AUX, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.storageAux");
-    public static Block blockAlloyMain = new BlockFluxGear(Material.iron, FluxGearContent.tabMaterials, EnumBlockType.STORAGE, NAMES_ALLOY_MAIN, TEXTURES_FULL, HARDNESS_ALLOY_MAIN, RESISTANCE_ALLOY_MAIN, LIGHT_ALLOY_MAIN, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.alloyMain");
-    public static Block blockStorageAdv = new BlockFluxGear(Material.iron, FluxGearContent.tabMaterials, EnumBlockType.STORAGE, NAMES_STORE_ADV, TEXTURES_FULL, HARDNESS_STORE_ADV, RESISTANCE_STORE_ADV, LIGHT_STORE_ADV, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.storageAdv");
-    public static Block blockStorageAlch = new  BlockFluxGear(Material.iron, FluxGearContent.tabMaterials, EnumBlockType.STORAGE, NAMES_STORE_ALCH, TEXTURES_FULL, HARDNESS_STORE_ALCH, RESISTANCE_STORE_ALCH, LIGHT_STORE_ALCH, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.storageAux");
-    public static Block blockEarthen = new BlockFluxGear(materialSoilOre, FluxGearContent.tabMaterials, EnumBlockType.SOIL_ORE, NAMES_EARTH, TEXTURES_EARTH, HARDNESS_EARTH, RESISTANCE_EARTH, LIGHT_EARTH, TEXTURE_LOCATION_DEFAULT).setBlockName("mortvana.projectfluxgear.earthen");
-    public static Block blockPoorOreMain = new BlockFluxGear(Material.rock, FluxGearContent.tabWorld, EnumBlockType.ORE, ItemBlockInformation.BLOCK_NAMES_ORE_PRIMARY, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_MAIN, TEXTURE_LOCATION_POOR_ORE).setBlockName("mortvana.projectfluxgear.poorOreMain");
-    public static Block blockPoorOreAux = new BlockFluxGear(Material.rock, FluxGearContent.tabWorld, EnumBlockType.ORE, ItemBlockInformation.BLOCK_NAMES_ORE_SECONDARY, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_AUX, TEXTURE_LOCATION_POOR_ORE).setBlockName("mortvana.projectfluxgear.poorOreAux");
+    public static Block blockOreMain = new FluxGearBlock(Material.rock, FluxGearContent.tabWorld, EnumBlockType.ORE, ItemBlockInformation.BLOCK_NAMES_ORE_PRIMARY, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_MAIN, TEXTURE_LOCATION_ORE).setBlockName("mortvana.projectfluxgear.oreMain");
+    public static Block blockOreAux = new FluxGearBlock(Material.rock, FluxGearContent.tabWorld, EnumBlockType.ORE, ItemBlockInformation.BLOCK_NAMES_ORE_SECONDARY, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_AUX, TEXTURE_LOCATION_ORE).setBlockName("mortvana.projectfluxgear.oreAux");
+    public static Block blockStorageAux = new FluxGearBlock(Material.iron, FluxGearContent.tabMaterials, EnumBlockType.STORAGE, NAMES_STORE_AUX, TEXTURES_FULL, HARDNESS_STORE_AUX, RESISTANCE_STORE_AUX, LIGHT_STORE_AUX, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.storageAux");
+    public static Block blockAlloyMain = new FluxGearBlock(Material.iron, FluxGearContent.tabMaterials, EnumBlockType.STORAGE, NAMES_ALLOY_MAIN, TEXTURES_FULL, HARDNESS_ALLOY_MAIN, RESISTANCE_ALLOY_MAIN, LIGHT_ALLOY_MAIN, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.alloyMain");
+    public static Block blockStorageAdv = new FluxGearBlock(Material.iron, FluxGearContent.tabMaterials, EnumBlockType.STORAGE, NAMES_STORE_ADV, TEXTURES_FULL, HARDNESS_STORE_ADV, RESISTANCE_STORE_ADV, LIGHT_STORE_ADV, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.storageAdv");
+    public static Block blockStorageAlch = new  FluxGearBlock(Material.iron, FluxGearContent.tabMaterials, EnumBlockType.STORAGE, NAMES_STORE_ALCH, TEXTURES_FULL, HARDNESS_STORE_ALCH, RESISTANCE_STORE_ALCH, LIGHT_STORE_ALCH, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.storageAux");
+    public static Block blockEarthen = new FluxGearBlock(materialSoilOre, FluxGearContent.tabMaterials, EnumBlockType.SOIL_ORE, NAMES_EARTH, TEXTURES_EARTH, HARDNESS_EARTH, RESISTANCE_EARTH, LIGHT_EARTH, TEXTURE_LOCATION_DEFAULT).setBlockName("mortvana.projectfluxgear.earthen");
+    public static Block blockPoorOreMain = new FluxGearBlock(Material.rock, FluxGearContent.tabWorld, EnumBlockType.ORE, ItemBlockInformation.BLOCK_NAMES_ORE_PRIMARY, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_MAIN, TEXTURE_LOCATION_POOR_ORE).setBlockName("mortvana.projectfluxgear.poorOreMain");
+    public static Block blockPoorOreAux = new FluxGearBlock(Material.rock, FluxGearContent.tabWorld, EnumBlockType.ORE, ItemBlockInformation.BLOCK_NAMES_ORE_SECONDARY, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_AUX, TEXTURE_LOCATION_POOR_ORE).setBlockName("mortvana.projectfluxgear.poorOreAux");
 
     public static ItemBlock itemblockOreMain = new FluxGearItemBlock(blockOreMain, ItemBlockInformation.BLOCK_NAMES_ORE_PRIMARY, RARITY_ORES_MAIN, unlocOre);
     public static ItemBlock itemblockOreAux = new FluxGearItemBlock(blockOreAux, ItemBlockInformation.BLOCK_NAMES_ORE_SECONDARY, RARITY_ORES_AUX, unlocOre);
