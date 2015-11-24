@@ -23,7 +23,7 @@ import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
 import mortvana.legacy.clean.core.util.helpers.ItemHelper;
 import mortvana.legacy.clean.core.util.helpers.SecurityHelper;
-import mortvana.legacy.clean.core.util.helpers.StringHelper;
+import mortvana.legacy.errored.core.util.helpers.StringHelper;
 import mortvana.melteddashboard.item.entry.ColorEntry;
 import mortvana.melteddashboard.item.entry.ItemEntry;
 
@@ -174,7 +174,7 @@ public class ItemFluxGearFood extends ItemFood {
 
     public String getRawName(ItemStack stack) {
 
-        int i = ItemHelper.getItemDamage(stack);
+        int i = ItemHelper.getMetadata(stack);
         if (!itemMap.containsKey(i)) {
             return "invalid";
         }
@@ -199,7 +199,7 @@ public class ItemFluxGearFood extends ItemFood {
     @Override
     public String getUnlocalizedName(ItemStack stack) {
 
-        int i = ItemHelper.getItemDamage(stack);
+        int i = ItemHelper.getMetadata(stack);
         if (!itemMap.containsKey(i)) {
             return "item.invalid";
         }
@@ -208,7 +208,7 @@ public class ItemFluxGearFood extends ItemFood {
 
     @Override
     public EnumRarity getRarity(ItemStack stack) {
-        return itemMap.containsKey(stack.getItemDamage()) ? EnumRarity.values()[itemMap.get(stack.getItemDamage()).rarity] : EnumRarity.common;
+        return itemMap.containsKey(stack.getMetadata()) ? EnumRarity.values()[itemMap.get(stack.getMetadata()).rarity] : EnumRarity.common;
     }
 
     @Override
@@ -274,13 +274,13 @@ public class ItemFluxGearFood extends ItemFood {
     }
 
     @Override
-    public int func_150905_g (ItemStack stack) {
-        return hunger[stack.getItemDamage()];
+    public int getHealAmount (ItemStack stack) {
+        return hunger[stack.getMetadata()];
     }
 
     @Override
-    public float func_150906_h (ItemStack stack) {
-        return saturation[stack.getItemDamage()];
+    public float getSaturationModifier (ItemStack stack) {
+        return saturation[stack.getMetadata()];
     }
 
     @SideOnly(Side.CLIENT)
@@ -299,7 +299,7 @@ public class ItemFluxGearFood extends ItemFood {
     }
 
     public String getUnlocalizedName_(ItemStack stack) {
-        int arr = MathHelper.clamp_int(stack.getItemDamage(), 0, unlocalizedNames.length);
+        int arr = MathHelper.clamp_int(stack.getMetadata(), 0, unlocalizedNames.length);
         return getUnlocalizedName() + "." + unlocalizedNames[arr];
     }
 

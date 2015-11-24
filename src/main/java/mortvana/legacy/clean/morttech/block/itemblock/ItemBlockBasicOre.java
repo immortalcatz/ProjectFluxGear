@@ -27,14 +27,14 @@ public class ItemBlockBasicOre extends ItemBlock {
     }
 
     public String getUnlocalizedName (ItemStack itemstack) {
-        int index = MathHelper.clamp_int(itemstack.getItemDamage(), 0, blockType.length - 1);
+        int index = MathHelper.clamp_int(itemstack.getMetadata(), 0, blockType.length - 1);
         return "block.ore.basic.";
     }
 
 	public String getUnlocalizedName2 (ItemStack itemstack) {
 		String name = "";
 
-		switch(itemstack.getItemDamage()) {
+		switch(itemstack.getMetadata()) {
 			case 0:
 				name= "Chalcocite Ore";
 				break;

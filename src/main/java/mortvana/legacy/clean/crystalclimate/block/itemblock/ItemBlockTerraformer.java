@@ -17,7 +17,7 @@ public class ItemBlockTerraformer extends ItemBlock {
 
 	public ItemBlockTerraformer(Block block) {
 		super(block);
-		setMaxDamage(0);
+		setMaxDurability(0);
 		setHasSubtypes(true);
 	}
 
@@ -26,14 +26,14 @@ public class ItemBlockTerraformer extends ItemBlock {
 	}
 
 	public String getUnlocalizedName(ItemStack itemstack) {
-		int pos = MathHelper.clamp_int(itemstack.getItemDamage(), 0, blockType.length - 1);
+		int pos = MathHelper.clamp_int(itemstack.getMetadata(), 0, blockType.length - 1);
 		return "tile.terraformer." + blockType[pos];
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
-		switch (stack.getItemDamage()) {
+		switch (stack.getMetadata()) {
 			case 0:
 				list.add("\u00a7b\u00a7oCold to the touch");
 				break;

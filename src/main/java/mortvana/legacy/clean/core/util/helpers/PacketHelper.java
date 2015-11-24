@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class PacketHelper {
 	public static void dispatchTEToNearbyPlayers(TileEntity tile) {
-		World world = tile.getWorldObj();
+		World world = tile.getWorld();
 		List players = world.playerEntities;
 		for (Object player : players) {
 			if (player instanceof EntityPlayerMP) {

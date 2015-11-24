@@ -57,7 +57,7 @@ public class TileParticleGenerator extends TileEntity {
 
 	@SideOnly(Side.CLIENT)
 	public void func_145845_h() {
-		if(this.field_145850_b.isRemote) {
+		if(worldObj.isRemote) {
 			if(this.stabilizerMode) {
 				this.rotation += 0.5F;
 				this.spawnStabilizerParticle();
@@ -74,7 +74,7 @@ public class TileParticleGenerator extends TileEntity {
 
 				if(tick >= spawn_rate && active) {
 					this.tick = 0;
-					Random rand = this.field_145850_b.rand;
+					Random rand = worldObj.rand;
 					float MX = motion_x + this.random_motion_x * rand.nextFloat();
 					float MY = motion_y + this.random_motion_y * rand.nextFloat();
 					float MZ = motion_z + this.random_motion_z * rand.nextFloat();
@@ -82,7 +82,7 @@ public class TileParticleGenerator extends TileEntity {
 					double spawnX = (double)((float)this.field_145851_c + this.spawn_x + this.random_spawn_x * rand.nextFloat());
 					double spawnY = (double)((float)this.field_145848_d + this.spawn_y + this.random_spawn_y * rand.nextFloat());
 					double spawnZ = (double)((float)this.field_145849_e + this.spawn_z + this.random_spawn_z * rand.nextFloat());
-					ParticleCustom particle = new ParticleCustom(this.field_145850_b, spawnX + 0.5D, spawnY + 0.5D, spawnZ + 0.5D, MX, MY, MZ, SCALE, this.collide, this.selected_particle);
+					ParticleCustom particle = new ParticleCustom(worldObj, spawnX + 0.5D, spawnY + 0.5D, spawnZ + 0.5D, MX, MY, MZ, SCALE, this.collide, this.selected_particle);
 					particle.red = this.red + rand.nextInt(this.random_red + 1);
 					particle.green = this.green + rand.nextInt(this.random_green + 1);
 					particle.blue = this.blue + rand.nextInt(this.random_blue + 1);
@@ -101,7 +101,7 @@ public class TileParticleGenerator extends TileEntity {
 
 	@SideOnly(Side.CLIENT)
 	private void spawnStabilizerParticle() {
-		if(this.getMaster() != null && this.field_145850_b.getTotalWorldTime() % 20L == 1L) {
+		if(this.getMaster() != null && worldObj.getTotalWorldTime() % 20L == 1L) {
 			double x = (double)this.field_145851_c + 0.5D;
 			double y = (double)this.field_145848_d + 0.5D;
 			double z = (double)this.field_145849_e + 0.5D;
@@ -116,8 +116,8 @@ public class TileParticleGenerator extends TileEntity {
 				direction = 3;
 			}
 
-			EnergyBeamParticle particle = new EnergyBeamParticle(this.field_145850_b, x, y, z, (double)this.getMaster().field_145851_c + 0.5D, (double)this.getMaster().field_145849_e + 0.5D, direction, false);
-			EnergyBeamParticle particle2 = new EnergyBeamParticle(this.field_145850_b, x, y, z, (double)this.getMaster().field_145851_c + 0.5D, (double)this.getMaster().field_145849_e + 0.5D, direction, true);
+			EnergyBeamParticle particle = new EnergyBeamParticle(worldObj, x, y, z, (double)this.getMaster().field_145851_c + 0.5D, (double)this.getMaster().field_145849_e + 0.5D, direction, false);
+			EnergyBeamParticle particle2 = new EnergyBeamParticle(worldObj, x, y, z, (double)this.getMaster().field_145851_c + 0.5D, (double)this.getMaster().field_145849_e + 0.5D, direction, true);
 			ParticleHandler.spawnCustomParticle(particle, 60.0D);
 			ParticleHandler.spawnCustomParticle(particle2, 60.0D);
 		}
@@ -135,7 +135,7 @@ public class TileParticleGenerator extends TileEntity {
 
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		this.func_145839_a(pkt.func_148857_g());
-		this.field_145850_b.markBlockForUpdate(this.field_145851_c, this.field_145848_d, this.field_145849_e);
+		worldObj.markBlockForUpdate(this.field_145851_c, this.field_145848_d, this.field_145849_e);
 	}
 
 	public void func_145841_b(NBTTagCompound compound) {

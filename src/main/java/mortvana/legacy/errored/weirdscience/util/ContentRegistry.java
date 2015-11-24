@@ -153,7 +153,7 @@ public class ContentRegistry implements IFuelHandler {
         if (fuelDataSimple.containsKey(fuel)) {
             return fuelDataSimple.get(fuel);
         }
-        ImmutablePair<Item, Integer> itemDef = new ImmutablePair(fuel, fuel.getItemDamage());
+        ImmutablePair<Item, Integer> itemDef = new ImmutablePair(fuel, fuel.getMetadata());
         if (fuelDataSpecific.containsKey(itemDef)) {
             return fuelDataSpecific.get(itemDef);
         }

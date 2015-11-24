@@ -97,6 +97,7 @@ jar {
 // Setup the forge minecraft plugin data.
 minecraft {
     version = minecraft_version + "-" + forge_version
+    mappings = 'stable_12'
     //if  (file('../run').exists) { runDir = "../run/" } else {
     runDir = "run"
     //}

@@ -27,7 +27,7 @@ public class EntityTweakedWitch extends EntityWitch {
 			float f1 = MathHelper.sqrt_double(d0 * d0 + d2 * d2);
 
 			if (f1 >= 8.0F && !entity.isPotionActive(Potion.moveSlowdown)) {
-				stack.setItemDamage(16392);
+				stack.setMetadata(16392);
 
 				PotionEffect pe = new PotionEffect(Potion.moveSlowdown.id, 20 * 20);
 				NBTTagCompound potionTag = new NBTTagCompound();
@@ -37,7 +37,7 @@ public class EntityTweakedWitch extends EntityWitch {
 				base.setTag("CustomPotionEffects", potionTag);
 				stack.setTagCompound(base);
 			} else if (entity.getHealth() >= 8.0F && !entity.isPotionActive(Potion.poison)) {
-				stack.setItemDamage(16388);
+				stack.setMetadata(16388);
 
 				PotionEffect pe = new PotionEffect(Potion.poison.id, 20 * 20, 10);
 				NBTTagCompound potionTag = new NBTTagCompound();
@@ -47,7 +47,7 @@ public class EntityTweakedWitch extends EntityWitch {
 				base.setTag("CustomPotionEffects", potionTag);
 				stack.setTagCompound(base);
 			} else if (f1 <= 3.0F && !entity.isPotionActive(Potion.weakness) && this.rand.nextFloat() < 0.25F) {
-				stack.setItemDamage(16392);
+				stack.setMetadata(16392);
 
 				PotionEffect pe = new PotionEffect(Potion.weakness.id, 20 * 20);
 				NBTTagCompound potionTag = new NBTTagCompound();

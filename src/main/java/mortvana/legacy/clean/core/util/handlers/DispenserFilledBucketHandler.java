@@ -15,7 +15,7 @@ public final class DispenserFilledBucketHandler extends BehaviorDefaultDispenseI
 	}
 
 	public ItemStack dispenseStack(IBlockSource var1, ItemStack var2) {
-		EnumFacing var3 = BlockDispenser.func_149937_b(var1.getBlockMetadata());
+		EnumFacing var3 = BlockDispenser.getFacingDirection(var1.getBlockMetadata());
 		World var4 = var1.getWorld();
 		int var5 = var1.getXInt() + var3.getFrontOffsetX();
 		int var6 = var1.getYInt() + var3.getFrontOffsetY();

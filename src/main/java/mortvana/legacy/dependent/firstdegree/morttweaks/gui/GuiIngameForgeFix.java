@@ -15,7 +15,7 @@ public class GuiIngameForgeFix extends GuiIngameForge {
 		super(mc);
 	}
 
-	private FontRenderer fontrenderer = mc.fontRenderer;
+	private FontRenderer fontrenderer = mc.fontRendererObj;
 
 	@Override
 	protected void renderToolHightlight(int width, int height) {

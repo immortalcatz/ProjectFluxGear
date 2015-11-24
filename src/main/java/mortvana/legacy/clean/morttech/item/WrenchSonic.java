@@ -66,7 +66,7 @@ public class WrenchSonic extends Item {
 
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4) {
-        switch (stack.getItemDamage()) {
+        switch (stack.getMetadata()) {
             case 0:
                 list.add("A sturdy, high-tech wrench.");
                 list.add("It's made of many complex alloys.");

@@ -30,7 +30,7 @@ public abstract class BlockContainerBase extends BlockContainer {
 		 */
 		super(material);
 		englishName = name;
-		this.setBlockName("block" + "." + name.replace(" ", "")); //A default value. Absolutely acceptable to not keep it.
+		setUnlocalizedName("block" + "." + name.replace(" ", "")); //A default value. Absolutely acceptable to not keep it.
 
 	}
 
@@ -71,7 +71,7 @@ public abstract class BlockContainerBase extends BlockContainer {
 		}
 
 		//Make sure that the entries to canBlockGrass are still valid.
-		canBlockGrass[blockID] = !m.getCanBlockGrass();
+		translucent = !m.isTranslucent();
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.crystalclimate.block.itemblock;
+package mortvana.legacy.clean.crystalclimate.block.itemblock;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class ItemBlockCrystal extends ItemBlock {
 
 	public ItemBlockCrystal(Block block) {
 		super(block);
-		setMaxDamage(0);
+		setMaxDurability(0);
 		this.block = block;
 		//setHasSubtypes(true);
 	}
@@ -57,7 +57,7 @@ public class ItemBlockCrystal extends ItemBlock {
 			int placeMeta = getBaseMeta(crystalValue);
 
 			if (placeBlockAt(stack, player, world, x, y, z, side, hitX, hitY, hitZ, placeMeta) && block != null) {
-				world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), block.stepSound.getPlaceSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
+				world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), block.stepSound.getPlaceSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getFrequency() * 0.8F);
 				--stack.stackSize;
 
 				int height = BlockCrystal.getCrystalHeight(crystalValue);

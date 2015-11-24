@@ -26,11 +26,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import vazkii.botania.api.boss.IBotaniaBoss;
 import vazkii.botania.api.lexicon.LexiconPage;
+import vazkii.botania.api.lexicon.multiblock.MultiblockSet;
 import vazkii.botania.api.recipe.RecipeBrew;
 import vazkii.botania.api.recipe.RecipeElvenTrade;
 import vazkii.botania.api.recipe.RecipeManaInfusion;
 import vazkii.botania.api.recipe.RecipePetals;
 import vazkii.botania.api.recipe.RecipeRuneAltar;
+import vazkii.botania.api.subtile.SubTileEntity;
 
 public class DummyMethodHandler implements IInternalMethodHandler {
 
@@ -104,6 +106,11 @@ public class DummyMethodHandler implements IInternalMethodHandler {
 		return dummyPage(key);
 	}
 
+	@Override
+	public LexiconPage multiblockPage(String key, MultiblockSet mb) {
+		return dummyPage(key);
+	}
+
 	private LexiconPage dummyPage(String key) {
 		return new DummyPage(key);
 	}
@@ -141,6 +148,16 @@ public class DummyMethodHandler implements IInternalMethodHandler {
 	@Override
 	public void drawSimpleManaHUD(int color, int mana, int maxMana, String name, ScaledResolution res) {
 		// NO-OP
+	}
+
+	@Override
+	public void drawComplexManaHUD(int color, int mana, int maxMana, String name, ScaledResolution res, ItemStack bindDisplay, boolean properlyBound) {
+		// NO-OP
+	}
+
+	@Override
+	public ItemStack getBindDisplayForFlowerType(SubTileEntity e) {
+		return new ItemStack(Blocks.stone, 0, 0);
 	}
 
 	@Override
@@ -189,5 +206,19 @@ public class DummyMethodHandler implements IInternalMethodHandler {
 		// NO-OP
 	}
 
+	@Override
+	public long getWorldElapsedTicks() {
+		return 0;
+	}
+
+	@Override
+	public boolean isBotaniaFlower(World world, int x, int y, int z) {
+		return false;
+	}
+
+	@Override
+	public void sendBaubleUpdatePacket(EntityPlayer player, int slot) {
+		// NO-OP
+	}
 
 }

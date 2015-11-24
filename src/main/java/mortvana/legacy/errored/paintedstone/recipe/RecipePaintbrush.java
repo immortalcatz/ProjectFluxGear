@@ -121,7 +121,8 @@ public class RecipePaintbrush implements IRecipe {
 						return false;
 					}
 					foundBrush = true;
-				} else if (tempStack.getItem() == dye.getItem() && tempStack.getItemDamage() == dye.getItemDamage() && countDye < 1702) {
+				} else if (tempStack.getItem() == dye.getItem() && tempStack.getMetadata() == dye.getMetadata() &&
+						countDye < 1702) {
 					++countDye;
 				} else {
 					return false;
@@ -195,7 +196,7 @@ public class RecipePaintbrush implements IRecipe {
 			}
 
 			paintbrush.getTagCompound().setInteger("PaintType", type);
-			paint = paintbrush.getItemDamage();
+			paint = paintbrush.getMetadata();
 			if(paint == 0) {
 				paint = 1728;
 			}
@@ -205,7 +206,7 @@ public class RecipePaintbrush implements IRecipe {
 				paint = 0;
 			}
 
-			paintbrush.setItemDamage(paint);
+			paintbrush.setMetadata(paint);
 			return paintbrush;
 		} else {
 			return null;
@@ -213,7 +214,7 @@ public class RecipePaintbrush implements IRecipe {
 	}
 
 	private boolean checkItemEquals(ItemStack target, ItemStack input) {
-		return input.getItem() == FluxGearContent.paintbrush ? !input.hasTagCompound() || input.getTagCompound().getInteger("PaintType") == 0 || input.getTagCompound().getInteger("PaintType") == type : target.copy() == input.copy() && (target.getItemDamage() == 32767 || target.getItemDamage() == input.getItemDamage());
+		return input.getItem() == FluxGearContent.paintbrush ? !input.hasTagCompound() || input.getTagCompound().getInteger("PaintType") == 0 || input.getTagCompound().getInteger("PaintType") == type : target.copy() == input.copy() && (target.getMetadata() == 32767 || target.getMetadata() == input.getMetadata());
 	}
 
 	public ArrayList getInput() {

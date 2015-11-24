@@ -1,4 +1,4 @@
-package mortvana.legacy.dependent.firstdegree.morttech.block.tile;
+package mortvana.legacy.errored.morttech.block.tile;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import mantle.blocks.BlockUtils;
@@ -191,7 +191,7 @@ public class WoodmillLogic extends InventoryLogic implements IActiveLogic, IFaci
                 }
             }
 
-            if ((item instanceof ItemTool && ((ItemTool) item).getToolMaterialName().equals("WOOD")) || (item instanceof ItemSword && ((ItemSword) item).getToolMaterialName().equals("WOOD")) || (item instanceof ItemHoe && ((ItemHoe) item).getToolMaterialName().equals("WOOD"))) {
+            if ((item instanceof ItemTool && ((ItemTool) item).getToolMaterialName().equals("WOOD")) || (item instanceof ItemSword && ((ItemSword) item).getToolMaterialName().equals("WOOD")) || (item instanceof ItemHoe && ((ItemHoe) item).getMaterialName().equals("WOOD"))) {
                 return 200;
             }
             if ((item == Items.stick) || (item == new ItemStack(Blocks.sapling).getItem())) {
@@ -247,7 +247,7 @@ public class WoodmillLogic extends InventoryLogic implements IActiveLogic, IFaci
 
     @Override
     public void onDataPacket (NetworkManager net, S35PacketUpdateTileEntity packet) {
-        readNetworkNBT(packet.func_148857_g());
+        readNetworkNBT(packet.getNbtCompound());
         worldObj.markBlockRangeForRenderUpdate(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
     }
 
@@ -306,10 +306,10 @@ public class WoodmillLogic extends InventoryLogic implements IActiveLogic, IFaci
     }
 
     @Override
-    public void openInventory () {
+    public void openChest () {
     }
 
     @Override
-    public void closeInventory () {
+    public void closeChest () {
     }
 }

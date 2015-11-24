@@ -14,7 +14,7 @@ public class ItemBlockComplexOre extends ItemBlock {
 	public String getUnlocalizedName(ItemStack itemstack) {
 		String name = "";
 		
-		switch (itemstack.getItemDamage()) {
+		switch (itemstack.getMetadata()) {
 			case 0:
 				name= "Bauxite Ore";
 				break;

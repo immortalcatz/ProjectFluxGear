@@ -20,6 +20,7 @@ public class FluxGearCoreContent implements IConfigInitialized {
 
 	public static FluxGearCreativeTab dynMaterialTab = new FluxGearCreativeTab("PFG-DynamicMaterials", "fluxgear.dynMaterial", new ItemStack(Items.iron_ingot));
 	public static FluxGearCreativeTab componentsTab = new FluxGearCreativeTab("PFG-Components", "fluxgear.components", new ItemStack(Items.potato));
+	public static FluxGearCreativeTab equipmentTab = new FluxGearCreativeTab("PFG-Equipment", "fluxgear.equipment", new ItemStack(Items.iron_chestplate));
 
 	public void preInit(ConfigBase config) {
 		preInitRegistry();

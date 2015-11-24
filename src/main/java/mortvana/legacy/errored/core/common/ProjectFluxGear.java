@@ -40,7 +40,7 @@ import mortvana.legacy.errored.weirdscience.util.ContentRegistry;
 import mortvana.legacy.errored.apiology.util.LocalizationManager;
 import mortvana.legacy.clean.morttech.util.Modules;
 import mortvana.legacy.clean.core.util.handlers.DummyHandler;
-import mortvana.legacy.clean.core.util.helpers.StringHelper;
+import mortvana.legacy.errored.core.util.helpers.StringHelper;
 import mortvana.legacy.errored.core.util.runtime.EnvironmentChecks;
 import mortvana.legacy.errored.projectfluxgear.world.FluxGearWorldGenerator;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.world.GravelOreGenEventHandler;
@@ -136,7 +136,7 @@ public class ProjectFluxGear {
 	    FluxGearConfig.loadConfig(new File(event.getModConfigurationDirectory().getAbsolutePath() + "/Mortvana/ProjectFluxGear.cfg"));
 	    FluxGearConfigWorld.loadConfiguration(new File(event.getModConfigurationDirectory().getAbsolutePath() + "/Mortvana/ProjectFluxGear-World.cfg"));
 
-	    NetworkRegistry.instance().registerGuiHandler(INSTANCE, new FluxGearGUIHandler());
+	    NetworkRegistry.instance().registerGuiHandler(instance, new FluxGearGUIHandler());
 	    proxy.registerRenderers();
 
 	    for(Modules.Module module: Modules.modules) {

@@ -152,7 +152,7 @@ public class BucketHandler {
 			boolean var8 = !var7.isSolid();
 			if(var0.isAirBlock(var1, var2, var3) || var8) {
 				if(!var0.isRemote && var8 && !var7.isLiquid()) {
-					var0.func_147480_a(var1, var2, var3, true);
+					var0.breakBlock(var1, var2, var3, true);
 				}
 
 				var5 = var0.setBlock(var1, var2, var3, var6.block, var6.metadata, 3);

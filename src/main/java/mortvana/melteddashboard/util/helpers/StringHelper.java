@@ -1,6 +1,63 @@
 package mortvana.melteddashboard.util.helpers;
 
+import net.minecraft.util.StatCollector;
+
+import org.lwjgl.input.Keyboard;
+
 public class StringHelper {
+
+	/* Color Coding */
+	public static final String BLACK = "\u00a70";
+	public static final String BLUE = "\u00a71";
+	public static final String GREEN = "\u00a72";
+	public static final String TEAL = "\u00a73";
+	public static final String RED = "\u00a74";
+	public static final String PURPLE = "\u00a75";
+	public static final String ORANGE = "\u00a76";
+	public static final String LIGHT_GRAY = "\u00a77";
+	public static final String GRAY = "\u00a78";
+	public static final String LIGHT_BLUE = "\u00a79";
+	public static final String BRIGHT_GREEN = "\u00a7a";
+	public static final String BRIGHT_BLUE = "\u00a7b";
+	public static final String LIGHT_RED = "\u00a7c";
+	public static final String PINK = "\u00a7d";
+	public static final String YELLOW = "\u00a7e";
+	public static final String WHITE = "\u00a7f";
+
+	/* Text formatting */
+	public static final String OBFUSCATED = "\u00a7k";
+	public static final String BOLD = "\u00a7l";
+	public static final String STRIKETHROUGH = "\u00a7m";
+	public static final String UNDERLINE = "\u00a7n";
+	public static final String ITALIC = "\u00a7o";
+	public static final String END = "\u00a7r";
+
+	public static final String[] ROMAN_NUMERAL = new String[]{"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
+	public static boolean displayShiftForDetails = true;
+
+	public static final String TOOLTIP = "info.fluxgear.tooltip.";
+
+	private StringHelper() {}
+
+	public static boolean isAltKeyDown() {
+		return Keyboard.isKeyDown(56) || Keyboard.isKeyDown(184);
+	}
+
+	public static boolean isControlKeyDown() {
+		return Keyboard.isKeyDown(29) || Keyboard.isKeyDown(157);
+	}
+
+	public static boolean isShiftKeyDown() {
+		return Keyboard.isKeyDown(42) || Keyboard.isKeyDown(54);
+	}
+
+	public static String localize(String string) {
+		return StatCollector.translateToLocal(string);
+	}
+
+
+
+
 
 	// TODO: This.
 	public static String toTitleCase(String string) {
@@ -59,5 +116,15 @@ public class StringHelper {
 
 	public static String createSimpleOreDictString(String prefix, String name) {
 		return prefix + toTitleCase(stripPrefixes(name));
+	}
+
+
+	/* Tooltips */
+	public static String holdShiftForDetails() {
+		return LIGHT_GRAY + localize(TOOLTIP + "hold") + " " + TEAL + ITALIC + localize(TOOLTIP + "shift") + " " + END + LIGHT_GRAY + localize(TOOLTIP + "details") + END;
+	}
+
+	public static String visDiscount(int discount) {
+		return PURPLE + localize("tc.visdicount" + ": " + discount + "%");
 	}
 }

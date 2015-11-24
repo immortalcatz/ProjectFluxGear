@@ -3,6 +3,7 @@ package mortvana.legacy.clean.core.util.item;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import mortvana.melteddashboard.util.helpers.EnergyHelper;
+import mortvana.melteddashboard.util.helpers.StringHelper;
 import mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,7 +19,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 
-import mortvana.legacy.clean.core.util.helpers.StringHelper;
 import org.lwjgl.input.Keyboard;
 
 import java.util.List;
@@ -129,8 +129,8 @@ public abstract class ItemToolRF extends ItemToolAdv implements IEmpowerableItem
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
 
-        if (StringHelper.displayShiftForDetail && !StringHelper.isShiftKeyDown()) {
-            list.add(StringHelper.shiftForDetails());
+        if (StringHelper.displayShiftForDetails && !StringHelper.isShiftKeyDown()) {
+            list.add(StringHelper.holdShiftForDetails());
         }
         if (!StringHelper.isShiftKeyDown()) {
             return;
@@ -175,7 +175,7 @@ public abstract class ItemToolRF extends ItemToolAdv implements IEmpowerableItem
     @Override
     public boolean isDamaged(ItemStack stack) {
 
-        return stack.getItemDamage() != Short.MAX_VALUE;
+        return stack.getMetadata() != Short.MAX_VALUE;
     }
 
     @Override

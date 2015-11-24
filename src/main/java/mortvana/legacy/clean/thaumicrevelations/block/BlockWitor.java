@@ -14,7 +14,7 @@ public class BlockWitor extends BlockContainer {
     public BlockWitor() {
 
         super(Config.airyMaterial);
-        setBlockName("blockWitor");
+        setUnlocalizedName("blockWitor");
         setStepSound(Block.soundTypeCloth);
         setCreativeTab(ThaumicRevelations.thaumicRevelationsTab);
         setBlockBounds(0.3F, 0.3F, 0.3F, 0.7F, 0.7F, 0.7F);

@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.morttech.block.tileentity;
+package mortvana.legacy.errored.morttech.block.tile;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;

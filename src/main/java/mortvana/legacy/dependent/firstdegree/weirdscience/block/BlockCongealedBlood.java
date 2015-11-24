@@ -36,10 +36,10 @@ public class BlockCongealedBlood extends Block implements ISoundProvider {
         super(Material.ground);
 
         setCreativeTab(FluxGearContent.tabMaterials);
-        setBlockName("congealedBloodBlock");
+        setUnlocalizedName("congealedBloodBlock");
         setHardness(1); //TODO: Proper value for this.
         setResistance(1);
-        setBlockTextureName("gui:congealedBloodBlock");
+        setTextureName("gui:congealedBloodBlock");
         //setStepSound((StepSound) new WeirdStepSound(placeSoundName, placeSoundName, stepSoundName, 1.0f, 1.0f));
     }
 

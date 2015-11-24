@@ -16,15 +16,15 @@ public class BlockWardenicQuartzChiseled extends Block {
 
     public BlockWardenicQuartzChiseled() {
         super(Material.rock);
-        setBlockName("blockInfusedQuartzChiseled");
+        setUnlocalizedName("blockInfusedQuartzChiseled");
         setCreativeTab(ThaumicRevelations.thaumicRevelationsTab);
         setStepSound(Block.soundTypeStone);
         setHardness(0.8F);
     }
 
+	@Override
     @SideOnly(Side.CLIENT)
-    @Override
-    public void registerBlockIcons(IIconRegister register) {
+    public void registerIcons(IIconRegister register) {
         topIcon = register.registerIcon("trevelations:infusedquartzchiseledtop");
         botIcon = register.registerIcon("trevelations:infusedquartzchiseledtop");
         sideIcon = register.registerIcon("trevelations:infusedquartzchiseledside");

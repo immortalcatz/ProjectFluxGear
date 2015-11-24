@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import mortvana.legacy.errored.morttech.block.tileentity.TileWoodmill;
+import mortvana.legacy.errored.morttech.block.tile.TileWoodmill;
 import mortvana.legacy.dependent.seconddegree.morttech.client.gui.GuiWoodmill;
 
 public class WoodmillBlock extends Block {

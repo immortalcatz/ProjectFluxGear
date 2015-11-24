@@ -25,7 +25,7 @@ public class BlockEnergyPylon extends FluxGearBlock {
 
 	public BlockEnergyPylon() {
 		super(Material.iron, FluxGearContent.tabMaterials);
-		setHardness(10.0F).setResistance(20.0F).setBlockName("energyPylon");
+		setHardness(10.0F).setResistance(20.0F).setUnlocalizedName("energyPylon");
 		ModBlocks.register(this);
 	}
 
@@ -38,54 +38,54 @@ public class BlockEnergyPylon extends FluxGearBlock {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		this.icon_input = iconRegister.registerIcon(ProjectFluxGear.RESOURCESPREFIX + "energy_pylon_input");
-		this.icon_output = iconRegister.registerIcon(ProjectFluxGear.RESOURCESPREFIX + "energy_pylon_output");
-		this.icon_active_face = iconRegister.registerIcon(ProjectFluxGear.RESOURCESPREFIX + "energy_pylon_active_face");
+	public void registerIcons(IIconRegister iconRegister) {
+		icon_input = iconRegister.registerIcon(ProjectFluxGear.RESOURCESPREFIX + "energy_pylon_input");
+		icon_output = iconRegister.registerIcon(ProjectFluxGear.RESOURCESPREFIX + "energy_pylon_output");
+		icon_active_face = iconRegister.registerIcon(ProjectFluxGear.RESOURCESPREFIX + "energy_pylon_active_face");
 	}
 
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
-		return meta == 1 && side == 1?this.icon_active_face:(meta == 2 && side == 0?this.icon_active_face:this.icon_input);
+		return meta == 1 && side == 1 ? icon_active_face : (meta == 2 && side == 0 ? icon_active_face : icon_input);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
 		int meta = world.getBlockMetadata(x, y, z);
-		if(meta == 1 && side == 1) {
-			return this.icon_active_face;
-		} else if(meta == 2 && side == 0) {
-			return this.icon_active_face;
+		if (meta == 1 && side == 1) {
+			return icon_active_face;
+		} else if (meta == 2 && side == 0) {
+			return icon_active_face;
 		} else {
-			TileEnergyPylon thisTile = world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof TileEnergyPylon?(TileEnergyPylon)world.getTileEntity(x, y, z):null;
-			return thisTile == null?this.icon_input:(!thisTile.reciveEnergy?this.icon_output:this.icon_input);
+			TileEnergyPylon thisTile = world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof TileEnergyPylon ? (TileEnergyPylon) world.getTileEntity(x, y, z) : null;
+			return thisTile == null ? icon_input : (!thisTile.receiveEnergy ? icon_output : icon_input);
 		}
 	}
 
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
 		int meta = world.getBlockMetadata(x, y, z);
 		TileEnergyPylon thisTile;
-		if(meta == 0) {
-			if(world.getBlock(x, y + 1, z) == Blocks.glass) {
+		if (meta == 0) {
+			if (world.getBlock(x, y + 1, z) == Blocks.glass) {
 				world.setBlockMetadataWithNotify(x, y, z, 1, 2);
 				world.setBlock(x, y + 1, z, FluxGearContent.invisibleMultiblock, 2, 2);
-			} else if(world.getBlock(x, y - 1, z) == Blocks.glass) {
+			} else if (world.getBlock(x, y - 1, z) == Blocks.glass) {
 				world.setBlockMetadataWithNotify(x, y, z, 2, 2);
 				world.setBlock(x, y - 1, z, FluxGearContent.invisibleMultiblock, 2, 2);
 			}
 		} else {
 			thisTile = world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof TileEnergyPylon ? (TileEnergyPylon)world.getTileEntity(x, y, z) : null;
-			if(thisTile == null || meta == 1 && !this.isGlass(world, x, y + 1, z) || meta == 2 && !this.isGlass(world, x, y - 1, z)) {
+			if (thisTile == null || meta == 1 && !isGlass(world, x, y + 1, z) || meta == 2 && !isGlass(world, x, y - 1, z)) {
 				world.setBlockMetadataWithNotify(x, y, z, 0, 2);
 			}
 		}
 
 		thisTile = world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof TileEnergyPylon ? (TileEnergyPylon)world.getTileEntity(x, y, z) : null;
-		if(thisTile != null) {
+		if (thisTile != null) {
 			thisTile.onActivated();
 		}
 
-		if(world.getBlockMetadata(x, y, z) == 0 && world.getTileEntity(x, y, z) != null) {
+		if (world.getBlockMetadata(x, y, z) == 0 && world.getTileEntity(x, y, z) != null) {
 			world.removeTileEntity(x, y, z);
 		}
 
@@ -97,17 +97,16 @@ public class BlockEnergyPylon extends FluxGearBlock {
 
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
 		int meta = world.getBlockMetadata(x, y, z);
-		if(meta == 0) {
+		if (meta == 0) {
 			return false;
 		} else {
 			TileEnergyPylon thisTile = world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof TileEnergyPylon ? (TileEnergyPylon)world.getTileEntity(x, y, z) : null;
-			if(thisTile != null) {
-				if(!player.isSneaking()) {
+			if (thisTile != null) {
+				if (!player.isSneaking()) {
 					thisTile.onActivated();
 				} else {
 					thisTile.nextCore();
 				}
-
 				return true;
 			} else {
 				return false;

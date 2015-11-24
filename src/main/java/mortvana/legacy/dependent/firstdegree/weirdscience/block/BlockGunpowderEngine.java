@@ -102,7 +102,7 @@ public class BlockGunpowderEngine extends BlockContainerBase {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerBlockIcons(IIconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		//TODO: Visually differentiate this from the Nitrate Engine.
 		frontIcon = iconRegister.registerIcon("gui:genericmachine5");
 		sidesIcon = iconRegister.registerIcon("gui:genericmachine");

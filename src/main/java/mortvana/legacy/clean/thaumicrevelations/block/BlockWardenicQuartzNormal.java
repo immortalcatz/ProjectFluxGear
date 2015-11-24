@@ -16,15 +16,15 @@ public class BlockWardenicQuartzNormal extends Block {
 
     public BlockWardenicQuartzNormal() {
         super(Material.rock);
-        setBlockName("blockInfusedQuartzNormal");
+        setUnlocalizedName("blockInfusedQuartzNormal");
         setCreativeTab(ThaumicRevelations.thaumicRevelationsTab);
         setStepSound(Block.soundTypeStone);
         setHardness(0.8F);
     }
 
+	@Override
     @SideOnly(Side.CLIENT)
-    @Override
-    public void registerBlockIcons(IIconRegister register) {
+    public void registerIcons(IIconRegister register) {
         topIcon = register.registerIcon("trevelations:infusedquartztop");
         botIcon = register.registerIcon("trevelations:infusedquartzbot");
         sideIcon = register.registerIcon("trevelations:infusedquartzside");

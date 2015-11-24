@@ -180,12 +180,6 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 		}
 	}
 
-	public void openChest() {
-	}
-
-	public void closeChest() {
-	}
-
 	public boolean isItemFuel(Item item) {
 		if (canBurn(new ItemStack(item)) != null) {
 			return true;
@@ -692,11 +686,11 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 	}
 
 	@Override
-	public void closeInventory() {
+	public void closeChest() {
 	}
 
 	@Override
-	public void openInventory() {
+	public void openChest() {
 	}
 
 }

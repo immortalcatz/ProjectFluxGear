@@ -28,6 +28,8 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cofh.api.item.IEmpowerableItem;
 import cofh.api.item.IInventoryContainerItem;
 
+import mortvana.legacy.errored.core.util.helpers.StringHelper;
+
 public final class ItemHelper {
 	public static final String BLOCK = "block";
 	public static final String ORE = "ore";
@@ -104,7 +106,7 @@ public final class ItemHelper {
 	public static ItemStack readItemStackFromNBT(NBTTagCompound nbtTag) {
 		ItemStack var1 = new ItemStack(Item.getItemById(nbtTag.getShort("id")));
 		var1.stackSize = nbtTag.getInteger("Count");
-		var1.setItemDamage(Math.max(0, nbtTag.getShort("Damage")));
+		var1.setMetadata(Math.max(0, nbtTag.getShort("Damage")));
 		if(nbtTag.hasKey("tag", 10)) {
 			var1.stackTagCompound = nbtTag.getCompoundTag("tag");
 		}
@@ -115,7 +117,7 @@ public final class ItemHelper {
 	public static NBTTagCompound writeItemStackToNBT(ItemStack itemstack, NBTTagCompound nbtTag) {
 		nbtTag.setShort("id", (short)Item.getIdFromItem(itemstack.getItem()));
 		nbtTag.setInteger("Count", itemstack.stackSize);
-		nbtTag.setShort("Damage", (short)getItemDamage(itemstack));
+		nbtTag.setShort("Damage", (short)getMetadata(itemstack));
 		if(itemstack.stackTagCompound != null) {
 			nbtTag.setTag("tag", itemstack.stackTagCompound);
 		}
@@ -125,7 +127,7 @@ public final class ItemHelper {
 	public static NBTTagCompound writeItemStackToNBT(ItemStack itemstack, int amount, NBTTagCompound nbtTag) {
 		nbtTag.setShort("id", (short)Item.getIdFromItem(itemstack.getItem()));
 		nbtTag.setInteger("Count", amount);
-		nbtTag.setShort("Damage", (short)getItemDamage(itemstack));
+		nbtTag.setShort("Damage", (short)getMetadata(itemstack));
 		if(itemstack.stackTagCompound != null) {
 			nbtTag.setTag("tag", itemstack.stackTagCompound);
 		}
@@ -148,7 +150,7 @@ public final class ItemHelper {
 			if(containerStack == null) {
 				return null;
 			} else {
-				if(containerStack.isItemStackDamageable() && containerStack.getItemDamage() > containerStack.getMaxDamage()) {
+				if(containerStack.isItemStackDamageable() && containerStack.getMetadata() > containerStack.getMaxDurability()) {
 					containerStack = null;
 				}
 				return containerStack;
@@ -158,7 +160,7 @@ public final class ItemHelper {
 		}
 	}
 
-	public static int getItemDamage(ItemStack itemstack) {
+	public static int getMetadata(ItemStack itemstack) {
 		return Items.diamond.getDamage(itemstack);
 	}
 
@@ -179,10 +181,10 @@ public final class ItemHelper {
 			int var4;
 			if(var2[1] != null && var2[0].getItem() == var2[1].getItem() && var2[0].stackSize == 1 && var2[1].stackSize == 1 && var2[0].getItem().isRepairable()) {
 				Item var9 = var2[0].getItem();
-				var4 = var9.getMaxDamage() - var2[0].getItemDamageForDisplay();
-				int var5 = var9.getMaxDamage() - var2[1].getItemDamageForDisplay();
-				int var6 = var4 + var5 + var9.getMaxDamage() * 5 / 100;
-				int var7 = Math.max(0, var9.getMaxDamage() - var6);
+				var4 = var9.getMaxDurability() - var2[0].getCurrentDurability();
+				int var5 = var9.getMaxDurability() - var2[1].getCurrentDurability();
+				int var6 = var4 + var5 + var9.getMaxDurability() * 5 / 100;
+				int var7 = Math.max(0, var9.getMaxDurability() - var6);
 				return new ItemStack(var2[0].getItem(), 1, var7);
 			} else {
 				for(var4 = 0; var4 < CraftingManager.getInstance().getRecipeList().size(); ++var4) {
@@ -522,7 +524,7 @@ public final class ItemHelper {
 		if(var0 == null | var1 == null) {
 			return false;
 		} else {
-			FurnaceRecipes.smelting().func_151394_a(cloneStack((Item)var1, 1), cloneStack(var0), 0.0F);
+			FurnaceRecipes.instance().addSmeltingRecipe(cloneStack(var1, 1), cloneStack(var0), 0.0F);
 			return true;
 		}
 	}
@@ -531,7 +533,7 @@ public final class ItemHelper {
 		if(var0 == null | var1 == null) {
 			return false;
 		} else {
-			FurnaceRecipes.smelting().func_151394_a(cloneStack((Block)var1, 1), cloneStack(var0), 0.0F);
+			FurnaceRecipes.instance().addSmeltingRecipe(cloneStack(var1, 1), cloneStack(var0), 0.0F);
 			return true;
 		}
 	}
@@ -540,7 +542,7 @@ public final class ItemHelper {
 		if(var0 == null | var1 == null) {
 			return false;
 		} else {
-			FurnaceRecipes.smelting().func_151394_a(cloneStack((ItemStack)var1, 1), cloneStack(var0), 0.0F);
+			FurnaceRecipes.instance().addSmeltingRecipe(cloneStack(var1, 1), cloneStack(var0), 0.0F);
 			return true;
 		}
 	}
@@ -549,7 +551,7 @@ public final class ItemHelper {
 		if(var0 == null | var1 == null) {
 			return false;
 		} else {
-			FurnaceRecipes.smelting().func_151394_a(cloneStack((Item)var1, 1), cloneStack(var0), var2);
+			FurnaceRecipes.instance().addSmeltingRecipe(cloneStack(var1, 1), cloneStack(var0), var2);
 			return true;
 		}
 	}
@@ -558,7 +560,7 @@ public final class ItemHelper {
 		if(var0 == null | var1 == null) {
 			return false;
 		} else {
-			FurnaceRecipes.smelting().func_151394_a(cloneStack((Block)var1, 1), cloneStack(var0), var2);
+			FurnaceRecipes.instance().addSmeltingRecipe(cloneStack(var1, 1), cloneStack(var0), var2);
 			return true;
 		}
 	}
@@ -567,7 +569,7 @@ public final class ItemHelper {
 		if(var0 == null | var1 == null) {
 			return false;
 		} else {
-			FurnaceRecipes.smelting().func_151394_a(cloneStack((ItemStack)var1, 1), cloneStack(var0), var2);
+			FurnaceRecipes.instance().addSmeltingRecipe(cloneStack(var1, 1), cloneStack(var0), var2);
 			return true;
 		}
 	}
@@ -576,7 +578,7 @@ public final class ItemHelper {
 		if(var0 == null | var1 == null) {
 			return false;
 		} else {
-			FurnaceRecipes.smelting().func_151394_a(cloneStack((Item)var1, 1), cloneStack(var0), 0.1F);
+			FurnaceRecipes.instance().addSmeltingRecipe(cloneStack(var1, 1), cloneStack(var0), 0.1F);
 			return true;
 		}
 	}
@@ -585,7 +587,7 @@ public final class ItemHelper {
 		if(var0 == null | var1 == null) {
 			return false;
 		} else {
-			FurnaceRecipes.smelting().func_151394_a(cloneStack((Block)var1, 1), cloneStack(var0), 0.1F);
+			FurnaceRecipes.instance().addSmeltingRecipe(cloneStack((Block)var1, 1), cloneStack(var0), 0.1F);
 			return true;
 		}
 	}
@@ -594,7 +596,7 @@ public final class ItemHelper {
 		if(var0 == null | var1 == null) {
 			return false;
 		} else {
-			FurnaceRecipes.smelting().func_151394_a(cloneStack((ItemStack)var1, 1), cloneStack(var0), 0.1F);
+			FurnaceRecipes.instance().addSmeltingRecipe(cloneStack((ItemStack)var1, 1), cloneStack(var0), 0.1F);
 			return true;
 		}
 	}
@@ -603,8 +605,8 @@ public final class ItemHelper {
 		if(var0 == null | var1 == null) {
 			return false;
 		} else {
-			GameRegistry.addShapelessRecipe(cloneStack((ItemStack)var0, 1), cloneStack((ItemStack)var1, 1));
-			GameRegistry.addShapelessRecipe(cloneStack((ItemStack)var1, 1), cloneStack((ItemStack)var0, 1));
+			GameRegistry.addShapelessRecipe(cloneStack(var0, 1), cloneStack(var1, 1));
+			GameRegistry.addShapelessRecipe(cloneStack(var1, 1), cloneStack(var0, 1));
 			return true;
 		}
 	}
@@ -692,7 +694,7 @@ public final class ItemHelper {
 	}
 
 	public static boolean itemsEqualWithMetadata(ItemStack var0, ItemStack var1) {
-		return var0 == var1 ? true : itemsEqualWithoutMetadata(var0, var1) && (!var0.getHasSubtypes() || var0.getItemDamage() == var1.getItemDamage());
+		return var0 == var1 ? true : itemsEqualWithoutMetadata(var0, var1) && (!var0.getHasSubtypes() || var0.getMetadata() == var1.getMetadata());
 	}
 
 	public static boolean itemsEqualWithMetadata(ItemStack var0, ItemStack var1, boolean var2) {
@@ -700,7 +702,7 @@ public final class ItemHelper {
 	}
 
 	public static boolean itemsIdentical(ItemStack var0, ItemStack var1) {
-		return var0 == var1 ? true : itemsEqualWithoutMetadata(var0, var1) && var0.getItemDamage() == var1.getItemDamage() && doNBTsMatch(var0.stackTagCompound, var1.stackTagCompound);
+		return var0 == var1 ? true : itemsEqualWithoutMetadata(var0, var1) && var0.getMetadata() == var1.getMetadata() && doNBTsMatch(var0.stackTagCompound, var1.stackTagCompound);
 	}
 
 	public static boolean doNBTsMatch(NBTTagCompound var0, NBTTagCompound var1) {
@@ -708,7 +710,7 @@ public final class ItemHelper {
 	}
 
 	public static boolean itemsEqualForCrafting(ItemStack var0, ItemStack var1) {
-		return itemsEqualWithoutMetadata(var0, var1) && (!var0.getHasSubtypes() || var0.getItemDamage() == 32767 || var1.getItemDamage() == 32767 || var1.getItemDamage() == var0.getItemDamage());
+		return itemsEqualWithoutMetadata(var0, var1) && (!var0.getHasSubtypes() || var0.getMetadata() == 32767 || var1.getMetadata() == 32767 || var1.getMetadata() == var0.getMetadata());
 	}
 
 	public static boolean craftingEquivalent(ItemStack var0, ItemStack var1, String var2, ItemStack var3) {

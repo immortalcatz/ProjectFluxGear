@@ -54,8 +54,8 @@ public class BlockTweakedTNT extends BlockTNT {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		super.registerBlockIcons(iconRegister);
-		Blocks.tnt.registerBlockIcons(iconRegister);
+	public void registerIcons(IIconRegister iconRegister) {
+		super.registerIcons(iconRegister);
+		Blocks.tnt.registerIcons(iconRegister);
 	}
 }

@@ -104,7 +104,7 @@ public class ItemPrototypeSonicWrench extends FluxGearItem implements IFluxGearA
 
 	public Multimap getAttributeModifiers() {
 		HashMultimap localHashMultimap = HashMultimap.create();
-		localHashMultimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Tool modifier", 7.0D, 0));
+		localHashMultimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Tool modifier", 7.0D, 0));
 		return localHashMultimap;
 	}
 
@@ -274,7 +274,7 @@ public class ItemPrototypeSonicWrench extends FluxGearItem implements IFluxGearA
 
 	/* IFluxGearWrench (Project Flux Gear) */
 	@Override
-	public boolean isPFGWrench(ItemStack wrench) {
+	public boolean isFluxGearWrench(ItemStack wrench) {
 		return isMode(wrench, EnumWrenchMode.STANDARD);
 	}
 
@@ -283,11 +283,11 @@ public class ItemPrototypeSonicWrench extends FluxGearItem implements IFluxGearA
 		return hasNBT(wrench, "HideFacades");
 	}
 
-	@Override
+	/*@Override
 	public void onLeftClick() {}
 
 	@Override
-	public void onRightClick() {}
+	public void onRightClick() {}*/
 
 	public static String[] modules = new String[] {
 			"CarpentersHammer",

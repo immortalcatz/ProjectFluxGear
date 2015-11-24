@@ -1,7 +1,7 @@
 package mortvana.melteddashboard.util.helpers;
 
 public final class ColorHelper {
-	private ColorHelper() { /* Singleton */ }
+	private ColorHelper() {}
 
 	public static final int COLOR_DYE_BLACK = 0x191919;
 	public static final int COLOR_DYE_RED = 0xCC4C4C;

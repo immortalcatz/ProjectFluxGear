@@ -25,11 +25,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import vazkii.botania.api.boss.IBotaniaBoss;
 import vazkii.botania.api.lexicon.LexiconPage;
+import vazkii.botania.api.lexicon.multiblock.MultiblockSet;
 import vazkii.botania.api.recipe.RecipeBrew;
 import vazkii.botania.api.recipe.RecipeElvenTrade;
 import vazkii.botania.api.recipe.RecipeManaInfusion;
 import vazkii.botania.api.recipe.RecipePetals;
 import vazkii.botania.api.recipe.RecipeRuneAltar;
+import vazkii.botania.api.subtile.SubTileEntity;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -70,6 +72,8 @@ public interface IInternalMethodHandler {
 
 	public LexiconPage brewPage(String key, String bottomText, RecipeBrew recipe);
 
+	public LexiconPage multiblockPage(String key, MultiblockSet mb);
+
 	public IManaNetwork getManaNetworkInstance();
 
 	public ItemStack getSubTileAsStack(String subTile);
@@ -94,6 +98,12 @@ public interface IInternalMethodHandler {
 	public void drawSimpleManaHUD(int color, int mana, int maxMana, String name, ScaledResolution res);
 
 	@SideOnly(Side.CLIENT)
+	public void drawComplexManaHUD(int color, int mana, int maxMana, String name, ScaledResolution res, ItemStack bindDisplay, boolean properlyBound);
+
+	@SideOnly(Side.CLIENT)
+	public ItemStack getBindDisplayForFlowerType(SubTileEntity e);
+
+	@SideOnly(Side.CLIENT)
 	public void renderLexiconText(int x, int y, int width, int height, String unlocalizedText);
 
 	@SideOnly(Side.CLIENT)
@@ -105,5 +115,11 @@ public interface IInternalMethodHandler {
 	public boolean isBuildcraftPipe(TileEntity tile);
 
 	public void sparkleFX(World world, double x, double y, double z, float r, float g, float b, float size, int m);
+
+	public long getWorldElapsedTicks();
+
+	public boolean isBotaniaFlower(World world, int x, int y, int z);
+
+	public void sendBaubleUpdatePacket(EntityPlayer player, int slot);
 
 }

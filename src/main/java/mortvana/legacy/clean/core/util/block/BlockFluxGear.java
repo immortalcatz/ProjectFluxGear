@@ -8,8 +8,6 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.*;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -17,12 +15,10 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.melteddashboard.common.MeltedDashboardCore;
-import mortvana.legacy.clean.core.util.helpers.StringHelper;
+import mortvana.legacy.errored.core.util.helpers.StringHelper;
 
 @Deprecated
 public class BlockFluxGear extends Block {
-
 
 	/**
 	 * The slightly more complex way to initialize a block.
@@ -79,7 +75,7 @@ public class BlockFluxGear extends Block {
 		return textures[metadata];
 	}
 
-	@Override
+	//@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir) {
 
@@ -116,7 +112,7 @@ public class BlockFluxGear extends Block {
 		 */
 		super(material);
 		englishName = name;
-		this.setBlockName("block." + name.replace(" ", "")); //A default value. Absolutely acceptable to not keep it.
+		this.setUnlocalizedName("block." + name.replace(" ", "")); //A default value. Absolutely acceptable to not keep it.
 
 	}
 
@@ -143,8 +139,8 @@ public class BlockFluxGear extends Block {
 			e.printStackTrace();
 		}
 
-		//Make sure that the entries to canBlockGrass are still valid.
-		canBlockGrass = !m.getCanBlockGrass();
+		//Make sure that the entries to translucent are still valid.
+		translucent = !m.isTranslucent();
 	}
 
 	@Override

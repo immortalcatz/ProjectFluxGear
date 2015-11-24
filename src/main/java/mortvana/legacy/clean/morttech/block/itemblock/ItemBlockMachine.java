@@ -12,13 +12,13 @@ public class ItemBlockMachine extends MultiItemBlock {
 
     public ItemBlockMachine(Block b) {
         super(b, "MachineBlock", blockTypes);
-        setMaxDamage(0);
+        setMaxDurability(0);
         setHasSubtypes(true);
     }
 
     @Override
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4) {
-        switch (stack.getItemDamage()) {
+        switch (stack.getMetadata()) {
             case 0:
                 list.add("A simple machine for cutting wood.");
                 list.add("Gives bonus sticks and sawdust.");

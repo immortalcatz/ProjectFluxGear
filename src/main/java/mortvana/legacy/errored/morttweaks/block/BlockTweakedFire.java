@@ -15,9 +15,10 @@ public class BlockTweakedFire extends BlockFire {
 		disableStats();
 	}
 
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		super.registerBlockIcons(iconRegister);
-		Blocks.fire.registerBlockIcons(iconRegister);
+	@Override
+	public void registerIcons(IIconRegister iconRegister) {
+		super.registerIcons(iconRegister);
+		Blocks.fire.registerIcons(iconRegister);
 	}
 
 	@Override
@@ -31,8 +32,7 @@ public class BlockTweakedFire extends BlockFire {
 		}
 	}
 
-	private boolean canNeighborBurn(World par1World, int par2, int par3, int par4) {
-		return canBlockCatchFire(par1World, par2 + 1, par3, par4, WEST) || canBlockCatchFire(par1World, par2 - 1, par3, par4, EAST) || canBlockCatchFire(par1World, par2, par3 - 1, par4, UP)
-				|| canBlockCatchFire(par1World, par2, par3 + 1, par4, DOWN) || canBlockCatchFire(par1World, par2, par3, par4 - 1, SOUTH) || canBlockCatchFire(par1World, par2, par3, par4 + 1, NORTH);
+	private boolean canNeighborBurn(World world, int x, int y, int z) {
+		return canBlockCatchFire(world, x + 1, y, z, WEST) || canBlockCatchFire(world, x - 1, y, z, EAST) || canBlockCatchFire(world, x, y - 1, z, UP) || canBlockCatchFire(world, x, y + 1, z, DOWN) || canBlockCatchFire(world, x, y, z - 1, SOUTH) || canBlockCatchFire(world, x, y, z + 1, NORTH);
 	}
 }

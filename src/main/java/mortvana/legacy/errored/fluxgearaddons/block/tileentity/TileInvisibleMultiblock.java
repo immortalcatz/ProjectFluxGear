@@ -17,7 +17,7 @@ public class TileInvisibleMultiblock extends TileEntity {
 	}
 
 	public boolean isMasterOnline() {
-		TileEnergyStorageCore tile = this.field_145850_b.getTileEntity(this.master.getXCoord(), this.master.getYCoord(), this.master.getZCoord()) != null && this.field_145850_b.getTileEntity(this.master.getXCoord(), this.master.getYCoord(), this.master.getZCoord()) instanceof TileEnergyStorageCore?(TileEnergyStorageCore)this.field_145850_b.getTileEntity(this.master.getXCoord(), this.master.getYCoord(), this.master.getZCoord()):null;
+		TileEnergyStorageCore tile = worldObj.getTileEntity(this.master.getXCoord(), this.master.getYCoord(), this.master.getZCoord()) != null && worldObj.getTileEntity(this.master.getXCoord(), this.master.getYCoord(), this.master.getZCoord()) instanceof TileEnergyStorageCore?(TileEnergyStorageCore)worldObj.getTileEntity(this.master.getXCoord(), this.master.getYCoord(), this.master.getZCoord()):null;
 		return tile == null ? false : tile.online;
 	}
 
@@ -25,7 +25,7 @@ public class TileInvisibleMultiblock extends TileEntity {
 		if(this.master == null) {
 			return null;
 		} else {
-			TileEnergyStorageCore tile = this.field_145850_b.getTileEntity(this.master.getXCoord(), this.master.getYCoord(), this.master.getZCoord()) != null && this.field_145850_b.getTileEntity(this.master.getXCoord(), this.master.getYCoord(), this.master.getZCoord()) instanceof TileEnergyStorageCore?(TileEnergyStorageCore)this.field_145850_b.getTileEntity(this.master.getXCoord(), this.master.getYCoord(), this.master.getZCoord()):null;
+			TileEnergyStorageCore tile = worldObj.getTileEntity(this.master.getXCoord(), this.master.getYCoord(), this.master.getZCoord()) != null && worldObj.getTileEntity(this.master.getXCoord(), this.master.getYCoord(), this.master.getZCoord()) instanceof TileEnergyStorageCore?(TileEnergyStorageCore)worldObj.getTileEntity(this.master.getXCoord(), this.master.getYCoord(), this.master.getZCoord()):null;
 			return tile;
 		}
 	}
@@ -63,11 +63,11 @@ public class TileInvisibleMultiblock extends TileEntity {
 	}
 
 	private void revert() {
-		int meta = this.field_145850_b.getBlockMetadata(this.field_145851_c, this.field_145848_d, this.field_145849_e);
+		int meta = worldObj.getBlockMetadata(this.field_145851_c, this.field_145848_d, this.field_145849_e);
 		if(meta == 0) {
-			this.field_145850_b.setBlock(this.field_145851_c, this.field_145848_d, this.field_145849_e, ModBlocks.draconiumBlock);
+			worldObj.setBlock(this.field_145851_c, this.field_145848_d, this.field_145849_e, ModBlocks.draconiumBlock);
 		} else if(meta == 1) {
-			this.field_145850_b.setBlock(this.field_145851_c, this.field_145848_d, this.field_145849_e, Blocks.redstone_block);
+			worldObj.setBlock(this.field_145851_c, this.field_145848_d, this.field_145849_e, Blocks.redstone_block);
 		}
 
 	}

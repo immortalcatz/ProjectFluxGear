@@ -126,7 +126,7 @@ public abstract class FluxGearMessage {
 		} else {
 			target.writeShort(Item.getIdFromItem(stack.getItem()));
 			target.writeByte(stack.stackSize);
-			target.writeShort(stack.getItemDamage());
+			target.writeShort(stack.getMetadata());
 			NBTTagCompound nbt = null;
 			if (stack.getItem().isDamageable() || stack.getItem().getShareTag()) {
 				nbt = stack.stackTagCompound;

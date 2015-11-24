@@ -121,11 +121,11 @@ public class BlockHelper {
 	}
 
 	public static TileEntity getAdjacentTileEntity(TileEntity var0, ForgeDirection var1) {
-		return var0 == null?null:getAdjacentTileEntity(var0.getWorldObj(), var0.xCoord, var0.yCoord, var0.zCoord, var1);
+		return var0 == null?null:getAdjacentTileEntity(var0.getWorld(), var0.xCoord, var0.yCoord, var0.zCoord, var1);
 	}
 
 	public static TileEntity getAdjacentTileEntity(TileEntity var0, int var1) {
-		return var0 == null?null:getAdjacentTileEntity(var0.getWorldObj(), var0.xCoord, var0.yCoord, var0.zCoord, ForgeDirection.values()[var1]);
+		return var0 == null?null:getAdjacentTileEntity(var0.getWorld(), var0.xCoord, var0.yCoord, var0.zCoord, ForgeDirection.values()[var1]);
 	}
 
 	public static int determineAdjacentSide(TileEntity var0, int var1, int var2, int var3) {

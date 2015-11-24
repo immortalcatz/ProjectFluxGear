@@ -43,7 +43,7 @@ public class ItemEssenceCrystal extends Item {
 	}
 
 	@Override
-	public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
+	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer player) {
 		if (stack.hasTagCompound()) {
 			EntityXPOrb entity = new EntityXPOrb(world, player.posX, player.posY + 1, player.posZ, stack.getTagCompound().getInteger("Essence"));
 			spawnEntity(player.posX, player.posY + 1, player.posZ, entity, world, player);

@@ -29,7 +29,7 @@ public class ItemInteractivePFG extends FluxGearItem {
 		int x = clickedObject.blockX, y = clickedObject.blockY, z = clickedObject.blockZ;
 
 		// Is the item Coagulant? Is the clicked object not null? Did the user click on a block? Can the player edit the block? Is the block not air? Is the block a fluid? If all are true, continue. Otherwise, do nothing.
-		if ((heldStack.getItemDamage() == 1) && /*(clickedObject != null) && --Always true*/ (clickedObject.typeOfHit == MovingObjectType.BLOCK) && (clickingPlayer.canPlayerEdit(x, y, z, clickedObject.sideHit, heldStack)) && ((currentWorld.getBlock(x, y, z) != Blocks.air) && (currentWorld.getBlock(x, y, z) instanceof IFluidBlock))) {
+		if ((heldStack.getMetadata() == 1) && /*(clickedObject != null) && --Always true*/ (clickedObject.typeOfHit == MovingObjectType.BLOCK) && (clickingPlayer.canPlayerEdit(x, y, z, clickedObject.sideHit, heldStack)) && ((currentWorld.getBlock(x, y, z) != Blocks.air) && (currentWorld.getBlock(x, y, z) instanceof IFluidBlock))) {
 			// If it's fluid blood, make it congealed and remove a coagulant
 			IFluidBlock fluidBlock = (IFluidBlock) currentWorld.getBlock(x, y, z);
 			if (fluidBlock.getFluid().getName().contentEquals("blood")) {

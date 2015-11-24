@@ -36,8 +36,9 @@ public class EntityTweakedZombie extends EntityZombie {
 		getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0D);
 		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23000000417232513D);
 		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(3.0D);
-		if (MortTweaks.spawnZombieReinforcements)
-			this.getAttributeMap().func_111150_b(field_110186_bp).setAttribute(this.rand.nextDouble() * 0.10000000149011612D);
+		if (MortTweaks.spawnZombieReinforcements) {
+			getAttributeMap().registerAttribute(field_110186_bp).setAttribute(rand.nextDouble() * 0.10000000149011612D);
+		}
 	}
 
 	@Override

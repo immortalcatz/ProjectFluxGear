@@ -8,7 +8,7 @@ import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.legacy.clean.core.util.block.BlockFluxGear;
+import mortvana.melteddashboard.block.FluxGearBlock;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 
 public class FallingBlockFluxGear extends BlockFalling {
@@ -34,25 +34,25 @@ public class FallingBlockFluxGear extends BlockFalling {
 	 * @param tab The creative tab the block is under.
 	 * @param type Use a default type for ease of use.
 	 */
-	public FallingBlockFluxGear(Material material, CreativeTabs tab, BlockFluxGear.EnumBlockType type) {
+	public FallingBlockFluxGear(Material material, CreativeTabs tab, FluxGearBlock.EnumBlockType type) {
 		super(material);
 		setCreativeTab(tab);
 
-		if (type == BlockFluxGear.EnumBlockType.STORAGE) {
+		if (type == FluxGearBlock.EnumBlockType.STORAGE) {
 			canSpawn = false;
 			beaconBase = true;
 			isColorized = false;
 			setHardness(5.0F);
 			setResistance(10.0F);
 			setStepSound(soundTypeMetal);
-		} else if (type == BlockFluxGear.EnumBlockType.ORE) {
+		} else if (type == FluxGearBlock.EnumBlockType.ORE) {
 			canSpawn = true;
 			beaconBase = false;
 			isColorized = false;
 			setHardness(3.0F);
 			setResistance(5.0F);
 			setStepSound(soundTypeMetal);
-		} else if (type == BlockFluxGear.EnumBlockType.SOIL_ORE) {
+		} else if (type == FluxGearBlock.EnumBlockType.SOIL_ORE) {
 			canSpawn = true;
 			beaconBase = false;
 			isColorized = false;

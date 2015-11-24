@@ -50,7 +50,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 
 		public boolean placeBlockAt(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int meta) {
 			//A block that is a block is equal to... RANDOM FIELD NAME!?!? I blame Mojang...
-			Block block = field_150939_a;
+			Block block = blockInstance;
 			//If the block is not an IEldritchMob... Wait, WHAT!?!?
 			if (!(block instanceof IBlockMetadata)) {
 				return false;
@@ -77,17 +77,17 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 
 		@SideOnly(Side.CLIENT)
 		public String getItemStackDisplayName(ItemStack itemstack) {
-			return ((IBlockMetadata) field_150939_a).getBlockName(itemstack);
+			return ((IBlockMetadata) blockInstance).getBlockName(itemstack);
 		}
 
 		//func_77624_a
 		@SideOnly(Side.CLIENT)
 		public void randomTooltipListMethod(ItemStack itemstack, EntityPlayer player, List list, boolean par4) {
-			((IBlockMetadata) field_150939_a).getBlockTooltip(itemstack, list);
+			((IBlockMetadata) blockInstance).getBlockTooltip(itemstack, list);
 		}
 
 		public IIcon getIconFromDamage(int meta) {
-			return field_150939_a.getIcon(1, meta);
+			return blockInstance.getIcon(1, meta);
 		}
 	}
 
@@ -198,7 +198,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 		}
 
 		public static void setItemMetadata(ItemStack itemstack, int meta) {
-			itemstack.setItemDamage(meta < 16387 ? meta : 16387);
+			itemstack.setMetadata(meta < 16387 ? meta : 16387);
 			NBTTagCompound tag = new NBTTagCompound();
 			tag.setInteger("meta", meta);
 			itemstack.setTagCompound(tag);
@@ -208,7 +208,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 			if (itemstack.hasTagCompound() && itemstack.getTagCompound().hasKey("meta")) {
 				return itemstack.getTagCompound().getInteger("meta");
 			}
-			return itemstack.getItemDamage();
+			return itemstack.getMetadata();
 		}
 
 		public static int getTileMetadata(IBlockAccess world, int x, int y, int z) {

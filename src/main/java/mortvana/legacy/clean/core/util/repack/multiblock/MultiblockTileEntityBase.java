@@ -158,7 +158,7 @@ public abstract class MultiblockTileEntityBase extends MultiblockPart {
 
 	@Override
 	public void onDataPacket(NetworkManager network, S35PacketUpdateTileEntity packet) {
-		decodeDescriptionPacket(packet.func_148857_g());
+		decodeDescriptionPacket(packet.getNbtCompound());
 	}
 
 	///// Things to override in most implementations (IMultiblockPart)
@@ -330,7 +330,7 @@ public abstract class MultiblockTileEntityBase extends MultiblockPart {
 	}
 
 	protected void notifyNeighborsOfTileChange() {
-		worldObj.func_147453_f(xCoord, yCoord, zCoord, getBlockType());
+		worldObj.updateNeighborsAboutBlockChange(xCoord, yCoord, zCoord, getBlockType());
 	}
 
 	///// Private/Protected Logic Helpers

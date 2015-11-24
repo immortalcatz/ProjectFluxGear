@@ -21,7 +21,7 @@ public class RenderTileWardChest extends TileEntitySpecialRenderer {
 	}
 
 	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float ticks) {
-		int meta = tileentity.getWorldObj() == null ? 3 : tileentity.getBlockMetadata();
+		int meta = tileentity.getWorld() == null ? 3 : tileentity.getBlockMetadata();
 		int rotation = meta == 4 ? 90 : meta == 3 ? 0 : meta == 2 ? 180 : 270;
 
 		float f = 0.0625F;
@@ -76,7 +76,7 @@ public class RenderTileWardChest extends TileEntitySpecialRenderer {
 		GL11.glEnable(3042);
 
 		GL11.glTranslatef(0.5F, 0.65F, 0.5F);
-		float deg = (float) ((chest.getWorldObj() == null ? ClientTickHandler.elapsedTicks : chest.ticksExisted) % 360.0D);
+		float deg = (float) ((chest.getWorld() == null ? ClientTickHandler.elapsedTicks : chest.ticksExisted) % 360.0D);
 		GL11.glRotatef(deg, 0.0F, 1.0F, 0.0F);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		Tessellator tess = Tessellator.instance;

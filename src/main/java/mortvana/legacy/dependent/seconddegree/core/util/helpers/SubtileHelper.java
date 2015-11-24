@@ -16,7 +16,7 @@ public class SubtileHelper {
 
 	protected static BiMap<String, Class<? extends SubtileEntity>> subtiles = HashBiMap.<String, Class<? extends SubtileEntity>> create();
 	protected static Map<Class<? extends SubtileEntity>, SubtileSignature> subtileSignatures = new HashMap<Class<? extends SubtileEntity>, SubtileSignature>();
-	public static Set<String> subtilesForCreativeMenu = new LinkedHashSet();
+	public static Set<String> subtilesForCreativeMenu = new LinkedHashSet<String>();
 	public static Map<String, String> subtileMods = new HashMap<String, String>();
 
 	/**

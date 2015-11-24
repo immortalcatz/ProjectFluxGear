@@ -5,7 +5,7 @@ import mortvana.legacy.errored.core.common.FluxGearContent;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.projectfluxgear.thaumic.client.render.RenderPurity;
 import mortvana.legacy.clean.morttech.block.tile.TileCrank;
-import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
+import mortvana.legacy.errored.morttech.block.tile.WoodmillLogic;
 import mortvana.legacy.errored.thaumicrevelations.client.particle.TRParticle;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.client.render.DualPassCubeRenderer;
 import mortvana.legacy.clean.morttech.client.render.RenderCrank;
@@ -129,7 +129,7 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	public static Document getManualFromStack (ItemStack stack) {
-		switch (stack.getItemDamage()) {
+		switch (stack.getMetadata()) {
 			case 0:
 				return potato;
 		}

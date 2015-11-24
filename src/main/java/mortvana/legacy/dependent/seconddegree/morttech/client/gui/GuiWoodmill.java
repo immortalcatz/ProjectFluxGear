@@ -6,7 +6,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 import mortvana.legacy.dependent.firstdegree.morttech.inventory.ContainerWoodmill;
-import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
+import mortvana.legacy.errored.morttech.block.tile.WoodmillLogic;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;

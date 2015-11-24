@@ -5,8 +5,8 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import mortvana.legacy.dependent.seconddegree.fluxgearaddons.network.ObjectPacket;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
-import mortvana.legacy.clean.fluxgearaddons.network.ObjectPacket;
 
 public abstract class TileObjectSync extends TileEntity {
 	public TileObjectSync() {

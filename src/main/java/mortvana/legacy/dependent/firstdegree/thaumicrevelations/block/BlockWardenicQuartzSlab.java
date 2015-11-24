@@ -17,7 +17,7 @@ public class BlockWardenicQuartzSlab extends BlockSlab {
 
     public BlockWardenicQuartzSlab() {
         super(false, Material.rock);
-        setBlockName("blockInfusedQuartzSlab");
+        setUnlocalizedName("blockInfusedQuartzSlab");
         setCreativeTab(ThaumicRevelations.thaumicRevelationsTab);
         setStepSound(Block.soundTypeStone);
         setHardness(0.8F);
@@ -41,7 +41,7 @@ public class BlockWardenicQuartzSlab extends BlockSlab {
     }
 
     @Override
-    public String func_150002_b(int var1) {
+    public String getFullSlabName(int var1) {
         return "tile.blockInfusedQuartzSlab";
     }
 }

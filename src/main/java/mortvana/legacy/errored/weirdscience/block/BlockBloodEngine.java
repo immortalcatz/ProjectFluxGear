@@ -64,7 +64,7 @@ public class BlockBloodEngine extends BlockMetaTank {
 					}
 				}
 				//Now that we've tried one wonky kind of reflection, try another for TCon compat.
-				if(playerItem.getItem().getUnlocalizedName().contentEquals("item.tconstruct.bucket")) {
+				if (playerItem.getItem().getUnlocalizedName().contentEquals("item.tconstruct.bucket")) {
 					//Deeper voodoo begins here.
 					Block[] fluidBlockArry = null;
 					try {
@@ -74,9 +74,9 @@ public class BlockBloodEngine extends BlockMetaTank {
 					} catch (Exception e) {
 						//do nothing, all this means is that Tinker's Construct is not loaded.
 					}
-					if(fluidBlockArry[playerItem.getItemDamage()].getUnlocalizedName().contentEquals("tile.liquid.blood")) {
+					if (fluidBlockArry[playerItem.getMetadata()].getUnlocalizedName().contentEquals("tile.liquid.blood")) {
 						Fluid fluidTry = FluidRegistry.getFluid("blood");
-						if(FillTank(fluidTry, tileEntity) && !player.capabilities.isCreativeMode) {
+						if (FillTank(fluidTry, tileEntity) && !player.capabilities.isCreativeMode) {
 							player.inventory.setInventorySlotContents(player.inventory.currentItem, FluidContainerRegistry.EMPTY_BUCKET);
 						}
 						return true;

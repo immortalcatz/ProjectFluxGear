@@ -103,9 +103,9 @@ public class TileWardChest extends TileOwned implements ISidedInventory {
 		return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this;
 	}
 
-	public void openInventory() {}
+	public void openChest() {}
 
-	public void closeInventory() {}
+	public void closeChest() {}
 
 	public boolean receiveClientEvent(int par1, int par2) {
 		return tileEntityInvalid;

@@ -2,7 +2,7 @@ package mortvana.legacy.dependent.firstdegree.core.client.gui;
 
 import java.util.HashMap;
 
-import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
+import mortvana.legacy.errored.morttech.block.tile.WoodmillLogic;
 import mortvana.legacy.dependent.seconddegree.morttech.client.gui.GuiWoodmill;
 import mortvana.legacy.dependent.firstdegree.thaumicrevelations.client.gui.GuiWaslieHammer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +14,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import mortvana.legacy.dependent.firstdegree.morttech.inventory.ContainerWoodmill;
 import mortvana.legacy.errored.core.common.FluxGearContent;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
-import mortvana.legacy.errored.morttech.block.tileentity.TileWoodmill;
+import mortvana.legacy.errored.morttech.block.tile.TileWoodmill;
 
 public class FluxGearGUIHandler implements IGuiHandler {
 

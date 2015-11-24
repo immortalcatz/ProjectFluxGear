@@ -20,7 +20,7 @@ public class MiscHelper {
 		}
 
 		FluidBlock block = new FluidBlock(fluid, Material.lava);
-		block.setBlockName(fluidName);
+		block.setUnlocalizedName(fluidName);
 		GameRegistry.registerBlock(block, ColoredFluidItemBlock.class, fluidName);
 
 		return fluid;

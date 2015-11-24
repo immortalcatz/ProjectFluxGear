@@ -26,7 +26,7 @@ public class BlockMortTechOre extends Block {
 		this.textures = textures;
 		setHardness(3.0F);
 		setStepSound(Block.soundTypeStone);
-		setBlockName(name);
+		setUnlocalizedName(name);
 		setCreativeTab(FluxGearContent.tabWorld);
 		setResistance(5.0F);
 		GameRegistry.registerBlock(this, name);

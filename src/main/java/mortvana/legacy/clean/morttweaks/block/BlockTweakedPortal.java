@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.morttweaks.block;
+package mortvana.legacy.clean.morttweaks.block;
 
 import net.minecraft.block.BlockPortal;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,9 +12,9 @@ public class BlockTweakedPortal extends BlockPortal {
 	}
 
 	@Override
-	public void registerBlockIcons(IIconRegister par1IconRegister) {
-		super.registerBlockIcons(par1IconRegister);
-		Blocks.portal.registerBlockIcons(par1IconRegister);
+	public void registerIcons(IIconRegister par1IconRegister) {
+		super.registerIcons(par1IconRegister);
+		Blocks.portal.registerIcons(par1IconRegister);
 	}
 
 	@Override

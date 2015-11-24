@@ -141,7 +141,7 @@ public class FluidHelper {
 		} else {
 			byte[] var2 = new byte[var1];
 			var0.readFully(var2);
-			return FluidStack.loadFluidStackFromNBT(CompressedStreamTools.func_152457_a(var2, new NBTSizeTracker(2097152L)));
+			return FluidStack.loadFluidStackFromNBT(CompressedStreamTools.decompress(var2, new NBTSizeTracker(2097152L)));
 		}
 	}
 

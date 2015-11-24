@@ -82,7 +82,7 @@ public abstract class InventoryBlock extends BlockContainer {
 
 						stack.stackSize -= itemSize;
 						EntityItem entityitem = new EntityItem(par1World, (double) ((float) x + jumpX), (double) ((float) y + jumpY), (double) ((float) z + jumpZ), new ItemStack(stack.getItem(),
-								itemSize, stack.getItemDamage()));
+								itemSize, stack.getMetadata()));
 
 						if (stack.hasTagCompound()) {
 							entityitem.getEntityItem().setTagCompound((NBTTagCompound) stack.getTagCompound().copy());
@@ -115,7 +115,7 @@ public abstract class InventoryBlock extends BlockContainer {
 		TileEntity logic = world.getTileEntity(x, y, z);
 		if (logic instanceof IFacingLogic) {
 			IFacingLogic direction = (IFacingLogic) logic;
-			// TODO: Convert all setDirection calls to modern invokation, when that's ready.
+			// TODO: Convert all setDirection calls to modern invocation, when that's ready.
 			if (side != -1) {
 				direction.setDirection(side);
 				side = -1;
@@ -155,7 +155,7 @@ public abstract class InventoryBlock extends BlockContainer {
 	public abstract String getTextureDomain (int textureNameIndex);
 
 	@Override
-	public void registerBlockIcons (IIconRegister iconRegister) {
+	public void registerIcons (IIconRegister iconRegister) {
 		String[] textureNames = getTextureNames();
 		this.icons = new IIcon[textureNames.length];
 

@@ -24,7 +24,7 @@ import java.util.Random;
 import mortvana.legacy.dependent.firstdegree.core.client.gui.FluxGearGUIHandler;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.legacy.clean.core.common.FluxGearConfig;
-import mortvana.legacy.errored.morttech.block.tileentity.TileWoodmill;
+import mortvana.legacy.errored.morttech.block.tile.TileWoodmill;
 import mortvana.melteddashboard.api.item.tool.wrench.IFluxGearWrench;
 
 public class BlockWoodmill extends BlockContainer {

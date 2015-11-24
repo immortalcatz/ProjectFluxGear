@@ -35,8 +35,8 @@ public abstract class BlockMetaTank extends BlockContainerBase {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerBlockIcons(IIconRegister IIconRegister) {
-		super.registerBlockIcons(IIconRegister);
+	public void registerIcons(IIconRegister IIconRegister) {
+		super.registerIcons(IIconRegister);
 
 		//Register tank IIcons.
 		tankIcons = new ArrayList<IIcon>(tankTexNames.size());

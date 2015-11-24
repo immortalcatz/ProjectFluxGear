@@ -17,8 +17,8 @@ public class ItemTweakedArmor extends ItemArmor implements ISpecialArmor {
 		if (source.isUnblockable())
 			return new ArmorProperties(0, 0, Integer.MAX_VALUE);
 
-		float current = armor.getMaxDamage() - armor.getItemDamage();
-		float max = armor.getMaxDamage();
+		float current = armor.getMaxDurability() - armor.getMetadata();
+		float max = armor.getMaxDurability();
 		float amount = current / max;
 		return new ArmorProperties(0, Math.max(0.05, amount * 0.2), (int) (current + 1));
 	}
@@ -26,8 +26,8 @@ public class ItemTweakedArmor extends ItemArmor implements ISpecialArmor {
     /*@Override
     public int getArmorDisplay (EntityPlayer player, ItemStack armor, int slot)
     {
-        float current = armor.getMaxDamage() - armor.getItemDamage();
-        float max = armor.getMaxDamage();
+        float current = armor.getMaxDurability() - armor.getItemDamage();
+        float max = armor.getMaxDurability();
         float amount = current / max * 5 + 0.09F;
         if (slot == 2 && amount < 1)
             amount = 1;
@@ -53,8 +53,8 @@ public class ItemTweakedArmor extends ItemArmor implements ISpecialArmor {
 	}
 
 	protected int disconnectedArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
-		float current = armor.getMaxDamage() - armor.getItemDamage();
-		float max = armor.getMaxDamage();
+		float current = armor.getMaxDurability() - armor.getMetadata();
+		float max = armor.getMaxDurability();
 		float amount = current / max * 5 + 0.09F;
 		if (slot == 2 && amount < 1)
 			amount = 1;
@@ -71,8 +71,8 @@ public class ItemTweakedArmor extends ItemArmor implements ISpecialArmor {
 			ItemStack stack = armors[i];
 			if (stack != null && stack.getItem() instanceof ItemTweakedArmor) {
 				types++;
-				max += stack.getMaxDamage();
-				damage += stack.getItemDamage();
+				max += stack.getMaxDurability();
+				damage += stack.getMetadata();
 
 			}
 		}

@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.Mod;
@@ -19,8 +18,6 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import mortvana.legacy.clean.crystalclimate.block.BlockAsh;
-import mortvana.legacy.clean.crystalclimate.block.BlockSugar;
 import mortvana.legacy.clean.crystalclimate.block.itemblock.*;
 import mortvana.legacy.clean.crystalclimate.block.tile.TerraformerLogic;
 import mortvana.legacy.clean.crystalclimate.block.tile.TerraleecherLogic;
@@ -31,7 +28,7 @@ import mortvana.legacy.errored.crystalclimate.block.tile.*;
 import mortvana.legacy.dependent.firstdegree.crystalclimate.block.tile.*;
 import mortvana.legacy.errored.crystalclimate.block.*;
 import mortvana.legacy.dependent.firstdegree.crystalclimate.block.*;
-import mortvana.legacy.errored.crystalclimate.block.itemblock.ItemBlockCrystal;
+import mortvana.legacy.clean.crystalclimate.block.itemblock.ItemBlockCrystal;
 
 @Mod(modid = "CrystalClimate", name = "CrystalClimate", version = "Byakuren")
 public class CrystalClimate {
@@ -54,25 +51,25 @@ public class CrystalClimate {
 
 	public static void createContent() {
 		//Blocks
-		essenceExtractor = new BlockEssenceExtractor().setHardness(12f).setBlockName("extractor.essence");
+		essenceExtractor = new BlockEssenceExtractor().setHardness(12f).setUnlocalizedName("extractor.essence");
 		GameRegistry.registerBlock(essenceExtractor, "extractor.essence");
 		GameRegistry.registerTileEntity(EssenceExtractorLogic.class, "extractor.essence");
 
-		terraformer = new BlockTerraformer().setHardness(50f).setBlockName("terraformer");
+		terraformer = new BlockTerraformer().setHardness(50f).setUnlocalizedName("terraformer");
 		GameRegistry.registerBlock(terraformer, ItemBlockTerraformer.class, "terraformer");
 		GameRegistry.registerTileEntity(TerraformerLogic.class, "Crystal:Terraformer");
 		GameRegistry.registerTileEntity(TerraleecherLogic.class, "Crystal:Terraleecher");
 		GameRegistry.registerTileEntity(TerragrowerLogic.class, "Crystal:Terragrower");
 
-		aggregator = new BlockAggregator().setHardness(10f).setBlockName("aggregator.redstone");
+		aggregator = new BlockAggregator().setHardness(10f).setUnlocalizedName("aggregator.redstone");
 		GameRegistry.registerBlock(aggregator, ItemBlockAggregator.class, "aggregator");
 		GameRegistry.registerTileEntity(RedstoneAggregator.class, "aggregator.redstone");
 
-		crystalBlock = new BlockCrystal().setHardness(1.0f).setBlockName("crystal");
+		crystalBlock = new BlockCrystal().setHardness(1.0f).setUnlocalizedName("crystal");
 		GameRegistry.registerBlock(crystalBlock, ItemBlockCrystal.class, "crystalblock");
 		GameRegistry.registerTileEntity(CrystalLogic.class, "Crystal:Crystallogic");
 
-		ash = new BlockAsh().setHardness(0.1F).setStepSound(Block.soundTypeSand).setBlockName("ash").setBlockTextureName("crystal:ash");
+		ash = new BlockAsh().setHardness(0.1F).setStepSound(Block.soundTypeSand).setUnlocalizedName("ash").setTextureName("crystal:ash");
 		GameRegistry.registerBlock(ash, "ash");
 		ashBlock = new Block(Material.sand).setHardness(0.2F).setStepSound(Block.soundTypeSand).setUnlocalizedName("ash").setCreativeTab(CrystalClimate.tab).setTextureName("crystal:ash");
 		GameRegistry.registerBlock(ashBlock, "ashBlock");
@@ -89,7 +86,7 @@ public class CrystalClimate {
 		leechedStone = new Block(Material.rock).setHardness(3F).setStepSound(Block.soundTypeStone).setUnlocalizedName("stone.leeched").setCreativeTab(CrystalClimate.tab).setTextureName("crystal:leechedstone");
 		GameRegistry.registerBlock(leechedStone, "leechedstone");
 
-		sugarBlock = new BlockSugar().setHardness(0.3F).setBlockName("sugar");
+		sugarBlock = new BlockSugar().setHardness(0.3F).setUnlocalizedName("sugar");
 		GameRegistry.registerBlock(sugarBlock, ItemBlockWithMetadata.class, "sugarblock");
 
 		//Items

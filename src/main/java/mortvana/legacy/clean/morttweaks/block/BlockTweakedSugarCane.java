@@ -40,8 +40,8 @@ public class BlockTweakedSugarCane extends BlockReed {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		super.registerBlockIcons(iconRegister);
-		Blocks.reeds.registerBlockIcons(iconRegister);
+	public void registerIcons(IIconRegister iconRegister) {
+		super.registerIcons(iconRegister);
+		Blocks.reeds.registerIcons(iconRegister);
 	}
 }

@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 public class ItemBlockPaintedStone extends ItemBlock {
     public ItemBlockPaintedStone(Block block) {
         super(block);
-        setMaxDamage(0);
+        setMaxDurability(0);
         setHasSubtypes(true);
     }
 
@@ -17,6 +17,6 @@ public class ItemBlockPaintedStone extends ItemBlock {
     }
 
     public String getUnlocalizedName(ItemStack itemstack) {
-        return super.getUnlocalizedName() + "." + ColorHelper.LOWER_PAINT_NAMES[itemstack.getItemDamage()];
+        return super.getUnlocalizedName() + "." + ColorHelper.LOWER_PAINT_NAMES[itemstack.getMetadata()];
     }
 }

@@ -89,7 +89,7 @@ public class BlockNitrateEngine extends BlockContainerBase {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerBlockIcons(IIconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		frontIcon = iconRegister.registerIcon("gui:genericmachine5");
 		sidesIcon = iconRegister.registerIcon("gui:genericmachine");
 		topIcon = iconRegister.registerIcon("gui:genericmachine3");

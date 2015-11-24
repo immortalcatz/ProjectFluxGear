@@ -14,7 +14,7 @@ public class ItemBlockGemOre extends ItemBlock {
 	public String getUnlocalizedName(ItemStack itemstack) {
 		String name;
 		
-		switch(itemstack.getItemDamage()) {
+		switch(itemstack.getMetadata()) {
 			case 0:
 				name= "Dioptase Ore";
 				break;

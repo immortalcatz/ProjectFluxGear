@@ -20,13 +20,13 @@ public final class ItemWrapper {
 
 	public ItemWrapper(ItemStack var1) {
 		this.item = var1.getItem();
-		this.metadata = ItemHelper.getItemDamage(var1);
+		this.metadata = ItemHelper.getMetadata(var1);
 	}
 
 	public ItemWrapper set(ItemStack var1) {
 		if(var1 != null) {
 			this.item = var1.getItem();
-			this.metadata = ItemHelper.getItemDamage(var1);
+			this.metadata = ItemHelper.getMetadata(var1);
 		} else {
 			this.item = null;
 			this.metadata = 0;

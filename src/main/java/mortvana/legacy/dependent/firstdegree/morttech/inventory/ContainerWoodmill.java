@@ -11,7 +11,7 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
+import mortvana.legacy.errored.morttech.block.tile.WoodmillLogic;
 import mortvana.legacy.errored.morttech.recipe.WoodmillRecipes;
 
 public class ContainerWoodmill extends Container {

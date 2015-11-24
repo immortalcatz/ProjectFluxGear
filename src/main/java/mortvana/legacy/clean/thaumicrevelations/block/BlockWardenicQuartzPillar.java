@@ -16,15 +16,15 @@ public class BlockWardenicQuartzPillar extends BlockRotatedPillar {
 
     public BlockWardenicQuartzPillar() {
         super(Material.rock);
-        setBlockName("blockInfusedQuartzPillar");
+        setUnlocalizedName("blockInfusedQuartzPillar");
         setCreativeTab(ThaumicRevelations.thaumicRevelationsTab);
         setStepSound(Block.soundTypeStone);
         setHardness(0.8F);
     }
 
+	@Override
     @SideOnly(Side.CLIENT)
-    @Override
-    public void registerBlockIcons(IIconRegister register) {
+    public void registerIcons(IIconRegister register) {
         topIcon = register.registerIcon("trevelations:infusedquartzpillartop");
         sideIcon = register.registerIcon("trevelations:infusedquartzpillarside");
     }

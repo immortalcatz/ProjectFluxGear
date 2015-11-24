@@ -12,7 +12,7 @@ public class ColoredFluidItemBlock extends ItemBlock {
 
 	public int getColorFromItemStack(ItemStack itemstack, int sontaran) {
 		if (itemstack.getItem() != null && itemstack.getItem() instanceof ItemBlock) {
-			return ((ItemBlock) itemstack.getItem()).field_150939_a.getRenderColor(itemstack.getItemDamage());
+			return ((ItemBlock) itemstack.getItem()).blockInstance.getRenderColor(itemstack.getMetadata());
 		} else {
 			return super.getColorFromItemStack(itemstack, sontaran);
 		}

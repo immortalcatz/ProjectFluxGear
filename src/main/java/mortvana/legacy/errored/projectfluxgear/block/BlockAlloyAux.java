@@ -11,7 +11,7 @@ public class BlockAlloyAux extends BlockFluxGear {
 
     public BlockAlloyAux() {
         super(Material.iron, FluxGearContent.tabMaterials, FluxGearBlock.EnumBlockType.STORAGE, NAMES_ALLOY_AUX, TEXTURES_FULL, HARDNESS_ALLOY_AUX, RESISTANCE_ALLOY_AUX, LIGHT_ALLOY_AUX, TEXTURE_LOCATION_BLOCK);
-        setBlockName("mortvana.projectfluxgear.alloyAux");
+        setUnlocalizedName("mortvana.projectfluxgear.alloyAux");
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.util.List;
 
 import mortvana.melteddashboard.api.item.IFluxArmor;
 import mortvana.melteddashboard.util.helpers.EnergyHelper;
+import mortvana.melteddashboard.util.helpers.StringHelper;
 import mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper;
 
 import net.minecraft.enchantment.Enchantment;
@@ -19,7 +20,7 @@ import net.minecraftforge.common.ISpecialArmor;
 import cofh.api.energy.IEnergyContainerItem;
 import cofh.core.item.ItemArmorAdv;
 
-import mortvana.legacy.clean.core.util.helpers.StringHelper;
+import mortvana.projectfluxgear.core.data.StringDatabase;
 
 /**
  * Deliciously Amazing Code from Redstone Arsenal by Team CoFH
@@ -44,9 +45,9 @@ public class ItemArmorRF extends ItemArmorAdv implements IFluxArmor {
         super(material, type);
     }
 
-	public ItemArmorRF setEnergyParams(int maxEnergy, int maxTransfer, int energyPerUse, int energyPerUseCharged) {
+	/*public ItemArmorRF setEnergyParams(int maxEnergy, int maxTransfer, int energyPerUse, int energyPerUseCharged) {
 
-	}
+	}*/
 
     @Override
     public boolean getIsRepairable(ItemStack itemToRepair, ItemStack stack) {
@@ -63,8 +64,8 @@ public class ItemArmorRF extends ItemArmorAdv implements IFluxArmor {
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
 
-        if (StringHelper.displayShiftForDetail && !StringHelper.isShiftKeyDown()) {
-            list.add(StringHelper.shiftForDetails());
+        if (StringHelper.displayShiftForDetails && !StringHelper.isShiftKeyDown()) {
+            list.add(StringDatabase.SHIFT_FOR_DETAILS);
         }
         if (!StringHelper.isShiftKeyDown()) {
             return;

@@ -14,7 +14,7 @@ import mortvana.melteddashboard.util.helpers.ServerHelper;
 
 public class BlockTimeyWimey extends BlockTorch implements ITileEntityProvider {
     public BlockTimeyWimey() {
-        setBlockName("TimeyWimeyTorch").setLightLevel(1.0F).setCreativeTab(CreativeTabs.tabDecorations).setBlockTextureName("FluxGearZee:timeyWimeyTorch");
+        setUnlocalizedName("TimeyWimeyTorch").setLightLevel(1.0F).setCreativeTab(CreativeTabs.tabDecorations).setTextureName("FluxGearZee:timeyWimeyTorch");
     }
 
     @Override

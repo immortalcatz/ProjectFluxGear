@@ -8,7 +8,7 @@ public class BlockWardenicQuartzStairs extends BlockStairs {
 
     public BlockWardenicQuartzStairs() {
         super(FluxGearContent.blockInfusedQuartzNormal, 0);
-        setBlockName("blockInfusedQuartzStair");
+        setUnlocalizedName("blockInfusedQuartzStair");
         setCreativeTab(ThaumicRevelations.thaumicRevelationsTab);
         setLightOpacity(0);
     }

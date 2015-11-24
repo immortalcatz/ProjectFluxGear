@@ -14,8 +14,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import mortvana.legacy.errored.morttech.block.tileentity.TileWoodmill;
-import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
+import mortvana.legacy.errored.morttech.block.tile.TileWoodmill;
+import mortvana.legacy.errored.morttech.block.tile.WoodmillLogic;
 
 public class BlockCrank extends Block {
 
@@ -97,7 +97,7 @@ public class BlockCrank extends Block {
 
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4) {
-        switch (stack.getItemDamage())  {
+        switch (stack.getMetadata())  {
             case 0:
                 list.add("A simple, but useful wooden crank.");
                 list.add("Used to power most simple machinery.");
