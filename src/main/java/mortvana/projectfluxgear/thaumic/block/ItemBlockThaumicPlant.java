@@ -22,12 +22,12 @@ public class ItemBlockThaumicPlant extends FluxGearItemBlock {
 
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
-		return unlocalizedName + names[itemstack.getItemDamage() % 8] + (itemstack.getItemDamage() < 8 ? ".wild" : ".cultivated") + ".name";
+		return unlocalizedName + names[itemstack.getMetadata() % 8] + (itemstack.getMetadata() < 8 ? ".wild" : ".cultivated") + ".name";
 	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack itemstack) {
-		return EnumRarity.values()[rarities[itemstack.getItemDamage() % 8]];
+		return EnumRarity.values()[rarities[itemstack.getMetadata() % 8]];
 	}
 
 

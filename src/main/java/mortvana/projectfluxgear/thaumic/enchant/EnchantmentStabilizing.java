@@ -14,32 +14,38 @@ public class EnchantmentStabilizing extends Enchantment {
         setName("stabilizing");
     }
 
+    @Override
     public int getMinEnchantability(int level) {
         return 20 + (level - 1) * 10;
     }
 
+    @Override
     public int getMaxEnchantability(int level) {
         return super.getMinEnchantability(level) + 50;
     }
 
+    @Override
     public int getMaxLevel() {
         return 4;
     }
 
+    @Override
     public boolean canApply(ItemStack stack) {
-        return stack.isItemStackDamageable() && (stack.getItem() instanceof IRepairable || stack.getItem() instanceof ItemBook);
+        return stack.isItemStackDamageable() && (stack.getItem() instanceof IRepairable || stack.getItem() instanceof IStabilizing || stack.getItem() instanceof ItemBook);
     }
 
+    @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         return this.canApply(stack);
     }
 
+    @Override
     public boolean canApplyTogether(Enchantment par1Enchantment) {
         return super.canApplyTogether(par1Enchantment) && par1Enchantment.effectId != Enchantment.unbreaking.effectId;
     }
 
     public static boolean canRepair(ItemStack itemstack, EntityPlayer player) {
-        return itemstack.getItemDamage() > 0 && !player.capabilities.isCreativeMode && (itemstack.getItem() instanceof IRepairable || itemstack.getItem() instanceof IStabilizing || (itemstack.getItem().getItemEnchantability() != 0 && player.ticksExisted % 40 * itemstack.getItem().getItemEnchantability() == 0));
+        return itemstack.getMetadata() > 0 && !player.capabilities.isCreativeMode && (itemstack.getItem() instanceof IRepairable || itemstack.getItem() instanceof IStabilizing || (itemstack.getItem().getItemEnchantability() != 0 && player.ticksExisted % 40 * itemstack.getItem().getItemEnchantability() == 0));
     }
 
     public static void doRepair(ItemStack itemstack, EntityPlayer player) {

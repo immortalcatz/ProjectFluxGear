@@ -45,11 +45,11 @@ public class WorldHelper {
 	}
 
 	public static TileEntity getAdjacentTileEntity(TileEntity tile, ForgeDirection direction) {
-		return tile == null ? null : getAdjacentTileEntity(tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord, direction);
+		return tile == null ? null : getAdjacentTileEntity(tile.getWorld(), tile.xCoord, tile.yCoord, tile.zCoord, direction);
 	}
 
 
 	public static TileEntity getAdjacentTileEntity(TileEntity tile, int side) {
-		return tile == null ? null : getAdjacentTileEntity(tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord, ForgeDirection.values()[side]);
+		return tile == null ? null : getAdjacentTileEntity(tile.getWorld(), tile.xCoord, tile.yCoord, tile.zCoord, ForgeDirection.values()[side]);
 	}
 }

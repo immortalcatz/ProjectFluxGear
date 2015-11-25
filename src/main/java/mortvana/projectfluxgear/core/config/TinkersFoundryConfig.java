@@ -8,22 +8,23 @@ import net.minecraftforge.common.config.Configuration;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.melteddashboard.util.ConfigBase;
 
-public class TinkersArmoryConfig extends ConfigBase {
+public class TinkersFoundryConfig extends ConfigBase {
 
 	public static Configuration config;
 
-	public TinkersArmoryConfig(FMLPreInitializationEvent event, String location) {
+	public TinkersFoundryConfig(FMLPreInitializationEvent event, String location) {
 		super(event, location);
 	}
 
+	@Override
 	public void loadConfig(File file) {
-		MeltedDashboardCore.logger.info("Loading Tinker's Armory Config");
+		MeltedDashboardCore.logger.info("Loading Tinker's Foundry Config");
 		config = new Configuration(file);
 		config.load();
 
 		if (config.hasChanged()) {
 			config.save();
 		}
-		MeltedDashboardCore.logger.info("Tinker's Armory Config Loaded");
+		MeltedDashboardCore.logger.info("Tinker's Foundry Config Loaded");
 	}
 }

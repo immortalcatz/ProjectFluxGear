@@ -14,6 +14,7 @@ import mortvana.projectfluxgear.immersion.item.ItemPaintbrush;
 
 public class FluxGearImmersion implements IConfigInitialized {
 
+	@Override
 	public void preInit(ConfigBase config) {
 		paintedStoneTab = new FluxGearCreativeTab("PFG-PaintedStone", "fluxgear.paintedstone", new ItemStack(Items.potato));
 
@@ -31,10 +32,12 @@ public class FluxGearImmersion implements IConfigInitialized {
 		paintbrush = new ItemPaintbrush().register();
 	}
 
+	@Override
 	public void init(ConfigBase config) {
 
 	}
 
+	@Override
 	public void postInit(ConfigBase config) {
 
 	}

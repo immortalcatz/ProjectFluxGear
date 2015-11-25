@@ -601,7 +601,7 @@ public class FluxGearBlock extends Block {
 	@Override
 	public int damageDropped(int metadata) {
 		if (droppedItems.containsKey(metadata) && droppedItems.get(metadata).size() == 1 && droppedItems.get(metadata).get(0) != null) {
-			return droppedItems.get(metadata).get(0).getItemDamage();
+			return droppedItems.get(metadata).get(0).getMetadata();
 		} else if (droppedMeta.containsKey(metadata)) {
 			return droppedMeta.get(metadata);
 		} else if (droppedMeta.containsKey(WILD)) {

@@ -25,14 +25,14 @@ public class PaintingHelper {
 	}
 
 	public static boolean paintBlocks(World world, int x, int y, int z, ItemStack itemstack, EntityLivingBase player, int paintRadius) {
-		int damage = itemstack.getItemDamage();
+		int damage = itemstack.getMetadata();
 		if (itemstack.hasTagCompound()) {
 			int type = itemstack.getTagCompound().getInteger("PaintType");
 			if (paintTypes.containsKey(type) && itemstack.getItem() instanceof ItemPaintbrush) {
 				int amount = 0;//colorBlocks(world, x, y, z, type, paintRadius, ((ItemPaintbrush) itemstack.getItem()).maxPaint - damage);
 				if (amount > 0) {
 					if (!player.worldObj.isRemote) {
-						player.worldObj.playSoundEffect(offsetIntToFloat(x), offsetIntToFloat(y), offsetIntToFloat(z), sound.func_150496_b(), (sound.getVolume() + 1.0F) / 2.0F, sound.getPitch() * 0.8F);
+						player.worldObj.playSoundEffect(offsetIntToFloat(x), offsetIntToFloat(y), offsetIntToFloat(z), sound.getPlaceSound(), (sound.getVolume() + 1.0F) / 2.0F, sound.getFrequency() * 0.8F);
 					}
 
 					if (amount + damage >= ((ItemPaintbrush) itemstack.getItem()).maxPaint) {
@@ -48,7 +48,7 @@ public class PaintingHelper {
 	}
 
 	public static void resetBrush(ItemStack itemstack) {
-		itemstack.setItemDamage(0);
+		itemstack.setMetadata(0);
 		itemstack.getTagCompound().setInteger("PaintType", -1);
 	}
 

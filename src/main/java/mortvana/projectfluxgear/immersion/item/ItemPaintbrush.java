@@ -32,10 +32,11 @@ public class ItemPaintbrush extends Item {
 		super();
 		setMaxStackSize(1);
 		setCreativeTab(FluxGearImmersion.paintedStoneTab);
-		setMaxDamage(maxPaint);
+		setMaxDurability(maxPaint);
 		setUnlocalizedName("fluxgear.paintbrush");
 	}
 
+	@Override
 	public boolean onEntitySwing(EntityLivingBase entity, ItemStack itemstack) {
 		MovingObjectPosition mop = MiscHelper.raytraceFromPlayer(entity.worldObj, entity, false);
 		if (mop != null) {
@@ -44,32 +45,38 @@ public class ItemPaintbrush extends Item {
 		return false;
 	}
 
-	public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, float hitX, float hitY, float hitZ) {
+	@Override
+	public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
 		return PaintingHelper.paintBlocks(world, x, y, z, itemstack, player, 1);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
 		itemIcon = iconRegister.registerIcon("fluxgear:tools/paintbrush");
 		bristles = iconRegister.registerIcon("fluxgear:tools/paintbrushbristles");
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean requiresMultipleRenderPasses() {
 		return true;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamageForRenderPass(int metadata, int pass) {
 		return pass == 1 ? bristles : itemIcon;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
-	public int getColorForItemStack(ItemStack itemstack, int pass) {
+	public int getColorFromItemStack(ItemStack itemstack, int pass) {
 		return (pass == 1 && itemstack.hasTagCompound()) ? PaintingHelper.paintTypes.get(itemstack.getTagCompound().getInteger("PaintType")).color : ColorLibrary.CLEAR;
 	}
 
-	public String getItemDisplayName(ItemStack itemstack) {
+	@Override
+	public String getItemStackDisplayName(ItemStack itemstack) {
 		return StatCollector.translateToLocal(getUnlocalizedNameInefficiently(itemstack)) + "." + PaintingHelper.paintTypes.get(itemstack.getTagCompound().getInteger("PaintType")).name + ".name";
 	}
 

@@ -14,7 +14,7 @@ public class FluxGearItemBlock extends ItemBlock {
 	public FluxGearItemBlock(Block block, String[] names, int[] rarities, String unlocalizedName) {
 		super(block);
 		setHasSubtypes(true);
-		setMaxDamage(0);
+		setMaxDurability(0);
 		this.unlocalizedName = unlocalizedName;
 		this.names = names;
 		this.rarities = rarities;
@@ -27,12 +27,12 @@ public class FluxGearItemBlock extends ItemBlock {
 
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
-		return unlocalizedName + names[itemstack.getItemDamage()] + ".name";
+		return unlocalizedName + names[itemstack.getMetadata()] + ".name";
 	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack itemstack) {
-		return EnumRarity.values()[rarities[itemstack.getItemDamage()]];
+		return EnumRarity.values()[rarities[itemstack.getMetadata()]];
 	}
 
 	@Override

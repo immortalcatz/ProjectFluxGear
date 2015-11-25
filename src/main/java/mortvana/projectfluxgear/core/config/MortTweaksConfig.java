@@ -16,6 +16,7 @@ public class MortTweaksConfig extends ConfigBase {
 		super(event, location);
 	}
 
+	@Override
 	public void loadConfig(File file) {
 		MeltedDashboardCore.logger.info("Loading MortTweaks Config");
 		config = new Configuration(file);

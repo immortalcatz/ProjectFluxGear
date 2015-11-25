@@ -11,6 +11,7 @@ public class RenderPurity extends Render {
 		shadowSize = 0.1F;
 	}
 
+	//TODO: Ummm...
 	public void renderEntityAt(Entity entity, double x, double y, double z, float freq, float pTicks) {}
 
 	@Override

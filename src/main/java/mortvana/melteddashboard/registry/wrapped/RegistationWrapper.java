@@ -52,7 +52,7 @@ public class RegistationWrapper {
 	}
 
 	public static void addSmelting(ItemStack input, ItemStack output, float experience) {
-		FurnaceRecipes.smelting().func_151394_a(input, output, experience);
+		FurnaceRecipes.instance().addSmeltingRecipe(input, output, experience);
 	}
 
 	public static void registerSquareRecipe(ItemStack input, ItemStack output) {

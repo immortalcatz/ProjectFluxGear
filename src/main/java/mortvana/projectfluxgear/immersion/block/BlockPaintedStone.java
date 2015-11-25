@@ -31,21 +31,24 @@ public class BlockPaintedStone extends Block {
 		textureName = texture;
 		localName = name;
 		this.dropBlock = dropBlock;
-		setBlockName(blockName);
+		setUnlocalizedName(blockName);
 		GameRegistry.registerBlock(this, ItemBlockPaintedStone.class, blockName);
 		RegistationWrapper.registerFMP(this, 16);
 	}
 
+	@Override
 	public String getUnlocalizedName() {
 		return "tile." + localName;
 	}
 
+	@Override
 	public int damageDropped(int meta) {
 		return meta;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		icons = new IIcon[16];
 
 		for(int i = 0; i < icons.length; i++) {
@@ -53,11 +56,13 @@ public class BlockPaintedStone extends Block {
 		}
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
 		return meta < icons.length ? icons[meta] : icons[0];
 	}
 
+	@Override
 	public void getSubBlocks(Item block, CreativeTabs tab, List list) {
 		for(int i = 0; i < icons.length; i++) {
 			list.add(new ItemStack(block, 1, i));

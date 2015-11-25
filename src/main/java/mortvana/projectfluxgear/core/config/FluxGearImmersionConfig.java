@@ -16,6 +16,7 @@ public class FluxGearImmersionConfig extends ConfigBase {
 		super(event, location);
 	}
 
+	@Override
 	public void loadConfig(File file) {
 		MeltedDashboardCore.logger.info("Loading Flux Gear Immersion Config");
 		config = new Configuration(file);

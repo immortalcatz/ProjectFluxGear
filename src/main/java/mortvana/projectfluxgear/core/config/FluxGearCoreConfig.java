@@ -16,6 +16,7 @@ public class FluxGearCoreConfig extends ConfigBase {
 		super(event, location);
 	}
 
+	@Override
 	public void loadConfig(File file) {
 		MeltedDashboardCore.logger.info("Loading MortTweaks Config");
 		config = new Configuration(file);
@@ -28,7 +29,7 @@ public class FluxGearCoreConfig extends ConfigBase {
 		enableOreberries = config.get("Modules", "Enable Oreberries", true, "IMC-based Oreberries, for science, yo! Now with extra Glassmakers!").getBoolean(true);
 		//enableDucts = config.get("Modules", "Enable The Journey's Ducts", true, "Mortvana's take on ductwork!").getBoolean(true);
 		enableThaumic = config.get("Modules", "Enable Thaumic Revelations", true, "The soul of the mod, now with more doom and alchemy! REQUIRES THAUMCRAFT!").getBoolean(true);
-		enableTinkers = config.get("Modules", "Enable Tinker's Armory", true, "The spleen of the mod, because pick-mattocks! REQUIRES TINKER'S CONSTRUCT!").getBoolean(true);
+		enableTinkers = config.get("Modules", "Enable Tinker's Foundry", true, "The spleen of the mod, because pick-mattocks! REQUIRES TINKER'S CONSTRUCT!").getBoolean(true);
 		//enableApiology = config.get("Modules", "Enable Applied Apiology", true, "Not the BEES!!!!").getBoolean(true);
 		enableIntegration = config.get("Modules", "Enable Integration Module", true, "Automatic crossmod integration for fun and profit!").getBoolean(true);
 		enableTweaks = config.get("Modules", "Enable MortTweaks", false, "Mortvana's silly tweaks, disabled by default out of courtesy!").getBoolean(false);

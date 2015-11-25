@@ -15,19 +15,19 @@ public class ItemBlockMetadata extends ItemBlock {
 
 	public ItemBlockMetadata(Block block) {
 		super(block);
-		setMaxDamage(0);
+		setMaxDurability(0);
 		setHasSubtypes(true);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack) {
-		return field_150939_a.getRenderColor(stack.getItemDamage());
+		return blockInstance.getRenderColor(stack.getMetadata());
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int meta) {
-		return field_150939_a.getIcon(2, meta);
+		return blockInstance.getIcon(2, meta);
 	}
 
 	@Override
@@ -37,11 +37,11 @@ public class ItemBlockMetadata extends ItemBlock {
 
 	@Override
 	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
-		int placedMeta = ((BlockExtendedMetadata) field_150939_a).getPlacedMetadata(player, stack, world, x, y, z, side, hitX, hitY, hitZ);
-		if (!world.setBlock(x, y, z, field_150939_a, metadata, 3)) {
+		int placedMeta = ((BlockExtendedMetadata) blockInstance).getPlacedMetadata(player, stack, world, x, y, z, side, hitX, hitY, hitZ);
+		if (!world.setBlock(x, y, z, blockInstance, metadata, 3)) {
 			return false;
 		}
-		if (world.getBlock(x, y, z) == field_150939_a) {
+		if (world.getBlock(x, y, z) == blockInstance) {
 			TileEntity tile = world.getTileEntity(x, y, z);
 			if (tile != null) {
 				if (!(tile instanceof TileEntityMetadata)) {
@@ -50,8 +50,8 @@ public class ItemBlockMetadata extends ItemBlock {
 				}
 				((TileEntityMetadata) tile).setTileMetadata(placedMeta);
 			}
-			field_150939_a.onBlockPlacedBy(world, x, y, z, player, stack);
-			field_150939_a.onPostBlockPlaced(world, x, y, z, metadata);
+			blockInstance.onBlockPlacedBy(world, x, y, z, player, stack);
+			blockInstance.onPostBlockPlaced(world, x, y, z, metadata);
 		}
 		return true;
 	}

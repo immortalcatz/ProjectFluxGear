@@ -19,6 +19,7 @@ public class ApiaristHelper {
 		return count;
 	}
 
+	//TODO: Protection Check
 	public static boolean wearingPiece(EntityPlayer player, EnumArmorType type) {
 		ItemStack armorItem = player.inventory.armorItemInSlot(type.ordinal());
 		return armorItem != null && armorItem.getItem() instanceof IArmorApiarist;

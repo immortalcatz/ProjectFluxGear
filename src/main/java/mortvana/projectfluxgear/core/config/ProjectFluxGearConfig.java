@@ -16,12 +16,11 @@ public class ProjectFluxGearConfig extends ConfigBase {
 		super(event, location);
 	}
 
+	@Override
 	public void loadConfig(File file) {
 		MeltedDashboardCore.logger.info("Loading Project Flux Gear Config");
 		config = new Configuration(file);
 		config.load();
-
-
 
 		if (config.hasChanged()) {
 			config.save();

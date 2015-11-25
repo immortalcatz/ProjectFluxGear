@@ -16,6 +16,7 @@ public class OreberriesConfig extends ConfigBase {
 		super(event, location);
 	}
 
+	@Override
 	public void loadConfig(File file) {
 		MeltedDashboardCore.logger.info("Loading Oreberries Config");
 		config = new Configuration(file);

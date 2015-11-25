@@ -22,17 +22,20 @@ public class FluxGearCoreContent implements IConfigInitialized {
 	public static FluxGearCreativeTab componentsTab = new FluxGearCreativeTab("PFG-Components", "fluxgear.components", new ItemStack(Items.potato));
 	public static FluxGearCreativeTab equipmentTab = new FluxGearCreativeTab("PFG-Equipment", "fluxgear.equipment", new ItemStack(Items.iron_chestplate));
 
+	@Override
 	public void preInit(ConfigBase config) {
 		preInitRegistry();
 
 		generalItem = (FluxGearItem) new FluxGearItem("fluxgear", componentsTab).setUnlocalizedName("generalMaterial");
 	}
 
+	@Override
 	public void init(ConfigBase config) {
 		loadVanillaOreDict();
 		registerMaterials();
 	}
 
+	@Override
 	public void postInit(ConfigBase config) {
 		dynMatReg.postInit();
 	}

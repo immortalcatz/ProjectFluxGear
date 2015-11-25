@@ -37,12 +37,14 @@ public class ThaumicRevelations implements IConfigInitialized {
 
 	public static Aspect tempus;
 
+	@Override
 	public void preInit(ConfigBase config) {
 		thaumicRevelationsTab = new FluxGearCreativeTab("PFG-Thaumic", "fluxgear.thaumic", wardenAmulet);
 
 		GameRegistry.registerBlock(blockThaumicPlant, ItemBlockThaumicPlant.class, "blockThaumicPlant");
 	}
 
+	@Override
 	public void init(ConfigBase config) {
 		wardenAmulet = thaumicBauble.addMetaBauble(0, "wardenAmulet", new DefaultBaubleData(BaubleType.AMULET), 2);
 		loveRing = thaumicBauble.addMetaBauble(1, "loveRing", new DefaultBaubleData(BaubleType.RING).setUnequip(false), 3);
@@ -54,6 +56,7 @@ public class ThaumicRevelations implements IConfigInitialized {
 		GameRegistry.registerWorldGenerator(new ExubituraGenerator(), 1);
 	}
 
+	@Override
 	public void postInit(ConfigBase config) {
 		ResearchCategories.registerCategory(CATEGORY, new ResourceLocation("fluxgear", "textures/items/baubles/wardenamulet.png"), new ResourceLocation("thaumcraft", "textures/gui/gui_researchback.png"));
 		determineTempus();

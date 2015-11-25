@@ -40,7 +40,7 @@ public class FluxGearItem extends Item {
 
 	public FluxGearItem() {
 		setHasSubtypes(true);
-		setMaxDamage(0);
+		setMaxDurability(0);
 		setMaxStackSize(64);
 	}
 
@@ -134,7 +134,7 @@ public class FluxGearItem extends Item {
 	}
 
 	public String getInternalName(ItemStack itemstack) {
-		int meta = itemstack.getItemDamage();
+		int meta = itemstack.getMetadata();
 		return itemMap.containsKey(meta) ? itemMap.get(meta).name : "invalid";
 	}
 
@@ -156,13 +156,13 @@ public class FluxGearItem extends Item {
 
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		int meta = stack.getItemDamage();
+		int meta = stack.getMetadata();
 		return "item." + modName + (itemMap.containsKey(meta) ? "." + itemMap.get(meta).name : ".invalid");
 	}
 
 	@Override
 	public String getItemStackDisplayName (ItemStack stack) {
-		int meta = stack.getItemDamage();
+		int meta = stack.getMetadata();
 		if (itemList.contains(meta) && registryItem) {
 			String itemName = itemMap.get(meta).name;
 			if (StatCollector.canTranslate("item." + modName + "." + itemMap.get(meta).name + ".name")) { //Custom Name
@@ -181,7 +181,7 @@ public class FluxGearItem extends Item {
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		int meta = stack.getItemDamage();
+		int meta = stack.getMetadata();
 		return itemMap.containsKey(meta) ? EnumRarity.values()[itemMap.get(meta).rarity] : EnumRarity.common;
 	}
 
@@ -239,7 +239,7 @@ public class FluxGearItem extends Item {
 
 	@Override
 	public IIcon getIcon(ItemStack stack, int renderPass) {
-		int metadata = stack.getItemDamage();
+		int metadata = stack.getMetadata();
 		//if (renderPass == 1) {
 			return itemMap.containsKey(metadata) ? itemMap.get(metadata).icon : null;
 		//} else {
@@ -250,11 +250,11 @@ public class FluxGearItem extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int renderPass) {
-		return renderPass == 1 && colorMap.containsKey(stack.getItemDamage()) ? getColor(stack) : ColorLibrary.CLEAR;
+		return renderPass == 1 && colorMap.containsKey(stack.getMetadata()) ? getColor(stack) : ColorLibrary.CLEAR;
 	}
 
 	public int getColor(ItemStack stack) {
-		return colorMap.containsKey(stack.getItemDamage()) ? colorMap.get(stack.getItemDamage()).color : ColorLibrary.CLEAR;
+		return colorMap.containsKey(stack.getMetadata()) ? colorMap.get(stack.getMetadata()).color : ColorLibrary.CLEAR;
 	}
 
 	public String getIconFromMeta(int metadata) {

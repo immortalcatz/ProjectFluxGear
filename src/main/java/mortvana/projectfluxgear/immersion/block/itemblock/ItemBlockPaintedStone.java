@@ -9,15 +9,17 @@ import mortvana.melteddashboard.util.helpers.ColorHelper;
 public class ItemBlockPaintedStone extends ItemBlock {
 	public ItemBlockPaintedStone(Block block) {
 		super(block);
-		setMaxDamage(0);
+		setMaxDurability(0);
 		setHasSubtypes(true);
 	}
 
+	@Override
 	public int getMetadata(int meta) {
 		return meta;
 	}
 
+	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
-		return super.getUnlocalizedName() + "." + ColorHelper.LOWER_PAINT_NAMES[itemstack.getItemDamage()];
+		return super.getUnlocalizedName() + "." + ColorHelper.LOWER_PAINT_NAMES[itemstack.getMetadata()];
 	}
 }

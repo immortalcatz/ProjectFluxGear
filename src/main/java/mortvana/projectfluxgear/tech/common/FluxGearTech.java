@@ -19,9 +19,7 @@ import static mortvana.projectfluxgear.core.common.FluxGearCoreContent.generalIt
 public class FluxGearTech implements IConfigInitialized, IFuelHandler {
 
 	@Override
-	public void preInit(ConfigBase config) {
-
-	}
+	public void preInit(ConfigBase config) {}
 
 	@Override
 	public void init(ConfigBase config) {
@@ -44,9 +42,7 @@ public class FluxGearTech implements IConfigInitialized, IFuelHandler {
 
 
 
-	public static void registerMaterials() {
-
-	}
+	public static void registerMaterials() {}
 
 	public static Block blockPrimaryOre = new FluxGearBlock(Material.iron);
 	public static Block blockSecondaryOre;

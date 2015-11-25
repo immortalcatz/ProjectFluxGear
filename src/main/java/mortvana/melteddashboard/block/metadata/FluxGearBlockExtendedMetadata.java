@@ -48,7 +48,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 		super(material, tab);
 		providerTile = tile;
 		this.textureBase = textureBase;
-		setBlockName(blockName);
+		setUnlocalizedName(blockName);
 	}
 
 	public void setDefaultData(float blockHardness, float blastResistance) {
@@ -296,7 +296,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister register) {
+	public void registerIcons(IIconRegister register) {
 
 		switch (textCasing) {
 			case CAMEL:

@@ -15,7 +15,7 @@ public class ItemThaumicBauble extends FluxGearItemBauble {
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
-		if (itemstack.getItemDamage() == 1) {
+		if (itemstack.getMetadata() == 1) {
 			world.playSoundAtEntity(player, "trevelations:abderp", 1, 1);
 		}
 		return super.onItemRightClick(itemstack, world, player);

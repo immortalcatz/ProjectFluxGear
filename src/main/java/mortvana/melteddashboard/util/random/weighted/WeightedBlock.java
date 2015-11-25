@@ -11,11 +11,11 @@ public class WeightedBlock extends WeightedEntry {
 	public final int METADATA;
 
 	public WeightedBlock(ItemStack block) {
-		this(Block.getBlockFromItem(block.getItem()), block.getItemDamage(), 100);
+		this(Block.getBlockFromItem(block.getItem()), block.getMetadata(), 100);
 	}
 
 	public WeightedBlock(ItemStack block, int weight) {
-		this(Block.getBlockFromItem(block.getItem()), block.getItemDamage(), weight);
+		this(Block.getBlockFromItem(block.getItem()), block.getMetadata(), weight);
 	}
 
 	public WeightedBlock(Block block) {
@@ -45,7 +45,7 @@ public class WeightedBlock extends WeightedEntry {
 	}
 
 	public static boolean isEntry(ItemStack itemstack, Collection<WeightedBlock> entries) {
-		return isEntry(Block.getBlockFromItem(itemstack.getItem()), itemstack.getItemDamage(), entries);
+		return isEntry(Block.getBlockFromItem(itemstack.getItem()), itemstack.getMetadata(), entries);
 	}
 
 	public static boolean isEntry(Block block, int metadata, Collection<WeightedBlock> entries) {
@@ -58,7 +58,7 @@ public class WeightedBlock extends WeightedEntry {
 	}
 
 	public static boolean isEntry(ItemStack itemstack, WeightedBlock[] entries) {
-		return isEntry(Block.getBlockFromItem(itemstack.getItem()), itemstack.getItemDamage(), entries);
+		return isEntry(Block.getBlockFromItem(itemstack.getItem()), itemstack.getMetadata(), entries);
 	}
 
 	public static boolean isEntry(Block block, int metadata, WeightedBlock[] entries) {

@@ -43,7 +43,7 @@ public class BucketHandler {
 	public static ItemStack emptyContainer(World world, int x, int y, int z, int sideHit, ItemStack itemstack, EntityPlayer player, boolean canEmpty) {
 		if (containers.containsKey(itemstack) && canEmpty && (!world.getBlock(x, y, z).getMaterial().isSolid() || world.isAirBlock(x, y, z))) {
 			if (!world.isRemote && !world.getBlock(x, y, z).getMaterial().isLiquid()) {
-				world.func_147480_a(x, y, z, true);
+				world.breakBlock(x, y, z, true);
 			}
 			world.setBlock(x, y, z, containers.get(itemstack).getBlock(), containers.get(itemstack).getMetadata(), 3);
 			world.markBlockForUpdate(x, y, z);

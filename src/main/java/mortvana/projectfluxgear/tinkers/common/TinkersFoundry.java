@@ -1,9 +1,9 @@
-package mortvana.projectfluxgear.tweaks.common;
+package mortvana.projectfluxgear.tinkers.common;
 
 import mortvana.melteddashboard.util.ConfigBase;
 import mortvana.melteddashboard.util.IConfigInitialized;
 
-public class MortTweaks implements IConfigInitialized {
+public class TinkersFoundry implements IConfigInitialized {
 
 	@Override
 	public void preInit(ConfigBase config) {}

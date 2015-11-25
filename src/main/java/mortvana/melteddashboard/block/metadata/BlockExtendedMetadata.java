@@ -46,7 +46,7 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 	}
 
 	public int getPlacedMetadata(EntityPlayer player, ItemStack stack, World world, int x, int y, int z, int side, float xHit, float yHit, float zHit) {
-		return stack.getItemDamage();
+		return stack.getMetadata();
 	}
 
 	public boolean shouldDropItems(World world, int x, int y, int z, int meta, EntityPlayer player, ItemStack stack) {
@@ -200,7 +200,7 @@ public abstract class BlockExtendedMetadata extends BlockContainerMetadata {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister register) {
+	public void registerIcons(IIconRegister register) {
 	}
 
 	//Tile Entity

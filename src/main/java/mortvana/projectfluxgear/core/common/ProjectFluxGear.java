@@ -1,7 +1,5 @@
 package mortvana.projectfluxgear.core.common;
 
-import java.io.File;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.*;
 import cpw.mods.fml.common.SidedProxy;
@@ -18,7 +16,7 @@ import mortvana.projectfluxgear.integration.common.FluxGearIntegration;
 import mortvana.projectfluxgear.oreberries.common.Oreberries;
 import mortvana.projectfluxgear.tech.common.FluxGearTech;
 import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
-import mortvana.projectfluxgear.tinkers.common.TinkersArmory;
+import mortvana.projectfluxgear.tinkers.common.TinkersFoundry;
 import mortvana.projectfluxgear.tweaks.common.MortTweaks;
 
 
@@ -54,7 +52,7 @@ public class ProjectFluxGear {
 		moduleLoader.addModule("Immersion", FluxGearCoreConfig.enableImmersion, new FluxGearImmersion(), new FluxGearImmersionConfig(event, "/Mortvana/ProjectFluxGear-Immersion.cfg"));
 		moduleLoader.addModule("Oreberries", FluxGearCoreConfig.enableOreberries, new Oreberries(), new OreberriesConfig(event, "/Mortvana/ProjectFluxGear-Oreberries.cfg"));
 		moduleLoader.addModule("TRevelations", FluxGearCoreConfig.enableThaumic && LoadedHelper.isThaumcraftLoaded, new ThaumicRevelations(), new ThaumicRevelationsConfig(event, "/Mortvana/ProjectFluxGear-ThaumicRevelations.cfg"));
-		moduleLoader.addModule("TiArmory", FluxGearCoreConfig.enableTinkers && LoadedHelper.isTinkersLoaded, new TinkersArmory(), new TinkersArmoryConfig(event, "/Mortvana/ProjectFluxGear-TinkersArmory.cfg"));
+		moduleLoader.addModule("TiFoundry", FluxGearCoreConfig.enableTinkers && LoadedHelper.isTinkersLoaded, new TinkersFoundry(), new TinkersFoundryConfig(event, "/Mortvana/ProjectFluxGear-TinkersFoundry.cfg"));
 		moduleLoader.addModule("Integration", FluxGearCoreConfig.enableIntegration, new FluxGearIntegration(), new FluxGearIntegrationConfig(event, "/Mortvana/ProjectFluxGear-Integration.cfg"));
 		moduleLoader.addModule("MortTweaks", FluxGearCoreConfig.enableTweaks, new MortTweaks(), new MortTweaksConfig(event, "/Mortvana/ProjectFluxGear-MortTweaks.cfg"));
 

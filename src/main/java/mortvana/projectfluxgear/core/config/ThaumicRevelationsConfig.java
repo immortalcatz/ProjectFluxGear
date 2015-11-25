@@ -16,6 +16,7 @@ public class ThaumicRevelationsConfig extends ConfigBase {
 		super(event, location);
 	}
 
+	@Override
 	public void loadConfig(File file) {
 		MeltedDashboardCore.logger.info("Loading Thaumic Revelations Config");
 		config = new Configuration(file);

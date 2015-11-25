@@ -5,15 +5,12 @@ import mortvana.melteddashboard.util.IConfigInitialized;
 
 public class FluxGearIntegration implements IConfigInitialized {
 
-	public void preInit(ConfigBase config) {
+	@Override
+	public void preInit(ConfigBase config) {}
 
-	}
+	@Override
+	public void init(ConfigBase config) {}
 
-	public void init(ConfigBase config) {
-
-	}
-
-	public void postInit(ConfigBase config) {
-
-	}
+	@Override
+	public void postInit(ConfigBase config) {}
 }
