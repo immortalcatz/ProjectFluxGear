@@ -25,6 +25,8 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
+import mortvana.melteddashboard.util.helpers.RegistryHelper;
+
 import mortvana.legacy.clean.morttweaks.item.ItemTweakedArmor;
 import mortvana.legacy.clean.morttweaks.item.ItemTweakedFlesh;
 import mortvana.legacy.dependent.firstdegree.morttweaks.potion.TweakedPoisonStatus;
@@ -217,10 +219,9 @@ public class MortTweaks {
 		}
 
 		if (changeArmorCalculations) {
-			for (int i = 42; i <= 61; i++) {
-				Item.itemsList[i + 256] = null;
-			}
 			Items.leather_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 0).setUnlocalizedName("helmetCloth").setTextureName("leather_helmet");
+			RegistryHelper.overwriteEntry(Item.itemRegistry, "minecraft:", Items.leather_helmet);
+
 			Items.leather_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 1).setUnlocalizedName("chestplateCloth").setTextureName("leather_chestplate");
 			Items.leather_leggings = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 2).setUnlocalizedName("leggingsCloth").setTextureName("leather_leggings");
 			Items.leather_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 3).setUnlocalizedName("bootsCloth").setTextureName("leather_boots");
@@ -243,7 +244,7 @@ public class MortTweaks {
 		}
 
 		if (revertTNT) {
-			Blocks.tnt = new BlockTweakedTNT().setHardness(0.0F).setStepSound(Block.soundTypeGrass).setBlockName("tnt").setBlockTextureName("tnt");
+			Blocks.tnt = new BlockTweakedTNT().setHardness(0.0F).setStepSound(Block.soundTypeGrass).setUnlocalizedName("tnt").setTextureName("tnt");
 		}
 
 		if (nastyFlesh) {
@@ -253,7 +254,7 @@ public class MortTweaks {
 		}
 
 		if (nerfFoodStackSize) {
-			Item[] nerfs = new Item[] {Items.apple, Items.bread, Items.porkchop, Items.cooked_porkchop, Items.golden_apple, Items.fish, Items.cooked_fished, Items.beef, Items.cooked_beef, Items.chicken, Items.cooked_chicken, Items.rotten_flesh, Items.carrot, Items.potato, Items.baked_potato, Items.golden_carrot, Items.pumpkin_pie};
+			Item[] nerfs = new Item[] {Items.apple, Items.bread, Items.porkchop, Items.cooked_porkchop, Items.golden_apple, Items.fish, Items.cooked_fish, Items.beef, Items.cooked_beef, Items.chicken, Items.cooked_chicken, Items.rotten_flesh, Items.carrot, Items.potato, Items.baked_potato, Items.golden_carrot, Items.pumpkin_pie};
 			Item[] bigNerfs = new Item[] {Items.cookie, Items.melon};
 
 			for (int i = 0; i < nerfs.length; i++)
@@ -313,7 +314,7 @@ public class MortTweaks {
 		}
 
 		if (sugarCaneHeight != 3) {
-			Blocks.reeds = new BlockTweakedSugarCane().setHardness(0.0F).setStepSound(Block.soundTypeGrass).setBlockName("reeds").setBlockTextureName("reeds");
+			Blocks.reeds = new BlockTweakedSugarCane().setHardness(0.0F).setStepSound(Block.soundTypeGrass).setUnlocalizedName("reeds").setTextureName("reeds");
 		}
 
 		if (poisonTime != 25) {

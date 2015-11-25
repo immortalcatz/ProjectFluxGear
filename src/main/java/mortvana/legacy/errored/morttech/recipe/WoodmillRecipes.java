@@ -50,32 +50,25 @@ public class WoodmillRecipes {
             tempCrafting.setInventorySlotContents(i, null);
         }
         ArrayList<ItemStack> registeredOres = OreDictionary.getOres("logWood");
-        for (int i = 0; i < registeredOres.size(); i++)
-        {
+        for (int i = 0; i < registeredOres.size(); i++) {
             ItemStack logEntry = (ItemStack)registeredOres.get(i);
-            if (logEntry.getItemDamage() == OreDictionary.WILDCARD_VALUE)
-            {
-                for (int j = 0; j < 256; j++)
-                {
+            if (logEntry.getMetadata() == OreDictionary.WILDCARD_VALUE) {
+                for (int j = 0; j < 256; j++) {
                     ItemStack log = new ItemStack(logEntry.getItem(), 1, j);
                     tempCrafting.setInventorySlotContents(0, log);
                     ItemStack resultEntry = CraftingManager.getInstance().findMatchingRecipe(tempCrafting, null);
-                    if (resultEntry != null)
-                    {
+                    if (resultEntry != null) {
                         ItemStack result = resultEntry.copy();
                         ItemStack tmp144_142 = result;
                         tmp144_142.stackSize = ((int)(tmp144_142.stackSize * 1.5F));
                         addCutting(log, result, 0.15f);
                     }
                 }
-            }
-            else
-            {
+            } else {
                 ItemStack log = ItemStack.copyItemStack(logEntry);
                 tempCrafting.setInventorySlotContents(0, log);
                 ItemStack resultEntry = CraftingManager.getInstance().findMatchingRecipe(tempCrafting, null);
-                if (resultEntry != null)
-                {
+                if (resultEntry != null) {
                     ItemStack result = resultEntry.copy();
                     ItemStack tmp216_214 = result;
                     tmp216_214.stackSize = ((int)(tmp216_214.stackSize * 1.5F));
@@ -88,9 +81,8 @@ public class WoodmillRecipes {
     /**
      * A metadata sensitive version of adding a furnace recipe.
      */
-    public void addCutting(ItemStack item, ItemStack itemstack, float par3)
-    {
-        cuttingList.put(Arrays.asList(item, item.getItemDamage()),itemstack);
+    public void addCutting(ItemStack item, ItemStack itemstack, float par3) {
+        cuttingList.put(Arrays.asList(item, item.getMetadata()),itemstack);
 	    this.smeltingList.put(par1, itemstack);
 	    this.experienceList.put(itemstack, par3);
     }
@@ -100,22 +92,18 @@ public class WoodmillRecipes {
      * @param item The Source ItemStack
      * @return The result ItemStack
      */
-    public ItemStack getCuttingResult(ItemStack item)
-    {
-        if (item == null)
-        {
+    public ItemStack getCuttingResult(ItemStack item) {
+        if (item == null) {
             return null;
         }
-        ItemStack ret = cuttingList.get(Arrays.asList(item, item.getItemDamage()));
-        if (ret != null)
-        {
+        ItemStack ret = cuttingList.get(Arrays.asList(item, item.getMetadata()));
+        if (ret != null) {
             return ret;
         }
         return null;
     }
 
-    public Map<List<Object>, ItemStack> getCuttingList()
-    {
+    public Map<List<Object>, ItemStack> getCuttingList(){
         return cuttingList;
     }
 
@@ -124,20 +112,17 @@ public class WoodmillRecipes {
      * Deprecated in favor of a metadata sensitive version
      */
     @Deprecated
-    public ItemStack getSmeltingResult(int par1)
-{
-	return (ItemStack)this.smeltingList.get(par1);
-}
+    public ItemStack getSmeltingResult(int par1) {
+		return (ItemStack) smeltingList.get(par1);
+	}
 
-	public Map getSmeltingList()
-	{
-		return this.smeltingList;
+	public Map getSmeltingList() {
+		return smeltingList;
 	}
 
 	@Deprecated //In favor of ItemStack sensitive version
-	public float getExperience(int par1)
-	{
-		return this.experienceList.containsKey(par1) ? ((Float)this.experienceList.get(Integer.valueOf(par1))).floatValue() : 0.0F;
+	public float getExperience(int par1) {
+		return experienceList.containsKey(par1) ? (Float) experienceList.get(par1) : 0.0F;
 	}
 
 	/**
@@ -145,7 +130,7 @@ public class WoodmillRecipes {
 	 */
 	public void addSmelting(int itemID, int metadata, ItemStack itemstack, float experience) {
 		metaSmeltingList.put(Arrays.asList(itemID, metadata), itemstack);
-		metaExperience.put(Arrays.asList(itemstack.itemID, itemstack.getItemDamage()), experience);
+		metaExperience.put(Arrays.asList(itemstack.itemID, itemstack.getMetadata()), experience);
 	}
 
 	/**
@@ -157,7 +142,7 @@ public class WoodmillRecipes {
 		if (item == null) {
 			return null;
 		}
-		ItemStack ret = (ItemStack)metaSmeltingList.get(Arrays.asList(item.itemID, item.getItemDamage()));
+		ItemStack ret = (ItemStack) metaSmeltingList.get(Arrays.asList(item.itemID, item.getMetadata()));
 		if (ret != null) {
 			return ret;
 		}
@@ -172,8 +157,8 @@ public class WoodmillRecipes {
 			return 0;
 		}
 		float ret = item.getItem().getSmeltingExperience(item);
-		if (ret < 0 && metaExperience.containsKey(Arrays.asList(item.itemID, item.getItemDamage()))) {
-			ret = metaExperience.get(Arrays.asList(item.itemID, item.getItemDamage()));
+		if (ret < 0 && metaExperience.containsKey(Arrays.asList(item.itemID, item.getMetadata()))) {
+			ret = metaExperience.get(Arrays.asList(item.itemID, item.getMetadata()));
 		}
 		if (ret < 0 && experienceList.containsKey(item.itemID)) {
 			ret = (Float) experienceList.get(item.itemID);
@@ -181,8 +166,7 @@ public class WoodmillRecipes {
 		return (ret < 0 ? 0 : ret);
 	}
 
-	public Map<List<Integer>, ItemStack> getMetaSmeltingList()
-	{
+	public Map<List<Integer>, ItemStack> getMetaSmeltingList() {
 		return metaSmeltingList;
 	}
 }

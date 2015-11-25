@@ -1,5 +1,6 @@
 package mortvana.legacy.errored.morttweaks.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -45,10 +46,10 @@ public class BlockTweakedTNT extends BlockTNT {
 	}
 
 	@Override
-	public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
-		if (par1World.isBlockIndirectlyGettingPowered(par2, par3, par4)) {
-			this.removeBlockByPlayer(par1World, null, par2, par3, par4);
-			par1World.setBlockToAir(par2, par3, par4);
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor) {
+		if (world.isBlockIndirectlyGettingPowered(x, y, z)) {
+			this.removeBlockByPlayer(world, null, x, y, z);
+			world.setBlockToAir(x, y, z);
 		}
 	}
 

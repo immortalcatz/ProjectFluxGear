@@ -7,7 +7,6 @@ import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -16,7 +15,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -28,7 +26,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
@@ -52,7 +49,6 @@ import mortvana.legacy.clean.core.util.handlers.DispenserFilledBucketHandler;
 import mortvana.legacy.clean.core.util.helpers.ItemHelper;
 import mortvana.legacy.clean.core.util.helpers.MiscHelper;
 import mortvana.legacy.clean.core.util.item.BucketFluxGear;
-import mortvana.legacy.clean.core.util.item.ItemArmorFluxGear;
 import mortvana.legacy.clean.core.util.item.ItemArmorRF;
 import mortvana.legacy.clean.fluxgeartweaks.block.BlockTimeyWimey;
 import mortvana.legacy.clean.fluxgeartweaks.block.tileentity.TileTimeyWimey;
@@ -62,10 +58,13 @@ import mortvana.legacy.clean.morttech.block.itemblock.ItemBlockGemOre;
 import mortvana.legacy.clean.morttech.item.WrenchSonic;
 import mortvana.legacy.clean.projectfluxgear.item.ItemPrototypeSonicWrench;
 import mortvana.legacy.clean.thaumicrevelations.block.BlockWitor;
+import mortvana.legacy.clean.thaumicrevelations.block.tile.TileWitor;
 import mortvana.legacy.clean.weirdscience.block.fluid.BlockFluidAcid;
 import mortvana.legacy.clean.weirdscience.block.fluid.BlockFluidClassicWS;
 import mortvana.legacy.clean.weirdscience.block.fluid.BlockFluidReactive;
 import mortvana.legacy.clean.weirdscience.util.chemistry.ReactionSpec;
+import mortvana.legacy.dependent.firstdegree.morttech.block.BlockMortTechOre;
+import mortvana.legacy.dependent.firstdegree.morttech.item.DebuggingSpork;
 import mortvana.legacy.errored.projectfluxgear.block.BlockGravelOreAux;
 import mortvana.legacy.errored.projectfluxgear.block.BlockGravelOreMain;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockPlant;
@@ -81,6 +80,9 @@ import mortvana.legacy.errored.projectfluxgear.item.ItemInteractivePFG;
 import mortvana.legacy.errored.projectfluxgear.util.OreInformation;
 import mortvana.legacy.errored.thaumicrevelations.entity.EntityFleshProjectile;
 import mortvana.legacy.errored.thaumicrevelations.entity.FleshGolem;
+import mortvana.legacy.errored.thaumicrevelations.item.ItemWardenArmor;
+import mortvana.legacy.errored.thaumicrevelations.item.ItemWardenicBlade;
+import mortvana.legacy.clean.thaumicrevelations.util.WardenicChargeHelper;
 import mortvana.legacy.errored.weirdscience.block.BlockBloodEngine;
 import mortvana.legacy.errored.weirdscience.block.fluid.BlockFluidSmog;
 import mortvana.legacy.errored.weirdscience.block.tileentity.TileEntityGunpowderEngine;
@@ -91,7 +93,6 @@ import mortvana.melteddashboard.intermod.thaumcraft.util.helpers.PurityHelper;
 import mortvana.melteddashboard.intermod.tinkers.TinkersHelper;
 import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
 import mortvana.melteddashboard.item.FluxGearItem;
-import mortvana.melteddashboard.util.FluxGearDamageSources;
 import mortvana.melteddashboard.util.enums.EnumArmorType;
 import mortvana.melteddashboard.util.helpers.CraftingHelper;
 import mortvana.melteddashboard.util.helpers.LoadedHelper;
@@ -102,7 +103,7 @@ import mortvana.projectfluxgear.thaumic.item.ItemThaumicBauble;
 import mortvana.projectfluxgear.tinkers.modifiers.ActiveToolModFeedback;
 import mortvana.projectfluxgear.tweaks.util.TweakItemRegistry;
 import mortvana.projectfluxgear.util.helpers.TweakHelper;
-import thaumcraft.api.IVisDiscountGear;
+
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -541,10 +542,10 @@ public class FluxGearContent implements IFuelHandler {
 		tileMachine = new BlockMachine(Material.iron).setResistance(5.0f).setCreativeTab(machineTab).setHardness(2.5f);
 		GameRegistry.registerBlock(tileMachine, "machine");
 
-		tileCrank = new BlockCrank(Material.wood).setResistance(5.0f).setCreativeTab(machineTab).setHardness(2.3f).setBlockName("Crank");
+		tileCrank = new BlockCrank(Material.wood).setResistance(5.0f).setCreativeTab(machineTab).setHardness(2.3f).setUnlocalizedName("Crank");
 		GameRegistry.registerBlock(tileCrank, "tempCrank");
 
-		tileMachineTier0 = new BlockWoodmill().setResistance(5.0f).setCreativeTab(machineTab).setHardness(2.3f).setBlockName("Woodmill");
+		tileMachineTier0 = new BlockWoodmill().setResistance(5.0f).setCreativeTab(machineTab).setHardness(2.3f).setUnlocalizedName("Woodmill");
 		GameRegistry.registerBlock(tileMachineTier0, "Tier0Machine");
 
 		LanguageRegistry.addName(tileMachineTier0, "Woodmill");
@@ -886,7 +887,7 @@ public class FluxGearContent implements IFuelHandler {
 		GameRegistry.registerBlock(blockInfusedQuartzStair, "blockInfusedQuartzStair");
 		GameRegistry.registerBlock(blockWitor, "blockWitor");
 
-		GameRegistry.registerTileEntity(BlockFluxGear.TileWitor.class, "tileWitor");
+		GameRegistry.registerTileEntity(TileWitor.class, "tileWitor");
 
 		GameRegistry.registerItem(itemFocusPurity, "itemFocusPurity");
 		GameRegistry.registerItem(itemWardenSword, "itemWardenWeapon");
@@ -1062,150 +1063,6 @@ public class FluxGearContent implements IFuelHandler {
 	}
 
 	// TR Innerclasses...
-
-	public static class ItemWardenicBlade extends Item {
-
-		public ItemWardenicBlade() {
-			super();
-			setUnlocalizedName("itemWardenicBlade");
-			setCreativeTab(thaumicTab);
-			setMaxStackSize(1);
-
-			setFull3D();
-		}
-
-		@Override
-		public boolean getShareTag() {
-			return true;
-		}
-
-		@Override
-		public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
-			return false;
-		}
-
-		@Override
-		public int getMaxDamage(ItemStack stack) {
-			return 50;
-		}
-
-		@Override
-		public boolean isDamageable() {
-			return false;
-		}
-
-		@Override
-		public EnumRarity getRarity(ItemStack par1ItemStack) {
-			return EnumRarity.epic;
-		}
-
-		@Override
-		public EnumAction getItemUseAction(ItemStack par1ItemStack) {
-			return EnumAction.block;
-		}
-
-		@Override
-		public int getMaxItemUseDuration(ItemStack par1ItemStack) {
-			return 72000;
-		}
-
-		@Override
-		public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-			par3List.add(EnumChatFormatting.AQUA + StatCollector.translateToLocal("tooltip.wardenic.charge") + ": " + (par1ItemStack.getMaxDamage() - par1ItemStack.getItemDamage()) + "/" + par1ItemStack.getMaxDamage());
-			par3List.add(EnumChatFormatting.GOLD + StatCollector.translateToLocal("tooltip.wardenic.upgrade") + ": " + WardenicChargeHelper.getUpgrade(par1ItemStack).getQuote());
-
-			super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
-		}
-
-		@Override
-		public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
-			if (stack.getItemDamage() != stack.getMaxDamage()) {
-				DamageSource damageSource = new FluxGearDamageSources("warden", player);
-				entity.attackEntityFrom(damageSource, 5);
-				WardenicChargeHelper.getUpgrade(stack).onAttack(stack, player, entity);
-				stack.setItemDamage(stack.getItemDamage() + 1);
-			}
-			return super.onLeftClickEntity(stack, player, entity);
-		}
-
-		@Override
-		@SideOnly(Side.CLIENT)
-		public void registerIcons(IIconRegister register) {
-			itemIcon = register.registerIcon("trevelations:wardensword");
-		}
-
-	}
-
-	public static class ItemWardenArmor extends ItemArmorFluxGear implements ISpecialArmor, IVisDiscountGear {
-
-		public ItemWardenArmor(EnumArmorType type, String name, String sheet, String icon) {
-			super(materialWarden, 3, type, name, sheet, icon);
-			setCreativeTab(mortvana.projectfluxgear.thaumic.common.ThaumicContent.thaumicRevelationsTab);
-		}
-
-		@Override
-		public boolean getShareTag() {
-			return true;
-		}
-
-		@Override
-		public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
-			return false;
-		}
-
-		@Override
-		public int getMaxDamage(ItemStack stack) {
-			return 50;
-		}
-
-		@Override
-		public boolean isDamageable() {
-			return false;
-		}
-
-		@Override
-		public EnumRarity getRarity(ItemStack par1ItemStack) {
-			return EnumRarity.epic;
-		}
-
-		@Override
-		public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-			par3List.add(EnumChatFormatting.AQUA + StatCollector.translateToLocal("tooltip.wardenic.charge") + ": " + (par1ItemStack.getMaxDamage() - par1ItemStack.getItemDamage()) + "/" + par1ItemStack.getMaxDamage());
-			par3List.add(EnumChatFormatting.GOLD + StatCollector.translateToLocal("tooltip.wardenic.upgrade") + ": " + WardenicChargeHelper.getUpgrade(par1ItemStack).getQuote());
-			super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
-		}
-
-		@Override
-		public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
-			WardenicChargeHelper.getUpgrade(itemStack).onTick(world, player, itemStack);
-			super.onArmorTick(world, player, itemStack);
-		}
-
-		@Override
-		public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
-			if (armor.getItemDamage() != armor.getMaxDamage()) {
-				return new ArmorProperties(0, getArmorMaterial().getDamageReductionAmount(slot) / 25D, 20);
-			} else {
-				return new ArmorProperties(0, 0, 0);
-			}
-		}
-
-		@Override
-		public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
-			return getArmorMaterial().getDamageReductionAmount(slot);
-		}
-
-		@Override
-		public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
-
-		}
-
-		@Override
-		public int getVisDiscount(ItemStack stack, EntityPlayer player, Aspect aspect) {
-			return 5;
-		}
-
-	}
 
 	public static class ItemWaslieHammer extends Item {
 
@@ -1588,38 +1445,7 @@ public class FluxGearContent implements IFuelHandler {
 
 	}
 
-	public static class WardenicChargeHelper {
 
-		public static HashMap<String, ThaumicAugmentBase> upgrades = new HashMap<String, ThaumicAugmentBase>();
-
-		public static void addUpgrade(ThaumicAugmentBase upgrade) {
-			addUpgrade(upgrade.aspect.getName(), upgrade);
-		}
-
-		public static void addUpgrade(String key, ThaumicAugmentBase upgrade) {
-			upgrades.put(key, upgrade);
-		}
-
-		public static ThaumicAugmentBase getUpgrade(ItemStack stack) {
-			if (stack.stackTagCompound != null) {
-				if (stack.stackTagCompound.hasKey("upgrade")) {
-					return upgrades.get(stack.stackTagCompound.getString("upgrade"));
-				} else {
-					return upgrades.get(WARDEN.getName());
-				}
-			} else {
-				return upgrades.get(WARDEN.getName());
-			}
-		}
-
-		public static void setUpgradeOnStack(ItemStack stack, String key) {
-			if (stack.stackTagCompound == null) {
-				stack.setTagCompound(new NBTTagCompound());
-			}
-			stack.stackTagCompound.setString("upgrade", key);
-		}
-
-	}
 
 	public static class WardenicChargeEvents {
 
@@ -2013,8 +1839,6 @@ public class FluxGearContent implements IFuelHandler {
 		}
 	}
 
-	public void registerRocks() {}
-
     public void registerBlocks() {
         //Ore Storage Blocks
         ItemHelper.registerWithHandlers("blockAntimony", blockAntimony); //Mercury is a fluid
@@ -2174,8 +1998,9 @@ public class FluxGearContent implements IFuelHandler {
         loadIngots();
         loadDusts();
         loadNuggets();
-        loadTools();
+	    toolProtoSonicWrench = itemProtoSonicWrench.addItem(0, "protoSonicWrench");
         loadGems();
+	    loadGears();
     }
 
     //0-499 Ingots and Gems
@@ -2689,7 +2514,7 @@ public class FluxGearContent implements IFuelHandler {
     public void loadOres17(){}*/
 
     public void loadTools() {
-	    toolProtoSonicWrench = itemProtoSonicWrench.addItem(0, "protoSonicWrench");
+
     }
 
     public void loadEnchants() {}
@@ -2857,7 +2682,7 @@ public class FluxGearContent implements IFuelHandler {
         GameRegistry.addSmelting(dustTitanium, ingotTitanium, 0.0F);
         // No Iridium, requires Pyrotheum/Blast Furnace
 
-        GameRegistry.addSmelting(aluminiumSludge, new ItemStack(itemAlum), 0.0F);
+        GameRegistry.addSmelting(aluminiumSludge, coagulantAlum, 0.0F);
 
         // Temporary way to get Rust
         GameRegistry.addSmelting(blockRust, new ItemStack(Blocks.iron_block, 1, 0), 0.0F);

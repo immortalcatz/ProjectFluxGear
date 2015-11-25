@@ -18,6 +18,9 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import mortvana.melteddashboard.util.helpers.ChatHelper;
+import mortvana.melteddashboard.util.helpers.StringHelper;
+
 import mortvana.legacy.errored.thaumicrevelations.block.tileentity.TileWardChest;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.common.config.ConfigBlocks;
@@ -42,6 +45,7 @@ public class BlockWardChest extends BlockContainer {
 		}
 	}
 
+	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemstack) {
 		byte meta = 0;
 		int l1 = MathHelper.floor_double(entity.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
@@ -69,6 +73,7 @@ public class BlockWardChest extends BlockContainer {
 		}
 	}
 
+	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block, int metadata) {
 		TileWardChest chest = (TileWardChest) world.getTileEntity(x, y, z);
 		if (chest != null) {
@@ -84,7 +89,7 @@ public class BlockWardChest extends BlockContainer {
 							k1 = itemstack.stackSize;
 						}
 						itemstack.stackSize -= k1;
-						entityitem = new EntityItem(world, x + f, y + f1, z + f2, new ItemStack(itemstack.getItem(), k1, itemstack.getItemDamage()));
+						entityitem = new EntityItem(world, x + f, y + f1, z + f2, new ItemStack(itemstack.getItem(), k1, itemstack.getMetadata()));
 						float f3 = 0.05F;
 						entityitem.motionX = ((float) random.nextGaussian() * f3);
 						entityitem.motionY = ((float) random.nextGaussian() * f3 + 0.2F);
@@ -100,6 +105,7 @@ public class BlockWardChest extends BlockContainer {
 		super.breakBlock(world, x, y, z, block, metadata);
 	}
 
+	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
 		if (world.isRemote) {
 			return true;
@@ -122,31 +128,36 @@ public class BlockWardChest extends BlockContainer {
 					world.playSoundEffect(x, y, z, "thaumcraft.key", 1.0F, 1.0F);
 				}
 			} else {
-				player.addChatMessage("The Chest refuses to budge.");
+				player.addChatMessage(ChatHelper.addChatMessage(player, StringHelper.localize("info.fluxgear.thaumic.lockedchest")/*"The Chest refuses to budge."*/));
 				world.playSoundEffect(x, y, z, "thaumcraft.doorfail", 1.0F, 0.2F);
 			}
 		}
 		return true;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int par1, int par2) {
 		return ConfigBlocks.blockWoodenDevice.getIcon(par1, 0);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister) {
 		blockIcon = IconHelper.forBlock(par1IconRegister, this);
 	}
 
+	@Override
 	public int getRenderType() {
 		return LibRenderIDs.idWardChest;
 	}
 
+	@Override
 	public boolean isOpaqueCube() {
 		return false;
 	}
 
+	@Override
 	public boolean renderAsNormalBlock() {
 		return false;
 	}
@@ -155,6 +166,7 @@ public class BlockWardChest extends BlockContainer {
 		return true;
 	}
 
+	@Override
 	public TileEntity createNewTileEntity(World world, int metadata) {
 		return new TileWardChest();
 	}

@@ -129,7 +129,7 @@ public abstract class ItemMagitechArmor extends ItemArmorFluxGear implements IMa
 	    if (source == DamageSource.fall) {
 		    doMetaDamageCalc = false;
 	    }
-	    if ()
+	    //if ()
 
 	    if (doMetaDamageCalc) {
 		    stack.damageItem(damage, entity);

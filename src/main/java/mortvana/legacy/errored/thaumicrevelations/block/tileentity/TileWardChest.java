@@ -14,15 +14,18 @@ public class TileWardChest extends TileOwned implements ISidedInventory {
 	public String customName;
 	public double ticksExisted;
 
+	@Override
 	public boolean canUpdate() {
 		return true;
 	}
 
+	@Override
 	public void updateEntity() {
 		super.updateEntity();
 		ticksExisted += 1.0D;
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		customName = nbt.getString("customName");
@@ -37,6 +40,7 @@ public class TileWardChest extends TileOwned implements ISidedInventory {
 		}
 	}
 
+	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setString("customName", customName == null ? "" : customName);
@@ -52,10 +56,12 @@ public class TileWardChest extends TileOwned implements ISidedInventory {
 		nbt.setTag("Items", nbtList);
 	}
 
+	@Override
 	public int getSizeInventory() {
 		return inventorySlots.length;
 	}
 
+	@Override
 	public ItemStack getStackInSlot(int i) {
 		if (i >= inventorySlots.length) {
 			return null;
@@ -63,6 +69,7 @@ public class TileWardChest extends TileOwned implements ISidedInventory {
 		return inventorySlots[i];
 	}
 
+	@Override
 	public ItemStack decrStackSize(int par1, int par2) {
 		if (inventorySlots[par1] != null) {
 			if (inventorySlots[par1].stackSize <= par2) {
@@ -79,50 +86,63 @@ public class TileWardChest extends TileOwned implements ISidedInventory {
 		return null;
 	}
 
+	@Override
 	public ItemStack getStackInSlotOnClosing(int i) {
 		return getStackInSlot(i);
 	}
 
+	@Override
 	public void setInventorySlotContents(int i, ItemStack itemstack) {
 		inventorySlots[i] = itemstack;
 	}
 
+	@Override
 	public String getInventoryName() {
 		return ModBlocks.wardChest.func_71917_a() + ".name";
 	}
 
-	public boolean hasCustomInventoryName() {
+	@Override
+	public boolean isCustomInventoryName() {
 		return customName != null && customName.length() > 0;
 	}
 
+	@Override
 	public int getInventoryStackLimit() {
 		return 64;
 	}
 
+	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
 		return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this;
 	}
 
+	@Override
 	public void openChest() {}
 
+	@Override
 	public void closeChest() {}
 
+	@Override
 	public boolean receiveClientEvent(int par1, int par2) {
 		return tileEntityInvalid;
 	}
 
+	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return false;
 	}
 
-	public int[] getAccessibleSlotsFromSide(int var1) {
+	@Override
+	public int[] getSlotsForFace(int var1) {
 		return new int[0];
 	}
 
+	@Override
 	public boolean canInsertItem(int slot, ItemStack itemstack, int side) {
 		return false;
 	}
 
+	@Override
 	public boolean canExtractItem(int slot, ItemStack itemstack, int side) {
 		return false;
 	}
