@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.morttweaks.item;
+package mortvana.legacy.clean.morttweaks.item;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,13 +8,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemTweakedStew extends ItemSoup {
-	public ItemTweakedStew(int amount) {
+	public ItemTweakedStew(int amount, String unlocalizedName, String textureName) {
 		super(amount);
+		setUnlocalizedName(unlocalizedName);
+		setTextureName(textureName);
+	}
+
+	public ItemTweakedStew() {
+		this(6, "mushroomStew", "mushroom_stew");
 	}
 
 	@Override
-	public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
-		player.getFoodStats().addStats(this);
+	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer player) {
+		player.getFoodStats().addStats(this, stack);
 		world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 		onFoodEaten(stack, world, player);
 

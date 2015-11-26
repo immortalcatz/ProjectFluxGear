@@ -2,7 +2,7 @@ package mortvana.legacy.errored.morttweaks.common;
 
 import java.io.File;
 import java.lang.reflect.Field;
-import java.util.Random;
+import java.util.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityList;
@@ -11,7 +11,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.*;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.potion.Potion;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -27,15 +26,18 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import mortvana.melteddashboard.util.helpers.RegistryHelper;
 
+import mortvana.legacy.clean.morttweaks.block.BlockTweakedPortal;
 import mortvana.legacy.clean.morttweaks.item.ItemTweakedArmor;
 import mortvana.legacy.clean.morttweaks.item.ItemTweakedFlesh;
+import mortvana.legacy.clean.morttweaks.util.TweakedFoodStats;
 import mortvana.legacy.dependent.firstdegree.morttweaks.potion.TweakedPoisonStatus;
+import mortvana.legacy.errored.morttweaks.block.BlockTweakedFire;
 import mortvana.legacy.errored.morttweaks.block.BlockTweakedTNT;
 import mortvana.legacy.clean.morttweaks.block.BlockTweakedSugarCane;
 import mortvana.legacy.errored.morttweaks.entity.EntityTweakedZombie;
 import mortvana.legacy.dependent.firstdegree.morttweaks.util.ExpOrbListener;
-import mortvana.legacy.errored.morttweaks.item.ItemTweakedStew;
-import mortvana.legacy.errored.morttweaks.util.TweakPlayerTracker;
+import mortvana.legacy.clean.morttweaks.item.ItemTweakedStew;
+import mortvana.legacy.errored.morttweaks.util.*;
 
 @Mod(modid = "MortTweaks", name = "MortTweaks", version = "1.0.0.0", dependencies = "after:MineFactoryReloaded")
 public class MortTweaks {
@@ -56,6 +58,8 @@ public class MortTweaks {
 	 * Activate jukebox with redstone
 	 */
 	Random random = new Random();
+
+	public static List<ArmorOverrideEntry> armorOverrides = new ArrayList<ArmorOverrideEntry>(20);
 
 	public static boolean overrideHungerHud = false; //Should be false until set
 
@@ -101,12 +105,36 @@ public class MortTweaks {
 	public static boolean revertTNT = false;
 	public static boolean fleshToFeathers = false;
 	public static boolean changeArmorCalculations = false;
+	public static boolean overridePortal = false;
 
 	//Render
 	public static boolean fancyGrass = true;
 	public static boolean disableExpBar = false;
 	public static boolean removeVoidParticles = true;
 	public static boolean removeVoidFog = true;
+
+	static {
+		armorOverrides.add(new ArmorOverrideEntry(Items.leather_helmet, "minecraft:leather_helmet"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.leather_chestplate, "minecraft:leather_chestplate"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.leather_leggings, "minecraft:leather_leggings"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.leather_boots, "minecraft:leather_boots"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.chainmail_helmet, "minecraft:chainmail_helmet"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.chainmail_chestplate, "minecraft:chainmail_chestplate"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.chainmail_leggings, "minecraft:chainmail_leggings"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.chainmail_boots, "minecraft:chainmail_boots"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.iron_helmet, "minecraft:iron_helmet"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.iron_chestplate, "minecraft:iron_chestplate"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.iron_leggings, "minecraft:iron_leggings"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.iron_boots, "minecraft:iron_boots"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.diamond_helmet, "minecraft:diamond_helmet"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.diamond_chestplate, "minecraft:diamond_chestplate"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.diamond_leggings, "minecraft:diamond_leggings"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.diamond_boots, "minecraft:diamond_boots"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.golden_helmet, "minecraft:golden_helmet"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.golden_chestplate, "minecraft:golden_chestplate"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.golden_leggings, "minecraft:golden_leggings"));
+		armorOverrides.add(new ArmorOverrideEntry(Items.golden_boots, "minecraft:golden_boots"));
+	}
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -152,15 +180,15 @@ public class MortTweaks {
 		disableExpBar = config.get("Classic Mechanics", "Disable XP bar", false).getBoolean(false);
 		disableExp = config.get("Classic Mechanics", "Disable XP orbs", false).getBoolean(false);
 		fleshToFeathers = config.get("Classic Mechanics", "Flesh to Feathers", false, "Zombies drop feathers instead of rotten flesh").getBoolean(false);
+		overridePortal = config.get("Classic Mechanics", "Portal Override", false).getBoolean(false);
 
-		int[] blacklist = config.get("Crosshair Tweaks", "Blacklist", new int[] {Items.map.itemID}, "Add block or item IDs that should not show the crosshair").getIntList();
-		int[] rangeTarget = config.get("Crosshair Tweaks", "Crosshair", new int[] {Items.bow.itemID, Items.snowball.itemID, Items.egg.itemID, Items.fishing_rod.itemID, Items.ender_pearl.itemID},
-				"Add block or item IDs that should render a target crosshair").getIntList();
+		//int[] blacklist = config.get("Crosshair Tweaks", "Blacklist", new int[] {Items.map.itemID}, "Add block or item IDs that should not show the crosshair").getIntList();
+		//int[] rangeTarget = config.get("Crosshair Tweaks", "Crosshair", new int[] {Items.bow.itemID, Items.snowball.itemID, Items.egg.itemID, Items.fishing_rod.itemID, Items.ender_pearl.itemID}, "Add block or item IDs that should render a target crosshair").getIntList();
 
-		for (int i = 0; i < blacklist.length; i++)
+		/*for (int i = 0; i < blacklist.length; i++)
 			MortTweaks.crosshairBlacklist[blacklist[i]] = true;
 		for (int i = 0; i < rangeTarget.length; i++)
-			MortTweaks.rangedCrosshair[rangeTarget[i]] = true;
+			MortTweaks.rangedCrosshair[rangeTarget[i]] = true;*/
 		config.save();
 
 		GameRegistry.registerPlayerTracker(new TweakPlayerTracker());
@@ -182,31 +210,31 @@ public class MortTweaks {
 			Items.hopper_minecart.setMaxStackSize(3);
 			Items.tnt_minecart.setMaxStackSize(3);
 			Items.command_block_minecart.setMaxStackSize(3);
-			Item.itemsList[Blocks.cake.blockID].setMaxStackSize(16);
+			Items.itemsList[Blocks.cake.blockID].setMaxStackSize(16);
 		}
 
 		if (makeGuudFire) {
-			Block.setBurnProperties(Blocks.planks, 25, 20);
-			Block.setBurnProperties(Blocks.double_wooden_slab, 25, 20);
-			Block.setBurnProperties(Blocks.wooden_slab, 25, 20);
-			Block.setBurnProperties(Blocks.fence, 25, 20);
-			Block.setBurnProperties(Blocks.oak_stairs, 25, 20);
-			Block.setBurnProperties(Blocks.spruce_stairs, 25, 20);
-			Block.setBurnProperties(Blocks.birch_stairs, 25, 20);
-			Block.setBurnProperties(Blocks.jungle_stairs, 25, 20);
-			Block.setBurnProperties(Blocks.acacia_stairs, 25, 20);
-			Block.setBurnProperties(Blocks.dark_oak_stairs, 25, 20);
-			Block.setBurnProperties(Blocks.log, 25, 5);
-			Block.setBurnProperties(Blocks.log2, 25, 5);
-			Block.setBurnProperties(Blocks.leaves, 90, 60);
-			Block.setBurnProperties(Blocks.leaves2, 90, 60);
-			Block.setBurnProperties(Blocks.bookshelf, 90, 20);
-			Block.setBurnProperties(Blocks.tnt, 45, 100);
-			Block.setBurnProperties(Blocks.tallgrass, 180, 100);
-			Block.setBurnProperties(Blocks.wool, 90, 60);
-			Block.setBurnProperties(Blocks.vine, 45, 100);
-			Block.setBurnProperties(Blocks.coal_block, 25, 5);
-			Block.setBurnProperties(Blocks.hay_block, 180, 20);
+			Blocks.fire.setFireInfo(Blocks.planks, 25, 20);
+			Blocks.fire.setFireInfo(Blocks.double_wooden_slab, 25, 20);
+			Blocks.fire.setFireInfo(Blocks.wooden_slab, 25, 20);
+			Blocks.fire.setFireInfo(Blocks.fence, 25, 20);
+			Blocks.fire.setFireInfo(Blocks.oak_stairs, 25, 20);
+			Blocks.fire.setFireInfo(Blocks.spruce_stairs, 25, 20);
+			Blocks.fire.setFireInfo(Blocks.birch_stairs, 25, 20);
+			Blocks.fire.setFireInfo(Blocks.jungle_stairs, 25, 20);
+			Blocks.fire.setFireInfo(Blocks.acacia_stairs, 25, 20);
+			Blocks.fire.setFireInfo(Blocks.dark_oak_stairs, 25, 20);
+			Blocks.fire.setFireInfo(Blocks.log, 25, 5);
+			Blocks.fire.setFireInfo(Blocks.log2, 25, 5);
+			Blocks.fire.setFireInfo(Blocks.leaves, 90, 60);
+			Blocks.fire.setFireInfo(Blocks.leaves2, 90, 60);
+			Blocks.fire.setFireInfo(Blocks.bookshelf, 90, 20);
+			Blocks.fire.setFireInfo(Blocks.tnt, 45, 100);
+			Blocks.fire.setFireInfo(Blocks.tallgrass, 180, 100);
+			Blocks.fire.setFireInfo(Blocks.wool, 90, 60);
+			Blocks.fire.setFireInfo(Blocks.vine, 45, 100);
+			Blocks.fire.setFireInfo(Blocks.coal_block, 25, 5);
+			Blocks.fire.setFireInfo(Blocks.hay_block, 180, 20);
 		}
 
 		if (addNametagRecipe) {
@@ -219,49 +247,56 @@ public class MortTweaks {
 		}
 
 		if (changeArmorCalculations) {
-			Items.leather_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 0).setUnlocalizedName("helmetCloth").setTextureName("leather_helmet");
-			RegistryHelper.overwriteEntry(Item.itemRegistry, "minecraft:", Items.leather_helmet);
+			ItemArmor armor;
+			for (ArmorOverrideEntry entry : armorOverrides) {
+				armor = (ItemArmor) new ItemTweakedArmor(entry.material, entry.renderIndex, entry.armorType).setUnlocalizedName(entry.unlocalizedName).setTextureName(entry.textureName);
+				RegistryHelper.overwriteEntry(Item.itemRegistry, entry.id, armor);
+			}
 
-			Items.leather_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 1).setUnlocalizedName("chestplateCloth").setTextureName("leather_chestplate");
-			Items.leather_leggings = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 2).setUnlocalizedName("leggingsCloth").setTextureName("leather_leggings");
-			Items.leather_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 3).setUnlocalizedName("bootsCloth").setTextureName("leather_boots");
-			Items.chainmail_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 0).setUnlocalizedName("helmetChain").setTextureName("chainmail_helmet");
-			Items.chainmail_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 1).setUnlocalizedName("chestplateChain").setTextureName("chainmail_chestplate");
-			Items.chainmail_leggings = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 2).setUnlocalizedName("leggingsChain").setTextureName("chainmail_leggings");
-			Items.chainmail_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 3).setUnlocalizedName("bootsChain").setTextureName("chainmail_boots");
-			Items.iron_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.IRON, 2, 0).setUnlocalizedName("helmetIron").setTextureName("iron_helmet");
-			Items.iron_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.IRON, 2, 1).setUnlocalizedName("chestplateIron").setTextureName("iron_chestplate");
-			Items.iron_leggings= (ItemArmor) new ItemTweakedArmor(ArmorMaterial.IRON, 2, 2).setUnlocalizedName("leggingsIron").setTextureName("iron_leggings");
-			Items.iron_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.IRON, 2, 3).setUnlocalizedName("bootsIron").setTextureName("iron_boots");
-			Items.diamond_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 0).setUnlocalizedName("helmetDiamond").setTextureName("diamond_helmet");
-			Items.diamond_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 1).setUnlocalizedName("chestplateDiamond").setTextureName("diamond_chestplate");
-			Items.diamond_leggings = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 2).setUnlocalizedName("leggingsDiamond").setTextureName("diamond_leggings");
-			Items.diamond_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 3).setUnlocalizedName("bootsDiamond").setTextureName("diamond_boots");
-			Items.golden_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 0).setUnlocalizedName("helmetGold").setTextureName("gold_helmet");
-			Items.golden_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 1).setUnlocalizedName("chestplateGold").setTextureName("gold_chestplate");
-			Items.golden_leggings = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 2).setUnlocalizedName("leggingsGold").setTextureName("gold_leggings");
-			Items.golden_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 3).setUnlocalizedName("bootsGold").setTextureName("gold_boots");
+				/*Items.leather_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 0).setUnlocalizedName("helmetCloth").setTextureName("leather_helmet");
+				Items.leather_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 1).setUnlocalizedName("chestplateCloth").setTextureName("leather_chestplate");
+				Items.leather_leggings = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 2).setUnlocalizedName("leggingsCloth").setTextureName("leather_leggings");
+				Items.leather_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CLOTH, 0, 3).setUnlocalizedName("bootsCloth").setTextureName("leather_boots");
+				Items.chainmail_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 0).setUnlocalizedName("helmetChain").setTextureName("chainmail_helmet");
+				Items.chainmail_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 1).setUnlocalizedName("chestplateChain").setTextureName("chainmail_chestplate");
+				Items.chainmail_leggings = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 2).setUnlocalizedName("leggingsChain").setTextureName("chainmail_leggings");
+				Items.chainmail_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.CHAIN, 1, 3).setUnlocalizedName("bootsChain").setTextureName("chainmail_boots");
+				Items.iron_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.IRON, 2, 0).setUnlocalizedName("helmetIron").setTextureName("iron_helmet");
+				Items.iron_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.IRON, 2, 1).setUnlocalizedName("chestplateIron").setTextureName("iron_chestplate");
+				Items.iron_leggings= (ItemArmor) new ItemTweakedArmor(ArmorMaterial.IRON, 2, 2).setUnlocalizedName("leggingsIron").setTextureName("iron_leggings");
+				Items.iron_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.IRON, 2, 3).setUnlocalizedName("bootsIron").setTextureName("iron_boots");
+				Items.diamond_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 0).setUnlocalizedName("helmetDiamond").setTextureName("diamond_helmet");
+				Items.diamond_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 1).setUnlocalizedName("chestplateDiamond").setTextureName("diamond_chestplate");
+				Items.diamond_leggings = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 2).setUnlocalizedName("leggingsDiamond").setTextureName("diamond_leggings");
+				Items.diamond_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.DIAMOND, 3, 3).setUnlocalizedName("bootsDiamond").setTextureName("diamond_boots");
+				Items.golden_helmet = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 0).setUnlocalizedName("helmetGold").setTextureName("gold_helmet");
+				Items.golden_chestplate = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 1).setUnlocalizedName("chestplateGold").setTextureName("gold_chestplate");
+				Items.golden_leggings = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 2).setUnlocalizedName("leggingsGold").setTextureName("gold_leggings");
+				Items.golden_boots = (ItemArmor) new ItemTweakedArmor(ArmorMaterial.GOLD, 4, 3).setUnlocalizedName("bootsGold").setTextureName("gold_boots");*/
 		}
 
 		if (revertTNT) {
-			Blocks.tnt = new BlockTweakedTNT().setHardness(0.0F).setStepSound(Block.soundTypeGrass).setUnlocalizedName("tnt").setTextureName("tnt");
+			RegistryHelper.overwriteEntry(Block.blockRegistry, "minecraft:tnt", new BlockTweakedTNT());
 		}
 
 		if (nastyFlesh) {
-			Items.rotten_flesh = new ItemTweakedFlesh(1, 0.1F, true).setUnlocalizedName("rottenFlesh").setTextureName("rotten_flesh");
+			RegistryHelper.overwriteEntry(Item.itemRegistry, "minecraft:rotten_flesh", new ItemTweakedFlesh());
 		} else if (disableHunger) {
-			Items.rotten_flesh = new ItemFood(1, 0.1F, true).setPotionEffect(Potion.poison.id, 5, 0, 0.8F).setUnlocalizedName("rottenFlesh").setTextureName("rotten_flesh");
+			Item flesh = new ItemFood(1, 0.1F, true).setPotionEffect(Potion.poison.id, 5, 0, 0.8F).setUnlocalizedName("rottenFlesh").setTextureName("rotten_flesh");
+			RegistryHelper.overwriteEntry(Item.itemRegistry, "minecraft:rotten_flesh", flesh);
 		}
 
 		if (nerfFoodStackSize) {
 			Item[] nerfs = new Item[] {Items.apple, Items.bread, Items.porkchop, Items.cooked_porkchop, Items.golden_apple, Items.fish, Items.cooked_fish, Items.beef, Items.cooked_beef, Items.chicken, Items.cooked_chicken, Items.rotten_flesh, Items.carrot, Items.potato, Items.baked_potato, Items.golden_carrot, Items.pumpkin_pie};
 			Item[] bigNerfs = new Item[] {Items.cookie, Items.melon};
 
-			for (int i = 0; i < nerfs.length; i++)
-				nerfs[i].setMaxStackSize(4);
+			for (Item nerf : nerfs) {
+				nerf.setMaxStackSize(4);
+			}
 
-			for (int i = 0; i < bigNerfs.length; i++)
-				bigNerfs[i].setMaxStackSize(8);
+			for (Item bigNerf : bigNerfs) {
+				bigNerf.setMaxStackSize(8);
+			}
 
 			//TODO: GameRegistry version
 			if (Loader.isModLoaded("TConstruct")) {
@@ -306,7 +341,7 @@ public class MortTweaks {
 		}
 
 		if (stackableSoup) {
-			Items.mushroom_stew = new ItemTweakedStew(6).setMaxStackSize(nerfFoodStackSize ? 4 : 64).setUnlocalizedName("mushroomStew").setTextureName("mushroom_stew");
+			RegistryHelper.overwriteEntry(Item.itemRegistry, "minecraft:mushroom_stew", new ItemTweakedStew().setMaxStackSize(nerfFoodStackSize ? 4 : 64));
 		}
 
 		if (!Loader.isModLoaded("ZAMod") && !spawnZombieReinforcements || !keepBabyZombies || disableZombieFire) {
@@ -314,22 +349,17 @@ public class MortTweaks {
 		}
 
 		if (sugarCaneHeight != 3) {
-			Blocks.reeds = new BlockTweakedSugarCane().setHardness(0.0F).setStepSound(Block.soundTypeGrass).setUnlocalizedName("reeds").setTextureName("reeds");
+			RegistryHelper.overwriteEntry(Block.blockRegistry, "minecraft:reeds", new BlockTweakedSugarCane());
 		}
 
 		if (poisonTime != 25) {
 			Potion.potionTypes[Potion.poison.id] = new TweakedPoisonStatus(19, true, 5149489).setPotionName("potion.poison").setIconIndex(6, 0);
 		}
 
-        /*if (overridePortal)
-        {
-            int id = Block.portal.blockID;
-            Block.blocksList[id] = null;
-            Block.blocksList[id] = new TweakPortal(id).setHardness(-1.0F).setStepSound(Block.soundGlassFootstep).setLightValue(0.75F).setUnlocalizedName("portal").setTextureName("portal");
-            id = Block.fire.blockID;
-            Block.blocksList[id] = null;
-            Block.blocksList[id] = new TweakFire(id).setHardness(0.0F).setLightValue(1.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fire").setTextureName("fire");
-        }*/
+        if (overridePortal) {
+	        RegistryHelper.overwriteEntry(Block.blockRegistry, "minecraft:portal", new BlockTweakedPortal());
+	        RegistryHelper.overwriteEntry(Block.blockRegistry, "minecraft:fire", new BlockTweakedFire());
+        }
 
 		//Doesn't work for some reason
         /*if (nicerWitches)
@@ -340,7 +370,7 @@ public class MortTweaks {
 
 	public static void overrideFoodStats(EntityPlayer player) {
 		overrideHungerHud = disableHunger;
-		player.foodStats = new FoodStatsTweak(player);
+		player.foodStats = new TweakedFoodStats(player);
 	}
 
 	public static Object getStaticItem(String name, String classPackage) {

@@ -12,9 +12,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTweakedSugarCane extends BlockReed {
-	public BlockTweakedSugarCane() {
+	public BlockTweakedSugarCane(float hardness, SoundType soundType, String unlocalizedName, String textureName) {
 		super();
 		disableStats();
+	}
+
+	public BlockTweakedSugarCane() {
+		this(0.0F, Block.soundTypeGrass, "reeds", "reeds");
 	}
 
 	@Override

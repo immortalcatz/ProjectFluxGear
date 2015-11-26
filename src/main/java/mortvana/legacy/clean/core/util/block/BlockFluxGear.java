@@ -122,6 +122,7 @@ public class BlockFluxGear extends Block {
 
 	public void setMaterial(Material m) {
 		//Deep dark voodoo. If you get a security exception, here it is. I'm sorry, Gyro says he did it all for the greater good.
+		//TODO: AccessTransformer Method
 		Field field;
 		try {
 			//Get the field of the block class.
@@ -140,7 +141,7 @@ public class BlockFluxGear extends Block {
 		}
 
 		//Make sure that the entries to translucent are still valid.
-		translucent = !m.isTranslucent();
+		translucent = !m.isTranslucent;
 	}
 
 	@Override

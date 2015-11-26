@@ -9,16 +9,25 @@ import net.minecraft.world.World;
 
 public class ItemTweakedFlesh extends ItemFood {
 
-	public ItemTweakedFlesh(int par2, float par3, boolean par4) {
-		super(par2, par3, par4);
+	public ItemTweakedFlesh(int amount, float saturation, boolean wolfFood, String unlocalizedName, String textureName) {
+		this(amount, saturation, wolfFood);
+		setUnlocalizedName(unlocalizedName);
+		setTextureName(textureName);
 	}
 
+	public ItemTweakedFlesh(int amount, float saturation, boolean wolfFood) {
+		super(amount, saturation, wolfFood);
+	}
 
-	protected void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
-		if (!par2World.isRemote) {
-			par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.hunger.id, 30 * 20, 1));
-			par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.confusion.id, 15 * 20, 1));
-			par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.poison.id, 5 * 20, 1));
+	public ItemTweakedFlesh() {
+		this(1, 0.1F, true, "rottenFlesh", "rotten_flesh");
+	}
+
+	protected void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
+		if (!world.isRemote) {
+			player.addPotionEffect(new PotionEffect(Potion.hunger.id, 30 * 20, 1));
+			player.addPotionEffect(new PotionEffect(Potion.confusion.id, 15 * 20, 1));
+			player.addPotionEffect(new PotionEffect(Potion.poison.id, 5 * 20, 1));
 		}
 	}
 }

@@ -16,8 +16,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTweakedTNT extends BlockTNT {
 
-	public BlockTweakedTNT() {
+	public BlockTweakedTNT(float hardness, SoundType soundType, String unlocalizedName, String textureName) {
 		super();
+		setHardness(hardness);
+		setStepSound(soundType);
+		setUnlocalizedName(unlocalizedName);
+		setTextureName(textureName);
+	}
+
+	public BlockTweakedTNT() {
+		this(0.0F, Block.soundTypeGrass, "tnt", "tnt");
 	}
 
 	@Override

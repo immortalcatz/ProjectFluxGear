@@ -11,8 +11,18 @@ import static net.minecraftforge.common.util.ForgeDirection.*;
 
 public class BlockTweakedFire extends BlockFire {
 
-	public BlockTweakedFire() {
+	public BlockTweakedFire(float hardness, float lightValue, SoundType soundType, String unlocalizedName, String textureName) {
+		super();
+		setHardness(hardness);
+		setLightLevel(lightValue);
+		setStepSound(soundType);
+		setUnlocalizedName(unlocalizedName);
+		setTextureName(textureName);
 		disableStats();
+	}
+
+	public BlockTweakedFire() {
+		this(0.0F, 1.0F, Block.soundTypeWood, "fire", "fire");
 	}
 
 	@Override
