@@ -18,12 +18,13 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
+
 import mortvana.legacy.clean.crystalclimate.block.itemblock.*;
 import mortvana.legacy.clean.crystalclimate.block.tile.TerraformerLogic;
 import mortvana.legacy.clean.crystalclimate.block.tile.TerraleecherLogic;
 import mortvana.legacy.dependent.firstdegree.crystalclimate.item.ItemEssenceCrystal;
 import mortvana.legacy.clean.crystalclimate.common.CrystalProxy;
-import mortvana.legacy.dependent.firstdegree.crystalclimate.util.TabCrystal;
 import mortvana.legacy.errored.crystalclimate.block.tile.*;
 import mortvana.legacy.dependent.firstdegree.crystalclimate.block.tile.*;
 import mortvana.legacy.errored.crystalclimate.block.*;
@@ -36,20 +37,13 @@ public class CrystalClimate {
 	@Instance("CrystalClimate")
 	public static CrystalClimate instance;
 
-	public static TabCrystal tab;
+	public static FluxGearCreativeTab tab = new FluxGearCreativeTab("crystalclimate", "crystalclimate", CrystalClimate.essenceStack);;
 
 	@SidedProxy(clientSide = "crystal.util.CrystalProxyClient", serverSide = "crystal.util.CrystalProxy")
 	public static CrystalProxy proxy;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		tab = new TabCrystal("crystalclimate");
-		createContent();
-		createRecipes();
-	}
-
-
-	public static void createContent() {
 		//Blocks
 		essenceExtractor = new BlockEssenceExtractor().setHardness(12f).setUnlocalizedName("extractor.essence");
 		GameRegistry.registerBlock(essenceExtractor, "extractor.essence");
@@ -92,13 +86,12 @@ public class CrystalClimate {
 		//Items
 		essenceCrystal = (ItemEssenceCrystal) new ItemEssenceCrystal().setUnlocalizedName("crystal.essence");
 		essenceStack = new ItemStack(essenceCrystal);
-	}
 
-	public static void createRecipes() {
 		GameRegistry.addRecipe(new ItemStack(essenceExtractor, 1, 0), " b ", "eme", "mmm", 'b', Items.book, 'e', Items.emerald, 'm', Blocks.end_stone);
 		GameRegistry.addRecipe(new ItemStack(sugarBlock, 1, 7), "###", "###", "###", '#', Items.sugar);
 		GameRegistry.addRecipe(new ItemStack(aggregator, 1, 0), "#d#", "#r#", "#e#", '#', Items.quartz, 'd', Items.diamond, 'e', Items.ender_pearl, 'r', Blocks.redstone_block);
 		GameRegistry.addRecipe(new ItemStack(aggregator, 1, 0), "#e#", "#r#", "#d#", '#', Items.quartz, 'd', Items.diamond, 'e', Items.ender_pearl, 'r', Blocks.redstone_block);
+
 	}
 
 	public static Block essenceExtractor;

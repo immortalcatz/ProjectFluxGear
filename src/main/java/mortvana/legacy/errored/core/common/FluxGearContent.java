@@ -52,6 +52,7 @@ import mortvana.legacy.clean.thaumicrevelations.block.*;
 import mortvana.legacy.clean.thaumicrevelations.block.tile.TileWitor;
 
 import mortvana.legacy.clean.thaumicrevelations.entity.EntityPurity;
+import mortvana.legacy.clean.thaumicrevelations.item.ItemFocusPurity;
 import mortvana.legacy.clean.thaumicrevelations.item.ItemWaslieHammer;
 import mortvana.legacy.clean.weirdscience.block.BlockFuelBurner;
 import mortvana.legacy.clean.weirdscience.block.fluid.BlockFluidAcid;
@@ -114,25 +115,22 @@ import thaumcraft.api.research.ResearchPage;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
 
+import static mortvana.projectfluxgear.thaumic.common.ThaumicRevelations.WARDEN;
+
 public class FluxGearContent implements IFuelHandler {
 
 	public void preInit() {
         loadBlocks();
 		loadStones();
-        loadMachines();
         loadFluids();
-        loadItems();;
+        loadItems();
 		preInitMortTech();
-		addOreDictSupport();
-		postIntermodCommunication();
     }
 
     public void init() {
         registerBlocks();
-        initMachines();
-        initTools();
-        initAugments();
-        addOreDict();
+        //initWhatever();
+        //addOreDict();
 	    metalCraftingRecipes();
         machineCraftingRecipes();
         otherCraftingRecipes();
@@ -142,8 +140,8 @@ public class FluxGearContent implements IFuelHandler {
 
     public void postInit() {
         aluminiumArc();
-	    postInitTimeyWimey();
-        modIntegration();
+        //modIntegration;
+        //postIntermodCommunication();
 	    if (FluxGearConfig.doTweaks) {
 		    removal();
 		    addition();
@@ -180,7 +178,7 @@ public class FluxGearContent implements IFuelHandler {
 		}*/
 	}
 
-	public static void removal() {
+	public void removal() {
 		if (FluxGearConfig.tweakJABBA && LoadedHelper.isJABBALoaded) {
 			TweakHelper.markItemForRecipeRemoval(new ItemStack(GameRegistry.findItem("JABBA", "barrel"), WILD, 0), TweakHelper.TweakReason.CHANGED, "Recipe changed to be cheaper");
 		}
@@ -246,7 +244,7 @@ public class FluxGearContent implements IFuelHandler {
 		TweakHelper.removeRecipes();
 	}
 
-	public static void addition() {
+	public void addition() {
 		if (LoadedHelper.isJABBALoaded) {
 			if (FluxGearConfig.tweakJABBA) {
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GameRegistry.findItem("JABBA", "barrel"), 1, 0), "wsw", "wpw", "www", 'w', "logWood", 's', "slabWood", 'p', Items.paper));
@@ -495,7 +493,7 @@ public class FluxGearContent implements IFuelHandler {
 	}
 
 	/* Start MortTech */
-	public static void preInitMortTech() {
+	public void preInitMortTech() {
 		componentsTab = new TabTools("MTComponents");
 		toolsTab = new TabTools("MTTools");
 		machineTab = new TabTools("MTMachines");
@@ -1022,7 +1020,6 @@ public class FluxGearContent implements IFuelHandler {
 	public static AspectList torchInfusionAspects;
 	public static ItemStack[] torchInfusionComponents;
 	public static ItemArmor.ArmorMaterial materialWarden = EnumHelper.addArmorMaterial("WARDEN", 50, new int[] {3, 8, 6, 3}, 0);
-	public static final Aspect WARDEN = ThaumicRevelations.WARDEN;
 	public static String category;
 
 	//TODO: Generalize this for future uses *cough* Alchemic Tools *cough*
@@ -1034,7 +1031,7 @@ public class FluxGearContent implements IFuelHandler {
 	public static final ThaumicAugmentBase UPGRADE_EARTH = new ThaumicAugmentTerra(Aspect.EARTH);
 	public static final ThaumicAugmentBase UPGRADE_HEAL = new ThaumicAugmentSano(Aspect.HEAL);
 
-	public static void initWardenUpgrades() {
+	public void initWardenUpgrades() {
 		WardenicChargeHelper.addUpgrade(UPGRADE_WARDEN);
 		WardenicChargeHelper.addUpgrade(UPGRADE_FIRE);
 		WardenicChargeHelper.addUpgrade(UPGRADE_ARMOR);
@@ -1044,7 +1041,7 @@ public class FluxGearContent implements IFuelHandler {
 		WardenicChargeHelper.addUpgrade(UPGRADE_HEAL);
 	}
 
-	public static void loadTimeyWimey() {
+	public void loadTimeyWimey() {
 		torchInfusionComponents =  new ItemStack[] { new ItemStack(GameRegistry.findItem("MagicBees", "jellyBabies")), new ItemStack(GameRegistry.findItem("RotaryCraft", "rotarycraft_item_gearunits"), 1, 15), new ItemStack(GameRegistry.findItem("RotaryCraft", "rotarycraft_item_borecraft"), 1, 15), new ItemStack(GameRegistry.findItem("RotaryCraft", "rotarycraft_item_machine"), 1, 103), new ItemStack(GameRegistry.findItem("ChromatiCraft", "chromaticraft_item_placer"), 1, 9), new ItemStack(GameRegistry.findItem("ProjRed|Illumination", "projectred.illumination.cagelamp2")), new ItemStack(GameRegistry.findItem("Thaumcraft", "blockMetalDevice"), 1, 3), new ItemStack(GameRegistry.findItem("ThermalExpansion", "Frame"), 1, 9), new ItemStack(GameRegistry.findItem("EnderIO", "itemMaterial"), 1, 8), new ItemStack(GameRegistry.findItem("BigReactors", "BRMetalBlock"), 1, 4), FluxGearContent.timeyWimeyCarboard, FluxGearContent.timeyWimeyCarboard, new ItemStack(Items.clock), new ItemStack(Items.clock), new ItemStack(Items.clock), new ItemStack(Items.clock) };
 		torchInfusionAspects = new AspectList().add(Aspect.ELDRITCH, 16).add(Aspect.MECHANISM, 16).add(Aspect.ENERGY, 24).add(Aspect.ARMOR, 8).add(Aspect.AURA, 8).add(Aspect.HARVEST, 16).add(Aspect.LIGHT, 8).add(mortvana.projectfluxgear.thaumic.common.ThaumicContent.tempus, 32);
 		researchTorch = new FluxGearResearchItem("TIMEYWIMEY", "ELDRITCH", new AspectList().add(Aspect.ELDRITCH, 16).add(Aspect.MECHANISM, 16).add(Aspect.ENERGY, 24).add(Aspect.ARMOR, 8).add(Aspect.AURA, 8).add(Aspect.HARVEST, 16).add(Aspect.LIGHT, 8).add(mortvana.projectfluxgear.thaumic.common.ThaumicContent.tempus, 32), -5, 5, 3, new ItemStack(FluxGearContent.timeyWimeyTorch)).setSpecial().setParents("ADVALCHEMYFURNACE", "OUTERREV").setConcealed().registerResearchItem();
@@ -1364,7 +1361,7 @@ public class FluxGearContent implements IFuelHandler {
 
         //blockTileEntity = new BlockTileEntity();
 
-        blockFluidGhastTear = new BlockFluidGhastTear();
+        blockFluidGhastTear = new BlockFluidGhastTears();
 
         blockTemporalPylon.preInit();
         woodenTileEntity.preInit();
@@ -1591,8 +1588,6 @@ public class FluxGearContent implements IFuelHandler {
         ItemHelper.registerWithHandlers("blockNichrome", blockNichrome);
         ItemHelper.registerWithHandlers("blockPolycarbide", blockPolycarbide);
     }
-
-    public void loadMachines() {}
 
     public void loadFluids() {
         //TODO-- Redo
@@ -2301,14 +2296,6 @@ public class FluxGearContent implements IFuelHandler {
 		TileTimeyWimey.blacklistBlock(Blocks.lava);
 		TileTimeyWimey.blacklistBlock(Blocks.flowing_lava);
 	}
-
-	public void postInitMisc() {
-		if (LoadedHelper.isThaumcraftLoaded && LoadedHelper.isEnderIOLoaded && LoadedHelper.isRotaryCraftLoaded && LoadedHelper.isExtraUtilitiesLoaded && LoadedHelper.isChromatiCraftLoaded && LoadedHelper.isMagicBeesLoaded && LoadedHelper.isProjectRedIllumination && FluxGearConfig.thaumicTorch) {
-			loadTimeyWimey();
-		}
-	}
-
-    public void modIntegration() {}
 
     public void aluminiumArc() {
         OreDictionary.registerOre("ingotAluminum", ingotAluminium);

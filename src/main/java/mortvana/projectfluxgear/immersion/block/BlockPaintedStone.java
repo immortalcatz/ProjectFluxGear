@@ -1,6 +1,7 @@
 package mortvana.projectfluxgear.immersion.block;
 
 import java.util.List;
+import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -22,7 +23,7 @@ public class BlockPaintedStone extends Block {
 	public final String textureName;
 	public final String localName;
 	public IIcon[] icons = new IIcon[16];
-	public Block dropBlock;
+	public Item dropItem;
 
 	public BlockPaintedStone(Material material, float hardness, String texture, String name, Block dropBlock, String blockName) {
 		super(material);
@@ -30,7 +31,7 @@ public class BlockPaintedStone extends Block {
 		setCreativeTab(FluxGearImmersion.paintedStoneTab);
 		textureName = texture;
 		localName = name;
-		this.dropBlock = dropBlock;
+		dropItem = Item.getItemFromBlock(dropBlock);
 		setUnlocalizedName(blockName);
 		GameRegistry.registerBlock(this, ItemBlockPaintedStone.class, blockName);
 		RegistationWrapper.registerFMP(this, 16);
@@ -46,6 +47,10 @@ public class BlockPaintedStone extends Block {
 		return meta;
 	}
 
+	public Item itemDropped(Item item, Random random, int par3) {
+		return dropItem;
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
@@ -59,7 +64,7 @@ public class BlockPaintedStone extends Block {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
-		return meta < icons.length ? icons[meta] : icons[0];
+		return icons[meta];
 	}
 
 	@Override
