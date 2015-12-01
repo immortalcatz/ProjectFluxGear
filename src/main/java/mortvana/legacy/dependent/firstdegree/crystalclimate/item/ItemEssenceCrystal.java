@@ -73,8 +73,7 @@ public class ItemEssenceCrystal extends Item {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
 		if (stack.hasTagCompound()) {
-			int amount = stack.getTagCompound().getInteger("Essence");
-			list.add("Stored Levels: " + EssenceExtractorLogic.getEssencelevels(amount));
+			list.add("Stored Levels: " + EssenceExtractorLogic.getEssencelevels(stack.getTagCompound().getInteger("Essence")));
 		} else {
 			list.add("Stored Levels: 0");
 		}

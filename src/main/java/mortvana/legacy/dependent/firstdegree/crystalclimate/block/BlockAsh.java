@@ -60,8 +60,8 @@ public class BlockAsh extends Block {
 	/**
 	 * Updates the blocks bounds based on its current state. Args: world, x, y, z
 	 */
-	public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
-		this.setBlockBoundsForSnowDepth(par1IBlockAccess.getBlockMetadata(par2, par3, par4));
+	public void setBlockBoundsBasedOnState(IBlockAccess world, int par2, int par3, int par4) {
+		setBlockBoundsForSnowDepth(world.getBlockMetadata(par2, par3, par4));
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class BlockAsh extends Block {
 	protected void setBlockBoundsForSnowDepth(int par1) {
 		int j = par1 & 7;
 		float f = (float) (2 * (1 + j)) / 16.0F;
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, f, 1.0F);
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, f, 1.0F);
 	}
 
 	public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side) {
@@ -102,9 +102,9 @@ public class BlockAsh extends Block {
 	/**
 	 * Checks if this snow block can stay at this location.
 	 */
-	private boolean canAshStay(World par1World, int par2, int par3, int par4) {
-		if (!this.canPlaceBlockAt(par1World, par2, par3, par4)) {
-			par1World.setBlockToAir(par2, par3, par4);
+	private boolean canAshStay(World world, int par2, int par3, int par4) {
+		if (canPlaceBlockAt(world, par2, par3, par4)) {
+			world.setBlockToAir(par2, par3, par4);
 			return false;
 		} else {
 			return true;
@@ -123,7 +123,7 @@ public class BlockAsh extends Block {
 	/**
 	 * Returns the ID of the items to drop on destruction.
 	 */
-	public Item itemDropped(int par1, Random par2Random, int par3) {
+	public Item itemDropped(int par1, Random random, int par3) {
 		return Items.snowball;
 	}
 
@@ -139,8 +139,8 @@ public class BlockAsh extends Block {
 	 * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
 	 * coordinates.  Args: blockAccess, x, y, z, side
 	 */
-	public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
-		return par5 == 1 ? true : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
+	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
+		return side == 1 || super.shouldSideBeRendered(world, x, y, z, side);
 	}
 
 	@Override

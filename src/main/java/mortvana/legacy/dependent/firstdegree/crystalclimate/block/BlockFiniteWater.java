@@ -12,11 +12,10 @@ import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
 public class BlockFiniteWater extends BlockFluidFinite {
 	public BlockFiniteWater(Fluid fluid, Material material) {
 		super(fluid, material);
-		this.setCreativeTab(CrystalClimate.tab);
+		setCreativeTab(CrystalClimate.tab);
 	}
 
-	public void registerIcons(IIconRegister par1IconRegister) {
-	}
+	public void registerIcons(IIconRegister iconRegister) {}
 
 	public IIcon getIcon(int side, int meta) {
 		return Blocks.water.getIcon(side, meta);

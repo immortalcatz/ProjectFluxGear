@@ -20,8 +20,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.util.RotationHelper;
 
-import mortvana.legacy.errored.weirdscience.block.tileentity.BlockContainerBase;
-import mortvana.legacy.errored.weirdscience.block.tileentity.TileEntityNitrateEngine;
+import mortvana.legacy.clean.weirdscience.util.block.tile.BlockContainerBase;
+import mortvana.legacy.errored.weirdscience.block.tile.TileEntityNitrateEngine;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.legacy.clean.core.util.helpers.BlockHelper;
 

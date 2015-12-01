@@ -24,7 +24,7 @@ public class RegistryHelper {
 		private static IdentityHashMap<RegistryNamespaced, Multimap<String, Object>> replacements;
 		private static Class<RegistryDelegate<?>> DelegateClass;
 
-		//@SuppressWarnings({ "rawtypes", "unchecked" })
+		@SuppressWarnings("unchecked")
 		private static void overwrite(RegistryNamespaced registry, String name, Object newThing, Object oldThing) {
 			BiMap map = ((BiMap) registry.registryObjects);
 			registry.underlyingIntegerMap.func_148746_a(newThing, registry.getIDForObject(oldThing));
@@ -47,6 +47,7 @@ public class RegistryHelper {
 				ReflectionHelper.setPrivateValue(DelegateClass, ((Item) replacement).delegate, delegate.name(), "name");
 			}
 		}
+
 
 		static {
 			replacements = new IdentityHashMap<RegistryNamespaced, Multimap<String, Object>>(2);
@@ -80,7 +81,6 @@ public class RegistryHelper {
 		}
 	}
 
-	//@SuppressWarnings("unchecked")
 	public static void overwriteEntry(RegistryNamespaced registry, String name, Object newThing) {
 		Object oldThing = registry.getObject(name);
 		Replacer.overwrite(registry, name, newThing, oldThing);

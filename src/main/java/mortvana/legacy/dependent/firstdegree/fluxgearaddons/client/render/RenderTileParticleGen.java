@@ -26,8 +26,7 @@ public class RenderTileParticleGen extends TileEntitySpecialRenderer {
 	public IModelCustom stabilizerSphereModel = AdvancedModelLoader.loadModel(new ResourceLocation("DraconicEvolution".toLowerCase(), "models/stabilizer_sphere.obj"));
 	public float pxl = 0.015625F;
 
-	public RenderTileParticleGen() {
-	}
+	public RenderTileParticleGen() {}
 
 	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f) {
 		GL11.glPushMatrix();

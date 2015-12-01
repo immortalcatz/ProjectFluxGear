@@ -7,6 +7,8 @@ import mortvana.melteddashboard.block.FluxGearBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;
 
+import static mortvana.legacy.errored.projectfluxgear.util.BlockInformation.*;
+
 public class BlockAlloyAux extends BlockFluxGear {
 
     public BlockAlloyAux() {

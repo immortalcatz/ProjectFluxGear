@@ -36,13 +36,13 @@ import mortvana.legacy.dependent.firstdegree.fluxgearaddons.network.ParticleGenP
 import mortvana.legacy.clean.core.common.CommonProxy;
 import mortvana.legacy.clean.core.common.FluxGearConfig;
 import mortvana.legacy.clean.core.common.FluxGearConfigWorld;
-import mortvana.legacy.errored.weirdscience.util.ContentRegistry;
+import mortvana.legacy.clean.weirdscience.util.ContentRegistry;
 import mortvana.legacy.errored.apiology.util.LocalizationManager;
 import mortvana.legacy.clean.morttech.util.Modules;
 import mortvana.legacy.clean.core.util.handlers.DummyHandler;
 import mortvana.legacy.errored.core.util.helpers.StringHelper;
 import mortvana.legacy.errored.core.util.runtime.EnvironmentChecks;
-import mortvana.legacy.errored.projectfluxgear.world.FluxGearWorldGenerator;
+import mortvana.legacy.dependent.firstdegree.projectfluxgear.world.FluxGearWorldGenerator;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.world.GravelOreGenEventHandler;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.world.PoorOreGenerator;
 import mortvana.melteddashboard.intermod.tinkers.TinkersHelper;
@@ -199,11 +199,11 @@ public class ProjectFluxGear {
         MinecraftForge.TERRAIN_GEN_BUS.register(new GravelOreGenEventHandler());
 
 	    //TODO: mDerpohouse!!!!!!!!!!!!!!
-		if(LoadedHelper.isTinkersLoaded) {
+		if (LoadedHelper.isTinkersLoaded) {
 			ToolCore chisel = (ToolCore) GameRegistry.findItem("TConstruct", "chisel");
 			Detailing chiseling = TConstructRegistry.getChiselDetailing();
 
-			for(int i = 0; i < 16; ++i) {
+			for (int i = 0; i < 16; ++i) {
 				chiseling.addDetailing(content.coloredStone, i, content.coloredStoneBrick, i, chisel);
 				chiseling.addDetailing(content.coloredStoneBrick, i, content.coloredStoneRoad, i, chisel);
 				chiseling.addDetailing(content.coloredStoneRoad, i, content.coloredStoneFancyBrick, i, chisel);

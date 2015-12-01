@@ -7,15 +7,11 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileWoodmill extends TileEntity {
 
-	public TileWoodmill() {
-	}
+	public TileWoodmill() {}
 	
 	@Override
 	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
 		NBTTagCompound c = pkt.data;
-		
 		int power = c.getInteger("power");
-		
-		System.out.println();
 	}
 }

@@ -46,7 +46,7 @@ public class AlleleEffectPotion extends AlleleEffect {
         for (Entity e : entityList) {
             if (e instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer)e;
-                if (this.isMalicious) {
+                if (isMalicious) {
                     int armorPieces = ApiaristHelper.getNumberPiecesWorn(player);
                     int finalDuration = this.duration / 4 * (4 - armorPieces);
                     if (finalDuration > 0) {

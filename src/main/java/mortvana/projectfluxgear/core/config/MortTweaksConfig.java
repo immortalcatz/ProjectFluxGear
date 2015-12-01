@@ -22,6 +22,8 @@ public class MortTweaksConfig extends ConfigBase {
 		config = new Configuration(file);
 		config.load();
 
+
+
 		if (config.hasChanged()) {
 			config.save();
 		}
@@ -29,4 +31,6 @@ public class MortTweaksConfig extends ConfigBase {
 	}
 
 	public static boolean cobaltHijacking;
+
+	public static boolean disableExp;
 }

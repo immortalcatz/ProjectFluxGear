@@ -6,10 +6,19 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.*;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraftforge.client.GuiIngameForge;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent.*;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
 
 import mortvana.legacy.errored.morttweaks.common.CommonProxy;
@@ -48,9 +57,8 @@ public class ClientProxy extends CommonProxy {
 	int foodUpdateConter = 0;
 	Random rand = new Random();
 
-    /*@ForgeSubscribe
-    public void renderHud (RenderGameOverlayEvent.Pre event)
-    {
+    @SubscribeEvent
+    public void renderHud (RenderGameOverlayEvent.Pre event) {
         if (tukmc)
             return;
 
@@ -283,12 +291,12 @@ public class ClientProxy extends CommonProxy {
                     if (unused)
                         backgound = 1; //Probably should be a += 1 but vanilla never uses this*/
 
-                    /*if (mc.thePlayer.getFoodStats().getSaturationLevel() <= 0.0F && updateCounter % (level * 10 + 1) == 0)
+                    if (mc.thePlayer.getFoodStats().getSaturationLevel() <= 0.0F && updateCounter % (level * 10 + 1) == 0)
                     {
                         y = top + (rand.nextInt(3) - 1);
-                    }*/
+                    }
 
-                    /*drawTexturedModalRect(x, y, 16 + backgound * 9, 27, 9, 9);
+                    drawTexturedModalRect(x, y, 16 + backgound * 9, 27, 9, 9);
 
                     if (idx < level)
                         drawTexturedModalRect(x, y, icon + 36, 27, 9, 9);
@@ -370,16 +378,16 @@ public class ClientProxy extends CommonProxy {
             updateResolution = true;
             event.setCanceled(true);
         }
-    }*/
+    }
 
-    /*@ForgeSubscribe
+    @SubscribeEvent
     public void renderHudPost (RenderGameOverlayEvent.Post event)
     {
         if (event.type == ElementType.EXPERIENCE && MortTweaks.disableExpBar)
         {
 
         }
-    }*/
+    }
 
 	int zLevel = 0;
 

@@ -19,15 +19,15 @@ public class RenderTileEnergyPylon extends TileEntitySpecialRenderer {
 	}
 
 	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float timeSinceLastTick) {
-		if(tile != null && tile instanceof TileEnergyPylon) {
+		if (tile != null && tile instanceof TileEnergyPylon) {
 			TileEnergyPylon pylon = (TileEnergyPylon)tile;
-			if(pylon.active) {
+			if (pylon.active) {
 				float scale = pylon.modelScale + (timeSinceLastTick *= !pylon.receiveEnergy ? -0.01F : 0.01F);
 				float rotation = pylon.modelRotation + timeSinceLastTick / 2.0F;
 				GL11.glPushMatrix();
 				GL11.glPushAttrib(1048575);
 				GL11.glTranslated(x + 0.5D, y + 0.5D, z + 0.5D);
-				if(pylon.getWorld().getBlockMetadata(pylon.xCoord, pylon.yCoord, pylon.zCoord) == 1) {
+				if (pylon.getWorld().getBlockMetadata(pylon.xCoord, pylon.yCoord, pylon.zCoord) == 1) {
 					GL11.glTranslated(0.0D, 1.0D, 0.0D);
 				} else {
 					GL11.glTranslated(0.0D, -1.0D, 0.0D);

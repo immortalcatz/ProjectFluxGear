@@ -22,9 +22,9 @@ public class ParticleCustom extends EntityFX {
 
 	public ParticleCustom(World world, double spawnX, double spawnY, double spawnZ, float spawnMotionX, float spawnMotionY, float spawnMotionZ, float scale, boolean canCollide, int index) {
 		super(world, spawnX, spawnY, spawnZ, 0.0D, 0.0D, 0.0D);
-		motionX = (double)spawnMotionX;
-		motionY = (double)spawnMotionY;
-		motionZ = (double)spawnMotionZ;
+		motionX = (double) spawnMotionX;
+		motionY = (double) spawnMotionY;
+		motionZ = (double) spawnMotionZ;
 		particleTextureIndexX = index - 1;
 		particleTextureIndexY = 0;
 		particleScale = scale;
@@ -35,17 +35,17 @@ public class ParticleCustom extends EntityFX {
 		prevPosX = posX;
 		prevPosY = posY;
 		prevPosZ = posZ;
-		if(particleAge++ >= this.maxAge) {
-			particleAlpha = (float)fadeTime / (float)fadeLength;
-			if(fadeTime <= 0) {
+		if (particleAge++ >= maxAge) {
+			particleAlpha = (float) fadeTime / (float) fadeLength;
+			if (fadeTime <= 0) {
 				setDead();
 			}
 
-			--fadeTime;
+			fadeTime--;
 		}
 
 		moveEntity(motionX, motionY, motionZ);
-		motionY -= (double)(this.gravity / 100.0F);
+		motionY -= (double) (gravity / 100.0F);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -59,16 +59,16 @@ public class ParticleCustom extends EntityFX {
 		float minV = (float)particleTextureIndexY / 8.0F;
 		float maxV = minV + 0.124F;
 		float drawScale = 0.1F * particleScale;
-		if(particleIcon != null) {
+		if (particleIcon != null) {
 			minU = particleIcon.getMinU();
 			maxU = particleIcon.getMaxU();
 			minV = particleIcon.getMinV();
 			maxV = particleIcon.getMaxV();
 		}
 
-		float drawX = (float)(prevPosX + (posX - prevPosX) * (double)par2 - interpPosX);
-		float drawY = (float)(prevPosY + (posY - prevPosY) * (double)par2 - interpPosY);
-		float drawZ = (float)(prevPosZ + (posZ - prevPosZ) * (double)par2 - interpPosZ);
+		float drawX = (float) (prevPosX + (posX - prevPosX) * (double) par2 - interpPosX);
+		float drawY = (float) (prevPosY + (posY - prevPosY) * (double) par2 - interpPosY);
+		float drawZ = (float) (prevPosZ + (posZ - prevPosZ) * (double) par2 - interpPosZ);
 		tessellator.setColorRGBA(red, green, blue, (int) (particleAlpha * 255.0F));
 		tessellator.addVertexWithUV((double) (drawX - par3 * drawScale - par6 * drawScale), (double) (drawY - par4 * drawScale), (double) (drawZ - par5 * drawScale - par7 * drawScale), (double) maxU, (double) maxV);
 		tessellator.addVertexWithUV((double) (drawX - par3 * drawScale + par6 * drawScale), (double) (drawY + par4 * drawScale), (double) (drawZ - par5 * drawScale + par7 * drawScale), (double) maxU, (double) minV);

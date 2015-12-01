@@ -15,7 +15,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import mortvana.legacy.errored.morttech.block.tile.TileWoodmill;
-import mortvana.legacy.errored.morttech.block.tile.WoodmillLogic;
+import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
 
 public class BlockCrank extends Block {
 
@@ -41,8 +41,6 @@ public class BlockCrank extends Block {
         c.setInteger("power", power);
         System.out.println(c.getInteger("power"));
 
-
-
         return true;
     }
 
@@ -51,7 +49,7 @@ public class BlockCrank extends Block {
     @Override
     public boolean onBlockActivated(World world, int xCoord, int yCoord, int zCoord, EntityPlayer entPlayer) {
 
-        WoodmillLogic tile = (BlockMachine)world.getTileEntity(/*world, */xCoord, yCoord - 1, zCoord/*, entPlayer*/);
+        WoodmillLogic tile = (BlockMachine) world.getTileEntity(/*world, */xCoord, yCoord - 1, zCoord/*, entPlayer*/);
         if (tile != null) {
             tile.power += 10;
         }
@@ -60,14 +58,14 @@ public class BlockCrank extends Block {
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister) {
-	    itemIcon = par1IconRegister.registerIcon("morttech:crank");
+    public void registerIcons(IIconRegister iconRegister) {
+	    itemIcon = iconRegister.registerIcon("morttech:crank");
     }
 
     @Override
-    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
 
-        TileWoodmill tile = (TileWoodmill)par1World.getTileEntity(par2, par3 - 1, par4);
+        TileWoodmill tile = (TileWoodmill) world.getTileEntity(x, y - 1, z);
         if (tile != null) {
             tile.furnaceBurnTime += 10;
         }
@@ -81,7 +79,7 @@ public class BlockCrank extends Block {
     }
 
     @Override
-    public boolean isBlockSolid(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
+    public boolean isBlockSolid(IBlockAccess world, int x, int y, int z, int par5) {
         return false;
     }
 

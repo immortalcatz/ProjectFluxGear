@@ -31,7 +31,7 @@ public class RecipePaintbrush implements IRecipe {
 	}
 
 	public RecipePaintbrush(ItemStack result, int type, Object... recipe) {
-		input = new ArrayList();
+		input = new ArrayList<Object>();
 		output = result.copy();
 		this.type = type;
 		Object[] arr$ = recipe;
@@ -67,7 +67,7 @@ public class RecipePaintbrush implements IRecipe {
 	}
 
 	public RecipePaintbrush(ShapelessRecipes recipe, Map<ItemStack, String> replacements) {
-		input = new ArrayList();
+		input = new ArrayList<Object>();
 		output = recipe.getRecipeOutput();
 		Iterator i$ = recipe.recipeItems.iterator();
 

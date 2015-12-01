@@ -16,7 +16,6 @@ public class BlockFluidSmog extends BlockFluidCoFHBase implements IBioactive {
 
     public static final int LEVELS = 6;
 
-
     private static boolean enableSourceFloat = true;
     private static int maxSmogHeight = 256;
 

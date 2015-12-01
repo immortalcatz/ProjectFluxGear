@@ -4,12 +4,8 @@ import java.util.Iterator;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EntityLivingData;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.*;
+import net.minecraft.entity.item.*;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
@@ -17,12 +13,11 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.entity.living.*;
 
 public class CommonProxy {
 
@@ -32,13 +27,11 @@ public class CommonProxy {
 
 	//Events
 
-    /*@\SubscribeEvent
-    public void creepSplosion (LivingDeathEvent event)
-    {
-        if (!event.entityLiving.worldObj.isRemote)// && event.entityLiving instanceof EntityCreeper)
-        {
+    @SubscribeEvent
+    public void creepSplosion (LivingDeathEvent event) {
+        if (!event.entityLiving.worldObj.isRemote && event.entityLiving instanceof EntityCreeper) {
             EntityLivingBase living = event.entityLiving;
-            ItemStack firework = new ItemStack(Item.firework);
+            ItemStack firework = new ItemStack(Items.fireworks);
             NBTTagCompound compound = new NBTTagCompound();
             NBTTagCompound tags = new NBTTagCompound("Fireworks");
             NBTTagCompound explosion = new NBTTagCompound();
@@ -50,7 +43,7 @@ public class CommonProxy {
             EntityFireworkRocket rocket = new EntityFireworkRocket(living.worldObj, living.posX, living.posY+1, living.posZ, firework);
             living.worldObj.spawnEntityInWorld(rocket);
         }
-    }*/
+    }
 
 	Random random = new Random();
 
@@ -168,7 +161,7 @@ public class CommonProxy {
 	public static void spawnEntityLiving(double x, double y, double z, EntityLiving entity, World world) {
 		if (!world.isRemote) {
 			entity.setPosition(x, y, z);
-			entity.onSpawnWithEgg((EntityLivingData) null);
+			entity.onSpawnWithEgg(null);
 			world.spawnEntityInWorld(entity);
 		}
 	}

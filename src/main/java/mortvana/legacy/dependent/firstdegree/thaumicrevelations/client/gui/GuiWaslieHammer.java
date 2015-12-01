@@ -14,8 +14,8 @@ public class GuiWaslieHammer extends GuiContainer {
 	private final int guiHeight = 166;
 	private int startX, startY;
 
-	public GuiWaslieHammer(EntityPlayer inv) {
-		super(new FluxGearContent.ContainerHammer(inv));
+	public GuiWaslieHammer(EntityPlayer player) {
+		super(new FluxGearContent.ContainerHammer(player));
 	}
 
 	@Override

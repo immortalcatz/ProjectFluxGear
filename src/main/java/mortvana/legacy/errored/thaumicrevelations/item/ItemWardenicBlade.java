@@ -15,9 +15,10 @@ import mortvana.melteddashboard.util.helpers.StringHelper;
 
 import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
 
+import mortvana.projectfluxgear.thaumic.item.interfaces.IWardenicEquipment;
 import mortvana.legacy.clean.thaumicrevelations.util.WardenicChargeHelper;
 
-public class ItemWardenicBlade extends Item {
+public class ItemWardenicBlade extends Item implements IWardenicEquipment {
 
 	public ItemWardenicBlade() {
 		super();

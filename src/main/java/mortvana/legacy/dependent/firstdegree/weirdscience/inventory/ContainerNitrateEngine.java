@@ -1,6 +1,6 @@
 package mortvana.legacy.dependent.firstdegree.weirdscience.inventory;
 
-import mortvana.legacy.errored.weirdscience.block.tileentity.TileEntityNitrateEngine;
+import mortvana.legacy.errored.weirdscience.block.tile.TileEntityNitrateEngine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

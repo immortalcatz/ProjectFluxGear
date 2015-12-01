@@ -14,7 +14,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import mortvana.legacy.errored.morttech.block.tile.WoodmillLogic;
+import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
 import mortvana.legacy.errored.core.common.FluxGearContent;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 
@@ -25,7 +25,7 @@ public class BlockMachine extends InventoryBlock {
     }
 
     @Override
-    public TileEntity createTileEntity (World world, int metadata) {
+    public TileEntity createTileEntity(World world, int metadata) {
         switch (metadata) {
             case 0:
                 return null; /*Alloy Furnace*/
@@ -43,7 +43,7 @@ public class BlockMachine extends InventoryBlock {
     }
 
     @Override
-    public TileEntity createNewTileEntity (World var1, int metadata) {
+    public TileEntity createNewTileEntity(World var1, int metadata) {
         switch (metadata) {
             case 0:
                 return null; /*Alloy Furnace*/
@@ -60,7 +60,7 @@ public class BlockMachine extends InventoryBlock {
         }
 
     @Override
-    public Integer getGui (World world, int x, int y, int z, EntityPlayer entityplayer) {
+    public Integer getGui(World world, int x, int y, int z, EntityPlayer entityplayer) {
         int md = world.getBlockMetadata(x, y, z);
         switch (md){
             case 0:
@@ -86,7 +86,7 @@ public class BlockMachine extends InventoryBlock {
     }
 
     @Override
-    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
 
         NBTTagCompound c = (BlockCrank) FluxGearContent.tileCrank.p.data;
         int power = c.getInteger("power");
@@ -96,7 +96,7 @@ public class BlockMachine extends InventoryBlock {
     }
 
     @Override
-    public Object getModInstance ()
+    public Object getModInstance()
     {
         return ProjectFluxGear.instance;
     }
@@ -104,19 +104,19 @@ public class BlockMachine extends InventoryBlock {
     //TODO
     //Fix this so other machines will work
     @Override
-    public String[] getTextureNames ()  {
+    public String[] getTextureNames()  {
         return new String[] { "woodmill_front", "woodmill_front_active", "woodmill_side", "woodmill_top" };
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon (int side, int meta) {
+    public IIcon getIcon(int side, int meta) {
         return icons[(meta) * 3 + getTextureIndex(side)];
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon (IBlockAccess world, int x, int y, int z, int side)  {
+    public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side)  {
         TileEntity logic = world.getTileEntity(x, y, z);
         short direction = (logic instanceof IFacingLogic) ? ((IFacingLogic) logic).getRenderDirection() : 0;
         int meta = world.getBlockMetadata(x, y, z) % 8;
@@ -135,7 +135,7 @@ public class BlockMachine extends InventoryBlock {
         return icons[0];
     }
 
-    public int getTextureIndex (int side) {
+    public int getTextureIndex(int side) {
         if (side == 0 || side == 1)
             return 3;
         if (side == 3)
@@ -145,7 +145,7 @@ public class BlockMachine extends InventoryBlock {
     }
 
     @Override
-    public String getTextureDomain (int textureNameIndex) {
+    public String getTextureDomain(int textureNameIndex) {
         return "morttech";
     }
 }

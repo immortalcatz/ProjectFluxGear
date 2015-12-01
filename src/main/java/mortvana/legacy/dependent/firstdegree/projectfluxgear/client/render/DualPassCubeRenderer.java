@@ -22,10 +22,10 @@ public class DualPassCubeRenderer implements ISimpleBlockRenderingHandler {
 	@Override
 	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 		// Which rendering pass are we doing today?
-		if(ClientProxy.renderPass == 0) {
+		if (ClientProxy.renderPass == 0) {
 			// We are rendering the solid part of it, lets render it!
 			renderer.renderStandardBlock(renderBlock, x, y, z);
-		} else if(ClientProxy.renderPass == 1) {
+		} else if (ClientProxy.renderPass == 1) {
 			// We are rendering the transparent part of it, lets render it, or at least the visible part...
 			DrawingHelper.renderAllFaces(renderer, block, x, y, z, ((BlockDecorStone) block).getOverlayTexture());
 		}

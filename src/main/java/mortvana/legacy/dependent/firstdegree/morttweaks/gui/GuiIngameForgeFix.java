@@ -19,13 +19,13 @@ public class GuiIngameForgeFix extends GuiIngameForge {
 
 	@Override
 	protected void renderToolHightlight(int width, int height) {
-		if (this.mc.gameSettings.heldItemTooltips) {
+		if (mc.gameSettings.heldItemTooltips) {
 			mc.mcProfiler.startSection("toolHighlight");
 
-			if (this.remainingHighlightTicks > 0 && this.highlightingItemStack != null) {
+			if (remainingHighlightTicks > 0 && highlightingItemStack != null) {
 				String name = this.highlightingItemStack.getDisplayName();
 
-				int opacity = (int) ((float) this.remainingHighlightTicks * 256.0F / 10.0F);
+				int opacity = (int) ((float) remainingHighlightTicks * 256.0F / 10.0F);
 				if (opacity > 255)
 					opacity = 255;
 

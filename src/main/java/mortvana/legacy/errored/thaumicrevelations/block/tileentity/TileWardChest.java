@@ -98,7 +98,7 @@ public class TileWardChest extends TileOwned implements ISidedInventory {
 
 	@Override
 	public String getInventoryName() {
-		return ModBlocks.wardChest.func_71917_a() + ".name";
+		return ModBlocks.wardChest.getUnlocalizedName() + ".name";
 	}
 
 	@Override

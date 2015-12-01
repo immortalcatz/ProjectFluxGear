@@ -33,8 +33,8 @@ public class BlockSugar extends Block {
 	 * When this method is called, your block should register all the icons it needs with the given IconRegister. This
 	 * is the only chance you get to register icons.
 	 */
-	public void registerIcons(IIconRegister conRegister) {
-		blockIcon = conRegister.registerIcon("crystal:sugar");
+	public void registerIcons(IIconRegister iconRegister) {
+		blockIcon = iconRegister.registerIcon("crystal:sugar");
 	}
 
 	/**

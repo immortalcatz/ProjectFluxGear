@@ -8,7 +8,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.legacy.dependent.firstdegree.weirdscience.inventory.ContainerNitrateEngine;
-import mortvana.legacy.errored.weirdscience.block.tileentity.TileEntityNitrateEngine;
+import mortvana.legacy.errored.weirdscience.block.tile.TileEntityNitrateEngine;
 import org.lwjgl.opengl.GL11;
 
 @Deprecated

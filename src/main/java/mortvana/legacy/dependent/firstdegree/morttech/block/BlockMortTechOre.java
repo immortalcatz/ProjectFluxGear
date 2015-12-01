@@ -18,7 +18,7 @@ import mortvana.legacy.errored.core.common.FluxGearContent;
 
 public class BlockMortTechOre extends Block {
 
-	public IIcon[] icons;
+	public IIcon[] icons, icons2;
 	public String[] textures;
 
 	public BlockMortTechOre(String name, String... textures) {
@@ -44,7 +44,7 @@ public class BlockMortTechOre extends Block {
 
 		for (int i = 0; i < icons.length; i++) {
 			icons[i] = iconRegister.registerIcon("MortTech:" + textures[i]);
-			//icons[i] = par1IconRegister.registerIcon(getUnlocalizedName().substring(5) + i);
+			icons2[i] = iconRegister.registerIcon(getUnlocalizedName().substring(5) + i);
 		}
 
 		blockIcon = iconRegister.registerIcon("MortTech:" + getUnlocalizedName().substring(5));

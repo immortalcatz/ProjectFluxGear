@@ -24,12 +24,12 @@ public class RenderTileEnergyStorageCore extends TileEntitySpecialRenderer {
 	}
 
 	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float timeSinceLastTick) {
-		if(tile != null && tile instanceof TileEnergyStorageCore) {
+		if (tile != null && tile instanceof TileEnergyStorageCore) {
 			TileEnergyStorageCore core = (TileEnergyStorageCore)tile;
-			if(core.isOnline()) {
+			if (core.isOnline()) {
 				float scale = 0.0F;
 				float rotation = core.modelRotation + timeSinceLastTick / 2.0F;
-				switch(core.getTier()) {
+				switch (core.getTier()) {
 					case 0:
 						scale = 0.7F;
 						break;
@@ -59,13 +59,13 @@ public class RenderTileEnergyStorageCore extends TileEntitySpecialRenderer {
 				GL11.glDisable(2884);
 				GL11.glTranslated(x + 0.5D, y + 0.5D, z + 0.5D);
 				FMLClientHandler.instance().getClient().getTextureManager().bindTexture(iner_model_texture);
-				double colour = ((TileEnergyStorageCore)tile).getEnergyStored() / ((TileEnergyStorageCore)tile).getMaxEnergyStored();
+				double color = ((TileEnergyStorageCore) tile).getEnergyStored() / ((TileEnergyStorageCore) tile).getMaxEnergyStored();
 				float brightness = (float)Math.abs(Math.sin((double)((float) Minecraft.getSystemTime() / 3000.0F)) * 100.0D);
-				colour = 1.0D - colour;
+				color = 1.0D - color;
 				GL11.glScalef(scale, scale, scale);
 				GL11.glPushMatrix();
 				GL11.glRotatef(rotation, 0.0F, 1.0F, 0.5F);
-				GL11.glColor4d(1.0D, colour * 0.30000001192092896D, colour * 0.699999988079071D, 1.0D);
+				GL11.glColor4d(1.0D, color * 0.30000001192092896D, color * 0.699999988079071D, 1.0D);
 				OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 80.0F + brightness, 80.0F + brightness);
 				iner_model.renderAll();
 				GL11.glPopMatrix();

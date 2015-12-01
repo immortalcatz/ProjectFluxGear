@@ -90,32 +90,31 @@ public class EnergyBeamParticle extends EntityFX {
 				posY = masterY + Math.cos((double)this.rotation) * (double)var5;
 			}
 
-			if(this.mirror) {
+			if (mirror) {
 				float modifier = 3.0F;
-				if(this.direction != 0 && this.direction != 1) {
-					posX = this.masterX + Math.sin((double)(this.rotation + modifier)) * (double)var5;
-					posY = masterY + Math.cos((double)(this.rotation + modifier)) * (double)var5;
+				if (direction != 0 && direction != 1) {
+					posX = masterX + Math.sin((double)(rotation + modifier)) * (double) var5;
 				} else {
-					posZ = this.masterZ + Math.sin((double)(this.rotation + modifier)) * (double)var5;
-					posY = masterY + Math.cos((double)(this.rotation + modifier)) * (double)var5;
+					posZ = masterZ + Math.sin((double) (rotation + modifier)) * (double) var5;
 				}
+				posY = masterY + Math.cos((double) (rotation + modifier)) * (double) var5;
 			}
 
 			setPosition(posX, posY, posZ);
 			prevPosX = posX;
 			prevPosY = posY;
 			prevPosZ = posZ;
-			if(this.direction != 0 && this.direction != 1) {
+			if (direction != 0 && direction != 1) {
 				moveEntity(0.0D, 0.0D, motionZ);
 			} else {
 				moveEntity(motionX, 0.0D, 0.0D);
 			}
 
-			++this.particleAge;
-			if(this.direction != 0 && this.direction != 3) {
-				this.rotation = (float)((double)this.rotation + 0.15D);
+			particleAge++;
+			if (direction != 0 && direction != 3) {
+				 rotation = (float)((double) rotation + 0.15D);
 			} else {
-				this.rotation = (float)((double)this.rotation - 0.15D);
+				 rotation = (float)((double) rotation - 0.15D);
 			}
 
 		}
@@ -132,7 +131,7 @@ public class EnergyBeamParticle extends EntityFX {
 		float minV = 0.0F;
 		float maxV = 0.1245F;
 		float drawScale = 0.1F * particleScale;
-		if(particleIcon != null) {
+		if (particleIcon != null) {
 			minU = particleIcon.getMinU();
 			maxU = particleIcon.getMaxU();
 			minV = particleIcon.getMinV();
@@ -148,14 +147,14 @@ public class EnergyBeamParticle extends EntityFX {
 		tessellator.addVertexWithUV((double)(drawX + par3 * drawScale + par6 * drawScale), (double)(drawY + par4 * drawScale), (double)(drawZ + par5 * drawScale + par7 * drawScale), (double)minU, (double)minV);
 		tessellator.addVertexWithUV((double)(drawX + par3 * drawScale - par6 * drawScale), (double)(drawY - par4 * drawScale), (double)(drawZ + par5 * drawScale - par7 * drawScale), (double)minU, (double)maxV);
 
-		for(int i = 0; i <= 14; ++i) {
+		for (int i = 0; i <= 14; ++i) {
 			GL11.glPushMatrix();
 			drawX = (float)(trailX[i] + (trailX[i] - trailX[i]) * (double)par2 - interpPosX);
 			drawY = (float)(trailY[i] + (trailY[i] - trailY[i]) * (double)par2 - interpPosY);
 			drawZ = (float)(trailZ[i] + (trailZ[i] - trailZ[i]) * (double)par2 - interpPosZ);
 			float scale = 0.1F * (1.0F - (float)i / 14.0F);
 			float scale2 = 1.0F - (float)i / 14.0F;
-			if(!this.mirror) {
+			if (!mirror) {
 				tessellator.setColorRGBA_F(1.0F, scale2, scale2, scale2);
 			} else {
 				tessellator.setColorRGBA_F(scale2, 1.0F, scale2, scale2);

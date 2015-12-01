@@ -26,16 +26,16 @@ public class ObjectPacket implements IMessage {
 	public ObjectPacket() {}
 
 	public ObjectPacket(TileObjectSync tile, byte dataType, int index, Object object) {
-		isContainerPacket = tile == null;
-		if(!isContainerPacket) {
+		isContainerPacket = (tile == null);
+		if (!isContainerPacket) {
 			x = tile.xCoord;
 			y = tile.yCoord;
 			z = tile.zCoord;
 		}
 
-		this.dataType = (short)dataType;
+		this.dataType = (short) dataType;
 		this.object = object;
-		this.index = (short)index;
+		this.index = (short) index;
 	}
 
 	public void toBytes(ByteBuf bytes) {
@@ -48,7 +48,7 @@ public class ObjectPacket implements IMessage {
 
 		bytes.writeByte(dataType);
 		bytes.writeShort(index);
-		switch(dataType) {
+		switch (dataType) {
 			case 0:
 				bytes.writeByte(((Byte)object));
 				break;
@@ -81,15 +81,15 @@ public class ObjectPacket implements IMessage {
 
 	public void fromBytes(ByteBuf bytes) {
 		isContainerPacket = bytes.readBoolean();
-		if(!isContainerPacket) {
+		if (!isContainerPacket) {
 			x = bytes.readInt();
 			y = bytes.readInt();
 			z = bytes.readInt();
 		}
 
-		dataType = (short)bytes.readByte();
+		dataType = (short) bytes.readByte();
 		index = bytes.readShort();
-		switch(dataType) {
+		switch (dataType) {
 			case 0:
 				object = bytes.readByte();
 				break;

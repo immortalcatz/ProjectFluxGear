@@ -9,8 +9,8 @@ import mortvana.legacy.dependent.seconddegree.fluxgearaddons.network.ObjectPacke
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 
 public abstract class TileObjectSync extends TileEntity {
-	public TileObjectSync() {
-	}
+
+	public TileObjectSync() {}
 
 	public Object sendObject(byte dataType, int index, Object object) {
 		return sendObject(dataType, index, object, new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, (double)xCoord, (double)yCoord, (double)zCoord, 64.0D));

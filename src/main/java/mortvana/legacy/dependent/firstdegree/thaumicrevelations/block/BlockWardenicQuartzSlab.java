@@ -31,7 +31,7 @@ public class BlockWardenicQuartzSlab extends BlockSlab {
     }
 
     @Override
-    public Item getItemDropped(int par1, Random par2, int par3) {
+    public Item getItemDropped(Item par1, Random par2, int par3) {
         return Item.getItemFromBlock(FluxGearContent.blockInfusedQuartzSlab);
     }
 

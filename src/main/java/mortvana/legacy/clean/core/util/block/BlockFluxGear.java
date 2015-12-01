@@ -41,9 +41,7 @@ public class BlockFluxGear extends Block {
 	public String[] names;
 	public IIcon[] textures;
 
-	/*public BlockFluxGear setRenderType(int renderType) {
-
-	}*/
+	//public BlockFluxGear setRenderType(int renderType) {}
 
 	public BlockFluxGear(Material material, String texDir) {
 		super(material);
@@ -63,7 +61,6 @@ public class BlockFluxGear extends Block {
 
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-
 		for (int i = 0; i < names.length; i++) {
 			list.add(new ItemStack(item, 1, i));
 		}
@@ -71,14 +68,12 @@ public class BlockFluxGear extends Block {
 
 	@Override
 	public IIcon getIcon(int side, int metadata) {
-
 		return textures[metadata];
 	}
 
-	//@Override
+	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister ir) {
-
+	public void registerIcons(IIconRegister ir) {
 		for (int i = 0; i < names.length; i++) {
 			textures[i] = ir.registerIcon(textureLocation + StringHelper.camelCase(names[i]));
 		}
@@ -107,12 +102,10 @@ public class BlockFluxGear extends Block {
 	protected int droppedRandomBonus;
 
 	public BlockFluxGear(String name, Material material) {
-		/*
-		 * Default material set to rock.
-		 */
+		// Default material set to rock.
 		super(material);
 		englishName = name;
-		this.setUnlocalizedName("block." + name.replace(" ", "")); //A default value. Absolutely acceptable to not keep it.
+		setUnlocalizedName("block." + name.replace(" ", "")); //A default value. Absolutely acceptable to not keep it.
 
 	}
 
@@ -121,27 +114,11 @@ public class BlockFluxGear extends Block {
 	}
 
 	public void setMaterial(Material m) {
-		//Deep dark voodoo. If you get a security exception, here it is. I'm sorry, Gyro says he did it all for the greater good.
-		//TODO: AccessTransformer Method
-		Field field;
-		try {
-			//Get the field of the block class.
-			field = Block.class.getField("blockMaterial");
-			field.setAccessible(true);
-
-			//Modify the field to not be final.
-			Field modifiersField = Field.class.getDeclaredField("modifiers");
-			modifiersField.setAccessible(true);
-			modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-
-			field.set(this, m);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
-
+		// Formerly deep dark voodoo. You can't get a security exception here anymore.
+		// Gyro says he did reflection for the greater good. I say, Access Transformer Master-Race!
+		blockMaterial = m;
 		//Make sure that the entries to translucent are still valid.
-		translucent = !m.isTranslucent;
+		translucent = m.isTranslucent;
 	}
 
 	@Override
@@ -152,12 +129,12 @@ public class BlockFluxGear extends Block {
 
 	@Override
 	public int quantityDropped(Random random) {
-		return this.quantityDroppedWithBonus(0, random);
+		return quantityDroppedWithBonus(0, random);
 	}
 
 	@Override
 	public ArrayList<ItemStack> getDrops(World p_getDrops_1_, int p_getDrops_2_, int p_getDrops_3_, int p_getDrops_4_, int p_getDrops_5_, int p_getDrops_6_) {
-		if(this.itemDropped != null) {
+		if (itemDropped != null) {
 			ArrayList<ItemStack> result = new ArrayList<ItemStack>(1);
 			result.add(itemDropped);
 			return result;
@@ -168,7 +145,7 @@ public class BlockFluxGear extends Block {
 
 	@Override
 	public int quantityDroppedWithBonus(int bonus, Random random) {
-		if(this.itemDropped != null) {
+		if (itemDropped != null) {
 			return itemDropped.stackSize + random.nextInt(bonus + droppedRandomBonus);
 		} else {
 			return super.quantityDroppedWithBonus(bonus+ droppedRandomBonus, random);
@@ -177,7 +154,7 @@ public class BlockFluxGear extends Block {
 
 	@Override
 	public int quantityDropped(int meta, int fortune, Random random) {
-		return this.quantityDroppedWithBonus(fortune, random);
+		return quantityDroppedWithBonus(fortune, random);
 	}
 
 	public ItemStack getItemDropped() {

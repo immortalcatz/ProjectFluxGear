@@ -5,22 +5,15 @@ import java.util.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IFuelHandler;
-import cpw.mods.fml.common.IWorldGenerator;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -29,8 +22,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -57,18 +48,25 @@ import mortvana.legacy.clean.morttech.block.itemblock.ItemBlockComplexOre;
 import mortvana.legacy.clean.morttech.block.itemblock.ItemBlockGemOre;
 import mortvana.legacy.clean.morttech.item.WrenchSonic;
 import mortvana.legacy.clean.projectfluxgear.item.ItemPrototypeSonicWrench;
-import mortvana.legacy.clean.thaumicrevelations.block.BlockWitor;
+import mortvana.legacy.clean.thaumicrevelations.block.*;
 import mortvana.legacy.clean.thaumicrevelations.block.tile.TileWitor;
+
+import mortvana.legacy.clean.thaumicrevelations.entity.EntityPurity;
+import mortvana.legacy.clean.thaumicrevelations.item.ItemWaslieHammer;
+import mortvana.legacy.clean.weirdscience.block.BlockFuelBurner;
 import mortvana.legacy.clean.weirdscience.block.fluid.BlockFluidAcid;
 import mortvana.legacy.clean.weirdscience.block.fluid.BlockFluidClassicWS;
 import mortvana.legacy.clean.weirdscience.block.fluid.BlockFluidReactive;
 import mortvana.legacy.clean.weirdscience.util.chemistry.ReactionSpec;
 import mortvana.legacy.dependent.firstdegree.morttech.block.BlockMortTechOre;
 import mortvana.legacy.dependent.firstdegree.morttech.item.DebuggingSpork;
-import mortvana.legacy.errored.projectfluxgear.block.BlockGravelOreAux;
-import mortvana.legacy.errored.projectfluxgear.block.BlockGravelOreMain;
+import mortvana.legacy.dependent.firstdegree.thaumicrevelations.block.BlockWardenicQuartzSlab;
+import mortvana.legacy.dependent.firstdegree.thaumicrevelations.block.BlockWardenicQuartzStairs;
+import mortvana.legacy.dependent.firstdegree.thaumicrevelations.item.ItemWardenicArmor;
+import mortvana.legacy.dependent.firstdegree.weirdscience.block.*;
+import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreAux;
+import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreMain;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockPlant;
-import mortvana.legacy.dependent.firstdegree.weirdscience.block.BlockFuelBurner;
 import mortvana.legacy.errored.morttech.block.BlockCrank;
 import mortvana.legacy.errored.morttech.block.BlockMachine;
 import mortvana.legacy.errored.morttech.block.BlockWoodmill;
@@ -77,19 +75,18 @@ import mortvana.legacy.errored.paintedstone.recipe.RecipePaintbrush;
 import mortvana.legacy.errored.projectfluxgear.block.BlockAlloyAux;
 import mortvana.legacy.errored.projectfluxgear.block.BlockDecorStone;
 import mortvana.legacy.errored.projectfluxgear.item.ItemInteractivePFG;
-import mortvana.legacy.errored.projectfluxgear.util.OreInformation;
+import mortvana.legacy.errored.projectfluxgear.util.BlockInformation;
+import mortvana.legacy.dependent.firstdegree.projectfluxgear.util.OreInformation;
 import mortvana.legacy.errored.thaumicrevelations.entity.EntityFleshProjectile;
 import mortvana.legacy.errored.thaumicrevelations.entity.FleshGolem;
-import mortvana.legacy.errored.thaumicrevelations.item.ItemWardenArmor;
-import mortvana.legacy.errored.thaumicrevelations.item.ItemWardenicBlade;
+import mortvana.legacy.errored.thaumicrevelations.item.*;
 import mortvana.legacy.clean.thaumicrevelations.util.WardenicChargeHelper;
 import mortvana.legacy.errored.weirdscience.block.BlockBloodEngine;
 import mortvana.legacy.errored.weirdscience.block.fluid.BlockFluidSmog;
-import mortvana.legacy.errored.weirdscience.block.tileentity.TileEntityGunpowderEngine;
-import mortvana.legacy.errored.weirdscience.util.ContentRegistry;
+import mortvana.legacy.errored.weirdscience.block.tile.TileEntityGunpowderEngine;
+import mortvana.legacy.clean.weirdscience.util.ContentRegistry;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.melteddashboard.intermod.thaumcraft.inventory.SlotEssentia;
-import mortvana.melteddashboard.intermod.thaumcraft.util.helpers.PurityHelper;
 import mortvana.melteddashboard.intermod.tinkers.TinkersHelper;
 import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
 import mortvana.melteddashboard.item.FluxGearItem;
@@ -114,12 +111,8 @@ import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchCategoryList;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage;
-import thaumcraft.api.wands.FocusUpgradeType;
-import thaumcraft.api.wands.ItemFocusBasic;
-import thaumcraft.common.Thaumcraft;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
-import thaumcraft.common.items.wands.ItemWandCasting;
 
 public class FluxGearContent implements IFuelHandler {
 
@@ -128,10 +121,7 @@ public class FluxGearContent implements IFuelHandler {
 		loadStones();
         loadMachines();
         loadFluids();
-        loadItems();
-	    loadEnchants();
-		loadTiles();
-        loadAugments();
+        loadItems();;
 		preInitMortTech();
 		addOreDictSupport();
 		postIntermodCommunication();
@@ -950,7 +940,7 @@ public class FluxGearContent implements IFuelHandler {
 
 		researchTWarden = new FluxGearResearchItem("TREVELATIONS", category, new AspectList(), 0, 0, 0, new ItemStack(itemWardenAmulet)).setRound().setSpecial().setAutoUnlock().registerResearchItem();
 		researchTWarden.setPages(new ResearchPage("0"));
-		researchExubitura = new FluxGearResearchItem("EXUBITURA", category, new AspectList(), 0, -2, 0, blockExubitura).setParents("TREVELATIONS").setAutoUnlock().registerResearchItem();
+		researchExubitura = new FluxGearResearchItem("EXUBITURA", category, new AspectList(), 0, -2, 0, new ItemStack(blockExubitura)).setParents("TREVELATIONS").setAutoUnlock().registerResearchItem();
 		researchExubitura.setPages(new ResearchPage("0"));
 		researchQuartz = new FluxGearResearchItem("QUARTZ", category, new AspectList().add(WARDEN, 4).add(Aspect.CRYSTAL, 4), 2, 0, 2, wardenicQuartz).setParents("TREVELATIONS").setRound().registerResearchItem();
 		researchQuartz.setPages(new ResearchPage("0"), new ResearchPage(recipeQuartz));
@@ -980,10 +970,10 @@ public class FluxGearContent implements IFuelHandler {
 	public static Item itemWardenAmulet = new ItemThaumicBauble();
 	public static Item itemWardenSword = new ItemWardenicBlade();
 	public static Item itemFocusPurity = new ItemFocusPurity();
-	public static Item itemWardenHelm = new ItemWardenArmor(EnumArmorType.HELMET, "itemWardenHelm", "warden", "fluxgear:wardenhelm");
-	public static Item itemWardenChest = new ItemWardenArmor(EnumArmorType.CHESTPLATE, "itemWardenChest", "warden", "fluxgear:wardenchest");
-	public static Item itemWardenLegs = new ItemWardenArmor(EnumArmorType.PANTS, "itemWardenLegs", "warden", "fluxgear:wardenlegs");
-	public static Item itemWardenBoots = new ItemWardenArmor(EnumArmorType.BOOTS, "itemWardenBoots", "warden", "fluxgear:wardenboots");
+	public static Item itemWardenHelm = new ItemWardenicArmor(EnumArmorType.HELMET, "itemWardenHelm", "warden", "fluxgear:wardenhelm");
+	public static Item itemWardenChest = new ItemWardenicArmor(EnumArmorType.CHESTPLATE, "itemWardenChest", "warden", "fluxgear:wardenchest");
+	public static Item itemWardenLegs = new ItemWardenicArmor(EnumArmorType.PANTS, "itemWardenLegs", "warden", "fluxgear:wardenlegs");
+	public static Item itemWardenBoots = new ItemWardenicArmor(EnumArmorType.BOOTS, "itemWardenBoots", "warden", "fluxgear:wardenboots");
 	public static Item itemWaslieHammer = new ItemWaslieHammer();
 	public static Item itemFocusIllumination = new ItemFocusIllumination();
 
@@ -1064,295 +1054,6 @@ public class FluxGearContent implements IFuelHandler {
 
 	// TR Innerclasses...
 
-	public static class ItemWaslieHammer extends Item {
-
-		public ItemWaslieHammer() {
-
-			super();
-			setUnlocalizedName("itemWaslieHammer");
-			setCreativeTab(ProjectFluxGear.thaumicTab);
-			setMaxStackSize(1);
-			canRepair = false;
-
-		}
-
-		@Override
-		public EnumRarity getRarity(ItemStack stack) {
-
-			return EnumRarity.rare;
-
-		}
-
-		@Override
-		public boolean isItemTool(ItemStack stack) {
-
-			return true;
-
-		}
-
-		@Override
-		public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
-
-			par3EntityPlayer.openGui(ProjectFluxGear.instance, 0, par2World, 0, 0, 0);
-
-			return par1ItemStack;
-
-		}
-
-		@Override
-		@SideOnly(Side.CLIENT)
-		public void registerIcons(IIconRegister register) {
-
-			itemIcon = register.registerIcon("projectfluxgear:tool/wasliehammer");
-
-		}
-
-	}
-
-	public static class ItemFocusIllumination extends ItemFocusBasic {
-
-		private IIcon depth, orn;
-
-		public ItemFocusIllumination() {
-
-			super();
-			setUnlocalizedName("itemFocusIllumination");
-			setCreativeTab(mortvana.projectfluxgear.thaumic.common.ThaumicContent.thaumicRevelationsTab);
-
-		}
-
-		@Override
-		public void registerIcons(IIconRegister register) {
-
-			icon = register.registerIcon("trevelations:purityfocus");
-			depth = register.registerIcon("trevelations:puritydepth");
-			orn = register.registerIcon("trevelations:purityorn");
-
-		}
-
-		@Override
-		public IIcon getFocusDepthLayerIcon(ItemStack itemstack) {return depth;}
-
-		@Override
-		public IIcon getOrnament(ItemStack itemstack) {return orn;}
-
-		@Override
-		public int getFocusColor(ItemStack itemstack) {return 0x6698FF;}
-
-
-		public ItemStack onFocusRightClick(ItemStack itemstack, World world, EntityPlayer player, MovingObjectPosition mop) {
-			ItemWandCasting wand = (ItemWandCasting) itemstack.getItem();
-			if (mop != null) {
-				if (mop.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
-					if (!world.isRemote) {
-						if (wand.consumeAllVis(itemstack, player, getVisCost(itemstack), true, false)) {
-
-							int x = mop.blockX;
-							int y = mop.blockY;
-							int z = mop.blockZ;
-
-							if (mop.sideHit == 0) {
-								y--;
-							}
-							if (mop.sideHit == 1) {
-								y++;
-							}
-							if (mop.sideHit == 2) {
-								z--;
-							}
-							if (mop.sideHit == 3) {
-								z++;
-							}
-							if (mop.sideHit == 4) {
-								x--;
-							}
-							if (mop.sideHit == 5) {
-								x++;
-							}
-							world.setBlock(x, y, z, ThaumicContent.blockWitor, 0, 2);
-						}
-					}
-				}
-			}
-			player.swingItem();
-			return itemstack;
-		}
-
-		@Override
-		public String getSortingHelper(ItemStack itemStack) {return "ILLUMINATION";}
-
-		@Override
-		public AspectList getVisCost(ItemStack itemstack) {
-
-			return new AspectList().add(Aspect.AIR, 50).add(Aspect.FIRE, 50);
-
-		}
-
-		@Override
-		public FocusUpgradeType[] getPossibleUpgradesByRank(ItemStack itemStack, int i) {
-			return new FocusUpgradeType[0];
-		}
-
-
-	}
-
-	public static class ItemFocusPurity extends ItemFocusBasic {
-
-		private IIcon depth, orn;
-
-		public ItemFocusPurity() {
-
-			super();
-			setUnlocalizedName("itemFocusPurity");
-			setCreativeTab(mortvana.projectfluxgear.thaumic.common.ThaumicContent.thaumicRevelationsTab);
-
-		}
-
-		@Override
-		public void registerIcons(IIconRegister register) {
-
-			icon = register.registerIcon("trevelations:purityfocus");
-			depth = register.registerIcon("trevelations:puritydepth");
-			orn = register.registerIcon("trevelations:purityorn");
-
-		}
-
-		@Override
-		public IIcon getFocusDepthLayerIcon(ItemStack itemstack) {return depth;}
-
-		@Override
-		public IIcon getOrnament(ItemStack itemstack) {return orn;}
-
-		@Override
-		public int getFocusColor(ItemStack itemstack) {return 0x6698FF;}
-
-		public ItemStack onFocusRightClick(ItemStack itemstack, World world, EntityPlayer player, MovingObjectPosition mop) {
-
-			ItemWandCasting wand = (ItemWandCasting) itemstack.getItem();
-			EntityPurity purityOrb = new EntityPurity(world, player);
-			if (!world.isRemote) {
-				if (wand.consumeAllVis(itemstack, player, getVisCost(itemstack), true, false)) {
-					world.spawnEntityInWorld(purityOrb);
-					world.playSoundAtEntity(purityOrb, "thaumcraft:ice", 0.3F, 0.8F + world.rand.nextFloat() * 0.1F);
-				}
-			}
-			player.swingItem();
-			return itemstack;
-		}
-
-		@Override
-		public String getSortingHelper(ItemStack itemStack) { return "PURITY"; }
-
-		@Override
-		public AspectList getVisCost(ItemStack itemstack) {
-			return new AspectList().add(Aspect.AIR, 500).add(Aspect.EARTH, 500).add(Aspect.FIRE, 500).add(Aspect.WATER, 500).add(Aspect.ORDER, 500).add(Aspect.ENTROPY, 500);
-		}
-
-		@Override
-		public FocusUpgradeType[] getPossibleUpgradesByRank(ItemStack itemstack, int i) {
-			return new FocusUpgradeType[0];
-		}
-
-	}
-
-	public static class EntityPurity extends EntityThrowable {
-
-		public EntityPurity(World par1World) {
-
-			super(par1World);
-
-		}
-
-		public EntityPurity(World par1World, EntityLivingBase par2EntityLivingBase) {
-
-			super(par1World, par2EntityLivingBase);
-
-		}
-
-		public EntityPurity(World par1World, double par2, double par4, double par6) {
-
-			super(par1World, par2, par4, par6);
-
-		}
-
-		@Override
-		protected float getGravityVelocity() {
-
-			return 0.001F;
-
-		}
-
-		@Override
-		public void onUpdate() {
-
-			if (this.worldObj.isRemote) {
-
-				for (int i = 0; i < 3; i++) {
-
-					Thaumcraft.proxy.wispFX2(this.worldObj, this.posX + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F, this.posY + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F, this.posZ + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F, 0.3F, 2, true, false, 0.02F);
-
-					double x2 = (this.posX + this.prevPosX) / 2.0D + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F;
-					double y2 = (this.posY + this.prevPosY) / 2.0D + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F;
-					double z2 = (this.posZ + this.prevPosZ) / 2.0D + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F;
-
-					Thaumcraft.proxy.wispFX2(this.worldObj, x2, y2, z2, 0.3F, 2, true, false, 0.02F);
-
-				}
-
-			}
-
-			super.onUpdate();
-
-		}
-
-		@Override
-		protected void onImpact(MovingObjectPosition mop) {
-
-			for (int i = 0; i < 9; i++) {
-
-				float fx = (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.3F;
-				float fy = (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.3F;
-				float fz = (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.3F;
-				Thaumcraft.proxy.wispFX3(this.worldObj, this.posX + fx, this.posY + fy, this.posZ + fz, this.posX + fx * 8.0F, this.posY + fy * 8.0F, this.posZ + fz * 8.0F, 0.3F, 2, true, 0.02F);
-
-				fx = (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.3F;
-				fy = (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.3F;
-				fz = (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.3F;
-				Thaumcraft.proxy.wispFX3(this.worldObj, this.posX + fx, this.posY + fy, this.posZ + fz, this.posX + fx * 8.0F, this.posY + fy * 8.0F, this.posZ + fz * 8.0F, 0.3F, 0, true, 0.02F);
-
-				fx = (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.3F;
-				fy = (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.3F;
-				fz = (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.3F;
-				Thaumcraft.proxy.wispFX3(this.worldObj, this.posX + fx, this.posY + fy, this.posZ + fz, this.posX + fx * 8.0F, this.posY + fy * 8.0F, this.posZ + fz * 8.0F, 0.3F, 2, true, 0.02F);
-
-			}
-
-			if (!worldObj.isRemote) {
-
-				PurityHelper.checkAndPurify(mop);
-				setDead();
-
-			}
-
-		}
-
-	}
-
-	public static class ExubituraGenerator implements IWorldGenerator {
-
-		@Override
-		public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-
-			int x = chunkX * 16 + random.nextInt(128);
-			int z = chunkZ * 16 + random.nextInt(128);
-			int y = world.getHeightValue(x, z);
-
-			if (world.isAirBlock(x, y, z) && FluxGearContent.blockPlant.canBlockStay(world, x, y, z) && random.nextInt(1000) <= 10) {
-				world.setBlock(x, y, z, FluxGearContent.blockPlant, 0, 2);
-			}
-		}
-	}
-
 	public static class ContainerHammer extends Container {
 
 		public InventoryPlayer playerInv;
@@ -1389,7 +1090,7 @@ public class FluxGearContent implements IFuelHandler {
 			ItemStack item = craftingMatrix.getStackInSlot(1);
 
 			if (item != null) {
-				if (!(item.getItem() instanceof ItemWardenArmor || item.getItem() instanceof ItemWardenicBlade)) {
+				if (!(item.getItem() instanceof ItemWardenicArmor || item.getItem() instanceof ItemWardenicBlade)) {
 					ItemStack repairedItem = new ItemStack(item.getItem());
 					if (item.getItemDamage() != 0 && item.getItem().isRepairable()) {
 						repairedItem.setItemDamage(0);
@@ -1443,42 +1144,6 @@ public class FluxGearContent implements IFuelHandler {
 
 		}
 
-	}
-
-
-
-	public static class WardenicChargeEvents {
-
-		private Random random = new Random();
-
-		public static void init() {
-			MinecraftForge.EVENT_BUS.register(new WardenicChargeEvents());
-		}
-
-		@SubscribeEvent
-		public void onTick(LivingEvent.LivingUpdateEvent event) {
-			if (event.entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) event.entity;
-				for (int i = 0; i < 5; i++) {
-					if (player.getEquipmentInSlot(i) != null && (player.getEquipmentInSlot(i).getItem() instanceof ItemWardenArmor || player.getEquipmentInSlot(i).getItem() instanceof ItemWardenicBlade) && (player.getEquipmentInSlot(i).getItemDamage() != player.getEquipmentInSlot(i).getMaxDamage()) && (random.nextInt(50) == 49)) {
-						player.getEquipmentInSlot(i).setItemDamage(player.getEquipmentInSlot(i).getItemDamage() - 1);
-					}
-				}
-			}
-		}
-
-		@SubscribeEvent
-		public void onHurt(LivingHurtEvent event) {
-			if (event.entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) event.entity;
-				for (int i = 1; i < 5; i++) {
-					if (player.getEquipmentInSlot(i) != null && (player.getEquipmentInSlot(i).getItem() instanceof ItemWardenArmor) && (player.getEquipmentInSlot(i).getItemDamage() != player.getEquipmentInSlot(i).getMaxDamage())) {
-						player.getEquipmentInSlot(i).setItemDamage(player.getEquipmentInSlot(i).getItemDamage() + 1);
-						WardenicChargeHelper.getUpgrade(player.getEquipmentInSlot(i)).onAttacked(event);
-					}
-				}
-			}
-		}
 	}
 
 	public static class FluxGearResearchItem extends ResearchItem {
@@ -1680,16 +1345,16 @@ public class FluxGearContent implements IFuelHandler {
 	    GameRegistry.registerBlock(timeyWimeyTorch, timeyWimeyTorch.getLocalizedName());
 	    GameRegistry.registerTileEntity(TileTimeyWimey.class, "tileTimeyWimeyTorch");
 
-        blockOreMain = BlockFluxGear.blockOreMain;
-        blockOreAux = BlockFluxGear.blockOreAux;
-        blockStorageAux = BlockFluxGear.blockStorageAux;
-        blockAlloyMain = BlockFluxGear.blockAlloyMain;
+        blockOreMain = BlockInformation.blockOreMain;
+        blockOreAux = BlockInformation.blockOreAux;
+        blockStorageAux = BlockInformation.blockStorageAux;
+        blockAlloyMain = BlockInformation.blockAlloyMain;
         blockAlloyAux = new BlockAlloyAux();
-        blockStorageAlch = BlockFluxGear.blockStorageAlch;
-        blockStorageAdv = BlockFluxGear.blockStorageAdv;
-        blockEarthen = BlockFluxGear.blockEarthen;
-        blockPoorOreMain = BlockFluxGear.blockPoorOreMain;
-        blockPoorOreAux = BlockFluxGear.blockPoorOreAux;
+        blockStorageAlch = BlockInformation.blockStorageAlch;
+        blockStorageAdv = BlockInformation.blockStorageAdv;
+        blockEarthen = BlockInformation.blockEarthen;
+        blockPoorOreMain = BlockInformation.blockPoorOreMain;
+        blockPoorOreAux = BlockInformation.blockPoorOreAux;
         blockGravelOreMain = new BlockGravelOreMain();
         blockGravelOreAux = new BlockGravelOreAux();
 	    blockPlant = new BlockExubitura();
@@ -1950,8 +1615,8 @@ public class FluxGearContent implements IFuelHandler {
 
     public void loadItems() {
 	    itemMaterial = (FluxGearItem) new FluxGearItem("fluxgear").setUnlocalizedName("material").setCreativeTab(tabMaterials);
-        itemBucket = (BucketFluxGear) new BucketFluxGear("src/main/oldcode/projectfluxgear").setUnlocalizedName("bucket").setCreativeTab(tabMaterials);
-        itemFood = (FluxGearItem) new FluxGearItem("src/main/oldcode/projectfluxgear").setUnlocalizedName("food").setCreativeTab(tabMaterials);
+        itemBucket = (BucketFluxGear) new BucketFluxGear("fluxgear").setUnlocalizedName("bucket").setCreativeTab(tabMaterials);
+        itemFood = (FluxGearItem) new FluxGearItem("fluxgear").setUnlocalizedName("food").setCreativeTab(tabMaterials);
         itemInteractive = (ItemInteractivePFG) new ItemInteractivePFG().setUnlocalizedName("interactive").setCreativeTab(tabMaterials);
         itemProtoSonicWrench = (ItemPrototypeSonicWrench) new ItemPrototypeSonicWrench().setUnlocalizedName("tool", "prototypeSonicWrench");
 
@@ -2397,40 +2062,20 @@ public class FluxGearContent implements IFuelHandler {
         partCapacitorLv1 = itemMaterial.addOreDictItem(88, "partCapacitorLv1");
     }
 
-/*  //2500-2999 1/4 Dusts
-    public void loadDustsSmall() {}
-
-    //3000-3499 1/9 Dusts
-    public void loadDustsTiny() {}
-
+/*  //2500-2999 1/4 (Small) Dusts
+    //3000-3499 1/9 (Tiny) Dusts
     //3500-3999 Foils
-    public void loadFoils() {}
-
     //4000-4499 Plates
-    public void loadPlates() {}
-
     //4500-4999 Dense Plates
-    public void loadPlatesDense() {}
-
     //5000-5499 Washers
-    public void loadWashers() {}
-
     //5500-5999 Bolts
-    public void loadBolts() {}
-
     //6000-6499 Nuts
-    public void loadNuts() {}
-
     //6500-6999 Ball Bearings
-    public void loadBearings() {}
-
     //7000-7499 Shafts
-	public void loadShafts() {}
-
     //7500-7999 Panels
-    public void loadPanels() {}
 
     //10000-10999 Tiered Components
+
     public void loadComponents() {
         //5000-5024 Etched Wires
         //5025-5049 Energy Circuits
@@ -2456,70 +2101,26 @@ public class FluxGearContent implements IFuelHandler {
         //5525-5549 Flux Coils
     }
 
-	//11000-11999 Non-Tiered Components
-    public void loadParts() {}
-
+	//11000-11999 Non-Tiered Components (Parts)
     //12000-12999 Trace Minerals
-    public void loadTraceMinerals() {}
 
     //13000-13999 Ore Chips
-    public void loadOres1() {}
-
     //14000-14999 Dirty Ore Chunks
-    public void loadOres2() {}
-
     //15000-15999 Clean Ore Chunks
-    public void loadOres3() {}
-
     //16000-16999 Crushed Ores
-    public void loadOres4() {}
-
     //17000-17999 Purified Crushed Ores
-    public void loadOres5() {}
-
     //18000-18999 Dirty Ground Ores
-    public void loadOres6() {}
-
     //19000-19999 Clean Ground Ores
-    public void loadOres7() {}
-
     //20000-20999 Impure Ore Dusts
-    public void loadOres8() {}
-
     //21000-21999 Purified Ore Dusts
-    public void loadOres9() {}
-
     //22000-22999 Ore Slurries
-    public void loadOres10() {}
-
     //23000-23999 Ore Solutions
-    public void loadOres11() {}
-
     //24000-24999 Ore Flakes
-    public void loadOres12() {}
-
     //25000-25999 Pulverized Ore Flakes
-    public void loadOres13() {}
-
     //26000-26999 Centrifuged Ores
-    public void loadOres14() {}
-
     //27000-27999 Purified Centrifuged Ores
-    public void loadOres15() {}
-
     //28000-28999 Rendered Ore Chunks
-    public void loadOres16() {}
-
-    //29000-29999 Crystallized Ores
-    public void loadOres17(){}*/
-
-    public void loadTools() {
-
-    }
-
-    public void loadEnchants() {}
-
-    public void loadTiles() {}
+    //29000-29999 Crystallized Ores */
 
     public void metalCraftingRecipes() {
         //TODO-- UPDATE
@@ -3672,8 +3273,6 @@ public class FluxGearContent implements IFuelHandler {
 
 	}
 
-	public static void tweakTFMithral() {}
-
 	public static void initMaterials() {
 
 		TinkersHelper.registerFullOreDictMaterial("ingotPlasteel", "materialPlasteel", FluxGearConfig.tinkersID_Plasteel);
@@ -3700,11 +3299,11 @@ public class FluxGearContent implements IFuelHandler {
 
 	//TRevelations Legacy
 	public static Block blockExubitura = new BlockExubitura();
-	public static Block blockInfusedQuartzNormal = new BlockQuartzNormal();
-	public static Block blockInfusedQuartzChiseled = new BlockQuartzChiseled();
-	public static Block blockInfusedQuartzPillar = new BlockQuartzPillar();
-	public static Block blockInfusedQuartzSlab = new BlockQuartzSlab();
-	public static Block blockInfusedQuartzStair = new BlockQuartzStair();
+	public static Block blockInfusedQuartzNormal = new BlockWardenicQuartzNormal();
+	public static Block blockInfusedQuartzChiseled = new BlockWardenicQuartzChiseled();
+	public static Block blockInfusedQuartzPillar = new BlockWardenicQuartzPillar();
+	public static Block blockInfusedQuartzSlab = new BlockWardenicQuartzSlab();
+	public static Block blockInfusedQuartzStair = new BlockWardenicQuartzStairs();
 	public static Block blockWitor = new BlockWitor();
 
     //Pile of Weird Science Legacy Code
@@ -3717,13 +3316,15 @@ public class FluxGearContent implements IFuelHandler {
         BlockFluidSmog fluidSmog = new BlockFluidSmog("smog");
         Fluid fluidBlood = new Fluid("blood");
         fluidAcid.setUnlocalizedName("fluidAcid");
-        //fluidSmog.setUnlocalizedName("fluidSmog");
+        fluidSmog.setUnlocalizedName("fluidSmog");
         fluidBlood.setUnlocalizedName("fluidBlood");
 
         //Register fluids.
+	    //TODO: Not only is the whole ContentRegistry thing poorly implemented, but the Fluid blocks are done all wrong.
+	    //TODO: Actually they are not even Blocks because Gyro's derpcode...
         cr.registerFluid(fluidAcid);
         cr.registerFluid(fluidBase);
-        //cr.RegisterFluid(fluidSmog);
+        cr.registerFluid(fluidSmog);
         cr.registerFluid(fluidBlood);
 
         //Init fluid blocks.
@@ -3742,15 +3343,17 @@ public class FluxGearContent implements IFuelHandler {
         //Slaving multiple block IDs to one set of behavior is such a pain in this game.
         ((BlockGasSmog) smogManager.blocks.get(0)).setBlockAcid(acidBlock); /**/
 
-        /**/acidBlock.setBlockTextureName("gui:placeholderacid");
-        baseBlock.setBlockTextureName("gui:placeholderbase");
-        bloodBlock.setBlockTextureName("gui:bloodStill");
-        //smogManager.setTextureName("gui:smog");
+        /**/
 
-        acidBlock.setBlockName("blockAcid");
-        bloodBlock.setBlockName("blockBlood");
+	    acidBlock.setTextureName("gui:placeholderacid");
+        baseBlock.setTextureName("gui:placeholderbase");
+        bloodBlock.setTextureName("gui:bloodStill");
+        /**/ smogManager.setTextureName("gui:smog"); /**/
 
-        //smogManager.setMBMax(1024);
+        acidBlock.setUnlocalizedName("blockAcid");
+        bloodBlock.setUnlocalizedName("blockBlood");
+
+        /**/ smogManager.setMBMax(1024); /**/
 
         //Give fluids block IDs and icons.
         fluidAcid.setBlock(acidBlock);
@@ -3775,8 +3378,8 @@ public class FluxGearContent implements IFuelHandler {
         cr.registerBlock(baseBlock);
         cr.registerBlock(bloodBlock);
 
-        BlockBase aluminiumSludge = new BlockBase("Aluminosilicate Sludge", Material.clay);
-        aluminiumSludge.setBlockTextureName("gui:aluminosilicate_sludge");
+        BlockFluxGear aluminiumSludge = new BlockFluxGear("Aluminosilicate Sludge", Material.clay);
+        aluminiumSludge.setTextureName("gui:aluminosilicate_sludge");
         aluminiumSludge.harvestType = "shovel";
         aluminiumSludge.harvestLevel = 0;
         aluminiumSludge.setHardness(0.3F);
@@ -3788,12 +3391,12 @@ public class FluxGearContent implements IFuelHandler {
         //Init & register tile-entity-bearing blocks.
 
         BlockNitrateEngine nitrateEngineBlock = new BlockNitrateEngine("Nitrate Engine", Material.rock);
-        nitrateEngineBlock.setBlockName("blockNitrateEngine");
-        //nitrateEngineBlock.setWaste(fluidSmog);
+        nitrateEngineBlock.setUnlocalizedName("blockNitrateEngine");
+        /**/nitrateEngineBlock.setWaste(fluidSmog);/**/
         cr.registerBlock(nitrateEngineBlock);
 
         BlockBloodEngine bloodEngineBlock = new BlockBloodEngine("Hemoionic Dynamo", Material.rock);
-        bloodEngineBlock.setBlockTextureName("gui:genericmachine");
+        bloodEngineBlock.setTextureName("gui:genericmachine");
         bloodEngineBlock.addTopTextureName("gui:genericmachine6_off");
         bloodEngineBlock.addTopTextureName("gui:genericmachine6_on");
         bloodEngineBlock.addSidesTextureName("gui:genericmachine_tank_0");
@@ -3808,9 +3411,9 @@ public class FluxGearContent implements IFuelHandler {
         cr.registerBlock(bloodEngineBlock);
 
         BlockBloodDonation donationBlock = new BlockBloodDonation("Blood Donation Station", Material.rock);
-        donationBlock.setBlockName("blockBloodDonation");
+        donationBlock.setUnlocalizedName("blockBloodDonation");
         donationBlock.setFluid(fluidBlood);
-        donationBlock.setBlockTextureName("gui:genericmachine");
+        donationBlock.setTextureName("gui:genericmachine");
         donationBlock.addTopTextureName("gui:blooddonationtop");
         donationBlock.addTopTextureName("gui:blooddonationtop");
         donationBlock.addSidesTextureName("gui:genericmachine_tank_0");
@@ -3825,7 +3428,7 @@ public class FluxGearContent implements IFuelHandler {
         cr.registerBlock(donationBlock);
 
         BlockOccultEngine occultEngineBlock = new BlockOccultEngine("Occult Engine", Material.rock);
-        occultEngineBlock.setBlockTextureName("gui:occultengine_bottom");
+        occultEngineBlock.setTextureName("gui:occultengine_bottom");
         occultEngineBlock.addTopTextureName("gui:occultengine_top");
         occultEngineBlock.addSidesTextureName("gui:occultengine_empty");
         occultEngineBlock.addSidesTextureName("gui:occultengine_1");
@@ -3837,16 +3440,16 @@ public class FluxGearContent implements IFuelHandler {
         cr.registerBlock(occultEngineBlock);
 
         BlockGunpowderEngine gunpowderEngineBlock = new BlockGunpowderEngine("Blast Engine", Material.rock);
-        gunpowderEngineBlock.setBlockName("blockGunpowderEngine");
+        gunpowderEngineBlock.setUnlocalizedName("blockGunpowderEngine");
         cr.registerBlock(gunpowderEngineBlock);
 
         BlockFuelBurner fuelBurnerBlock = new BlockFuelBurner("Fuel Burner", Material.rock);
-        fuelBurnerBlock.setBlockName("blockFuelBurner");
-        fuelBurnerBlock.setBlockTextureName("gui:retardcube");
+        fuelBurnerBlock.setUnlocalizedName("blockFuelBurner");
+        fuelBurnerBlock.setTextureName("gui:retardcube");
         cr.registerBlock(fuelBurnerBlock);
 
         //Init and register items.
-        TileEntityGunpowderEngine.thermite = itemThermite;
+        TileEntityGunpowderEngine.thermite = dustThermite;
 
         //Register chemistry.
         //Clay to slurry reaction.
@@ -3854,7 +3457,7 @@ public class FluxGearContent implements IFuelHandler {
         cr.registerReaction(clayDissolve);
 
         //Alum to aluminum dust reaction.
-        ReactionSpec alumDissolve = new ReactionSpec(fluidBase, new ItemStack(itemAlum), null, dustAluminium, true, false);
+        ReactionSpec alumDissolve = new ReactionSpec(fluidBase, coagulantAlum, null, dustAluminium, true, false);
         cr.registerReaction(alumDissolve);
 
         //Acids and bases kill grass dead.
@@ -3873,7 +3476,7 @@ public class FluxGearContent implements IFuelHandler {
         //Register aluminum ingot dissolution.
         if (aluminiumIngots.size() > 0) {
             for (ItemStack item : aluminiumIngots) {
-                ReactionSpec aluminumDissolve = new ReactionSpec(fluidAcid, item.copy(), null, new ItemStack(itemAlum));
+                ReactionSpec aluminumDissolve = new ReactionSpec(fluidAcid, item.copy(), null, coagulantAlum);
                 aluminumDissolve.soluteMin = 1; //Should be 1 to 1
                 aluminumDissolve.soluteAffected = true;
                 aluminumDissolve.solventAffected = false;
@@ -3887,6 +3490,7 @@ public class FluxGearContent implements IFuelHandler {
                 /* Note the stack size of 5: This allows ore quintupling early-game for those willing to spend the effort and fuel
                  * to go the Ore -> Aluminosillicate Slurry -> Alum -> Dissolved Alum -> Aluminium Dust -> Aluminium Ingot path.
                  */
+	            //TODO: Maybe 2.5 Al + 2 Fe + .5 Other for Bauxite
                 ReactionSpec aluminumDissolve = new ReactionSpec(fluidAcid, item.copy(), null, new ItemStack(aluminiumSludge, 5, 0));
                 aluminumDissolve.soluteMin = 1; //Should be 1 to 1
                 aluminumDissolve.soluteAffected = true;

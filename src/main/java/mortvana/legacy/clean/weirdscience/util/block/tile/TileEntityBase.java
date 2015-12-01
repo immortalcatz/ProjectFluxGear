@@ -20,7 +20,7 @@ public abstract class TileEntityBase extends TileEntity {
 
     protected boolean initialized = false;
 
-    protected void updateAdjacency (TileEntity toUpdate, int side) {
+    public void updateAdjacency (TileEntity toUpdate, int side) {
         adjTileEnts[side] = toUpdate;
         if (toUpdate instanceof TileEntityBase) {
             adjTEBs[side] = (TileEntityBase) toUpdate;

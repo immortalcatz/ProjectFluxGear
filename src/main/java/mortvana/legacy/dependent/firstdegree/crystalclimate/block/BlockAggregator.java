@@ -19,6 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
 import mortvana.legacy.errored.crystalclimate.block.tile.RedstoneAggregator;
 import mortvana.melteddashboard.util.helpers.ChatHelper;
+import mortvana.melteddashboard.util.helpers.StringHelper;
 
 public class BlockAggregator extends BlockContainer {
 	public String[] textureNames = { "redstone" };
@@ -66,14 +67,12 @@ public class BlockAggregator extends BlockContainer {
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-		if (player.isSneaking())
-			return false;
-		if (!player.worldObj.isRemote) {
+		if (!player.isSneaking() && !player.worldObj.isRemote) {
 			RedstoneAggregator logic = (RedstoneAggregator) world.getTileEntity(x, y, z);
 			float value = logic.getCrystalValue() / 10f;
 
-			ChatHelper.addChatMessage(player, StatCollector.translateToLocal("tooltip.crystalvalue") + ": " + value);
+			ChatHelper.addChatMessage(player, StringHelper.localize("tooltip.crystalvalue") + ": " + value);
 		}
-		return true;
+		return player.isSneaking();
 	}
 }

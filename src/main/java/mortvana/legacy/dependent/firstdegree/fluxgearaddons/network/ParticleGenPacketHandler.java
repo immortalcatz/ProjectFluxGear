@@ -14,8 +14,8 @@ public class ParticleGenPacketHandler implements IMessageHandler<ParticleGenPack
 
 	public IMessage onMessage(ParticleGenPacket message, MessageContext ctx) {
 		TileEntity tile = ctx.getServerHandler().playerEntity.worldObj.getTileEntity(message.tileX, message.tileY, message.tileZ);
-		TileParticleGenerator gen = tile != null && tile instanceof TileParticleGenerator?(TileParticleGenerator)tile:null;
-		if(gen != null) {
+		TileParticleGenerator gen = tile != null && tile instanceof TileParticleGenerator ? (TileParticleGenerator) tile : null;
+		if (gen != null) {
 			switch(message.buttonId) {
 				case 0:
 					gen.red = message.value;

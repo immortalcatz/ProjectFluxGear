@@ -45,22 +45,22 @@ public class BlockEssenceExtractor extends BlockContainer {
 	/**
 	 * A randomly called display update to be able to add particles or other items for display
 	 */
-	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
-		super.randomDisplayTick(par1World, par2, par3, par4, par5Random);
+	public void randomDisplayTick(World world, int x, int y, int z, Random random) {
+		super.randomDisplayTick(world, x, y, z, random);
 
-		for (int l = par2 - 2; l <= par2 + 2; ++l) {
-			for (int i1 = par4 - 2; i1 <= par4 + 2; ++i1) {
-				if (l > par2 - 2 && l < par2 + 2 && i1 == par4 - 1) {
-					i1 = par4 + 2;
+		for (int l = x - 2; l <= x + 2; ++l) {
+			for (int i1 = z - 2; i1 <= z + 2; ++i1) {
+				if (l > x - 2 && l < x + 2 && i1 == z - 1) {
+					i1 = z + 2;
 				}
 
-				if (par5Random.nextInt(16) == 0) {
-					for (int j1 = par3; j1 <= par3 + 1; ++j1) {
-						if (par1World.getBlock(l, j1, i1) == Blocks.bookshelf) {
-							if (!par1World.isAirBlock((l - par2) / 2 + par2, j1, (i1 - par4) / 2 + par4)) {
+				if (random.nextInt(16) == 0) {
+					for (int j1 = y; j1 <= y + 1; ++j1) {
+						if (world.getBlock(l, j1, i1) == Blocks.bookshelf) {
+							if (!world.isAirBlock((l - x) / 2 + x, j1, (i1 - z) / 2 + z)) {
 								break;
 							}
-							par1World.spawnParticle("enchantmenttable", (double) par2 + 0.5D, (double) par3 + 2.0D, (double) par4 + 0.5D, (double) ((float) (l - par2) + par5Random.nextFloat()) - 0.5D, (double) ((float) (j1 - par3) - par5Random.nextFloat() - 1.0F), (double) ((float) (i1 - par4) + par5Random.nextFloat()) - 0.5D);
+							world.spawnParticle("enchantmenttable", (double) x + 0.5D, (double) y + 2.0D, (double) z + 0.5D, (double) ((float) (l - x) + random.nextFloat()) - 0.5D, (double) ((float) (j1 - y) - random.nextFloat() - 1.0F), (double) ((float) (i1 - z) + random.nextFloat()) - 0.5D);
 						}
 					}
 				}
@@ -116,14 +116,12 @@ public class BlockEssenceExtractor extends BlockContainer {
 	 * Called upon block activation (right click on the block.)
 	 */
 	public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
-		if (par1World.isRemote) {
-			return true;
-		} else {
+		if (!par1World.isRemote) {
 			EssenceExtractorLogic logic = (EssenceExtractorLogic) par1World.getTileEntity(x, y, z);
 			logic.addEssence(player);
 			logic.getEssenceMessage(player);
-			return true;
 		}
+		return true;
 	}
 
 	/**
@@ -142,9 +140,9 @@ public class BlockEssenceExtractor extends BlockContainer {
 	 * When this method is called, your block should register all the icons it needs with the given IconRegister. This
 	 * is the only chance you get to register icons.
 	 */
-	public void registerIcons(IIconRegister par1IconRegister) {
-		blockIcon = par1IconRegister.registerIcon("crystal:extractor_side");
-		field_94461_a = par1IconRegister.registerIcon("crystal:extractor_top");
-		field_94460_b = par1IconRegister.registerIcon("crystal:extractor_bottom");
+	public void registerIcons(IIconRegister iconRegister) {
+		blockIcon = iconRegister.registerIcon("crystal:extractor_side");
+		field_94461_a = iconRegister.registerIcon("crystal:extractor_top");
+		field_94460_b = iconRegister.registerIcon("crystal:extractor_bottom");
 	}
 }

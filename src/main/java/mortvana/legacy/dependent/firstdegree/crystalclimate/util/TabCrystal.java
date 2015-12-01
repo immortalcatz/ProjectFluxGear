@@ -1,24 +1,13 @@
 package mortvana.legacy.dependent.firstdegree.crystalclimate.util;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
 
 import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
 
-public class TabCrystal extends CreativeTabs {
+public class TabCrystal extends FluxGearCreativeTab {
 
 	public TabCrystal(String label) {
-		super(label);
+		super(label, label, CrystalClimate.essenceStack);
 	}
 
-	@Override
-	public ItemStack getIconItemStack() {
-		return CrystalClimate.essenceStack;
-	}
-
-	@Override
-	public Item getTabIconItem() {
-		return CrystalClimate.essenceCrystal;
-	}
 }

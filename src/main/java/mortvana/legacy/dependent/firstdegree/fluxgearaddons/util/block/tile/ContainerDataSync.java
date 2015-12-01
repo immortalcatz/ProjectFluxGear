@@ -9,15 +9,12 @@ import mortvana.legacy.dependent.seconddegree.fluxgearaddons.network.ObjectPacke
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 
 public abstract class ContainerDataSync extends Container {
-	public ContainerDataSync() {
-	}
+	public ContainerDataSync() {}
 
 	public Object sendObject(TileObjectSync tile, short dataType, int index, Object object) {
-
 		for (Object player : crafters) {
 			ProjectFluxGear.network.sendTo(new ObjectPacket(tile, (byte) 2, index, object), (EntityPlayerMP) player);
 		}
-
 		return object;
 	}
 

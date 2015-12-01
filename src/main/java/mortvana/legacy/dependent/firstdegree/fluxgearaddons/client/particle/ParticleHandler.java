@@ -12,7 +12,7 @@ import mortvana.legacy.errored.fluxgearaddons.client.particle.ParticleDistortion
 public class ParticleHandler {
 
 	public static Minecraft mc = Minecraft.getMinecraft();
-	public static World theWorld;
+	public static World world;
 
 	public ParticleHandler() {
 	}
@@ -20,7 +20,7 @@ public class ParticleHandler {
 	public static EntityFX spawnParticle(String particleName, double x, double y, double z, double motionX, double motionY, double motionZ, float scale) {
 		if(mc != null && mc.renderViewEntity != null && mc.effectRenderer != null) {
 			int gameSettings = mc.gameSettings.particleSetting;
-			if(gameSettings == 1 && theWorld.rand.nextInt(3) == 0) {
+			if(gameSettings == 1 && world.rand.nextInt(3) == 0) {
 				gameSettings = 2;
 			}
 
@@ -35,7 +35,7 @@ public class ParticleHandler {
 				return null;
 			} else {
 				if(particleName.equals("distortionParticle")) {
-					particleDistortion = new ParticleDistortion(theWorld, x, y, z, (float)motionX, (float)motionY, (float)motionZ, scale);
+					particleDistortion = new ParticleDistortion(world, x, y, z, (float)motionX, (float)motionY, (float)motionZ, scale);
 				}
 
 				mc.effectRenderer.addEffect(particleDistortion);
@@ -51,9 +51,9 @@ public class ParticleHandler {
 	}
 
 	public static EntityFX spawnCustomParticle(EntityFX particle, double vewRange) {
-		if(mc != null && mc.renderViewEntity != null && mc.effectRenderer != null) {
+		if (mc != null && mc.renderViewEntity != null && mc.effectRenderer != null) {
 			int var14 = mc.gameSettings.particleSetting;
-			if(var14 == 1 && theWorld.rand.nextInt(3) == 0) {
+			if (var14 == 1 && world.rand.nextInt(3) == 0) {
 				var14 = 2;
 			}
 
@@ -74,6 +74,6 @@ public class ParticleHandler {
 	}
 
 	static {
-		theWorld = mc.theWorld;
+		world = mc.theWorld;
 	}
 }

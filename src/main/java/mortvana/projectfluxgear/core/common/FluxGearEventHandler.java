@@ -1,10 +1,13 @@
 package mortvana.projectfluxgear.core.common;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 
+import mortvana.projectfluxgear.core.config.MortTweaksConfig;
 import mortvana.projectfluxgear.thaumic.enchant.EnchantmentStabilizing;
 
 public class FluxGearEventHandler {
@@ -40,4 +43,11 @@ public class FluxGearEventHandler {
             }
         }
     }
+
+	@SubscribeEvent
+	public void killExpOrbs(EntityJoinWorldEvent event) {
+		if (MortTweaksConfig.disableExp && event.entity instanceof EntityXPOrb) {
+			event.setCanceled(true);
+		}
+	}
 }

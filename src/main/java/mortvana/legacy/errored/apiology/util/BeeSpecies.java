@@ -9,7 +9,6 @@ import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.IIconProvider;
 import forestry.api.genetics.*;
-import mortvana.legacy.errored.core.common.config.BeeConfig;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -352,9 +351,9 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider {
         }
     }
 
-    //private String getIconPath(){
-    //    ForestryHelper.Name.toLowerCase() + ":bees/default/";
-    //}
+    private String getIconPath(){
+        ForestryHelper.Name.toLowerCase() + ":bees/default/";
+    }
 
     /// --------- Unused Functions ---------------------------------------------
 

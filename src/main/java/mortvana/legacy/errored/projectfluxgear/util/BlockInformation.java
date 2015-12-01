@@ -2,8 +2,8 @@ package mortvana.legacy.errored.projectfluxgear.util;
 
 import mortvana.legacy.errored.core.common.FluxGearContent;
 import mortvana.legacy.errored.projectfluxgear.block.BlockAlloyAux;
-import mortvana.legacy.errored.projectfluxgear.block.BlockGravelOreAux;
-import mortvana.legacy.errored.projectfluxgear.block.BlockGravelOreMain;
+import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreAux;
+import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreMain;
 
 import mortvana.melteddashboard.block.FluxGearBlock;
 import mortvana.melteddashboard.block.FluxGearBlock.EnumBlockType;
@@ -107,17 +107,17 @@ public class BlockInformation {
     public static Block blockPoorOreMain = new FluxGearBlock(Material.rock, FluxGearContent.tabWorld, EnumBlockType.ORE, ItemBlockInformation.BLOCK_NAMES_ORE_PRIMARY, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_MAIN, TEXTURE_LOCATION_POOR_ORE).setBlockName("mortvana.projectfluxgear.poorOreMain");
     public static Block blockPoorOreAux = new FluxGearBlock(Material.rock, FluxGearContent.tabWorld, EnumBlockType.ORE, ItemBlockInformation.BLOCK_NAMES_ORE_SECONDARY, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_AUX, TEXTURE_LOCATION_POOR_ORE).setBlockName("mortvana.projectfluxgear.poorOreAux");
 
-    public static ItemBlock itemblockOreMain = new FluxGearItemBlock(blockOreMain, ItemBlockInformation.BLOCK_NAMES_ORE_PRIMARY, RARITY_ORES_MAIN, unlocOre);
-    public static ItemBlock itemblockOreAux = new FluxGearItemBlock(blockOreAux, ItemBlockInformation.BLOCK_NAMES_ORE_SECONDARY, RARITY_ORES_AUX, unlocOre);
+    public static ItemBlock itemBlockOreMain = new FluxGearItemBlock(blockOreMain, ItemBlockInformation.BLOCK_NAMES_ORE_PRIMARY, RARITY_ORES_MAIN, unlocOre);
+    public static ItemBlock itemBlockOreAux = new FluxGearItemBlock(blockOreAux, ItemBlockInformation.BLOCK_NAMES_ORE_SECONDARY, RARITY_ORES_AUX, unlocOre);
     public static ItemBlock ItemBlockStorageAux = new FluxGearItemBlock(blockStorageAux, NAMES_STORE_AUX, RARITY_STORE_AUX, unlocStore);
     public static ItemBlock ItemBlockAlloyMain = new FluxGearItemBlock(blockAlloyMain, NAMES_ALLOY_MAIN, RARITY_ALLOY_MAIN, unlocStore);
     public static ItemBlock ItemBlockAlloyAux = new FluxGearItemBlock(new BlockAlloyAux(), NAMES_ALLOY_AUX, RARITY_ALLOY_AUX, unlocStore);
-    public static ItemBlock itemblockStorageAlch = new FluxGearItemBlock(blockStorageAlch, NAMES_STORE_ALCH, RARITY_STORE_ALCH, unlocStore);
-    public static ItemBlock itemblockStorageAdv = new FluxGearItemBlock(blockStorageAdv, NAMES_STORE_ADV, RARITY_STORE_ADV, unlocStore);
-    public static ItemBlock itemblockEarthen = new FluxGearItemBlock(blockEarthen, NAMES_EARTH, RARITY_EARTH, unlocDefault);
-    public static ItemBlock itemblockGravelOreMain = new FluxGearItemBlock(new BlockGravelOreMain(), ItemBlockInformation.BLOCK_NAMES_ORE_PRIMARY, RARITY_ORES_MAIN, unlocGravel);
-    public static ItemBlock itemblockGravelOreAux = new FluxGearItemBlock(new BlockGravelOreAux(), ItemBlockInformation.BLOCK_NAMES_ORE_SECONDARY, RARITY_ORES_AUX, unlocGravel);
-    public static ItemBlock itemblockPoorOreMain = new FluxGearItemBlock(blockPoorOreMain, ItemBlockInformation.BLOCK_NAMES_ORE_PRIMARY, RARITY_ORES_MAIN, unlocPoore);
-    public static ItemBlock itemblockPoorOreAux = new FluxGearItemBlock(blockPoorOreAux, ItemBlockInformation.BLOCK_NAMES_ORE_SECONDARY, RARITY_ORES_AUX, unlocPoore);
+    public static ItemBlock itemBlockStorageAlch = new FluxGearItemBlock(blockStorageAlch, NAMES_STORE_ALCH, RARITY_STORE_ALCH, unlocStore);
+    public static ItemBlock itemBlockStorageAdv = new FluxGearItemBlock(blockStorageAdv, NAMES_STORE_ADV, RARITY_STORE_ADV, unlocStore);
+    public static ItemBlock itemBlockEarthen = new FluxGearItemBlock(blockEarthen, NAMES_EARTH, RARITY_EARTH, unlocDefault);
+    public static ItemBlock itemBlockGravelOreMain = new FluxGearItemBlock(new BlockGravelOreMain(), ItemBlockInformation.BLOCK_NAMES_ORE_PRIMARY, RARITY_ORES_MAIN, unlocGravel);
+    public static ItemBlock itemBlockGravelOreAux = new FluxGearItemBlock(new BlockGravelOreAux(), ItemBlockInformation.BLOCK_NAMES_ORE_SECONDARY, RARITY_ORES_AUX, unlocGravel);
+    public static ItemBlock itemBlockPoorOreMain = new FluxGearItemBlock(blockPoorOreMain, ItemBlockInformation.BLOCK_NAMES_ORE_PRIMARY, RARITY_ORES_MAIN, unlocPoore);
+    public static ItemBlock itemBlockPoorOreAux = new FluxGearItemBlock(blockPoorOreAux, ItemBlockInformation.BLOCK_NAMES_ORE_SECONDARY, RARITY_ORES_AUX, unlocPoore);
 
 }

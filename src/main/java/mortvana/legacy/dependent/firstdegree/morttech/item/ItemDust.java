@@ -52,7 +52,7 @@ public class ItemDust extends CraftingItem {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4) {
-        switch (stack.getItemDamage()) {
+        switch (stack.getMetadata()) {
             //TODO
             //Finish This
         case 0:

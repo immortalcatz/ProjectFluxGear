@@ -11,7 +11,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import mortvana.legacy.errored.weirdscience.block.BlockBloodEngine;
-import mortvana.legacy.dependent.firstdegree.weirdscience.block.tile.TileEntityOccultEngine;
+import mortvana.legacy.clean.weirdscience.block.tile.TileEntityOccultEngine;
 
 //TODO: Particle effect when an appropriate block is on top of this engine.
 public class BlockOccultEngine extends BlockBloodEngine {
