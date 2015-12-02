@@ -24,6 +24,8 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
+import mortvana.melteddashboard.common.MeltedDashboardCore;
+import mortvana.melteddashboard.util.helpers.LoadedHelper;
 import mortvana.melteddashboard.util.helpers.RegistryHelper;
 
 import mortvana.legacy.clean.morttweaks.block.BlockTweakedPortal;
@@ -145,7 +147,7 @@ public class MortTweaks {
 
 		tweakHunger = config.get("Hunger Tweak", "Tweak Hunger", true, "Incompatible with disabled hunger, allows for other tweaks").getBoolean(true);
 		maxFoodLevel = config.get("Hunger Tweak", "Maximum food level", 20, "Vanilla default: 20").getInt(20);
-		regenerationThreshold = config.get("Hunger Tweak", "Hunger regeneration threshold", 18, "Incompatible with always regeneration. Vanilla default: 18").getInt(18);
+		regenerationThreshold = config.get("Hunger Tweak", "Hunger regeneration threshold", 18, "Incompatible with constant regeneration. Vanilla default: 18").getInt(18);
 		alwaysHungerRegenerate = config.get("Hunger Tweak", "Always regenerate from hunger", true, "Player always regenerates from hunger. Goes slower at lower food levels").getBoolean(true);
 		foodExhaustion = (float) config.get("Hunger Tweak", "Food Depletion", 0, "How much hunger should be drained per heart healed. Vanilla default: 3.0").getDouble(0);
 
@@ -165,6 +167,7 @@ public class MortTweaks {
 		alwaysDropExp = config.get("Gameplay Tweak", "Everywhere Exp", false, "Experience orbs drop from more than player kills").getBoolean(false);
 		sugarCaneHeight = config.get("Gameplay Tweak", "Sugar Cane Height", 3).getInt(3);
 		poisonTime = config.get("Gameplay Tweak", "Poison Time", 50, "Ticks between poison damage. Vanilla Default: 25").getInt(50);
+		//animalBones
 
 		creeperBehavior = config.get("Mob Behavior", "Slightly Smarter Creepers", true, "Creepers change targets towards the closer aggressor when hit").getBoolean(true);
 		mounts = config.get("Mob Behavior", "Jockeyfication", true, "Certain mobs may spawn with extra mobs attached").getBoolean(true);
@@ -193,8 +196,9 @@ public class MortTweaks {
 
 		GameRegistry.registerPlayerTracker(new TweakPlayerTracker());
 		MinecraftForge.EVENT_BUS.register(proxy);
-		if (disableExp)
-			MinecraftForge.EVENT_BUS.register(new ExpOrbListener());
+		// We've moved to FluxGearEventHandler!
+		//if (disableExp)
+		//	MinecraftForge.EVENT_BUS.register(new ExpOrbListener());
 	}
 
 	@EventHandler
@@ -299,7 +303,7 @@ public class MortTweaks {
 			}
 
 			//TODO: GameRegistry version
-			if (Loader.isModLoaded("TConstruct")) {
+			if (LoadedHelper.isTinkersLoaded) {
 				Object o = getStaticItem("strangeFood", "tconstruct.common.TContent");
 				if (o != null && o instanceof Item)
 					((Item) o).setMaxStackSize(4);
@@ -309,7 +313,7 @@ public class MortTweaks {
 					((Item) o).setMaxStackSize(4);
 			}
 
-			if (Loader.isModLoaded("Natura")) {
+			if (LoadedHelper.isNaturaLoaded) {
 				Object o = getStaticItem("waterDrop", "mods.natura.common.NContent");
 				if (o != null && o instanceof Item)
 					((Item) o).setMaxStackSize(8);
@@ -383,7 +387,7 @@ public class MortTweaks {
 			}
 			return null;
 		} catch (Exception e) {
-			System.out.println("Could not find " + name);
+			MeltedDashboardCore.logger.warn("Could not find " + name);
 			return null;
 		}
 	}

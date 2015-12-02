@@ -17,11 +17,9 @@ public class FluxGearEventHandler {
         int t;
         if (event.entity instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.entity;
-
             if (!event.entity.worldObj.isRemote) {
                 if (player.ticksExisted % 40 == 0) {
                     t = 0;
-
                     while (true) {
                         InventoryPlayer inventory = player.inventory;
                         if (t >= InventoryPlayer.getHotbarSize()) {
@@ -32,11 +30,9 @@ public class FluxGearEventHandler {
                             }
                             break;
                         }
-
                         if (inventory.mainInventory[t] != null) {
                             EnchantmentStabilizing.canDoRepair(inventory.mainInventory[t], player);
                         }
-
                         ++t;
                     }
                 }
