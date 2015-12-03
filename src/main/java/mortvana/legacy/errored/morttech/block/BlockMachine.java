@@ -79,8 +79,7 @@ public class BlockMachine extends InventoryBlock {
 
 
 }
-    //TODO
-    //Doesn't this need this
+    //TODO: Doesn't this need this
     public TileEntity getBlockTileEntity(){
         return null;
     }
@@ -101,8 +100,7 @@ public class BlockMachine extends InventoryBlock {
         return ProjectFluxGear.instance;
     }
 
-    //TODO
-    //Fix this so other machines will work
+    //TODO: Fix this so other machines will work
     @Override
     public String[] getTextureNames()  {
         return new String[] { "woodmill_front", "woodmill_front_active", "woodmill_side", "woodmill_top" };

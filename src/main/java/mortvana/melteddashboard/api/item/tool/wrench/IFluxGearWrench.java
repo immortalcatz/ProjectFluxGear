@@ -27,7 +27,7 @@ public interface IFluxGearWrench {
 	 */
 	public boolean hideFacades(ItemStack wrench);
 
-	//TODO:
+	//TODO: Moar Functions?
 	//public void onLeftClick(); //onSneakLeftClick, onLeftClickPressed, onLeftClickReleased, onSneakLeftClickPressed, onSneakLeftClickReleased, whileLeftClickHeld, whileSneakLeftClickHeld
 	//public void onRightClick(); //onSneakRightClick, onRightClickPressed, onRightClickReleased, onSneakRightClickPressed, onSneakRightClickReleased, whileRightClickHeld, whileSneakRightClickHeld
 }

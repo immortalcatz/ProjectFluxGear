@@ -27,6 +27,7 @@ public class FleshGolem extends EntityGolem implements IRangedAttackMob {
 	/**
 	 * Attack the specified entity using a ranged attack.
 	 */
+	//TODO: Fix EntityFleshProjectile
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase targetentity, float par2) {
 		final EntityFleshProjectile entitythrownflesh = new EntityFleshProjectile(worldObj, this);

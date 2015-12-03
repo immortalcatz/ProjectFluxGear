@@ -78,6 +78,7 @@ public class CrystalLogic extends TileEntity {
 	}
 
 	/* Packets */
+	//TODO: FML Packets
 	@Override
 	public Packet getDescriptionPacket() {
 		NBTTagCompound tag = new NBTTagCompound();
@@ -85,6 +86,7 @@ public class CrystalLogic extends TileEntity {
 		return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
 	}
 
+	//TODO: FML Packets
 	@Override
 	public void onDataPacket(INetworkManager net, Packet132TileEntityData packet) {
 		readCustomNBT(packet.data);

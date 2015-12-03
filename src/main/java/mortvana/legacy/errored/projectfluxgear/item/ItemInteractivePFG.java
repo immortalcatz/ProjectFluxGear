@@ -14,7 +14,7 @@ import mortvana.melteddashboard.item.FluxGearItem;
 
 public class ItemInteractivePFG extends FluxGearItem {
 
-	public static Block congealedBlock = FluxGearContent.blockCongealedBlood;
+	public static Block congealedBlock = FluxGearContent.blockCongealedBlood; //TODO: Fix location pointer reference thingy
 
 	public ItemInteractivePFG() {
 		super("projectfluxgear");

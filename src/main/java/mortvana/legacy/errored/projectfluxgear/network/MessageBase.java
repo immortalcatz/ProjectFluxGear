@@ -98,7 +98,7 @@ public class MessageBase {
 		public void onMessage(MessageCore message, MessageContext context) {
 			if (this == TileMetadata) {
 				MessageBase packet = new MessageBase(message);
-				TileEntity tile = packet.getTileEntity(ProjectFluxGear.proxy.getWorld());
+				TileEntity tile = packet.getTileEntity(ProjectFluxGear.proxy.getWorld()); //TODO: Alternate form?
 				if (tile instanceof BlockMetadata.TileEntityMetadata) {
 					((BlockMetadata.TileEntityMetadata) tile).setTileMetadata(packet.meta, true);
 				}

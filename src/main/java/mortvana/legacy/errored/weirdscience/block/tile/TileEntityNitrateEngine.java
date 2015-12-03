@@ -487,6 +487,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 		}
 	}
 
+	//TODO: Reinstate IBlockMetaPower for the time being.
 	private void TurnBlockOff() {
 		if (wasRunningLastBurn) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
@@ -497,6 +498,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 		wasRunningLastBurn = false;
 	}
 
+	//TODO: Reinstate IBlockMetaPower for the time being.
 	private void TurnBlockOn() {
 		if (wasRunningLastBurn) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
@@ -539,6 +541,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 	// engineItemStacks[1].stackSize += toBurn;
 	// }
 
+	//TODO: Where did our Smog go?
 	/*
 	 * Emit deadly smog. This particular implementation of recieveExhaust() is
 	 * only smart enough to operate with fluids whose block extends

@@ -34,7 +34,7 @@ public class BlockTweakedFire extends BlockFire {
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z) {
 		if (world.provider.dimensionId > 0 || world.getBlock(x, y - 1, z) != Blocks.obsidian || !Blocks.portal.tryToCreatePortal(world, x, y, z)) {
-			if (!World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) && canNeighborBurn(world, x, y, z)) {
+			if (!World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) && canNeighborBurn(world, x, y, z)) { //TODO: Effing AccessTransformer
 				world.setBlockToAir(x, y, z);
 			} else {
 				world.scheduleBlockUpdate(x, y, z, this, tickRate(world) + world.rand.nextInt(10));

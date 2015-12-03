@@ -74,7 +74,7 @@ public class ItemFocusIllumination extends ItemFocusBasic {
 				if (mop.sideHit == 5) {
 					x++;
 				}
-				world.setBlock(x, y, z, ThaumicContent.blockWitor, 0, 2);
+				world.setBlock(x, y, z, ThaumicContent.blockWitor, 0, 2); //TODO: Modify reference to our fake air
 			}
 		}
 		player.swingItem();

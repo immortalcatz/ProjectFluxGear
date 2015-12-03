@@ -185,7 +185,7 @@ public class FluxGearItem extends Item {
 		return itemMap.containsKey(meta) ? EnumRarity.values()[itemMap.get(meta).rarity] : EnumRarity.common;
 	}
 
-	//TODO
+	//TODO: Reinstate SecurityHelper
 	@Override
 	public boolean hasCustomEntity(ItemStack itemstack) {
 		return false; //SecurityHelper.isSecure(itemstack);

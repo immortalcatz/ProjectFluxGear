@@ -22,7 +22,7 @@ public class BlockInformation {
     // Materials
     public static final Material materialFluidGhastTear = new MaterialLiquid(MapColor.snowColor);
     public static final Material materialFluidSmog = new MaterialLiquid(MapColor.brownColor);
-    public static Material materialSoilOre = new Material(MapColor.sandColor).setRequiresTool();
+    public static Material materialSoilOre = new Material(MapColor.sandColor).setRequiresTool(); //TODO: Effing AccessTransformer!
 
     // Names
     public static final String[] rockNames = new String[] { "mica", "andesite", "rhyolite", "gabrro", "diorite", "dolomite", "chert", "phyllite", "kimberlite", "dacite", "serpentine", "larvikite", "schalstein", "greenschist", "hornblendeBiotiteGranite", "pitchstone" };
@@ -97,6 +97,7 @@ public class BlockInformation {
     //TODO: More Redstone Signal Stuff
 	/* *=-=-=-=* Automagically Constructed Blocks *=-=-=-=* */
 
+    //TODO: Fix String/IIcon Situation...
     public static Block blockOreMain = new FluxGearBlock(Material.rock, FluxGearContent.tabWorld, EnumBlockType.ORE, ItemBlockInformation.BLOCK_NAMES_ORE_PRIMARY, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_MAIN, TEXTURE_LOCATION_ORE).setBlockName("mortvana.projectfluxgear.oreMain");
     public static Block blockOreAux = new FluxGearBlock(Material.rock, FluxGearContent.tabWorld, EnumBlockType.ORE, ItemBlockInformation.BLOCK_NAMES_ORE_SECONDARY, TEXTURES_FULL, HARDNESS_ORES, RESISTANCE_ORES, LIGHT_ORES_AUX, TEXTURE_LOCATION_ORE).setBlockName("mortvana.projectfluxgear.oreAux");
     public static Block blockStorageAux = new FluxGearBlock(Material.iron, FluxGearContent.tabMaterials, EnumBlockType.STORAGE, NAMES_STORE_AUX, TEXTURES_FULL, HARDNESS_STORE_AUX, RESISTANCE_STORE_AUX, LIGHT_STORE_AUX, TEXTURE_LOCATION_BLOCK).setBlockName("mortvana.projectfluxgear.storageAux");

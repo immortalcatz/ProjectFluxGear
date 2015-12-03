@@ -21,9 +21,9 @@ import net.minecraftforge.event.entity.living.*;
 
 public class CommonProxy {
 
-	public CommonProxy() { }
+	public CommonProxy() {}
 
-	public void postInit() { }
+	public void postInit() {}
 
 	//Events
 
@@ -33,7 +33,7 @@ public class CommonProxy {
             EntityLivingBase living = event.entityLiving;
             ItemStack firework = new ItemStack(Items.fireworks);
             NBTTagCompound compound = new NBTTagCompound();
-            NBTTagCompound tags = new NBTTagCompound("Fireworks");
+            NBTTagCompound tags = new NBTTagCompound("Fireworks"); //TODO: NBT Constructor Changes
             NBTTagCompound explosion = new NBTTagCompound();
             explosion.setByte("Type", (byte) 3);
             explosion.setByte("Flight", (byte) 3);
@@ -59,7 +59,7 @@ public class CommonProxy {
 		} else if (MortTweaks.feathers && living.getClass() == EntityChicken.class) {
 			addDrops(event, new ItemStack(Items.feather, (random.nextInt(5) + random.nextInt(1 + event.lootingLevel) + random.nextInt(1 + event.lootingLevel) + 1)));
 		} else if (living instanceof EntityEnderman) {
-			Block block = ((EntityEnderman) living).getCarried();
+			Block block = ((EntityEnderman) living).getCarriedBlock();
 			if (block != null) {
 				addDrops(event, new ItemStack(block, 1, ((EntityEnderman) living).getCarryingData()));
 			}
@@ -93,7 +93,7 @@ public class CommonProxy {
 	@SubscribeEvent
 	public void onHurt(LivingHurtEvent event) {
 		if (MortTweaks.alwaysDropExp && validSourceTypes(event.source))
-			event.entityLiving.recentlyHit += 50;
+			event.entityLiving.recentlyHit += 50; //TODO: AccessTransformer Stuff
 
 		if (MortTweaks.creeperBehavior) {
 			EntityLivingBase reciever = event.entityLiving;

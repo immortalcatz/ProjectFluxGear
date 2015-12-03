@@ -46,7 +46,7 @@ public class FluxGearItemBlockExtendedMetadata extends ItemBlockMetadata {
 		return false;
 	}
 
-	//TODO
+	//TODO: Todo?
 	/*
 	public boolean hasCustomEntity(ItemStack itemstack) {
 		return SecurityHelper.isSecure(itemstack);

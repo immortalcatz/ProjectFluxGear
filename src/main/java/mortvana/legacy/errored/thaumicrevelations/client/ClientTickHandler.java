@@ -10,6 +10,7 @@ import thaumcraft.client.gui.GuiResearchRecipe;
 //import vazkii.tinkerer.client.core.handler.kami.ToolModeHUDHandler;
 //import vazkii.tinkerer.client.gui.GuiResearchPeripheral;
 
+//TODO: 1.7.10 Version...
 public class ClientTickHandler implements ITickHandler {
 	public static int elapsedTicks;
 

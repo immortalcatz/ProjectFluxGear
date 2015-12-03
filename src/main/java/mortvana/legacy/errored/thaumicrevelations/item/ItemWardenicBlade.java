@@ -75,7 +75,7 @@ public class ItemWardenicBlade extends Item implements IWardenicEquipment {
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
 		if (stack.getMetadata() != stack.getMaxDurability()) {
-			DamageSource damageSource = new FluxGearDamageSources("warden", player);
+			DamageSource damageSource = new FluxGearDamageSources("warden", player); //TODO: DamageSource generation?
 			entity.attackEntityFrom(damageSource, 5);
 			WardenicChargeHelper.getUpgrade(stack).onAttack(stack, player, entity);
 			stack.setMetadata(stack.getMetadata() + 1);

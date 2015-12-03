@@ -3,6 +3,7 @@ package mortvana.legacy.errored.morttweaks.client;
 import java.util.Random;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.settings.GameSettings;
@@ -25,6 +26,7 @@ import mortvana.legacy.errored.morttweaks.common.CommonProxy;
 import mortvana.legacy.errored.morttweaks.common.MortTweaks;
 import mortvana.legacy.dependent.firstdegree.morttweaks.gui.GuiIngameForgeFix;
 import mortvana.legacy.errored.morttweaks.util.TweakTicker;
+import org.lwjgl.opengl.GL11;
 
 public class ClientProxy extends CommonProxy {
 	Minecraft mc = Minecraft.getMinecraft();
@@ -32,7 +34,7 @@ public class ClientProxy extends CommonProxy {
 
 	public ClientProxy() {
 		if (MortTweaks.fancyGrass)
-			TickRegistry.registerTickHandler(new TweakTicker(), Side.CLIENT);
+			TickRegistry.registerTickHandler(new TweakTicker(), Side.CLIENT); //TODO: 1.7.10 Version...
 		if (MortTweaks.disableExpBar)
 			MinecraftForge.EVENT_BUS.register(new GuiIngameForgeFix(mc));
 	}
@@ -66,7 +68,7 @@ public class ClientProxy extends CommonProxy {
         {
             if (updateResolution)
             {
-                res = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
+                res = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight); //TODO: New Constructor
                 scaledWidth = res.getScaledWidth();
                 scaledHeight = res.getScaledHeight();
                 updateResolution = false;
@@ -84,9 +86,9 @@ public class ClientProxy extends CommonProxy {
                 ItemStack stack = mc.thePlayer.getCurrentEquippedItem();
                 if (stack != null)
                 {
-                    if (MortTweaks.crosshairBlacklist[stack.itemID])
+                    if (MortTweaks.crosshairBlacklist[stack.itemID]) //TODO: 1.7.10 Version...
                         event.setCanceled(true);
-                    else if (MortTweaks.rangedCrosshair[stack.itemID])
+                    else if (MortTweaks.rangedCrosshair[stack.itemID]) //TODO: 1.7.10 Version...
                     {
                         mc.getTextureManager().bindTexture(icons);
                         GL11.glEnable(GL11.GL_BLEND);
@@ -107,7 +109,7 @@ public class ClientProxy extends CommonProxy {
             {
                 updateCounter++;
 
-                ScaledResolution scaledresolution = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
+                ScaledResolution scaledresolution = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight); //TODO: New Constructor
                 scaledWidth = scaledresolution.getScaledWidth();
                 scaledHeight = scaledresolution.getScaledHeight();
                 int xBasePos = scaledWidth / 2 - 91;
@@ -120,10 +122,10 @@ public class ClientProxy extends CommonProxy {
                     highlight = false;
                 }
 
-                AttributeInstance attrMaxHealth = this.mc.thePlayer.getEntityAttribute(SharedMonsterAttributes.maxHealth);
+                AttributeInstance attrMaxHealth = this.mc.thePlayer.getEntityAttribute(SharedMonsterAttributes.maxHealth); //TODO: Update to 1.7.10
                 int health = MathHelper.ceiling_float_int(mc.thePlayer.getHealth());
                 int healthLast = MathHelper.ceiling_float_int(mc.thePlayer.prevHealth);
-                float healthMax = (float) attrMaxHealth.getAttributeValue();
+                float healthMax = (float) attrMaxHealth.getAttributeValue(); //TODO: Update to 1.7.10
                 if (healthMax > 20)
                     healthMax = 20;
                 float absorb = this.mc.thePlayer.getAbsorptionAmount();

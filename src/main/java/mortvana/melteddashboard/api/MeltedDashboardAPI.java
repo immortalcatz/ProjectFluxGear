@@ -2,7 +2,7 @@ package mortvana.melteddashboard.api;
 
 import org.apache.logging.log4j.Logger;
 
-//TODO
+//TODO: Actual API Functionality
 public class MeltedDashboardAPI {
 	public static Object mod;
 

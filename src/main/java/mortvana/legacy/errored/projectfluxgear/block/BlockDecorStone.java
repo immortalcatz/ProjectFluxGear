@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockDecorStone extends Block {
+    public String[] rockNames; //TODO: Populate
     public IIcon[] icons;
     public float[] hardness;
     public float[] resistance;
@@ -111,7 +112,7 @@ public class BlockDecorStone extends Block {
     }
 
     public String getUnlocalizedName() {
-        return "tile." + localName;
+        return "tile." + localName; //TODO: Fix this
     }
 
     public int damageDropped(int meta) {
@@ -124,9 +125,9 @@ public class BlockDecorStone extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
-        this.icons = new IIcon[rockNames.length];
-        for(int i = 0; i < this.icons.length; ++i) {
-            this.icons[i] = iconRegister.registerIcon("mechanicsstoneworks:rocks/" + rockNames[i]);
+        icons = new IIcon[rockNames.length];
+        for (int i = 0; i < icons.length; ++i) {
+            icons[i] = iconRegister.registerIcon("mechanicsstoneworks:rocks/" + rockNames[i]);
         }
         overlayTexture = iconRegister.registerIcon("mechanicsstoneworks:overlays/" + overlayType);
     }

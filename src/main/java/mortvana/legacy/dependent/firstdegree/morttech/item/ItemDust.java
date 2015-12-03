@@ -53,8 +53,7 @@ public class ItemDust extends CraftingItem {
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4) {
         switch (stack.getMetadata()) {
-            //TODO
-            //Finish This
+            //TODO: Finish This
         case 0:
             StatCollector.translateToLocal("Good for Making Paper or Charcoal.");
             StatCollector.translateToLocal("Also good for Cleaning up Puke.");

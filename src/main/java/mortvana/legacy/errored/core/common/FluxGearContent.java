@@ -652,8 +652,7 @@ public class FluxGearContent implements IFuelHandler {
         //GameRegistry.registerCustomItemStack("machineLadderControl", new ItemStack(tileMachine, 1, 23));
         //GameRegistry.registerCustomItemStack("machineRopeLadder", new ItemStack(tileMachine, 1, 24));
 
-        //TODO
-        //Refactor commented areas for Tier changes
+        //TODO: Refactor commented areas for Tier changes
         GameRegistry.registerCustomItemStack("machineWireCut", new ItemStack(tileMachine, 1, 8));
         GameRegistry.registerCustomItemStack("machineAssemblyBase", new ItemStack(tileMachine, 1, 10));
         GameRegistry.registerCustomItemStack("machineAssembler", new ItemStack(tileMachine, 1, 11));
@@ -1498,7 +1497,7 @@ public class FluxGearContent implements IFuelHandler {
     }
 
     public void loadFluids() {
-        //TODO-- Redo
+        //TODO: Redo
         fluidGhastTear = new Fluid("ghastTear").setLuminosity(3).setDensity(1850).setViscosity(1325).setTemperature(335).setRarity(EnumRarity.rare);
         fluidLye = new Fluid("lye").setLuminosity(0).setDensity(1750).setViscosity(1350).setTemperature(295).setRarity(EnumRarity.common);
         fluidAcid = new Fluid("acid").setLuminosity(0).setDensity(1750).setViscosity(1350).setTemperature(295).setRarity(EnumRarity.common);
@@ -2026,7 +2025,7 @@ public class FluxGearContent implements IFuelHandler {
     //29000-29999 Crystallized Ores */
 
     public void metalCraftingRecipes() {
-        //TODO-- UPDATE
+        //TODO: UPDATE
         ItemHelper.addStorageRecipe(ingotZinc, "nuggetZinc");
         ItemHelper.addStorageRecipe(ingotBismuth, "nuggetBismuth");
         ItemHelper.addStorageRecipe(ingotManganese, "nuggetManganese");
@@ -2151,7 +2150,7 @@ public class FluxGearContent implements IFuelHandler {
     }
 
     public void furnaceRecipes() {
-        //TODO-- UPDATE
+        //TODO: UPDATE
         // Ore to Ingot
         GameRegistry.addSmelting(oreSphalerite, ingotZinc, 0.7F);
         GameRegistry.addSmelting(oreBismuthinite, ingotBismuth, 0.9F);
@@ -2497,7 +2496,7 @@ public class FluxGearContent implements IFuelHandler {
     public static ItemStack blockSteelMagnet;
     public static ItemStack blockHSLAMagnet;
     public static ItemStack blockAmber;
-    public static ItemStack blockNichrome; //TODO
+    public static ItemStack blockNichrome; //TODO: Make Standard Metal
     public static ItemStack blockPolycarbide;
 
     public static ItemStack blockIridiumSands;

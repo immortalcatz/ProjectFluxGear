@@ -101,7 +101,7 @@ public class EssenceExtractorLogic extends TileEntityEnchantmentTable {
 			if (bookSpread < 0.5F || rand.nextInt(40) == 0) {
 				float f = field_70373_d;
 
-				/*do { //TODO Not sure if this actually does anything...
+				/*do { //TODO: Not sure if this actually does anything...
 					this.field_70373_d += (float) (rand.nextInt(4) - rand.nextInt(4));
 				} while (f == this.field_70373_d);*/
 			}

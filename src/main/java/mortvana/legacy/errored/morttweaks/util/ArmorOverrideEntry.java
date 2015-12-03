@@ -19,7 +19,7 @@ public class ArmorOverrideEntry {
 		material = armor.getArmorMaterial();
 		renderIndex = armor.renderIndex;
 		armorType = armor.armorType;
-		unlocalizedName = armor.unlocalizedName;
+		unlocalizedName = armor.unlocalizedName; //TODO: Effing AccessTransformer!
 		textureName = armor.iconString;
 	}
 

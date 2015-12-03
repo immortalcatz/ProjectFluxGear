@@ -387,6 +387,7 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 		}
 	}
 
+	//TODO: Reinstate IBlockMetaPower for the time being.
 	//Do metadata things to our block, changing its textures based on if the engine is on or off.
 	private void TurnBlockOff() {
 		if (wasRunningLastBurn) {
@@ -398,6 +399,7 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 		wasRunningLastBurn = false;
 	}
 
+	//TODO: Reinstate IBlockMetaPower for the time being.
 	//Do metadata things to our block, changing its textures based on if the engine is on or off.
 	private void TurnBlockOn() {
 		if (!wasRunningLastBurn) {

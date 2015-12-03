@@ -37,7 +37,6 @@ import mortvana.legacy.errored.morttweaks.block.BlockTweakedFire;
 import mortvana.legacy.errored.morttweaks.block.BlockTweakedTNT;
 import mortvana.legacy.clean.morttweaks.block.BlockTweakedSugarCane;
 import mortvana.legacy.errored.morttweaks.entity.EntityTweakedZombie;
-import mortvana.legacy.dependent.firstdegree.morttweaks.util.ExpOrbListener;
 import mortvana.legacy.clean.morttweaks.item.ItemTweakedStew;
 import mortvana.legacy.errored.morttweaks.util.*;
 
@@ -46,7 +45,7 @@ public class MortTweaks {
 	@SidedProxy(clientSide = "mortvana.tweaks.client.ClientProxy", serverSide = "mortvana.legacy.errored.morttweaks.common.CommonProxy")
 	public static CommonProxy proxy;
 
-	/* TODO:
+	/* TODO: These things:
 	 *
 	 * Good:
 	 * //Kill all achievements
@@ -192,11 +191,8 @@ public class MortTweaks {
 			MortTweaks.rangedCrosshair[rangeTarget[i]] = true;*/
 		config.save();
 
-		GameRegistry.registerPlayerTracker(new TweakPlayerTracker());
+		GameRegistry.registerPlayerTracker(new TweakPlayerTracker()); //TODO: 1.7.10 Version...
 		MinecraftForge.EVENT_BUS.register(proxy);
-		// We've moved to FluxGearEventHandler!
-		//if (disableExp)
-		//	MinecraftForge.EVENT_BUS.register(new ExpOrbListener());
 	}
 
 	@EventHandler
@@ -233,7 +229,7 @@ public class MortTweaks {
 		}
 
 		if (endermenDontPickUpBlocks) {
-			EntityEnderman.carriableBlocks = new boolean[Block.blocksList.length];
+			EntityEnderman.carriableBlocks = new boolean[Block.blocksList.length]; //TODO: 1.7.10 Version...
 		}
 
 		if (changeArmorCalculations) {
@@ -343,7 +339,7 @@ public class MortTweaks {
 		}
 
 		if (poisonTime != 25) {
-			Potion.potionTypes[Potion.poison.id] = new TweakedPoisonStatus(19, true, 5149489).setPotionName("potion.poison").setIconIndex(6, 0);
+			Potion.potionTypes[Potion.poison.id] = new TweakedPoisonStatus(19, true, 5149489).setPotionName("potion.poison").setIconIndex(6, 0); //TODO: AccessTransformer Stuff
 		}
 
         if (overridePortal) {
@@ -360,7 +356,7 @@ public class MortTweaks {
 
 	public static void overrideFoodStats(EntityPlayer player) {
 		overrideHungerHud = disableHunger;
-		player.foodStats = new TweakedFoodStats(player);
+		player.foodStats = new TweakedFoodStats(player); //TODO: Effing AccessTransformer
 	}
 
 	public static Object getStaticItem(String name, String classPackage) {

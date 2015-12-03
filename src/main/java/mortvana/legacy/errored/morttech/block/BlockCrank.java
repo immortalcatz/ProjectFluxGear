@@ -44,8 +44,7 @@ public class BlockCrank extends Block {
         return true;
     }
 
-    //TODO
-    //Fixing...
+    //TODO: Fixing...
     @Override
     public boolean onBlockActivated(World world, int xCoord, int yCoord, int zCoord, EntityPlayer entPlayer) {
 

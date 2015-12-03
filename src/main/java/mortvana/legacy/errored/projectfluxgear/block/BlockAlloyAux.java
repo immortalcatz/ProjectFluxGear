@@ -12,6 +12,7 @@ import static mortvana.legacy.errored.projectfluxgear.util.BlockInformation.*;
 public class BlockAlloyAux extends BlockFluxGear {
 
     public BlockAlloyAux() {
+        //TODO: Fix String/IIcon Situation...
         super(Material.iron, FluxGearContent.tabMaterials, FluxGearBlock.EnumBlockType.STORAGE, NAMES_ALLOY_AUX, TEXTURES_FULL, HARDNESS_ALLOY_AUX, RESISTANCE_ALLOY_AUX, LIGHT_ALLOY_AUX, TEXTURE_LOCATION_BLOCK);
         setUnlocalizedName("mortvana.projectfluxgear.alloyAux");
     }
@@ -30,5 +31,5 @@ public class BlockAlloyAux extends BlockFluxGear {
 
 }
 
-//BlockStorageRandom
-//BlockPFGGlass
+//TODO: BlockStorageRandom
+//TODO: BlockPFGGlass

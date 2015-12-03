@@ -273,7 +273,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 		}
 	}
 
-	//TODO: This
+	//TODO: Does this work?
 	@Override
 	@SuppressWarnings("unchecked") //Stupid Mojang, why you so derpcode?
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {

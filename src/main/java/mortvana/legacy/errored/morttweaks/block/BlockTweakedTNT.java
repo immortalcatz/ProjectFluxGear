@@ -30,12 +30,12 @@ public class BlockTweakedTNT extends BlockTNT {
 
 	@Override
 	public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5) {
-		//this.primeTnt(par1World, par2, par3, par4, par5, (EntityLivingBase) null);
+		this.primeTnt(par1World, par2, par3, par4, par5, (EntityLivingBase) null);
 	}
 
 	@Override
 	public boolean removeBlockByPlayer(World world, EntityPlayer player, int x, int y, int z) {
-		ItemStack stack = player != null ? player.getCurrentItemOrArmor(0) : null;
+		ItemStack stack = player != null ? player.getCurrentItemOrArmor(0) : null; //TODO: 1.7.10 Method
 		if (player == null || !player.capabilities.isCreativeMode && (stack == null || (!(stack.getItem() instanceof ItemShears) && !EnchantmentHelper.getSilkTouchModifier(player)))) {
 			this.primeTnt(world, x, y, z, world.getBlockMetadata(x, y, z), player);
 			world.setBlockToAir(x, y, z);
@@ -44,7 +44,7 @@ public class BlockTweakedTNT extends BlockTNT {
 		return world.setBlockToAir(x, y, z);
 	}
 
-	@Override
+	@Override //TODO: Did mappings change?
 	public void primeTnt(World par1World, int par2, int par3, int par4, int par5, EntityLivingBase par6EntityLivingBase) {
 		if (!par1World.isRemote) {
 			EntityTNTPrimed entitytntprimed = new EntityTNTPrimed(par1World, (double) ((float) par2 + 0.5F), (double) ((float) par3 + 0.5F), (double) ((float) par4 + 0.5F), par6EntityLivingBase);

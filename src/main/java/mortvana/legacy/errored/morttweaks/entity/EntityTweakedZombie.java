@@ -138,7 +138,7 @@ public class EntityTweakedZombie extends EntityZombie {
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData entityData) {
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData entityData) { //TODO: Clone EntityZombie.GroupData?
 		Object p_110161_1_1 = super.onSpawnWithEgg(p_110161_1_);
 		float f = this.worldObj.getTensionFactorForBlock(this.posX, this.posY, this.posZ);
 		this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * f);

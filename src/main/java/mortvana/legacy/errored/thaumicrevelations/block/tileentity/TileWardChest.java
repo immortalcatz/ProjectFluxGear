@@ -29,7 +29,7 @@ public class TileWardChest extends TileOwned implements ISidedInventory {
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		customName = nbt.getString("customName");
-		NBTTagList items = nbt.getTagList("Items");
+		NBTTagList items = nbt.getTagList("Items"); //TODO: Update for function name changes
 		inventorySlots = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < items.tagCount(); i++) {
 			NBTTagCompound nbtTag = items.getCompoundTagAt(i);
@@ -96,6 +96,7 @@ public class TileWardChest extends TileOwned implements ISidedInventory {
 		inventorySlots[i] = itemstack;
 	}
 
+	//TODO: Update to use PFG-TR's TE Block using Block in FluxGearCoreContent
 	@Override
 	public String getInventoryName() {
 		return ModBlocks.wardChest.getUnlocalizedName() + ".name";

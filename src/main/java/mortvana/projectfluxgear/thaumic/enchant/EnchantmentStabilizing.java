@@ -49,7 +49,7 @@ public class EnchantmentStabilizing extends Enchantment {
     }
 
     public static void doRepair(ItemStack itemstack, EntityPlayer player) {
-        int level = EnchantmentHelper.getEnchantmentLevel(42 /*TODO*/, itemstack);
+        int level = EnchantmentHelper.getEnchantmentLevel(42 /*TODO: Config for ID*/, itemstack);
         if (level > 4) {
             level = 4;
         }
@@ -70,6 +70,6 @@ public class EnchantmentStabilizing extends Enchantment {
         int sqLvl = level * level;
         int fact;
 
-        /*TODO*/return level;
+        /*TODO: Integer Randomizer*/return level;
     }
 }

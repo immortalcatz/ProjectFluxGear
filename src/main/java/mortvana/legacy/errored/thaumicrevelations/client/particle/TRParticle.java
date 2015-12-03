@@ -6,6 +6,7 @@ import net.minecraft.init.Items;
 import net.minecraft.world.World;
 
 public class TRParticle /*implements IParticleHandler*/ {
+	//TODO: ParticleRegistry? IParticleHandler? We should reinstate these for reference
 	public final int THROWN_FLESH_ID = ParticleRegistry.registerParticleHandler(this);
 
 	//@Override

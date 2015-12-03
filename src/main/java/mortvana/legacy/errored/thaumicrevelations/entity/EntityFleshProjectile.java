@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import mortvana.legacy.errored.core.client.ClientProxy;
 import tconstruct.library.tools.AbilityHelper;
 
+//TODO: EntityThrowableProjectile
 public class EntityFleshProjectile extends EntityThrowableProjectile {
 
 	public EntityFleshProjectile(World world) {
