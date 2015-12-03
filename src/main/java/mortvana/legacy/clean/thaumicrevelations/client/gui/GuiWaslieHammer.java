@@ -1,10 +1,10 @@
-package mortvana.legacy.dependent.firstdegree.thaumicrevelations.client.gui;
+package mortvana.legacy.clean.thaumicrevelations.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
-import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.clean.thaumicrevelations.inventory.ContainerHammer;
 import org.lwjgl.opengl.GL11;
 
 public class GuiWaslieHammer extends GuiContainer {
@@ -15,7 +15,7 @@ public class GuiWaslieHammer extends GuiContainer {
 	private int startX, startY;
 
 	public GuiWaslieHammer(EntityPlayer player) {
-		super(new FluxGearContent.ContainerHammer(player));
+		super(new ContainerHammer(player));
 	}
 
 	@Override

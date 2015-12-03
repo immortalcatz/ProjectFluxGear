@@ -23,7 +23,7 @@ public class TileParticleGenerator extends TileEntity {
 	public int random_green = 0;
 	public int random_blue = 0;
 	public float motion_x = 0.0F;
-	public float motion_y = 0.0F;
+	public float motionY = 0.0F;
 	public float motion_z = 0.0F;
 	public float random_motion_x = 0.0F;
 	public float random_motion_y = 0.0F;
@@ -76,12 +76,12 @@ public class TileParticleGenerator extends TileEntity {
 					this.tick = 0;
 					Random rand = worldObj.rand;
 					float MX = motion_x + this.random_motion_x * rand.nextFloat();
-					float MY = motion_y + this.random_motion_y * rand.nextFloat();
+					float MY = motionY + this.random_motion_y * rand.nextFloat();
 					float MZ = motion_z + this.random_motion_z * rand.nextFloat();
 					float SCALE = scale + this.random_scale * rand.nextFloat();
-					double spawnX = (double)((float)this.field_145851_c + this.spawn_x + this.random_spawn_x * rand.nextFloat());
-					double spawnY = (double)((float)this.field_145848_d + this.spawn_y + this.random_spawn_y * rand.nextFloat());
-					double spawnZ = (double)((float)this.field_145849_e + this.spawn_z + this.random_spawn_z * rand.nextFloat());
+					double spawnX = (double)((float)this.field_145851_c + this.spawn_x + random_spawn_x * rand.nextFloat());
+					double spawnY = (double)((float)this.field_145848_d + this.spawn_y + random_spawn_y * rand.nextFloat());
+					double spawnZ = (double)((float)this.field_145849_e + this.spawn_z + random_spawn_z * rand.nextFloat());
 					ParticleCustom particle = new ParticleCustom(worldObj, spawnX + 0.5D, spawnY + 0.5D, spawnZ + 0.5D, MX, MY, MZ, SCALE, this.collide, this.selected_particle);
 					particle.red = this.red + rand.nextInt(this.random_red + 1);
 					particle.green = this.green + rand.nextInt(this.random_green + 1);
@@ -124,7 +124,7 @@ public class TileParticleGenerator extends TileEntity {
 	}
 
 	public void toggleInverted() {
-		this.inverted = !this.inverted;
+		inverted = !inverted;
 	}
 
 	public Packet func_145844_m() {
@@ -134,48 +134,48 @@ public class TileParticleGenerator extends TileEntity {
 	}
 
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-		this.func_145839_a(pkt.func_148857_g());
+		readFromNBT(pkt.func_148857_g());
 		worldObj.markBlockForUpdate(this.field_145851_c, this.field_145848_d, this.field_145849_e);
 	}
 
-	public void func_145841_b(NBTTagCompound compound) {
-		this.master.writeToNBT(compound, "Key");
-		compound.setBoolean("StabalizerMode", stabilizerMode);
-		compound.setInteger("Red", red);
-		compound.setInteger("Green", this.green);
-		compound.setInteger("Blue", this.blue);
-		compound.setInteger("RandomRed", this.random_red);
-		compound.setInteger("RandomGreen", this.random_green);
-		compound.setInteger("RandomBlue", this.random_blue);
-		compound.setFloat("MotionX", this.motion_x);
-		compound.setFloat("MotionY", this.motion_y);
-		compound.setFloat("MotionZ", this.motion_z);
-		compound.setFloat("RandomMotionX", this.random_motion_x);
-		compound.setFloat("RandomMotionY", this.random_motion_y);
-		compound.setFloat("RandomMotionZ", this.random_motion_z);
-		compound.setFloat("Scale", this.scale);
-		compound.setFloat("RandomScale", this.random_scale);
-		compound.setInteger("Life", this.life);
-		compound.setInteger("RandomLife", this.random_life);
-		compound.setFloat("SpawnX", this.spawn_x);
-		compound.setFloat("SpawnY", this.spawn_y);
-		compound.setFloat("SpawnZ", this.spawn_z);
-		compound.setFloat("RandomSpawnX", this.random_spawn_x);
-		compound.setFloat("RandomSpawnY", this.random_spawn_y);
-		compound.setFloat("RandomSpawnZ", this.random_spawn_z);
-		compound.setInteger("Page", this.page);
-		compound.setInteger("SpawnRate", this.spawn_rate);
-		compound.setBoolean("CanCollide", this.collide);
-		compound.setInteger("Fade", this.fade);
-		compound.setInteger("SelectedParticle", this.selected_particle);
-		compound.setFloat("Gravity", this.gravity);
-		compound.setBoolean("Active", this.active);
-		compound.setBoolean("Signal", this.signal);
-		compound.setBoolean("Inverted", this.inverted);
-		super.writeToNBT(compound);
+	public void writeToNBT(NBTTagCompound nbt) {
+		master.writeToNBT(nbt, "Key");
+		nbt.setBoolean("StabalizerMode", stabilizerMode);
+		nbt.setInteger("Red", red);
+		nbt.setInteger("Green", green);
+		nbt.setInteger("Blue", blue);
+		nbt.setInteger("RandomRed", random_red);
+		nbt.setInteger("RandomGreen", random_green);
+		nbt.setInteger("RandomBlue", random_blue);
+		nbt.setFloat("MotionX", motion_x);
+		nbt.setFloat("MotionY", motionY);
+		nbt.setFloat("MotionZ", motion_z);
+		nbt.setFloat("RandomMotionX", random_motion_x);
+		nbt.setFloat("RandomMotionY", random_motion_y);
+		nbt.setFloat("RandomMotionZ", random_motion_z);
+		nbt.setFloat("Scale", scale);
+		nbt.setFloat("RandomScale", random_scale);
+		nbt.setInteger("Life", life);
+		nbt.setInteger("RandomLife", random_life);
+		nbt.setFloat("SpawnX", spawn_x);
+		nbt.setFloat("SpawnY", spawn_y);
+		nbt.setFloat("SpawnZ", spawn_z);
+		nbt.setFloat("RandomSpawnX", random_spawn_x);
+		nbt.setFloat("RandomSpawnY", random_spawn_y);
+		nbt.setFloat("RandomSpawnZ", random_spawn_z);
+		nbt.setInteger("Page", page);
+		nbt.setInteger("SpawnRate", spawn_rate);
+		nbt.setBoolean("CanCollide", collide);
+		nbt.setInteger("Fade", fade);
+		nbt.setInteger("SelectedParticle", selected_particle);
+		nbt.setFloat("Gravity", gravity);
+		nbt.setBoolean("Active", active);
+		nbt.setBoolean("Signal", signal);
+		nbt.setBoolean("Inverted", inverted);
+		super.writeToNBT(nbt);
 	}
 
-	public void func_145839_a(NBTTagCompound compound) {
+	public void readFromNBT(NBTTagCompound compound) {
 		master.readFromNBT(compound, "Key");
 		stabilizerMode = compound.getBoolean("StabalizerMode");
 		red = compound.getInteger("Red");
@@ -185,22 +185,22 @@ public class TileParticleGenerator extends TileEntity {
 		random_green = compound.getInteger("RandomGreen");
 		random_blue = compound.getInteger("RandomBlue");
 		motion_x = compound.getFloat("MotionX");
-		this.motion_y = compound.getFloat("MotionY");
-		this.motion_z = compound.getFloat("MotionZ");
-		this.random_motion_x = compound.getFloat("RandomMotionX");
-		this.random_motion_y = compound.getFloat("RandomMotionY");
-		this.random_motion_z = compound.getFloat("RandomMotionZ");
-		this.scale = compound.getFloat("Scale");
-		this.random_scale = compound.getFloat("RandomScale");
-		this.life = compound.getInteger("Life");
-		this.random_life = compound.getInteger("RandomLife");
-		this.spawn_x = compound.getFloat("SpawnX");
-		this.spawn_y = compound.getFloat("SpawnY");
-		this.spawn_z = compound.getFloat("SpawnZ");
-		this.random_spawn_x = compound.getFloat("RandomSpawnX");
-		this.random_spawn_y = compound.getFloat("RandomSpawnY");
-		this.random_spawn_z = compound.getFloat("RandomSpawnZ");
-		this.page = compound.getInteger("Page");
+		motionY = compound.getFloat("MotionY");
+		motion_z = compound.getFloat("MotionZ");
+		random_motion_x = compound.getFloat("RandomMotionX");
+		random_motion_y = compound.getFloat("RandomMotionY");
+		random_motion_z = compound.getFloat("RandomMotionZ");
+		scale = compound.getFloat("Scale");
+		random_scale = compound.getFloat("RandomScale");
+		life = compound.getInteger("Life");
+		random_life = compound.getInteger("RandomLife");
+		spawn_x = compound.getFloat("SpawnX");
+		spawn_y = compound.getFloat("SpawnY");
+		spawn_z = compound.getFloat("SpawnZ");
+		random_spawn_x = compound.getFloat("RandomSpawnX");
+		random_spawn_y = compound.getFloat("RandomSpawnY");
+		random_spawn_z = compound.getFloat("RandomSpawnZ");
+		page = compound.getInteger("Page");
 		spawn_rate = compound.getInteger("SpawnRate");
 		collide = compound.getBoolean("CanCollide");
 		fade = compound.getInteger("Fade");
@@ -218,7 +218,7 @@ public class TileParticleGenerator extends TileEntity {
 	}
 
 	public void setMaster(TileLocation master) {
-		this.master = master;
+	this.master = master;
 	}
 
 	public AxisAlignedBB getRenderBoundingBox() {

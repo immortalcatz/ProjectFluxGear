@@ -26,29 +26,25 @@ public class TileEnergyStorageCore extends TileObjectSync {
 		}
 	}
 
-	public void func_145845_h() {
+	public void updateEntity() {
 		if (online) {
 			if (worldObj.isRemote) {
 				modelRotation = (float) ((double) modelRotation + 0.5D);
 			} else {
 				detectAndRendChanges();
 			}
-			++tick;
+			tick++;
 		}
 	}
 
 	public boolean tryActivate() {
-		if(!this.findStablizers()) {
-			return false;
-		} else if(!this.setTier(false)) {
-			return false;
-		} else if(!this.testOrActivateStructureIfValid(false, false)) {
+		if (!findStablizers() || !setTier(false) || !testOrActivateStructureIfValid(false, false)) {
 			return false;
 		} else {
-			this.online = true;
-			if(!this.testOrActivateStructureIfValid(false, true)) {
-				this.online = false;
-				this.deactivateStabilizers();
+			online = true;
+			if (!testOrActivateStructureIfValid(false, true)) {
+				online = false;
+				deactivateStabilizers();
 				return false;
 			} else {
 				this.activateStabilizers();

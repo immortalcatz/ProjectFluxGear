@@ -30,7 +30,7 @@ public class ParticleGenPacketHandler implements IMessageHandler<ParticleGenPack
 					gen.motion_x = (float)message.value / 1000.0F;
 					break;
 				case 4:
-					gen.motion_y = (float)message.value / 1000.0F;
+					gen.motionY = (float)message.value / 1000.0F;
 					break;
 				case 5:
 					gen.motion_z = (float)message.value / 1000.0F;
@@ -48,7 +48,7 @@ public class ParticleGenPacketHandler implements IMessageHandler<ParticleGenPack
 					gen.motion_x = (float)message.value / 1000.0F;
 					break;
 				case 10:
-					gen.motion_y = (float)message.value / 1000.0F;
+					gen.motionY = (float)message.value / 1000.0F;
 					break;
 				case 11:
 					gen.motion_z = (float)message.value / 1000.0F;

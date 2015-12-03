@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
 import mortvana.legacy.dependent.firstdegree.morttech.client.gui.GuiWoodmill;
-import mortvana.legacy.dependent.firstdegree.thaumicrevelations.client.gui.GuiWaslieHammer;
+import mortvana.legacy.clean.thaumicrevelations.client.gui.GuiWaslieHammer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

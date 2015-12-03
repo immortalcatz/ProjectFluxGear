@@ -7,6 +7,8 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
+import mortvana.melteddashboard.common.MeltedDashboardCore;
+
 import mortvana.legacy.clean.fluxgearaddons.util.helpers.MultiblockHelper.TileLocation;
 import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 
@@ -18,7 +20,7 @@ public class TileInvisibleMultiblock extends TileEntity {
 
 	public boolean isMasterOnline() {
 		TileEnergyStorageCore tile = worldObj.getTileEntity(this.master.getXCoord(), this.master.getYCoord(), this.master.getZCoord()) != null && worldObj.getTileEntity(this.master.getXCoord(), this.master.getYCoord(), this.master.getZCoord()) instanceof TileEnergyStorageCore?(TileEnergyStorageCore)worldObj.getTileEntity(this.master.getXCoord(), this.master.getYCoord(), this.master.getZCoord()):null;
-		return tile == null ? false : tile.online;
+		return tile != null && tile.online;
 	}
 
 	public TileEnergyStorageCore getMaster() {
@@ -51,23 +53,22 @@ public class TileInvisibleMultiblock extends TileEntity {
 	}
 
 	public void isStructureStillValid() {
-		if(this.getMaster() == null) {
-			ProjectFluxGear.logger.error("{Tile} Master = null reverting!");
+		if (getMaster() == null) {
+			MeltedDashboardCore.logger.error("{Tile} Master = null reverting!");
 			this.revert();
 		} else {
-			if(!this.getMaster().isOnline()) {
-				this.revert();
+			if (!getMaster().isOnline()) {
+				revert();
 			}
-
 		}
 	}
 
 	private void revert() {
-		int meta = worldObj.getBlockMetadata(this.field_145851_c, this.field_145848_d, this.field_145849_e);
-		if(meta == 0) {
-			worldObj.setBlock(this.field_145851_c, this.field_145848_d, this.field_145849_e, ModBlocks.draconiumBlock);
+		int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+		if (meta == 0) {
+			worldObj.setBlock(xCoord, yCoord, zCoord, ModBlocks.draconiumBlock);
 		} else if(meta == 1) {
-			worldObj.setBlock(this.field_145851_c, this.field_145848_d, this.field_145849_e, Blocks.redstone_block);
+			worldObj.setBlock(xCoord, yCoord, zCoord, Blocks.redstone_block);
 		}
 
 	}

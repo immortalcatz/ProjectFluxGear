@@ -43,7 +43,7 @@ import mortvana.legacy.errored.morttweaks.util.*;
 
 @Mod(modid = "MortTweaks", name = "MortTweaks", version = "1.0.0.0", dependencies = "after:MineFactoryReloaded")
 public class MortTweaks {
-	@SidedProxy(clientSide = "mortvana.tweaks.cleint.ClientProxy", serverSide = "mortvana.mortvana.legacy.errored.morttweaks.common.CommonProxy")
+	@SidedProxy(clientSide = "mortvana.tweaks.client.ClientProxy", serverSide = "mortvana.legacy.errored.morttweaks.common.CommonProxy")
 	public static CommonProxy proxy;
 
 	/* TODO:
@@ -81,7 +81,6 @@ public class MortTweaks {
 	public static float foodExhaustion = 1.0f;
 
 	//Gameplay
-	public static boolean alterStackSizes = true;
 	public static boolean addNametagRecipe = true;
 	public static boolean disableExp = false;
 	public static boolean nastyFlesh = true;
@@ -156,7 +155,6 @@ public class MortTweaks {
 	    /*removeVoidParticles = config.get("Render Tweak", "Remove Void Particles", true).getBoolean(true);
         removeVoidFog = config.get("Render Tweak", "Remove Void Fog", true).getBoolean(true);*/
 
-		alterStackSizes = config.get("Gameplay Tweak", "More stackable items", true, "Doors, boats, minecarts, and cake").getBoolean(true);
 		addNametagRecipe = config.get("Gameplay Tweak", "Add Nametag Recipe", true, "String, slimeball, paper").getBoolean(true);
 		animalBones = config.get("Gameplay Tweak", "Animal Bones", true, "Passive mobs drop bones on peaceful mode").getBoolean(true);
 		feathers = config.get("Gameplay Tweak", "More Feathers", true, "Chickens drop many more feathers").getBoolean(true);
@@ -204,18 +202,6 @@ public class MortTweaks {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		proxy.postInit();
-		if (alterStackSizes) {
-			Items.wooden_door.setMaxStackSize(16);
-			Items.iron_door.setMaxStackSize(16);
-			Items.boat.setMaxStackSize(16);
-			Items.minecart.setMaxStackSize(3);
-			Items.chest_minecart.setMaxStackSize(3);
-			Items.furnace_minecart.setMaxStackSize(3);
-			Items.hopper_minecart.setMaxStackSize(3);
-			Items.tnt_minecart.setMaxStackSize(3);
-			Items.command_block_minecart.setMaxStackSize(3);
-			Items.itemsList[Blocks.cake.blockID].setMaxStackSize(16);
-		}
 
 		if (potentFire) {
 			Blocks.fire.setFireInfo(Blocks.planks, 25, 20);

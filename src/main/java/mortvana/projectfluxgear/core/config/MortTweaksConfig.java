@@ -22,7 +22,7 @@ public class MortTweaksConfig extends ConfigBase {
 		config = new Configuration(file);
 		config.load();
 
-
+		alterStackSizes = config.get("Gameplay Tweaks", "More stackable items", true, "Doors, Boats, Minecarts, and Cake become stackable.").getBoolean(true);
 
 		if (config.hasChanged()) {
 			config.save();
@@ -31,6 +31,8 @@ public class MortTweaksConfig extends ConfigBase {
 	}
 
 	public static boolean cobaltHijacking;
+
+	public static boolean alterStackSizes;
 
 	public static boolean disableExp;
 
@@ -52,4 +54,9 @@ public class MortTweaksConfig extends ConfigBase {
 	public static int adultMaxFeathers;
 
 	public static boolean enderDumps;
+
+	public static boolean decayPlanter;
+
+	public static int batSpawnPercent;
+	public static int squidSpawnPercent;
 }
