@@ -102,7 +102,7 @@ public class MortTweaks {
 	public static boolean disableZombieFire = true;
 
 	//Classic
-	public static boolean makeGuudFire = true;
+	public static boolean potentFire = true;
 	public static boolean feathers = true;
 	public static boolean revertTNT = false;
 	public static boolean fleshToFeathers = false;
@@ -179,7 +179,7 @@ public class MortTweaks {
 
 		changeArmorCalculations = config.get("Classic Mechanics", "Classic Armor", false, "Overrides vanilla armor to give alpha armor feel").getBoolean(false);
 		revertTNT = config.get("Classic Mechanics", "TNT Puncher", true, "TNT can only be harvested with shears or silk touch").getBoolean(true);
-		makeGuudFire = config.get("Classic Mechanics", "Hungry Fire", true, "Fire will burn down entire forests").getBoolean(true);
+		potentFire = config.get("Classic Mechanics", "Hungry Fire", true, "Fire will burn down entire forests").getBoolean(true);
 		disableExpBar = config.get("Classic Mechanics", "Disable XP bar", false).getBoolean(false);
 		disableExp = config.get("Classic Mechanics", "Disable XP orbs", false).getBoolean(false);
 		fleshToFeathers = config.get("Classic Mechanics", "Flesh to Feathers", false, "Zombies drop feathers instead of rotten flesh").getBoolean(false);
@@ -217,7 +217,7 @@ public class MortTweaks {
 			Items.itemsList[Blocks.cake.blockID].setMaxStackSize(16);
 		}
 
-		if (makeGuudFire) {
+		if (potentFire) {
 			Blocks.fire.setFireInfo(Blocks.planks, 25, 20);
 			Blocks.fire.setFireInfo(Blocks.double_wooden_slab, 25, 20);
 			Blocks.fire.setFireInfo(Blocks.wooden_slab, 25, 20);

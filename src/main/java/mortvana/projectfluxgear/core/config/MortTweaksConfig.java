@@ -33,4 +33,23 @@ public class MortTweaksConfig extends ConfigBase {
 	public static boolean cobaltHijacking;
 
 	public static boolean disableExp;
+
+	public static boolean claySpawn;
+	public static int clayVeinQuantity;
+	public static int claySpawnMinY;
+	public static int claySpawnMaxY;
+	public static int clayVeinMinSize;
+	public static int clayVeinMaxSize;
+
+	public static boolean pluckChickens;
+	public static boolean chicksDropFeathers;
+	public static boolean adultsDropFeathers;
+	public static int chickFeatherRarity;
+	public static int adultFeatherRarity;
+	public static int chickMinFeathers;
+	public static int chickMaxFeathers;
+	public static int adultMinFeathers;
+	public static int adultMaxFeathers;
+
+	public static boolean enderDumps;
 }

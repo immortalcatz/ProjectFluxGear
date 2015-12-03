@@ -12,6 +12,7 @@ import mortvana.projectfluxgear.thaumic.enchant.EnchantmentStabilizing;
 
 public class FluxGearEventHandler {
 
+	//TODO: Seperate Event Handler for each module
     @SubscribeEvent
     public void livingTick(LivingUpdateEvent event) {
         int t;
@@ -39,11 +40,4 @@ public class FluxGearEventHandler {
             }
         }
     }
-
-	@SubscribeEvent
-	public void killExpOrbs(EntityJoinWorldEvent event) {
-		if (MortTweaksConfig.disableExp && event.entity instanceof EntityXPOrb) {
-			event.setCanceled(true);
-		}
-	}
 }

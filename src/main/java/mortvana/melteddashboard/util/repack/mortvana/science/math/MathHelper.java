@@ -70,4 +70,8 @@ public class MathHelper {
 	public static double offsetIntToFloat(int value) {
 		return (double)((float) value + 0.5F);
 	}
+
+	public static int diffRand(int min, int max) {
+		return min != max ? RANDOM.nextInt(max - min) + min : min;
+	}
 }
