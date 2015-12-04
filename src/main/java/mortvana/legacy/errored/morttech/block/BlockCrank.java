@@ -30,11 +30,12 @@ public class BlockCrank extends Block {
     }
 
     private int power = 10;
+    //TODO: 1.7.10 Packets
     Packet132TileEntityData p = new Packet132TileEntityData();
 
     @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-
+        //TODO: 1.7.10 Packets
         NBTTagCompound c = p.data;
 
         c = new NBTTagCompound();
@@ -66,7 +67,7 @@ public class BlockCrank extends Block {
 
         TileWoodmill tile = (TileWoodmill) world.getTileEntity(x, y - 1, z);
         if (tile != null) {
-            tile.furnaceBurnTime += 10;
+            tile.furnaceBurnTime += 10; //TODO: Change to refactored pointer
         }
 
         return true;

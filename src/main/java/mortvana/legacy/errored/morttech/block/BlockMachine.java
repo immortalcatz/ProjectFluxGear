@@ -86,7 +86,7 @@ public class BlockMachine extends InventoryBlock {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
-
+        //TODO: 1.7.10 Packets
         NBTTagCompound c = (BlockCrank) FluxGearContent.tileCrank.p.data;
         int power = c.getInteger("power");
         System.out.println(c.getInteger("power" + "TTTTT"));

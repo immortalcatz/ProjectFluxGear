@@ -44,38 +44,35 @@ public class BlockWoodmill extends BlockContainer {
     @SideOnly(Side.CLIENT)
     private IIcon furnaceIconFront;
 
-    public BlockWoodmill()
-    {
+    public BlockWoodmill() {
         super(Material.rock);
     }
 
     /**
      * Returns the ID of the items to drop on destruction.
      */
-    public Item itemDropped(Item item, Random par2Random, int par3) {
+    public Item itemDropped(Item item, Random random, int par3) {
         return item;
     }
 
     /**
      * Called whenever the block is added into the world. Args: world, x, y, z
      */
-    public void onBlockAdded(World par1World, int par2, int par3, int par4)
-    {
-        super.onBlockAdded(par1World, par2, par3, par4);
-        this.setDefaultDirection(par1World, par2, par3, par4);
+    public void onBlockAdded(World world, int x, int y, int z) {
+        super.onBlockAdded(world, x, y, z);
+        setDefaultDirection(world, x, y, z);
     }
 
+    //TODO: Remove Block ID usage
     /**
      * set a blocks direction
      */
-    private void setDefaultDirection(World world, int par2, int par3, int par4)
-    {
-        if (!world.isRemote)
-        {
-            int l = world.getBlockId(par2, par3, par4 - 1);
-            int i1 = world.getBlockId(par2, par3, par4 + 1);
-            int j1 = world.getBlockId(par2 - 1, par3, par4);
-            int k1 = world.getBlockId(par2 + 1, par3, par4);
+    private void setDefaultDirection(World world, int x, int y, int z) {
+        if (!world.isRemote) {
+            int l = world.getBlockId(x, y, z - 1);
+            int i1 = world.getBlockId(x, y, z + 1);
+            int j1 = world.getBlockId(x - 1, y, z);
+            int k1 = world.getBlockId(x + 1, y, z);
             byte b0 = 3;
 
             if (Block.opaqueCubeLookup[l] && !Block.opaqueCubeLookup[i1])
@@ -98,37 +95,34 @@ public class BlockWoodmill extends BlockContainer {
                 b0 = 4;
             }
 
-            world.setBlockMetadataWithNotify(par2, par3, par4, b0, 2);
+            world.setBlockMetadataWithNotify(x, y, z, b0, 2);
         }
     }
-
-    @SideOnly(Side.CLIENT)
 
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-    public IIcon getIcon(int par1, int par2) {
-        return par1 == 1 ? this.furnaceIconTop : (par1 == 0 ? this.furnaceIconTop : (par1 != par2 ? this.blockIcon : this.furnaceIconFront));
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int side, int metadata) {
+        return side == 1 ? furnaceIconTop : (side == 0 ? furnaceIconTop : (side != metadata ? blockIcon : furnaceIconFront));
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister)
-    {
-        this.blockIcon = par1IconRegister.registerIcon("morttech:"+this.getUnlocalizedName());
-        this.furnaceIconFront = par1IconRegister.registerIcon("morttech:"+this.getUnlocalizedName()+"_front");
-        this.furnaceIconTop = par1IconRegister.registerIcon("morttech:"+this.getUnlocalizedName()+"_top");
+    public void registerIcons(IIconRegister iconRegister) {
+        blockIcon = iconRegister.registerIcon("morttech:" + getUnlocalizedName());
+        furnaceIconFront = iconRegister.registerIcon("morttech:" + getUnlocalizedName() + "_front");
+        furnaceIconTop = iconRegister.registerIcon("morttech:" + getUnlocalizedName() + "_top");
     }
 
-    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-        if (par1World.isRemote) {
-            return true;
-        } else {
-            TileWoodmill tileentityfurnace = (TileWoodmill)par1World.getTileEntity(par2, par3, par4);
-            if (tileentityfurnace != null && !(par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof IFluxGearWrench)) {
-                par5EntityPlayer.openGui(ProjectFluxGear.instance, FluxGearGUIHandler.woodmill, par1World, par2, par3, par4);
+    public boolean onBlockActivated(World world, int x, int y, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+        if (!world.isRemote) {
+            TileWoodmill woodmill = (TileWoodmill) world.getTileEntity(x, y, par4);
+            if (woodmill != null && !(par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof IFluxGearWrench)) {
+                par5EntityPlayer.openGui(ProjectFluxGear.instance, FluxGearGUIHandler.woodmill, world, x, y, par4);
             }
-            return true;
+
         }
+        return true;
     }
 
     /**
