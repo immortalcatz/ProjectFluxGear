@@ -17,7 +17,7 @@ import mortvana.projectfluxgear.oreberries.common.Oreberries;
 import mortvana.projectfluxgear.tech.common.FluxGearTech;
 import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
 import mortvana.projectfluxgear.tinkers.common.TinkersFoundry;
-import mortvana.projectfluxgear.tweaks.common.MortTweaks;
+import mortvana.projectfluxgear.morttweaks.common.MortTweaks;
 
 
 @Mod(modid = ProjectFluxGear.MOD_ID, name = ProjectFluxGear.MOD_NAME, version = ProjectFluxGear.MOD_VERSION, dependencies = ProjectFluxGear.MOD_DEPENDENCIES/*, guiFactory = "mortvana.projectfluxgear.core.client.config.ConfigGuiFactory"*/)

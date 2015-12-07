@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.tweaks.common;
+package mortvana.projectfluxgear.morttweaks.common;
 
 import net.minecraft.init.Items;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -8,7 +8,7 @@ import mortvana.melteddashboard.util.ConfigBase;
 import mortvana.melteddashboard.util.IConfigInitialized;
 import mortvana.melteddashboard.util.helpers.LoadedHelper;
 
-import mortvana.projectfluxgear.tweaks.world.ClayGenerator;
+import mortvana.projectfluxgear.morttweaks.world.ClayGenerator;
 
 import static mortvana.projectfluxgear.core.config.MortTweaksConfig.*;
 

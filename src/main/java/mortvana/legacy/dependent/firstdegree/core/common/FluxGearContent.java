@@ -90,12 +90,14 @@ import mortvana.melteddashboard.item.FluxGearItem;
 import mortvana.melteddashboard.util.enums.EnumArmorType;
 import mortvana.melteddashboard.util.helpers.CraftingHelper;
 import mortvana.melteddashboard.util.helpers.LoadedHelper;
+
+import mortvana.projectfluxgear.thaumic.augments.ThaumicAugmentBase;
 import mortvana.projectfluxgear.immersion.item.ItemPaintbrush;
 import mortvana.projectfluxgear.thaumic.augments.*;
 import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
 import mortvana.projectfluxgear.thaumic.item.ItemThaumicBauble;
 import mortvana.projectfluxgear.tinkers.modifiers.ActiveToolModFeedback;
-import mortvana.projectfluxgear.tweaks.util.TweakItemRegistry;
+import mortvana.projectfluxgear.api.data.TweakItemRegistry;
 import mortvana.projectfluxgear.util.helpers.TweakHelper;
 
 import thaumcraft.api.ThaumcraftApi;

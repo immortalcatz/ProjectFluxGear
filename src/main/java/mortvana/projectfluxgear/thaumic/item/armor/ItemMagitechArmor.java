@@ -23,7 +23,7 @@ import mortvana.melteddashboard.util.helpers.StringHelper;
 
 import mortvana.projectfluxgear.core.common.FluxGearCoreContent;
 import mortvana.projectfluxgear.core.data.StringDatabase;
-import mortvana.projectfluxgear.thaumic.item.interfaces.IMagitechArmor;
+import mortvana.projectfluxgear.api.item.armor.IMagitechArmor;
 
 public abstract class ItemMagitechArmor extends ItemArmorFluxGear implements IMagitechArmor {
 

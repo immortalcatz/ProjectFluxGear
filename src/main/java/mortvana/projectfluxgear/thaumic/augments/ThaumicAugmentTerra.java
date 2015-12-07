@@ -1,6 +1,5 @@
 package mortvana.projectfluxgear.thaumic.augments;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.entity.Entity;

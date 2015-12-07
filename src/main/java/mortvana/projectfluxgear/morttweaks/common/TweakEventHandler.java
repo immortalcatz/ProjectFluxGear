@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.tweaks.common;
+package mortvana.projectfluxgear.morttweaks.common;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;

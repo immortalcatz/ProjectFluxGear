@@ -5,18 +5,21 @@ import java.util.Random;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import mortvana.melteddashboard.util.enums.EnumAugmentHolder;
+import mortvana.melteddashboard.util.helpers.StringHelper;
+
 import thaumcraft.api.aspects.Aspect;
 
 public abstract class ThaumicAugmentBase {
 	public Aspect aspect;
 	public Random random = new Random();
 
-	public ThaumicAugmentBase(Aspect aspect) {this.aspect = aspect;}
+	public ThaumicAugmentBase(Aspect aspect) {
+		this.aspect = aspect;
+	}
 
 	//Used when the player attacks something.
 	public void onAttack(ItemStack stack, EntityPlayer player, Entity entity) {}
@@ -28,7 +31,7 @@ public abstract class ThaumicAugmentBase {
 	public void onAttacked(LivingHurtEvent event) {}
 
 	public String getQuote() {
-		return StatCollector.translateToLocal("upgrade." + aspect.getName() + ".quote");
+		return StringHelper.localize("upgrade." + aspect.getName() + ".quote");
 	}
 
 	// THESE TWO AREN'T USABLE YET...

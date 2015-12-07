@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 
 import mortvana.melteddashboard.intermod.thaumcraft.inventory.SlotEssentia;
 
-import mortvana.projectfluxgear.thaumic.item.interfaces.IWardenicEquipment;
+import mortvana.projectfluxgear.api.item.IWardenicEquipment;
 
 import mortvana.legacy.clean.thaumicrevelations.util.WardenicChargeHelper;
 import thaumcraft.api.aspects.IEssentiaContainerItem;

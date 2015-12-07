@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.tweaks.world;
+package mortvana.projectfluxgear.morttweaks.world;
 
 import java.util.Random;
 

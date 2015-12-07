@@ -6,6 +6,9 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBook;
 import net.minecraft.item.ItemStack;
+
+import mortvana.projectfluxgear.api.enchant.IStabilizing;
+
 import thaumcraft.api.IRepairable;
 
 public class EnchantmentStabilizing extends Enchantment {

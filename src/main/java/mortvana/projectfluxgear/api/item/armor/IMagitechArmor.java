@@ -1,8 +1,8 @@
-package mortvana.projectfluxgear.thaumic.item.interfaces;
+package mortvana.projectfluxgear.api.item.armor;
 
 import net.minecraftforge.common.ISpecialArmor;
 
-import mortvana.projectfluxgear.thaumic.enchant.IStabilizing;
+import mortvana.projectfluxgear.api.enchant.IStabilizing;
 
 import WayofTime.alchemicalWizardry.api.items.interfaces.ILPGauge;
 import forestry.api.apiculture.IArmorApiarist;
