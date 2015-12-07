@@ -12,7 +12,7 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
 import mortvana.legacy.errored.morttech.inventory.ContainerWoodmill;
-import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.legacy.errored.morttech.block.tile.TileWoodmill;
 

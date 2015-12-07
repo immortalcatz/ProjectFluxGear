@@ -42,7 +42,7 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 
 	private static ArrayList<ISolidFuelInfo> staticFuelInfo = new ArrayList<ISolidFuelInfo>( 3);
 	private static Random rand = new Random();
-	public static Item thermite = null;
+	public static ItemStack thermite = null;
 
 	// Setting values to carry over between doConfig and DeferredInit
 	public static int rfPerThermite = 0;
@@ -128,7 +128,7 @@ public class TileEntityGunpowderEngine extends TileEntitySolidFueled implements 
 			thermInfo.energyPer = rfPerThermite;
 			thermInfo.byproductMult = thermiteFires;
 			if (thermite != null) {
-				thermInfo.ourFuel = new ItemStack(thermite);
+				thermInfo.ourFuel = thermite;
 				staticFuelInfo.add(thermInfo);
 			}
 		}

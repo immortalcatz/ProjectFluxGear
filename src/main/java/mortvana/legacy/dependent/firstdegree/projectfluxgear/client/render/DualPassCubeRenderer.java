@@ -1,6 +1,5 @@
 package mortvana.legacy.dependent.firstdegree.projectfluxgear.client.render;
 
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.IBlockAccess;

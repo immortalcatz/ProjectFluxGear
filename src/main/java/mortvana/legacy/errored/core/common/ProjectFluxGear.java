@@ -28,6 +28,7 @@ import cofh.core.world.WorldHandler;
 import forestry.api.apiculture.IBeeRoot;
 import mortvana.legacy.clean.fluxgeartweaks.block.tileentity.TileTimeyWimey;
 import mortvana.legacy.dependent.firstdegree.core.client.gui.FluxGearGUIHandler;
+import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.legacy.errored.apiology.common.VersionInfo;
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.network.ObjectPacket;
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.network.ObjectPacketHandler;
@@ -71,7 +72,7 @@ import tconstruct.library.tools.ToolCore;
 //Inventory Tweaks.
 //@NetworkMod(clientSideRequired=true, serverSideRequired=true)
 public class ProjectFluxGear {
-    public static final PacketPipeline packetPipeline = new PacketPipeline();
+    //public static final PacketPipeline packetPipeline = new PacketPipeline(); //TODO
 
     public static final boolean debugWorldGen = true;
 
@@ -97,10 +98,10 @@ public class ProjectFluxGear {
 	public SimpleNetworkWrapper wrapper;
 
 	//Shared mod Logger
-	public static final Logger logger = LogManager.getLogger("MortTech");
-	public static void log(Level level, String message) {
-		FMLLog.getLogger().log(level, "[MortTech] " + message);
-	}
+	//public static final Logger logger = LogManager.getLogger("MortTech");
+	//public static void log(Level level, String message) {
+	//	FMLLog.getLogger().log(level, "[MortTech] " + message);
+	//}
 
 	public static IBeeRoot beeRoot;
 
@@ -116,8 +117,6 @@ public class ProjectFluxGear {
     public static final FluxGearGUIHandler guiHandler = new FluxGearGUIHandler();
 
 	public static DummyHandler handler = new DummyHandler();
-
-	public static final String RESOURCESPREFIX = "projectfluxgear:";
 
 	public static final String networkChannelName = "FluxGearAddons";
 	public static SimpleNetworkWrapper network;

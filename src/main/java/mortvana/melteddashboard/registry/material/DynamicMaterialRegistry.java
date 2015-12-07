@@ -46,7 +46,7 @@ public class DynamicMaterialRegistry {
 				int entryID = entry.getMaterialID();
 				String entryName = entry.getMaterialName();
 
-				if (!(materialMap.containsKey(entryID) && entryName.equals(""))) {
+				if (!materialMap.containsKey(entryID) && !entryName.equals("")) {
 					EnumMaterialType entryType = entry.getMaterialType();
 					if (entryID > -1 && entryID < 2000 && entryType != null) {
 						//TODO: Clamping
@@ -55,7 +55,7 @@ public class DynamicMaterialRegistry {
 							entryBlockHardness = -1.0F;
 						}
 						float entryBlastResistance = entry.getMaterialBlastResistance();
-						if (entryBlastResistance < 0.0F && entryBlastResistance!= -1.0F) {
+						if (entryBlastResistance < 0.0F && entryBlastResistance != -1.0F) {
 							entryBlastResistance = -1.0F;
 						}
 						int entryRarity = entry.getMaterialRarity();

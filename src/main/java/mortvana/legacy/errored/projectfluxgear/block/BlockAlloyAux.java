@@ -1,7 +1,7 @@
 package mortvana.legacy.errored.projectfluxgear.block;
 
 import mortvana.legacy.clean.core.util.block.BlockFluxGear;
-import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.melteddashboard.block.FluxGearBlock;
 
 import net.minecraft.block.material.Material;

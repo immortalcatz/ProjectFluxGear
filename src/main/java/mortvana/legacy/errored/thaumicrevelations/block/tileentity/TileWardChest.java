@@ -9,7 +9,6 @@ import net.minecraft.nbt.NBTTagList;
 import thaumcraft.common.tiles.TileOwned;
 
 public class TileWardChest extends TileOwned implements ISidedInventory {
-	private static final String TAG_CUSTOM_NAME = "customName";
 	private ItemStack[] inventorySlots = new ItemStack[54];
 	public String customName;
 	public double ticksExisted;
@@ -28,8 +27,8 @@ public class TileWardChest extends TileOwned implements ISidedInventory {
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		customName = nbt.getString("customName");
-		NBTTagList items = nbt.getTagList("Items"); //TODO: Update for function name changes
+		customName = nbt.getString("CustomName");
+		NBTTagList items = nbt.getTagList("Items", 10);
 		inventorySlots = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < items.tagCount(); i++) {
 			NBTTagCompound nbtTag = items.getCompoundTagAt(i);
@@ -43,7 +42,7 @@ public class TileWardChest extends TileOwned implements ISidedInventory {
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setString("customName", customName == null ? "" : customName);
+		nbt.setString("CustomName", customName == null ? "" : customName);
 		NBTTagList nbtList = new NBTTagList();
 		for (int i = 0; i < inventorySlots.length; i++) {
 			if (inventorySlots[i] != null) {

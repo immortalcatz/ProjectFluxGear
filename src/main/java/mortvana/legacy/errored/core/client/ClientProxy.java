@@ -1,7 +1,7 @@
 package mortvana.legacy.errored.core.client;
 
 import com.google.common.collect.Lists;
-import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.legacy.errored.core.common.ProjectFluxGear;
 import mortvana.projectfluxgear.thaumic.client.render.RenderPurity;
 import mortvana.legacy.clean.morttech.block.tile.TileCrank;

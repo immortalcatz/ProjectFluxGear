@@ -14,7 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
-import mortvana.legacy.errored.core.common.FluxGearContent;
+import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.projectfluxgear.immersion.item.ItemPaintbrush;
 
 public class RecipePaintbrush implements IRecipe {

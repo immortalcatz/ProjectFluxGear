@@ -134,11 +134,11 @@ public class BlockAsh extends Block {
 		return 1;
 	}
 
-	@SideOnly(Side.CLIENT)
 	/**
 	 * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
 	 * coordinates.  Args: blockAccess, x, y, z, side
 	 */
+	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
 		return side == 1 || super.shouldSideBeRendered(world, x, y, z, side);
 	}
