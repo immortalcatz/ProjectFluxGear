@@ -1,3 +1,14 @@
 package mortvana.melteddashboard.api.block.tile;
 
-public interface ITileEntity {}
+import net.minecraft.world.World;
+
+public interface ITileEntity {
+
+	public World getWorld();
+
+	public int getXCoord();
+
+	public short getYCoord();
+
+	public int getZCoord();
+}

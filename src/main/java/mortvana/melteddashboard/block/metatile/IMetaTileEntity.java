@@ -1,3 +1,3 @@
 package mortvana.melteddashboard.block.metatile;
 
-public interface IMetaTileEntity {}
+public interface IMetaTileEntity extends IMetaTileEntityBase {}
