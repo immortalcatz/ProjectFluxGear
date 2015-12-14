@@ -2,7 +2,7 @@ package mortvana.legacy.errored.projectfluxgear.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mortvana.legacy.errored.core.client.ClientProxy;
+import mortvana.legacy.errored.core.ClientProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

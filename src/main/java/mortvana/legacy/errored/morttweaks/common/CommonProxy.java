@@ -96,14 +96,14 @@ public class CommonProxy {
 			event.entityLiving.recentlyHit += 50; //TODO: AccessTransformer Stuff
 
 		if (MortTweaks.creeperBehavior) {
-			EntityLivingBase reciever = event.entityLiving;
-			if (reciever instanceof EntityCreeper) {
+			EntityLivingBase receiver = event.entityLiving;
+			if (receiver instanceof EntityCreeper) {
 				Entity attacker = event.source.getEntity();
 				if (attacker instanceof EntityLivingBase) {
-					Entity target = ((EntityCreeper) reciever).getAttackTarget();
+					Entity target = ((EntityCreeper) receiver).getAttackTarget();
 					if (target != null) {
-						float d1 = reciever.getDistanceToEntity(((EntityCreeper) reciever).getAttackTarget());
-						float d2 = reciever.getDistanceToEntity(attacker);
+						float d1 = receiver.getDistanceToEntity(((EntityCreeper) receiver).getAttackTarget());
+						float d2 = receiver.getDistanceToEntity(attacker);
 						if (d2 < d1) {
 							((EntityCreeper) event.entityLiving).setAttackTarget((EntityLivingBase) event.source.getEntity());
 						}

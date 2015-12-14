@@ -21,8 +21,8 @@ import net.minecraftforge.common.util.RotationHelper;
 import net.minecraftforge.fluids.Fluid;
 
 import mortvana.legacy.clean.weirdscience.util.block.tile.BlockContainerBase;
-import mortvana.legacy.errored.weirdscience.block.tile.TileEntityNitrateEngine;
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import mortvana.legacy.errored.weirdscience.block.tile.TileEntityNitrateDynamo;
+import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.legacy.clean.core.util.helpers.BlockHelper;
 
 public class BlockNitrateEngine extends BlockContainerBase {
@@ -124,7 +124,7 @@ public class BlockNitrateEngine extends BlockContainerBase {
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {
-		TileEntityNitrateEngine TE = new TileEntityNitrateEngine();
+		TileEntityNitrateDynamo TE = new TileEntityNitrateDynamo();
 		TE.setWaste(waste);
 		return TE;
 	}
@@ -141,8 +141,8 @@ public class BlockNitrateEngine extends BlockContainerBase {
 	@Override
 	public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int par5) {
 		TileEntity te = world.getTileEntity(x, y, z);
-		if ((te != null) && (te instanceof TileEntityNitrateEngine)) {
-			TileEntityNitrateEngine tileentity = (TileEntityNitrateEngine) te;
+		if ((te != null) && (te instanceof TileEntityNitrateDynamo)) {
+			TileEntityNitrateDynamo tileentity = (TileEntityNitrateDynamo) te;
 			for (int slotiter = 0; slotiter < tileentity.getSizeInventory(); ++slotiter) {
 				ItemStack itemstack = tileentity.getStackInSlot(slotiter);
 				if (itemstack != null) {

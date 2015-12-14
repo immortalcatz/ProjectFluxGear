@@ -21,8 +21,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.util.RotationHelper;
 
 import mortvana.legacy.clean.weirdscience.util.block.tile.BlockContainerBase;
-import mortvana.legacy.errored.weirdscience.block.tile.TileEntityNitrateEngine;
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import mortvana.legacy.errored.weirdscience.block.tile.TileEntityNitrateDynamo;
+import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.legacy.clean.core.util.helpers.BlockHelper;
 
 //A copy-and-paste from BlockNitrateEngine.
@@ -148,8 +148,8 @@ public class BlockGunpowderEngine extends BlockContainerBase {
 	public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int par5) {
 		TileEntity te = world.getTileEntity(x, y, z);
 		if (te != null) {
-			if (te instanceof TileEntityNitrateEngine) {
-				TileEntityNitrateEngine tile = (TileEntityNitrateEngine) te;
+			if (te instanceof TileEntityNitrateDynamo) {
+				TileEntityNitrateDynamo tile = (TileEntityNitrateDynamo) te;
 				for (int slotiter = 0; slotiter < tile.getSizeInventory(); ++slotiter) {
 					ItemStack itemstack = tile.getStackInSlot(slotiter);
 					if (itemstack != null) {

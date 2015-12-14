@@ -21,8 +21,7 @@ import net.minecraftforge.fluids.FluidStack;
 import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
 
 import mortvana.legacy.clean.crystalclimate.block.itemblock.*;
-import mortvana.legacy.clean.crystalclimate.block.tile.TerraformerLogic;
-import mortvana.legacy.clean.crystalclimate.block.tile.TerraleecherLogic;
+import mortvana.legacy.clean.crystalclimate.block.tile.*;
 import mortvana.legacy.dependent.firstdegree.crystalclimate.item.ItemEssenceCrystal;
 import mortvana.legacy.clean.crystalclimate.common.CrystalProxy;
 import mortvana.legacy.errored.crystalclimate.block.tile.*;
@@ -37,7 +36,7 @@ public class CrystalClimate {
 	@Instance("CrystalClimate")
 	public static CrystalClimate instance;
 
-	public static FluxGearCreativeTab tab = new FluxGearCreativeTab("crystalclimate", "crystalclimate", CrystalClimate.essenceStack);;
+	public static FluxGearCreativeTab tab = new FluxGearCreativeTab("crystalclimate", "crystalclimate", CrystalClimate.essenceStack);
 
 	@SidedProxy(clientSide = "crystal.util.CrystalProxyClient", serverSide = "crystal.util.CrystalProxy")
 	public static CrystalProxy proxy;

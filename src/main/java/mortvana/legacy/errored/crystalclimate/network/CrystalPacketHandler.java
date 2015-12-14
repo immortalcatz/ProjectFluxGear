@@ -8,6 +8,7 @@ import java.util.Random;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.INetworkManager;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -20,7 +21,7 @@ public class CrystalPacketHandler implements IPacketHandler {
 	private static Random random = new Random();
 
 	@Override
-	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
+	public void onPacketData(NetworkManager manager, Packet250CustomPayload packet, Player player) {
 		Side side = FMLCommonHandler.instance().getEffectiveSide();
 
 		if (packet.channel.equals("CrystalClimate")) {

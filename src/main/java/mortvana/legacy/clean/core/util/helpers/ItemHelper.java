@@ -28,8 +28,6 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cofh.api.item.IEmpowerableItem;
 import cofh.api.item.IInventoryContainerItem;
 
-import mortvana.legacy.errored.core.util.helpers.StringHelper;
-
 public final class ItemHelper {
 	public static final String BLOCK = "block";
 	public static final String ORE = "ore";

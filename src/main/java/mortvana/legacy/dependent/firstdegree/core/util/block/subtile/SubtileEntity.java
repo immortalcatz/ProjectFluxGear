@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.legacy.clean.core.util.helpers.PacketHelper;
 import mortvana.legacy.dependent.seconddegree.core.util.helpers.SubtileHelper;
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.ProjectFluxGear;
 
 /**
  * A Sub-TileEntity, this was used for Vazkii's flower system. I use it for my machines.

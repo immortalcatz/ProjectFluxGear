@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
+import mortvana.legacy.errored.thaumicrevelations.block.BlockWardChest;
 import thaumcraft.common.tiles.TileOwned;
 
 public class TileWardChest extends TileOwned implements ISidedInventory {
@@ -98,7 +99,8 @@ public class TileWardChest extends TileOwned implements ISidedInventory {
 	//TODO: Update to use PFG-TR's TE Block using Block in FluxGearCoreContent
 	@Override
 	public String getInventoryName() {
-		return ModBlocks.wardChest.getUnlocalizedName() + ".name";
+		return new BlockWardChest().getUnlocalizedName() + ".name";
+		//return ModBlocks.wardChest.getUnlocalizedName() + ".name";
 	}
 
 	@Override

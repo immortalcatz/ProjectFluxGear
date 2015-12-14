@@ -10,11 +10,12 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import mortvana.legacy.errored.morttech.block.tile.TileWoodmill;
+import mortvana.legacy.clean.morttech.block.tile.TileWoodmill;
 import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
 
 public class BlockCrank extends Block {
@@ -30,13 +31,12 @@ public class BlockCrank extends Block {
     }
 
     private int power = 10;
-    //TODO: 1.7.10 Packets
-    Packet132TileEntityData p = new Packet132TileEntityData();
+    public S35PacketUpdateTileEntity packet = new S35PacketUpdateTileEntity();
 
     @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
         //TODO: 1.7.10 Packets
-        NBTTagCompound c = p.data;
+        NBTTagCompound c = packet.getNbtCompound();
 
         c = new NBTTagCompound();
         c.setInteger("power", power);

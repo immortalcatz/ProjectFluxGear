@@ -9,7 +9,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
 
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.ProjectFluxGear;
 
 public class ItemWaslieHammer extends Item {
 

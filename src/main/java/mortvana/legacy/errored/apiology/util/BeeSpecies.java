@@ -17,6 +17,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.*;
 
+import mortvana.melteddashboard.common.MeltedDashboardCore;
+
 public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider {
     //enumerate here
     ;
@@ -264,7 +266,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider {
     @Override
     public float getResearchSuitability(ItemStack itemStack) {
         float value = 0f;
-        if(itemStack != null) {
+        if (itemStack != null) {
             for (ItemStack product : products.keySet()) {
                 if (itemStack.isItemEqual(product))  {
                     value = 1f;
@@ -279,7 +281,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider {
                     }
                 }
                 if (value <= 0f) {
-                    //if (itemStack == BeeConfig.fHoneyDrop) {
+                    //=if (itemStack == BeeConfig.fHoneyDrop) {
                     //} else if (itemStack == BeeConfig.fHoneydew) {
                     //} else if (itemStack == BeeConfig.fBeeComb || itemStack == Config.combs) {
                     //    value = 4f;
@@ -299,7 +301,7 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider {
 
     @Override
     public ItemStack[] getResearchBounty(World world, GameProfile researcher, IIndividual individual, int bountyLevel) {
-        System.out.println("Bounty level: " + bountyLevel);
+        MeltedDashboardCore.logger.debug("Bounty level: " + bountyLevel);
         ArrayList<ItemStack> bounty = new ArrayList<ItemStack>();
 
         if (world.rand.nextFloat() < (10f / bountyLevel)) {
@@ -310,13 +312,13 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider {
             }
         }
 
-        for (ItemStack product : this.products.keySet()) {
+        for (ItemStack product : products.keySet()) {
             ItemStack copy = product.copy();
             copy.stackSize = 1 + world.rand.nextInt(bountyLevel / 2);
             bounty.add(copy);
         }
 
-        for (ItemStack specialty : this.specialties.keySet()) {
+        for (ItemStack specialty : specialties.keySet()) {
             ItemStack copy = specialty.copy();
             copy.stackSize = world.rand.nextInt(bountyLevel / 3);
             if (copy.stackSize > 0) {

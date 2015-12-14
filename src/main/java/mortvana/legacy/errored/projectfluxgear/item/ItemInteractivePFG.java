@@ -33,7 +33,6 @@ public class ItemInteractivePFG extends FluxGearItem {
 			// If it's fluid blood, make it congealed and remove a coagulant
 			IFluidBlock fluidBlock = (IFluidBlock) currentWorld.getBlock(x, y, z);
 			if (fluidBlock.getFluid().getName().contentEquals("blood")) {
-				//TODO: Make actually this do something
 				currentWorld.setBlock(x, y, z, congealedBlock);
 				if (!clickingPlayer.capabilities.isCreativeMode) {
 					--heldStack.stackSize;

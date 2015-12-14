@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.core.util.block.metadata;
+package mortvana.legacy.errored.core;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import mortvana.legacy.errored.projectfluxgear.network.MessageBase;
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.ProjectFluxGear;
 import org.lwjgl.opengl.GL11;
 
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {

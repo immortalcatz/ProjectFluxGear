@@ -22,9 +22,9 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 import mortvana.legacy.dependent.firstdegree.core.client.gui.FluxGearGUIHandler;
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.legacy.clean.core.common.FluxGearConfig;
-import mortvana.legacy.errored.morttech.block.tile.TileWoodmill;
+import mortvana.legacy.clean.morttech.block.tile.TileWoodmill;
 import mortvana.melteddashboard.api.item.tool.wrench.IFluxGearWrench;
 
 public class BlockWoodmill extends BlockContainer {
@@ -58,6 +58,7 @@ public class BlockWoodmill extends BlockContainer {
     /**
      * Called whenever the block is added into the world. Args: world, x, y, z
      */
+    @Override
     public void onBlockAdded(World world, int x, int y, int z) {
         super.onBlockAdded(world, x, y, z);
         setDefaultDirection(world, x, y, z);
@@ -75,23 +76,19 @@ public class BlockWoodmill extends BlockContainer {
             int k1 = world.getBlockId(x + 1, y, z);
             byte b0 = 3;
 
-            if (Block.opaqueCubeLookup[l] && !Block.opaqueCubeLookup[i1])
-            {
+            if (Block.opaqueCubeLookup[l] && !Block.opaqueCubeLookup[i1]) {
                 b0 = 3;
             }
 
-            if (Block.opaqueCubeLookup[i1] && !Block.opaqueCubeLookup[l])
-            {
+            if (Block.opaqueCubeLookup[i1] && !Block.opaqueCubeLookup[l]) {
                 b0 = 2;
             }
 
-            if (Block.opaqueCubeLookup[j1] && !Block.opaqueCubeLookup[k1])
-            {
+            if (Block.opaqueCubeLookup[j1] && !Block.opaqueCubeLookup[k1]) {
                 b0 = 5;
             }
 
-            if (Block.opaqueCubeLookup[k1] && !Block.opaqueCubeLookup[j1])
-            {
+            if (Block.opaqueCubeLookup[k1] && !Block.opaqueCubeLookup[j1]) {
                 b0 = 4;
             }
 
@@ -102,11 +99,13 @@ public class BlockWoodmill extends BlockContainer {
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
+    @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int metadata) {
         return side == 1 ? furnaceIconTop : (side == 0 ? furnaceIconTop : (side != metadata ? blockIcon : furnaceIconFront));
     }
 
+	@Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {
         blockIcon = iconRegister.registerIcon("morttech:" + getUnlocalizedName());
@@ -114,11 +113,12 @@ public class BlockWoodmill extends BlockContainer {
         furnaceIconTop = iconRegister.registerIcon("morttech:" + getUnlocalizedName() + "_top");
     }
 
-    public boolean onBlockActivated(World world, int x, int y, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+	@Override
+    public boolean onBlockActivated(World world, int x, int y, int par4, EntityPlayer player, int par6, float par7, float par8, float par9) {
         if (!world.isRemote) {
             TileWoodmill woodmill = (TileWoodmill) world.getTileEntity(x, y, par4);
-            if (woodmill != null && !(par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof IFluxGearWrench)) {
-                par5EntityPlayer.openGui(ProjectFluxGear.instance, FluxGearGUIHandler.woodmill, world, x, y, par4);
+            if (woodmill != null && !(player.getCurrentEquippedItem().getItem() instanceof IFluxGearWrench)) {
+                player.openGui(ProjectFluxGear.instance, FluxGearGUIHandler.woodmill, world, x, y, par4);
             }
 
         }
@@ -128,7 +128,8 @@ public class BlockWoodmill extends BlockContainer {
     /**
      * Returns a new instance of a block's tile entity class. Called on placing the block.
      */
-    public TileEntity createNewTileEntity(World par1World)
+    @Override
+    public TileEntity createNewTileEntity(World world, int metadata)
     {
         return new TileWoodmill();
     }
@@ -136,33 +137,28 @@ public class BlockWoodmill extends BlockContainer {
     /**
      * Called when the block is placed in the world.
      */
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
-    {
-        int l = MathHelper.floor_double((double) (par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack stack) {
+        int l = MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
-        if (l == 0)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
+        if (l == 0) {
+            world.setBlockMetadataWithNotify(x, y, z, 2, 2);
         }
 
-        if (l == 1)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
+        if (l == 1) {
+            world.setBlockMetadataWithNotify(x, y, z, 5, 2);
         }
 
-        if (l == 2)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
+        if (l == 2) {
+            world.setBlockMetadataWithNotify(x, y, z, 3, 2);
         }
 
-        if (l == 3)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
+        if (l == 3) {
+            world.setBlockMetadataWithNotify(x, y, z, 4, 2);
         }
 
-        if (par6ItemStack.hasDisplayName())
-        {
-            ((TileWoodmill)par1World.getTileEntity(par2, par3, par4)).setGuiDisplayName(par6ItemStack.getDisplayName());
+        if (stack.hasDisplayName()) {
+            ((TileWoodmill) world.getTileEntity(x, y, z)).setGuiDisplayName(stack.getDisplayName());
         }
     }
 
@@ -171,63 +167,56 @@ public class BlockWoodmill extends BlockContainer {
      * different metadata value, but before the new metadata value is set. Args: World, x, y, z, old block ID, old
      * metadata
      */
-    public void breakBlock(World world, int x, int y, int z, int par5, int par6)
-    {
-        if (!keepFurnaceInventory)
-        {
+    @Override
+    public void breakBlock(World world, int x, int y, int z, Block block, int metadata) {
+        if (!keepFurnaceInventory) {
             TileWoodmill tile = (TileWoodmill) world.getTileEntity(x, y, z);
 
-            if (tile != null)
-            {
-                for (int j1 = 0; j1 < tile.getSizeInventory(); ++j1)
-                {
+            if (tile != null) {
+                for (int j1 = 0; j1 < tile.getSizeInventory(); ++j1) {
                     ItemStack itemstack = tile.getStackInSlot(j1);
 
-                    if (itemstack != null)
-                    {
-                        float f = this.furnaceRand.nextFloat() * 0.8F + 0.1F;
-                        float f1 = this.furnaceRand.nextFloat() * 0.8F + 0.1F;
-                        float f2 = this.furnaceRand.nextFloat() * 0.8F + 0.1F;
+                    if (itemstack != null) {
+                        float f = furnaceRand.nextFloat() * 0.8F + 0.1F;
+                        float f1 = furnaceRand.nextFloat() * 0.8F + 0.1F;
+                        float f2 = furnaceRand.nextFloat() * 0.8F + 0.1F;
 
-                        while (itemstack.stackSize > 0)
-                        {
+                        while (itemstack.stackSize > 0) {
                             int k1 = this.furnaceRand.nextInt(21) + 10;
 
-                            if (k1 > itemstack.stackSize)
-                            {
+                            if (k1 > itemstack.stackSize) {
                                 k1 = itemstack.stackSize;
                             }
 
                             itemstack.stackSize -= k1;
                             EntityItem entityitem = new EntityItem(world, (double)((float)x + f), (double)((float)y + f1), (double)((float)z + f2), new ItemStack(itemstack, k1, itemstack.getItemDamage()));
 
-                            if (itemstack.hasTagCompound())
-                            {
-                                entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
+                            if (itemstack.hasTagCompound()) {
+                                entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
                             }
 
                             float f3 = 0.05F;
-                            entityitem.motionX = (double)((float)this.furnaceRand.nextGaussian() * f3);
-                            entityitem.motionY = (double)((float)this.furnaceRand.nextGaussian() * f3 + 0.2F);
-                            entityitem.motionZ = (double)((float)this.furnaceRand.nextGaussian() * f3);
+                            entityitem.motionX = (double) ((float) furnaceRand.nextGaussian() * f3);
+                            entityitem.motionY = (double) ((float) furnaceRand.nextGaussian() * f3 + 0.2F);
+                            entityitem.motionZ = (double) ((float) furnaceRand.nextGaussian() * f3);
                             world.spawnEntityInWorld(entityitem);
                         }
                     }
                 }
 
-                world.func_96440_m(x, y, z, par5);
+                world.func_96440_m(x, y, z, block);
             }
         }
 
-        super.breakBlock(world, x, y, z, par5, par6);
+        super.breakBlock(world, x, y, z, block, metadata);
     }
 
     /**
      * If this returns true, then comparators facing away from this block will use the value from
      * getComparatorInputOverride instead of the actual redstone signal strength.
      */
-    public boolean hasComparatorInputOverride()
-    {
+    @Override
+    public boolean hasComparatorInputOverride(){
         return true;
     }
 
@@ -235,16 +224,17 @@ public class BlockWoodmill extends BlockContainer {
      * If hasComparatorInputOverride returns true, the return value from this is used instead of the redstone signal
      * strength when this block inputs to a comparator.
      */
-    public int getComparatorInputOverride(World par1World, int par2, int par3, int par4, int par5)
-    {
-        return Container.calcRedstoneFromInventory((IInventory) par1World.getTileEntity(par2, par3, par4));
+    @Override
+    public int getComparatorInputOverride(World world, int x, int y, int z, int par5) {
+        return Container.calcRedstoneFromInventory((IInventory) world.getTileEntity(x, y, z));
     }
 
     /**
      * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
      */
+    @Override
     @SideOnly(Side.CLIENT)
-    public int idPicked(World par1World, int par2, int par3, int par4) {
+    public int itemPicked(World world, int x, int y, int z) {
         return FluxGearConfig.tileMachineTier0ID;
     }
 }

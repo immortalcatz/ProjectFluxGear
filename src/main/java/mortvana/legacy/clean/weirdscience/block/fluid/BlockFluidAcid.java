@@ -15,21 +15,21 @@ public class BlockFluidAcid extends Fluid implements IBioactive {
 
     @Override
     public boolean contactAffectCreature(EntityLivingBase affected) {
-        affected.attackEntityFrom(DamageSource.magic, (float)damage);
+        affected.attackEntityFrom(DamageSource.magic, (float) damage);
         return true;
     }
 
     @Override
     public boolean drinkAffectCreature(EntityLivingBase affected) {
         //Don't drink acid.
-        affected.attackEntityFrom(DamageSource.magic, (float)damage*2);
+        affected.attackEntityFrom(DamageSource.magic, (float) damage*2);
         return true;
     }
 
     @Override
     public boolean bloodstreamAffectCreature(EntityLivingBase affected) {
         //Holy shit what are you doing?
-        affected.attackEntityFrom(DamageSource.magic, (float)damage*4);
+        affected.attackEntityFrom(DamageSource.magic, (float) damage*4);
         return true;
     }
 

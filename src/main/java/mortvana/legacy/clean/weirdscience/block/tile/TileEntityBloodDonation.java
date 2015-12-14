@@ -1,8 +1,9 @@
-package mortvana.legacy.errored.weirdscience.block.tile;
+package mortvana.legacy.clean.weirdscience.block.tile;
 
 import mortvana.legacy.clean.weirdscience.util.block.tile.BlockMetaTank;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
@@ -38,18 +39,16 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
         super.writeToNBT(tag);
         if (fluidTank != null) {
         	fluidTank.writeToNBT(tag);
-        }
-        else {
+        } else {
         	tag.setString("Empty", "");
         }
     }
 
-	//TODO: FML Packets
     @Override
 	public Packet getDescriptionPacket() {
 	    NBTTagCompound nbt = new NBTTagCompound();
 	    writeToNBT(nbt);
-	    return new PacketTileEntityData(xCoord, yCoord, zCoord, 1, nbt);
+	    return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, nbt);
 	}
 
 	private static Fluid bloodFluid;
@@ -135,7 +134,7 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
 				if (fluidTank == null) {
 					fluidTank = new FluidStack(resource, Math.min(capacity, resource.amount));
 					//Some network thing.
-		            FluidEvent.fireEvent(new FluidEvent.FluidFillingEvent(fluidTank, this.worldObj, this.xCoord, this.yCoord, this.zCoord, this));
+		            FluidEvent.fireEvent(new FluidEvent.FluidFillingEvent(fluidTank, worldObj, xCoord, yCoord, zCoord, this));
 		            return fluidTank.amount;
 		        }
 				int filled;
@@ -151,7 +150,7 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
 		        }
 				if (fluidTank != null) {
 		        	//Some network thing.
-		            FluidEvent.fireEvent(new FluidEvent.FluidFillingEvent(fluidTank, this.worldObj, this.xCoord, this.yCoord, this.zCoord, this));
+		            FluidEvent.fireEvent(new FluidEvent.FluidFillingEvent(fluidTank, worldObj, xCoord, yCoord, zCoord, this));
 		        }
 	            updateTank();
 		        return filled;

@@ -7,7 +7,7 @@ import net.minecraftforge.common.MinecraftForge;
 import mortvana.melteddashboard.util.helpers.LoadedHelper;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.legacy.clean.core.common.FluxGearConfigWorld;
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.ProjectFluxGear;
 
 public class PoorOreGenerator {
 

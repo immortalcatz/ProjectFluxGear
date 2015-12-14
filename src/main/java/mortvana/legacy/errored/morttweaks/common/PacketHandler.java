@@ -19,7 +19,7 @@ import cpw.mods.fml.relauncher.Side;
 public class PacketHandler implements IPacketHandler {
 
 	@Override
-	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
+	public void onPacketData(NetworkManager manager, Packet250CustomPayload packet, Player player) {
 		Side side = FMLCommonHandler.instance().getEffectiveSide();
 
 		if (packet.channel.equals("MortTweaks")) {

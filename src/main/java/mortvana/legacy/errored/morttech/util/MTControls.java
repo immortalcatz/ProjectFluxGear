@@ -42,35 +42,26 @@ public class MTControls extends MTKeyHandler {
     }
 
     @Override
-    public void keyDown (TickEvent.Type types, KeyBinding kb, boolean tickEnd, boolean isRepeat)
-    {
-        if (tickEnd && mc.theWorld != null)
-        {
-            if (kb == armorKey && mc.currentScreen == null) // Extended Armor
-            {
+    public void keyDown (TickEvent.Type types, KeyBinding kb, boolean tickEnd, boolean isRepeat) {
+        if (tickEnd && mc.theWorld != null) {
+            if (kb == armorKey && mc.currentScreen == null) {// Extended Armor
+
                 openArmorGui();// mc.thePlayer.username);
             }
-            if (kb == invKey && mc.currentScreen != null && mc.currentScreen.getClass() == GuiInventory.class)// &&
-            // !mc.playerController.isInCreativeMode())
-            {
+            if (kb == invKey && mc.currentScreen != null && mc.currentScreen.getClass() == GuiInventory.class)/* &&
+            !mc.playerController.isInCreativeMode())*/{
                 TabRegistry.addTabsToInventory((GuiContainer) mc.currentScreen);
             }
-            if (kb == refreshCapes && mc.currentScreen == null)
-            {
+            if (kb == refreshCapes && mc.currentScreen == null) {
                 EventCloakRender.instance.refreshCapes();
             }
-            if (kb == jumpKey) // Double jump
-            {
-                if (mc.thePlayer.capabilities.isCreativeMode)
-                    return;
+            if (kb == jumpKey) { // Double jump
 
-                if (jumping && midairJumps > 0)
-                {
+                if (jumping && midairJumps > 0 && !mc.thePlayer.capabilities.isCreativeMode) {
                     mc.thePlayer.motionY = 0.42D;
                     mc.thePlayer.fallDistance = 0;
 
-                    if (mc.thePlayer.isPotionActive(Potion.jump))
-                    {
+                    if (mc.thePlayer.isPotionActive(Potion.jump)) {
                         mc.thePlayer.motionY += (double) ((float) (mc.thePlayer.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F);
                     }
 
@@ -78,27 +69,23 @@ public class MTControls extends MTKeyHandler {
                     resetFallDamage();
                 }
 
-                if (!jumping)
-                    jumping = mc.thePlayer.isAirBorne;
+                if (!jumping && !mc.thePlayer.capabilities.isCreativeMode) {
+	                jumping = mc.thePlayer.isAirBorne;
+                }
             }
         }
 
     }
 
     @Override
-    public void keyUp (TickEvent.Type types, KeyBinding kb, boolean tickEnd)
-    {
+    public void keyUp (TickEvent.Type types, KeyBinding kb, boolean tickEnd) {}
 
-    }
-
-    public void landOnGround ()
-    {
+    public void landOnGround () {
         midairJumps = 0;
         jumping = false;
     }
 
-    public void resetControls ()
-    {
+    public void resetControls () {
         midairJumps = 0;
         jumping = false;
         climbing = false;
@@ -106,21 +93,18 @@ public class MTControls extends MTKeyHandler {
         onStilts = false;
     }
 
-    void resetFallDamage()
-    {
+    void resetFallDamage() {
         AbstractPacket packet = new PacketDoubleJump();
         updateServer(packet);
     }
 
 
-    public static void openArmorGui ()
-    {
+    public static void openArmorGui () {
         AbstractPacket packet = new PacketExtendedInventory(TProxyCommon.armorGuiID);
         updateServer(packet);
     }
 
-    public static void openKnapsackGui ()
-    {
+    public static void openKnapsackGui () {
         AbstractPacket packet = new PacketExtendedInventory(TProxyCommon.knapsackGuiID);
         updateServer(packet);
     }

@@ -3,7 +3,7 @@ package mortvana.legacy.dependent.firstdegree.apiology.util;
 import forestry.api.apiculture.*;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.ProjectFluxGear;
 
 import java.util.ArrayList;
 import java.util.Collection;

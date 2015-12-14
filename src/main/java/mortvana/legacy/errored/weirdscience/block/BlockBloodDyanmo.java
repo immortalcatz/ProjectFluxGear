@@ -12,13 +12,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.legacy.clean.weirdscience.block.tile.TileEntityBloodDynamo;
 import mortvana.legacy.clean.weirdscience.util.block.tile.BlockMetaTank;
 
-public class BlockBloodEngine extends BlockMetaTank {
+public class BlockBloodDyanmo extends BlockMetaTank {
 
-	protected static final String fuelName= "blood";
+	protected static final String fuelName = "blood";
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {
@@ -27,8 +27,8 @@ public class BlockBloodEngine extends BlockMetaTank {
 
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float par1, float par2, float par3) {
 		TileEntityBloodDynamo tileEntity = null;
-		if(world.getTileEntity(x, y, z) instanceof TileEntityBloodDynamo) {
-			tileEntity = (TileEntityBloodDynamo)world.getTileEntity(x, y, z);
+		if (world.getTileEntity(x, y, z) instanceof TileEntityBloodDynamo) {
+			tileEntity = (TileEntityBloodDynamo) world.getTileEntity(x, y, z);
 		}
 		if (tileEntity == null || player.isSneaking()) {
 			return false;
@@ -57,7 +57,7 @@ public class BlockBloodEngine extends BlockMetaTank {
 					Fluid fluidTry = ((IFluidBlock)dumpedBlock).getFluid();
 					//Is it blood?
 					if(fluidTry.getName().contentEquals(fuelName)) {
-						if(FillTank(fluidTry, tileEntity) && !player.capabilities.isCreativeMode) {
+						if(fillTank(fluidTry, tileEntity) && !player.capabilities.isCreativeMode) {
 							player.inventory.setInventorySlotContents(player.inventory.currentItem, FluidContainerRegistry.EMPTY_BUCKET);
 						}
 						return true;
@@ -76,7 +76,7 @@ public class BlockBloodEngine extends BlockMetaTank {
 					}
 					if (fluidBlockArry[playerItem.getMetadata()].getUnlocalizedName().contentEquals("tile.liquid.blood")) {
 						Fluid fluidTry = FluidRegistry.getFluid("blood");
-						if (FillTank(fluidTry, tileEntity) && !player.capabilities.isCreativeMode) {
+						if (fillTank(fluidTry, tileEntity) && !player.capabilities.isCreativeMode) {
 							player.inventory.setInventorySlotContents(player.inventory.currentItem, FluidContainerRegistry.EMPTY_BUCKET);
 						}
 						return true;
@@ -91,24 +91,24 @@ public class BlockBloodEngine extends BlockMetaTank {
 		return false;
 	}
 
-	public boolean FillTank(Fluid f, TileEntityBloodDynamo tileEntity) {
+	public boolean fillTank(Fluid blood, TileEntityBloodDynamo tile) {
 		//Get the amount of fluid we're trying to put in the TE.
-		FluidStack toTry = new FluidStack(f, 1000);
+		FluidStack fluid = new FluidStack(blood, 1000);
 		//First simulate the filling to make sure we can fit a whole bucket of blood in the engine.
-		if(tileEntity.fill(ForgeDirection.UP, toTry, false) == 1000) {
+		if (tile.fill(ForgeDirection.UP, fluid, false) == 1000) {
 			//Then, do it for real.
-			tileEntity.fill(ForgeDirection.UP, toTry, true);
+			tile.fill(ForgeDirection.UP, fluid, true);
 			//If they are not god they do not get infinite blood bucket.
 			return true;
 		}
 		return false;
 	}
 
-	public BlockBloodEngine(String name, Material material) {
+	public BlockBloodDyanmo(String name, Material material) {
 		super(name, material);
 	}
 
-	public BlockBloodEngine(String name) {
+	public BlockBloodDyanmo(String name) {
 		super(name);
 	}
 

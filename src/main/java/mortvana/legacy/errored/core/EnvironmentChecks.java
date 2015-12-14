@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.core.util.runtime;
+package mortvana.legacy.errored.core;
 
 
 import java.util.ArrayList;
@@ -74,8 +74,7 @@ public class EnvironmentChecks {
         if (modIds.size() == 0) {
             ICrashCallable callable = new CallableSuppConfig(modId);
             FMLCommonHandler.instance().registerCrashCallable(callable);
-        }
-        else {
+        } else {
             ICrashCallable callable = new CallableUnsuppConfig(modId, modIds);
             FMLCommonHandler.instance().registerCrashCallable(callable);
         }
@@ -87,13 +86,12 @@ public class EnvironmentChecks {
 
 	public static String modCompatDetails (String type, boolean consoleFormat) {
 		String n = consoleFormat ? System.getProperty("line.separator") : "\n";
-		if (type.equals("GregTech"))
-		{
+		if (type.equals("GregTech")) {
 			return    "- GregTech is a meta-mod that changes how a lot of mods interact with the base game and with each other." + n
 					+ "- The mod restructures the registration of various ores within the Ore Dictionary. This may alter or break the original design intention of various other mods." + n
 					+ "- This mod alters various fundamental recipes from vanilla Minecraft, ruining balance of all other mods." + n
-					+ "- Greg hacks into Forge ModLoader instead of making a Pull Request, damaging both his, and his mod's reputation." + n
-					+ "- Greg has the social skills of a 6-year-old, and insults other mods and their authors.";
+					+ "- Greg hacks into Forge ModLoader instead of making a Pull Request, damaging both his, and his mod's reputation." /*+ n
+					+ "- Greg has the social skills of a 6-year-old, and insults other mods and their authors."*/;
 		}
 		return "";
 	}

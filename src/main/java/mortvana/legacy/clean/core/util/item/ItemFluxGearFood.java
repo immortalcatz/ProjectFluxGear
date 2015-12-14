@@ -23,7 +23,7 @@ import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
 import mortvana.legacy.clean.core.util.helpers.ItemHelper;
 import mortvana.legacy.clean.core.util.helpers.SecurityHelper;
-import mortvana.legacy.errored.core.util.helpers.StringHelper;
+import mortvana.legacy.clean.core.util.helpers.StringHelper;
 import mortvana.melteddashboard.item.entry.ColorEntry;
 import mortvana.melteddashboard.item.entry.ItemEntry;
 

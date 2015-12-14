@@ -8,6 +8,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -33,10 +34,12 @@ public class ClientProxy extends CommonProxy {
 	GameSettings gs = Minecraft.getMinecraft().gameSettings;
 
 	public ClientProxy() {
-		if (MortTweaks.fancyGrass)
+		if (MortTweaks.fancyGrass) {
 			TickRegistry.registerTickHandler(new TweakTicker(), Side.CLIENT); //TODO: 1.7.10 Version...
-		if (MortTweaks.disableExpBar)
+		}
+		if (MortTweaks.disableExpBar) {
 			MinecraftForge.EVENT_BUS.register(new GuiIngameForgeFix(mc));
+		}
 	}
 
 	@Override
@@ -50,7 +53,6 @@ public class ClientProxy extends CommonProxy {
 
 	boolean tukmc = Loader.isModLoaded("tukmc_Vz");
 	boolean TConstruct = Loader.isModLoaded("TConstruct");
-	private ScaledResolution res = null;
 	public static final ResourceLocation icons = new ResourceLocation("morttweaks", "textures/gui/icons.png");
 	boolean updateResolution = false;
 	int scaledWidth;
@@ -61,35 +63,20 @@ public class ClientProxy extends CommonProxy {
 
     @SubscribeEvent
     public void renderHud (RenderGameOverlayEvent.Pre event) {
-        if (tukmc)
-            return;
-
-        if (event.type == ElementType.ALL)
-        {
-            if (updateResolution)
-            {
-                res = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight); //TODO: New Constructor
-                scaledWidth = res.getScaledWidth();
-                scaledHeight = res.getScaledHeight();
-                updateResolution = false;
-            }
-        }
-
-        //GuiIngameForge.renderExperiance = true;
-
-        else if (event.type == ElementType.CROSSHAIRS) //Crosshairs
-        {
-            if (gs.thirdPersonView != 0)
-                event.setCanceled(true);
-            else
-            {
+	    if (!tukmc && event.type == ElementType.ALL && updateResolution) {
+	        ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+            scaledWidth = res.getScaledWidth();
+            scaledHeight = res.getScaledHeight();
+            updateResolution = false;
+        } else if (event.type == ElementType.CROSSHAIRS) { //GuiIngameForge.renderExperience = true; //Crosshairs
+            if (gs.thirdPersonView != 0) {
+	            event.setCanceled(true);
+            } else {
                 ItemStack stack = mc.thePlayer.getCurrentEquippedItem();
-                if (stack != null)
-                {
-                    if (MortTweaks.crosshairBlacklist[stack.itemID]) //TODO: 1.7.10 Version...
-                        event.setCanceled(true);
-                    else if (MortTweaks.rangedCrosshair[stack.itemID]) //TODO: 1.7.10 Version...
-                    {
+                if (stack != null) {
+	                if (MortTweaks.crosshairBlacklist[stack.itemID]) { //TODO: 1.7.10 Version...
+		                event.setCanceled(true);
+                    } else if (MortTweaks.rangedCrosshair[stack.itemID]) { //TODO: 1.7.10 Version...
                         mc.getTextureManager().bindTexture(icons);
                         GL11.glEnable(GL11.GL_BLEND);
                         GL11.glBlendFunc(GL11.GL_ONE_MINUS_DST_COLOR, GL11.GL_ONE_MINUS_SRC_COLOR);
@@ -101,15 +88,11 @@ public class ClientProxy extends CommonProxy {
                     }
                 }
             }
-        }
-
-        else if (!TConstruct && event.type == ElementType.HEALTH && MortTweaks.disableExpBar)
-        {
-            if (event.type == ElementType.HEALTH)
-            {
+        } else if (!TConstruct && event.type == ElementType.HEALTH && MortTweaks.disableExpBar) {
+            if (event.type == ElementType.HEALTH) {
                 updateCounter++;
 
-                ScaledResolution scaledresolution = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight); //TODO: New Constructor
+                ScaledResolution scaledresolution = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
                 scaledWidth = scaledresolution.getScaledWidth();
                 scaledHeight = scaledresolution.getScaledHeight();
                 int xBasePos = scaledWidth / 2 - 91;
@@ -117,28 +100,27 @@ public class ClientProxy extends CommonProxy {
 
                 boolean highlight = mc.thePlayer.hurtResistantTime / 3 % 2 == 1;
 
-                if (mc.thePlayer.hurtResistantTime < 10)
-                {
+                if (mc.thePlayer.hurtResistantTime < 10) {
                     highlight = false;
                 }
 
-                AttributeInstance attrMaxHealth = this.mc.thePlayer.getEntityAttribute(SharedMonsterAttributes.maxHealth); //TODO: Update to 1.7.10
+                IAttributeInstance attrMaxHealth = mc.thePlayer.getEntityAttribute(SharedMonsterAttributes.maxHealth);
                 int health = MathHelper.ceiling_float_int(mc.thePlayer.getHealth());
                 int healthLast = MathHelper.ceiling_float_int(mc.thePlayer.prevHealth);
-                float healthMax = (float) attrMaxHealth.getAttributeValue(); //TODO: Update to 1.7.10
-                if (healthMax > 20)
-                    healthMax = 20;
-                float absorb = this.mc.thePlayer.getAbsorptionAmount();
+                float healthMax = (float) attrMaxHealth.getAttributeValue();
+                if (healthMax > 20) {
+	                healthMax = 20;
+                }
+                float absorb = mc.thePlayer.getAbsorptionAmount();
 
                 int healthRows = MathHelper.ceiling_float_int((healthMax + absorb) / 2.0F / 10.0F);
                 int rowHeight = Math.max(10 - (healthRows - 2), 3);
 
-                this.rand.setSeed((long) (updateCounter * 312871));
+                rand.setSeed((long) (updateCounter * 312871));
 
                 int left = scaledWidth / 2 - 91;
                 int top = scaledHeight - GuiIngameForge.left_height;
-                if (GuiIngameForge.renderExperiance == false)
-                {
+                if (!GuiIngameForge.renderExperiance) {
                     top += 7;
                     yBasePos += 7;
                 }
@@ -187,66 +169,53 @@ public class ClientProxy extends CommonProxy {
                         else
                             drawTexturedModalRect(x, y, MARGIN + 144, TOP, 9, 9); //16
                         absorbRemaining -= 2.0F;
-                    }
-                    else
-                    {
-                        if (i * 2 + 1 < health)
-                            drawTexturedModalRect(x, y, MARGIN + 36, TOP, 9, 9); //4
-                        else if (i * 2 + 1 == health)
-                            drawTexturedModalRect(x, y, MARGIN + 45, TOP, 9, 9); //5
+                    } else {
+                        if (i * 2 + 1 < health) {
+	                        drawTexturedModalRect(x, y, MARGIN + 36, TOP, 9, 9); //4
+                        } else if (i * 2 + 1 == health) {
+	                        drawTexturedModalRect(x, y, MARGIN + 45, TOP, 9, 9); //5
+                        }
                     }
                 }
 
                 int potionOffset = 0;
                 PotionEffect potion = mc.thePlayer.getActivePotionEffect(Potion.wither);
-                if (potion != null)
-                    potionOffset = 18;
+                if (potion != null) {
+	                potionOffset = 18;
+                }
                 potion = mc.thePlayer.getActivePotionEffect(Potion.poison);
-                if (potion != null)
-                    potionOffset = 9;
-
+                if (potion != null) {
+	                potionOffset = 9;
+                }
                 GuiIngameForge.left_height += 10;
-                if (absorb > 0)
-                    GuiIngameForge.left_height += 10;
-
+                if (absorb > 0) {
+	                GuiIngameForge.left_height += 10;
+                }
                 event.setCanceled(true);
             }
-        }
-
-        else if (event.type == ElementType.EXPERIENCE && MortTweaks.disableExpBar)
-        {
+        } else if (event.type == ElementType.EXPERIENCE && MortTweaks.disableExpBar) {
             GuiIngameForge.renderExperiance = false;
             event.setCanceled(true);
-        }
-
-        else if (MortTweaks.overrideHungerHud) //Hunger
-        {
-            if (event.type == ElementType.FOOD)
-            {
+        } else if (MortTweaks.overrideHungerHud) {//Hunger
+            if (event.type == ElementType.FOOD) {
                 event.setCanceled(true);
             }
 
-            if (MortTweaks.overrideArmorHud && event.type == ElementType.ARMOR)
-            {
+            if (MortTweaks.overrideArmorHud && event.type == ElementType.ARMOR) {
                 mc.mcProfiler.startSection("armor");
-                if (MortTweaks.disableExpBar)
-                    GuiIngameForge.right_height -= 7;
+                if (MortTweaks.disableExpBar) {
+	                GuiIngameForge.right_height -= 7;
+                }
                 int left = scaledWidth / 2 + 11;
                 int top = scaledHeight - GuiIngameForge.right_height;
 
                 int level = ForgeHooks.getTotalArmorValue(mc.thePlayer);
-                for (int i = 1; level > 0 && i < 20; i += 2)
-                {
-                    if (i < level)
-                    {
+                for (int i = 1; level > 0 && i < 20; i += 2) {
+                    if (i < level) {
                         drawTexturedModalRect(left, top, 34, 9, 9, 9);
-                    }
-                    else if (i == level)
-                    {
+                    } else if (i == level) {
                         drawTexturedModalRect(left, top, 25, 9, 9, 9);
-                    }
-                    else if (i > level)
-                    {
+                    } else if (i > level) {
                         drawTexturedModalRect(left, top, 16, 9, 9, 9);
                     }
                     left += 8;
@@ -257,16 +226,13 @@ public class ClientProxy extends CommonProxy {
                 updateResolution = true;
                 event.setCanceled(true);
             }
-        }
-        else if (MortTweaks.tweakHunger)
-        {
-            if (event.type == ElementType.FOOD)
-            {
+        } else if (MortTweaks.tweakHunger) {
+            if (event.type == ElementType.FOOD) {
                 mc.mcProfiler.startSection("food");
                 foodUpdateConter++;
-                if (MortTweaks.disableExpBar)
-                    GuiIngameForge.right_height -= 7;
-
+                if (MortTweaks.disableExpBar) {
+	                GuiIngameForge.right_height -= 7;
+                }
                 updateResolution = true;
                 int left = scaledWidth / 2 + 91;
                 int top = scaledHeight - GuiIngameForge.right_height;
@@ -277,80 +243,74 @@ public class ClientProxy extends CommonProxy {
                 int level = stats.getFoodLevel();
                 int levelLast = stats.getPrevFoodLevel();
 
-                for (int i = 0; i < 10; ++i) //Default food
-                {
+                for (int i = 0; i < 10; ++i) { //Default food
                     int idx = i * 2 + 1;
                     int x = left - i * 8 - 9;
                     int y = top;
                     int icon = 16;
                     byte backgound = 0;
 
-                    if (mc.thePlayer.isPotionActive(Potion.hunger))
-                    {
+                    if (mc.thePlayer.isPotionActive(Potion.hunger)) {
                         icon += 36;
                         backgound = 13;
                     }
-                    if (unused)
-                        backgound = 1; //Probably should be a += 1 but vanilla never uses this*/
-
-                    if (mc.thePlayer.getFoodStats().getSaturationLevel() <= 0.0F && updateCounter % (level * 10 + 1) == 0)
-                    {
+                    if (unused) {
+	                    backgound = 1; //Probably should be a += 1 but vanilla never uses this*/
+                    }
+                    if (mc.thePlayer.getFoodStats().getSaturationLevel() <= 0.0F && updateCounter % (level * 10 + 1)  == 0) {
                         y = top + (rand.nextInt(3) - 1);
                     }
 
                     drawTexturedModalRect(x, y, 16 + backgound * 9, 27, 9, 9);
 
-                    if (idx < level)
-                        drawTexturedModalRect(x, y, icon + 36, 27, 9, 9);
-                    else if (idx == level)
-                        drawTexturedModalRect(x, y, icon + 45, 27, 9, 9);
-
+                    if (idx < level) {
+	                    drawTexturedModalRect(x, y, icon + 36, 27, 9, 9);
+                    } else if (idx == level) {
+	                    drawTexturedModalRect(x, y, icon + 45, 27, 9, 9);
+                    }
                 }
 
                 //Extra food
-                this.mc.getTextureManager().bindTexture(icons);
+                mc.getTextureManager().bindTexture(icons);
                 left += 88;
 
-                for (int iter = 0; iter < level / 20; iter++)
-                {
+                for (int iter = 0; iter < level / 20; iter++) {
                     int renderHearts = (level - 20 * (iter + 1)) / 2;
-                    if (renderHearts > 10)
-                        renderHearts = 10;
-                    for (int i = 0; i < renderHearts; i++)
+                    if (renderHearts > 10) {
+	                    renderHearts = 10;
+                    }
+                    for (int i = 0; i < renderHearts; i++) {
                     //for (int i = iter * 10; i < 10 + iter * 10; i++)
-                    {
                         int idx = i * 2 + 1;
                         int x = left - i * 8 - 17 - 80;
                         int y = top;
-                        int icon = 0 + iter * 18;
+                        int icon = iter * 18;
                         int background = 0;
 
-                        if (mc.thePlayer.isPotionActive(Potion.hunger))
-                        {
+                        if (mc.thePlayer.isPotionActive(Potion.hunger)) {
                             background += 9;
                         }
 
-                        if (mc.thePlayer.getFoodStats().getSaturationLevel() <= 0.0F && foodUpdateConter % (level * 10 + 1) == 0)
-                        {
+                        if (mc.thePlayer.getFoodStats().getSaturationLevel() <= 0.0F && foodUpdateConter % (level * 10 + 1) == 0) {
                             y = top + (rand.nextInt(3) - 1);
                         }
 
                         //drawTexturedModalRect(x, y, 16 + backgound * 9, 27, 9, 9);
 
-                        if (idx < level)
-                            drawTexturedModalRect(x, y, icon + 0, background + 27, 9, 9);
-                        else if (idx == level)
-                            drawTexturedModalRect(x, y, icon + 9, background + 27, 9, 9);
+                        if (idx < level) {
+	                        drawTexturedModalRect(x, y, icon, background + 27, 9, 9);
+                        } else if (idx == level) {
+	                        drawTexturedModalRect(x, y, icon + 9, background + 27, 9, 9);
+                        }
                     }
                 }
-                this.mc.getTextureManager().bindTexture(icons);
+                mc.getTextureManager().bindTexture(icons);
                 mc.mcProfiler.endSection();
                 event.setCanceled(true);
             }
         }
 
-        if (!MortTweaks.overrideHungerHud && MortTweaks.disableExpBar && event.type == ElementType.ARMOR)
-        {
+        if (!MortTweaks.overrideHungerHud && MortTweaks.disableExpBar && event.type == ElementType.ARMOR) {
             mc.mcProfiler.startSection("armor");
             if (MortTweaks.disableExpBar)
                 GuiIngameForge.left_height -= 7;
@@ -358,18 +318,12 @@ public class ClientProxy extends CommonProxy {
             int top = scaledHeight - GuiIngameForge.left_height;
 
             int level = ForgeHooks.getTotalArmorValue(mc.thePlayer);
-            for (int i = 1; level > 0 && i < 20; i += 2)
-            {
-                if (i < level)
-                {
+            for (int i = 1; level > 0 && i < 20; i += 2) {
+                if (i < level) {
                     drawTexturedModalRect(left, top, 34, 9, 9, 9);
-                }
-                else if (i == level)
-                {
+                } else if (i == level) {
                     drawTexturedModalRect(left, top, 25, 9, 9, 9);
-                }
-                else if (i > level)
-                {
+                } else if (i > level) {
                     drawTexturedModalRect(left, top, 16, 9, 9, 9);
                 }
                 left += 8;
@@ -383,12 +337,8 @@ public class ClientProxy extends CommonProxy {
     }
 
     @SubscribeEvent
-    public void renderHudPost (RenderGameOverlayEvent.Post event)
-    {
-        if (event.type == ElementType.EXPERIENCE && MortTweaks.disableExpBar)
-        {
-
-        }
+    public void renderHudPost (RenderGameOverlayEvent.Post event) {
+        if (event.type == ElementType.EXPERIENCE && MortTweaks.disableExpBar) {}
     }
 
 	int zLevel = 0;

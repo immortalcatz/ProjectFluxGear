@@ -1,7 +1,7 @@
 package mortvana.legacy.clean.morttech.item;
 
 import ic2.api.tile.IWrenchable;
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.ProjectFluxGear;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;

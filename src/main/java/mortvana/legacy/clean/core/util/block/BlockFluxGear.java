@@ -1,7 +1,5 @@
 package mortvana.legacy.clean.core.util.block;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.*;
 
 import net.minecraft.block.*;
@@ -15,7 +13,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.legacy.errored.core.util.helpers.StringHelper;
+import mortvana.legacy.clean.core.util.helpers.StringHelper;
 
 @Deprecated
 public class BlockFluxGear extends Block {

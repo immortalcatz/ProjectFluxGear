@@ -6,13 +6,13 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
-import net.minecraft.network.packet.Packet250CustomPayload;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.network.PacketDispatcher;
 
+import mortvana.legacy.clean.crystalclimate.block.tile.CrystalLogic;
 import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
 
 public class RedstoneAggregator extends TileEntity {
@@ -38,7 +38,7 @@ public class RedstoneAggregator extends TileEntity {
 					}
 				}
 
-				if (sugar == 0 && this.worldObj.getTotalWorldTime() % 80L == 0) {
+				if (sugar == 0 && worldObj.getTotalWorldTime() % 80L == 0) {
 					scanForSugar(true);
 				}
 			}
@@ -358,12 +358,12 @@ public class RedstoneAggregator extends TileEntity {
 	public Packet getDescriptionPacket() {
 		NBTTagCompound tag = new NBTTagCompound();
 		writeCustomNBT(tag);
-		return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
 	}
 
 	@Override
-	public void onDataPacket(INetworkManager net, Packet132TileEntityData packet) {
-		readCustomNBT(packet.data);
+	public void onDataPacket(NetworkManager manager, S35PacketUpdateTileEntity packet) {
+		readCustomNBT(packet.getNbtCompound());
 		worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
 	}
 

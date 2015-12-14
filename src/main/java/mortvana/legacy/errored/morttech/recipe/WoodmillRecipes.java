@@ -28,12 +28,12 @@ public class WoodmillRecipes {
 
     public WoodmillRecipes() {
         addAllLogs();
-        this.addCutting(new ItemStack(Blocks.log, 1, 0), new ItemStack(Blocks.planks, 4, 0));
-        this.addCutting(new ItemStack(Blocks.log, 1, 1), new ItemStack(Blocks.planks, 4, 1));
-        this.addCutting(new ItemStack(Blocks.log, 1, 2), new ItemStack(Blocks.planks, 4, 2));
-        this.addCutting(new ItemStack(Blocks.log, 1, 3), new ItemStack(Blocks.planks, 4, 3));
-        this.addCutting(new ItemStack(Blocks.log2, 1, 0), new ItemStack(Blocks.planks, 4, 4));
-        this.addCutting(new ItemStack(Blocks.log2, 1, 1), new ItemStack(Blocks.planks, 4, 5));
+        addCutting(new ItemStack(Blocks.log, 1, 0), new ItemStack(Blocks.planks, 4, 0));
+        addCutting(new ItemStack(Blocks.log, 1, 1), new ItemStack(Blocks.planks, 4, 1));
+        addCutting(new ItemStack(Blocks.log, 1, 2), new ItemStack(Blocks.planks, 4, 2));
+        addCutting(new ItemStack(Blocks.log, 1, 3), new ItemStack(Blocks.planks, 4, 3));
+        addCutting(new ItemStack(Blocks.log2, 1, 0), new ItemStack(Blocks.planks, 4, 4));
+        addCutting(new ItemStack(Blocks.log2, 1, 1), new ItemStack(Blocks.planks, 4, 5));
     }
 
     public void addAllLogs() {
@@ -51,7 +51,7 @@ public class WoodmillRecipes {
         }
         ArrayList<ItemStack> registeredOres = OreDictionary.getOres("logWood");
         for (int i = 0; i < registeredOres.size(); i++) {
-            ItemStack logEntry = (ItemStack)registeredOres.get(i);
+            ItemStack logEntry = registeredOres.get(i);
             if (logEntry.getMetadata() == OreDictionary.WILDCARD_VALUE) {
                 for (int j = 0; j < 256; j++) {
                     ItemStack log = new ItemStack(logEntry.getItem(), 1, j);
@@ -59,8 +59,7 @@ public class WoodmillRecipes {
                     ItemStack resultEntry = CraftingManager.getInstance().findMatchingRecipe(tempCrafting, null);
                     if (resultEntry != null) {
                         ItemStack result = resultEntry.copy();
-                        ItemStack tmp144_142 = result;
-                        tmp144_142.stackSize = ((int)(tmp144_142.stackSize * 1.5F));
+                        result.stackSize = ((int)(result.stackSize * 1.5F));
                         addCutting(log, result, 0.15f);
                     }
                 }
@@ -70,8 +69,7 @@ public class WoodmillRecipes {
                 ItemStack resultEntry = CraftingManager.getInstance().findMatchingRecipe(tempCrafting, null);
                 if (resultEntry != null) {
                     ItemStack result = resultEntry.copy();
-                    ItemStack tmp216_214 = result;
-                    tmp216_214.stackSize = ((int)(tmp216_214.stackSize * 1.5F));
+                    result.stackSize = ((int)(result.stackSize * 1.5F));
                     addCutting(log, result, 0.15f);
                 }
             }
@@ -83,8 +81,8 @@ public class WoodmillRecipes {
      */
     public void addCutting(ItemStack item, ItemStack itemstack, float par3) {
         cuttingList.put(Arrays.asList(item, item.getMetadata()),itemstack);
-	    this.smeltingList.put(par1, itemstack);
-	    this.experienceList.put(itemstack, par3);
+	    smeltingList.put(par1, itemstack);
+	    experienceList.put(itemstack, par3);
     }
 
     /**

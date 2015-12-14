@@ -7,7 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import mortvana.legacy.errored.core.client.ClientProxy;
+import mortvana.legacy.errored.core.ClientProxy;
 import tconstruct.library.tools.AbilityHelper;
 
 //TODO: EntityThrowableProjectile

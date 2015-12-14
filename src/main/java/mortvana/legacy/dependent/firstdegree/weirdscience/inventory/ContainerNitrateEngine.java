@@ -1,6 +1,7 @@
 package mortvana.legacy.dependent.firstdegree.weirdscience.inventory;
 
-import mortvana.legacy.errored.weirdscience.block.tile.TileEntityNitrateEngine;
+import mortvana.legacy.errored.weirdscience.block.tile.TileEntityNitrateDynamo;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -10,9 +11,9 @@ import net.minecraft.item.ItemStack;
 @Deprecated
 public class ContainerNitrateEngine extends Container {
 
-	protected TileEntityNitrateEngine tileEntity;
+	protected TileEntityNitrateDynamo tileEntity;
 
-	public ContainerNitrateEngine(InventoryPlayer inventoryPlayer, TileEntityNitrateEngine te) {
+	public ContainerNitrateEngine(InventoryPlayer inventoryPlayer, TileEntityNitrateDynamo te) {
 		tileEntity = te;
 
 		addSlotToContainer(new Slot(te, 0, 80, 17)); // Add the fuel slot.

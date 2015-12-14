@@ -36,9 +36,11 @@ public class StringHelper {
 	public static boolean displayShiftForDetails = true;
 
 	public static final String TOOLTIP = "info.fluxgear.tooltip.";
+	public static final String TUTORIAL = "info.fluxgear.tutorial";
 
 	private StringHelper() {}
 
+	/** Keyboard Helpers **/
 	public static boolean isAltKeyDown() {
 		return Keyboard.isKeyDown(56) || Keyboard.isKeyDown(184);
 	}
@@ -51,15 +53,24 @@ public class StringHelper {
 		return Keyboard.isKeyDown(42) || Keyboard.isKeyDown(54);
 	}
 
+	/** Localizationizing **/
 	public static String localize(String string) {
 		return StatCollector.translateToLocal(string);
 	}
 
+	/** Casing **/
+	public static String camelCase(String string) {
+		return string.substring(0, 1).toLowerCase() + string.substring(1);
+	}
 
+	public static String titleCase(String string) {
+		return string.substring(0, 1).toUpperCase() + string.substring(1);
+	}
 
 
 
 	// TODO: This.
+	@Deprecated
 	public static String toTitleCase(String string) {
 		return string;
 	}
@@ -118,13 +129,49 @@ public class StringHelper {
 		return prefix + toTitleCase(stripPrefixes(name));
 	}
 
+	public static String getRarity(int rarity) {
+		switch (rarity) {
+			case 2:
+				return "\u00a7e";
+			case 3:
+				return "\u00a7b";
+			default:
+				return "\u00a77";
+		}
+	}
 
-	/* Tooltips */
+
+	/** Tooltips **/
 	public static String holdShiftForDetails() {
 		return LIGHT_GRAY + localize(TOOLTIP + "hold") + " " + TEAL + ITALIC + localize(TOOLTIP + "shift") + " " + END + LIGHT_GRAY + localize(TOOLTIP + "details") + END;
 	}
 
 	public static String visDiscount(int discount) {
 		return PURPLE + localize("tc.visdicount" + ": " + discount + "%");
+	}
+
+	/** Tutorial Tabs **/
+	public static String tutorialTabAugment() {
+		return localize(TUTORIAL + "tabAugment");
+	}
+
+	public static String tutorialTabConfiguration() {
+		return localize(TUTORIAL + "tabConfiguration");
+	}
+
+	public static String tutorialTabOperation() {
+		return localize(TUTORIAL + "tabOperation");
+	}
+
+	public static String tutorialTabRedstone() {
+		return localize(TUTORIAL + "tabRedstone");
+	}
+
+	public static String tutorialTabSecurity() {
+		return localize(TUTORIAL + "tabSecurity");
+	}
+
+	public static String tutorialTabFluxRequired() {
+		return localize(TUTORIAL + "fluxRequired");
 	}
 }

@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.core.common;
+package mortvana.legacy.errored.core;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -7,7 +7,6 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -26,6 +25,7 @@ import cofh.core.util.CoreUtils;
 import cofh.core.world.WorldHandler;
 
 import forestry.api.apiculture.IBeeRoot;
+import mortvana.legacy.clean.core.util.helpers.StringHelper;
 import mortvana.legacy.clean.fluxgeartweaks.block.tileentity.TileTimeyWimey;
 import mortvana.legacy.dependent.firstdegree.core.client.gui.FluxGearGUIHandler;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
@@ -41,17 +41,13 @@ import mortvana.legacy.clean.weirdscience.util.ContentRegistry;
 import mortvana.legacy.errored.apiology.util.LocalizationManager;
 import mortvana.legacy.clean.morttech.util.Modules;
 import mortvana.legacy.clean.core.util.handlers.DummyHandler;
-import mortvana.legacy.errored.core.util.helpers.StringHelper;
-import mortvana.legacy.errored.core.util.runtime.EnvironmentChecks;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.world.FluxGearWorldGenerator;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.world.GravelOreGenEventHandler;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.world.PoorOreGenerator;
 import mortvana.melteddashboard.intermod.tinkers.TinkersHelper;
 import mortvana.melteddashboard.util.helpers.LoadedHelper;
 import mortvana.projectfluxgear.core.common.FluxGearAchievements;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.crafting.Detailing;
 import tconstruct.library.tools.ToolCore;

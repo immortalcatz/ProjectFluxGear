@@ -1,4 +1,4 @@
-package mortvana.legacy.clean;
+package mortvana.legacy;
 
 public class Catctuse {
 
@@ -409,17 +409,23 @@ public class Catctuse {
 		ENDERDOOM_WRENCH(16),
 		YARKAW_WRENCH(17),
 		ZIARNO_WRENCH(18),
-		HOLY_WRENCH(19),
-
-
-
-
-
+		HOLY_WRENCH(19),*/
 
 		SONIC_SPOONDRIVER(5, "Drullkus's Spoon"),
+		SONIC_SCREWDRIVER(22, "Sonic Screwdriver"),
+
 		DEBUGGING_SPORK(4, "Debugging Spork"),
-		SONIC_SCREWDRIVER(22, "Sonic Screwdriver")
+		PAINTBRUSH(30, "Paintbrush"),
+		FLUX_SPRAYER(31, "Flux Sprayer"),
+		SCREWDRIVER(32, "Screwdriver"),
+		THERMOMETER(33, "Thermometer"),
+		VOLTMETER(34, "Voltmeter"),
+		MULTIMETER(35, "Multimeter"),
+		GEIGER_COUNTER(36, "Geiger Counter"),
+		ARTRONOMETER(37, "Artronometer"),
+		OMNIMETER(38, "Omnimeter")
 		;
+
 
 		public int metadata;
 		public String name;
@@ -427,7 +433,7 @@ public class Catctuse {
 		private EnumSubTools(int metadata, String name) {
 			this.metadata = metadata;
 			this.name = name;
-		}*/
+		}
 	}
 
 	//TODO: Add Tar Pits, because Rorax

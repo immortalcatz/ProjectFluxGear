@@ -64,11 +64,11 @@ import mortvana.legacy.dependent.firstdegree.weirdscience.block.*;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreAux;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreMain;
 import mortvana.legacy.dependent.seconddegree.projectfluxgear.block.BlockPlant;
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.legacy.errored.morttech.block.BlockCrank;
 import mortvana.legacy.errored.morttech.block.BlockMachine;
 import mortvana.legacy.errored.morttech.block.BlockWoodmill;
-import mortvana.legacy.errored.morttech.block.tile.TileWoodmill;
+import mortvana.legacy.clean.morttech.block.tile.TileWoodmill;
 import mortvana.legacy.errored.paintedstone.recipe.RecipePaintbrush;
 import mortvana.legacy.errored.projectfluxgear.block.BlockAlloyAux;
 import mortvana.legacy.errored.projectfluxgear.block.BlockDecorStone;
@@ -77,9 +77,9 @@ import mortvana.legacy.errored.projectfluxgear.util.BlockInformation;
 import mortvana.legacy.errored.thaumicrevelations.entity.FleshGolem;
 import mortvana.legacy.errored.thaumicrevelations.item.*;
 import mortvana.legacy.clean.thaumicrevelations.util.WardenicChargeHelper;
-import mortvana.legacy.errored.weirdscience.block.BlockBloodEngine;
+import mortvana.legacy.errored.weirdscience.block.BlockBloodDyanmo;
 import mortvana.legacy.errored.weirdscience.block.fluid.BlockFluidSmog;
-import mortvana.legacy.errored.weirdscience.block.tile.TileEntityGunpowderEngine;
+import mortvana.legacy.errored.weirdscience.block.tile.TileEntityGunpowderDynamo;
 import mortvana.legacy.clean.weirdscience.util.ContentRegistry;
 
 import mortvana.melteddashboard.block.FluxGearItemBlock;
@@ -3251,7 +3251,7 @@ public class FluxGearContent implements IFuelHandler {
         //BlockNitrateEngine.setWaste(fluidSmog); //TODO
         cr.registerBlock(nitrateEngineBlock);
 
-        BlockBloodEngine bloodEngineBlock = new BlockBloodEngine("Hemoionic Dynamo", Material.rock);
+        BlockBloodDyanmo bloodEngineBlock = new BlockBloodDyanmo("Hemoionic Dynamo", Material.rock);
         bloodEngineBlock.setTextureName("gui:genericmachine");
         bloodEngineBlock.addTopTextureName("gui:genericmachine6_off");
         bloodEngineBlock.addTopTextureName("gui:genericmachine6_on");
@@ -3305,7 +3305,7 @@ public class FluxGearContent implements IFuelHandler {
         cr.registerBlock(fuelBurnerBlock);
 
         //Init and register items.
-        TileEntityGunpowderEngine.thermite = dustThermite;
+        TileEntityGunpowderDynamo.thermite = dustThermite;
 
         //Register chemistry.
         //Clay to slurry reaction.

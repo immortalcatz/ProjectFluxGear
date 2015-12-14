@@ -6,7 +6,7 @@ import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 import mortvana.legacy.errored.projectfluxgear.block.BlockDecorStone;
-import mortvana.legacy.errored.core.client.ClientProxy;
+import mortvana.legacy.errored.core.ClientProxy;
 import mortvana.legacy.clean.projectfluxgear.util.helpers.DrawingHelper;
 
 public class DualPassCubeRenderer implements ISimpleBlockRenderingHandler {

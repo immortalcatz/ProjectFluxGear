@@ -2,6 +2,8 @@ package mortvana.legacy.errored.projectfluxgear.block;
 
 import mortvana.legacy.clean.core.util.block.BlockFluxGear;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
+
+import mortvana.melteddashboard.block.AdvFluxGearBlock;
 import mortvana.melteddashboard.block.FluxGearBlock;
 
 import net.minecraft.block.material.Material;
@@ -13,7 +15,7 @@ public class BlockAlloyAux extends BlockFluxGear {
 
     public BlockAlloyAux() {
         //TODO: Fix String/IIcon Situation...
-        super(Material.iron, FluxGearContent.tabMaterials, FluxGearBlock.EnumBlockType.STORAGE, NAMES_ALLOY_AUX, TEXTURES_FULL, HARDNESS_ALLOY_AUX, RESISTANCE_ALLOY_AUX, LIGHT_ALLOY_AUX, TEXTURE_LOCATION_BLOCK);
+        super(Material.iron, FluxGearContent.tabMaterials, AdvFluxGearBlock.EnumBlockType.STORAGE, NAMES_ALLOY_AUX, TEXTURES_FULL, HARDNESS_ALLOY_AUX, RESISTANCE_ALLOY_AUX, LIGHT_ALLOY_AUX, TEXTURE_LOCATION_BLOCK);
         setUnlocalizedName("mortvana.projectfluxgear.alloyAux");
     }
 

@@ -10,11 +10,11 @@ import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import mortvana.legacy.errored.weirdscience.block.BlockBloodEngine;
+import mortvana.legacy.errored.weirdscience.block.BlockBloodDyanmo;
 import mortvana.legacy.clean.weirdscience.block.tile.TileEntityOccultEngine;
 
 //TODO: Particle effect when an appropriate block is on top of this engine.
-public class BlockOccultEngine extends BlockBloodEngine {
+public class BlockOccultEngine extends BlockBloodDyanmo {
 
 	public static ArrayList<String> idols = new ArrayList<String>(2);
 

@@ -26,7 +26,7 @@ import mortvana.legacy.clean.weirdscience.util.ContentRegistry;
 import mortvana.legacy.clean.weirdscience.util.fuel.ISolidFuelInfo;
 import mortvana.legacy.clean.weirdscience.util.fuel.SolidFuelInfo;
 
-public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IEnergyHandler, ISidedInventory, IFluidHandler, IFluidTank {
+public class TileEntityNitrateDynamo extends TileEntitySolidFueled implements IEnergyHandler, ISidedInventory, IFluidHandler, IFluidTank {
 	private static final int[] accessibleSlots = new int[] { 0, 1 };
 
 	// The ItemStacks that hold the items currently being used in the furnace
@@ -70,7 +70,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 	private int ticksUntilBurn = ticksPerBurn;
 	private boolean wasRunningLastBurn = false;
 
-	public TileEntityNitrateEngine() {
+	public TileEntityNitrateDynamo() {
 		super();
 		setEnergyCapacity(staticEnergyCap);
 		setEnergyTransferRate(rfPerTick);
@@ -137,9 +137,9 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 	public ItemStack getStackInSlotOnClosing(int slotID) {
 		// Used to get items when block is broken.
 		// (I think)
-		if (this.engineItemStacks[slotID] != null) {
-			ItemStack itemstack = this.engineItemStacks[slotID];
-			this.engineItemStacks[slotID] = null;
+		if (engineItemStacks[slotID] != null) {
+			ItemStack itemstack = engineItemStacks[slotID];
+			engineItemStacks[slotID] = null;
 			return itemstack;
 		} else {
 			return null;
@@ -148,11 +148,10 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 
 	@Override
 	public void setInventorySlotContents(int slotID, ItemStack itemstack) {
-		this.engineItemStacks[slotID] = itemstack;
+		engineItemStacks[slotID] = itemstack;
 
-		if (itemstack != null
-				&& itemstack.stackSize > this.getInventoryStackLimit()) {
-			itemstack.stackSize = this.getInventoryStackLimit();
+		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) {
+			itemstack.stackSize = getInventoryStackLimit();
 		}
 	}
 
@@ -172,26 +171,18 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer) { // Sanity checks!
-		if (entityplayer.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 16.0D) {
-			return true; // The player is sufficiently close.
-		} else {
-			return false; // The player is too far away.
-		}
+	public boolean isUseableByPlayer(EntityPlayer player) {
+		// Sanity checks! Is the player is sufficiently close, or too far away.
+		return player.getDistanceSq((double) xCoord + 0.5D, (double) yCoord + 0.5D, (double) zCoord + 0.5D) <= 16.0D;
 	}
 
 	public boolean isItemFuel(Item item) {
-		if (canBurn(new ItemStack(item)) != null) {
-			return true;
-		} else {
-			return false;
-		}
+		return canBurn(new ItemStack(item)) != null;
 	}
 
 	public boolean isItemWaste(Item item) {
 		for (ISolidFuelInfo fuel : staticFuelInfo) {
-			if (fuel.getByproduct().getItem().getUnlocalizedName()
-					.contentEquals(item.getUnlocalizedName())) {
+			if (fuel.getByproduct().getItem().getUnlocalizedName().contentEquals(item.getUnlocalizedName())) {
 				return true;
 			}
 		}
@@ -201,11 +192,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 	@Override
 	public boolean isItemValidForSlot(int slotID, ItemStack itemstack) {
 		// Only allow inserting into the input slot, and only allow fuel to be inserted.
-		if (isItemFuel(itemstack.getItem()) && (slotID == 0)) {
-			return true;
-		} else {
-			return false;
-		}
+		return isItemFuel(itemstack.getItem()) && (slotID == 0);
 	}
 
 	@Override
@@ -220,12 +207,8 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 
 	@Override
 	public boolean canExtractItem(int slotID, ItemStack itemstack, int direction) {
-		if (slotID == 1) {
-			// Only allow removing from the output slot. Causes hoppers and item pipes to act clever.
-			return true;
-		} else {
-			return false;
-		}
+		// Only allow removing from the output slot. Causes hoppers and item pipes to act clever.
+		return slotID == 1;
 	}
 
 	// NBT stuff
@@ -234,25 +217,22 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 		super.readFromNBT(nbt);
 		// Read the item stacks.
 		NBTTagList nbttaglist = nbt.getTagList("Items", 0);
-		this.engineItemStacks = new ItemStack[this.getSizeInventory()];
-		NBTTagCompound nbttagcompound1 = null;
+		engineItemStacks = new ItemStack[getSizeInventory()];
+		NBTTagCompound nbttagcompound;
 		for (int i = 0; i < nbttaglist.tagCount(); ++i) {
-			nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
-			byte b0 = nbttagcompound1.getByte("Slot");
+			nbttagcompound = nbttaglist.getCompoundTagAt(i);
+			byte b0 = nbttagcompound.getByte("Slot");
 
-			if (b0 >= 0 && b0 < this.engineItemStacks.length) {
-				this.engineItemStacks[b0] = ItemStack
-						.loadItemStackFromNBT(nbttagcompound1);
+			if (b0 >= 0 && b0 < engineItemStacks.length) {
+				engineItemStacks[b0] = ItemStack
+						.loadItemStackFromNBT(nbttagcompound);
 			}
 		}
-		// Simple behavior for performance reasons: If there's fuel in the slot, assume the engine was running.
-		if (this.engineItemStacks[0] != null) {
-			this.wasRunningLastBurn = true;
-		} else { // ...otherwise, assume it was not.
-			this.wasRunningLastBurn = false;
-		}
+		// Simple behavior for performance reasons: If there's fuel in the slot, assume the engine was running,
+		// otherwise, assume it was not.
+		wasRunningLastBurn = engineItemStacks[0] != null;
 		// Read how far we are from doing another engine tick.
-		this.ticksUntilBurn = nbt.getShort("BurnTime");
+		ticksUntilBurn = nbt.getShort("BurnTime");
 
 		// Read the internal fluid tank for smog storage
 		if (!nbt.hasKey("Empty")) {
@@ -268,15 +248,15 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		// Write time until next engine burn tick.
-		nbt.setShort("BurnTime", (short) this.ticksUntilBurn);
+		nbt.setShort("BurnTime", (short) ticksUntilBurn);
 		// Write energy
 		// Write item stacks.
 		NBTTagList nbttaglist = new NBTTagList();
-		for (int i = 0; i < this.engineItemStacks.length; ++i) {
+		for (int i = 0; i < engineItemStacks.length; ++i) {
 			if (this.engineItemStacks[i] != null) {
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
-				this.engineItemStacks[i].writeToNBT(nbttagcompound1);
+				engineItemStacks[i].writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
@@ -368,7 +348,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 			if (fluidTank.amount <= 0) {
 				fluidTank = null;
 			}
-			FluidEvent.fireEvent(new FluidEvent.FluidDrainingEvent(fluidTank, this.worldObj, this.xCoord, this.yCoord, this.zCoord, this));
+			FluidEvent.fireEvent(new FluidEvent.FluidDrainingEvent(fluidTank, worldObj, xCoord, yCoord, zCoord, this));
 		}
 		return stack;
 	}
@@ -376,15 +356,13 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 	// ENERGY CODE:
 
 	@Override
-	public int receiveEnergy(ForgeDirection from, int maxReceive,
-			boolean simulate) {
+	public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
 		// This isn't a battery.
 		return 0;
 	}
 
 	@Override
-	public int extractEnergy(ForgeDirection from, int maxExtract,
-			boolean simulate) {
+	public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
 		if (!simulate) {
 			if (energy < maxExtract) {
 				maxExtract = energy;
@@ -428,24 +406,23 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 			// Are we still waiting to burn fuel?
 			boolean flagHasPower = energy > 0;
 			int smogProduced = 0;
-			if (this.ticksUntilBurn > 0) {
-				--this.ticksUntilBurn;
+			if (ticksUntilBurn > 0) {
+				ticksUntilBurn--;
 			} else {
 				// If we are not waiting, update the entity.
 				int toBurn = 0;
 				// Make sure we have fuel, somewhere to put waste products, and
 				// energy storage capacity.
 
-				if (this.engineItemStacks[0] != null) {
-					if (this.engineItemStacks[0].stackSize >= 1) {
+				if (engineItemStacks[0] != null) {
+					if (engineItemStacks[0].stackSize >= 1) {
 						// Do the burny thing.
-						int deltaItems = doBurn(this.engineItemStacks[0],
-								quantityPerBurn);
-						this.engineItemStacks[0].stackSize -= deltaItems;
+						int deltaItems = doBurn(engineItemStacks[0], quantityPerBurn);
+						engineItemStacks[0].stackSize -= deltaItems;
 						flagHasPower = (deltaItems != 0);
 						flagInvChanged = flagHasPower;
-						if (this.engineItemStacks[0].stackSize <= 0) {
-							this.engineItemStacks[0] = null;
+						if (engineItemStacks[0].stackSize <= 0) {
+							engineItemStacks[0] = null;
 						}
 						if (deltaItems != 0) {
 							TurnBlockOn();
@@ -463,7 +440,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 			}
 			// And now, attempt to charge surrounding blocks.
 			if (flagHasPower) {
-				this.powerAdjacent();
+				powerAdjacent();
 			}
 			// Attempt to dump tank into surrounding Forge fluid handlers.
 			if (fluidTank != null) {
@@ -471,7 +448,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 				IFluidHandler adjFluidHandler;
 				for (int i = 0; i < 6; ++i) {
 					dir = ForgeDirection.VALID_DIRECTIONS[i];
-					adjFluidHandler = this.adjFluidHandlers[i];
+					adjFluidHandler = adjFluidHandlers[i];
 					if (adjFluidHandler != null) {
 						FluidStack toDrain = new FluidStack(fluidTank.getFluid(), fluidTank.amount);
 						drain(adjFluidHandler.fill(dir.getOpposite(), toDrain, true), true);
@@ -483,7 +460,7 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 			}
 		}
 		if (flagInvChanged) {
-			this.markDirty();
+			markDirty();
 		}
 	}
 
@@ -528,10 +505,10 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 
 	public void ejectWaste() {
 		if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) { // prevent ghost item stupidity
-			float xr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
-			float yr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
-			float zr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
-			EntityItem entityItem = new EntityItem(this.worldObj, (double) ((float) xCoord + xr), (double) ((float) yCoord + yr), (double) ((float) zCoord + zr), engineItemStacks[1].copy());
+			float xr = itemDropRand.nextFloat() * 0.8F + 0.1F;
+			float yr = itemDropRand.nextFloat() * 0.8F + 0.1F;
+			float zr = itemDropRand.nextFloat() * 0.8F + 0.1F;
+			EntityItem entityItem = new EntityItem(worldObj, (double) ((float) xCoord + xr), (double) ((float) yCoord + yr), (double) ((float) zCoord + zr), engineItemStacks[1].copy());
 			worldObj.spawnEntityInWorld(entityItem);
 			engineItemStacks[1] = null;
 		}
@@ -689,11 +666,9 @@ public class TileEntityNitrateEngine extends TileEntitySolidFueled implements IE
 	}
 
 	@Override
-	public void closeChest() {
-	}
+	public void closeChest() {}
 
 	@Override
-	public void openChest() {
-	}
+	public void openChest() {}
 
 }

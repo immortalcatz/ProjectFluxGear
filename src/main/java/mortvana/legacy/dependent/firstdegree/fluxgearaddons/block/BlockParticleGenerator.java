@@ -22,7 +22,7 @@ import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.block.tile.TileEnergyStorageCore;
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.block.tile.TileParticleGenerator;
 import mortvana.legacy.clean.fluxgearaddons.client.particle.*;
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.ProjectFluxGear;
 
 public class BlockParticleGenerator extends FluxGearBlock {
 	public static Block instance;

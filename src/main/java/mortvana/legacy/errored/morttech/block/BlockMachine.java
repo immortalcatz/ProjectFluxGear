@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.ProjectFluxGear;
 
 public class BlockMachine extends InventoryBlock {
 
@@ -87,7 +87,7 @@ public class BlockMachine extends InventoryBlock {
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
         //TODO: 1.7.10 Packets
-        NBTTagCompound c = (BlockCrank) FluxGearContent.tileCrank.p.data;
+        NBTTagCompound c = (BlockCrank) FluxGearContent.tileCrank.packet.data;
         int power = c.getInteger("power");
         System.out.println(c.getInteger("power" + "TTTTT"));
 

@@ -10,7 +10,7 @@ import cpw.mods.fml.client.config.GuiConfig;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
 
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+import mortvana.legacy.errored.core.ProjectFluxGear;
 
 public class ConfigGui extends GuiConfig implements IModGuiFactory {
 

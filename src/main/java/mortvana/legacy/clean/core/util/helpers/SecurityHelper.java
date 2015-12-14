@@ -7,8 +7,6 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import cofh.api.tileentity.ISecurable;
 
-import mortvana.legacy.errored.core.util.helpers.StringHelper;
-
 public class SecurityHelper {
 	private SecurityHelper() {
 	}

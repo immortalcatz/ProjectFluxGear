@@ -7,7 +7,8 @@ import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.legacy.errored.core.client.ClientProxy;
+import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
+import mortvana.legacy.errored.core.ClientProxy;
 import mortvana.legacy.errored.morttech.util.MTControls;
 
 //TODO: Must ImpliMint
@@ -20,8 +21,9 @@ public class ClientTickHandler {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void tickEnd (ClientTickEvent event) {
-        MTContent.leafyThing.setGraphicsLevel(Blocks.leaves.field_150121_P);
-        if (mc.thePlayer != null && mc.thePlayer.onGround)
-            controlInstance.landOnGround();
+        FluxGearContent.leafyThing.setGraphicsLevel(Blocks.leaves.field_150121_P);
+        if (mc.thePlayer != null && mc.thePlayer.onGround) {
+	        controlInstance.landOnGround();
+        }
     }
 }

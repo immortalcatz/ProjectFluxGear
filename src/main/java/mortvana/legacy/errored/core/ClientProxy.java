@@ -1,8 +1,9 @@
-package mortvana.legacy.errored.core.client;
+package mortvana.legacy.errored.core;
 
 import com.google.common.collect.Lists;
+import mortvana.legacy.clean.thaumicrevelations.entity.EntityPurity;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
-import mortvana.legacy.errored.core.common.ProjectFluxGear;
+
 import mortvana.projectfluxgear.thaumic.client.render.RenderPurity;
 import mortvana.legacy.clean.morttech.block.tile.TileCrank;
 import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
@@ -57,7 +58,7 @@ public class ClientProxy extends CommonProxy {
 		dualPassCubeID = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new DualPassCubeRenderer());
 
-		RenderingRegistry.registerEntityRenderingHandler(FluxGearContent.EntityPurity.class, new RenderPurity());
+		RenderingRegistry.registerEntityRenderingHandler(EntityPurity.class, new RenderPurity());
 		RenderingRegistry.registerEntityRenderingHandler(FleshGolem.class, new RenderFleshGolem());
 		RenderingRegistry.registerEntityRenderingHandler(EntityFleshProjectile.class, new RenderSnowball(Items.rotten_flesh));
 

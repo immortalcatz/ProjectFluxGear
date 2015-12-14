@@ -11,7 +11,7 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 import mortvana.legacy.clean.core.common.FluxGearConfig;
-import mortvana.legacy.errored.weirdscience.block.tile.TileEntityBloodDonation;
+import mortvana.legacy.clean.weirdscience.block.tile.TileEntityBloodDonation;
 import mortvana.legacy.clean.weirdscience.util.block.tile.BlockMetaTank;
 
 @Deprecated

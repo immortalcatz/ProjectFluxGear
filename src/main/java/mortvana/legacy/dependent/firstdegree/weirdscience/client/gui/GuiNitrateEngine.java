@@ -8,7 +8,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.legacy.dependent.firstdegree.weirdscience.inventory.ContainerNitrateEngine;
-import mortvana.legacy.errored.weirdscience.block.tile.TileEntityNitrateEngine;
+import mortvana.legacy.errored.weirdscience.block.tile.TileEntityNitrateDynamo;
 import org.lwjgl.opengl.GL11;
 
 @Deprecated
@@ -17,7 +17,7 @@ public class GuiNitrateEngine extends GuiContainer {
 
     private static final ResourceLocation engineGuiTextures = new ResourceLocation("gui:assets.mortvana.fluxgearzee.textures/gui/genericmachinegui.png");
 
-	public GuiNitrateEngine (InventoryPlayer inventoryPlayer, TileEntityNitrateEngine tileEntity) {
+	public GuiNitrateEngine (InventoryPlayer inventoryPlayer, TileEntityNitrateDynamo tileEntity) {
 		//Instantiate the container.
 		super(new ContainerNitrateEngine(inventoryPlayer, tileEntity));
 	}
