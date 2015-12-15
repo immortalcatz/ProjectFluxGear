@@ -1,8 +1,8 @@
-package mortvana.legacy.dependent.seconddegree.morttech.block;
+package mortvana.legacy.clean.morttech.block;
 
 import cpw.mods.fml.client.FMLClientHandler;
 
-import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
+import mortvana.legacy.clean.morttech.block.tile.WoodmillLogic;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,7 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import mortvana.legacy.clean.morttech.block.tile.TileWoodmill;
-import mortvana.legacy.dependent.firstdegree.morttech.client.gui.GuiWoodmill;
+import mortvana.legacy.clean.morttech.client.gui.GuiWoodmill;
 
 public class WoodmillBlock extends Block {
 

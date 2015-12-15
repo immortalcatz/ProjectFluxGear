@@ -59,7 +59,7 @@ public class KilnRecipe
 		if(is1.getItem() != is2.getItem())
 			return false;
 
-		if(is1.getItemDamage() != -1 && is1.getItemDamage() != is2.getItemDamage())
+		if(is1.getMetadata() != -1 && is1.getMetadata() != is2.getMetadata())
 			return false;
 
 		return true;

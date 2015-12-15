@@ -237,7 +237,7 @@ public final class CorporeaHelper {
 			return null;
 
 		TileEntity tile = (TileEntity) inv;
-		return getSparkForBlock(tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord);
+		return getSparkForBlock(tile.getWorld(), tile.xCoord, tile.yCoord, tile.zCoord);
 	}
 
 	/**
@@ -261,7 +261,7 @@ public final class CorporeaHelper {
 	 * Gets if the slot passed in can be extracted from by a spark.
 	 */
 	public static boolean isValidSlot(IInventory inv, int slot) {
-		return !(inv instanceof ISidedInventory) || arrayHas(((ISidedInventory) inv).getAccessibleSlotsFromSide(ForgeDirection.UP.ordinal()), slot) && ((ISidedInventory) inv).canExtractItem(slot, inv.getStackInSlot(slot), ForgeDirection.UP.ordinal());
+		return !(inv instanceof ISidedInventory) || arrayHas(((ISidedInventory) inv).getSlotsForFace(ForgeDirection.UP.ordinal()), slot) && ((ISidedInventory) inv).canExtractItem(slot, inv.getStackInSlot(slot), ForgeDirection.UP.ordinal());
 	}
 
 	/**

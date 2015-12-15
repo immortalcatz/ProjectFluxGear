@@ -33,7 +33,7 @@ public class QuernManager
 		for(Object vi : validItems)
 		{
 			ItemStack vis = (ItemStack) vi;
-			if(vis.getItem() == is.getItem() && vis.getItemDamage() == is.getItemDamage())
+			if(vis.getItem() == is.getItem() && vis.getMetadata() == is.getMetadata())
 				return true;
 		}
 		return false;

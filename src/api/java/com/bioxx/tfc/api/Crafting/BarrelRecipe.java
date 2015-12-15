@@ -157,7 +157,7 @@ public class BarrelRecipe
 			int outputCount = outStack.stackSize * this.getnumberOfRuns(inIS, inFS);
 			int maxStackSize = outStack.getMaxStackSize();
 			Item item = outStack.getItem();
-			int damage = outStack.getItemDamage();
+			int damage = outStack.getMetadata();
 
 			int remainder = outputCount % maxStackSize; // The amount remaining after making full-sized stacks.
 			if (remainder > 0)

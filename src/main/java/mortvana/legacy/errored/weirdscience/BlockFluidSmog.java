@@ -3,6 +3,8 @@ package mortvana.legacy.errored.weirdscience;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.legacy.clean.weirdscience.util.chemistry.IBioactive;
+import mortvana.legacy.errored.projectfluxgear.BlockInformation;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -20,7 +22,7 @@ public class BlockFluidSmog extends BlockFluidCoFHBase implements IBioactive {
     private static int maxSmogHeight = 256;
 
     public BlockFluidSmog(String fluidName) {
-        super("thermaltinkerer", FluxGearContent.fluidSmog, materialFluidSmog, "smog");
+        super("thermaltinkerer", FluxGearContent.fluidSmog, BlockInformation.materialFluidSmog, "smog");
         setQuantaPerBlock(LEVELS);
         setTickRate(20);
 
@@ -41,7 +43,7 @@ public class BlockFluidSmog extends BlockFluidCoFHBase implements IBioactive {
 
         if (world.getBlockMetadata(x, y, z) == 0) {
             if (rand.nextInt(3) == 0) {
-                if (shouldSourceBlockDisapate(world, x, y, z)) {
+                if (shouldSourceBlockDissipate(world, x, y, z)) {
                     world.setBlock(x, y, z, null);
                     return;
                 }
@@ -86,7 +88,6 @@ public class BlockFluidSmog extends BlockFluidCoFHBase implements IBioactive {
     }/**/
 
     protected boolean shouldSourceBlockFloat(World world, int x, int y, int z) {
-
         return enableSourceFloat && (world.getBlock(x, y + densityDir, z) == this && world.getBlockMetadata(x, y + densityDir, z) != 0);
     }
 

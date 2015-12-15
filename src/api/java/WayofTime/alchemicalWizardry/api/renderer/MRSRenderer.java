@@ -11,7 +11,7 @@ public abstract class MRSRenderer
 
     protected void bindTexture(ResourceLocation p_147499_1_)
     {
-        TextureManager texturemanager = TileEntityRendererDispatcher.instance.field_147553_e;
+        TextureManager texturemanager = TileEntityRendererDispatcher.instance.renderEngine;
 
         if (texturemanager != null)
         {

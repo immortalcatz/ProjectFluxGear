@@ -2,8 +2,9 @@ package mortvana.legacy.dependent.firstdegree.core.client.gui;
 
 import java.util.HashMap;
 
-import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
-import mortvana.legacy.dependent.firstdegree.morttech.client.gui.GuiWoodmill;
+import mortvana.legacy.clean.thaumicrevelations.inventory.ContainerHammer;
+import mortvana.legacy.clean.morttech.block.tile.WoodmillLogic;
+import mortvana.legacy.clean.morttech.client.gui.GuiWoodmill;
 import mortvana.legacy.clean.thaumicrevelations.client.gui.GuiWaslieHammer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -11,9 +12,9 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
-import mortvana.legacy.dependent.seconddegree.morttech.inventory.ContainerWoodmill;
-import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
-import mortvana.legacy.errored.core.ProjectFluxGear;
+import mortvana.projectfluxgear.core.common.ProjectFluxGear;
+
+import mortvana.legacy.clean.morttech.inventory.ContainerWoodmill;
 import mortvana.legacy.clean.morttech.block.tile.TileWoodmill;
 
 public class FluxGearGUIHandler implements IGuiHandler {
@@ -31,13 +32,17 @@ public class FluxGearGUIHandler implements IGuiHandler {
 
 		switch (ID) {
 			case 0:
-				return new FluxGearContent.ContainerHammer(player);
+				return new ContainerHammer(player);
 		}
 
 		TileEntity tileEntity = world.getTileEntity(x, y, z);
 		if (tileEntity instanceof TileWoodmill) {
 			return new ContainerWoodmill(player.inventory, (WoodmillLogic /*TileWoodmill*/) tileEntity);
 		}
+		IGuiHandler handler = serverGuiHandlers.get(ID);
+
+		if (handler != null)
+			return handler.getServerGuiElement(ID, player, world, x, y, z);
 
 		return null;
 
@@ -56,26 +61,13 @@ public class FluxGearGUIHandler implements IGuiHandler {
 			return new GuiWoodmill(player.inventory, (WoodmillLogic /*TileWoodmill*/) tileEntity);
 		}
 
+		IGuiHandler handler = clientGuiHandlers.get(ID);
+		if (handler != null)
+			return handler.getClientGuiElement(ID, player, world, x, y, z);
+
 		return null;
 
 	}
-
-
-	//@Override
-    public Object getServerGuiElement_(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        IGuiHandler handler = serverGuiHandlers.get(ID);
-        if (handler != null)
-            return handler.getServerGuiElement(ID, player, world, x, y, z);
-        return null;
-    }
-
-    //@Override
-    public Object getClientGuiElement_(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        IGuiHandler handler = clientGuiHandlers.get(ID);
-        if (handler != null)
-            return handler.getClientGuiElement(ID, player, world, x, y, z);
-        return null;
-    }
 
     public static HashMap<Integer, IGuiHandler> serverGuiHandlers = new HashMap<Integer, IGuiHandler>();
     public static HashMap<Integer, IGuiHandler> clientGuiHandlers = new HashMap<Integer, IGuiHandler>();

@@ -245,7 +245,7 @@ public class TFCBlocks
 
 	public static boolean isBlockAFence(Block block)
 	{
-		return block == Fence || block == Fence2 || BlockFence.func_149825_a(block);
+		return block == Fence || block == Fence2 || BlockFence.isFence(block);
 	}
 
 	public static boolean canFenceConnectTo(Block block)

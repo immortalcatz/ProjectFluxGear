@@ -63,8 +63,8 @@ public class RecipePureDaisy {
 
 		for(ItemStack ostack : ores) {
 			ItemStack cstack = ostack.copy();
-			if(cstack.getItemDamage() == Short.MAX_VALUE)
-				cstack.setItemDamage(stack.getItemDamage());
+			if(cstack.getMetadata() == Short.MAX_VALUE)
+				cstack.setMetadata(stack.getMetadata());
 
 			if(stack.isItemEqual(cstack))
 				return true;

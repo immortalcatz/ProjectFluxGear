@@ -273,9 +273,9 @@ public class FluxGearBlock extends Block {
 	//TODO
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		for (int i = 0; i < names.length; i++) {
-			icons[i] = iconRegister.registerIcon(textureLocation + StringHelper.toCamelCase(names[i]));
+			icons[i] = iconRegister.registerIcon(textureLocation + StringHelper.camelCase(names[i]));
 		}
 	}
 

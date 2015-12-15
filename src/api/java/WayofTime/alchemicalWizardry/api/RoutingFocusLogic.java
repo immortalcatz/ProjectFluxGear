@@ -6,7 +6,7 @@ public class RoutingFocusLogic
 {
 	public boolean getDefaultMatch(ItemStack keyStack, ItemStack checkedStack)
 	{
-		return (keyStack != null ? checkedStack != null && keyStack.getItem() == checkedStack.getItem() && (keyStack.getItem().getHasSubtypes() ? keyStack.getItemDamage() == checkedStack.getItemDamage() : true) : false);
+		return (keyStack != null ? checkedStack != null && keyStack.getItem() == checkedStack.getItem() && (keyStack.getItem().getHasSubtypes() ? keyStack.getMetadata() == checkedStack.getMetadata() : true) : false);
 	}
 	
 	public boolean doesItemMatch(boolean previous, ItemStack keyStack, ItemStack checkedStack)

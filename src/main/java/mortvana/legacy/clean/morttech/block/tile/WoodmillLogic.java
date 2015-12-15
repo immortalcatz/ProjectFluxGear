@@ -1,4 +1,4 @@
-package mortvana.legacy.dependent.firstdegree.morttech.block.tile;
+package mortvana.legacy.clean.morttech.block.tile;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import mantle.blocks.BlockUtils;
@@ -22,8 +22,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import mortvana.legacy.dependent.seconddegree.morttech.inventory.ContainerWoodmill;
-import mortvana.legacy.errored.morttech.WoodmillRecipes;
+import mortvana.legacy.clean.morttech.inventory.ContainerWoodmill;
+import mortvana.legacy.clean.morttech.recipes.WoodmillRecipes;
 
 public class WoodmillLogic extends InventoryLogic implements IActiveLogic, IFacingLogic {
 

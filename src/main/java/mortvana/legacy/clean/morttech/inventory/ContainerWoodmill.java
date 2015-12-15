@@ -1,4 +1,4 @@
-package mortvana.legacy.dependent.seconddegree.morttech.inventory;
+package mortvana.legacy.clean.morttech.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -11,8 +11,8 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
-import mortvana.legacy.errored.morttech.WoodmillRecipes;
+import mortvana.legacy.clean.morttech.block.tile.WoodmillLogic;
+import mortvana.legacy.clean.morttech.recipes.WoodmillRecipes;
 
 public class ContainerWoodmill extends Container {
     private WoodmillLogic woodmill;

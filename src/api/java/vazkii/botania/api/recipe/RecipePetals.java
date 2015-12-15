@@ -52,8 +52,8 @@ public class RecipePetals {
 					boolean found = false;
 					for(ItemStack ostack : validStacks) {
 						ItemStack cstack = ostack.copy();
-						if(cstack.getItemDamage() == Short.MAX_VALUE)
-							cstack.setItemDamage(stack.getItemDamage());
+						if(cstack.getMetadata() == Short.MAX_VALUE)
+							cstack.setMetadata(stack.getMetadata());
 
 						if(stack.isItemEqual(cstack)) {
 							oredictIndex = j;
@@ -82,7 +82,7 @@ public class RecipePetals {
 	}
 
 	boolean simpleAreStacksEqual(ItemStack stack, ItemStack stack2) {
-		return stack.getItem() == stack2.getItem() && stack.getItemDamage() == stack2.getItemDamage();
+		return stack.getItem() == stack2.getItem() && stack.getMetadata() == stack2.getMetadata();
 	}
 
 	public List<Object> getInputs() {

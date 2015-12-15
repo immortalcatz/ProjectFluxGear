@@ -167,7 +167,7 @@ public abstract class CartTools {
     }
 
     public static boolean isMinecartOnRailAt(World world, int i, int j, int k, float sensitivity, Class<? extends EntityMinecart> type, boolean subclass) {
-        if (BlockRailBase.func_150049_b_(world, i, j, k))
+        if (BlockRailBase.isRailBlockAt(world, i, j, k))
             return isMinecartAt(world, i, j, k, sensitivity, type, subclass);
         return false;
     }

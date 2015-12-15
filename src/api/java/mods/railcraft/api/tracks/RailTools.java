@@ -53,11 +53,11 @@ public abstract class RailTools {
         if (stack.getItem() instanceof ITrackItem)
             return ((ITrackItem) stack.getItem()).placeTrack(stack.copy(), world, i, j, k);
         if (stack.getItem() instanceof ItemBlock) {
-            Block block = ((ItemBlock) stack.getItem()).field_150939_a;
-            if (BlockRailBase.func_150051_a(block)) {
+            Block block = ((ItemBlock) stack.getItem()).blockInstance;
+            if (BlockRailBase.isRailBlock(block)) {
                 boolean success = world.setBlock(i, j, k, block);
                 if (success)
-                    world.playSoundEffect((float) i + 0.5F, (float) j + 0.5F, (float) k + 0.5F, block.stepSound.func_150496_b(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
+                    world.playSoundEffect((float) i + 0.5F, (float) j + 0.5F, (float) k + 0.5F, block.stepSound.getPlaceSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getFrequency() * 0.8F);
                 return success;
             }
         }
@@ -88,7 +88,7 @@ public abstract class RailTools {
         int y = MathHelper.floor_double(cart.posY);
         int z = MathHelper.floor_double(cart.posZ);
 
-        if (BlockRailBase.func_150049_b_(cart.worldObj, x, y - 1, z))
+        if (BlockRailBase.isRailBlockAt(cart.worldObj, x, y - 1, z))
             y--;
 
         TileEntity tile = cart.worldObj.getTileEntity(x, y, z);
@@ -119,7 +119,7 @@ public abstract class RailTools {
     }
 
     public static boolean isTrackFuzzyAt(World world, int x, int y, int z) {
-        return BlockRailBase.func_150049_b_(world, x, y, z) ? true : (BlockRailBase.func_150049_b_(world, x, y + 1, z) ? true : BlockRailBase.func_150049_b_(world, x, y - 1, z));
+        return BlockRailBase.isRailBlockAt(world, x, y, z) ? true : (BlockRailBase.isRailBlockAt(world, x, y + 1, z) ? true : BlockRailBase.isRailBlockAt(world, x, y - 1, z));
     }
 
     public static Set<ITrackTile> getAdjecentTrackTiles(World world, int x, int y, int z) {

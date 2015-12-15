@@ -56,7 +56,7 @@ public class ReplacementBlock
 		{
 			if (_hasMeta > 1)
 				return _meta;
-			m = stack.getItemDamage();
+			m = stack.getMetadata();
 			Item item = stack.getItem();
 			if (item instanceof ItemBlock)
 				m = ((ItemBlock)item).getMetadata(m);

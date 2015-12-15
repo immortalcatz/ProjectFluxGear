@@ -35,7 +35,7 @@ public class ComplexNetworkHandler
     {
         MinecraftServer server = MinecraftServer.getServer();
         GameProfile gameProfile;
-        gameProfile = server.func_152358_ax().func_152652_a(uuid);
+        gameProfile = server.getPlayerProfileCache().func_152652_a(uuid);
         String str = uuid.toString();
         //TODO ServerConfigurationManager d.createPlayerForUser
         UUID.fromString(str);

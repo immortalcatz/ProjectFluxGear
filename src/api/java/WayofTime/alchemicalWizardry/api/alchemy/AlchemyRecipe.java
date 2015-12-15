@@ -104,7 +104,7 @@ public class AlchemyRecipe
                     continue;
                 }
 
-                if ((checkedItemStack.getItemDamage() == recipeItemStack.getItemDamage() || OreDictionary.WILDCARD_VALUE == recipeItemStack.getItemDamage()) && checkedItemStack.getItem() == recipeItemStack.getItem())
+                if ((checkedItemStack.getMetadata() == recipeItemStack.getMetadata() || OreDictionary.WILDCARD_VALUE == recipeItemStack.getMetadata()) && checkedItemStack.getItem() == recipeItemStack.getItem())
                 {
                     test = true;
                     checkList[j] = true;

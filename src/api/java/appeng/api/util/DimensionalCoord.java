@@ -47,7 +47,7 @@ public class DimensionalCoord extends WorldCoord
 	public DimensionalCoord( TileEntity s )
 	{
 		super( s );
-		this.w = s.getWorldObj();
+		this.w = s.getWorld();
 		this.dimId = this.w.provider.dimensionId;
 	}
 

@@ -1,12 +1,12 @@
-package mortvana.legacy.dependent.firstdegree.morttech.client.gui;
+package mortvana.legacy.clean.morttech.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-import mortvana.legacy.dependent.seconddegree.morttech.inventory.ContainerWoodmill;
-import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
+import mortvana.legacy.clean.morttech.inventory.ContainerWoodmill;
+import mortvana.legacy.clean.morttech.block.tile.WoodmillLogic;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;

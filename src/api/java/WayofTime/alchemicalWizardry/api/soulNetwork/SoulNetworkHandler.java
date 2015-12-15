@@ -32,7 +32,7 @@ public class SoulNetworkHandler
     {
         MinecraftServer server = MinecraftServer.getServer();
         GameProfile gameProfile;
-        gameProfile = server.func_152358_ax().func_152652_a(uuid);
+        gameProfile = server.getPlayerProfileCache().func_152652_a(uuid);
         return null;
     }
     
@@ -426,7 +426,7 @@ public class SoulNetworkHandler
         {
             return null;
         }
-        return MinecraftServer.getServer().getConfigurationManager().func_152612_a(str);
+        return MinecraftServer.getServer().getConfigurationManager().getPlayerByUsername(str);
     }
 
     public static void causeNauseaToPlayer(ItemStack stack)

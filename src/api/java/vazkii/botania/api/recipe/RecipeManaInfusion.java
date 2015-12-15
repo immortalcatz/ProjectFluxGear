@@ -32,8 +32,8 @@ public class RecipeManaInfusion {
 	public boolean matches(ItemStack stack) {
 		if(input instanceof ItemStack) {
 			ItemStack inputCopy = ((ItemStack) input).copy();
-			if(inputCopy.getItemDamage() == Short.MAX_VALUE)
-				inputCopy.setItemDamage(stack.getItemDamage());
+			if(inputCopy.getMetadata() == Short.MAX_VALUE)
+				inputCopy.setMetadata(stack.getMetadata());
 
 			return stack.isItemEqual(inputCopy);
 		}
@@ -43,8 +43,8 @@ public class RecipeManaInfusion {
 
 			for(ItemStack ostack : validStacks) {
 				ItemStack cstack = ostack.copy();
-				if(cstack.getItemDamage() == Short.MAX_VALUE)
-					cstack.setItemDamage(stack.getItemDamage());
+				if(cstack.getMetadata() == Short.MAX_VALUE)
+					cstack.setMetadata(stack.getMetadata());
 
 				if(stack.isItemEqual(cstack))
 					return true;

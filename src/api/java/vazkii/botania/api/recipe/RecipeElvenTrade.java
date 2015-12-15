@@ -44,8 +44,8 @@ public class RecipeElvenTrade {
 					boolean found = false;
 					for(ItemStack ostack : validStacks) {
 						ItemStack cstack = ostack.copy();
-						if(cstack.getItemDamage() == Short.MAX_VALUE)
-							cstack.setItemDamage(stack.getItemDamage());
+						if(cstack.getMetadata() == Short.MAX_VALUE)
+							cstack.setMetadata(stack.getMetadata());
 
 						if(stack.isItemEqual(cstack)) {
 							if(!stacksToRemove.contains(stack))
@@ -80,7 +80,7 @@ public class RecipeElvenTrade {
 	}
 
 	boolean simpleAreStacksEqual(ItemStack stack, ItemStack stack2) {
-		return stack.getItem() == stack2.getItem() && stack.getItemDamage() == stack2.getItemDamage();
+		return stack.getItem() == stack2.getItem() && stack.getMetadata() == stack2.getMetadata();
 	}
 
 	public List<Object> getInputs() {

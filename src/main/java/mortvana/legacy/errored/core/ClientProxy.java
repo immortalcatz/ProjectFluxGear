@@ -5,7 +5,7 @@ import mortvana.legacy.clean.thaumicrevelations.entity.EntityPurity;
 
 import mortvana.projectfluxgear.thaumic.client.render.RenderPurity;
 import mortvana.legacy.clean.morttech.block.tile.TileCrank;
-import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
+import mortvana.legacy.clean.morttech.block.tile.WoodmillLogic;
 import mortvana.legacy.clean.thaumicrevelations.client.particle.TRParticle;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.client.render.DualPassCubeRenderer;
 import mortvana.legacy.clean.morttech.client.render.RenderCrank;
@@ -13,7 +13,7 @@ import mortvana.legacy.clean.thaumicrevelations.client.render.RenderFleshGolem;
 import mortvana.legacy.clean.core.common.CommonProxy;
 import mortvana.legacy.dependent.firstdegree.thaumicrevelations.entity.EntityFleshProjectile;
 import mortvana.legacy.dependent.seconddegree.thaumicrevelations.entity.EntityFleshGolem;
-import mortvana.legacy.dependent.firstdegree.morttech.client.gui.GuiWoodmill;
+import mortvana.legacy.clean.morttech.client.gui.GuiWoodmill;
 import mortvana.legacy.errored.morttech.MTControls;
 import mortvana.legacy.errored.morttech.ClientTickHandler;
 import mortvana.legacy.clean.morttech.util.handlers.MTKeyHandler;
