@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
-import mortvana.legacy.errored.morttech.inventory.ContainerWoodmill;
+import mortvana.legacy.dependent.seconddegree.morttech.inventory.ContainerWoodmill;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.legacy.clean.morttech.block.tile.TileWoodmill;

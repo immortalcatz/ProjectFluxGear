@@ -5,7 +5,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-import mortvana.legacy.errored.morttech.inventory.ContainerWoodmill;
+import mortvana.legacy.dependent.seconddegree.morttech.inventory.ContainerWoodmill;
 import mortvana.legacy.dependent.firstdegree.morttech.block.tile.WoodmillLogic;
 import org.lwjgl.opengl.GL11;
 

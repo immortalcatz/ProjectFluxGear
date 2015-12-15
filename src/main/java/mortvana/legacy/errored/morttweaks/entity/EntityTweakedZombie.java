@@ -139,18 +139,18 @@ public class EntityTweakedZombie extends EntityZombie {
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData entityData) { //TODO: Clone EntityZombie.GroupData?
-		Object p_110161_1_1 = super.onSpawnWithEgg(p_110161_1_);
-		float f = this.worldObj.getTensionFactorForBlock(this.posX, this.posY, this.posZ);
-		this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * f);
+		getEntityAttribute(SharedMonsterAttributes.followRange).applyModifier(new AttributeModifier("Random spawn bonus", rand.nextGaussian() * 0.05D, 1));
+		Object entityLivingData = super.onSpawnWithEgg(entityData);
+		float f = worldObj.getTensionFactorForBlock(posX, posY, posZ);
+		setCanPickUpLoot(rand.nextFloat() < 0.55F * f);
 
-		if (p_110161_1_1 == null)
-		{
-			p_110161_1_1 = new EntityZombie.GroupData(this.worldObj.rand.nextFloat() < ForgeModContainer.zombieBabyChance, this.worldObj.rand.nextFloat() < 0.05F, null);
+		if (entityLivingData == null) {
+			entityLivingData = new EntityZombie.GroupData(worldObj.rand.nextFloat() < ForgeModContainer.zombieBabyChance, worldObj.rand.nextFloat() < 0.05F, null);
 		}
 
-		if (p_110161_1_1 instanceof EntityZombie.GroupData)
+		if (entityLivingData instanceof EntityZombie.GroupData)
 		{
-			EntityZombie.GroupData groupdata = (EntityZombie.GroupData)p_110161_1_1;
+			EntityZombie.GroupData groupdata = (EntityZombie.GroupData)entityLivingData;
 
 			if (groupdata.field_142046_b)
 			{
@@ -214,7 +214,7 @@ public class EntityTweakedZombie extends EntityZombie {
 			this.func_146070_a(true);
 		}
 
-		return (IEntityLivingData)p_110161_1_1;
+		return (IEntityLivingData)entityLivingData;
 
 		/*this.getEntityAttribute(SharedMonsterAttributes.followRange).applyModifier(new AttributeModifier("Random spawn bonus", this.rand.nextGaussian() * 0.05D, 1));
 		Object par1EntityLivingData1 = entityData;//super.onSpawnWithEgg(par1EntityLivingData);
@@ -327,5 +327,21 @@ public class EntityTweakedZombie extends EntityZombie {
 			return flag;
 		} else
 			return super.attackEntityAsMob(par1Entity);*/
+	}
+
+	public class DummyGroupData implements IEntityLivingData {
+		public boolean field_142048_a;
+		public boolean field_142046_b;
+
+		private DummyGroupData(boolean p_i2348_2_, boolean p_i2348_3_) {
+			this.field_142048_a = false;
+			this.field_142046_b = false;
+			this.field_142048_a = p_i2348_2_;
+			this.field_142046_b = p_i2348_3_;
+		}
+
+		public DummyGroupData(boolean p_i2349_2_, boolean p_i2349_3_, Object p_i2349_4_) {
+			this(p_i2349_2_, p_i2349_3_);
+		}
 	}
 }

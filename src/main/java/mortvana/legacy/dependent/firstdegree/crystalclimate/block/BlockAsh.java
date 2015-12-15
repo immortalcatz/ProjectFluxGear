@@ -15,7 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraftforge.common.util.ForgeDirection;
 
-import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
+import mortvana.legacy.errored.crystalclimate.CrystalClimate;
 
 public class BlockAsh extends Block {
 	public BlockAsh() {

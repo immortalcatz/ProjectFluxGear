@@ -2,6 +2,8 @@ package mortvana.legacy.dependent.firstdegree.core.common;
 
 import java.util.*;
 
+import mortvana.legacy.errored.thaumicrevelations.ItemFocusIllumination;
+import mortvana.legacy.errored.thaumicrevelations.ItemWardenicBlade;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.material.Material;
@@ -51,8 +53,8 @@ import mortvana.legacy.clean.thaumicrevelations.item.ItemFocusPurity;
 import mortvana.legacy.clean.thaumicrevelations.item.ItemWaslieHammer;
 import mortvana.legacy.clean.weirdscience.block.BlockFuelBurner;
 import mortvana.legacy.clean.weirdscience.block.fluid.BlockFluidAcid;
-import mortvana.legacy.clean.weirdscience.block.fluid.BlockFluidClassicWS;
-import mortvana.legacy.clean.weirdscience.block.fluid.BlockFluidReactive;
+import mortvana.legacy.clean.weirdscience.util.block.fluid.BlockFluidClassicWS;
+import mortvana.legacy.clean.weirdscience.util.block.fluid.BlockFluidReactive;
 import mortvana.legacy.clean.weirdscience.util.chemistry.ReactionSpec;
 import mortvana.legacy.dependent.seconddegree.morttech.block.BlockMortTechOre;
 import mortvana.legacy.dependent.seconddegree.morttech.item.DebuggingSpork;
@@ -65,21 +67,20 @@ import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOr
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreMain;
 import mortvana.legacy.dependent.seconddegree.projectfluxgear.block.BlockPlant;
 import mortvana.legacy.errored.core.ProjectFluxGear;
-import mortvana.legacy.errored.morttech.block.BlockCrank;
-import mortvana.legacy.errored.morttech.block.BlockMachine;
-import mortvana.legacy.errored.morttech.block.BlockWoodmill;
+import mortvana.legacy.errored.morttech.BlockCrank;
+import mortvana.legacy.dependent.seconddegree.morttech.block.BlockMachine;
+import mortvana.legacy.errored.morttech.BlockWoodmill;
 import mortvana.legacy.clean.morttech.block.tile.TileWoodmill;
-import mortvana.legacy.errored.paintedstone.recipe.RecipePaintbrush;
-import mortvana.legacy.errored.projectfluxgear.block.BlockAlloyAux;
-import mortvana.legacy.errored.projectfluxgear.block.BlockDecorStone;
-import mortvana.legacy.errored.projectfluxgear.item.ItemInteractivePFG;
-import mortvana.legacy.errored.projectfluxgear.util.BlockInformation;
-import mortvana.legacy.errored.thaumicrevelations.entity.FleshGolem;
-import mortvana.legacy.errored.thaumicrevelations.item.*;
+import mortvana.legacy.clean.paintedstone.recipe.RecipePaintbrush;
+import mortvana.legacy.errored.projectfluxgear.BlockAlloyAux;
+import mortvana.legacy.errored.projectfluxgear.BlockDecorStone;
+import mortvana.legacy.errored.projectfluxgear.ItemInteractivePFG;
+import mortvana.legacy.errored.projectfluxgear.BlockInformation;
+import mortvana.legacy.dependent.seconddegree.thaumicrevelations.entity.EntityFleshGolem;
 import mortvana.legacy.clean.thaumicrevelations.util.WardenicChargeHelper;
-import mortvana.legacy.errored.weirdscience.block.BlockBloodDyanmo;
-import mortvana.legacy.errored.weirdscience.block.fluid.BlockFluidSmog;
-import mortvana.legacy.errored.weirdscience.block.tile.TileEntityGunpowderDynamo;
+import mortvana.legacy.errored.weirdscience.BlockBloodDyanmo;
+import mortvana.legacy.errored.weirdscience.BlockFluidSmog;
+import mortvana.legacy.clean.weirdscience.block.tile.TileEntityGunpowderDynamo;
 import mortvana.legacy.clean.weirdscience.util.ContentRegistry;
 
 import mortvana.melteddashboard.block.FluxGearItemBlock;
@@ -886,7 +887,7 @@ public class FluxGearContent implements IFuelHandler {
 
 		EntityRegistry.registerModEntity(EntityPurity.class, "PurityOrb", 0, ProjectFluxGear.instance, 64, 10, true);
 		//EntityRegistry.registerModEntity(EntityFleshProjectile.class, "ThrownFlesh", 1, ProjectFluxGear.instance, 64, 3, true); //TODO
-		EntityRegistry.registerGlobalEntityID(FleshGolem.class, "FleshGolem", EntityRegistry.findGlobalUniqueEntityId(), 0xE4A2A9, 0x96452E);
+		EntityRegistry.registerGlobalEntityID(EntityFleshGolem.class, "FleshGolem", EntityRegistry.findGlobalUniqueEntityId(), 0xE4A2A9, 0x96452E);
 
 		ThaumcraftApi.registerObjectTag(exubituraPetal, new AspectList().add(WARDEN, 1));
 		ThaumcraftApi.registerObjectTag(wardenicCrystal, new AspectList().add(Aspect.CRYSTAL, 4).add(Aspect.ELDRITCH, 4).add(WARDEN, 1));

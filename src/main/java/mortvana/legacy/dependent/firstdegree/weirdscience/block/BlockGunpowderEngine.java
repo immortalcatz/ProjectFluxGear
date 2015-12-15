@@ -2,6 +2,7 @@ package mortvana.legacy.dependent.firstdegree.weirdscience.block;
 
 import java.util.Random;
 
+import mortvana.legacy.clean.weirdscience.util.block.IBlockMetaPower;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,14 +22,14 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.util.RotationHelper;
 
 import mortvana.legacy.clean.weirdscience.util.block.tile.BlockContainerBase;
-import mortvana.legacy.errored.weirdscience.block.tile.TileEntityNitrateDynamo;
+import mortvana.legacy.errored.weirdscience.TileEntityNitrateDynamo;
 import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.legacy.clean.core.util.helpers.BlockHelper;
 
 //A copy-and-paste from BlockNitrateEngine.
 //Soon I will abstract this functionality out
 //to a BlockContainerRotatable or something like that.
-public class BlockGunpowderEngine extends BlockContainerBase {
+public class BlockGunpowderEngine extends BlockContainerBase implements IBlockMetaPower {
 
 	public BlockGunpowderEngine(String name, Material material) {
 		super(name, material);
@@ -153,13 +154,10 @@ public class BlockGunpowderEngine extends BlockContainerBase {
 				for (int slotiter = 0; slotiter < tile.getSizeInventory(); ++slotiter) {
 					ItemStack itemstack = tile.getStackInSlot(slotiter);
 					if (itemstack != null) {
-						float xr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
-						float yr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
-						float zr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
-						EntityItem entityItem = new EntityItem(world,
-								(double) ((float) x + xr),
-								(double) ((float) y + yr),
-								(double) ((float) z + zr), itemstack);
+						float xr = itemDropRand.nextFloat() * 0.8F + 0.1F;
+						float yr = itemDropRand.nextFloat() * 0.8F + 0.1F;
+						float zr = itemDropRand.nextFloat() * 0.8F + 0.1F;
+						EntityItem entityItem = new EntityItem(world, (double) ((float) x + xr), (double) ((float) y + yr), (double) ((float) z + zr), itemstack);
 						world.spawnEntityInWorld(entityItem);
 					}
 				}
@@ -178,19 +176,16 @@ public class BlockGunpowderEngine extends BlockContainerBase {
 		return true;
 	}
 
-	/**/ //@Override
+	@Override
 	public void recievePowerOn(World world, int x, int y, int z) {
 		// Bitmask bit 8 to on
 		world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) | 8, 2);
 
 	}
 
-	//@Override
+	@Override
 	public void recievePowerOff(World world, int x, int y, int z) {
-		/*
-		 * Bitmask bit 8 to off by &ing it with the bitwise complement of 8
-		 * (which is to say ~8).
-		 */
-		/**/world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) & ~8, 2);
-	}/**/
+		// Bitmask bit 8 to off by &ing it with the bitwise complement of 8 (which is to say ~8).
+		world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) & ~8, 2);
+	}
 }

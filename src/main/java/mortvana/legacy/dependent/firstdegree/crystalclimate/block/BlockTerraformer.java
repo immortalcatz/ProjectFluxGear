@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.legacy.clean.crystalclimate.block.tile.TerraformerLogic;
 import mortvana.legacy.clean.crystalclimate.block.tile.TerraleecherLogic;
-import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
+import mortvana.legacy.errored.crystalclimate.CrystalClimate;
 import mortvana.legacy.dependent.firstdegree.crystalclimate.block.tile.*;
 
 public class BlockTerraformer extends BlockContainer {

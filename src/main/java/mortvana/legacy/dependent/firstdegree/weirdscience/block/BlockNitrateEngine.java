@@ -2,6 +2,7 @@ package mortvana.legacy.dependent.firstdegree.weirdscience.block;
 
 import java.util.Random;
 
+import mortvana.legacy.clean.weirdscience.util.block.IBlockMetaPower;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,11 +22,11 @@ import net.minecraftforge.common.util.RotationHelper;
 import net.minecraftforge.fluids.Fluid;
 
 import mortvana.legacy.clean.weirdscience.util.block.tile.BlockContainerBase;
-import mortvana.legacy.errored.weirdscience.block.tile.TileEntityNitrateDynamo;
+import mortvana.legacy.errored.weirdscience.TileEntityNitrateDynamo;
 import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.legacy.clean.core.util.helpers.BlockHelper;
 
-public class BlockNitrateEngine extends BlockContainerBase {
+public class BlockNitrateEngine extends BlockContainerBase implements IBlockMetaPower {
 
 	int teCapacity = 0;
 	int tePerTick = 0;
@@ -82,6 +83,7 @@ public class BlockNitrateEngine extends BlockContainerBase {
 		return RotationHelper.rotateVanillaBlock(Blocks.furnace, worldObj, x, y, z, axis);
 	}
 
+	@Override
 	public boolean hasComparatorInputOverride() {
 		return true;
 	}
@@ -134,6 +136,7 @@ public class BlockNitrateEngine extends BlockContainerBase {
 	 * used instead of the redstone signal strength when this block inputs to a
 	 * comparator.
 	 */
+	@Override
 	public int getComparatorInputOverride(World world, int x, int y, int z, int par5) {
 		return Container.calcRedstoneFromInventory((IInventory) world.getTileEntity(x, y, z));
 	}
@@ -157,6 +160,7 @@ public class BlockNitrateEngine extends BlockContainerBase {
 		super.onBlockDestroyedByPlayer(world, x, y, z, par5);
 	}
 
+	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float par1, float par2, float par3) {
 		TileEntity tileEntity = world.getTileEntity(x, y, z);
 		if (tileEntity == null || player.isSneaking()) {
@@ -166,16 +170,15 @@ public class BlockNitrateEngine extends BlockContainerBase {
 		return true;
 	}
 
+	@Override
 	public void recievePowerOn(World world, int x, int y, int z) {
 		// Bitmask bit 8 to on
 		world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) | 8, 2);
 	}
 
+	@Override
 	public void recievePowerOff(World world, int x, int y, int z) {
-		/*
-		 * Bitmask bit 8 to off by &ing it with the bitwise complement of 8
-		 * (which is to say ~8).
-		 */
+		// Bitmask bit 8 to off by &ing it with the bitwise complement of 8 (which is to say ~8).
 		world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) & ~8, 2);
 	}
 

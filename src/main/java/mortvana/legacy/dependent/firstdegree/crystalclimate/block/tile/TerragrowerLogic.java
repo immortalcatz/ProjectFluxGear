@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
-import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
+import mortvana.legacy.errored.crystalclimate.CrystalClimate;
 
 public class TerragrowerLogic extends TileEntity {
 	Random random = new Random();

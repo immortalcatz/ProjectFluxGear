@@ -7,8 +7,8 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-import mortvana.legacy.errored.thaumicrevelations.block.tileentity.TileWardChest;
-import mortvana.legacy.errored.thaumicrevelations.client.ClientTickHandler;
+import mortvana.legacy.clean.thaumicrevelations.block.tile.TileWardChest;
+import mortvana.legacy.errored.thaumicrevelations.ClientTickHandler;
 import org.lwjgl.opengl.GL11;
 
 public class RenderTileWardChest extends TileEntitySpecialRenderer {

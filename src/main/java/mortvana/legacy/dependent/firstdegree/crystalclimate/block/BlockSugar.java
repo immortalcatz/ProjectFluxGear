@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.legacy.errored.crystalclimate.common.CrystalClimate;
+import mortvana.legacy.errored.crystalclimate.CrystalClimate;
 
 public class BlockSugar extends Block {
 	public BlockSugar() {

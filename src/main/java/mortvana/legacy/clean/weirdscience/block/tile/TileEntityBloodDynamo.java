@@ -1,5 +1,6 @@
 package mortvana.legacy.clean.weirdscience.block.tile;
 
+import mortvana.legacy.clean.weirdscience.util.block.tile.TileEntityGenerator;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;

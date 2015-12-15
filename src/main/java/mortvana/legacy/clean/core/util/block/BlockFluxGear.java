@@ -2,6 +2,8 @@ package mortvana.legacy.clean.core.util.block;
 
 import java.util.*;
 
+import mortvana.melteddashboard.block.AdvFluxGearBlock;
+import mortvana.melteddashboard.util.helpers.StringHelper;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,8 +14,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
-import mortvana.legacy.clean.core.util.helpers.StringHelper;
 
 @Deprecated
 public class BlockFluxGear extends Block {

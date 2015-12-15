@@ -3,7 +3,7 @@ package mortvana.legacy.dependent.firstdegree.apiology.util;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
-import mortvana.legacy.errored.apiology.util.LocalizationManager;
+import mortvana.legacy.errored.apiology.LocalizationManager;
 
 import java.util.ArrayList;
 

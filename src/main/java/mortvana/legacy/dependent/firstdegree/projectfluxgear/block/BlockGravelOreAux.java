@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.legacy.clean.core.util.block.FallingBlockFluxGear;
-import mortvana.legacy.errored.projectfluxgear.util.BlockInformation;
+import mortvana.legacy.errored.projectfluxgear.BlockInformation;
 
 import mortvana.projectfluxgear.core.data.ItemBlockInformation;
 import net.minecraft.client.renderer.texture.IIconRegister;

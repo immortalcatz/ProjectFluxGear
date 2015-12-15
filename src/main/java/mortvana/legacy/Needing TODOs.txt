@@ -3,5 +3,5 @@ mortvana.legacy.errored.core.*
 mortvana.legacy.errored.crystalclimate.*
 mortvana.legacy.errored.fluxgearaddons.*
 mortvana.legacy.errored.morttech.*
-mortvana.legacy.errored.thaumicrevelations.block.BlockWardChest
-mortvana.legacy.errored.weirdscience.block.fluid.BlockFluidSmog
+mortvana.legacy.errored.thaumicrevelations.BlockWardChest
+mortvana.legacy.errored.weirdscience.BlockFluidSmog

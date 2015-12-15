@@ -9,7 +9,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import mortvana.legacy.errored.crystalclimate.block.BlockCrystal;
+import mortvana.legacy.dependent.firstdegree.crystalclimate.block.BlockCrystal;
 import mortvana.melteddashboard.util.helpers.MiscHelper;
 
 public class ItemBlockCrystal extends ItemBlock {
