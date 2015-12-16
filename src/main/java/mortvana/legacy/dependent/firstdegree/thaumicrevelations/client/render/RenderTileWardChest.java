@@ -7,8 +7,9 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
+import mortvana.melteddashboard.common.MeltedDashboardEvents;
+
 import mortvana.legacy.clean.thaumicrevelations.block.tile.TileWardChest;
-import mortvana.legacy.errored.thaumicrevelations.ClientTickHandler;
 import org.lwjgl.opengl.GL11;
 
 public class RenderTileWardChest extends TileEntitySpecialRenderer {
@@ -76,7 +77,7 @@ public class RenderTileWardChest extends TileEntitySpecialRenderer {
 		GL11.glEnable(3042);
 
 		GL11.glTranslatef(0.5F, 0.65F, 0.5F);
-		float deg = (float) ((chest.getWorld() == null ? ClientTickHandler.elapsedTicks : chest.ticksExisted) % 360.0D);
+		float deg = (float) ((chest.getWorld() == null ? MeltedDashboardEvents.elapsedTicks : chest.ticksExisted) % 360.0D);
 		GL11.glRotatef(deg, 0.0F, 1.0F, 0.0F);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		Tessellator tess = Tessellator.instance;

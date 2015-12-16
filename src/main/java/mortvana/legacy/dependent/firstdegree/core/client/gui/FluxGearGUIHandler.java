@@ -15,7 +15,6 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 
 import mortvana.legacy.clean.morttech.inventory.ContainerWoodmill;
-import mortvana.legacy.clean.morttech.block.tile.TileWoodmill;
 
 public class FluxGearGUIHandler implements IGuiHandler {
 
@@ -36,8 +35,8 @@ public class FluxGearGUIHandler implements IGuiHandler {
 		}
 
 		TileEntity tileEntity = world.getTileEntity(x, y, z);
-		if (tileEntity instanceof TileWoodmill) {
-			return new ContainerWoodmill(player.inventory, (WoodmillLogic /*TileWoodmill*/) tileEntity);
+		if (tileEntity instanceof WoodmillLogic) {
+			return new ContainerWoodmill(player.inventory, (WoodmillLogic) tileEntity);
 		}
 		IGuiHandler handler = serverGuiHandlers.get(ID);
 
@@ -57,8 +56,8 @@ public class FluxGearGUIHandler implements IGuiHandler {
 		}
 
 		TileEntity tileEntity = world.getTileEntity(x, y, z);
-		if (tileEntity instanceof TileWoodmill) {
-			return new GuiWoodmill(player.inventory, (WoodmillLogic /*TileWoodmill*/) tileEntity);
+		if (tileEntity instanceof WoodmillLogic) {
+			return new GuiWoodmill(player.inventory, (WoodmillLogic) tileEntity);
 		}
 
 		IGuiHandler handler = clientGuiHandlers.get(ID);

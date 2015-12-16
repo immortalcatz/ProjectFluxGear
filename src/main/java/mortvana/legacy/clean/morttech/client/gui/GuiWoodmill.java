@@ -15,9 +15,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiWoodmill extends GuiContainer {
     private static final ResourceLocation furnaceGuiTextures = new ResourceLocation("morttech:woodmill"/*"textures/gui/container/furnace.png"*/);
-    private WoodmillLogic /*TileWoodmill*/ logic;
+    private WoodmillLogic logic;
 
-    public GuiWoodmill(InventoryPlayer inventory, WoodmillLogic /*TileWoodmill*/ woodmill) {
+    public GuiWoodmill(InventoryPlayer inventory, WoodmillLogic woodmill) {
         super(new ContainerWoodmill(inventory, woodmill));
         logic = woodmill;
     }

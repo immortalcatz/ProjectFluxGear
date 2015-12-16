@@ -39,8 +39,7 @@ public class BucketEventHandler {
 			//Have we clicked a tile with an empty bucket?
 			if (event.current.getItem() == Items.bucket && event.target.typeOfHit == MovingObjectType.BLOCK) {
 				//Is there an entry for this block's ID?
-				ImmutablePair<Block, Integer> iPair = new ImmutablePair<Block, Integer>(event.world.getBlock(target.blockX, target.blockY, target.blockZ), 
-						event.world.getBlockMetadata(target.blockX, target.blockY, target.blockZ));
+				ImmutablePair<Block, Integer> iPair = new ImmutablePair<Block, Integer>(event.world.getBlock(target.blockX, target.blockY, target.blockZ), event.world.getBlockMetadata(target.blockX, target.blockY, target.blockZ));
 				if(fluidToBucket.get(iPair) != null) {
 					//Set our event's item to our fluid.
 					event.result = fluidToBucket.get(iPair).copy();

@@ -22,7 +22,7 @@ import mortvana.melteddashboard.util.helpers.StringHelper;
 
 import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
-
+//TODO: CLEAN UP AND IMPLEMENT!!!!
 /**
  *  A relatively easy to use, yet advanced version of FluxGearBlock for use in many situations.
  *  Contains automagic setting of meta-sensitive hardness, resistance, light emissions, redstone signals,

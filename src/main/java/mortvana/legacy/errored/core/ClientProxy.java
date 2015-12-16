@@ -1,14 +1,14 @@
 package mortvana.legacy.errored.core;
 
 import com.google.common.collect.Lists;
+import mortvana.legacy.clean.morttech.client.render.RenderCrank;
 import mortvana.legacy.clean.thaumicrevelations.entity.EntityPurity;
 
 import mortvana.projectfluxgear.thaumic.client.render.RenderPurity;
-import mortvana.legacy.clean.morttech.block.tile.TileCrank;
+
 import mortvana.legacy.clean.morttech.block.tile.WoodmillLogic;
 import mortvana.legacy.clean.thaumicrevelations.client.particle.TRParticle;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.client.render.DualPassCubeRenderer;
-import mortvana.legacy.clean.morttech.client.render.RenderCrank;
 import mortvana.legacy.clean.thaumicrevelations.client.render.RenderFleshGolem;
 import mortvana.legacy.clean.core.common.CommonProxy;
 import mortvana.legacy.dependent.firstdegree.thaumicrevelations.entity.EntityFleshProjectile;
@@ -50,6 +50,7 @@ public class ClientProxy extends CommonProxy {
 
 	public static int renderPass;
 	public static int dualPassCubeID;
+	public static int wardedChestID = -1;
 
 	public static final TRParticle PARTICLE_HANDLER = new TRParticle();
 
@@ -63,7 +64,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityFleshProjectile.class, new RenderSnowball(Items.rotten_flesh));
 
 		// This is for rendering entities and so forth later on
-		ClientRegistry.bindTileEntitySpecialRenderer(TileCrank.class, new RenderCrank());
+		//ClientRegistry.bindTileEntitySpecialRenderer(TileCrank.class, new RenderCrank()); //TODO: Make a metatile.
 
 	}
 

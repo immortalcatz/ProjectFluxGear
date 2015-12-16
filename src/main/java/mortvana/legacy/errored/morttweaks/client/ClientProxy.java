@@ -15,8 +15,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.*;
@@ -26,7 +24,6 @@ import net.minecraftforge.common.MinecraftForge;
 import mortvana.legacy.errored.morttweaks.common.CommonProxy;
 import mortvana.legacy.errored.morttweaks.common.MortTweaks;
 import mortvana.legacy.dependent.firstdegree.morttweaks.gui.GuiIngameForgeFix;
-import mortvana.legacy.errored.morttweaks.util.TweakTicker;
 import org.lwjgl.opengl.GL11;
 
 public class ClientProxy extends CommonProxy {
@@ -34,9 +31,6 @@ public class ClientProxy extends CommonProxy {
 	GameSettings gs = Minecraft.getMinecraft().gameSettings;
 
 	public ClientProxy() {
-		if (MortTweaks.fancyGrass) {
-			TickRegistry.registerTickHandler(new TweakTicker(), Side.CLIENT); //TODO: 1.7.10 Version...
-		}
 		if (MortTweaks.disableExpBar) {
 			MinecraftForge.EVENT_BUS.register(new GuiIngameForgeFix(mc));
 		}

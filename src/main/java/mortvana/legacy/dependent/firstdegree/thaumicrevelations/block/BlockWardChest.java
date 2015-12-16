@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.thaumicrevelations;
+package mortvana.legacy.dependent.firstdegree.thaumicrevelations.block;
 
 import mortvana.legacy.clean.thaumicrevelations.block.tile.TileWardChest;
 import net.minecraft.block.Block;
@@ -22,6 +22,7 @@ import mortvana.melteddashboard.util.helpers.StringHelper;
 
 import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
 
+import mortvana.legacy.errored.core.ClientProxy;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.items.wands.ItemWandCasting;
@@ -99,36 +100,35 @@ public class BlockWardChest extends BlockContainer {
 					}
 				}
 			}
-			world.func_96440_m(x, y, z, block);
+			world.updateNeighborsAboutBlockChange(x, y, z, block);
 		}
 		super.breakBlock(world, x, y, z, block, metadata);
 	}
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
-		if (world.isRemote) {
-			return true;
-		}
-		TileWardChest chest = (TileWardChest) world.getTileEntity(x, y, z);
-		if (chest != null) {
-			String owner = chest.owner;
-			if (owner.equals(player.getCommandSenderName())) {
-				if ((player.getCurrentEquippedItem() != null) && (player.getCurrentEquippedItem().getItem() instanceof ItemWandCasting)) {
-					if (!world.isRemote) {
-						int meta = world.getBlockMetadata(x, y, z);
-						dropBlockAsItem(world, x, y, z, meta, par6);
-						world.playAuxSFX(2001, x, y, z, blockId + (meta << 12));
-						world.setBlock(x, y, z, null, 0, 0);
+		if (!world.isRemote) {
+			//TODO: Check Casting
+			TileWardChest chest = (TileWardChest) world.getTileEntity(x, y, z);
+			if (chest != null) {
+				if (chest.owner.equals(player.getCommandSenderName())) {
+					if ((player.getCurrentEquippedItem() != null) && (player.getCurrentEquippedItem().getItem() instanceof ItemWandCasting)) {
+						if (!world.isRemote) {
+							int meta = world.getBlockMetadata(x, y, z);
+							dropBlockAsItem(world, x, y, z, meta, par6);
+							world.playAuxSFX(2001, x, y, z, 0 /*blockId + (meta << 12)*/);
+							world.setBlock(x, y, z, null, 0, 0);
+						} else {
+							player.swingItem();
+						}
 					} else {
-						player.swingItem();
+						player.displayGUIChest(chest);
+						world.playSoundEffect(x, y, z, "thaumcraft.key", 1.0F, 1.0F);
 					}
 				} else {
-					player.displayGUIChest(chest);
-					world.playSoundEffect(x, y, z, "thaumcraft.key", 1.0F, 1.0F);
+					player.addChatMessage(ChatHelper.addChatMessage(player, StringHelper.localize("info.fluxgear.thaumic.lockedchest")/*"The Chest refuses to budge."*/));
+					world.playSoundEffect(x, y, z, "thaumcraft:doorfail", 1.0F, 0.2F);
 				}
-			} else {
-				player.addChatMessage(ChatHelper.addChatMessage(player, StringHelper.localize("info.fluxgear.thaumic.lockedchest")/*"The Chest refuses to budge."*/));
-				world.playSoundEffect(x, y, z, "thaumcraft.doorfail", 1.0F, 0.2F);
 			}
 		}
 		return true;
@@ -143,12 +143,12 @@ public class BlockWardChest extends BlockContainer {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
-		blockIcon = IconHelper.forBlock(iconRegister, this);
+		blockIcon = iconRegister.registerIcon("fluxgear:" + getUnlocalizedName().replaceAll("tile.", ""));
 	}
 
 	@Override
 	public int getRenderType() {
-		return LibRenderIDs.idWardChest;
+		return ClientProxy.wardedChestID;
 	}
 
 	@Override

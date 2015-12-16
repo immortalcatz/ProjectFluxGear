@@ -229,7 +229,7 @@ public class MortTweaks {
 		}
 
 		if (endermenDontPickUpBlocks) {
-			EntityEnderman.carriableBlocks = new boolean[Block.blocksList.length]; //TODO: 1.7.10 Version...
+			EntityEnderman.carriable = new IdentityHashMap<Block, Boolean>(4096); //TODO: AccessTransformer
 		}
 
 		if (changeArmorCalculations) {

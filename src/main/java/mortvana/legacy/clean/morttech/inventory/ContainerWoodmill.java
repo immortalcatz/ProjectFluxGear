@@ -20,7 +20,7 @@ public class ContainerWoodmill extends Container {
     private int powerTime /*lastBurnTime*/;
     private int powerGaugeTime /*lastItemBurnTime*/;
 
-    public ContainerWoodmill(InventoryPlayer inventoryPlayer, WoodmillLogic /*TileWoodmill*/ TileEntityWoodmill) {
+    public ContainerWoodmill(InventoryPlayer inventoryPlayer, WoodmillLogic TileEntityWoodmill) {
         woodmill = TileEntityWoodmill;
         addSlotToContainer(new Slot(TileEntityWoodmill, 0, 56, 17));
         addSlotToContainer(new SlotFurnace(inventoryPlayer.player, TileEntityWoodmill, 1, 56, 53));

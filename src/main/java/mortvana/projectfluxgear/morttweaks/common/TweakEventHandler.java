@@ -3,6 +3,7 @@ package mortvana.projectfluxgear.morttweaks.common;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityEnderman;
@@ -13,6 +14,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -23,6 +26,13 @@ import static mortvana.melteddashboard.util.repack.mortvana.science.math.MathHel
 import static mortvana.projectfluxgear.core.config.MortTweaksConfig.*;
 
 public class TweakEventHandler {
+
+	@SubscribeEvent
+	public void fancyGrass(TickEvent event) {
+		if (event.phase == TickEvent.Phase.START && fancyGrass) {
+			RenderBlocks.fancyGrass = true;
+		}
+	}
 
 	@SubscribeEvent
 	public void killExpOrbs(EntityJoinWorldEvent event) {
@@ -38,7 +48,7 @@ public class TweakEventHandler {
 			boolean doFeatherDrop = isChild ? chicksDropFeathers : adultsDropFeathers;
 			int dropRarity = isChild ? chickFeatherRarity : adultFeatherRarity;
 			if (doFeatherDrop && dropRarity > 0 && ((EntityChicken) event.entity).getRNG().nextInt(dropRarity) == 0) {
-				int dropQuantity = isChild ? diffRand(chickMaxFeathers, chickMaxFeathers) : diffRand(adultMinFeathers, adultMaxFeathers);
+				int dropQuantity = isChild ? diffRand(chickMinFeathers, chickMaxFeathers) : diffRand(adultMinFeathers, adultMaxFeathers);
 				event.entity.dropItem(Items.feather, dropQuantity);
 			}
 		}

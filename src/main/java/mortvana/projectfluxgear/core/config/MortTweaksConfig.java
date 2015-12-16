@@ -59,4 +59,6 @@ public class MortTweaksConfig extends ConfigBase {
 
 	public static int batSpawnPercent;
 	public static int squidSpawnPercent;
+
+	public static boolean fancyGrass;
 }

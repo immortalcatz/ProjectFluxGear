@@ -91,7 +91,6 @@ public class BlockFluidSmog extends BlockFluidCoFHBase implements IBioactive {
         return enableSourceFloat && (world.getBlock(x, y + densityDir, z) == this && world.getBlockMetadata(x, y + densityDir, z) != 0);
     }
 
-
     @Override
     public boolean contactAffectCreature(EntityLivingBase affected) {
         return false;

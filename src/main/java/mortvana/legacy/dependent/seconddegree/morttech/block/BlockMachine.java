@@ -6,7 +6,7 @@ import mantle.blocks.abstracts.InventoryBlock;
 import mantle.blocks.iface.IActiveLogic;
 import mantle.blocks.iface.IFacingLogic;
 
-import mortvana.legacy.errored.morttech.BlockCrank;
+import mortvana.legacy.clean.morttech.block.BlockCrank;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;

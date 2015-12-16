@@ -2,6 +2,7 @@ package mortvana.legacy.dependent.firstdegree.core.common;
 
 import java.util.*;
 
+import mortvana.legacy.clean.morttech.block.tile.WoodmillLogic;
 import mortvana.legacy.errored.thaumicrevelations.ItemFocusIllumination;
 import mortvana.legacy.errored.thaumicrevelations.ItemWardenicBlade;
 import net.minecraft.block.Block;
@@ -67,10 +68,9 @@ import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOr
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreMain;
 import mortvana.legacy.dependent.seconddegree.projectfluxgear.block.BlockPlant;
 import mortvana.legacy.errored.core.ProjectFluxGear;
-import mortvana.legacy.errored.morttech.BlockCrank;
+import mortvana.legacy.clean.morttech.block.BlockCrank;
 import mortvana.legacy.dependent.seconddegree.morttech.block.BlockMachine;
-import mortvana.legacy.errored.morttech.BlockWoodmill;
-import mortvana.legacy.clean.morttech.block.tile.TileWoodmill;
+import mortvana.legacy.clean.morttech.block.BlockWoodmill;
 import mortvana.legacy.clean.paintedstone.recipe.RecipePaintbrush;
 import mortvana.legacy.errored.projectfluxgear.BlockAlloyAux;
 import mortvana.legacy.errored.projectfluxgear.BlockDecorStone;
@@ -520,7 +520,7 @@ public class FluxGearContent implements IFuelHandler {
 		LanguageRegistry.addName(woodmill, "Woodmill");
 		LanguageRegistry.addName(crank, "Crank");
 
-		GameRegistry.registerTileEntity(TileWoodmill.class, tileWoodmillID);
+		GameRegistry.registerTileEntity(WoodmillLogic.class, tileWoodmillID);
 
 		tileMachine = new BlockMachine(Material.iron).setResistance(5.0f).setCreativeTab(machineTab).setHardness(2.5f);
 		GameRegistry.registerBlock(tileMachine, "machine");

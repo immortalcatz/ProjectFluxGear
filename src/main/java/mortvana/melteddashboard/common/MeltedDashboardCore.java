@@ -59,6 +59,7 @@ public class MeltedDashboardCore {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		MeltedDashboardAPI.setMod(this);
+		MinecraftForge.EVENT_BUS.register(new MeltedDashboardEvents());
 		GameRegistry.registerTileEntity(TileEntityMetadata.class, "TileMetadata");
 		FluxGearPacketWrangler.initialize();
 	}

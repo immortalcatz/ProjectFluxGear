@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.morttech;
+package mortvana.legacy.clean.morttech.block;
 
 import java.util.List;
 
@@ -9,7 +9,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -29,27 +28,14 @@ public class BlockCrank extends Block {
     	super(Material.wood);
     }
 
-    private int power = 10;
     public S35PacketUpdateTileEntity packet = new S35PacketUpdateTileEntity();
 
     @Override
-    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-        //TODO: 1.7.10 Packets
-        NBTTagCompound c = new NBTTagCompound();
-        c.setInteger("power", power);
-        System.out.println(c.getInteger("power"));
-
-        return true;
-    }
-
-    //TODO: Fixing...
-    @Override
-    public boolean onBlockActivated(World world, int xCoord, int yCoord, int zCoord, EntityPlayer entPlayer) {
-
-        WoodmillLogic tile = (WoodmillLogic) world.getTileEntity(/*world, */xCoord, yCoord - 1, zCoord/*, entPlayer*/);
-        if (tile != null) {
-            tile.power += 10;
-        }
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
+	    WoodmillLogic tile = (WoodmillLogic) world.getTileEntity(x, y - 1, z);
+	    if (tile != null) {
+		    tile.power += 10;
+	    }
 
         return true;
     }
@@ -57,17 +43,6 @@ public class BlockCrank extends Block {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {
 	    itemIcon = iconRegister.registerIcon("morttech:crank");
-    }
-
-    @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
-
-        WoodmillLogic tile = (WoodmillLogic) world.getTileEntity(x, y - 1, z);
-        if (tile != null) {
-            tile.furnaceBurnTime += 10; //TODO: Change to refactored pointer
-        }
-
-        return true;
     }
 
     @Override

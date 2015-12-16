@@ -1,7 +1,9 @@
-package mortvana.legacy.errored.morttech;
+package mortvana.legacy.clean.morttech.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
+import mortvana.legacy.clean.morttech.block.tile.WoodmillLogic;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -24,7 +26,6 @@ import java.util.Random;
 
 import mortvana.legacy.dependent.firstdegree.core.client.gui.FluxGearGUIHandler;
 import mortvana.legacy.errored.core.ProjectFluxGear;
-import mortvana.legacy.clean.morttech.block.tile.TileWoodmill;
 import mortvana.melteddashboard.api.item.tool.wrench.IFluxGearWrench;
 
 import static mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper.RANDOM;
@@ -41,8 +42,12 @@ public class BlockWoodmill extends BlockContainer {
     @SideOnly(Side.CLIENT)
     private IIcon furnaceIconFront;
 
+	public BlockWoodmill(Material material) {
+		super(material);
+	}
+
     public BlockWoodmill() {
-        super(Material.rock);
+        this(Material.iron);
     }
 
     /**
@@ -112,25 +117,39 @@ public class BlockWoodmill extends BlockContainer {
 	@Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
         if (!world.isRemote) {
-            TileWoodmill woodmill = (TileWoodmill) world.getTileEntity(x, y, z);
+            WoodmillLogic woodmill = (WoodmillLogic) world.getTileEntity(x, y, z);
             if (woodmill != null && !(player.getCurrentEquippedItem().getItem() instanceof IFluxGearWrench)) {
                 player.openGui(ProjectFluxGear.instance, FluxGearGUIHandler.woodmill, world, x, y, z);
             }
-
         }
+		/*if (player.isSneaking()) {
+            FMLClientHandler.instance().displayGuiScreen(player, new GuiWoodmill(player.inventory, new WoodmillLogic()));
+            return true;
+        }
+        return false;*/
         return true;
     }
+
+	@Override
+	public boolean hasTileEntity(int metadata) {
+		return true;
+	}
 
     /**
      * Returns a new instance of a block's tile entity class. Called on placing the block.
      */
     @Override
-    public TileEntity createNewTileEntity(World world, int metadata)
-    {
-        return new TileWoodmill();
+    public TileEntity createNewTileEntity(World world, int metadata) {
+        return new WoodmillLogic();
     }
 
-    /**
+	@Override
+	public TileEntity createTileEntity(World world, int metadata) {
+		return new WoodmillLogic();
+	}
+
+
+	/**
      * Called when the block is placed in the world.
      */
     @Override
@@ -154,7 +173,7 @@ public class BlockWoodmill extends BlockContainer {
         }
 
         if (stack.hasDisplayName()) {
-            ((TileWoodmill) world.getTileEntity(x, y, z)).setCustomInventoryName(stack.getDisplayName());
+            ((WoodmillLogic) world.getTileEntity(x, y, z)).setInvName(stack.getDisplayName());
         }
     }
 
@@ -166,7 +185,7 @@ public class BlockWoodmill extends BlockContainer {
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata) {
         if (!keepFurnaceInventory) {
-            TileWoodmill tile = (TileWoodmill) world.getTileEntity(x, y, z);
+            WoodmillLogic tile = (WoodmillLogic) world.getTileEntity(x, y, z);
 
             if (tile != null) {
                 for (int j1 = 0; j1 < tile.getSizeInventory(); ++j1) {
@@ -185,7 +204,7 @@ public class BlockWoodmill extends BlockContainer {
                             }
 
                             itemstack.stackSize -= k1;
-                            EntityItem entityitem = new EntityItem(world, (double)((float)x + f), (double)((float)y + f1), (double)((float)z + f2), new ItemStack(itemstack, k1, itemstack.getItemDamage()));
+                            EntityItem entityitem = new EntityItem(world, (double)((float)x + f), (double)((float)y + f1), (double)((float)z + f2), new ItemStack(itemstack.getItem(), k1, itemstack.getMetadata()));
 
                             if (itemstack.hasTagCompound()) {
                                 entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());

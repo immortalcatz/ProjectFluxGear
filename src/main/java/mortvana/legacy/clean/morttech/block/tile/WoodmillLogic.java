@@ -245,7 +245,8 @@ public class WoodmillLogic extends InventoryLogic implements IActiveLogic, IFaci
 
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
-        readNetworkNBT(packet.getNbtCompound());
+	    //power = packet.getNbtCompound().getInteger("power");
+	    readNetworkNBT(packet.getNbtCompound());
         worldObj.markBlockRangeForRenderUpdate(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
     }
 
