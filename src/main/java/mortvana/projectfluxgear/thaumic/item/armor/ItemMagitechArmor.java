@@ -21,16 +21,16 @@ import mortvana.melteddashboard.util.enums.EnumArmorType;
 import mortvana.melteddashboard.util.helpers.NBTHelper;
 import mortvana.melteddashboard.util.helpers.StringHelper;
 
-import mortvana.projectfluxgear.core.common.FluxGearCoreContent;
 import mortvana.projectfluxgear.core.data.StringDatabase;
 import mortvana.projectfluxgear.api.item.armor.IMagitechArmor;
+import mortvana.projectfluxgear.library.ContentLibrary;
 
 public abstract class ItemMagitechArmor extends ItemArmorFluxGear implements IMagitechArmor {
 
     //1czykznt
     public ItemMagitechArmor(ArmorMaterial material, int renderIndex, EnumArmorType type, String name, String sheet, String icon) {
 	    super(material, renderIndex, type, name, sheet, icon);
-	    setCreativeTab(FluxGearCoreContent.equipmentTab);
+	    setCreativeTab(ContentLibrary.equipmentTab);
     }
 
 	/* ItemArmor Overrides */

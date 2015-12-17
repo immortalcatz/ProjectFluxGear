@@ -36,7 +36,7 @@ import mortvana.legacy.dependent.firstdegree.morttweaks.potion.TweakedPoisonStat
 import mortvana.legacy.errored.morttweaks.block.BlockTweakedFire;
 import mortvana.legacy.clean.morttweaks.block.BlockTweakedTNT;
 import mortvana.legacy.clean.morttweaks.block.BlockTweakedSugarCane;
-import mortvana.legacy.errored.morttweaks.entity.EntityTweakedZombie;
+import mortvana.legacy.clean.morttweaks.entity.EntityTweakedZombie;
 import mortvana.legacy.clean.morttweaks.item.ItemTweakedStew;
 import mortvana.legacy.errored.morttweaks.util.*;
 

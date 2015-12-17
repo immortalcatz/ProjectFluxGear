@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -15,12 +16,14 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
+import net.minecraftforge.event.entity.living.ZombieEvent;
 
 import static mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper.diffRand;
 import static mortvana.projectfluxgear.core.config.MortTweaksConfig.*;
@@ -28,7 +31,8 @@ import static mortvana.projectfluxgear.core.config.MortTweaksConfig.*;
 public class TweakEventHandler {
 
 	@SubscribeEvent
-	public void fancyGrass(TickEvent event) {
+	@SideOnly(Side.CLIENT)
+	public void fancyGrass(TickEvent.ClientTickEvent event) {
 		if (event.phase == TickEvent.Phase.START && fancyGrass) {
 			RenderBlocks.fancyGrass = true;
 		}
@@ -102,4 +106,10 @@ public class TweakEventHandler {
 		}
 	}
 
+	@SubscribeEvent
+	public void stopZombieSummon(ZombieEvent.SummonAidEvent event) {
+		if (disableZombieReinforcements && event.entity instanceof EntityZombie && !event.world.isRemote) {
+			event.setCanceled(true);
+		}
+	}
 }

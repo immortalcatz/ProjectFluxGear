@@ -39,6 +39,6 @@ public class ActiveToolModFeedback extends ActiveToolMod {
 
 		//TODO: Feedback Pairs (ex. Enderium and Terrasteel)
 
-		return feedback1 == true && feedback2 == true;
+		return feedback1 && feedback2 ;
 	}
 }

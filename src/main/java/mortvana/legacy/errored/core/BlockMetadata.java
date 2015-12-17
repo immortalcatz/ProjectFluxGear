@@ -48,7 +48,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 		}
 
 		public boolean placeBlockAt(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int meta) {
-			//A block that is a block is equal to... RANDOM FIELD NAME!?!? I blame Mojang...
+			//A block that is a block is equal to... (formerly) RANDOM FIELD NAME!?!? I blame Mojang...
 			Block block = blockInstance;
 			//If the block is not an IEldritchMob... Wait, WHAT!?!?
 			if (!(block instanceof IBlockMetadata)) {

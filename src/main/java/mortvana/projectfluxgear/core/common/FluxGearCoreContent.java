@@ -16,15 +16,17 @@ import mortvana.melteddashboard.registry.material.MaterialData;
 import mortvana.melteddashboard.util.ConfigBase;
 import mortvana.melteddashboard.util.IConfigInitialized;
 
-public class FluxGearCoreContent implements IConfigInitialized {
+import static mortvana.projectfluxgear.library.ContentLibrary.*;
 
-	public static FluxGearCreativeTab dynMaterialTab = new FluxGearCreativeTab("PFG-DynamicMaterials", "fluxgear.dynMaterial", new ItemStack(Items.iron_ingot));
-	public static FluxGearCreativeTab componentsTab = new FluxGearCreativeTab("PFG-Components", "fluxgear.components", new ItemStack(Items.potato));
-	public static FluxGearCreativeTab equipmentTab = new FluxGearCreativeTab("PFG-Equipment", "fluxgear.equipment", new ItemStack(Items.iron_chestplate));
+public class FluxGearCoreContent implements IConfigInitialized {
 
 	@Override
 	public void preInit(ConfigBase config) {
 		preInitRegistry();
+
+		dynMaterialTab = new FluxGearCreativeTab("PFG-DynamicMaterials", "fluxgear.dynMaterial", new ItemStack(Items.iron_ingot));
+		componentsTab = new FluxGearCreativeTab("PFG-Components", "fluxgear.components", new ItemStack(Items.potato));
+		equipmentTab = new FluxGearCreativeTab("PFG-Equipment", "fluxgear.equipment", new ItemStack(Items.iron_chestplate));
 
 		generalItem = (FluxGearItem) new FluxGearItem("fluxgear", componentsTab).setUnlocalizedName("generalMaterial");
 	}
@@ -64,5 +66,4 @@ public class FluxGearCoreContent implements IConfigInitialized {
 	public static MaterialData materialData;
 	public static FluxGearBlockExtendedMetadata metaStorageBlock;
 	public static FluxGearItem registryIngot;
-	public static FluxGearItem generalItem;
 }

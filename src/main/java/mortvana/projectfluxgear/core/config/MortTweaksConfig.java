@@ -61,4 +61,6 @@ public class MortTweaksConfig extends ConfigBase {
 	public static int squidSpawnPercent;
 
 	public static boolean fancyGrass;
+
+	public static boolean disableZombieReinforcements;
 }

@@ -154,7 +154,7 @@ public class ProjectFluxGear {
 	    FluxGearCompat.preInitIMC();
 
         GameRegistry.registerWorldGenerator(new FluxGearWorldGenerator(), 1);
-	    GameRegistry.registerWorldGenerator(new FluxGearContent.ExubituraGenerator(), 1);
+	    GameRegistry.registerWorldGenerator(new ExubituraGenerator(), 1);
 
         if (FluxGearConfig.achievementsEnabled) {
 	        FluxGearAchievements.addAchievements();
