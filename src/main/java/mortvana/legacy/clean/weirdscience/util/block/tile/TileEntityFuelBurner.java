@@ -5,7 +5,9 @@ import net.minecraft.nbt.NBTTagCompound;
 @Deprecated
 //TODO: I just wanna watch the Google burn...
 public class TileEntityFuelBurner extends TileEntityGenerator {
+
     protected int internalTemp = 0;
+
     @Override
     protected void init () {
         super.init();

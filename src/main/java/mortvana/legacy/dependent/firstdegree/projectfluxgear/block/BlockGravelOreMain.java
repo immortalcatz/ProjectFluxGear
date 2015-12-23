@@ -6,6 +6,7 @@ import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.legacy.clean.core.util.block.FallingBlockFluxGear;
 import mortvana.legacy.errored.projectfluxgear.BlockInformation;
 
+import mortvana.melteddashboard.util.enums.EnumBlockType;
 import mortvana.projectfluxgear.core.data.ItemBlockInformation;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -23,7 +24,7 @@ import mortvana.melteddashboard.util.helpers.StringHelper;
 public class BlockGravelOreMain extends FallingBlockFluxGear {
 
     public BlockGravelOreMain() {
-        super(BlockInformation.materialSoilOre, FluxGearContent.tabWorld, FluxGearBlock.EnumBlockType.SOIL_ORE);
+        super(BlockInformation.materialSoilOre, FluxGearContent.tabWorld, EnumBlockType.SOIL_ORE);
         setUnlocalizedName("mortvana.projectfluxgear.gravelOreMain");
     }
 

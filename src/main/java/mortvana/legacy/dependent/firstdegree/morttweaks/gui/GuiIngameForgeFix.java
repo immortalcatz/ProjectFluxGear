@@ -11,6 +11,7 @@ import mortvana.legacy.errored.morttweaks.common.MortTweaks;
 import org.lwjgl.opengl.GL11;
 
 public class GuiIngameForgeFix extends GuiIngameForge {
+
 	public GuiIngameForgeFix(Minecraft mc) {
 		super(mc);
 	}
@@ -57,7 +58,8 @@ public class GuiIngameForgeFix extends GuiIngameForge {
 	@SubscribeEvent
 	public void openGui(GuiOpenEvent event) {
 		MinecraftForge.EVENT_BUS.unregister(this);
-		if (MortTweaks.disableExpBar)
-			mc.ingameGUI = this;
+		if (MortTweaks.disableExpBar) {
+            mc.ingameGUI = this;
+        }
 	}
 }

@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
+import mortvana.legacy.clean.core.util.helpers.StringHelper_;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -25,9 +26,8 @@ import cofh.core.util.CoreUtils;
 import cofh.core.world.WorldHandler;
 
 import forestry.api.apiculture.IBeeRoot;
-import mortvana.legacy.clean.core.util.helpers.StringHelper;
 import mortvana.legacy.clean.fluxgeartweaks.block.tileentity.TileTimeyWimey;
-import mortvana.legacy.dependent.firstdegree.core.client.gui.FluxGearGUIHandler;
+import mortvana.legacy.clean.core.client.gui.FluxGearGUIHandler;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.legacy.errored.apiology.VersionInfo;
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.network.ObjectPacket;
@@ -367,7 +367,7 @@ public class ProjectFluxGear {
 
     public void resetClientConfigs() {
         TileDynamo.configure();
-        logger.info(StringHelper.localize("Restoring Client Configuration..."));
+        logger.info(StringHelper_.localize("Restoring Client Configuration..."));
     }
 
     void loadWorldGeneration() {

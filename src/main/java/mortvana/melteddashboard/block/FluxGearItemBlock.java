@@ -56,7 +56,7 @@ public class FluxGearItemBlock extends ItemBlock {
 	}
 
 	public String getItemStackDisplayName(ItemStack item) {
-		return StringHelper.localize(this.getUnlocalizedName(item));
+		return StringHelper_.localize(this.getUnlocalizedName(item));
 	}
 	*/
 }

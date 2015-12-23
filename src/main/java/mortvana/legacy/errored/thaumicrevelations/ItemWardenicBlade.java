@@ -2,6 +2,7 @@ package mortvana.legacy.errored.thaumicrevelations;
 
 import java.util.List;
 
+import mortvana.projectfluxgear.library.ContentLibrary;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +24,7 @@ public class ItemWardenicBlade extends Item implements IWardenicEquipment {
 	public ItemWardenicBlade() {
 		super();
 		setUnlocalizedName("itemWardenicBlade");
-		setCreativeTab(ThaumicRevelations.thaumicRevelationsTab);
+		setCreativeTab(ContentLibrary.thaumicRevelationsTab);
 		setMaxStackSize(1);
 
 		setFull3D();

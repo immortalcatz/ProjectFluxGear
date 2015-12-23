@@ -151,8 +151,8 @@ public class BlockGunpowderEngine extends BlockContainerBase implements IBlockMe
 		if (te != null) {
 			if (te instanceof TileEntityNitrateDynamo) {
 				TileEntityNitrateDynamo tile = (TileEntityNitrateDynamo) te;
-				for (int slotiter = 0; slotiter < tile.getSizeInventory(); ++slotiter) {
-					ItemStack itemstack = tile.getStackInSlot(slotiter);
+				for (int slot = 0; slot < tile.getSizeInventory(); ++slot) {
+					ItemStack itemstack = tile.getStackInSlot(slot);
 					if (itemstack != null) {
 						float xr = itemDropRand.nextFloat() * 0.8F + 0.1F;
 						float yr = itemDropRand.nextFloat() * 0.8F + 0.1F;
@@ -177,14 +177,14 @@ public class BlockGunpowderEngine extends BlockContainerBase implements IBlockMe
 	}
 
 	@Override
-	public void recievePowerOn(World world, int x, int y, int z) {
+	public void receivePowerOn(World world, int x, int y, int z) {
 		// Bitmask bit 8 to on
 		world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) | 8, 2);
 
 	}
 
 	@Override
-	public void recievePowerOff(World world, int x, int y, int z) {
+	public void receivePowerOff(World world, int x, int y, int z) {
 		// Bitmask bit 8 to off by &ing it with the bitwise complement of 8 (which is to say ~8).
 		world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) & ~8, 2);
 	}

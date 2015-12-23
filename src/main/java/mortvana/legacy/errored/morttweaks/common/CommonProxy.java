@@ -3,6 +3,7 @@ package mortvana.legacy.errored.morttweaks.common;
 import java.util.Iterator;
 import java.util.Random;
 
+import mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.*;
 import net.minecraft.entity.item.*;
@@ -23,7 +24,7 @@ public class CommonProxy {
 
 	public CommonProxy() {}
 
-	public void postInit() {}
+	//public void postInit() {}
 
 	//Events
 
@@ -45,40 +46,38 @@ public class CommonProxy {
         }
     }
 
-	Random random = new Random();
+	Random random = MathHelper.RANDOM;
 
 	@SubscribeEvent
 	public void onLivingDrop(LivingDropsEvent event) {
-		if (event.entityLiving == null) {
-			return;
-		}
-
-		EntityLivingBase living = event.entityLiving;
-		if (MortTweaks.leather && living instanceof EntityCow) {
-			addDrops(event, new ItemStack(Items.leather));
-		} else if (MortTweaks.feathers && living.getClass() == EntityChicken.class) {
-			addDrops(event, new ItemStack(Items.feather, (random.nextInt(5) + random.nextInt(1 + event.lootingLevel) + random.nextInt(1 + event.lootingLevel) + 1)));
-		} else if (living instanceof EntityEnderman) {
-			Block block = ((EntityEnderman) living).getCarriedBlock();
-			if (block != null) {
-				addDrops(event, new ItemStack(block, 1, ((EntityEnderman) living).getCarryingData()));
-			}
-		} else if (MortTweaks.animalBones && living instanceof EntityAnimal) {
-			if (living.worldObj.difficultySetting.ordinal() == 0) {
-				addDrops(event, new ItemStack(Items.bone, (random.nextInt(3) + random.nextInt(1 + event.lootingLevel) + 1)));
-			}
-		} else if (MortTweaks.fleshToFeathers && event.entityLiving instanceof EntityZombie) {
-			Iterator iter = event.drops.iterator();
-			while (iter.hasNext()) {
-				EntityItem entity = (EntityItem) iter.next();
-				if (entity.getEntityItem().getItem() == Items.rotten_flesh) {
-					iter.remove();
+		if (!(event.entityLiving == null) || !event.entity.worldObj.isRemote) {
+			EntityLivingBase living = event.entityLiving;
+			if (MortTweaks.leather && living instanceof EntityCow) {
+				addDrops(event, new ItemStack(Items.leather));
+			} else if (MortTweaks.feathers && living instanceof EntityChicken) {
+				addDrops(event, new ItemStack(Items.feather, (random.nextInt(5) + random.nextInt(1 + event.lootingLevel) + random.nextInt(1 + event.lootingLevel) + 1)));
+			} else if (living instanceof EntityEnderman) {
+				Block block = ((EntityEnderman) living).getCarriedBlock();
+				if (block != null) {
+					addDrops(event, new ItemStack(block, 1, ((EntityEnderman) living).getCarryingData()));
 				}
-			}
-			if (random.nextInt(3) == 0) {
-				int amount = random.nextInt(3) + random.nextInt(event.lootingLevel + 1);
-				if (amount > 0) {
-					event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, new ItemStack(Items.feather, amount)));
+			} else if (MortTweaks.animalBones && living instanceof EntityAnimal) {
+				if (living.worldObj.difficultySetting.ordinal() == 0) {
+					addDrops(event, new ItemStack(Items.bone, (random.nextInt(3) + random.nextInt(1 + event.lootingLevel) + 1)));
+				}
+			} else if (MortTweaks.fleshToFeathers && event.entityLiving instanceof EntityZombie) {
+				Iterator iter = event.drops.iterator();
+				while (iter.hasNext()) {
+					EntityItem entity = (EntityItem) iter.next();
+					if (entity.getEntityItem().getItem() == Items.rotten_flesh) {
+						iter.remove();
+					}
+				}
+				if (random.nextInt(3) == 0) {
+					int amount = random.nextInt(3) + random.nextInt(event.lootingLevel + 1);
+					if (amount > 0) {
+						event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, new ItemStack(Items.feather, amount)));
+					}
 				}
 			}
 		}
@@ -92,8 +91,8 @@ public class CommonProxy {
 
 	@SubscribeEvent
 	public void onHurt(LivingHurtEvent event) {
-		if (MortTweaks.alwaysDropExp && validSourceTypes(event.source))
-			event.entityLiving.recentlyHit += 50; //TODO: AccessTransformer Stuff
+		if (MortTweaks.alwaysDropExp && !(event.source == DamageSource.lava || event.source == DamageSource.drown))
+			event.entityLiving.recentlyHit += 50;
 
 		if (MortTweaks.creeperBehavior) {
 			EntityLivingBase receiver = event.entityLiving;
@@ -111,10 +110,6 @@ public class CommonProxy {
 				}
 			}
 		}
-	}
-
-	boolean validSourceTypes(DamageSource source) {
-		return !(source == DamageSource.lava || source == DamageSource.drown);
 	}
 
 	@SubscribeEvent

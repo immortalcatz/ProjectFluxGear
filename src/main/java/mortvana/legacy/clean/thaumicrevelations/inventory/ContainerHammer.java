@@ -27,8 +27,8 @@ public class ContainerHammer extends Container {
 			addSlotToContainer(new Slot(playerInv, hotbar, 8 + 18 * hotbar, 142));
 		}
 		for (int row = 0; row < 3; row++) {
-			for (int collumn = 0; collumn < 9; collumn++) {
-				addSlotToContainer(new Slot(playerInv, 9 + row * 9 + collumn, 8 + 18 * collumn, 84 + row * 18));
+			for (int column = 0; column < 9; column++) {
+				addSlotToContainer(new Slot(playerInv, 9 + row * 9 + column, 8 + 18 * column, 84 + row * 18));
 			}
 		}
 

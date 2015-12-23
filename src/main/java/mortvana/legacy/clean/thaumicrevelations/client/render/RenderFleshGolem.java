@@ -8,17 +8,14 @@ import net.minecraft.util.ResourceLocation;
 
 @SideOnly(Side.CLIENT)
 public class RenderFleshGolem extends RenderLiving {
-	private static final ResourceLocation textures = new ResourceLocation("trevelation", "assets.mortvana.fluxgearzee.textures/mob/fleshgolem.png");
-	private final ModelFleshGolem model;
 
 	public RenderFleshGolem() {
 		super(new ModelFleshGolem(), 0.5F);
-		model = (ModelFleshGolem) super.mainModel;
-		setRenderPassModel(model);
+		setRenderPassModel(super.mainModel);
 	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
-		return textures;
+		return new ResourceLocation("trevelation", "assets.mortvana.fluxgearzee.textures/mob/fleshgolem.png");
 	}
 }

@@ -374,7 +374,7 @@ public class TileEntityGunpowderDynamo extends TileEntitySolidFueled implements 
 		if (wasRunningLastBurn) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
 			if (block instanceof IBlockMetaPower) {
-				((IBlockMetaPower) block).recievePowerOff(worldObj, xCoord, yCoord, zCoord);
+				((IBlockMetaPower) block).receivePowerOff(worldObj, xCoord, yCoord, zCoord);
 			}
 		}
 		wasRunningLastBurn = false;
@@ -385,7 +385,7 @@ public class TileEntityGunpowderDynamo extends TileEntitySolidFueled implements 
 		if (!wasRunningLastBurn) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
 			if (block instanceof IBlockMetaPower) {
-				((IBlockMetaPower) block).recievePowerOn(worldObj, xCoord, yCoord, zCoord);
+				((IBlockMetaPower) block).receivePowerOn(worldObj, xCoord, yCoord, zCoord);
 			}
 		}
 		wasRunningLastBurn = true;

@@ -10,13 +10,16 @@ import net.minecraftforge.fluids.Fluid;
 import mortvana.legacy.errored.crystalclimate.CrystalClimate;
 
 public class BlockFiniteWater extends BlockFluidFinite {
+
 	public BlockFiniteWater(Fluid fluid, Material material) {
 		super(fluid, material);
 		setCreativeTab(CrystalClimate.tab);
 	}
 
+    @Override
 	public void registerIcons(IIconRegister iconRegister) {}
 
+    @Override
 	public IIcon getIcon(int side, int meta) {
 		return Blocks.water.getIcon(side, meta);
 	}

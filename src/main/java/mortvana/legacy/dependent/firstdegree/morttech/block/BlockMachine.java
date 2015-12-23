@@ -1,4 +1,4 @@
-package mortvana.legacy.dependent.seconddegree.morttech.block;
+package mortvana.legacy.dependent.firstdegree.morttech.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

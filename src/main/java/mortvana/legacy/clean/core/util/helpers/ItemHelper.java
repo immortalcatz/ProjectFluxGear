@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import mortvana.melteddashboard.util.helpers.EnergyHelper;
+import mortvana.melteddashboard.util.helpers.StringHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -777,14 +778,14 @@ public final class ItemHelper {
 			while(var15.hasNext()) {
 				ItemStack var16 = (ItemStack)var15.next();
 				var11 = var16.getMaxStackSize();
-				if(StringHelper.displayStackCount && var16.stackSize >= var11 && var11 != 1) {
+				if(StringHelper_.displayStackCount && var16.stackSize >= var11 && var11 != 1) {
 					if(var16.stackSize % var11 != 0) {
-						var1.add("    \u00a7a" + var11 + "x" + var16.stackSize / var11 + "+" + var16.stackSize % var11 + " " + StringHelper.getItemName(var16));
+						var1.add("    \u00a7a" + var11 + "x" + var16.stackSize / var11 + "+" + var16.stackSize % var11 + " " + StringHelper_.getItemName(var16));
 					} else {
-						var1.add("    \u00a7a" + var11 + "x" + var16.stackSize / var11 + " " + StringHelper.getItemName(var16));
+						var1.add("    \u00a7a" + var11 + "x" + var16.stackSize / var11 + " " + StringHelper_.getItemName(var16));
 					}
 				} else {
-					var1.add("    \u00a7a" + var16.stackSize + " " + StringHelper.getItemName(var16));
+					var1.add("    \u00a7a" + var16.stackSize + " " + StringHelper_.getItemName(var16));
 				}
 			}
 
@@ -829,14 +830,14 @@ public final class ItemHelper {
 		while(var12.hasNext()) {
 			ItemStack var13 = (ItemStack)var12.next();
 			int var11 = var13.getMaxStackSize();
-			if(StringHelper.displayStackCount && var13.stackSize >= var11 && var11 != 1) {
+			if(StringHelper_.displayStackCount && var13.stackSize >= var11 && var11 != 1) {
 				if(var13.stackSize % var11 != 0) {
-					var1.add("    \u00a7a" + var11 + "x" + var13.stackSize / var11 + "+" + var13.stackSize % var11 + " " + StringHelper.getItemName(var13));
+					var1.add("    \u00a7a" + var11 + "x" + var13.stackSize / var11 + "+" + var13.stackSize % var11 + " " + StringHelper_.getItemName(var13));
 				} else {
-					var1.add("    \u00a7a" + var11 + "x" + var13.stackSize / var11 + " " + StringHelper.getItemName(var13));
+					var1.add("    \u00a7a" + var11 + "x" + var13.stackSize / var11 + " " + StringHelper_.getItemName(var13));
 				}
 			} else {
-				var1.add("    \u00a7a" + var13.stackSize + " " + StringHelper.getItemName(var13));
+				var1.add("    \u00a7a" + var13.stackSize + " " + StringHelper_.getItemName(var13));
 			}
 		}
 

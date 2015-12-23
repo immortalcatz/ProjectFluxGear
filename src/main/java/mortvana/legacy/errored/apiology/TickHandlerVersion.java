@@ -52,7 +52,7 @@ public class TickHandlerVersion implements IScheduledTickHandler {
             if ((!BeeConfig.DisableUpdateNotification || anInfo.isCriticalUpdate()) && anInfo.isNewVersionAvailable()) {
                 EntityPlayer player = (EntityPlayer) tickData[0];
                 ChatHelper.addChatMessage(player, "[" + anInfo.modName + "] A new version is available: " + anInfo.getLatestVersion());
-                ChatHelper.addChatMessage(player, anInfo.getVersionDescription()));
+                ChatHelper.addChatMessage(player, anInfo.getVersionDescription());
             }
             modIndex += 1;
         } else {

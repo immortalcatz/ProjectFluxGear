@@ -5,6 +5,7 @@ import java.util.*;
 import mortvana.legacy.clean.morttech.block.tile.WoodmillLogic;
 import mortvana.legacy.errored.thaumicrevelations.ItemFocusIllumination;
 import mortvana.legacy.errored.thaumicrevelations.ItemWardenicBlade;
+import mortvana.projectfluxgear.library.ContentLibrary;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.material.Material;
@@ -69,7 +70,7 @@ import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOr
 import mortvana.legacy.dependent.seconddegree.projectfluxgear.block.BlockPlant;
 import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.legacy.clean.morttech.block.BlockCrank;
-import mortvana.legacy.dependent.seconddegree.morttech.block.BlockMachine;
+import mortvana.legacy.dependent.firstdegree.morttech.block.BlockMachine;
 import mortvana.legacy.clean.morttech.block.BlockWoodmill;
 import mortvana.legacy.clean.paintedstone.recipe.RecipePaintbrush;
 import mortvana.legacy.errored.projectfluxgear.BlockAlloyAux;
@@ -113,7 +114,7 @@ import thaumcraft.api.research.ResearchPage;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
 
-import static mortvana.projectfluxgear.thaumic.common.ThaumicRevelations.WARDEN;
+import static mortvana.projectfluxgear.library.ContentLibrary.WARDEN;
 
 public class FluxGearContent implements IFuelHandler {
 
@@ -853,7 +854,7 @@ public class FluxGearContent implements IFuelHandler {
 	public static final CreativeTabs techTab = new FluxGearCreativeTab("PFG-Tech", "fluxgear.techTab", FluxGearContent.toolProtoSonicWrench);
 	public static final CreativeTabs generalTab = new FluxGearCreativeTab("PFG-General", "fluxgear.generalTab", new ItemStack(Items.potato));
 	public static final CreativeTabs stonesTab = new FluxGearCreativeTab("PFG-Stone", "fluxgear.stoneTab", new ItemStack(Blocks.obsidian));
-	public static final CreativeTabs thaumicTab = new FluxGearCreativeTab("PFG-Thaumic", "fluxgear.thaumicTab", new ItemStack(ThaumicRevelations.thaumicBauble));
+	public static final CreativeTabs thaumicTab = new FluxGearCreativeTab("PFG-Thaumic", "fluxgear.thaumicTab", new ItemStack(ContentLibrary.thaumicBauble));
 	//MOAR Tabs?
 
 

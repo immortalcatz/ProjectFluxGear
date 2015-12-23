@@ -1,5 +1,6 @@
 package mortvana.legacy.errored.thaumicrevelations;
 
+import mortvana.projectfluxgear.library.ContentLibrary;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -22,7 +23,7 @@ public class ItemFocusIllumination extends ItemFocusBasic {
 	public ItemFocusIllumination() {
 		super();
 		setUnlocalizedName("itemFocusIllumination");
-		setCreativeTab(ThaumicRevelations.thaumicRevelationsTab);
+		setCreativeTab(ContentLibrary.thaumicRevelationsTab);
 	}
 
 	@Override

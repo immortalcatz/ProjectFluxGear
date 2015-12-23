@@ -1,4 +1,4 @@
-package mortvana.legacy.dependent.firstdegree.core.client.gui;
+package mortvana.legacy.clean.core.client.gui;
 
 import java.util.HashMap;
 

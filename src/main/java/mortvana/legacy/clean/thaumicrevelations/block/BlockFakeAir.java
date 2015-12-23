@@ -3,7 +3,7 @@ package mortvana.legacy.clean.thaumicrevelations.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.melteddashboard.block.FluxGearBlock;
-import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
+import mortvana.projectfluxgear.library.ContentLibrary;
 import thaumcraft.common.config.Config;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class BlockFakeAir extends FluxGearBlock {
     public BlockFakeAir() {
-        super(Config.airyMaterial, ThaumicRevelations.thaumicRevelationsTab);
+        super(Config.airyMaterial, ContentLibrary.thaumicRevelationsTab);
         setTickRandomly(true).setLightLevel(15).setStepSound(new SoundType("cloth", 0.0F, 1.0F)).setUnlocalizedName("blockThaumicAir").setBlockBounds(0.3F, 0.3F, 0.3F, 0.7F, 0.7F, 0.7F);
     }
 

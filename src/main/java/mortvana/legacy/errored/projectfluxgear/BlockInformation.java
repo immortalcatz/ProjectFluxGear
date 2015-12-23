@@ -5,8 +5,8 @@ import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOr
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreMain;
 
 import mortvana.melteddashboard.block.FluxGearBlock;
-import mortvana.melteddashboard.block.FluxGearBlock.EnumBlockType;
 import mortvana.melteddashboard.block.FluxGearItemBlock;
+import mortvana.melteddashboard.util.enums.EnumBlockType;
 import mortvana.projectfluxgear.core.data.ItemBlockInformation;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;

@@ -23,16 +23,15 @@ public class ItemTweakedArmor extends ItemArmor implements ISpecialArmor {
 		return new ArmorProperties(0, Math.max(0.05, amount * 0.2), (int) (current + 1));
 	}
 
-    /*@Override
-    public int getArmorDisplay (EntityPlayer player, ItemStack armor, int slot)
-    {
-        float current = armor.getMaxDurability() - armor.getItemDamage();
+	//@Override
+    public int getArmorDisplay_ (EntityPlayer player, ItemStack armor, int slot) {
+        float current = armor.getMaxDurability() - armor.getMetadata();
         float max = armor.getMaxDurability();
         float amount = current / max * 5 + 0.09F;
         if (slot == 2 && amount < 1)
             amount = 1;
         return (int) amount;
-    }*/
+    }
 
 	@Override
 	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {

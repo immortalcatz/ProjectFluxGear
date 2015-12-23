@@ -2,6 +2,7 @@ package mortvana.legacy.clean.thaumicrevelations.util;
 
 import java.util.HashMap;
 
+import mortvana.projectfluxgear.library.ContentLibrary;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -21,14 +22,10 @@ public class WardenicChargeHelper {
 	}
 
 	public static ThaumicAugmentBase getUpgrade(ItemStack stack) {
-		if (stack.stackTagCompound != null) {
-			if (stack.stackTagCompound.hasKey("upgrade")) {
-				return upgrades.get(stack.stackTagCompound.getString("upgrade"));
-			} else {
-				return upgrades.get(ThaumicRevelations.WARDEN.getName());
-			}
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("upgrade")) {
+			return upgrades.get(stack.stackTagCompound.getString("upgrade"));
 		} else {
-			return upgrades.get(ThaumicRevelations.WARDEN.getName());
+			return upgrades.get(ContentLibrary.WARDEN.getName());
 		}
 	}
 

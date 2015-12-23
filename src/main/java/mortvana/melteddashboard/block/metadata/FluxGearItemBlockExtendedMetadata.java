@@ -62,7 +62,7 @@ public class FluxGearItemBlockExtendedMetadata extends ItemBlockMetadata {
 	}
 
 	public String getItemStackDisplayName(ItemStack item) {
-		return StringHelper.localize(this.getUnlocalizedName(item));
+		return StringHelper_.localize(this.getUnlocalizedName(item));
 	}
 	*/
 }

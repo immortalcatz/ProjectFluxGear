@@ -308,7 +308,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 				for (Entry<Integer, String> textures : textureNames.entrySet()) {
 					Integer metadata = textures.getKey();
 					String texture = textures.getValue();
-					IIcon icon = register.registerIcon(textureBase + StringHelper.titleCase(texture));
+					IIcon icon = register.registerIcon(textureBase + StringHelper_.titleCase(texture));
 					blockIcons.put(metadata, icon);
 				}
 
@@ -316,7 +316,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 				for (Entry<Integer, String> textures : textureNames.entrySet()) {
 					Integer metadata = textures.getKey();
 					String texture = textures.getValue();
-					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.helper.StringHelper.camelCase(texture));
+					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.helper.StringHelper_.camelCase(texture));
 					blockIcons.put(metadata, icon);
 				}
 
@@ -324,7 +324,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 				for (Entry<Integer, String> textures : textureNames.entrySet()) {
 					Integer metadata = textures.getKey();
 					String texture = textures.getValue();
-					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.helper.StringHelper.camelCase(texture));
+					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.helper.StringHelper_.camelCase(texture));
 					blockIcons.put(metadata, icon);
 				}*/
 		}

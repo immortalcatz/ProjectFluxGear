@@ -36,14 +36,14 @@ public class ClientProxy extends CommonProxy {
 		}
 	}
 
-	@Override
+	/*@Override
 	public void postInit() {
 		//Neither of these work.
-	    /*if (DiyoTweaks.removeVoidParticles)
+	    if (DiyoTweaks.removeVoidParticles)
             mc.renderGlobal = new RenderGlobalTweak(mc);
         if (DiyoTweaks.removeVoidFog)
-            mc.entityRenderer = new EntityRendererTweak(mc);*/
-	}
+            mc.entityRenderer = new EntityRendererTweak(mc);
+	}*/
 
 	boolean tukmc = Loader.isModLoaded("tukmc_Vz");
 	boolean TConstruct = Loader.isModLoaded("TConstruct");

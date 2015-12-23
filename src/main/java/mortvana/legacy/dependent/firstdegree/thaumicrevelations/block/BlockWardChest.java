@@ -1,6 +1,7 @@
 package mortvana.legacy.dependent.firstdegree.thaumicrevelations.block;
 
 import mortvana.legacy.clean.thaumicrevelations.block.tile.TileWardChest;
+import mortvana.projectfluxgear.library.ContentLibrary;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -19,8 +20,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.melteddashboard.util.helpers.ChatHelper;
 import mortvana.melteddashboard.util.helpers.StringHelper;
-
-import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
 
 import mortvana.legacy.errored.core.ClientProxy;
 import thaumcraft.api.ThaumcraftApi;
@@ -41,7 +40,7 @@ public class BlockWardChest extends BlockContainer {
 		ThaumcraftApi.portableHoleBlackList.add(this);
 
 		if (registerInCreative()) {
-			setCreativeTab(ThaumicRevelations.thaumicRevelationsTab);
+			setCreativeTab(ContentLibrary.thaumicRevelationsTab);
 		}
 	}
 

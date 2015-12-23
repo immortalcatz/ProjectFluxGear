@@ -1,17 +1,11 @@
 package mortvana.legacy.clean.weirdscience.util.block.tile;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import mortvana.legacy.clean.weirdscience.util.block.tile.TileEntityBase;
 
 @Deprecated
 //TODO: I like to burn fascists
@@ -25,18 +19,15 @@ public abstract class BlockContainerBase extends BlockContainer {
 	public int harvestLevel = 1;
 
 	public BlockContainerBase(String name, Material material) {
-		/*
-		 * Default material set to rock.
-		 */
 		super(material);
 		englishName = name;
 		setUnlocalizedName("block" + "." + name.replace(" ", "")); //A default value. Absolutely acceptable to not keep it.
-
 	}
 
 	public BlockContainerBase(String name) {
-		this(name, Material.rock);
+		this(name, Material.rock); //  Default material set to rock.
 	}
+
 	public BlockContainerBase(Material material) {
 		super(material);
 	}
@@ -48,20 +39,20 @@ public abstract class BlockContainerBase extends BlockContainer {
 
 	public Material getMaterial ()
 	{
-		return this.blockMaterial;
+		return blockMaterial;
 	}
 
-	public void setMaterial (Material m) {
+	public void setMaterial (Material material) {
 		// Formerly deep dark voodoo. You can't get a security exception here anymore.
 		// Gyro says he did reflection for the greater good. I say, Access Transformer Master-Race!
-		blockMaterial = m;
+		blockMaterial = material;
 
 		//Make sure that the entries to canBlockGrass are still valid.
-		translucent = !m.isTranslucent;
+		translucent = !material.isTranslucent;
 	}
 
 	@Override
-	public int getHarvestLevel (int subBlockMeta) {
+	public int getHarvestLevel (int metadata) {
 		//By default, no metadata-based sub-blocks.
 		return harvestLevel;
 	}
@@ -98,7 +89,7 @@ public abstract class BlockContainerBase extends BlockContainer {
 
 		TileEntity te = world.getTileEntity(x, y, z);
 		if (te != null) {
-			if(te instanceof TileEntityBase) {
+			if (te instanceof TileEntityBase) {
 				TileEntityBase b = (TileEntityBase)te;
 				b.onKill();
 			}

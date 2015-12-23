@@ -5,8 +5,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import cofh.api.energy.IEnergyHandler;
 
-import mortvana.legacy.clean.weirdscience.util.block.tile.TileEntityBase;
-
 @Deprecated
 //TODO: I saw a junkie eat a tuba
 public class TileEntityGenerator extends TileEntityBase implements IEnergyHandler {
@@ -18,13 +16,12 @@ public class TileEntityGenerator extends TileEntityBase implements IEnergyHandle
 	//Check to see if we can push power into adjacent tile entities.
 	public void powerAdjacent() {
 		IEnergyHandler ehandler;
-		for(int i = 0; i < 6; i++) {
+		for (int i = 0; i < 6; i++) {
 			ehandler = adjEnergyHandlers[i];
-			if(ehandler != null) {
-				ehandler.receiveEnergy(ForgeDirection.VALID_DIRECTIONS[ForgeDirection.OPPOSITES[i]],
-						Math.min(energy, transferRate), false);
+			if (ehandler != null) {
+				ehandler.receiveEnergy(ForgeDirection.VALID_DIRECTIONS[ForgeDirection.OPPOSITES[i]], Math.min(energy, transferRate), false);
 				energy -= Math.min(energy, transferRate);
-				if(energy == 0) {
+				if (energy == 0) {
 					//Don't bother trying to output energy if we're out of it.
 					break;
 				}
@@ -37,12 +34,15 @@ public class TileEntityGenerator extends TileEntityBase implements IEnergyHandle
 		super();
 		energy = 0;
 	}
+
 	public void setEnergyTransferRate(int tr) {
 		transferRate = tr;
 	}
+
 	public int getEnergyTransferRate() {
 		return transferRate;
 	}
+
 	public void setEnergyCapacity(int cap) {
 		energyCap = cap;
 	}
@@ -54,10 +54,9 @@ public class TileEntityGenerator extends TileEntityBase implements IEnergyHandle
 	}
 
 	@Override
-	public int extractEnergy(ForgeDirection from, int maxExtract,
-			boolean simulate) {
-		if(!simulate) { 
-			if(energy < maxExtract) {
+	public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
+		if (!simulate) {
+			if (energy < maxExtract) {
 				maxExtract = energy;
 				energy = 0;
 				return maxExtract;
@@ -66,13 +65,14 @@ public class TileEntityGenerator extends TileEntityBase implements IEnergyHandle
 				return maxExtract;
 			}
 		} else {
-			if(energy < maxExtract) {
+			if (energy < maxExtract) {
 				return energy;
 			} else {
 				return maxExtract;
 			}
 		}
 	}
+
 	@Override
 	public int getEnergyStored(ForgeDirection from) {
 		return energy;
@@ -87,20 +87,19 @@ public class TileEntityGenerator extends TileEntityBase implements IEnergyHandle
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         //Write energy
-        nbt.setInteger("Energy", this.energy);
+        nbt.setInteger("Energy", energy);
     }
 
 	@Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         //Write energy
-        this.energy = nbt.getInteger("Energy");
+        energy = nbt.getInteger("Energy");
     }
 
 	@Override
 	public boolean canConnectEnergy(ForgeDirection from) {
 		return true;
 	}
-
 
 }

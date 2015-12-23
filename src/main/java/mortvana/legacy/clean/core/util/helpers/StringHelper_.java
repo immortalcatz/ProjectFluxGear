@@ -10,7 +10,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import static mortvana.melteddashboard.util.helpers.StringHelper.*;
 
-public final class StringHelper {
+public final class StringHelper_ {
 
 	public static boolean displayStackCount = false;
 

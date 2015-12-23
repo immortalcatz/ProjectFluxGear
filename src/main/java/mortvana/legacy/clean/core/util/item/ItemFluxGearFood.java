@@ -6,6 +6,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import mortvana.melteddashboard.util.helpers.StringHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -23,7 +25,7 @@ import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
 import mortvana.legacy.clean.core.util.helpers.ItemHelper;
 import mortvana.legacy.clean.core.util.helpers.SecurityHelper;
-import mortvana.legacy.clean.core.util.helpers.StringHelper;
+import mortvana.legacy.clean.core.util.helpers.StringHelper_;
 import mortvana.melteddashboard.item.entry.ColorEntry;
 import mortvana.melteddashboard.item.entry.ItemEntry;
 

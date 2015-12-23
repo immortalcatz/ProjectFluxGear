@@ -2,6 +2,7 @@ package mortvana.legacy.clean.core.util.helpers;
 
 import java.util.List;
 
+import mortvana.melteddashboard.util.helpers.StringHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 

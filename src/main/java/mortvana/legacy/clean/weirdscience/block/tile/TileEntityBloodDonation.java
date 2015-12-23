@@ -187,7 +187,7 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
             	fluidTank = null;
             }
             updateTank();
-            FluidEvent.fireEvent(new FluidEvent.FluidDrainingEvent(fluidTank, this.worldObj, this.xCoord, this.yCoord, this.zCoord, this));
+            FluidEvent.fireEvent(new FluidEvent.FluidDrainingEvent(fluidTank, worldObj, xCoord, yCoord, zCoord, this, drained));
         }
         return stack;
 	}
@@ -196,7 +196,7 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
 	public void updateEntity() {
 		super.updateEntity();
 		//Clientside is for suckers. Do we have blood to dispense?
-		if((!worldObj.isRemote) && (fluidTank != null)) {
+		if (!worldObj.isRemote && fluidTank != null) {
 			//Attempt to dump tank into surrounding Forge fluid handlers.
 			ForgeDirection dir;
 			IFluidHandler adjFluidHandler;

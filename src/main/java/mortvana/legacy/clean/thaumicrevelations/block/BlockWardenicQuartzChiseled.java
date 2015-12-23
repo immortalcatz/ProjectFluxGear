@@ -2,6 +2,7 @@ package mortvana.legacy.clean.thaumicrevelations.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mortvana.projectfluxgear.library.ContentLibrary;
 import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -17,7 +18,7 @@ public class BlockWardenicQuartzChiseled extends Block {
     public BlockWardenicQuartzChiseled() {
         super(Material.rock);
         setUnlocalizedName("blockInfusedQuartzChiseled");
-        setCreativeTab(ThaumicRevelations.thaumicRevelationsTab);
+        setCreativeTab(ContentLibrary.thaumicRevelationsTab);
         setStepSound(Block.soundTypeStone);
         setHardness(0.8F);
     }

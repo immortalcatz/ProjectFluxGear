@@ -1,5 +1,6 @@
 package mortvana.legacy.clean.thaumicrevelations.item;
 
+import mortvana.projectfluxgear.library.ContentLibrary;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
@@ -16,7 +17,7 @@ public class ItemWaslieHammer extends Item {
 	public ItemWaslieHammer() {
 		super();
 		setUnlocalizedName("itemWaslieHammer");
-		setCreativeTab(ThaumicRevelations.thaumicRevelationsTab);
+		setCreativeTab(ContentLibrary.thaumicRevelationsTab);
 		setMaxStackSize(1);
 		canRepair = false;
 	}

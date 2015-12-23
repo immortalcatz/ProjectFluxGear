@@ -2,6 +2,7 @@ package mortvana.melteddashboard.block;
 
 import java.util.*;
 
+import mortvana.melteddashboard.util.enums.EnumBlockType;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -791,10 +792,4 @@ public class AdvFluxGearBlock extends FluxGearBlock {
 
 
 	/* Enumerators */
-
-	public enum EnumBlockType {
-		STORAGE,
-		ORE,
-		SOIL_ORE
-	}
 }

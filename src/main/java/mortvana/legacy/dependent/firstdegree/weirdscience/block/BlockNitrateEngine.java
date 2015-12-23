@@ -171,13 +171,13 @@ public class BlockNitrateEngine extends BlockContainerBase implements IBlockMeta
 	}
 
 	@Override
-	public void recievePowerOn(World world, int x, int y, int z) {
+	public void receivePowerOn(World world, int x, int y, int z) {
 		// Bitmask bit 8 to on
 		world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) | 8, 2);
 	}
 
 	@Override
-	public void recievePowerOff(World world, int x, int y, int z) {
+	public void receivePowerOff(World world, int x, int y, int z) {
 		// Bitmask bit 8 to off by &ing it with the bitwise complement of 8 (which is to say ~8).
 		world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) & ~8, 2);
 	}

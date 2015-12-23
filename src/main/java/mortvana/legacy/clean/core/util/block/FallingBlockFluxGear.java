@@ -1,5 +1,6 @@
 package mortvana.legacy.clean.core.util.block;
 
+import mortvana.melteddashboard.util.enums.EnumBlockType;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -34,25 +35,25 @@ public class FallingBlockFluxGear extends BlockFalling {
 	 * @param tab The creative tab the block is under.
 	 * @param type Use a default type for ease of use.
 	 */
-	public FallingBlockFluxGear(Material material, CreativeTabs tab, FluxGearBlock.EnumBlockType type) {
+	public FallingBlockFluxGear(Material material, CreativeTabs tab, EnumBlockType type) {
 		super(material);
 		setCreativeTab(tab);
 
-		if (type == FluxGearBlock.EnumBlockType.STORAGE) {
+		if (type == EnumBlockType.STORAGE) {
 			canSpawn = false;
 			beaconBase = true;
 			isColorized = false;
 			setHardness(5.0F);
 			setResistance(10.0F);
 			setStepSound(soundTypeMetal);
-		} else if (type == FluxGearBlock.EnumBlockType.ORE) {
+		} else if (type == EnumBlockType.ORE) {
 			canSpawn = true;
 			beaconBase = false;
 			isColorized = false;
 			setHardness(3.0F);
 			setResistance(5.0F);
 			setStepSound(soundTypeMetal);
-		} else if (type == FluxGearBlock.EnumBlockType.SOIL_ORE) {
+		} else if (type == EnumBlockType.SOIL_ORE) {
 			canSpawn = true;
 			beaconBase = false;
 			isColorized = false;

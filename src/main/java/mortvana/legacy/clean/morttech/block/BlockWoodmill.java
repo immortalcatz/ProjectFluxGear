@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-import mortvana.legacy.dependent.firstdegree.core.client.gui.FluxGearGUIHandler;
+import mortvana.legacy.clean.core.client.gui.FluxGearGUIHandler;
 import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.melteddashboard.api.item.tool.wrench.IFluxGearWrench;
 
