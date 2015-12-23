@@ -86,8 +86,8 @@ public class TileEntityFluidGenerator extends TileEntityGenerator implements IFl
 	}
 	
 	@Override
-	public void init() {
-		super.init();
+	public void initialize() {
+		super.initialize();
 		fluidID = FluidRegistry.getFluidID(fluidName);
 	}
 

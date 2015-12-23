@@ -9,8 +9,8 @@ public class TileEntityFuelBurner extends TileEntityGenerator {
     protected int internalTemp = 0;
 
     @Override
-    protected void init () {
-        super.init();
+    public void initialize() {
+        super.initialize();
     }
 
     @Override

@@ -48,6 +48,8 @@ public class GyroDerpExeption extends Exception {
 			"Meglos, the Evil, Sentient Cactus!~",
 			"sqrt(-1) like π",
 			"I had class outside a funeral.",
-			"Catctus."
+			"Catctus.",
+			"I like to burn fascists.",
+			"It's true we named our children after dogs..."
 	};
 }

@@ -21,7 +21,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.util.RotationHelper;
 
-import mortvana.legacy.clean.weirdscience.util.block.tile.BlockContainerBase;
+import mortvana.melteddashboard.block.FluxGearBlockContainer;
+
 import mortvana.legacy.errored.weirdscience.TileEntityNitrateDynamo;
 import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.legacy.clean.core.util.helpers.BlockHelper;
@@ -29,10 +30,10 @@ import mortvana.legacy.clean.core.util.helpers.BlockHelper;
 //A copy-and-paste from BlockNitrateEngine.
 //Soon I will abstract this functionality out
 //to a BlockContainerRotatable or something like that.
-public class BlockGunpowderEngine extends BlockContainerBase implements IBlockMetaPower {
+public class BlockGunpowderEngine extends FluxGearBlockContainer implements IBlockMetaPower {
 
-	public BlockGunpowderEngine(String name, Material material) {
-		super(name, material);
+	public BlockGunpowderEngine(Material material, String name) {
+		super(material, name);
 	}
 
 	int teCapacity = 0;

@@ -52,4 +52,8 @@ public class WorldHelper {
 	public static TileEntity getAdjacentTileEntity(TileEntity tile, int side) {
 		return tile == null ? null : getAdjacentTileEntity(tile.getWorld(), tile.xCoord, tile.yCoord, tile.zCoord, ForgeDirection.values()[side]);
 	}
+
+	public static boolean isBlockAdjacent(int offsetX, int offsetY, int offsetZ, ForgeDirection side) {
+		return offsetX == side.offsetX && offsetY == side.offsetY && offsetZ == side.offsetZ;
+	}
 }

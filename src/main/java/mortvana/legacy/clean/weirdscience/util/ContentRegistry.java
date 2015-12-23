@@ -130,12 +130,6 @@ public class ContentRegistry implements IFuelHandler {
         finalizeTileEntities();
 
         //This is where you can tell Gyro is used to the horrible place that is C++.
-        /*itemsToRegister = null;
-        blocksToRegister = null;
-        fluidsToRegister = null;
-        tileentitiesToRegister = null;
-        recipesToRegister = null;
-        reactants = null;*/
     }
 
     //Chemistry stuff goes here:

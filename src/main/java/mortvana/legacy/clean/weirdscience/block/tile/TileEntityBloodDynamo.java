@@ -85,23 +85,22 @@ public class TileEntityBloodDynamo extends TileEntityGenerator implements IFluid
 	
 	@Override
 	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-		if(resource.getFluid().getName().equals("blood")) {
+		if (resource.getFluid().getName().equals("blood")) {
 			int ourValue = 0;
-			if(tank != null) {
+			if (tank != null) {
 				ourValue = tank.amount;
 			}
 			int resultValue = ourValue + resource.amount;
-			if(resultValue > tankCap) {
+			if (resultValue > tankCap) {
 				resultValue = tankCap;
 			}
-			if(doFill) {
+			if (doFill) {
 				if (tank != null) {
 					tank.amount = resultValue;
-				}
-				else {
+				} else {
 					tank = resource.copy();
 				}
-				this.updateTank();
+				updateTank();
 			}
 			return resultValue - ourValue;
 		} else {
@@ -155,19 +154,19 @@ public class TileEntityBloodDynamo extends TileEntityGenerator implements IFluid
 	public void updateEntity() { //The meat of our block.
 		super.updateEntity();
 		//Clientside is for suckers.
-		if(!worldObj.isRemote) {
+		if (!worldObj.isRemote) {
 			//Burn logic: Are we still waiting to burn fuel?
 			boolean flagHasPower = energy > 0;
-	        if (this.ticksUntilBurn > 0) {
-	        	--this.ticksUntilBurn;
+	        if (ticksUntilBurn > 0) {
+	        	ticksUntilBurn--;
 	        } else {
 	        	//Do we have fuel?
-				if ((this.tank != null) && (this.tank.amount >= 1) && (energy < energyCapStatic)) {
+				if ((tank != null) && (this.tank.amount >= 1) && (energy < energyCapStatic)) {
 					//Bugs are hard and Tile Entities are eccentric.
 		            int toBurn = Math.min(mbPerBurn, this.tank.amount); //Either eat mbPerBurn fuel or the entire stack.
 		            drain(ForgeDirection.UP, toBurn, true);
 		            	
-		            energy += (int)(((float)toBurn)*rfPerMB);
+		            energy += (int) (((float)toBurn)*rfPerMB);
 		            if(energy > energyCapStatic) {
 		            	energy = energyCapStatic;
 		            }
@@ -177,9 +176,9 @@ public class TileEntityBloodDynamo extends TileEntityGenerator implements IFluid
 			        ticksUntilBurn = ticksPerBurn; //Reset the timer, but only if we did anything.
 				}
 	        }
-	        if(flagHasPower) {
+	        if (flagHasPower) {
 	    		//And now, attempt to charge surrounding blocks.
-	            this.powerAdjacent();
+	            powerAdjacent();
 	        }
 		}
     }

@@ -108,7 +108,7 @@ public class TileEntityOccultEngine extends TileEntityBloodDynamo {
 	//ENTITY UPDATE:
 	@Override
 	public void updateEntity() {
-		tryInit();
+		super.updateEntity();
 		//Clientside is for suckers.
 		if (!worldObj.isRemote) {
 			//Are we still waiting to burn fuel?

@@ -4,17 +4,18 @@ import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import mortvana.melteddashboard.block.FluxGearBlockContainer;
+
 import mortvana.legacy.clean.weirdscience.util.block.tile.TileEntityFuelBurner;
-import mortvana.legacy.clean.weirdscience.util.block.tile.BlockContainerBase;
 
-public class BlockFuelBurner extends BlockContainerBase {
+public class BlockFuelBurner extends FluxGearBlockContainer {
 
-	public BlockFuelBurner(String name, Material material) {
-		super(name, material);
+	public BlockFuelBurner(Material material, String name) {
+		super(material, name);
 	}
 
 	@Override
-	public TileEntity createNewTileEntity (World world)
+	public TileEntity createNewTileEntity (World world, int metadata)
 	{
 		return new TileEntityFuelBurner();
 	}

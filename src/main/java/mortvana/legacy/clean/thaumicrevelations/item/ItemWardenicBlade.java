@@ -1,4 +1,4 @@
-package mortvana.legacy.errored.thaumicrevelations;
+package mortvana.legacy.clean.thaumicrevelations.item;
 
 import java.util.List;
 
@@ -13,8 +13,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.melteddashboard.util.FluxGearDamageSources;
 import mortvana.melteddashboard.util.helpers.StringHelper;
-
-import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
 
 import mortvana.projectfluxgear.api.item.IWardenicEquipment;
 import mortvana.legacy.clean.thaumicrevelations.util.WardenicChargeHelper;
@@ -76,7 +74,7 @@ public class ItemWardenicBlade extends Item implements IWardenicEquipment {
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
 		if (stack.getMetadata() != stack.getMaxDurability()) {
-			DamageSource damageSource = new FluxGearDamageSources("warden", player); //TODO: DamageSource generation?
+			DamageSource damageSource = FluxGearDamageSources.entityWardenic(player);
 			entity.attackEntityFrom(damageSource, 5);
 			WardenicChargeHelper.getUpgrade(stack).onAttack(stack, player, entity);
 			stack.setMetadata(stack.getMetadata() + 1);

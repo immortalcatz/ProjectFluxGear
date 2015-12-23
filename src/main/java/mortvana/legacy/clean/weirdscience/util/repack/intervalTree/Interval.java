@@ -8,47 +8,39 @@ package mortvana.legacy.clean.weirdscience.util.repack.intervalTree;
  *
  * @param <Type> The type of data being stored
  */
-public class Interval<Type> implements Comparable<Interval<Type>>
-{
+public class Interval<Type> implements Comparable<Interval<Type>> {
 
     private long start;
     private long end;
     private Type data;
 
-    public Interval(long start, long end, Type data)
-    {
+    public Interval(long start, long end, Type data) {
         this.start = start;
         this.end = end;
         this.data = data;
     }
 
-    public long getStart ()
-    {
+    public long getStart() {
         return start;
     }
 
-    public void setStart (long start)
-    {
+    public void setStart(long start) {
         this.start = start;
     }
 
-    public long getEnd ()
-    {
+    public long getEnd() {
         return end;
     }
 
-    public void setEnd (long end)
-    {
+    public void setEnd (long end) {
         this.end = end;
     }
 
-    public Type getData ()
-    {
+    public Type getData() {
         return data;
     }
 
-    public void setData (Type data)
-    {
+    public void setData(Type data) {
         this.data = data;
     }
 
@@ -56,8 +48,7 @@ public class Interval<Type> implements Comparable<Interval<Type>>
     * @param time
     * @return true if this interval contains time (inclusive)
     */
-    public boolean contains (long time)
-    {
+    public boolean contains(long time) {
         return time < end && time > start;
     }
 
@@ -65,8 +56,7 @@ public class Interval<Type> implements Comparable<Interval<Type>>
     * @param other
     * @return return true if this interval intersects other
     */
-    public boolean intersects (Interval<?> other)
-    {
+    public boolean intersects(Interval<?> other) {
         return other.getEnd() > start && other.getStart() < end;
     }
 
@@ -76,18 +66,17 @@ public class Interval<Type> implements Comparable<Interval<Type>>
     * @param other
     * @return 1 or -1
     */
-    public int compareTo (Interval<Type> other)
-    {
-        if (start < other.getStart())
-            return -1;
-        else if (start > other.getStart())
-            return 1;
-        else if (end < other.getEnd())
-            return -1;
-        else if (end > other.getEnd())
-            return 1;
-        else
-            return 0;
+    public int compareTo(Interval<Type> other) {
+        if (start < other.getStart()) {
+	        return -1;
+        } else if (start > other.getStart()) {
+	        return 1;
+        } else if (end < other.getEnd()) {
+	        return -1;
+        } else if (end > other.getEnd()) {
+	        return 1;
+        } else {
+	        return 0;
+        }
     }
-
 }

@@ -8,10 +8,11 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
-import mortvana.legacy.clean.weirdscience.util.ContentRegistry;
-import mortvana.legacy.clean.weirdscience.util.block.tile.TileEntityBase;
+import mortvana.melteddashboard.block.tile.FluxGearTileEntity;
 
-public class TileEntityBloodDonation extends TileEntityBase implements IFluidHandler, IFluidTank{
+import mortvana.legacy.clean.weirdscience.util.ContentRegistry;
+
+public class TileEntityBloodDonation extends FluxGearTileEntity implements IFluidHandler, IFluidTank {
 	
     protected FluidStack fluidTank;
     protected static int capacity = 0;
@@ -122,7 +123,7 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
 		        return 0;
 		    }
 			//Make sure our resource is blood.
-			if(bloodFluid.getName().contentEquals(resource.getFluid().getName())) {
+			if (bloodFluid.getName().contentEquals(resource.getFluid().getName())) {
 				//Get simulation values.
 				if (!doFill) {
 		            if (fluidTank == null) {
@@ -200,15 +201,15 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
 			//Attempt to dump tank into surrounding Forge fluid handlers.
 			ForgeDirection dir;
 			IFluidHandler adjFluidHandler;
-			for(int i = 0; i < 6; ++i) {
+			for (int i = 0; i < 6; i++) {
 				dir = ForgeDirection.VALID_DIRECTIONS[i];
-				adjFluidHandler = this.adjFluidHandlers[i];
-				if(adjFluidHandler != null) {
+				adjFluidHandler = adjFluidTiles[i];
+				if (adjFluidHandler != null) {
 					FluidStack toDrain = new FluidStack(fluidTank.getFluid(), fluidTank.amount);
 					drain(adjFluidHandler.fill(dir.getOpposite(), toDrain, true), true);
 					updateTank();
 
-					if(fluidTank == null) {
+					if (fluidTank == null) {
 						break;
 					}
 				}
@@ -223,13 +224,13 @@ public class TileEntityBloodDonation extends TileEntityBase implements IFluidHan
 
 
 	public void updateTank() { 
-		if(!worldObj.isRemote) {
-			if(worldObj.getBlock(xCoord, yCoord, zCoord) instanceof BlockMetaTank) {
+		if (!worldObj.isRemote) {
+			if (worldObj.getBlock(xCoord, yCoord, zCoord) instanceof BlockMetaTank) {
 				BlockMetaTank bmt = (BlockMetaTank) worldObj.getBlock(xCoord, yCoord, zCoord);
-				if(fluidTank == null) {
+				if (fluidTank == null) {
 					bmt.setMetaByFillPercent(worldObj, xCoord, yCoord, zCoord, 0);
 				} else {
-					bmt.setMetaByFillPercent(worldObj, xCoord, yCoord, zCoord, (fluidTank.amount*100)/capacity);
+					bmt.setMetaByFillPercent(worldObj, xCoord, yCoord, zCoord, (fluidTank.amount * 100) / capacity);
 				}
 			}
 		}

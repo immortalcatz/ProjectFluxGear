@@ -197,7 +197,6 @@ public class MortTweaks {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		proxy.postInit();
 
 		if (potentFire) {
 			Blocks.fire.setFireInfo(Blocks.planks, 25, 20);

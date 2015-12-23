@@ -82,7 +82,7 @@ public class RedstoneAggregator extends TileEntity {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
 		DataOutputStream outputStream = new DataOutputStream(bos);
 		try {
-			outputStream.writeByte(1);
+			outputStream.writeByte(2);
 			outputStream.writeInt(worldObj.provider.dimensionId);
 			outputStream.writeInt(nom[0]);
 			outputStream.writeInt(nom[1]);

@@ -21,20 +21,19 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.util.RotationHelper;
 import net.minecraftforge.fluids.Fluid;
 
-import mortvana.legacy.clean.weirdscience.util.block.tile.BlockContainerBase;
+import mortvana.melteddashboard.block.FluxGearBlockContainer;
+
 import mortvana.legacy.errored.weirdscience.TileEntityNitrateDynamo;
 import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.legacy.clean.core.util.helpers.BlockHelper;
 
-public class BlockNitrateEngine extends BlockContainerBase implements IBlockMetaPower {
+import static mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper.RANDOM;
+
+public class BlockNitrateEngine extends FluxGearBlockContainer implements IBlockMetaPower {
 
 	int teCapacity = 0;
 	int tePerTick = 0;
 	int tePerDirt = 0;
-
-	private final Random itemDropRand = new Random(); // Randomize item drop direction.
-
-	public static Fluid waste = null;
 
 	@SideOnly(Side.CLIENT)
 	public IIcon frontIcon;
@@ -120,15 +119,14 @@ public class BlockNitrateEngine extends BlockContainerBase implements IBlockMeta
 		}
 	}
 
-	public static void setWaste(Fluid w) {
-		waste = w;
+	public static void setWaste(Fluid waste) {
+		TileEntityNitrateDynamo.setWaste(waste);
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
-		TileEntityNitrateDynamo TE = new TileEntityNitrateDynamo();
-		TE.setWaste(waste);
-		return TE;
+	public TileEntity createNewTileEntity(World world, int metadata) {
+
+		return new TileEntityNitrateDynamo();
 	}
 
 	/**
@@ -144,14 +142,14 @@ public class BlockNitrateEngine extends BlockContainerBase implements IBlockMeta
 	@Override
 	public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int par5) {
 		TileEntity te = world.getTileEntity(x, y, z);
-		if ((te != null) && (te instanceof TileEntityNitrateDynamo)) {
-			TileEntityNitrateDynamo tileentity = (TileEntityNitrateDynamo) te;
-			for (int slotiter = 0; slotiter < tileentity.getSizeInventory(); ++slotiter) {
-				ItemStack itemstack = tileentity.getStackInSlot(slotiter);
+		if (te != null && te instanceof TileEntityNitrateDynamo) {
+			TileEntityNitrateDynamo tile = (TileEntityNitrateDynamo) te;
+			for (int slot = 0; slot < tile.getSizeInventory(); slot++) {
+				ItemStack itemstack = tile.getStackInSlot(slot);
 				if (itemstack != null) {
-					float xr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
-					float yr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
-					float zr = this.itemDropRand.nextFloat() * 0.8F + 0.1F;
+					float xr = RANDOM.nextFloat() * 0.8F + 0.1F;
+					float yr = RANDOM.nextFloat() * 0.8F + 0.1F;
+					float zr = RANDOM.nextFloat() * 0.8F + 0.1F;
 					EntityItem entityItem = new EntityItem(world, (double) ((float) x + xr), (double) ((float) y + yr), (double) ((float) z + zr), itemstack);
 					world.spawnEntityInWorld(entityItem);
 				}
@@ -182,7 +180,7 @@ public class BlockNitrateEngine extends BlockContainerBase implements IBlockMeta
 		world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) & ~8, 2);
 	}
 
-	public BlockNitrateEngine(String name, Material material) {
-		super(name, material);
+	public BlockNitrateEngine(Material material, String name) {
+		super(material, name);
 	}
 }

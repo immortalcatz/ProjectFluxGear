@@ -13,8 +13,7 @@ import java.util.List;
  *
  * @param <Type> the type of objects to associate
  */
-public class IntervalTree<Type>
-{
+public class IntervalTree<Type> {
 
     private IntervalNode<Type> head;
     private List<Interval<Type>> intervalList;
@@ -24,25 +23,23 @@ public class IntervalTree<Type>
     /**
     * Instantiate a new interval tree with no intervals
     */
-    public IntervalTree()
-    {
-        this.head = new IntervalNode<Type>();
-        this.intervalList = new ArrayList<Interval<Type>>();
-        this.inSync = true;
-        this.size = 0;
+    public IntervalTree() {
+        head = new IntervalNode<Type>();
+        intervalList = new ArrayList<Interval<Type>>();
+        inSync = true;
+        size = 0;
     }
 
     /**
     * Instantiate and build an interval tree with a preset list of intervals
     * @param intervalList the list of intervals to use
     */
-    public IntervalTree(List<Interval<Type>> intervalList)
-    {
-        this.head = new IntervalNode<Type>(intervalList);
-        this.intervalList = new ArrayList<Interval<Type>>();
-        this.intervalList.addAll(intervalList);
-        this.inSync = true;
-        this.size = intervalList.size();
+    public IntervalTree(List<Interval<Type>> intervalList) {
+        head = new IntervalNode<Type>(intervalList);
+        intervalList = new ArrayList<Interval<Type>>();
+        intervalList.addAll(intervalList);
+        inSync = true;
+        size = intervalList.size();
     }
 
     /**
@@ -51,12 +48,12 @@ public class IntervalTree<Type>
     * @param time the time to stab
     * @return the data associated with all intervals that contain time
     */
-    public List<Type> get (long time)
-    {
+    public List<Type> get(long time) {
         List<Interval<Type>> intervals = getIntervals(time);
         List<Type> result = new ArrayList<Type>();
-        for (Interval<Type> interval : intervals)
-            result.add(interval.getData());
+        for (Interval<Type> interval : intervals) {
+	        result.add(interval.getData());
+        }
         return result;
     }
 
@@ -66,8 +63,7 @@ public class IntervalTree<Type>
     * @param time the time to stab
     * @return all intervals that contain time
     */
-    public List<Interval<Type>> getIntervals (long time)
-    {
+    public List<Interval<Type>> getIntervals(long time) {
         build();
         return head.stab(time);
     }
@@ -79,12 +75,12 @@ public class IntervalTree<Type>
     * @param end the end of the interval to check
     * @return the data associated with all intervals that intersect target
     */
-    public List<Type> get (long start, long end)
-    {
+    public List<Type> get(long start, long end) {
         List<Interval<Type>> intervals = getIntervals(start, end);
         List<Type> result = new ArrayList<Type>();
-        for (Interval<Type> interval : intervals)
+        for (Interval<Type> interval : intervals) {
             result.add(interval.getData());
+        }
         return result;
     }
 
@@ -95,8 +91,7 @@ public class IntervalTree<Type>
     * @param end the end of the interval to check
     * @return all intervals that intersect target
     */
-    public List<Interval<Type>> getIntervals (long start, long end)
-    {
+    public List<Interval<Type>> getIntervals(long start, long end) {
         build();
         return head.query(new Interval<Type>(start, end, null));
     }
@@ -106,8 +101,7 @@ public class IntervalTree<Type>
     * Will not rebuild the tree until the next query or call to build
     * @param interval the interval object to add
     */
-    public void addInterval (Interval<Type> interval)
-    {
+    public void addInterval(Interval<Type> interval) {
         intervalList.add(interval);
         inSync = false;
     }
@@ -119,8 +113,7 @@ public class IntervalTree<Type>
     * @param end the end of the interval
     * @param data the data to associate
     */
-    public void addInterval (long begin, long end, Type data)
-    {
+    public void addInterval(long begin, long end, Type data) {
         intervalList.add(new Interval<Type>(begin, end, data));
         inSync = false;
     }
@@ -129,8 +122,7 @@ public class IntervalTree<Type>
     * Determine whether this interval tree is currently a reflection of all intervals in the interval list
     * @return true if no changes have been made since the last build
     */
-    public boolean inSync ()
-    {
+    public boolean inSync() {
         return inSync;
     }
 
@@ -138,10 +130,8 @@ public class IntervalTree<Type>
     * Build the interval tree to reflect the list of intervals,
     * Will not run if this is currently in sync
     */
-    public void build ()
-    {
-        if (!inSync)
-        {
+    public void build() {
+        if (!inSync) {
             head = new IntervalNode<Type>(intervalList);
             inSync = true;
             size = intervalList.size();
@@ -151,34 +141,32 @@ public class IntervalTree<Type>
     /**
     * @return the number of entries in the currently built interval tree
     */
-    public int currentSize ()
-    {
+    public int currentSize() {
         return size;
     }
 
     /**
     * @return the number of entries in the interval list, equal to .size() if inSync()
     */
-    public int listSize ()
-    {
+    public int listSize() {
         return intervalList.size();
     }
 
     @Override
-    public String toString ()
-    {
+    public String toString() {
         return nodeString(head, 0);
     }
 
-    private String nodeString (IntervalNode<Type> node, int level)
-    {
-        if (node == null)
-            return "";
+    private String nodeString(IntervalNode<Type> node, int level) {
+        if (node == null) {
+	        return "";
+        }
 
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < level; i++)
-            sb.append("\t");
-        sb.append(node + "\n");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < level; i++) {
+	        sb.append("\t");
+        }
+        sb.append(node).append("\n");
         sb.append(nodeString(node.getLeft(), level + 1));
         sb.append(nodeString(node.getRight(), level + 1));
         return sb.toString();

@@ -3,8 +3,9 @@ package mortvana.legacy.dependent.firstdegree.core.common;
 import java.util.*;
 
 import mortvana.legacy.clean.morttech.block.tile.WoodmillLogic;
+import mortvana.legacy.dependent.firstdegree.thaumicrevelations.entity.EntityFleshProjectile;
 import mortvana.legacy.errored.thaumicrevelations.ItemFocusIllumination;
-import mortvana.legacy.errored.thaumicrevelations.ItemWardenicBlade;
+import mortvana.legacy.clean.thaumicrevelations.item.ItemWardenicBlade;
 import mortvana.projectfluxgear.library.ContentLibrary;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
@@ -887,7 +888,7 @@ public class FluxGearContent implements IFuelHandler {
 		wardenicQuartz = FluxGearContent.itemMaterial.addItem(15002, "wardenicQuartz");
 
 		EntityRegistry.registerModEntity(EntityPurity.class, "PurityOrb", 0, ProjectFluxGear.instance, 64, 10, true);
-		//EntityRegistry.registerModEntity(EntityFleshProjectile.class, "ThrownFlesh", 1, ProjectFluxGear.instance, 64, 3, true); //TODO
+		EntityRegistry.registerModEntity(EntityFleshProjectile.class, "ThrownFlesh", 1, ProjectFluxGear.instance, 64, 3, true); //TODO
 		EntityRegistry.registerGlobalEntityID(EntityFleshGolem.class, "FleshGolem", EntityRegistry.findGlobalUniqueEntityId(), 0xE4A2A9, 0x96452E);
 
 		ThaumcraftApi.registerObjectTag(exubituraPetal, new AspectList().add(WARDEN, 1));
@@ -3248,8 +3249,7 @@ public class FluxGearContent implements IFuelHandler {
 
         //Init & register tile-entity-bearing blocks.
 
-        BlockNitrateEngine nitrateEngineBlock = new BlockNitrateEngine("Nitrate Engine", Material.rock);
-        nitrateEngineBlock.setUnlocalizedName("blockNitrateEngine");
+        BlockNitrateEngine nitrateEngineBlock = new BlockNitrateEngine(Material.rock, "blockNitrateEngine");
         //BlockNitrateEngine.setWaste(fluidSmog); //TODO
         cr.registerBlock(nitrateEngineBlock);
 
@@ -3297,12 +3297,10 @@ public class FluxGearContent implements IFuelHandler {
         occultEngineBlock.addSidesTextureName("gui:occultengine_6");
         cr.registerBlock(occultEngineBlock);
 
-        BlockGunpowderEngine gunpowderEngineBlock = new BlockGunpowderEngine("Blast Engine", Material.rock);
-        gunpowderEngineBlock.setUnlocalizedName("blockGunpowderEngine");
+        BlockGunpowderEngine gunpowderEngineBlock = new BlockGunpowderEngine(Material.rock, "blockGunpowderEngine");
         cr.registerBlock(gunpowderEngineBlock);
 
-        BlockFuelBurner fuelBurnerBlock = new BlockFuelBurner("Fuel Burner", Material.rock);
-        fuelBurnerBlock.setUnlocalizedName("blockFuelBurner");
+        BlockFuelBurner fuelBurnerBlock = new BlockFuelBurner(Material.rock, "blockFuelBurner");
         fuelBurnerBlock.setTextureName("gui:retardcube");
         cr.registerBlock(fuelBurnerBlock);
 

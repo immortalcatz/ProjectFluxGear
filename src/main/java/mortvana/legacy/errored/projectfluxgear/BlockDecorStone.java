@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockDecorStone extends Block {
-    public String[] rockNames; //TODO: Populate
+    public String[] rockNames = BlockInformation.rockNames;
     public IIcon[] icons;
     public float[] hardness;
     public float[] resistance;
@@ -55,19 +55,16 @@ public class BlockDecorStone extends Block {
 
     @Override
     public int getLightValue(IBlockAccess world, int x, int y, int z) {
-
         return blockLight[world.getBlockMetadata(x, y, z)];
     }
 
     @Override
     public float getBlockHardness(World world, int x, int y, int z) {
-
         return hardness[world.getBlockMetadata(x, y, z)];
     }
 
     @Override
     public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
-
         return resistance[world.getBlockMetadata(x, y, z)];
     }
 

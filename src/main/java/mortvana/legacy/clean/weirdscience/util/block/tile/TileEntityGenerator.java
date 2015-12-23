@@ -4,10 +4,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import cofh.api.energy.IEnergyHandler;
+import mortvana.melteddashboard.block.tile.FluxGearTileEntity;
 
 @Deprecated
 //TODO: I saw a junkie eat a tuba
-public class TileEntityGenerator extends TileEntityBase implements IEnergyHandler {
+public class TileEntityGenerator extends FluxGearTileEntity implements IEnergyHandler {
 
 	protected int energy;
 	protected int energyCap;
@@ -17,7 +18,7 @@ public class TileEntityGenerator extends TileEntityBase implements IEnergyHandle
 	public void powerAdjacent() {
 		IEnergyHandler ehandler;
 		for (int i = 0; i < 6; i++) {
-			ehandler = adjEnergyHandlers[i];
+			ehandler = adjRFTiles[i];
 			if (ehandler != null) {
 				ehandler.receiveEnergy(ForgeDirection.VALID_DIRECTIONS[ForgeDirection.OPPOSITES[i]], Math.min(energy, transferRate), false);
 				energy -= Math.min(energy, transferRate);
