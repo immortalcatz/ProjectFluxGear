@@ -18,7 +18,7 @@ import tconstruct.smeltery.TinkerSmeltery;
 public class BlockBloodDyanmo extends BlockMetaTank {
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int metadata) {
 		return new TileEntityBloodDynamo();
 	}
 
@@ -99,8 +99,8 @@ public class BlockBloodDyanmo extends BlockMetaTank {
 		return false;
 	}
 
-	public BlockBloodDyanmo(String name, Material material) {
-		super(name, material);
+	public BlockBloodDyanmo(Material material, String name) {
+		super(material, name);
 	}
 
 	public BlockBloodDyanmo(String name) {

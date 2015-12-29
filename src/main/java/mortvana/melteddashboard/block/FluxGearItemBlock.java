@@ -1,9 +1,16 @@
 package mortvana.melteddashboard.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
+import mortvana.melteddashboard.util.helpers.StringHelper;
+
+import mortvana.legacy.clean.core.util.helpers.SecurityHelper;
 
 public class FluxGearItemBlock extends ItemBlock {
 
@@ -41,7 +48,7 @@ public class FluxGearItemBlock extends ItemBlock {
 	}
 
 	//TODO: Todo?
-	/*
+
 	public boolean hasCustomEntity(ItemStack itemstack) {
 		return SecurityHelper.isSecure(itemstack);
 	}
@@ -56,7 +63,7 @@ public class FluxGearItemBlock extends ItemBlock {
 	}
 
 	public String getItemStackDisplayName(ItemStack item) {
-		return StringHelper_.localize(this.getUnlocalizedName(item));
+		return StringHelper.localize(this.getUnlocalizedName(item));
 	}
-	*/
+
 }

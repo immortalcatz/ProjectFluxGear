@@ -426,17 +426,16 @@ public class TileEntityNitrateDynamo extends TileEntitySolidFueled implements IE
 							engineItemStacks[0] = null;
 						}
 						if (deltaItems != 0) {
-							TurnBlockOn();
+							turnBlockOn();
 						} else {
-							TurnBlockOff();
+							turnBlockOff();
 						}
 					} else {
-						TurnBlockOff();
+						turnBlockOff();
 					}
-					ticksUntilBurn = ticksPerBurn; // Reset the timer, but only
-													// if we did anything.
+					ticksUntilBurn = ticksPerBurn; // Reset the timer, but only if we did anything.
 				} else {
-					TurnBlockOff();
+					turnBlockOff();
 				}
 			}
 			// And now, attempt to charge surrounding blocks.
@@ -449,7 +448,7 @@ public class TileEntityNitrateDynamo extends TileEntitySolidFueled implements IE
 				IFluidHandler adjFluidHandler;
 				for (int i = 0; i < 6; ++i) {
 					dir = ForgeDirection.VALID_DIRECTIONS[i];
-					adjFluidHandler = adjFluidHandlers[i];
+					adjFluidHandler = adjFluidTiles[i];
 					if (adjFluidHandler != null) {
 						FluidStack toDrain = new FluidStack(fluidTank.getFluid(), fluidTank.amount);
 						drain(adjFluidHandler.fill(dir.getOpposite(), toDrain, true), true);
@@ -465,21 +464,21 @@ public class TileEntityNitrateDynamo extends TileEntitySolidFueled implements IE
 		}
 	}
 
-	private void TurnBlockOff() {
+	private void turnBlockOff() {
 		if (wasRunningLastBurn) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
 			if (block instanceof IBlockMetaPower) {
-				((IBlockMetaPower) block).recievePowerOff(worldObj, xCoord, yCoord, zCoord);
+				((IBlockMetaPower) block).receivePowerOff(worldObj, xCoord, yCoord, zCoord);
 			}
 		}
 		wasRunningLastBurn = false;
 	}
 
-	private void TurnBlockOn() {
+	private void turnBlockOn() {
 		if (wasRunningLastBurn) {
 			Block block = worldObj.getBlock(xCoord, yCoord, zCoord);
 			if (block instanceof IBlockMetaPower) {
-				((IBlockMetaPower) block).recievePowerOn(worldObj, xCoord, yCoord, zCoord);
+				((IBlockMetaPower) block).receivePowerOn(worldObj, xCoord, yCoord, zCoord);
 			}
 		}
 		wasRunningLastBurn = true;

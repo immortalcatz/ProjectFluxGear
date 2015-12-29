@@ -47,14 +47,14 @@ public class FluxGearBlock extends Block {
 	public boolean[] mobSpawns;
 	public boolean[] beaconBase;
 	public int[] colors;
-	public TMap<Integer, HarvestData> harvestLevels = new THashMap<Integer, HarvestData>(20);
+	public int[] harvestLevels;
 
 	public TMap<Integer, Integer> droppedMeta = new THashMap<Integer, Integer>(20);
 	public TMap<Integer, List<ItemStack>> droppedItems = new THashMap<Integer, List<ItemStack>>(20);
 
 	public String name;
 
-	public List<Integer> renderInPasses = new ArrayList<Integer>(20);
+	public int[] renderInPasses;
 
 	/**
 	 *  Literally just a wrapper for a default block, stupidly simple!
@@ -62,6 +62,7 @@ public class FluxGearBlock extends Block {
 	 */
 	public FluxGearBlock(Material material) {
 		super(material);
+		setStepSound(getDefaultSound(material));
 	}
 
 	/**
@@ -70,12 +71,17 @@ public class FluxGearBlock extends Block {
 	 * @param tab - The creative tab the block is under.
 	 */
 	public FluxGearBlock(Material material, CreativeTabs tab) {
-		super(material);
+		this(material);
 		setCreativeTab(tab);
 	}
 
+	public FluxGearBlock(Material material, String name) {
+		this(material);
+		setUnlocalizedName(name);
+	}
+
 	public FluxGearBlock(Material material, CreativeTabs tab, int metaBlocks) {
-		super(material);
+		this(material);
 		this.metaBlocks = metaBlocks;
 		setCreativeTab(tab);
 		//internalName = ;
@@ -90,7 +96,7 @@ public class FluxGearBlock extends Block {
 	 * @param resistance - The blast resistance of the block (how resistant it is to explosions).
 	 */
 	public FluxGearBlock(Material material, CreativeTabs tab, float hardness, float resistance) {
-		super(material);
+		this(material);
 		setCreativeTab(tab);
 		setHardness(hardness);
 		setResistance(resistance);
@@ -146,7 +152,7 @@ public class FluxGearBlock extends Block {
 	 * @param colorized Set to true if you are using a simple colorizer.
 	 */
 	public FluxGearBlock(Material material, CreativeTabs tab, boolean spawn, boolean base, boolean colorized) {
-		super(material);
+		this(material);
 		setCreativeTab(tab);
 
 		canSpawn = spawn;
@@ -183,6 +189,12 @@ public class FluxGearBlock extends Block {
 	//	hardness = new float[length];
 	//	resistance = new float[length];
 	//}
+
+	public void setMaterial(Material material) {
+		blockMaterial = material;
+		translucent = !material.blocksLight();
+	}
+
 
 
 
@@ -284,6 +296,30 @@ public class FluxGearBlock extends Block {
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
 		for (int i = 0; i < names.length; i++) {
 			list.add(new ItemStack(item, 1, i));
+		}
+	}
+
+	public SoundType getDefaultSound(Material material) {
+		if (material == Material.rock || material == Material.piston || material == Material.dragonEgg) {
+			return soundTypeStone;
+		} else if (material == Material.iron) {
+			return soundTypeMetal;
+		} else if (material == Material.grass || material == Material.tnt || material == Material.leaves || material == Material.vine || material == Material.plants || material == Material.sponge) {
+			return soundTypeGrass;
+		} else if (material == Material.glass || material == Material.ice || material == Material.packedIce || material == Material.portal || material == Material.redstoneLight) {
+			return soundTypeGlass;
+		} else if (material == Material.snow || material == Material.craftedSnow) {
+			return soundTypeSnow;
+		} else if (material == Material.ground || material == Material.clay) {
+			return soundTypeGravel;
+		} else if (material == Material.wood || material == Material.fire || material == Material.gourd) {
+			return soundTypeWood;
+		} else if (material == Material.cloth || material == Material.cactus || material == Material.cake) {
+			return soundTypeCloth;
+		} else if (material == Material.anvil) {
+			return soundTypeAnvil;
+		} else { //Material.water, Material.lava, Material.air, Material.sand, Material.web, Material.circuits, Material.coral
+			return null;
 		}
 	}
 

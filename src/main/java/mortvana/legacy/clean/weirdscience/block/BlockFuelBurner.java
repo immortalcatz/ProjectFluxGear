@@ -4,11 +4,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import mortvana.melteddashboard.block.FluxGearBlockContainer;
+import mortvana.melteddashboard.block.FluxGearBlockTileEntity;
 
 import mortvana.legacy.clean.weirdscience.util.block.tile.TileEntityFuelBurner;
 
-public class BlockFuelBurner extends FluxGearBlockContainer {
+public class BlockFuelBurner extends FluxGearBlockTileEntity {
 
 	public BlockFuelBurner(Material material, String name) {
 		super(material, name);

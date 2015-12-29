@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import mortvana.legacy.errored.crystalclimate.CrystalClimate;
+import mortvana.legacy.dependent.firstdegree.crystalclimate.common.CrystalClimate;
 import mortvana.melteddashboard.util.helpers.MiscHelper;
 
 public class TerraformerLogic extends TileEntity {

@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.legacy.errored.crystalclimate.CrystalClimate;
+import mortvana.legacy.dependent.firstdegree.crystalclimate.common.CrystalClimate;
 import mortvana.legacy.errored.crystalclimate.RedstoneAggregator;
 import mortvana.melteddashboard.util.helpers.ChatHelper;
 import mortvana.melteddashboard.util.helpers.StringHelper;

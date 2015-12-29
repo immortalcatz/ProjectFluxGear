@@ -33,7 +33,7 @@ public class BlockBloodDonation extends BlockMetaTank {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int metadata) {
 		TileEntityBloodDonation TE = new TileEntityBloodDonation();
 		TileEntityBloodDonation.setBloodFluid(bloodFluid);
 		TileEntityBloodDonation.setStorageCap(maxStorage);
@@ -80,19 +80,18 @@ public class BlockBloodDonation extends BlockMetaTank {
 			}
 			return true;
 		} else {
-			//The player is not holding a bucket.
-			//Try to harm the player. Bucketlessness is a sin.
+			//The player is not holding a bucket. Try to harm the player. Bucketlessness is a sin.
 		    float previousPlayerHealth = player.getHealth();
 			player.attackEntityFrom(DamageSource.magic, (float) FluxGearConfig.dmgPerBloodDonation);
 			//If the player has taken damage, fill the tank. (Prevent cheesing via fakeplayers.)
-			if(((player.getHealth() < previousPlayerHealth) || player.capabilities.isCreativeMode) && (donationEntity != null)) {
+			if(((player.getHealth() < previousPlayerHealth) || player.capabilities.isCreativeMode) && donationEntity != null) {
 				donationEntity.fillFromBlock(new FluidStack(bloodFluid, FluxGearConfig.mbPerBloodDonation), true);
 			}
 		    return true;
 		}
 	}
 
-	public BlockBloodDonation(String name, Material material) {
-		super(name, material);
+	public BlockBloodDonation(Material material, String name) {
+		super(material, name);
 	}
 }

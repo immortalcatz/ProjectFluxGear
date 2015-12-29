@@ -146,14 +146,14 @@ public abstract class ItemToolRF extends ItemToolAdv implements IEmpowerableItem
                     + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + StringHelper.localize("info.redstonearsenal.tool.chargeOff")
                     + StringHelper.END);
         } else {
-            list.add(StringHelper.BRIGHT_BLUE + StringHelper.ITALIC + StringHelper.localize("info.cofh.press") + " "
+            list.add(StringHelper.CYAN + StringHelper.ITALIC + StringHelper.localize("info.cofh.press") + " "
                     + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + StringHelper.localize("info.redstonearsenal.tool.chargeOn")
                     + StringHelper.END);
         }
         if (getEnergyStored(stack) >= getEnergyPerUse(stack)) {
             list.add("");
             list.add(StringHelper.LIGHT_BLUE + "+" + damage + " " + StringHelper.localize("info.cofh.damageAttack") + StringHelper.END);
-            list.add(StringHelper.BRIGHT_GREEN + "+" + (isEmpowered(stack) ? 2 : 1) + " " + StringHelper.localize("info.cofh.damageFlux") + StringHelper.END);
+            list.add(StringHelper.LIME_GREEN + "+" + (isEmpowered(stack) ? 2 : 1) + " " + StringHelper.localize("info.cofh.damageFlux") + StringHelper.END);
         }
     }
 

@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
-import mortvana.legacy.errored.crystalclimate.CrystalClimate;
+import mortvana.legacy.dependent.firstdegree.crystalclimate.common.CrystalClimate;
 
 public class TerraleecherLogic extends TileEntity {
 	Random random = new Random();

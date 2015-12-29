@@ -19,8 +19,8 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import mortvana.legacy.dependent.seconddegree.crystalclimate.client.CrystalBlockRender;
-import mortvana.legacy.errored.crystalclimate.CrystalClimate;
+import mortvana.legacy.dependent.thirddegree.crystalclimate.client.CrystalBlockRender;
+import mortvana.legacy.dependent.firstdegree.crystalclimate.common.CrystalClimate;
 import mortvana.legacy.clean.crystalclimate.block.tile.CrystalLogic;
 import mortvana.legacy.errored.crystalclimate.RedstoneAggregator;
 import mortvana.melteddashboard.util.helpers.ChatHelper;

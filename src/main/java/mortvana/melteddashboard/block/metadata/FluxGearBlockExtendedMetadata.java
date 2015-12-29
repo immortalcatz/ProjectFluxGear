@@ -22,6 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
 import mortvana.melteddashboard.util.enums.EnumTextCasing;
+import mortvana.melteddashboard.util.helpers.StringHelper;
 
 public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 
@@ -304,11 +305,11 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 					blockIcons.put(textures.getKey(), register.registerIcon(textureBase + camelCase(textures.getValue())));
 				}
 
-			/*case TITLE:
+			case TITLE:
 				for (Entry<Integer, String> textures : textureNames.entrySet()) {
 					Integer metadata = textures.getKey();
 					String texture = textures.getValue();
-					IIcon icon = register.registerIcon(textureBase + StringHelper_.titleCase(texture));
+					IIcon icon = register.registerIcon(textureBase + StringHelper.titleCase(texture));
 					blockIcons.put(metadata, icon);
 				}
 
@@ -316,7 +317,7 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 				for (Entry<Integer, String> textures : textureNames.entrySet()) {
 					Integer metadata = textures.getKey();
 					String texture = textures.getValue();
-					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.helper.StringHelper_.camelCase(texture));
+					IIcon icon = register.registerIcon(textureBase + StringHelper.camelCase(texture));
 					blockIcons.put(metadata, icon);
 				}
 
@@ -324,9 +325,9 @@ public class FluxGearBlockExtendedMetadata extends BlockExtendedMetadata {
 				for (Entry<Integer, String> textures : textureNames.entrySet()) {
 					Integer metadata = textures.getKey();
 					String texture = textures.getValue();
-					IIcon icon = register.registerIcon(textureBase + oldcode.projectfluxgear.helper.StringHelper_.camelCase(texture));
+					IIcon icon = register.registerIcon(textureBase + StringHelper.camelCase(texture));
 					blockIcons.put(metadata, icon);
-				}*/
+				}
 		}
 	}
 

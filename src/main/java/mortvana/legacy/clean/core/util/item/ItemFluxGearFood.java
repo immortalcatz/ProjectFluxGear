@@ -25,7 +25,6 @@ import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
 import mortvana.legacy.clean.core.util.helpers.ItemHelper;
 import mortvana.legacy.clean.core.util.helpers.SecurityHelper;
-import mortvana.legacy.clean.core.util.helpers.StringHelper_;
 import mortvana.melteddashboard.item.entry.ColorEntry;
 import mortvana.melteddashboard.item.entry.ItemEntry;
 

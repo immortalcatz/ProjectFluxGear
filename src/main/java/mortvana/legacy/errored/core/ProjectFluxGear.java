@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
-import mortvana.legacy.clean.core.util.helpers.StringHelper_;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -25,11 +24,14 @@ import cofh.core.CoFHProps;
 import cofh.core.util.CoreUtils;
 import cofh.core.world.WorldHandler;
 
+import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IBeeRoot;
+import forestry.api.genetics.AlleleManager;
+import mortvana.legacy.clean.apiology.util.genetics.BeeSpecies;
 import mortvana.legacy.clean.fluxgeartweaks.block.tileentity.TileTimeyWimey;
 import mortvana.legacy.clean.core.client.gui.FluxGearGUIHandler;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
-import mortvana.legacy.errored.apiology.VersionInfo;
+import mortvana.legacy.clean.apiology.common.VersionInfo;
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.network.ObjectPacket;
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.network.ObjectPacketHandler;
 import mortvana.legacy.clean.fluxgearaddons.network.ParticleGenPacket;
@@ -38,7 +40,7 @@ import mortvana.legacy.clean.core.common.CommonProxy;
 import mortvana.legacy.clean.core.common.FluxGearConfig;
 import mortvana.legacy.clean.core.common.FluxGearConfigWorld;
 import mortvana.legacy.clean.weirdscience.util.ContentRegistry;
-import mortvana.legacy.errored.apiology.LocalizationManager;
+import mortvana.legacy.clean.apiology.common.LocalizationManager;
 import mortvana.legacy.clean.morttech.util.Modules;
 import mortvana.legacy.clean.core.util.handlers.DummyHandler;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.world.FluxGearWorldGenerator;
@@ -46,7 +48,10 @@ import mortvana.legacy.dependent.firstdegree.projectfluxgear.world.GravelOreGenE
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.world.PoorOreGenerator;
 import mortvana.melteddashboard.intermod.tinkers.TinkersHelper;
 import mortvana.melteddashboard.util.helpers.LoadedHelper;
+import mortvana.melteddashboard.util.helpers.StringHelper;
+
 import mortvana.projectfluxgear.core.common.FluxGearAchievements;
+import mortvana.projectfluxgear.thaumic.world.ExubituraGenerator;
 
 import tconstruct.library.TConstructRegistry;
 import tconstruct.library.crafting.Detailing;
@@ -98,8 +103,6 @@ public class ProjectFluxGear {
 	//public static void log(Level level, String message) {
 	//	FMLLog.getLogger().log(level, "[MortTech] " + message);
 	//}
-
-	public static IBeeRoot beeRoot;
 
 	public ProjectFluxGear() {
 	    EnvironmentChecks.verifyEnvironmentSanity();
@@ -240,7 +243,7 @@ public class ProjectFluxGear {
 	    BeeManager.initializeBees();
 	    VersionInfo.doVersionCheck();
 	    // get bee root
-	    //beeRoot = (IBeeRoot) AlleleManager.alleleRegistry.getSpeciesRoot("rootBees");
+	    BeeSpecies.beeRoot = (IBeeRoot) AlleleManager.alleleRegistry.getSpeciesRoot("rootBees");
 
 	    // init bee branches
 	    //branchTechnostatic = new BranchBees();
@@ -367,7 +370,7 @@ public class ProjectFluxGear {
 
     public void resetClientConfigs() {
         TileDynamo.configure();
-        logger.info(StringHelper_.localize("Restoring Client Configuration..."));
+        logger.info(StringHelper.localize("Restoring Client Configuration..."));
     }
 
     void loadWorldGeneration() {

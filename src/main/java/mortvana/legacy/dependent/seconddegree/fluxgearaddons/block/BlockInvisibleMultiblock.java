@@ -24,12 +24,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.melteddashboard.block.FluxGearBlock;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
+import mortvana.melteddashboard.util.helpers.StringHelper;
 
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.block.tile.TileEnergyPylon;
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.block.tile.TileEnergyStorageCore;
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.block.tile.TileInvisibleMultiblock;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
-import mortvana.legacy.clean.fluxgearaddons.util.Utils;
 
 public class BlockInvisibleMultiblock extends FluxGearBlock {
 
@@ -112,7 +112,7 @@ public class BlockInvisibleMultiblock extends FluxGearBlock {
 							flux = flux.substring(0, flux.length() - 2);
 						}
 
-						player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("info.de.charge.txt") + ": " + Utils.formatNumber(master.getEnergyStored()) + " / " + Utils.formatNumber(master.getMaxEnergyStored()) + " [" + flux + " RF]"));
+						player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("info.de.charge.txt") + ": " + StringHelper.formatNumber(master.getEnergyStored()) + " / " + StringHelper.formatNumber(master.getMaxEnergyStored()) + " [" + flux + " RF]"));
 					}
 
 					return true;

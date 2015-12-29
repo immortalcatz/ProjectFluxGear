@@ -9,13 +9,13 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.melteddashboard.block.FluxGearBlockContainer;
+import mortvana.melteddashboard.block.FluxGearBlockTileEntity;
 
 @Deprecated
 //TODO: Make some implosions
 //A block that renders some of its sides with a tank texture that varies.
 //Used for the Hemoionic Dynamo and the Blood Donation Block.
-public abstract class BlockMetaTank extends FluxGearBlockContainer {
+public abstract class BlockMetaTank extends FluxGearBlockTileEntity {
 
 	protected ArrayList<String> tankTexNames = new ArrayList<String>(8);
 	protected ArrayList<String> topTexNames = new ArrayList<String>(2);

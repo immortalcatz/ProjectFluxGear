@@ -1,6 +1,8 @@
 package mortvana.melteddashboard.block.tile;
 
+import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.IFluidHandler;
@@ -50,6 +52,21 @@ public abstract class FluxGearTileEntity extends TileEntity {
 			if (tile != null) {
 				updateAdjacency(tile, i);
 			}
+		}
+	}
+
+	public void onBroken(World world, int x, int y, int z, Block block, int metadata) {}
+
+	public void onDismantled(World world, int x, int y, int z, Block block, int metadata) {
+		onBroken(world, x, y, z, block, metadata);
+	}
+
+	public void onPlaced(World world, int x, int y, int z, Block block, int metadata) {}
+
+	@Override
+	public void onChunkUnload() {
+		if (!tileEntityInvalid) {
+			invalidate();
 		}
 	}
 }

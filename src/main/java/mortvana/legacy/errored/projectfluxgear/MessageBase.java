@@ -21,7 +21,7 @@ public class MessageBase {
 	public int meta;
 
 	public MessageBase(int id, int posX, int posY, int posZ, int meta) {
-		this.id = CorePacketID.TileMetadata.ordinal();
+		id = CorePacketID.TileMetadata.ordinal();
 		x = posX;
 		y = posY;
 		z = posZ;

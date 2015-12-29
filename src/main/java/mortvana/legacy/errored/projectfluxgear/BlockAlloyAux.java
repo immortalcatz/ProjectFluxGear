@@ -1,11 +1,9 @@
 package mortvana.legacy.errored.projectfluxgear;
 
-import mortvana.legacy.clean.core.util.block.BlockFluxGear;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 
 import mortvana.melteddashboard.block.AdvFluxGearBlock;
 
-import mortvana.melteddashboard.block.FluxGearBlock;
 import mortvana.melteddashboard.util.enums.EnumBlockType;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;

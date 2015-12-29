@@ -1,7 +1,5 @@
 package mortvana.legacy.dependent.firstdegree.weirdscience.block;
 
-import java.util.Random;
-
 import mortvana.legacy.clean.weirdscience.util.block.IBlockMetaPower;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -21,7 +19,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.util.RotationHelper;
 import net.minecraftforge.fluids.Fluid;
 
-import mortvana.melteddashboard.block.FluxGearBlockContainer;
+import mortvana.melteddashboard.block.FluxGearBlockTileEntity;
 
 import mortvana.legacy.errored.weirdscience.TileEntityNitrateDynamo;
 import mortvana.legacy.errored.core.ProjectFluxGear;
@@ -29,7 +27,7 @@ import mortvana.legacy.clean.core.util.helpers.BlockHelper;
 
 import static mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper.RANDOM;
 
-public class BlockNitrateEngine extends FluxGearBlockContainer implements IBlockMetaPower {
+public class BlockNitrateEngine extends FluxGearBlockTileEntity implements IBlockMetaPower {
 
 	int teCapacity = 0;
 	int tePerTick = 0;

@@ -33,7 +33,7 @@ public class BlockOccultEngine extends BlockBloodDyanmo implements IBlockMetaPow
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int metadata) {
 		return new TileEntityOccultEngine();
 	}
 
@@ -84,7 +84,7 @@ public class BlockOccultEngine extends BlockBloodDyanmo implements IBlockMetaPow
 		}
 	}
 
-	public BlockOccultEngine(String name, Material material) {
-		super(name, material);
+	public BlockOccultEngine(Material material, String name) {
+		super(material, name);
 	}
 }

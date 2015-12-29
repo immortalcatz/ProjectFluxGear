@@ -2,6 +2,9 @@ package mortvana.melteddashboard.util.helpers;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -27,4 +30,39 @@ public class MiscHelper {
 		return world.rayTraceBlocks(vec3, vector, par3);
 	}
 
+	public static void dropInventoryContents(World world, int x, int y, int z, IInventory inventory) {
+		for (int i = 0; i < inventory.getSizeInventory(); i++) {
+			dropStackWithVelocity(world, x, y, z, inventory.getStackInSlot(i));
+		}
+	}
+
+	public static boolean dropStackWithVelocity(World world, int x, int y, int z, ItemStack stack) {
+		if (stack != null) {
+			float xOffset = world.rand.nextFloat() * 0.8F + 0.1F;
+			float yOffset = world.rand.nextFloat() * 0.8F + 0.1F;
+			float zOffset = world.rand.nextFloat() * 0.8F + 0.1F;
+
+			EntityItem entity = new EntityItem(world, x + xOffset, y + yOffset, z + zOffset, stack.copy());
+
+			entity.motionX = world.rand.nextGaussian() * 0.05D;
+			entity.motionY = world.rand.nextGaussian() * 0.05D;
+			entity.motionZ = world.rand.nextGaussian() * 0.05D;
+
+			world.spawnEntityInWorld(entity);
+		}
+		return stack != null;
+	}
+
+	public static boolean dropStackWithoutVelocity(World world, int x, int y, int z, ItemStack stack) {
+		if (stack != null) {
+			EntityItem entity = new EntityItem(world, x + 0.5F, y, z + 0.5F, stack.copy());
+
+			entity.motionX = 0;
+			entity.motionY = -0.05D;
+			entity.motionZ = 0;
+
+			world.spawnEntityInWorld(entity);
+		}
+		return stack != null;
+	}
 }

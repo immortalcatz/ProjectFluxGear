@@ -27,13 +27,13 @@ public class TileEntityBloodDynamo extends TileEntityGenerator implements IFluid
 
 	public TileEntityBloodDynamo() {
 		super();
-		this.setEnergyCapacity(energyCapStatic);
-		this.setEnergyTransferRate(rfPerTickStatic);
+		setEnergyCapacity(energyCapStatic);
+		setEnergyTransferRate(rfPerTickStatic);
 		ticksUntilBurn = ticksPerBurn;
 
 		energy = 0;
 
-        this.energyCap = energyCapStatic;
+        energyCap = energyCapStatic;
 	}
 	
 
@@ -41,25 +41,22 @@ public class TileEntityBloodDynamo extends TileEntityGenerator implements IFluid
 	@Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        //Read how far we are from doing another engine tick.
-        this.ticksUntilBurn = nbt.getShort("BurnTime");
+        ticksUntilBurn = nbt.getShort("BurnTime"); //Read how far we are from doing another engine tick.
 
         //Read the internal fluid tank for smog storage
         if (!nbt.hasKey("Empty")) {
             FluidStack fluid = FluidStack.loadFluidStackFromNBT(nbt);
-
             if (fluid != null) {
             	tank = fluid;
             }
         }
-        this.energyCap = energyCapStatic;
+        energyCap = energyCapStatic;
     }
 
 	@Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-        //Write time until next engine burn tick.
-        nbt.setShort("BurnTime", (short)this.ticksUntilBurn);
+        nbt.setShort("BurnTime", (short) ticksUntilBurn); //Write time until next engine burn tick.
         //Write our internal fluid tank (which stores smog)
         if (tank != null) {
         	tank.writeToNBT(nbt);
@@ -110,7 +107,7 @@ public class TileEntityBloodDynamo extends TileEntityGenerator implements IFluid
 
 	@Override
 	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-		if(resource.getFluidID() == fuelFluidID) {
+		if (resource.getFluidID() == fuelFluidID) {
 			return drain(from, resource.amount, doDrain);
 		}
 		return null;
@@ -119,16 +116,15 @@ public class TileEntityBloodDynamo extends TileEntityGenerator implements IFluid
 	@Override
 	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
 		FluidStack returnVal = null;
-		if(tank != null) {
+		if (tank != null) {
 			returnVal = new FluidStack(fuelFluidID, Math.min(tank.amount, maxDrain));
-			if(doDrain) {
-				if(maxDrain >= tank.amount) { 
+			if (doDrain) {
+				if (maxDrain >= tank.amount) {
 					tank = null;
-					updateTank();
 				} else {
 					tank.amount -= maxDrain;
-					updateTank();
 				}
+				updateTank();
 			}
 		}
 		return returnVal;
@@ -136,17 +132,22 @@ public class TileEntityBloodDynamo extends TileEntityGenerator implements IFluid
 
 	@Override
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		return (fluid.getID() == fuelFluidID);
+		return isFluidEqual(fluid);
 	}
 
 	@Override
 	public boolean canDrain(ForgeDirection from, Fluid fluid) {
+		return isFluidEqual(fluid);
+	}
+
+	public boolean isFluidEqual(Fluid fluid) {
 		return (fluid.getID() == fuelFluidID);
 	}
 
+
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
-		return new FluidTankInfo[]{new FluidTankInfo(tank, tankCap)};
+		return new FluidTankInfo[] {new FluidTankInfo(tank, tankCap)};
 	}
 
 	//ENTITY UPDATE:
@@ -161,13 +162,13 @@ public class TileEntityBloodDynamo extends TileEntityGenerator implements IFluid
 	        	ticksUntilBurn--;
 	        } else {
 	        	//Do we have fuel?
-				if ((tank != null) && (this.tank.amount >= 1) && (energy < energyCapStatic)) {
+				if ((tank != null) && (tank.amount >= 1) && (energy < energyCapStatic)) {
 					//Bugs are hard and Tile Entities are eccentric.
-		            int toBurn = Math.min(mbPerBurn, this.tank.amount); //Either eat mbPerBurn fuel or the entire stack.
+		            int toBurn = Math.min(mbPerBurn, tank.amount); //Either eat mbPerBurn fuel or the entire stack.
 		            drain(ForgeDirection.UP, toBurn, true);
 		            	
-		            energy += (int) (((float)toBurn)*rfPerMB);
-		            if(energy > energyCapStatic) {
+		            energy += (int) (((float) toBurn) * rfPerMB);
+		            if (energy > energyCapStatic) {
 		            	energy = energyCapStatic;
 		            }
 		        	flagHasPower = true;
@@ -177,8 +178,7 @@ public class TileEntityBloodDynamo extends TileEntityGenerator implements IFluid
 				}
 	        }
 	        if (flagHasPower) {
-	    		//And now, attempt to charge surrounding blocks.
-	            powerAdjacent();
+	            powerAdjacent(); //And now, attempt to charge surrounding blocks.
 	        }
 		}
     }
@@ -188,12 +188,12 @@ public class TileEntityBloodDynamo extends TileEntityGenerator implements IFluid
 	}
 	
 	public void updateTank() { 
-		if((!worldObj.isRemote) && (worldObj.getBlock(xCoord, yCoord, zCoord) instanceof BlockMetaTank)) {
+		if (!worldObj.isRemote && (worldObj.getBlock(xCoord, yCoord, zCoord) instanceof BlockMetaTank)) {
 			BlockMetaTank bmt = (BlockMetaTank) worldObj.getBlock(xCoord, yCoord, zCoord);
 			if(tank == null) {
 				bmt.setMetaByFillPercent(worldObj, xCoord, yCoord, zCoord, 0);
 			} else {
-				bmt.setMetaByFillPercent(worldObj, xCoord, yCoord, zCoord, (this.tank.amount*100) / TileEntityBloodDynamo.tankCap);
+				bmt.setMetaByFillPercent(worldObj, xCoord, yCoord, zCoord, (tank.amount * 100) / tankCap);
 			}
 		}
 	}

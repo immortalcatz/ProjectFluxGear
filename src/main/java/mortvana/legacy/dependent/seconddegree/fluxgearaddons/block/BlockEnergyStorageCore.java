@@ -4,6 +4,7 @@ import mortvana.legacy.LegacyHelper;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.melteddashboard.block.FluxGearBlock;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
+import mortvana.melteddashboard.util.helpers.StringHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -22,8 +23,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.block.tile.TileEnergyStorageCore;
-import mortvana.legacy.clean.fluxgearaddons.util.Utils;
-
 public class BlockEnergyStorageCore extends FluxGearBlock {
 	public BlockEnergyStorageCore() {
 		super(Material.iron, FluxGearContent.tabMaterials, 10.0F, 20.0F);
@@ -61,7 +60,7 @@ public class BlockEnergyStorageCore extends FluxGearBlock {
 					flux = flux.substring(0, flux.length() - 2);
 				}
 
-				player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("info.de.charge.txt") + ": " + Utils.formatNumber(tile.getEnergyStored()) + " / " + Utils.formatNumber(tile.getMaxEnergyStored()) + " [" + flux + " RF]"));
+				player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("info.de.charge.txt") + ": " + StringHelper.formatNumber(tile.getEnergyStored()) + " / " + StringHelper.formatNumber(tile.getMaxEnergyStored()) + " [" + flux + " RF]"));
 			}
 
 			return true;

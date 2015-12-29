@@ -231,7 +231,7 @@ public class FluxGearItem extends Item {
 						entry.icon = iconRegister.registerIcon(modName + ":grayscale/" + colorMap.get(i).template);
 					}
 				} else {
-					entry.icon = iconRegister.registerIcon(modName + ":" + getUnlocalizedName().replace("item." + modName + ".", "") + "/" + /*StringHelper_.camelCase(*/entry.name/*)*/);
+					entry.icon = iconRegister.registerIcon(modName + ":" + getUnlocalizedName().replace("item." + modName + ".", "") + "/" + StringHelper.camelCase(entry.name));
 				}
 			}
 		}
