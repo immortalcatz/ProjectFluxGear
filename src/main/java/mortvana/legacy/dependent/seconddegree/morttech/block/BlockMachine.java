@@ -1,4 +1,4 @@
-package mortvana.legacy.dependent.firstdegree.morttech.block;
+package mortvana.legacy.dependent.seconddegree.morttech.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -7,6 +7,7 @@ import mantle.blocks.iface.IActiveLogic;
 import mantle.blocks.iface.IFacingLogic;
 
 import mortvana.legacy.clean.morttech.block.BlockCrank;
+import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,7 +18,6 @@ import net.minecraft.world.World;
 
 import mortvana.legacy.clean.morttech.block.tile.WoodmillLogic;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
-import mortvana.legacy.errored.core.ProjectFluxGear;
 
 public class BlockMachine extends InventoryBlock {
 
@@ -89,8 +89,7 @@ public class BlockMachine extends InventoryBlock {
     }
 
     @Override
-    public Object getModInstance()
-    {
+    public Object getModInstance() {
         return ProjectFluxGear.instance;
     }
 

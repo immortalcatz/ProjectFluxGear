@@ -1,4 +1,4 @@
-package mortvana.legacy.dependent.firstdegree.core.util.block.subtile;
+package mortvana.legacy.clean.core.util.block.subtile;
 
 import java.util.ArrayList;
 
@@ -16,8 +16,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mortvana.legacy.clean.core.util.helpers.PacketHelper;
-import mortvana.legacy.dependent.seconddegree.core.util.helpers.SubtileHelper;
-import mortvana.legacy.errored.core.ProjectFluxGear;
+import mortvana.legacy.clean.core.util.helpers.helpers.SubtileHelper;
 
 /**
  * A Sub-TileEntity, this was used for Vazkii's flower system. I use it for my machines.
@@ -26,7 +25,7 @@ import mortvana.legacy.errored.core.ProjectFluxGear;
  */
 public class SubtileEntity {
 
-	/** Bucketman's sidekick! */
+	/** Bucketman's sidekick!?!? */
 	protected TileEntity supertile;
 
 	public int ticksExisted = 0;
@@ -64,14 +63,14 @@ public class SubtileEntity {
 	 * by readFromPacketNBT on the client that receives the packet.
 	 * Note: This method is also used to write to the world NBT.
 	 */
-	public void writeToPacketNBT(NBTTagCompound nbt) { }
+	public void writeToPacketNBT(NBTTagCompound nbt) {}
 
 	/**
 	 * Reads data from a network packet. This data is written by
 	 * writeToPacketNBT in the server. Note: This method is also used
 	 * to read from the world NBT.
 	 */
-	public void readFromPacketNBT(NBTTagCompound nbt) { }
+	public void readFromPacketNBT(NBTTagCompound nbt) {}
 
 	public void sync() {
 		PacketHelper.dispatchTEToNearbyPlayers(supertile);
@@ -84,14 +83,13 @@ public class SubtileEntity {
 	/** Gets the block icon for this SubtileEntity*/
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon() {
-		return ProjectFluxGear.handler.getSubTileIconForName(getUnlocalizedName());
+		return SubtileHelper.getSubTileIconForName(getUnlocalizedName());
 	}
 
 	/**
 	 * Called when this sub tile is placed in the world (by an entity).
 	 */
-	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemstack) {
-	}
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemstack) {}
 
 	/**
 	 * Called when a player right clicks this sub tile.
@@ -103,14 +101,12 @@ public class SubtileEntity {
 	/**
 	 * Called when this sub tile is added to the world.
 	 */
-	public void onBlockAdded(World world, int x, int y, int z) {
-	}
+	public void onBlockAdded(World world, int x, int y, int z) {}
 
 	/**
 	 * Called when this sub tile is harvested
 	 */
-	public void onBlockHarvested(World world, int x, int y, int z, int side, EntityPlayer player) {
-	}
+	public void onBlockHarvested(World world, int x, int y, int z, int side, EntityPlayer player) {}
 
 	/**
 	 * Allows additional processing of sub tile drops
@@ -124,7 +120,6 @@ public class SubtileEntity {
 	 * Used to render a HUD portraying some data from this sub tile.
 	 */
 	@SideOnly(Side.CLIENT)
-	public void renderHUD(Minecraft minecraft, ScaledResolution resolution) {
-	}
+	public void renderHUD(Minecraft minecraft, ScaledResolution resolution) {}
 
 }

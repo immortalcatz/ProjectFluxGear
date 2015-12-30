@@ -1,5 +1,6 @@
 package mortvana.melteddashboard.util.helpers;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,11 +13,11 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class WorldHelper {
 
 	public static World getWorld() {
-		return Minecraft.getMinecraft().theWorld;
+		return FMLClientHandler.instance().getClient().theWorld;
 	}
 
 	public static EntityPlayer getPlayer() {
-		return Minecraft.getMinecraft().thePlayer;
+		return FMLClientHandler.instance().getClient().thePlayer;
 	}
 
 	public static Block getBlock(IBlockAccess world, int x, int y, int z) {

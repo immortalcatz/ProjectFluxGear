@@ -1,13 +1,12 @@
-package mortvana.legacy.dependent.firstdegree.core.util.block.subtile;
+package mortvana.legacy.clean.core.util.block.subtile;
 
 import java.util.List;
 
+import mortvana.legacy.clean.core.util.helpers.helpers.SubtileHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-
-import mortvana.legacy.errored.core.ProjectFluxGear;
 
 /**
  * A singleton instance for a SubtileEntity, this is called for a few methods.
@@ -54,12 +53,12 @@ public abstract class SubtileSignature {
 
 		@Override
 		public void registerIcons(IIconRegister register) {
-			ProjectFluxGear.handler.registerBasicSignatureIcons(name, register);
+			SubtileHelper.registerBasicSignatureIcons(name, register);
 		}
 
 		@Override
-		public IIcon getIconForStack(ItemStack stack) {
-			return ProjectFluxGear.handler.getSubTileIconForName(name);
+        public IIcon getIconForStack(ItemStack stack) {
+                return SubtileHelper.getSubTileIconForName(name);
 		}
 
 		@Override

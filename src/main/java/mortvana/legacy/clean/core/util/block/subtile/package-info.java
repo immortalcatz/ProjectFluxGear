@@ -1,4 +1,4 @@
-package mortvana.legacy.dependent.firstdegree.core.util.block.subtile;
+package mortvana.legacy.clean.core.util.block.subtile;
 
    /*
 	*   Subtiles: An awesome way of having dynamic TileEntities!

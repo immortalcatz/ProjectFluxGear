@@ -1,4 +1,4 @@
-package mortvana.legacy.dependent.seconddegree.fluxgearaddons.network;
+package mortvana.legacy.dependent.thirddegree.fluxgearaddons.network;
 
 import mortvana.legacy.clean.fluxgearaddons.network.ParticleGenPacket;
 import net.minecraft.tileentity.TileEntity;

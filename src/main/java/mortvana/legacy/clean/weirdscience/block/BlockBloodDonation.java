@@ -1,4 +1,4 @@
-package mortvana.legacy.dependent.firstdegree.weirdscience.block;
+package mortvana.legacy.clean.weirdscience.block;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,7 +18,7 @@ import mortvana.legacy.clean.weirdscience.util.block.tile.BlockMetaTank;
 public class BlockBloodDonation extends BlockMetaTank {
 	
 	private static Fluid bloodFluid;
-	int maxStorage; //
+	int maxStorage;
 
 	public static void setFluid(Fluid newfluid) {
 		bloodFluid = newfluid;

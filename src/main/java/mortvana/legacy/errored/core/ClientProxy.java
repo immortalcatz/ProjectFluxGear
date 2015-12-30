@@ -38,6 +38,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import net.minecraftforge.common.MinecraftForge;
 
@@ -145,9 +146,7 @@ public class ClientProxy extends CommonProxy {
 
 	public void uploadKeyBindingsToGame (GameSettings settings, MTKeyHandler keyhandler) {
 		ArrayList<KeyBinding> harvestedBindings = Lists.newArrayList();
-		for (KeyBinding kb : keyhandler.keyBindings) {
-			harvestedBindings.add(kb);
-		}
+        Collections.addAll(harvestedBindings, keyhandler.keyBindings);
 
 		KeyBinding[] modKeyBindings = harvestedBindings.toArray(new KeyBinding[harvestedBindings.size()]);
 		KeyBinding[] allKeys = new KeyBinding[settings.keyBindings.length + modKeyBindings.length];

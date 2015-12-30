@@ -1,4 +1,4 @@
-package mortvana.legacy.dependent.firstdegree.projectfluxgear.world;
+package mortvana.legacy.dependent.seconddegree.projectfluxgear.world;
 
 import java.util.Random;
 
@@ -11,9 +11,10 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate;
 
 import mortvana.melteddashboard.util.helpers.LoadedHelper;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
-import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.legacy.clean.core.common.FluxGearConfig;
 import mortvana.legacy.clean.core.common.FluxGearConfigWorld;
+
+import static mortvana.melteddashboard.common.MeltedDashboardConfig.debugWorldgen;
 
 public class GravelOreGenEventHandler {
 
@@ -68,194 +69,194 @@ public class GravelOreGenEventHandler {
 			return;
 
 		int xPos, yPos, zPos;
-		if ((FluxGearConfigWorld.generateGravelChalcocite == 0 || (FluxGearConfigWorld.generateGravelChalcocite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelChalcociteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelChalcocite == 0 || (FluxGearConfigWorld.generateGravelChalcocite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelChalcociteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 		    yPos = 64 + FluxGearConfig.seaLevel;
 		    zPos = zChunk + random.nextInt(16);
 		    chalcociteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelCassiterite == 0 || (FluxGearConfigWorld.generateGravelCassiterite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelCassiteriteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelCassiterite == 0 || (FluxGearConfigWorld.generateGravelCassiterite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelCassiteriteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			cassiteriteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelGalena == 0 || (FluxGearConfigWorld.generateGravelGalena == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelGalenaRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelGalena == 0 || (FluxGearConfigWorld.generateGravelGalena == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelGalenaRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			galenaGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelAcanthite == 0 || (FluxGearConfigWorld.generateGravelAcanthite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelAcanthiteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelAcanthite == 0 || (FluxGearConfigWorld.generateGravelAcanthite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelAcanthiteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			acanthiteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelGarnierite == 0 || (FluxGearConfigWorld.generateGravelGarnierite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelGarnieriteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelGarnierite == 0 || (FluxGearConfigWorld.generateGravelGarnierite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelGarnieriteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			garnieriteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelSphalerite == 0 || (FluxGearConfigWorld.generateGravelSphalerite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelSphaleriteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelSphalerite == 0 || (FluxGearConfigWorld.generateGravelSphalerite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelSphaleriteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			sphaleriteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelBismuthinite == 0 || (FluxGearConfigWorld.generateGravelBismuthinite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelBismuthiniteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelBismuthinite == 0 || (FluxGearConfigWorld.generateGravelBismuthinite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelBismuthiniteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			bismuthiniteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelPyrolusite == 0 || (FluxGearConfigWorld.generateGravelPyrolusite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelPyrolusiteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelPyrolusite == 0 || (FluxGearConfigWorld.generateGravelPyrolusite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelPyrolusiteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			pyrolusiteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelBauxite == 0 || (FluxGearConfigWorld.generateGravelBauxite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelBauxiteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelBauxite == 0 || (FluxGearConfigWorld.generateGravelBauxite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelBauxiteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			bauxiteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelCooperite == 0 || (FluxGearConfigWorld.generateGravelCooperite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelCooperiteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelCooperite == 0 || (FluxGearConfigWorld.generateGravelCooperite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelCooperiteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			cooperiteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelBraggite == 0 || (FluxGearConfigWorld.generateGravelBraggite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelBraggiteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelBraggite == 0 || (FluxGearConfigWorld.generateGravelBraggite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelBraggiteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			braggiteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelMolybdenite == 0 || (FluxGearConfigWorld.generateGravelMolybdenite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelMolybdeniteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelMolybdenite == 0 || (FluxGearConfigWorld.generateGravelMolybdenite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelMolybdeniteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			molybdeniteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelCobaltite == 0 || (FluxGearConfigWorld.generateGravelCobaltite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelCobaltiteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelCobaltite == 0 || (FluxGearConfigWorld.generateGravelCobaltite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelCobaltiteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			cobaltiteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelWolframite == 0 || (FluxGearConfigWorld.generateGravelWolframite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelWolframiteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelWolframite == 0 || (FluxGearConfigWorld.generateGravelWolframite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelWolframiteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			wolframiteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelIlmenite == 0 || (FluxGearConfigWorld.generateGravelIlmenite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelIlmeniteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelIlmenite == 0 || (FluxGearConfigWorld.generateGravelIlmenite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelIlmeniteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			ilmeniteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelChromite == 0 || (FluxGearConfigWorld.generateGravelChromite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelChromiteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelChromite == 0 || (FluxGearConfigWorld.generateGravelChromite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelChromiteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			chromiteGravel.generate(world, random, xPos, yPos, zPos);
 		}
 
-		if ((FluxGearConfigWorld.generateGravelCinnabar == 0 || (FluxGearConfigWorld.generateGravelCinnabar == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelCinnabarRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelCinnabar == 0 || (FluxGearConfigWorld.generateGravelCinnabar == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelCinnabarRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			cinnabarGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelPitchblende == 0 || (FluxGearConfigWorld.generateGravelPitchblende == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelPitchblendeRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelPitchblende == 0 || (FluxGearConfigWorld.generateGravelPitchblende == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelPitchblendeRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			pitchblendeGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelMonazite == 0 || (FluxGearConfigWorld.generateGravelMonazite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelMonaziteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelMonazite == 0 || (FluxGearConfigWorld.generateGravelMonazite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelMonaziteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			monaziteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelNiedermayrite == 0 || (FluxGearConfigWorld.generateGravelNiedermayrite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelNiedermayriteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelNiedermayrite == 0 || (FluxGearConfigWorld.generateGravelNiedermayrite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelNiedermayriteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			niedermayriteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelGreenockite == 0 || (FluxGearConfigWorld.generateGravelGreenockite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelGreenockiteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelGreenockite == 0 || (FluxGearConfigWorld.generateGravelGreenockite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelGreenockiteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			greenockiteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelGaotaiite == 0 || (FluxGearConfigWorld.generateGravelGaotaiite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelGaotaiiteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelGaotaiite == 0 || (FluxGearConfigWorld.generateGravelGaotaiite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelGaotaiiteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			gaotaiiteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelOsarsite == 0 || (FluxGearConfigWorld.generateGravelOsarsite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelOsarsiteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelOsarsite == 0 || (FluxGearConfigWorld.generateGravelOsarsite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelOsarsiteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			osarsiteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelZnamenskyite == 0 || (FluxGearConfigWorld.generateGravelZnamenskyite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelZnamenskyiteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelZnamenskyite == 0 || (FluxGearConfigWorld.generateGravelZnamenskyite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelZnamenskyiteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			znamenskyiteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelGallobeudanite == 0 || (FluxGearConfigWorld.generateGravelGallobeudanite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelGallobeudaniteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelGallobeudanite == 0 || (FluxGearConfigWorld.generateGravelGallobeudanite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelGallobeudaniteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			gallobeudaniteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelTetrahedrite == 0 || (FluxGearConfigWorld.generateGravelTetrahedrite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelTetrahedriteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelTetrahedrite == 0 || (FluxGearConfigWorld.generateGravelTetrahedrite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelTetrahedriteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			tetrahedriteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelTennantite == 0 || (FluxGearConfigWorld.generateGravelTennantite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelTennantiteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelTennantite == 0 || (FluxGearConfigWorld.generateGravelTennantite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelTennantiteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			tennantiteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelSantafeite == 0 || (FluxGearConfigWorld.generateGravelSantafeite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelSantafeiteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelSantafeite == 0 || (FluxGearConfigWorld.generateGravelSantafeite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelSantafeiteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			santafeiteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelMagnetite == 0 || (FluxGearConfigWorld.generateGravelMagnetite == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelMagnetiteRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelMagnetite == 0 || (FluxGearConfigWorld.generateGravelMagnetite == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelMagnetiteRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			magnetiteGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelDioptase == 0 || (FluxGearConfigWorld.generateGravelDioptase == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelDioptaseRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelDioptase == 0 || (FluxGearConfigWorld.generateGravelDioptase == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelDioptaseRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			dioptaseGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelPyrope == 0 || (FluxGearConfigWorld.generateGravelPyrope == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelPyropeRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelPyrope == 0 || (FluxGearConfigWorld.generateGravelPyrope == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelPyropeRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);
 			pyropeGravel.generate(world, random, xPos, yPos, zPos);
 		}
-		if ((FluxGearConfigWorld.generateGravelMyuvil == 0 || (FluxGearConfigWorld.generateGravelMyuvil == 2 && LoadedHelper.isTinkersLoaded) || ProjectFluxGear.debugWorldGen) && random.nextInt(FluxGearConfigWorld.gravelMyuvilRarity) == 0) {
+		if ((FluxGearConfigWorld.generateGravelMyuvil == 0 || (FluxGearConfigWorld.generateGravelMyuvil == 2 && LoadedHelper.isTinkersLoaded) || debugWorldgen) && random.nextInt(FluxGearConfigWorld.gravelMyuvilRarity) == 0) {
 			xPos = xChunk + random.nextInt(16);
 			yPos = 64 + FluxGearConfig.seaLevel;
 			zPos = zChunk + random.nextInt(16);

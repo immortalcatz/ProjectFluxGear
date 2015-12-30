@@ -3,9 +3,12 @@ package mortvana.legacy.dependent.firstdegree.core.common;
 import java.util.*;
 
 import mortvana.legacy.clean.morttech.block.tile.WoodmillLogic;
+import mortvana.legacy.clean.thaumicrevelations.item.ItemWardenicBlade;
+import mortvana.legacy.clean.weirdscience.block.BlockBloodDonation;
 import mortvana.legacy.dependent.firstdegree.thaumicrevelations.entity.EntityFleshProjectile;
 import mortvana.legacy.errored.thaumicrevelations.ItemFocusIllumination;
-import mortvana.legacy.clean.thaumicrevelations.item.ItemWardenicBlade;
+import mortvana.melteddashboard.util.helpers.ColorHelper;
+import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 import mortvana.projectfluxgear.library.ContentLibrary;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
@@ -62,7 +65,7 @@ import mortvana.legacy.clean.weirdscience.util.chemistry.ReactionSpec;
 import mortvana.legacy.dependent.seconddegree.morttech.block.BlockMortTechOre;
 import mortvana.legacy.dependent.seconddegree.morttech.item.DebuggingSpork;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.fluid.BlockFluidGhastTears;
-import mortvana.legacy.dependent.firstdegree.thaumicrevelations.block.BlockWardenicQuartzSlab;
+import mortvana.legacy.dependent.seconddegree.thaumicrevelations.block.BlockWardenicQuartzSlab;
 import mortvana.legacy.dependent.seconddegree.thaumicrevelations.block.BlockWardenicQuartzStairs;
 import mortvana.legacy.dependent.seconddegree.thaumicrevelations.item.ItemWardenicArmor;
 import mortvana.legacy.dependent.firstdegree.weirdscience.block.*;
@@ -71,7 +74,7 @@ import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOr
 import mortvana.legacy.dependent.seconddegree.projectfluxgear.block.BlockPlant;
 import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.legacy.clean.morttech.block.BlockCrank;
-import mortvana.legacy.dependent.firstdegree.morttech.block.BlockMachine;
+import mortvana.legacy.dependent.seconddegree.morttech.block.BlockMachine;
 import mortvana.legacy.clean.morttech.block.BlockWoodmill;
 import mortvana.legacy.clean.paintedstone.recipe.RecipePaintbrush;
 import mortvana.legacy.errored.projectfluxgear.BlockAlloyAux;
@@ -499,9 +502,9 @@ public class FluxGearContent implements IFuelHandler {
 		gemOre = new BlockMortTechOre("GemOre", "dioptase_ore", "ruby_ore", "sapphire_ore", "green_sapphire_ore", "pink_sapphire_ore", "purple_sapphire_ore", "topaz_ore", "tanzanite_ore", "pyrope_ore", "malachite_ore", "olivine_ore", "super_sekrit_ore");
 		complexOre = new BlockMortTechOre("ComplexOre", "bauxite_ore", "monazite_ore", "chalcocite_ore", "millerite_ore", "bornite_ore", "limonite_ore", "magnetite_ore", "hematite_ore", "pyrolusite_ore", "molybdenite_ore", "cooprite_ore", "ilmenite_ore", "tetrahedrite_ore", "tennatite_ore", "pentalandite_ore", "nierdermayrite_ore");
 
-		GameRegistry.registerBlock(basicOre, ItemBlockBasicOre.class, ProjectFluxGear.modid + basicOre.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(gemOre, ItemBlockGemOre.class, ProjectFluxGear.modid + gemOre.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(complexOre, ItemBlockComplexOre.class, ProjectFluxGear.modid + complexOre.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(basicOre, ItemBlockBasicOre.class, "MortTech" + basicOre.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(gemOre, ItemBlockGemOre.class, "MortTech" + gemOre.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(complexOre, ItemBlockComplexOre.class, "MortTech" + complexOre.getUnlocalizedName().substring(5));
 
 		// GameRegistry.addRecipe(new ItemStack(snakeBag, 1, 0), "sss", "sss", "sss", 's', snake);
 
@@ -1366,7 +1369,7 @@ public class FluxGearContent implements IFuelHandler {
 			while (dyeAmount <= 8) {
 				Object[] input = new Object[dyeAmount + 1];
 				input[0] = paintbrush;
-				String dyeType = "dye" + ProjectFluxGear.dyeTypes[i];
+				String dyeType = "dye" + ColorHelper.TITLE_COLOR_NAMES[i];
 				switch (dyeAmount) {
 					case 8:
 						input[8] = dyeType;
@@ -2124,7 +2127,7 @@ public class FluxGearContent implements IFuelHandler {
         //Weird Science Legacy Recipes
         GameRegistry.addRecipe(new ShapelessOreRecipe(bucketLye, Items.water_bucket, dustAshes));
         GameRegistry.addRecipe(new ShapelessOreRecipe(bucketAcid, Items.water_bucket, Items.gunpowder));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(itemInteractive, 1, 0), "dustRust", "dustAluminium"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(dustThermite, "dustRust", "dustAluminium"));
         GameRegistry.addRecipe(new ShapedOreRecipe(toolProtoSonicWrench, "B B", "ADA", " B ", 'B', "ingotBronze", 'A', "ingotAluminium", 'D', "gemDioptase"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(foodMelonPan, Items.bread, Items.melon));
         if (LoadedHelper.isThermalExpansionLoaded) {
@@ -3253,7 +3256,7 @@ public class FluxGearContent implements IFuelHandler {
         //BlockNitrateEngine.setWaste(fluidSmog); //TODO
         cr.registerBlock(nitrateEngineBlock);
 
-        BlockBloodDyanmo bloodEngineBlock = new BlockBloodDyanmo("Hemoionic Dynamo", Material.rock);
+        BlockBloodDyanmo bloodEngineBlock = new BlockBloodDyanmo(Material.rock, "Hemoionic Dynamo");
         bloodEngineBlock.setTextureName("gui:genericmachine");
         bloodEngineBlock.addTopTextureName("gui:genericmachine6_off");
         bloodEngineBlock.addTopTextureName("gui:genericmachine6_on");
@@ -3268,7 +3271,7 @@ public class FluxGearContent implements IFuelHandler {
         bloodEngineBlock.addSidesTextureName("gui:blood_tank_8");
         cr.registerBlock(bloodEngineBlock);
 
-        BlockBloodDonation donationBlock = new BlockBloodDonation("Blood Donation Station", Material.rock);
+        BlockBloodDonation donationBlock = new BlockBloodDonation(Material.rock, "Blood Donation Station");
         donationBlock.setUnlocalizedName("blockBloodDonation");
         BlockBloodDonation.setFluid(fluidBlood);
         donationBlock.setTextureName("gui:genericmachine");
@@ -3285,7 +3288,7 @@ public class FluxGearContent implements IFuelHandler {
         donationBlock.addSidesTextureName("gui:blood_tank_8");
         cr.registerBlock(donationBlock);
 
-        BlockOccultEngine occultEngineBlock = new BlockOccultEngine("Occult Engine", Material.rock);
+        BlockOccultEngine occultEngineBlock = new BlockOccultEngine(Material.rock, "Occult Engine");
         occultEngineBlock.setTextureName("gui:occultengine_bottom");
         occultEngineBlock.addTopTextureName("gui:occultengine_top");
         occultEngineBlock.addSidesTextureName("gui:occultengine_empty");
@@ -3360,7 +3363,7 @@ public class FluxGearContent implements IFuelHandler {
         ArrayList<ItemStack> woodPlanks = OreDictionary.getOres("plankWood");
         if (woodPlanks != null && woodPlanks.size() > 0) {
             for (ItemStack item : woodPlanks) {
-                GameRegistry.addSmelting(item, FluxGearContent.dustAshes, 0.0F);
+                GameRegistry.addSmelting(item, dustAshes, 0.0F);
             }
         }
     }

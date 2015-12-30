@@ -16,18 +16,15 @@ public class FluxGearPacketWrangler {
 
 	public static void initialize() {
 		//INSTANCE.registerMessage(messageHandler, messageType, id, side);
-		INSTANCE.registerMessage(MessageTileMetadata.class, MessageTileMetadata.class, getNextDiscriminator(), Side.CLIENT);
+		registerMessage(MessageTileBase.class, Side.CLIENT);
 	}
 
-	/*
 	//TODO: Fix This
 	public static void registerMessage(Class <? extends IMessageHandler> messageClass, Side side) {
 		INSTANCE.registerMessage(messageClass, (Class) messageClass, getNextDiscriminator(), side);
-	}*/
+	}
 
 	public static byte getNextDiscriminator() {
-		byte discriminator = id;
-		id++;
-		return discriminator;
+		return id++;
 	}
 }

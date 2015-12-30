@@ -4,6 +4,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
+import mortvana.legacy.dependent.seconddegree.projectfluxgear.world.FluxGearWorldGenerator;
+import mortvana.legacy.dependent.seconddegree.projectfluxgear.world.GravelOreGenEventHandler;
+import mortvana.legacy.dependent.seconddegree.projectfluxgear.world.PoorOreGenerator;
+import mortvana.legacy.dependent.thirddegree.fluxgearaddons.network.ParticleGenPacketHandler;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -35,17 +39,12 @@ import mortvana.legacy.clean.apiology.common.VersionInfo;
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.network.ObjectPacket;
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.network.ObjectPacketHandler;
 import mortvana.legacy.clean.fluxgearaddons.network.ParticleGenPacket;
-import mortvana.legacy.dependent.firstdegree.fluxgearaddons.network.ParticleGenPacketHandler;
 import mortvana.legacy.clean.core.common.CommonProxy;
 import mortvana.legacy.clean.core.common.FluxGearConfig;
 import mortvana.legacy.clean.core.common.FluxGearConfigWorld;
 import mortvana.legacy.clean.weirdscience.util.ContentRegistry;
 import mortvana.legacy.clean.apiology.common.LocalizationManager;
 import mortvana.legacy.clean.morttech.util.Modules;
-import mortvana.legacy.clean.core.util.handlers.DummyHandler;
-import mortvana.legacy.dependent.firstdegree.projectfluxgear.world.FluxGearWorldGenerator;
-import mortvana.legacy.dependent.firstdegree.projectfluxgear.world.GravelOreGenEventHandler;
-import mortvana.legacy.dependent.firstdegree.projectfluxgear.world.PoorOreGenerator;
 import mortvana.melteddashboard.intermod.tinkers.TinkersHelper;
 import mortvana.melteddashboard.util.helpers.LoadedHelper;
 import mortvana.melteddashboard.util.helpers.StringHelper;
@@ -59,7 +58,7 @@ import tconstruct.library.tools.ToolCore;
 //Informs forge that this is a base mod class, and gives it some info for the
 //FML mod list. This is also where it looks to see if your client's version
 //matches the server's.
-@Mod(modid = ProjectFluxGear.modid, name = "MortTech", version = "0.0.0.1", dependencies = "required-after:Forge@[9.11,); required-after:Mantle; after:ForgeMutlipart", acceptedMinecraftVersions = VersionInfo.MCVersion)
+@Mod(modid = ProjectFluxGear.modID, name = "MortTech", version = "0.0.0.1", dependencies = "required-after:Forge@[9.11,); required-after:Mantle; after:ForgeMutlipart", acceptedMinecraftVersions = VersionInfo.MCVersion)
 //
 //Informs forge of the requirements:
 //
@@ -77,8 +76,7 @@ public class ProjectFluxGear {
 
     public static final boolean debugWorldGen = true;
 
-	public static final String modID = "";
-	public static final String modid = "MortTech";
+	public static final String modID = "MortTech";
 
 	// The instance of your mod that Forge uses.
 	// The instance of the mod that Forge will access. Note that it has to be
@@ -108,14 +106,10 @@ public class ProjectFluxGear {
 	    EnvironmentChecks.verifyEnvironmentSanity();
     }
 
-    public static FluxGearContent content = new FluxGearContent();
-
 	public String[] blacklistedBlocks;
 	public String[] blacklistedTiles;
 
     public static final FluxGearGUIHandler guiHandler = new FluxGearGUIHandler();
-
-	public static DummyHandler handler = new DummyHandler();
 
 	public static final String networkChannelName = "FluxGearAddons";
 	public static SimpleNetworkWrapper network;
@@ -134,14 +128,14 @@ public class ProjectFluxGear {
 	    FluxGearConfig.loadConfig(new File(event.getModConfigurationDirectory().getAbsolutePath() + "/Mortvana/ProjectFluxGear.cfg"));
 	    FluxGearConfigWorld.loadConfiguration(new File(event.getModConfigurationDirectory().getAbsolutePath() + "/Mortvana/ProjectFluxGear-World.cfg"));
 
-	    NetworkRegistry.instance().registerGuiHandler(instance, new FluxGearGUIHandler());
+	    NetworkRegistry.INSTANCE.registerGuiHandler(instance, new FluxGearGUIHandler());
 	    proxy.registerRenderers();
 
 	    for(Modules.Module module: Modules.modules) {
 		    module.preInit();
 	    }
 
-	    content.preInit();
+	    FluxGearContent.preInit();
 
         MinecraftForge.EVENT_BUS.register(this);
 	    // Hey, listen. Hey, listen. Hey-- ARTIFACT DETECTED, EeEEXXxTtTEEeRRrMmMmIiIiNnNAAaA*boom*
@@ -169,7 +163,7 @@ public class ProjectFluxGear {
 
 	    LocalizationManager.setupLocalizationInfo();
 
-	    content.oreRegistry();
+	    FluxGearContent.oreRegistry();
     }
 
     @EventHandler
@@ -179,7 +173,7 @@ public class ProjectFluxGear {
 
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 
-        content.init();
+        FluxGearContent.init();
         GameRegistry.registerFuelHandler(content);
 
         packetPipeline.initalize();
@@ -202,10 +196,10 @@ public class ProjectFluxGear {
 			Detailing chiseling = TConstructRegistry.getChiselDetailing();
 
 			for (int i = 0; i < 16; ++i) {
-				chiseling.addDetailing(content.coloredStone, i, content.coloredStoneBrick, i, chisel);
-				chiseling.addDetailing(content.coloredStoneBrick, i, content.coloredStoneRoad, i, chisel);
-				chiseling.addDetailing(content.coloredStoneRoad, i, content.coloredStoneFancyBrick, i, chisel);
-				chiseling.addDetailing(content.coloredStoneFancyBrick, i, content.coloredStoneSquareBrick, i, chisel);
+				chiseling.addDetailing(FluxGearContent.coloredStone, i, FluxGearContent.coloredStoneBrick, i, chisel);
+				chiseling.addDetailing(FluxGearContent.coloredStoneBrick, i, FluxGearContent.coloredStoneRoad, i, chisel);
+				chiseling.addDetailing(FluxGearContent.coloredStoneRoad, i, FluxGearContent.coloredStoneFancyBrick, i, chisel);
+				chiseling.addDetailing(FluxGearContent.coloredStoneFancyBrick, i, FluxGearContent.coloredStoneSquareBrick, i, chisel);
 			}
 		}
 
@@ -230,7 +224,7 @@ public class ProjectFluxGear {
 	    for (String tile : blacklistedTiles)
 		    blacklistTile(tile);
 
-        content.postInit();
+        FluxGearContent.postInit();
 	    ModRecipes.init();
 	    ModResearch.init();
 

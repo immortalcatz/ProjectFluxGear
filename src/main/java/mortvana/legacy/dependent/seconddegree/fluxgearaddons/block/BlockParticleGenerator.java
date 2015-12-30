@@ -1,7 +1,8 @@
-package mortvana.legacy.dependent.firstdegree.fluxgearaddons.block;
+package mortvana.legacy.dependent.seconddegree.fluxgearaddons.block;
 
 import java.util.Random;
 
+import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -22,7 +23,6 @@ import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.block.tile.TileEnergyStorageCore;
 import mortvana.legacy.dependent.seconddegree.fluxgearaddons.block.tile.TileParticleGenerator;
 import mortvana.legacy.clean.fluxgearaddons.client.particle.*;
-import mortvana.legacy.errored.core.ProjectFluxGear;
 
 public class BlockParticleGenerator extends FluxGearBlock {
 	public static Block instance;

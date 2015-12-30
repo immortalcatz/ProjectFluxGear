@@ -1,10 +1,9 @@
-package mortvana.legacy.dependent.firstdegree.thaumicrevelations.block;
+package mortvana.legacy.dependent.seconddegree.thaumicrevelations.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.projectfluxgear.library.ContentLibrary;
-import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;

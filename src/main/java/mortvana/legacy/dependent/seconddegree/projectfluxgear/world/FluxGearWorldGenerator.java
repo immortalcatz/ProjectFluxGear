@@ -11,7 +11,7 @@ import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 
-public class FluxGearWorldGenerator implements IWorldGenerator{
+public class FluxGearWorldGenerator implements IWorldGenerator {
 
 	public FluxGearWorldGenerator() {
 		chalcocite = new WorldGenMinable(FluxGearContent.blockOreMain, 0, 10, Blocks.stone);

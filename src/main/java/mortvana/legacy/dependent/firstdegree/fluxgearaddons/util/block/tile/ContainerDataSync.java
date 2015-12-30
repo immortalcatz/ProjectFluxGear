@@ -9,6 +9,7 @@ import mortvana.legacy.dependent.seconddegree.fluxgearaddons.network.ObjectPacke
 import mortvana.legacy.errored.core.ProjectFluxGear;
 
 public abstract class ContainerDataSync extends Container {
+
 	public ContainerDataSync() {}
 
 	public Object sendObject(TileObjectSync tile, short dataType, int index, Object object) {

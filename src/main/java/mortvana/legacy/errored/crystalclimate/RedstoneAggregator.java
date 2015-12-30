@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.util.Random;
 
+import mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -15,13 +16,14 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import mortvana.legacy.clean.crystalclimate.block.tile.CrystalLogic;
 import mortvana.legacy.dependent.firstdegree.crystalclimate.common.CrystalClimate;
 
+import static mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper.RANDOM;
+
 public class RedstoneAggregator extends TileEntity {
 	short currentTime;
 	public boolean active;
 	int crystalValue;
 	boolean blocked;
 	public short sugar;
-	private static Random random = new Random();
 	int[] nom;
 
 	@Override
@@ -42,8 +44,8 @@ public class RedstoneAggregator extends TileEntity {
 					scanForSugar(true);
 				}
 			}
-		} else if (random.nextInt(5) == 0) {
-			worldObj.spawnParticle("mobSpellAmbient", xCoord + random.nextFloat() * 3 - 1, yCoord + random.nextFloat() * 3 - 1, zCoord + random.nextFloat() * 3 - 1, 0, 0, 0);
+		} else if (RANDOM.nextInt(5) == 0) {
+			worldObj.spawnParticle("mobSpellAmbient", xCoord + RANDOM.nextFloat() * 3 - 1, yCoord + RANDOM.nextFloat() * 3 - 1, zCoord + RANDOM.nextFloat() * 3 - 1, 0, 0, 0);
 		}
 	}
 

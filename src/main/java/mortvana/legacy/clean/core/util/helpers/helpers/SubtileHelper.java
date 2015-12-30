@@ -1,4 +1,4 @@
-package mortvana.legacy.dependent.seconddegree.core.util.helpers;
+package mortvana.legacy.clean.core.util.helpers.helpers;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -9,8 +9,11 @@ import cpw.mods.fml.common.Loader;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import mortvana.legacy.dependent.firstdegree.core.util.block.subtile.SubtileEntity;
-import mortvana.legacy.dependent.firstdegree.core.util.block.subtile.SubtileSignature;
+import mortvana.legacy.clean.core.util.block.subtile.SubtileEntity;
+import mortvana.legacy.clean.core.util.block.subtile.SubtileSignature;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.IIcon;
 
 public class SubtileHelper {
 
@@ -59,4 +62,12 @@ public class SubtileHelper {
 	public static String getSubtileStringMapping(Class<? extends SubtileEntity> clazz) {
 		return subtiles.inverse().get(clazz);
 	}
+
+
+    //Moved form DummyHandler
+    public static IIcon getSubTileIconForName(String name) {
+            return Blocks.potatoes.getIcon(0, 0);
+        }
+
+    public static void registerBasicSignatureIcons(String name, IIconRegister register) {}
 }

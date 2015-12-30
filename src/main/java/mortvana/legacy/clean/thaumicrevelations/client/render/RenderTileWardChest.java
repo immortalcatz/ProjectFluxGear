@@ -1,4 +1,4 @@
-package mortvana.legacy.dependent.firstdegree.thaumicrevelations.client.render;
+package mortvana.legacy.clean.thaumicrevelations.client.render;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelChest;
