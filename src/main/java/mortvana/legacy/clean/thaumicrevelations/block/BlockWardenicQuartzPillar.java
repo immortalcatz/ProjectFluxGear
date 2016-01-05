@@ -2,8 +2,9 @@ package mortvana.legacy.clean.thaumicrevelations.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mortvana.projectfluxgear.library.ContentLibrary;
-import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
+
+import mortvana.projectfluxgear.library.FluxGearLibrary;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
@@ -18,7 +19,7 @@ public class BlockWardenicQuartzPillar extends BlockRotatedPillar {
     public BlockWardenicQuartzPillar() {
         super(Material.rock);
         setUnlocalizedName("blockInfusedQuartzPillar");
-        setCreativeTab(ContentLibrary.thaumicRevelationsTab);
+        setCreativeTab(FluxGearLibrary.thaumicRevelationsTab);
         setStepSound(Block.soundTypeStone);
         setHardness(0.8F);
     }

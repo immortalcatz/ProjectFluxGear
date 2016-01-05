@@ -25,12 +25,10 @@ public class BlockOccultEngine extends BlockBloodDyanmo implements IBlockMetaPow
 	}
 
 	@Override
-	public void receivePowerOn(World world, int x, int y, int z) {
-	}
+	public void receivePowerOn(World world, int x, int y, int z) {}
 
 	@Override
-	public void receivePowerOff(World world, int x, int y, int z) {
-	}
+	public void receivePowerOff(World world, int x, int y, int z) {}
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int metadata) {

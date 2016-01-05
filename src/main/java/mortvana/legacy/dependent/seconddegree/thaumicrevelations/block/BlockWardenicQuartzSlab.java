@@ -3,7 +3,9 @@ package mortvana.legacy.dependent.seconddegree.thaumicrevelations.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
-import mortvana.projectfluxgear.library.ContentLibrary;
+
+import mortvana.projectfluxgear.library.FluxGearLibrary;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
@@ -18,7 +20,7 @@ public class BlockWardenicQuartzSlab extends BlockSlab {
     public BlockWardenicQuartzSlab() {
         super(false, Material.rock);
         setUnlocalizedName("blockInfusedQuartzSlab");
-        setCreativeTab(ContentLibrary.thaumicRevelationsTab);
+        setCreativeTab(FluxGearLibrary.thaumicRevelationsTab);
         setStepSound(Block.soundTypeStone);
         setHardness(0.8F);
         setLightOpacity(0);

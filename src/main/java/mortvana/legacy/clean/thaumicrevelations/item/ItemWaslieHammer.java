@@ -1,6 +1,5 @@
 package mortvana.legacy.clean.thaumicrevelations.item;
 
-import mortvana.projectfluxgear.library.ContentLibrary;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
@@ -8,16 +7,15 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
-
-import mortvana.legacy.errored.core.ProjectFluxGear;
+import mortvana.projectfluxgear.core.common.ProjectFluxGear;
+import mortvana.projectfluxgear.library.FluxGearLibrary;
 
 public class ItemWaslieHammer extends Item {
 
 	public ItemWaslieHammer() {
 		super();
 		setUnlocalizedName("itemWaslieHammer");
-		setCreativeTab(ContentLibrary.thaumicRevelationsTab);
+		setCreativeTab(FluxGearLibrary.thaumicRevelationsTab);
 		setMaxStackSize(1);
 		canRepair = false;
 	}

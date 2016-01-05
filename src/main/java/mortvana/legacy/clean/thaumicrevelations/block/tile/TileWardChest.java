@@ -1,6 +1,6 @@
 package mortvana.legacy.clean.thaumicrevelations.block.tile;
 
-import mortvana.legacy.dependent.firstdegree.thaumicrevelations.block.BlockWardChest;
+import mortvana.legacy.clean.thaumicrevelations.block.BlockWardChest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;

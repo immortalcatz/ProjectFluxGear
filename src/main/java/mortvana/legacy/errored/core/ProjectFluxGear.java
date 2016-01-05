@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
+import mortvana.legacy.clean.core.util.runtime.EnvironmentChecks;
 import mortvana.legacy.dependent.seconddegree.projectfluxgear.world.FluxGearWorldGenerator;
 import mortvana.legacy.dependent.seconddegree.projectfluxgear.world.GravelOreGenEventHandler;
 import mortvana.legacy.dependent.seconddegree.projectfluxgear.world.PoorOreGenerator;
@@ -81,8 +82,8 @@ public class ProjectFluxGear {
 	// The instance of your mod that Forge uses.
 	// The instance of the mod that Forge will access. Note that it has to be
 	//set by hand in the preInit step.
-    @Instance(modID)
-    public static ProjectFluxGear instance;
+    //@Instance(modID)
+    //public static ProjectFluxGear instance;
 	public static Random random = new Random();
 
 	public static final String[] dyeTypes = new String[] { "White", "Orange", "Magenta", "LightBlue", "Yellow", "Lime", "Pink", "Gray", "LightGray", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Black" };
@@ -261,7 +262,7 @@ public class ProjectFluxGear {
 
     @EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
-        content.registerDispenserHandlers();
+        FluxGearContent.registerDispenserHandlers();
     }
 
 	public void blacklistBlock(String string) {

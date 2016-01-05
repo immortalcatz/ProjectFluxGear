@@ -8,11 +8,13 @@ import mortvana.melteddashboard.util.enums.EnumBlockType;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;
 
+import mortvana.projectfluxgear.library.FluxGearLibrary;
+
 public class BlockAlloyAux extends AdvFluxGearBlock {
 
     public BlockAlloyAux() {
         //TODO: Fix String/IIcon Situation...
-        super(Material.iron, FluxGearContent.tabMaterials, EnumBlockType.STORAGE, BlockInformation.NAMES_ALLOY_AUX, BlockInformation.TEXTURES_FULL, BlockInformation.HARDNESS_ALLOY_AUX, BlockInformation.RESISTANCE_ALLOY_AUX, BlockInformation.LIGHT_ALLOY_AUX, BlockInformation.TEXTURE_LOCATION_BLOCK);
+        super(Material.iron, FluxGearContent.tabMaterials, EnumBlockType.STORAGE, BlockInformation.NAMES_ALLOY_AUX, BlockInformation.TEXTURES_FULL, BlockInformation.HARDNESS_ALLOY_AUX, BlockInformation.RESISTANCE_ALLOY_AUX, BlockInformation.LIGHT_ALLOY_AUX, FluxGearLibrary.TEX_LOC_BLOCK);
         setUnlocalizedName("mortvana.projectfluxgear.alloyAux");
     }
 

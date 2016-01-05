@@ -1,7 +1,9 @@
-package mortvana.legacy.dependent.firstdegree.thaumicrevelations.block;
+package mortvana.legacy.clean.thaumicrevelations.block;
 
 import mortvana.legacy.clean.thaumicrevelations.block.tile.TileWardChest;
-import mortvana.projectfluxgear.library.ContentLibrary;
+
+import mortvana.projectfluxgear.library.*;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -21,7 +23,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.melteddashboard.util.helpers.ChatHelper;
 import mortvana.melteddashboard.util.helpers.StringHelper;
 
-import mortvana.legacy.errored.core.ClientProxy;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.items.wands.ItemWandCasting;
@@ -40,7 +41,7 @@ public class BlockWardChest extends BlockContainer {
 		ThaumcraftApi.portableHoleBlackList.add(this);
 
 		if (registerInCreative()) {
-			setCreativeTab(ContentLibrary.thaumicRevelationsTab);
+			setCreativeTab(FluxGearLibrary.thaumicRevelationsTab);
 		}
 	}
 
@@ -142,12 +143,12 @@ public class BlockWardChest extends BlockContainer {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
-		blockIcon = iconRegister.registerIcon("fluxgear:" + getUnlocalizedName().replaceAll("tile.", ""));
+		blockIcon = iconRegister.registerIcon(FluxGearLibrary.TEX_LOC_DEFAULT + getUnlocalizedName().replaceAll("tile.", ""));
 	}
 
 	@Override
 	public int getRenderType() {
-		return ClientProxy.wardedChestID;
+		return FluxGearLibrary.wardedChestRenderID;
 	}
 
 	@Override

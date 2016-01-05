@@ -37,8 +37,8 @@ public class ItemEssenceCrystal extends Item {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack itemstack, World par2World, EntityPlayer player) {
-		player.setItemInUse(itemstack, this.getMaxItemUseDuration(itemstack));
+	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
+		player.setItemInUse(itemstack, getMaxItemUseDuration(itemstack));
 		return itemstack;
 	}
 

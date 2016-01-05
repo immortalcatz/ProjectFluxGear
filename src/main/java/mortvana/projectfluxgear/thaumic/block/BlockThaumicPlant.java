@@ -7,20 +7,19 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 
 import mortvana.melteddashboard.block.FluxGearBlock;
-import mortvana.projectfluxgear.core.common.FluxGearCoreContent;
-import mortvana.projectfluxgear.library.ContentLibrary;
-import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
+
+import mortvana.projectfluxgear.library.FluxGearLibrary;
 
 public class BlockThaumicPlant extends FluxGearBlock {
 
 	public BlockThaumicPlant() {
-		super(Material.plants, ContentLibrary.thaumicRevelationsTab);
+		super(Material.plants, FluxGearLibrary.thaumicRevelationsTab);
 		setStepSound(Block.soundTypeGrass);
 	}
 
 	@Override
 	public Item getItemDropped(int metadata, Random random, int lemon) {
-		return metadata < 8 ? Item.getItemFromBlock(this) : ContentLibrary.generalItem;
+		return metadata < 8 ? Item.getItemFromBlock(this) : FluxGearLibrary.generalItem;
 	}
 
 	@Override

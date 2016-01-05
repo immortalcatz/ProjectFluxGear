@@ -2,7 +2,6 @@ package mortvana.legacy.dependent.seconddegree.thaumicrevelations.item;
 
 import java.util.List;
 
-import mortvana.projectfluxgear.library.ContentLibrary;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -14,7 +13,7 @@ import net.minecraftforge.common.ISpecialArmor;
 import mortvana.melteddashboard.util.enums.EnumArmorType;
 import mortvana.melteddashboard.util.helpers.StringHelper;
 
-import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
+import mortvana.projectfluxgear.library.FluxGearLibrary;
 
 import mortvana.legacy.clean.core.util.item.ItemArmorFluxGear;
 import mortvana.projectfluxgear.api.item.armor.IWardenicArmor;
@@ -27,7 +26,7 @@ public class ItemWardenicArmor extends ItemArmorFluxGear implements ISpecialArmo
 
 	public ItemWardenicArmor(EnumArmorType type, String name, String sheet, String icon) {
 		super(FluxGearContent.materialWarden, 3, type, name, sheet, icon);
-		setCreativeTab(ContentLibrary.thaumicRevelationsTab);
+		setCreativeTab(FluxGearLibrary.thaumicRevelationsTab);
 	}
 
 	@Override

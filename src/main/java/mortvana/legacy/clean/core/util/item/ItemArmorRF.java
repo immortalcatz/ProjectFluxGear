@@ -15,12 +15,8 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.ISpecialArmor;
 
-import cofh.api.energy.IEnergyContainerItem;
 import cofh.core.item.ItemArmorAdv;
-
-import mortvana.projectfluxgear.core.data.StringDatabase;
 
 /**
  * Deliciously Amazing Code from Redstone Arsenal by Team CoFH
@@ -65,7 +61,7 @@ public class ItemArmorRF extends ItemArmorAdv implements IFluxArmor {
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
 
         if (StringHelper.displayShiftForDetails && !StringHelper.isShiftKeyDown()) {
-            list.add(StringDatabase.SHIFT_FOR_DETAILS);
+            list.add(StringHelper.holdShiftForDetails());
         }
         if (!StringHelper.isShiftKeyDown()) {
             return;

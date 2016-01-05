@@ -23,8 +23,9 @@ import net.minecraftforge.common.util.RotationHelper;
 
 import mortvana.melteddashboard.block.FluxGearBlockTileEntity;
 
+import mortvana.projectfluxgear.core.common.ProjectFluxGear;
+
 import mortvana.legacy.errored.weirdscience.TileEntityNitrateDynamo;
-import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.legacy.clean.core.util.helpers.BlockHelper;
 
 //A copy-and-paste from BlockNitrateEngine.

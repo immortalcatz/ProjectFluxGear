@@ -1,8 +1,9 @@
 package mortvana.legacy.clean.thaumicrevelations.block;
 
 import mortvana.legacy.clean.thaumicrevelations.block.tile.TileWitor;
-import mortvana.projectfluxgear.library.ContentLibrary;
-import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
+
+import mortvana.projectfluxgear.library.FluxGearLibrary;
+
 import thaumcraft.common.config.Config;
 
 import net.minecraft.block.Block;
@@ -17,7 +18,7 @@ public class BlockWitor extends BlockContainer {
         super(Config.airyMaterial);
         setUnlocalizedName("blockWitor");
         setStepSound(Block.soundTypeCloth);
-        setCreativeTab(ContentLibrary.thaumicRevelationsTab);
+        setCreativeTab(FluxGearLibrary.thaumicRevelationsTab);
         setBlockBounds(0.3F, 0.3F, 0.3F, 0.7F, 0.7F, 0.7F);
 
     }

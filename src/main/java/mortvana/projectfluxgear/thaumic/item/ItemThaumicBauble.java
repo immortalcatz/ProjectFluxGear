@@ -6,13 +6,12 @@ import net.minecraft.world.World;
 
 import mortvana.melteddashboard.intermod.baubles.item.FluxGearItemBauble;
 
-import mortvana.projectfluxgear.library.ContentLibrary;
-import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
+import mortvana.projectfluxgear.library.FluxGearLibrary;
 
 public class ItemThaumicBauble extends FluxGearItemBauble {
 
 	public ItemThaumicBauble() {
-		super("fluxgear", ContentLibrary.thaumicRevelationsTab);
+		super("fluxgear", FluxGearLibrary.thaumicRevelationsTab);
 	}
 
 	@Override

@@ -23,7 +23,7 @@ import mortvana.legacy.dependent.seconddegree.crystalclimate.block.tile.*;
 public class BlockTerraformer extends BlockContainer {
 	public BlockTerraformer() {
 		super(Material.iron);
-		this.setCreativeTab(CrystalClimate.tab);
+		setCreativeTab(CrystalClimate.tab);
 		setStepSound(Block.soundTypeMetal);
 	}
 
@@ -61,9 +61,9 @@ public class BlockTerraformer extends BlockContainer {
 
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
-		this.icons = new IIcon[textureNames.length];
+		icons = new IIcon[textureNames.length];
 
-		for (int i = 0; i < this.icons.length; ++i) {
+		for (int i = 0; i < icons.length; i++) {
 			this.icons[i] = iconRegister.registerIcon("crystal:" + textureNames[i]);
 		}
 	}

@@ -2,14 +2,6 @@ package mortvana.legacy.dependent.firstdegree.core.common;
 
 import java.util.*;
 
-import mortvana.legacy.clean.morttech.block.tile.WoodmillLogic;
-import mortvana.legacy.clean.thaumicrevelations.item.ItemWardenicBlade;
-import mortvana.legacy.clean.weirdscience.block.BlockBloodDonation;
-import mortvana.legacy.dependent.firstdegree.thaumicrevelations.entity.EntityFleshProjectile;
-import mortvana.legacy.errored.thaumicrevelations.ItemFocusIllumination;
-import mortvana.melteddashboard.util.helpers.ColorHelper;
-import mortvana.projectfluxgear.core.common.ProjectFluxGear;
-import mortvana.projectfluxgear.library.ContentLibrary;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.material.Material;
@@ -18,22 +10,34 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
+
 import cpw.mods.fml.common.IFuelHandler;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.common.registry.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
+import net.minecraftforge.fluids.*;
+import net.minecraftforge.oredict.*;
 
 import cofh.core.fluid.BlockFluidCoFHBase;
 import mantle.lib.TabTools;
+
+import mortvana.melteddashboard.block.FluxGearItemBlock;
+import mortvana.melteddashboard.common.MeltedDashboardCore;
+import mortvana.melteddashboard.intermod.tinkers.TinkersHelper;
+import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
+import mortvana.melteddashboard.item.FluxGearItem;
+import mortvana.melteddashboard.util.enums.EnumArmorType;
+import mortvana.melteddashboard.util.helpers.*;
+
+import mortvana.projectfluxgear.api.data.TweakItemRegistry;
+import mortvana.projectfluxgear.immersion.item.ItemPaintbrush;
+import mortvana.projectfluxgear.thaumic.augments.*;
+import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
+import mortvana.projectfluxgear.thaumic.item.ItemThaumicBauble;
+import mortvana.projectfluxgear.tinkers.modifiers.ActiveToolModFeedback;
+import mortvana.projectfluxgear.util.helpers.TweakHelper;
 
 import mekanism.api.recipe.RecipeHelper;
 import mortvana.legacy.clean.core.common.FluxGearConfig;
@@ -46,79 +50,54 @@ import mortvana.legacy.clean.core.util.item.BucketFluxGear;
 import mortvana.legacy.clean.core.util.item.ItemArmorRF;
 import mortvana.legacy.clean.fluxgeartweaks.block.BlockTimeyWimey;
 import mortvana.legacy.clean.fluxgeartweaks.block.tileentity.TileTimeyWimey;
-import mortvana.legacy.clean.morttech.block.itemblock.ItemBlockBasicOre;
-import mortvana.legacy.clean.morttech.block.itemblock.ItemBlockComplexOre;
-import mortvana.legacy.clean.morttech.block.itemblock.ItemBlockGemOre;
+import mortvana.legacy.clean.morttech.block.BlockCrank;
+import mortvana.legacy.clean.morttech.block.BlockWoodmill;
+import mortvana.legacy.clean.morttech.block.itemblock.*;
+import mortvana.legacy.clean.morttech.block.tile.WoodmillLogic;
 import mortvana.legacy.clean.morttech.item.WrenchSonic;
+import mortvana.legacy.clean.paintedstone.recipe.RecipePaintbrush;
 import mortvana.legacy.clean.projectfluxgear.item.ItemPrototypeSonicWrench;
 import mortvana.legacy.clean.thaumicrevelations.block.*;
 import mortvana.legacy.clean.thaumicrevelations.block.tile.TileWitor;
-
 import mortvana.legacy.clean.thaumicrevelations.entity.EntityPurity;
-import mortvana.legacy.clean.thaumicrevelations.item.ItemFocusPurity;
-import mortvana.legacy.clean.thaumicrevelations.item.ItemWaslieHammer;
+import mortvana.legacy.clean.thaumicrevelations.item.*;
+import mortvana.legacy.clean.thaumicrevelations.util.WardenicChargeHelper;
+import mortvana.legacy.clean.weirdscience.block.BlockBloodDonation;
 import mortvana.legacy.clean.weirdscience.block.BlockFuelBurner;
 import mortvana.legacy.clean.weirdscience.block.fluid.BlockFluidAcid;
+import mortvana.legacy.clean.weirdscience.block.tile.TileEntityGunpowderDynamo;
+import mortvana.legacy.clean.weirdscience.util.ContentRegistry;
 import mortvana.legacy.clean.weirdscience.util.block.fluid.BlockFluidClassicWS;
 import mortvana.legacy.clean.weirdscience.util.block.fluid.BlockFluidReactive;
 import mortvana.legacy.clean.weirdscience.util.chemistry.ReactionSpec;
-import mortvana.legacy.dependent.seconddegree.morttech.block.BlockMortTechOre;
-import mortvana.legacy.dependent.seconddegree.morttech.item.DebuggingSpork;
-import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.fluid.BlockFluidGhastTears;
-import mortvana.legacy.dependent.seconddegree.thaumicrevelations.block.BlockWardenicQuartzSlab;
-import mortvana.legacy.dependent.seconddegree.thaumicrevelations.block.BlockWardenicQuartzStairs;
-import mortvana.legacy.dependent.seconddegree.thaumicrevelations.item.ItemWardenicArmor;
-import mortvana.legacy.dependent.firstdegree.weirdscience.block.*;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreAux;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreMain;
-import mortvana.legacy.dependent.seconddegree.projectfluxgear.block.BlockPlant;
-import mortvana.legacy.errored.core.ProjectFluxGear;
-import mortvana.legacy.clean.morttech.block.BlockCrank;
+import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.fluid.BlockFluidGhastTears;
+import mortvana.legacy.dependent.firstdegree.thaumicrevelations.entity.EntityFleshProjectile;
+import mortvana.legacy.dependent.firstdegree.weirdscience.block.*;
 import mortvana.legacy.dependent.seconddegree.morttech.block.BlockMachine;
-import mortvana.legacy.clean.morttech.block.BlockWoodmill;
-import mortvana.legacy.clean.paintedstone.recipe.RecipePaintbrush;
-import mortvana.legacy.errored.projectfluxgear.BlockAlloyAux;
-import mortvana.legacy.errored.projectfluxgear.BlockDecorStone;
-import mortvana.legacy.errored.projectfluxgear.ItemInteractivePFG;
-import mortvana.legacy.errored.projectfluxgear.BlockInformation;
+import mortvana.legacy.dependent.seconddegree.morttech.block.BlockMortTechOre;
+import mortvana.legacy.dependent.seconddegree.morttech.item.DebuggingSpork;
+import mortvana.legacy.dependent.seconddegree.projectfluxgear.block.BlockPlant;
+import mortvana.legacy.dependent.seconddegree.thaumicrevelations.block.BlockWardenicQuartzSlab;
+import mortvana.legacy.dependent.seconddegree.thaumicrevelations.block.BlockWardenicQuartzStairs;
 import mortvana.legacy.dependent.seconddegree.thaumicrevelations.entity.EntityFleshGolem;
-import mortvana.legacy.clean.thaumicrevelations.util.WardenicChargeHelper;
+import mortvana.legacy.dependent.seconddegree.thaumicrevelations.item.ItemWardenicArmor;
+import mortvana.legacy.errored.projectfluxgear.*;
+import mortvana.legacy.errored.thaumicrevelations.ItemFocusIllumination;
 import mortvana.legacy.errored.weirdscience.BlockBloodDyanmo;
 import mortvana.legacy.errored.weirdscience.BlockFluidSmog;
-import mortvana.legacy.clean.weirdscience.block.tile.TileEntityGunpowderDynamo;
-import mortvana.legacy.clean.weirdscience.util.ContentRegistry;
-
-import mortvana.melteddashboard.block.FluxGearItemBlock;
-import mortvana.melteddashboard.common.MeltedDashboardCore;
-import mortvana.melteddashboard.intermod.tinkers.TinkersHelper;
-import mortvana.melteddashboard.inventory.FluxGearCreativeTab;
-import mortvana.melteddashboard.item.FluxGearItem;
-import mortvana.melteddashboard.util.enums.EnumArmorType;
-import mortvana.melteddashboard.util.helpers.CraftingHelper;
-import mortvana.melteddashboard.util.helpers.LoadedHelper;
-
-import mortvana.projectfluxgear.thaumic.augments.ThaumicAugmentBase;
-import mortvana.projectfluxgear.immersion.item.ItemPaintbrush;
-import mortvana.projectfluxgear.thaumic.augments.*;
-import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
-import mortvana.projectfluxgear.thaumic.item.ItemThaumicBauble;
-import mortvana.projectfluxgear.tinkers.modifiers.ActiveToolModFeedback;
-import mortvana.projectfluxgear.api.data.TweakItemRegistry;
-import mortvana.projectfluxgear.util.helpers.TweakHelper;
 
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.crafting.CrucibleRecipe;
 import thaumcraft.api.crafting.ShapedArcaneRecipe;
-import thaumcraft.api.research.ResearchCategories;
-import thaumcraft.api.research.ResearchCategoryList;
-import thaumcraft.api.research.ResearchItem;
-import thaumcraft.api.research.ResearchPage;
+import thaumcraft.api.research.*;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
 
-import static mortvana.projectfluxgear.library.ContentLibrary.WARDEN;
+import static mortvana.projectfluxgear.library.FluxGearLibrary.WARDEN;
 
 public class FluxGearContent implements IFuelHandler {
 
@@ -858,7 +837,6 @@ public class FluxGearContent implements IFuelHandler {
 	public static final CreativeTabs techTab = new FluxGearCreativeTab("PFG-Tech", "fluxgear.techTab", FluxGearContent.toolProtoSonicWrench);
 	public static final CreativeTabs generalTab = new FluxGearCreativeTab("PFG-General", "fluxgear.generalTab", new ItemStack(Items.potato));
 	public static final CreativeTabs stonesTab = new FluxGearCreativeTab("PFG-Stone", "fluxgear.stoneTab", new ItemStack(Blocks.obsidian));
-	public static final CreativeTabs thaumicTab = new FluxGearCreativeTab("PFG-Thaumic", "fluxgear.thaumicTab", new ItemStack(ContentLibrary.thaumicBauble));
 	//MOAR Tabs?
 
 
@@ -890,8 +868,8 @@ public class FluxGearContent implements IFuelHandler {
 		wardenicCrystal = FluxGearContent.itemMaterial.addItem(15001, "wardenicCrystal");
 		wardenicQuartz = FluxGearContent.itemMaterial.addItem(15002, "wardenicQuartz");
 
-		EntityRegistry.registerModEntity(EntityPurity.class, "PurityOrb", 0, ProjectFluxGear.instance, 64, 10, true);
-		EntityRegistry.registerModEntity(EntityFleshProjectile.class, "ThrownFlesh", 1, ProjectFluxGear.instance, 64, 3, true); //TODO
+		EntityRegistry.registerModEntity(EntityPurity.class, "PurityOrb", 0, mortvana.projectfluxgear.core.common.ProjectFluxGear.instance, 64, 10, true);
+		EntityRegistry.registerModEntity(EntityFleshProjectile.class, "ThrownFlesh", 1, mortvana.projectfluxgear.core.common.ProjectFluxGear.instance, 64, 3, true); //TODO
 		EntityRegistry.registerGlobalEntityID(EntityFleshGolem.class, "FleshGolem", EntityRegistry.findGlobalUniqueEntityId(), 0xE4A2A9, 0x96452E);
 
 		ThaumcraftApi.registerObjectTag(exubituraPetal, new AspectList().add(WARDEN, 1));

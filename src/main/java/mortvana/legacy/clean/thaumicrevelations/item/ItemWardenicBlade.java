@@ -2,7 +2,6 @@ package mortvana.legacy.clean.thaumicrevelations.item;
 
 import java.util.List;
 
-import mortvana.projectfluxgear.library.ContentLibrary;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +14,8 @@ import mortvana.melteddashboard.util.FluxGearDamageSources;
 import mortvana.melteddashboard.util.helpers.StringHelper;
 
 import mortvana.projectfluxgear.api.item.IWardenicEquipment;
+import mortvana.projectfluxgear.library.FluxGearLibrary;
+
 import mortvana.legacy.clean.thaumicrevelations.util.WardenicChargeHelper;
 
 public class ItemWardenicBlade extends Item implements IWardenicEquipment {
@@ -22,7 +23,7 @@ public class ItemWardenicBlade extends Item implements IWardenicEquipment {
 	public ItemWardenicBlade() {
 		super();
 		setUnlocalizedName("itemWardenicBlade");
-		setCreativeTab(ContentLibrary.thaumicRevelationsTab);
+		setCreativeTab(FluxGearLibrary.thaumicRevelationsTab);
 		setMaxStackSize(1);
 
 		setFull3D();

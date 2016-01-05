@@ -20,7 +20,7 @@ import mortvana.projectfluxgear.thaumic.enchant.EnchantmentStabilizing;
 import mortvana.projectfluxgear.thaumic.item.ItemThaumicBauble;
 import mortvana.projectfluxgear.thaumic.world.ExubituraGenerator;
 
-import static mortvana.projectfluxgear.library.ContentLibrary.*;
+import static mortvana.projectfluxgear.library.FluxGearLibrary.*;
 
 public class ThaumicRevelations implements IConfigInitialized {
 

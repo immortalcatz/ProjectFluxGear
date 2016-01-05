@@ -23,9 +23,10 @@ import mortvana.legacy.dependent.seconddegree.crystalclimate.block.tile.EssenceE
 
 public class BlockEssenceExtractor extends BlockContainer {
 	@SideOnly(Side.CLIENT)
-	private IIcon field_94461_a;
+	private IIcon topIcon;
+
 	@SideOnly(Side.CLIENT)
-	private IIcon field_94460_b;
+	private IIcon bottomIcon;
 
 	public BlockEssenceExtractor() {
 		super( Material.rock);
@@ -41,10 +42,11 @@ public class BlockEssenceExtractor extends BlockContainer {
 		return false;
 	}
 
-	@SideOnly(Side.CLIENT)
+
 	/**
 	 * A randomly called display update to be able to add particles or other items for display
 	 */
+	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int x, int y, int z, Random random) {
 		super.randomDisplayTick(world, x, y, z, random);
 
@@ -76,12 +78,13 @@ public class BlockEssenceExtractor extends BlockContainer {
 		return false;
 	}
 
-	@SideOnly(Side.CLIENT)
+
 	/**
 	 * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
 	 */
+	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int par1, int par2) {
-		return par1 == 0 ? this.field_94460_b : (par1 == 1 ? this.field_94461_a : this.blockIcon);
+		return par1 == 0 ? bottomIcon : (par1 == 1 ? topIcon : blockIcon);
 	}
 
 	/**
@@ -142,7 +145,7 @@ public class BlockEssenceExtractor extends BlockContainer {
 	 */
 	public void registerIcons(IIconRegister iconRegister) {
 		blockIcon = iconRegister.registerIcon("crystal:extractor_side");
-		field_94461_a = iconRegister.registerIcon("crystal:extractor_top");
-		field_94460_b = iconRegister.registerIcon("crystal:extractor_bottom");
+		topIcon = iconRegister.registerIcon("crystal:extractor_top");
+		bottomIcon = iconRegister.registerIcon("crystal:extractor_bottom");
 	}
 }

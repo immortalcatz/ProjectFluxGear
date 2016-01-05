@@ -16,7 +16,7 @@ import mortvana.melteddashboard.registry.material.MaterialData;
 import mortvana.melteddashboard.util.ConfigBase;
 import mortvana.melteddashboard.util.IConfigInitialized;
 
-import static mortvana.projectfluxgear.library.ContentLibrary.*;
+import static mortvana.projectfluxgear.library.FluxGearLibrary.*;
 
 public class FluxGearCoreContent implements IConfigInitialized {
 

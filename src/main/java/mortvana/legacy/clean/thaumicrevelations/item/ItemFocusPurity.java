@@ -1,6 +1,5 @@
 package mortvana.legacy.clean.thaumicrevelations.item;
 
-import mortvana.projectfluxgear.library.ContentLibrary;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -8,7 +7,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
+import mortvana.projectfluxgear.library.FluxGearLibrary;
 
 import mortvana.legacy.clean.thaumicrevelations.entity.EntityPurity;
 import thaumcraft.api.aspects.Aspect;
@@ -24,7 +23,7 @@ public class ItemFocusPurity extends ItemFocusBasic {
 	public ItemFocusPurity() {
 		super();
 		setUnlocalizedName("itemFocusPurity");
-		setCreativeTab(ContentLibrary.thaumicRevelationsTab);
+		setCreativeTab(FluxGearLibrary.thaumicRevelationsTab);
 	}
 
 	@Override

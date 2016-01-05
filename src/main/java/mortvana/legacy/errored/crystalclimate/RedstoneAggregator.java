@@ -81,7 +81,7 @@ public class RedstoneAggregator extends TileEntity {
 		}
 	}
 
-	void updateNearbyClients() {
+	/*void updateNearbyClients() {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
 		DataOutputStream outputStream = new DataOutputStream(bos);
 		try {
@@ -100,7 +100,7 @@ public class RedstoneAggregator extends TileEntity {
 		packet.length = bos.size();
 
 		PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.dimensionId, packet);
-	}
+	}*/
 
 	boolean findSugarInLayer(int range) {
 		for (int x = -range; x <= range; x++) {
@@ -166,7 +166,7 @@ public class RedstoneAggregator extends TileEntity {
 			if (validBlock(block)) {
 				worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord, 3, 3);
 				//spawnNegativeAir(3, 1);
-						
+
 				int value = 24;
 				//WorldTracker.updateTheft(worldObj.provider.dimensionId, xCoord, zCoord, value, CrystalType.Light);
 				//WorldTracker.updateCharge(worldObj.provider.dimensionId, xCoord, zCoord, -value, CrystalType.Light);

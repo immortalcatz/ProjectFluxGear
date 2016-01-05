@@ -17,8 +17,9 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Random;
 
+import static mortvana.projectfluxgear.library.FluxGearLibrary.*;
+
 public class BlockDecorStone extends Block {
-    public String[] rockNames = BlockInformation.rockNames;
     public IIcon[] icons;
     public float[] hardness;
     public float[] resistance;
@@ -48,7 +49,7 @@ public class BlockDecorStone extends Block {
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-        for (int i = 0; i < rockNames.length; i++) {
+        for (int i = 0; i < NAMES_ROCKS.length; i++) {
             list.add(new ItemStack(item, 1, i));
         }
     }
@@ -121,11 +122,11 @@ public class BlockDecorStone extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
-        icons = new IIcon[rockNames.length];
+        icons = new IIcon[NAMES_ROCKS.length];
         for (int i = 0; i < icons.length; ++i) {
-            icons[i] = iconRegister.registerIcon("mechanicsstoneworks:rocks/" + rockNames[i]);
+            icons[i] = iconRegister.registerIcon(TEX_LOC_DEFAULT + "rocks/" + NAMES_ROCKS[i]);
         }
-        overlayTexture = iconRegister.registerIcon("mechanicsstoneworks:overlays/" + overlayType);
+        overlayTexture = iconRegister.registerIcon(TEX_LOC_DEFAULT + "overlays/" + overlayType);
     }
 
     @SideOnly(Side.CLIENT)

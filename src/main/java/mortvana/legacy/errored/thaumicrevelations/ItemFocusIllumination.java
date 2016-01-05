@@ -1,6 +1,7 @@
 package mortvana.legacy.errored.thaumicrevelations;
 
-import mortvana.projectfluxgear.library.ContentLibrary;
+import mortvana.projectfluxgear.library.*;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -16,6 +17,8 @@ import thaumcraft.api.wands.FocusUpgradeType;
 import thaumcraft.api.wands.ItemFocusBasic;
 import thaumcraft.common.items.wands.ItemWandCasting;
 
+import static mortvana.projectfluxgear.library.FluxGearLibrary.*;
+
 public class ItemFocusIllumination extends ItemFocusBasic {
 
 	public IIcon depth, orn;
@@ -23,14 +26,14 @@ public class ItemFocusIllumination extends ItemFocusBasic {
 	public ItemFocusIllumination() {
 		super();
 		setUnlocalizedName("itemFocusIllumination");
-		setCreativeTab(ContentLibrary.thaumicRevelationsTab);
+		setCreativeTab(thaumicRevelationsTab);
 	}
 
 	@Override
 	public void registerIcons(IIconRegister iconRegister) {
-		icon = iconRegister.registerIcon("trevelations:purityfocus");
-		depth = iconRegister.registerIcon("trevelations:puritydepth");
-		orn = iconRegister.registerIcon("trevelations:purityorn");
+		icon = iconRegister.registerIcon(TEX_LOC_DEFAULT + "purityfocus");
+		depth = iconRegister.registerIcon(TEX_LOC_DEFAULT + "puritydepth");
+		orn = iconRegister.registerIcon(TEX_LOC_DEFAULT + "purityorn");
 	}
 
 	@Override

@@ -15,19 +15,7 @@ import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 public class ItemDust extends CraftingItem {
 
 	public ItemDust() {
-        super(materialNames, getTextures(), "dusts/", "morttech", FluxGearContent.componentsTab);
-    }
-
-    private static String[] getTextures () {
-        String[] names = new String[craftingTextures.length];
-        for (int i = 0; i < craftingTextures.length; i++) {
-            if (craftingTextures[i].equals("")) {
-                names[i] = "";
-            } else {
-                names[i] = craftingTextures[i];
-            }
-        }
-        return names;
+        super(materialNames, craftingTextures, "dusts/", "morttech", FluxGearContent.componentsTab);
     }
 
     static String[] materialNames = new String[] {"sawdust", "coal", "charcoal", "carbide", "flint", "clay", "ceramic", "iron", "gold", "bismuth", "aluminium", "nigelite", "copper", "tin", "zinc", "lead", "silver", "chromium", "titanium", "tungsten", "palladium", "platinum", "nickel", "manganese", "cobalt", "gallium", "indium", "cadmium", "tellurium", "vanadium", "emerald", "lapis", "diamond", "obsidian", "stone", "corundum", "ruby", "sapphire", "greenSapphire", "pinkSapphire", "purpleSapphire", "emery", "dioptase", "pyrope", "apatite", "amethyst", "topaz", "tanzanite", "malachite", "netherQuartz", "certusQuartz", "peridot", "mystic", "boron", "phosphorus", "sulfur", "milk", "uranium", "thorium", "plutonium", "neptunium", "protactinium", "actinium", "ferrousMetal", "radioactive", "enderpearl", "endstone", "saltpeter", "plastic"};

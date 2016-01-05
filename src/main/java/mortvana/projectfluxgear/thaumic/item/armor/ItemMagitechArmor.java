@@ -21,16 +21,15 @@ import mortvana.melteddashboard.util.enums.EnumArmorType;
 import mortvana.melteddashboard.util.helpers.NBTHelper;
 import mortvana.melteddashboard.util.helpers.StringHelper;
 
-import mortvana.projectfluxgear.core.data.StringDatabase;
 import mortvana.projectfluxgear.api.item.armor.IMagitechArmor;
-import mortvana.projectfluxgear.library.ContentLibrary;
+import mortvana.projectfluxgear.library.FluxGearLibrary;
 
 public abstract class ItemMagitechArmor extends ItemArmorFluxGear implements IMagitechArmor {
 
     //1czykznt
     public ItemMagitechArmor(ArmorMaterial material, int renderIndex, EnumArmorType type, String name, String sheet, String icon) {
 	    super(material, renderIndex, type, name, sheet, icon);
-	    setCreativeTab(ContentLibrary.equipmentTab);
+	    setCreativeTab(FluxGearLibrary.equipmentTab);
     }
 
 	/* ItemArmor Overrides */
@@ -97,7 +96,7 @@ public abstract class ItemMagitechArmor extends ItemArmorFluxGear implements IMa
     /* ILPGauge */
     @Override
     public boolean canSeeLPBar(ItemStack stack) {
-        return stack.getItem() instanceof ItemMagitechArmor && NBTHelper.hasKey(stack, StringDatabase.SANGUINE);
+        return stack.getItem() instanceof ItemMagitechArmor && NBTHelper.hasKey(stack, FluxGearLibrary.SANGUINE);
     }
 
     /* IRepairableExtended */

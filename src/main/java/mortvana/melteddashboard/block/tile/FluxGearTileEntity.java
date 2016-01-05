@@ -1,5 +1,7 @@
 package mortvana.melteddashboard.block.tile;
 
+import java.util.UUID;
+
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -19,6 +21,11 @@ public abstract class FluxGearTileEntity extends TileEntity {
 	public IFluidHandler[] adjFluidTiles = new IFluidHandler[6];
 
 	public boolean initialized = false;
+
+	public ForgeDirection orientation = ForgeDirection.NORTH;
+	public byte state = 0;
+	public String name = "";
+	public UUID owner = null;
 
 	public FluxGearTileEntity() {}
 
