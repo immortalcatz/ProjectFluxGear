@@ -148,7 +148,7 @@ public class DynamicMaterialRegistry {
 	}
 
 	public void registerBlocks(int id, MaterialEntry entry) {
-		block.setData(id, entry.getMaterialTexture(), /*"block" +*/ StringHelper.toTitleCase(entry.getMaterialName()));
+		block.setData(id, entry.getMaterialTexture(), /*"block" +*/ StringHelper.titleCase(entry.getMaterialName()));
 		if (entry.getMaterialBlockHardness() != -1.0F) {
 			block.setBlockHardness(id, entry.getMaterialBlockHardness());
 		}
@@ -171,11 +171,11 @@ public class DynamicMaterialRegistry {
 			block.setMiningLevel(id, entry.getMaterialMiningLevel());
 		}
 		ItemStack itemstack = new ItemStack(block, 1, id);
-		RegistationWrapper.registerWithHandlers(itemstack, "block" + StringHelper.toTitleCase(entry.getMaterialName()), StringHelper.createOreDictStringArray("block", entry.getMaterialOreDict()));
+		RegistationWrapper.registerWithHandlers(itemstack, "block" + StringHelper.titleCase(entry.getMaterialName()), StringHelper.createOreDictStringArray("block", entry.getMaterialOreDict()));
 	}
 
 	public void registerItem(int id, MaterialEntry entry, MaterialSet data) {
-		items[data.getIndex()].addColorizedOreDictItem(data.getOffset() + id, data.getPrefix() + "." + StringHelper.toTitleCase(entry.getMaterialName()), entry.getMaterialRarity(), data.getPrefix(), entry.getMaterialTexture(), entry.getMaterialHexColor(), StringHelper.createOreDictStringArray(data.getPrefix(), entry.getMaterialOreDict()));
+		items[data.getIndex()].addColorizedOreDictItem(data.getOffset() + id, data.getPrefix() + "." + StringHelper.titleCase(entry.getMaterialName()), entry.getMaterialRarity(), data.getPrefix(), entry.getMaterialTexture(), entry.getMaterialHexColor(), StringHelper.createOreDictStringArray(data.getPrefix(), entry.getMaterialOreDict()));
 	}
 
 	public void registerCrafting(int id, MaterialEntry entry) {

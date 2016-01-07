@@ -2,7 +2,6 @@ package mortvana.legacy.clean.core.util.block;
 
 import java.util.*;
 
-import mortvana.melteddashboard.block.AdvFluxGearBlock;
 import mortvana.melteddashboard.util.helpers.StringHelper;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;

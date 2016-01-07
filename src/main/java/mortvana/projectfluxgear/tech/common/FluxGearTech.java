@@ -14,7 +14,7 @@ import mortvana.melteddashboard.util.ConfigBase;
 import mortvana.melteddashboard.util.IConfigInitialized;
 import mortvana.projectfluxgear.core.common.FluxGearCoreContent;
 
-import static mortvana.projectfluxgear.core.common.FluxGearCoreContent.generalItem;
+import static mortvana.projectfluxgear.library.FluxGearLibrary.generalItem;
 
 public class FluxGearTech implements IConfigInitialized, IFuelHandler {
 

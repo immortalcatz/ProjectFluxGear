@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -172,7 +173,7 @@ public class FluxGearItem extends Item {
 				String form = split[0];
 				String material = split[1];
 				if (StatCollector.canTranslate("pfgregistry.form." + form + ".name")) {
-					return StatCollector.translateToLocal("pfgregistry.form." + form + ".name").replace("%%material", StatCollector.canTranslate("pfgregistry.material." + material + ".name") ? StatCollector.translateToLocal("pfgregistry.material." + material + ".name") : StringHelper.toTitleCase(material));
+					return StringHelper.localize("pfgregistry.form." + form + ".name").replace("%%material", StatCollector.canTranslate("pfgregistry.material." + material + ".name") ? StringHelper.localize("pfgregistry.material." + material + ".name") : StringHelper.titleCase(material));
 				}
 			}
 		}
@@ -185,19 +186,18 @@ public class FluxGearItem extends Item {
 		return itemMap.containsKey(meta) ? EnumRarity.values()[itemMap.get(meta).rarity] : EnumRarity.common;
 	}
 
-	//TODO: Reinstate SecurityHelper
 	@Override
 	public boolean hasCustomEntity(ItemStack itemstack) {
-		return false; //SecurityHelper.isSecure(itemstack);
+		return SecurityHelper.isSecure(itemstack);
 	}
 
 	@Override
 	public Entity createEntity(World world, Entity itemEntity, ItemStack stack) {
-		//if (SecurityHelper.isSecure(stack)) {
-		//	itemEntity.invulnerable = true;
-		//	itemEntity.isImmuneToFire = true;
-		//	((EntityItem) itemEntity).lifespan = Integer.MAX_VALUE;
-		//}
+		if (SecurityHelper.isSecure(stack)) {
+			itemEntity.invulnerable = true;
+			itemEntity.isImmuneToFire = true;
+			((EntityItem) itemEntity).lifespan = Integer.MAX_VALUE;
+		}
 		return null;
 	}
 

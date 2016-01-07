@@ -1,9 +1,10 @@
-package mortvana.melteddashboard.block;
+package mortvana.legacy.errored;
 
 import java.util.*;
 
+import mortvana.melteddashboard.block.FluxGearBlock;
 import mortvana.melteddashboard.util.enums.EnumBlockType;
-import net.minecraft.block.Block;
+
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

@@ -3,6 +3,7 @@ package mortvana.melteddashboard.block.tile;
 import java.util.UUID;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -10,7 +11,13 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.IFluidHandler;
 
 import cofh.api.energy.IEnergyHandler;
+import cofh.api.tileentity.ISecurable;
+import mortvana.melteddashboard.util.Constants;
+import mortvana.melteddashboard.util.helpers.StringHelper;
 import mortvana.melteddashboard.util.helpers.WorldHelper;
+
+import com.mojang.authlib.GameProfile;
+import mortvana.legacy.clean.core.util.helpers.SecurityHelper;
 
 public abstract class FluxGearTileEntity extends TileEntity {
 
@@ -76,4 +83,76 @@ public abstract class FluxGearTileEntity extends TileEntity {
 			invalidate();
 		}
 	}
+
+	public void markChunkDirty() {
+		worldObj.markTileEntityChunkModified(xCoord, yCoord, zCoord, this);
+	}
+
+	public void callNeighborBlockChange() {
+		worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, getBlockType());
+	}
+
+	public void callNeighborTileChange() {
+		worldObj.updateNeighborsAboutBlockChange(xCoord, yCoord, zCoord, getBlockType());
+	}
+
+	public void onNeighborBlockChange() {}
+
+	public void onNeighborTileChange(int x, int y, int z) {}
+
+	public int getComparatorInput(int side) {
+		return 0;
+	}
+
+	public int getLightValue() {
+		return 0;
+	}
+
+	/*public boolean canPlayerAccess(EntityPlayer player) {
+		if (!(this instanceof ISecurable)) {
+			return true;
+		}
+		ISecurable.AccessMode access = ((ISecurable) this).getAccess();
+		String name = player.getCommandSenderName();
+		if (access.isPublic() *//*|| (CoFHProps.enableOpSecureAccess && CoreUtils.isOp(name))TODO: OP Access*//*) {
+			return true;
+		}
+
+		GameProfile profile = ((ISecurable) this).getOwner();
+		UUID ownerID = profile.getId();
+		if (SecurityHelper.isDefaultUUID(ownerID)) {
+			return true;
+		}
+
+		UUID otherID = SecurityHelper.getID(player);
+		if (ownerID.equals(otherID)) {
+			return true;
+		}
+		return access.isRestricted() && SocialRegistry.playerHasAccess(name, profile);
+	}*/
+
+	public boolean canPlayerDismantle(EntityPlayer player) {
+		return true;
+	}
+
+	public boolean isUsable(EntityPlayer player) {
+		return player.getDistanceSq(xCoord, yCoord, zCoord) <= 64.0D && worldObj.getTileEntity(xCoord, yCoord, zCoord) == this;
+	}
+
+	public boolean onWrench(EntityPlayer player, int side) {
+		return false;
+	}
+
+	protected final boolean timeCheck() {
+		return worldObj.getTotalWorldTime() % Constants.TIME == 0;
+	}
+
+	protected final boolean timeCheckEighth() {
+		return worldObj.getTotalWorldTime() % Constants.TIME_EIGHTH == 0;
+	}
+
+	public abstract String getName();
+
+	public abstract int getType();
+
 }

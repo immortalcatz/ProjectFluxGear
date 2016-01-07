@@ -29,8 +29,8 @@ public class BlockTweakedTNT extends BlockTNT {
 	}
 
 	@Override
-	public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int par5) {
-		func_150114_a(world, x, y, z, par5, null);
+	public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int metadata) {
+		func_150114_a(world, x, y, z, metadata, null);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class BlockTweakedTNT extends BlockTNT {
 	}
 
 	@Override
-	public void func_150114_a(World world, int x, int y, int z, int par5, EntityLivingBase entity) { //primeTnt(...) {}
+	public void func_150114_a(World world, int x, int y, int z, int metadata, EntityLivingBase entity) { //primeTnt(...) {}
 		if (!world.isRemote) {
 			EntityTNTPrimed tnt = new EntityTNTPrimed(world, (double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), entity);
 			world.spawnEntityInWorld(tnt);

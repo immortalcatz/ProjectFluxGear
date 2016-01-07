@@ -9,8 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.EnumRarity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
@@ -27,7 +26,7 @@ import mortvana.projectfluxgear.library.FluxGearLibrary;
 public abstract class ItemMagitechArmor extends ItemArmorFluxGear implements IMagitechArmor {
 
     //1czykznt
-    public ItemMagitechArmor(ArmorMaterial material, int renderIndex, EnumArmorType type, String name, String sheet, String icon) {
+    public ItemMagitechArmor(ItemArmor.ArmorMaterial material, int renderIndex, EnumArmorType type, String name, String sheet, String icon) {
 	    super(material, renderIndex, type, name, sheet, icon);
 	    setCreativeTab(FluxGearLibrary.equipmentTab);
     }
