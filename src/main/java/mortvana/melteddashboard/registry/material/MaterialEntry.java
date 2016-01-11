@@ -3,20 +3,20 @@ package mortvana.melteddashboard.registry.material;
 import mortvana.melteddashboard.util.helpers.StringHelper;
 
 public class MaterialEntry {
-	public static int materialID;
-	public static EnumMaterialType materialType;
-	public static String materialName;
-	public static String materialTexture;
-	public static String[] materialOreDict;
-	public static float materialBlockHardness;
-	public static float materialBlastResistance;
-	public static int materialRarity;
-	public static int materialMiningLevel;
-	public static int materialBlockLight;
-	public static int materialRedstoneSignal;
-	public static int materialHexColor = -1;
+	public int materialID;
+	public EnumMaterialType materialType;
+	public String materialName;
+	public String materialTexture;
+	public String[] materialOreDict;
+	public float materialBlockHardness;
+	public float materialBlastResistance;
+	public byte materialRarity;
+	public int materialMiningLevel;
+	public byte materialBlockLight;
+	public byte materialRedstoneSignal;
+	public int materialHexColor = -1;
 
-	public MaterialEntry(int id, EnumMaterialType type, String name, String texture, String[] oreDict, float blockHardness, float blastResistance, int rarity, int miningLevel, int blockLight, int redstoneSignal) {
+	public MaterialEntry(int id, EnumMaterialType type, String name, String texture, String[] oreDict, float blockHardness, float blastResistance, byte rarity, int miningLevel, byte blockLight, byte redstoneSignal) {
 		materialID = id;
 		materialType = type;
 		materialName = name;
@@ -28,6 +28,17 @@ public class MaterialEntry {
 		materialMiningLevel = miningLevel;
 		materialBlockLight = blockLight;
 		materialRedstoneSignal = redstoneSignal;
+	}
+
+	public MaterialEntry(int id, EnumMaterialType type, String name, String texture, String[] oreDict, float blockHardness, float blastResistance, byte rarity, int miningLevel, byte blockLight, byte redstoneSignal, int hexColor) {
+		this(id, type, name, texture, oreDict, blockHardness, blastResistance, rarity, miningLevel, blockLight, redstoneSignal);
+		if (hexColor >= 0) {
+			materialHexColor = hexColor;
+		}
+	}
+
+	public MaterialEntry(int id, EnumMaterialType type, String name, String texture, String[] oreDict, float blockHardness, float blastResistance, int rarity, int miningLevel, int blockLight, int redstoneSignal) {
+		this(id, type, name, texture, oreDict, blockHardness, blastResistance, (byte) rarity, miningLevel, (byte) blockLight, (byte) redstoneSignal);
 	}
 
 	public MaterialEntry(int id, EnumMaterialType type, String name, String texture, String[] oreDict, float blockHardness, float blastResistance, int rarity, int miningLevel, int blockLight, int redstoneSignal, int hexColor) {
@@ -65,7 +76,7 @@ public class MaterialEntry {
 		return materialBlastResistance;
 	}
 
-	public int getMaterialRarity() {
+	public byte getMaterialRarity() {
 		return materialRarity;
 	}
 
@@ -73,11 +84,11 @@ public class MaterialEntry {
 		return materialMiningLevel;
 	}
 
-	public int getMaterialBlockLight() {
+	public byte getMaterialBlockLight() {
 		return materialBlockLight;
 	}
 
-	public int getMaterialRedstoneSignal() {
+	public byte getMaterialRedstoneSignal() {
 		return materialRedstoneSignal;
 	}
 

@@ -1,8 +1,7 @@
 package mortvana.legacy.clean.apiology.util.genetics;
 
 import forestry.api.apiculture.*;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IGenome;
+import forestry.api.genetics.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,12 +22,12 @@ public class BeeMutation implements IBeeMutation {
     }
 
     @Override
-    public IAllele getAllele0() {
+    public IAlleleSpecies getAllele0() {
         return parent1;
     }
 
     @Override
-    public IAllele getAllele1() {
+    public IAlleleSpecies getAllele1() {
         return parent2;
     }
 

@@ -36,6 +36,16 @@ public class TileEntityGenerator extends FluxGearTileEntity implements IEnergyHa
 		energy = 0;
 	}
 
+	@Override
+	public String getName() {
+		return "Legacy";
+	}
+
+	@Override
+	public int getType() {
+		return -1;
+	}
+
 	public void setEnergyTransferRate(int tr) {
 		transferRate = tr;
 	}

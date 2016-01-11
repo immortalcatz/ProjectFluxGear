@@ -15,7 +15,7 @@ public class QuernRecipe
 
 	public Boolean isInItem(ItemStack is)
 	{
-		return (is.getItem() == inItemStack.getItem() && is.getMetadata() == inItemStack.getMetadata() && is.stackSize >= inItemStack.stackSize);
+		return is.getItem() == inItemStack.getItem() && is.getMetadata() == inItemStack.getMetadata() && is.stackSize >= inItemStack.stackSize;
 	}
 
 	public ItemStack getInItem()

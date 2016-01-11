@@ -20,7 +20,7 @@ import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.melteddashboard.util.ColorLibrary;
 import mortvana.melteddashboard.util.enums.EnumBlockType;
 import mortvana.melteddashboard.util.helpers.StringHelper;
-import mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper;
+import mortvana.melteddashboard.util.helpers.science.MathHelper;
 
 /**
  *  A relatively easy to use, yet advanced version of FluxGearBlock for use in many situations.
@@ -135,7 +135,6 @@ public class FluxGearBlock extends Block {
 	 */
 	public FluxGearBlock(Material material, CreativeTabs tab, boolean spawn, boolean base, boolean colorized) {
 		this(material, tab);
-
 		setAllMobSpawns(spawn);
 		setAllBeaconBase(base);
 		setColorized(colorized);
@@ -151,7 +150,6 @@ public class FluxGearBlock extends Block {
 	 */
 	public FluxGearBlock(Material material, CreativeTabs tab, EnumBlockType type, String[] names, String[] textures, float[] hardness, float[] resistance, int[] light, String textureLocation) {
 		this(material, tab, type);
-
 		this.names = names;
 		this.textures = textures;
 		setHardness(hardness);
@@ -475,7 +473,6 @@ public class FluxGearBlock extends Block {
 			list.add(new ItemStack(item, 1, i));
 		}
 	}
-
 
 	@Override
 	public int getRenderType() {

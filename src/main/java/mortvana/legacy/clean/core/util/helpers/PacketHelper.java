@@ -2,10 +2,11 @@ package mortvana.legacy.clean.core.util.helpers;
 
 import java.util.List;
 
-import mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import mortvana.melteddashboard.util.helpers.science.MathHelper;
 
 public class PacketHelper {
 	public static void dispatchTEToNearbyPlayers(TileEntity tile) {

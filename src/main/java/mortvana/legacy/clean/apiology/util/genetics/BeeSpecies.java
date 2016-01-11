@@ -185,18 +185,6 @@ public enum BeeSpecies implements IAlleleBeeSpecies, IIconProvider {
         return this.branch;
     }
 
-	@Deprecated
-    @Override
-    public HashMap<ItemStack, Integer> getProducts() {
-        return null;
-    }
-
-	@Deprecated
-    @Override
-    public HashMap<ItemStack, Integer> getSpecialty() {
-        return null;
-    }
-
     @Override
     public String getUID() {
         return uid;

@@ -81,7 +81,7 @@ public class ReplacementBlock
 	
 	/**
 	 * Called to set the metdata of this ReplacementBlock to a value read from an ItemStack
-	 * @param meta The metadata of the block 
+	 * //@param meta The metadata of the block
 	 * @return This instance
 	 */
 	public ReplacementBlock setMeta(boolean hasMeta)

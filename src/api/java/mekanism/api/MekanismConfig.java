@@ -51,6 +51,11 @@ public class MekanismConfig
 		public static double armoredJetpackDamageRatio;
 		public static int armoredJetpackDamageMax;
 		public static boolean aestheticWorldDamage;
+		public static boolean opsBypassRestrictions;
+		public static double solarEvaporationSpeed;
+		public static int maxJetpackGas;
+		public static int maxScubaGas;
+		public static int maxFlamethrowerGas;
 	}
 
 	public static class client

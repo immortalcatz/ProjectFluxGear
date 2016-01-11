@@ -78,7 +78,10 @@ public class MeltedDashboardCore {
 	 *  This is for things that need to wait until the game is almost done loading before initializing.
 	 */
 	@EventHandler
-	public void postInit(FMLPostInitializationEvent event) {}
+	public void postInit(FMLPostInitializationEvent event) {
+		double thing = -0.0D;
+		logger.debug(thing);
+	}
 
 	public void registerHandlers() {
 		MinecraftForge.EVENT_BUS.register(BucketHandler.class);

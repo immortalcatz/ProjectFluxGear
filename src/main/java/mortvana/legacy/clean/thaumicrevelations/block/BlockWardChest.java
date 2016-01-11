@@ -27,7 +27,7 @@ import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.items.wands.ItemWandCasting;
 
-import static mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper.RANDOM;
+import static mortvana.melteddashboard.util.helpers.science.MathHelper.RANDOM;
 
 public class BlockWardChest extends BlockContainer {
 

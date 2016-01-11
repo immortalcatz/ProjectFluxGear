@@ -4,7 +4,7 @@ import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.SoundHandler;
 import cpw.mods.fml.client.FMLClientHandler;
 
-import mortvana.melteddashboard.util.SoundBase;
+import mortvana.melteddashboard.util.sound.SoundBase;
 
 public class SoundHelper {
 

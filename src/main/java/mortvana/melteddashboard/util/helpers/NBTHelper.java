@@ -4,7 +4,9 @@ import net.minecraft.item.ItemStack;
 
 @Deprecated
 public class NBTHelper {
-	public static boolean hasKey(ItemStack stack, String key) {
+
+	public static boolean stackHasBooleanKey(ItemStack stack, String key) {
 		return stack.hasTagCompound() && stack.getTagCompound().hasKey(key) && stack.getTagCompound().getBoolean(key);
 	}
+
 }

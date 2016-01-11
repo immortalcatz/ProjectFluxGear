@@ -1,7 +1,7 @@
 package mortvana.melteddashboard.api.item.tool.wrench;
 
 import binnie.extratrees.api.IToolHammer;
-import carpentersblocks.api.ICarpentersHammer;
+import com.carpentersblocks.api.ICarpentersHammer;
 
 /**
  *  An interface to implement on any item that can be used as a Flux Gear compatible wrench, CoFH compatable

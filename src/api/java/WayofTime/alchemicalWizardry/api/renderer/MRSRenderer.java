@@ -5,16 +5,13 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.ResourceLocation;
 import WayofTime.alchemicalWizardry.api.rituals.IMasterRitualStone;
 
-public abstract class MRSRenderer
-{
+public abstract class MRSRenderer {
     public abstract void renderAt(IMasterRitualStone tile, double x, double y, double z);
 
-    protected void bindTexture(ResourceLocation p_147499_1_)
-    {
+    protected void bindTexture(ResourceLocation p_147499_1_) {
         TextureManager texturemanager = TileEntityRendererDispatcher.instance.renderEngine;
 
-        if (texturemanager != null)
-        {
+        if (texturemanager != null)  {
             texturemanager.bindTexture(p_147499_1_);
         }
     }

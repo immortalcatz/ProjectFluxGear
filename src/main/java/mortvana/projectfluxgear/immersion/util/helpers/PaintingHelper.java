@@ -12,7 +12,7 @@ import mortvana.melteddashboard.util.helpers.ColorHelper;
 import mortvana.projectfluxgear.immersion.item.ItemPaintbrush;
 import mortvana.projectfluxgear.immersion.util.PaintEntry;
 
-import static mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper.offsetIntToFloat;
+import static mortvana.melteddashboard.util.helpers.science.MathHelper.offsetIntToFloat;
 
 public class PaintingHelper {
 

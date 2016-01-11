@@ -1,7 +1,7 @@
 package mortvana.melteddashboard.util.exectpions;
 
 import mortvana.melteddashboard.common.MeltedDashboardCore;
-import mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper;
+import mortvana.melteddashboard.util.helpers.science.MathHelper;
 
 public class GyroDerpExeption extends Exception {
 

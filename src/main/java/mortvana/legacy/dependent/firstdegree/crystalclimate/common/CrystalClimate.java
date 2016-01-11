@@ -28,7 +28,7 @@ import mortvana.legacy.dependent.seconddegree.crystalclimate.item.ItemEssenceCry
 import mortvana.legacy.clean.crystalclimate.common.CrystalProxy;
 import mortvana.legacy.dependent.seconddegree.crystalclimate.block.tile.*;
 import mortvana.legacy.dependent.firstdegree.crystalclimate.block.*;
-import mortvana.legacy.clean.crystalclimate.block.itemblock.ItemBlockCrystal;
+import mortvana.legacy.dependent.seconddegree.crystalclimate.block.itemblock.ItemBlockCrystal;
 import mortvana.legacy.errored.crystalclimate.RedstoneAggregator;
 
 @Mod(modid = "CrystalClimate", name = "CrystalClimate", version = "Byakuren")

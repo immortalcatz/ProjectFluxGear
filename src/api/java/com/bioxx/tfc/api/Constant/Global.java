@@ -3,8 +3,10 @@ package com.bioxx.tfc.api.Constant;
 import java.util.Arrays;
 
 import com.bioxx.tfc.api.Metal;
+import com.bioxx.tfc.api.TFCOptions;
 import com.google.common.collect.ObjectArrays;
 
+@SuppressWarnings("PMD")
 public class Global
 {
 	/* FruitTree Meta Names, also used for fruit items and FloraManager */
@@ -92,7 +94,6 @@ public class Global
 	public static final String SKILL_PROSPECTING = "skill.prospecting";
 	public static final String SKILL_BUTCHERING = "skill.butchering";
 
-
 	public static Metal BISMUTH;
 	public static Metal BISMUTHBRONZE;
 	public static Metal BLACKBRONZE;
@@ -122,14 +123,16 @@ public class Global
 	public static Metal HCBLUESTEEL;
 	public static Metal UNKNOWN;
 
-	/*
-	 * This is the nth root of 1.5 where the root is 24. This means that, excluding 
-	 * environmental factors, food will decay at 50% per 24 hours.
-	 * Easy calculator here: http://www.basic-mathematics.com/nth-root-calculator.html
+	/**
+	 * Switch to TFCOptions.foodDecayRate
 	 */
-	public static double FOOD_DECAY_RATE = 1.0170378966055869517978300569768f;
-	public static float FOOD_MAX_WEIGHT = 160;
-	public static float FOOD_MIN_DROP_WEIGHT = 0.1f;
+	@Deprecated
+	public static double foodDecayRate = TFCOptions.foodDecayRate;
 
-	public static int SEALEVEL = 144;
+	public static final float FOOD_MAX_WEIGHT = 160;
+	public static final float FOOD_MIN_DROP_WEIGHT = 0.1f;
+
+	public static final int SEALEVEL = 144;
+	
+	public static final int HOT_LIQUID_TEMP = 385; // Water's boiling point is 373.2 K
 }

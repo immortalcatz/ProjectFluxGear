@@ -5,7 +5,7 @@ import java.util.List;
 import mortvana.melteddashboard.api.item.IFluxArmor;
 import mortvana.melteddashboard.util.helpers.EnergyHelper;
 import mortvana.melteddashboard.util.helpers.StringHelper;
-import mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper;
+import mortvana.melteddashboard.util.helpers.science.MathHelper;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;

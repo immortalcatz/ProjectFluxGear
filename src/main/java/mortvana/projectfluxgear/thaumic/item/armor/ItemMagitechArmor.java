@@ -95,7 +95,7 @@ public abstract class ItemMagitechArmor extends ItemArmorFluxGear implements IMa
     /* ILPGauge */
     @Override
     public boolean canSeeLPBar(ItemStack stack) {
-        return stack.getItem() instanceof ItemMagitechArmor && NBTHelper.hasKey(stack, FluxGearLibrary.SANGUINE);
+        return stack.getItem() instanceof ItemMagitechArmor && NBTHelper.stackHasBooleanKey(stack, FluxGearLibrary.SANGUINE);
     }
 
     /* IRepairableExtended */

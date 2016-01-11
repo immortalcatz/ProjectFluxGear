@@ -17,7 +17,6 @@ import mortvana.melteddashboard.util.helpers.StringHelper;
 import mortvana.melteddashboard.util.helpers.WorldHelper;
 
 import com.mojang.authlib.GameProfile;
-import mortvana.legacy.clean.core.util.helpers.SecurityHelper;
 
 public abstract class FluxGearTileEntity extends TileEntity {
 

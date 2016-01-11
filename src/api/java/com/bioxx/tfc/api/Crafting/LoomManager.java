@@ -3,20 +3,21 @@ package com.bioxx.tfc.api.Crafting;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public class LoomManager
 {
-	private static final LoomManager instance = new LoomManager();
+	private static final LoomManager INSTANCE = new LoomManager();
 	public static final LoomManager getInstance()
 	{
-		return instance;
+		return INSTANCE;
 	}
 
 	private List<LoomRecipe> recipes;
-	private HashMap<LoomRecipe,ResourceLocation> textures;
+	private Map<LoomRecipe, ResourceLocation> textures;
 
 	private LoomManager()
 	{

@@ -16,11 +16,6 @@ public final class ServerHelper {
 	private ServerHelper() { /* Singleton */ }
 
 	@Deprecated
-	public static final boolean isClientWorld(World world) {
-		return world.isRemote;
-	}
-
-	@Deprecated
 	public static final boolean isServerWorld(World world) {
 		return !world.isRemote;
 	}
@@ -38,8 +33,7 @@ public final class ServerHelper {
 	 */
 	public static final void sendItemUsePacket(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int hitSide, int hitX, int hitY, int hitZ) {
 		if (world.isRemote) {
-			NetHandlerPlayClient netClientHandler = (NetHandlerPlayClient) FMLClientHandler.instance().getClientPlayHandler();
-			netClientHandler.addToSendQueue(new C08PacketPlayerBlockPlacement(x, y, z, hitSide, player.inventory.getCurrentItem(), hitX, hitY, hitZ));
+			((NetHandlerPlayClient) FMLClientHandler.instance().getClientPlayHandler()).addToSendQueue(new C08PacketPlayerBlockPlacement(x, y, z, hitSide, player.inventory.getCurrentItem(), hitX, hitY, hitZ));
 		}
 	}
 }

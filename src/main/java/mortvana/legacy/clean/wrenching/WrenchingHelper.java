@@ -2,6 +2,8 @@ package mortvana.legacy.clean.wrenching;
 
 import java.util.List;
 
+import Reika.RotaryCraft.API.Interfaces.Screwdriverable;
+import Reika.RotaryCraft.API.Power.ShaftMachine;
 import mortvana.legacy.clean.core.util.helpers.BlockHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
@@ -14,11 +16,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import cofh.api.block.IDismantleable;
 
-import Reika.RotaryCraft.API.Screwdriverable;
-import Reika.RotaryCraft.API.ShaftMachine;
 import ic2.api.tile.IWrenchable;
 import ic2.api.util.Keys;
-import mortvana.melteddashboard.util.helpers.ServerHelper;
 
 public class WrenchingHelper {
 
@@ -46,7 +45,7 @@ public class WrenchingHelper {
 
 	public static void handleFlowWrenching(World world, int x, int y, int z, Block block, int meta) {
 		world.setBlockToAir(x, y, z);
-		if (ServerHelper.isServerWorld(world)) {
+		if (!world.isRemote) {
 			world.spawnEntityInWorld(new EntityItem(world, (double) x, (double) y, (double) z, new ItemStack(block, 1, meta)));
 		}
 	}
@@ -68,7 +67,7 @@ public class WrenchingHelper {
 			side = BlockHelper.SIDE_OPPOSITE[side];
 		}
 		if (wrenchable.wrenchCanSetFacing(player, side)) {
-			if (ServerHelper.isServerWorld(world)) {
+			if (!world.isRemote) {
 				wrenchable.setFacing((short) side);
 			}
 		} else if (wrenchable.wrenchCanRemove(player)) {
@@ -76,7 +75,7 @@ public class WrenchingHelper {
 
 			if (dropBlock != null) {
 				world.setBlockToAir(x, y, z);
-				if (ServerHelper.isServerWorld(world)) {
+				if (!world.isRemote) {
 					List<ItemStack> drops = block.getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
 					if (drops.isEmpty()) {
 						drops.add(dropBlock);
@@ -95,6 +94,6 @@ public class WrenchingHelper {
 				}
 			}
 		}
-		return ServerHelper.isServerWorld(world);
+		return !world.isRemote;
 	}
 }

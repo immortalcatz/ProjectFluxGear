@@ -43,7 +43,7 @@ public class BucketHandler {
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onBucketFill(FillBucketEvent var1) {
-		if(!(ServerHelper.isClientWorld(var1.world) | var1.result != null) && var1.getResult() == Event.Result.DEFAULT) {
+		if(!(var1.world.isRemote || var1.result != null) && var1.getResult() == Event.Result.DEFAULT) {
 			ItemStack var2 = var1.current;
 			if(var1.target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
 				boolean var3 = true;

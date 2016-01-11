@@ -36,13 +36,12 @@ public class LeafFX extends EntityFX {
 		float maxU = particleIcon.getMaxU();
 		float minV = particleIcon.getMinV();
 		float maxV = particleIcon.getMaxV();
-		float f10 = 0.1F * this.particleScale;
+		float f10 = 0.1F * particleScale;
 
-		float f11 = (float) (this.prevPosX + (this.posX - this.prevPosX) * (double) par2 - interpPosX);
-		float f12 = (float) (this.prevPosY + (this.posY - this.prevPosY) * (double) par2 - interpPosY);
-		float f13 = (float) (this.prevPosZ + (this.posZ - this.prevPosZ) * (double) par2 - interpPosZ);
-		float f14 = 1.0F;
-		tessellator.setColorOpaque_F(f14 * this.particleRed, f14 * this.particleGreen, f14 * this.particleBlue);
+		float f11 = (float) (prevPosX + (posX - prevPosX) * (double) par2 - interpPosX);
+		float f12 = (float) (prevPosY + (posY - prevPosY) * (double) par2 - interpPosY);
+		float f13 = (float) (prevPosZ + (posZ - prevPosZ) * (double) par2 - interpPosZ);
+		tessellator.setColorOpaque_F(particleRed, particleGreen, particleBlue);
 		//x, y, z, u, v
 		tessellator.addVertexWithUV((double) (f11 - par3 * f10 - par6 * f10), (double) (f12 - par4 * f10), (double) (f13 - par5 * f10 - par7 * f10), (double) minU, (double) maxV);
 		tessellator.addVertexWithUV((double) (f11 - par3 * f10 + par6 * f10), (double) (f12 + par4 * f10), (double) (f13 - par5 * f10 + par7 * f10), (double) minU, (double) minV);

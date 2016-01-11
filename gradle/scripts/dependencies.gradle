@@ -47,6 +47,11 @@ repositories {
         url = "http://maven.cil.li"
     }
 
+    maven {
+        name = "MM repo"
+        url = "http://maven.k-4u.nl/"
+    }
+
     ivy {
         name "BuildCraft"
         artifactPattern "http://www.mod-buildcraft.com/releases/BuildCraft/[revision]/[module]-[revision]-[classifier].[ext]"
@@ -91,22 +96,20 @@ dependencies {
     compile "com.enderio.core:EnderCore:${minecraft_version}-${endercore_version}:dev"
     compile "com.enderio:EnderIO:${minecraft_version}-${enderio_version}:dev"
     compile "net.sengir.forestry:forestry_${minecraft_version}:${forestry_version}:dev"
-    //compile "net.mcft.copy.betterstorage:BetterStorage:${minecraft_version}-${betterStorage_version}:deobf"
+    compile "net.mcft.copy.betterstorage:BetterStorage:${minecraft_version}-${betterStorage_version}:deobf"
     compile "inventorytweaks:InventoryTweaks:${invtweaks_version}:deobf"
-    //compile "li.cil.oc:OpenComputers:MC${minecraft_version}-${openComputers_version}:dev"
+    compile "li.cil.oc:OpenComputers:MC${minecraft_version}-${openComputers_version}:dev"
     compile "com.mod-buildcraft:buildcraft:${buildcraft_version}:dev"
+    compile "pneumaticCraft:PneumaticCraft-${minecraft_version}:${pneumaticcraft_version}:userdev"
 
     // FireBall's APIs
     // Unused by default
-    compile "li.cil.oc:OpenComputers:MC${minecraft_version}-${openComputers_version}:api"
-    compile "net.industrial-craft:industrialcraft-2:${ic2_version}-experimental:api"
-    compile "net.mcft.copy.betterstorage:BetterStorage:${minecraft_version}-${betterStorage_version}:api"
+    //compile "li.cil.oc:OpenComputers:MC${minecraft_version}-${openComputers_version}:api"
+    //compile "net.mcft.copy.betterstorage:BetterStorage:${minecraft_version}-${betterStorage_version}:api"
 
     /*// self compiled APIs
-    compile "appeng:Waila:${waila_version}_${minecraft_version}:api"
     compile "appeng:RotaryCraft:${rotarycraft_version}:api"
     compile "appeng:mekanism:${minecraft_version}-${mekansim_version}:api"
-    compile "appeng:InventoryTweaks:${invtweaks_version}:api"
 
     // self compiled stubs
     compile(group: 'api', name: 'coloredlightscore', version: "${api_coloredlightscore_version}")
@@ -115,6 +118,8 @@ dependencies {
     compile(group: 'api', name: 'mfr', version: "${api_mfr_version}")
     compile(group: 'api', name: 'railcraft', version: "${api_railcraft_version}")
     compile(group: 'api', name: 'rf', version: "${api_rf_version}")*/
+
+    compile "org.projectlombok:lombok:1.16.4" // So Chisel keeps it's Drulloy Pants on
 
     compile fileTree(dir: 'lib', include: '*.jar')
     //deployerJars 'org.apache.maven.wagon:wagon-ssh:2.2'

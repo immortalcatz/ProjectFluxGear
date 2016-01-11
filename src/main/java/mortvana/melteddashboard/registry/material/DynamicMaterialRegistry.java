@@ -12,6 +12,7 @@ import mortvana.melteddashboard.block.metadata.FluxGearBlockExtendedMetadata;
 import mortvana.melteddashboard.item.FluxGearItem;
 import mortvana.melteddashboard.registry.wrapped.RegistationWrapper;
 import mortvana.melteddashboard.util.helpers.StringHelper;
+import mortvana.melteddashboard.util.helpers.science.MathHelper;
 
 public class DynamicMaterialRegistry {
 	public ArrayList<MaterialEntry> entriesToSort = new ArrayList<MaterialEntry>();
@@ -22,8 +23,6 @@ public class DynamicMaterialRegistry {
 	public FluxGearItem[] items;
 
 	final int WILD = Short.MAX_VALUE;
-
-	private static boolean initialized = false;
 
 	public DynamicMaterialRegistry(MaterialData data) {
 		this.data = data;
@@ -58,26 +57,12 @@ public class DynamicMaterialRegistry {
 						if (entryBlastResistance < 0.0F && entryBlastResistance != -1.0F) {
 							entryBlastResistance = -1.0F;
 						}
-						int entryRarity = entry.getMaterialRarity();
-						if (entryRarity > 3 || entryRarity < 0) {
-							entryRarity = 0;
-						}
-						int entryBlockLight = entry.getMaterialBlockLight();
-						if (entryBlockLight < 0 || entryBlockLight > 15) {
-							entryBlockLight = 0;
-						}
-						int entryRedstoneSignal = entry.getMaterialRedstoneSignal();
-						if (entryRedstoneSignal < 0 || entryRedstoneSignal > 15) {
-							entryRedstoneSignal = 0;
-						}
-						int entryHexColor = entry.getMaterialHexColor();
-						if (entryHexColor < -1 || entryHexColor > 0xFFFFFF) {
-							entryHexColor = -1;
-						}
-						int entryMiningLevel = entry.getMaterialMiningLevel();
-						if (entryMiningLevel < -1) {
-							entryMiningLevel = -1;
-						}
+						byte entryRarity = MathHelper.clampByte(entry.getMaterialRarity(), (byte) -1, (byte) 3);
+						byte entryBlockLight = MathHelper.clampByte(entry.getMaterialBlockLight(), (byte) -1, (byte) 15);
+						byte entryRedstoneSignal = MathHelper.clampByte(entry.getMaterialRedstoneSignal(), (byte) -1, (byte) 31);
+						int entryHexColor = MathHelper.clampInt(entry.getMaterialHexColor(), -1, 0xFFFFFF);
+						int entryMiningLevel = MathHelper.clampLowerInt(entry.getMaterialMiningLevel(), -1);
+
 						String[] oreEntries = entry.getMaterialOreDict();
 						String[] newOreEntries;
 
@@ -155,13 +140,13 @@ public class DynamicMaterialRegistry {
 		if (entry.getMaterialBlastResistance() != -1.0F) {
 			block.setBlastResistance(id, entry.getMaterialBlastResistance());
 		}
-		if (entry.getMaterialRarity() != 0) {
+		if (entry.getMaterialRarity() != -1) {
 			block.setItemRarity(id, entry.getMaterialRarity());
 		}
-		if (entry.getMaterialBlockLight() != 0) {
+		if (entry.getMaterialBlockLight() != -1) {
 			block.setBlockLight(id, entry.getMaterialBlockLight());
 		}
-		if (entry.getMaterialRedstoneSignal() != 0) {
+		if (entry.getMaterialRedstoneSignal() != -1) {
 			block.setRedstoneSignal(id, entry.getMaterialRedstoneSignal());
 		}
 		if (entry.getMaterialHexColor() != -1) {

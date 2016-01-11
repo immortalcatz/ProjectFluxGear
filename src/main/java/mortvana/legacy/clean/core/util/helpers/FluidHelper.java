@@ -108,7 +108,7 @@ public class FluidHelper {
 		ItemStack var3 = var2.getCurrentEquippedItem();
 		FluidStack var4 = FluidContainerRegistry.getFluidForFilledItem(var3);
 		if(var4 != null && (var1.fill(ForgeDirection.UNKNOWN, var4, false) == var4.amount || var2.capabilities.isCreativeMode)) {
-			if(ServerHelper.isClientWorld(var0)) {
+			if (var0.isRemote) {
 				return true;
 			} else {
 				var1.fill(ForgeDirection.UNKNOWN, var4, true);

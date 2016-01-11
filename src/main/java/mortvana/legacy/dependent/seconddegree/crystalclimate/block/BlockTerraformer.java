@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mortvana.legacy.clean.crystalclimate.block.tile.TerraformerLogic;
-import mortvana.legacy.clean.crystalclimate.block.tile.TerraleecherLogic;
+import mortvana.legacy.dependent.seconddegree.crystalclimate.block.tile.TerraformerLogic;
+import mortvana.legacy.dependent.seconddegree.crystalclimate.block.tile.TerraleecherLogic;
 import mortvana.legacy.dependent.firstdegree.crystalclimate.common.CrystalClimate;
 import mortvana.legacy.dependent.seconddegree.crystalclimate.block.tile.*;
 

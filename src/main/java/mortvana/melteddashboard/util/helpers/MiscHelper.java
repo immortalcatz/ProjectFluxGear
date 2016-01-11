@@ -9,7 +9,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-import mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper;
+import mortvana.melteddashboard.util.helpers.science.MathHelper;
 
 public class MiscHelper {
 

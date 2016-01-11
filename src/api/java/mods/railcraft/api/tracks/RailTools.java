@@ -88,7 +88,8 @@ public abstract class RailTools {
         int y = MathHelper.floor_double(cart.posY);
         int z = MathHelper.floor_double(cart.posZ);
 
-        if (BlockRailBase.isRailBlockAt(cart.worldObj, x, y - 1, z))
+        if (BlockRailBase.isRailBlockAt(
+		        cart.worldObj, x, y - 1, z))
             y--;
 
         TileEntity tile = cart.worldObj.getTileEntity(x, y, z);

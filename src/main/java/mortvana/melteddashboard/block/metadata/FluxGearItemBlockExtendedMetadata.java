@@ -2,6 +2,8 @@ package mortvana.melteddashboard.block.metadata;
 
 import java.util.Map;
 
+import gnu.trove.map.hash.THashMap;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -9,10 +11,8 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import mortvana.melteddashboard.util.helpers.SecurityHelper;
 import mortvana.melteddashboard.util.helpers.StringHelper;
-
-import gnu.trove.map.hash.THashMap;
-import mortvana.legacy.clean.core.util.helpers.SecurityHelper;
 
 public class FluxGearItemBlockExtendedMetadata extends ItemBlockMetadata {
 
@@ -51,8 +51,6 @@ public class FluxGearItemBlockExtendedMetadata extends ItemBlockMetadata {
 	public boolean isItemTool(ItemStack itemstack) {
 		return false;
 	}
-
-	//TODO: Todo?
 
 	public boolean hasCustomEntity(ItemStack itemstack) {
 		return SecurityHelper.isSecure(itemstack);

@@ -8,9 +8,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import mortvana.melteddashboard.util.helpers.SecurityHelper;
 import mortvana.melteddashboard.util.helpers.StringHelper;
-
-import mortvana.legacy.clean.core.util.helpers.SecurityHelper;
 
 public class FluxGearItemBlock extends ItemBlock {
 

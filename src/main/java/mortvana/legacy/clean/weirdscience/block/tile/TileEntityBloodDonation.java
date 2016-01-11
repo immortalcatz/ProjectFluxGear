@@ -235,4 +235,14 @@ public class TileEntityBloodDonation extends FluxGearTileEntity implements IFlui
 			}
 		}
 	}
+
+	@Override
+	public String getName() {
+		return "Legacy";
+	}
+
+	@Override
+	public int getType() {
+		return -1;
+	}
 }

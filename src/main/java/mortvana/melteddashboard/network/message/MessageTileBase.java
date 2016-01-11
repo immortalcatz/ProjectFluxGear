@@ -26,11 +26,11 @@ public class MessageTileBase extends FluxGearMessageBase implements IMessageHand
         x = tile.xCoord;
         y = (short) tile.yCoord;
         z = tile.zCoord;
-        metadata = tile.getMetadata();
+        /*metadata = tile.getMetadata();
         orientation = tile.getOrientaion().ordianal();
         state = tile.getState();
         name = tile.getCustomName();
-        owner = tile.getOwnerUUID();
+        owner = tile.getOwnerUUID();*/
     }
 
     @Override

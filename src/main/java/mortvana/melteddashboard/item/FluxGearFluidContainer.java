@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 
-import mortvana.melteddashboard.util.CoordSet;
+import mortvana.melteddashboard.util.vecmath.CoordSet;
 import mortvana.melteddashboard.util.handlers.BucketHandler;
 
 public class FluxGearFluidContainer extends FluxGearItem {

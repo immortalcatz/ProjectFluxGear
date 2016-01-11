@@ -1,7 +1,7 @@
 package mekanism.api;
 
-import java.util.ArrayList;
-
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -10,13 +10,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 
-import io.netty.buffer.ByteBuf;
+import java.util.ArrayList;
 
 /**
  * Coord4D - an integer-based way to keep track of and perform operations on blocks in a Minecraft-based environment. This also takes
@@ -74,6 +74,13 @@ public class Coord4D
 		zCoord = z;
 
 		dimensionId = dimension;
+	}
+
+	public Coord4D(MovingObjectPosition mop)
+	{
+		xCoord = mop.blockX;
+		yCoord = mop.blockY;
+		zCoord = mop.blockZ;
 	}
 
 	/**
@@ -170,6 +177,18 @@ public class Coord4D
 
 		return this;
 	}
+	
+	/**
+	 * Translates this Coord4D by the defined Coord4D's coordinates, regardless of dimension.
+	 * @param coord - coordinates to translate by
+	 * @return translated Coord4D
+	 */
+	public Coord4D translate(Coord4D coord)
+	{
+		translate(coord.xCoord, coord.yCoord, coord.zCoord);
+		
+		return this;
+	}
 
 	/**
 	 * Creates and returns a new Coord4D translated to the defined offsets of the side.
@@ -216,7 +235,7 @@ public class Coord4D
 
 	/**
 	 * Returns a new Coord4D from a tag compound.
-	 * @param data - tag compound to read from
+	 * @param tag - tag compound to read from
 	 * @return the Coord4D from the tag compound
 	 */
     public static Coord4D read(NBTTagCompound tag)
@@ -316,7 +335,7 @@ public class Coord4D
 	 */
 	public boolean exists(World world)
 	{
-		return world.getChunkProvider().chunkExists(xCoord >> 4, zCoord >> 4);
+		return world.getChunkProvider() == null || world.getChunkProvider().chunkExists(xCoord >> 4, zCoord >> 4);
 	}
 
 	/**

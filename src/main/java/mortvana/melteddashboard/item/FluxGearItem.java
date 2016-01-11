@@ -25,8 +25,7 @@ import mortvana.melteddashboard.item.entry.ColorEntry;
 import mortvana.melteddashboard.item.entry.ItemEntry;
 import mortvana.melteddashboard.registry.wrapped.RegistationWrapper;
 import mortvana.melteddashboard.util.ColorLibrary;
-import mortvana.melteddashboard.util.helpers.StringHelper;
-import mortvana.melteddashboard.util.helpers.TextureHelper;
+import mortvana.melteddashboard.util.helpers.*;
 
 /** Slightly Modified and Augmented Version of ItemBase from CoFH Core */
 public class FluxGearItem extends Item {

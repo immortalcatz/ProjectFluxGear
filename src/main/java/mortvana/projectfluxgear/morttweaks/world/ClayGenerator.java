@@ -8,7 +8,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
 
-import static mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper.diffRand;
+import static mortvana.melteddashboard.util.helpers.science.MathHelper.diffRand;
 import static mortvana.projectfluxgear.core.config.MortTweaksConfig.*;
 
 public class ClayGenerator implements IWorldGenerator {

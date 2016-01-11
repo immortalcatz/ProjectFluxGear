@@ -10,8 +10,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import cofh.api.block.IDismantleable;
 
-import Reika.RotaryCraft.API.Screwdriverable;
-import Reika.RotaryCraft.API.ShaftMachine;
+import Reika.RotaryCraft.API.Interfaces.Screwdriverable;
+import Reika.RotaryCraft.API.Power.ShaftMachine;
 import ic2.api.tile.IWrenchable;
 import main.flowstoneenergy.core.interfaces.IFlowWrenchable;
 import mortvana.legacy.clean.core.util.helpers.BlockHelper;

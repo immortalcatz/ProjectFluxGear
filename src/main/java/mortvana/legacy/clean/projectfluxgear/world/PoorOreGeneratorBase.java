@@ -20,8 +20,9 @@ import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
+import mortvana.melteddashboard.world.WorldGenSmallDeposits;
+
 import com.google.common.collect.MapMaker;
-import mortvana.melteddashboard.util.repack.railcraft.world.WorldGenSmallDeposits;
 import mortvana.legacy.clean.core.util.random.NoiseGen;
 
 /**
@@ -51,10 +52,11 @@ public abstract class PoorOreGeneratorBase {
 		this.yLevel = yLevel;
 		this.yRange = yRange;
 		this.noiseSeed = noiseSeed;
-		if (density >= 4)
+		if (density >= 4) {
 			oreGen = new WorldGenMinable(ore, metadata, density, replacedBlock);
-		else
+		} else {
 			oreGen = new WorldGenSmallDeposits(ore, metadata, density, replacedBlock);
+		}
 	}
 
 	@SubscribeEvent

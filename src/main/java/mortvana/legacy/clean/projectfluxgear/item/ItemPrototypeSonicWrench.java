@@ -180,7 +180,12 @@ public class ItemPrototypeSonicWrench extends FluxGearItem implements IFluxGearA
 
 	/* IScrewdriver (Project:Red) */
 	@Override
-	public void damageScrewdriver(World world, EntityPlayer player) {}
+	public void damageScrewdriver(EntityPlayer player, ItemStack stack) {}
+
+	@Override
+	public boolean canUse(EntityPlayer player, ItemStack stack) {
+		return hasNBT(player.getCurrentEquippedItem(), "ProjRedScrewdriver") && isMode(player.getCurrentEquippedItem(), EnumWrenchMode.STANDARD);
+	}
 
 	/* IToolCrowbar (RailCraft) */
 	@Override
@@ -237,11 +242,11 @@ public class ItemPrototypeSonicWrench extends FluxGearItem implements IFluxGearA
 		return hasNBT(wrench, "AEWrench") && isMode(wrench, EnumWrenchMode.STANDARD);
 	}
 
-	/* IWrench (Hairy Spice) */
+	/* IWrench (Hairy Spice)
 	@Override
 	public boolean isWrench(ItemStack wrench) {
 		return hasNBT(wrench, "HairySpiceWrench") && isMode(wrench, EnumWrenchMode.STANDARD);
-	}
+	}*/
 
 	/* IToolHammer (Extra Trees) */
 	@Override

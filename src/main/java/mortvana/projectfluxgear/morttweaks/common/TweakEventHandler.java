@@ -25,7 +25,7 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
 import net.minecraftforge.event.entity.living.ZombieEvent;
 
-import static mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper.diffRand;
+import static mortvana.melteddashboard.util.helpers.science.MathHelper.diffRand;
 import static mortvana.projectfluxgear.core.config.MortTweaksConfig.*;
 
 public class TweakEventHandler {
