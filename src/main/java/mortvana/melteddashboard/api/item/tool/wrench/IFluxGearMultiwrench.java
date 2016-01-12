@@ -1,5 +1,7 @@
 package mortvana.melteddashboard.api.item.tool.wrench;
 
+import net.minecraft.item.ItemStack;
+
 import cofh.api.item.IToolHammer;
 import appeng.api.implementations.items.IAEWrench;
 import buildcraft.api.tools.IToolWrench;
@@ -13,4 +15,15 @@ import mekanism.api.IMekWrench;
  *
  *  @author Mortvana
  */
-public interface IFluxGearMultiwrench extends IAEWrench, IMekWrench, IToolHammer, IToolWrench, ITool, IFluxGearWrench {}
+public interface IFluxGearMultiwrench extends IAEWrench, IMekWrench, IToolHammer, IToolWrench, ITool, IFluxGearWrench {
+
+	boolean isAEWrench(ItemStack stack);
+
+	boolean isMekWrench(ItemStack stack);
+
+	boolean isCoFHWrench(ItemStack stack);
+
+	boolean isBCWrench(ItemStack stack);
+
+	boolean isEnderioTool(ItemStack stack);
+}

@@ -81,6 +81,9 @@ repositories {
 
 configurations {
     mods
+    shade
+    compile.extendsFrom shade
+    compile.extendsFrom exportedCompile
 }
 
 dependencies {
@@ -101,6 +104,13 @@ dependencies {
     compile "li.cil.oc:OpenComputers:MC${minecraft_version}-${openComputers_version}:dev"
     compile "com.mod-buildcraft:buildcraft:${buildcraft_version}:dev"
     compile "pneumaticCraft:PneumaticCraft-${minecraft_version}:${pneumaticcraft_version}:userdev"
+    compile "team.chisel:Chisel:${chisel_version}:deobf"
+
+    // So Chisel keeps it's Drulloy Pants on
+    compile "org.projectlombok:lombok:1.16.4"
+    shade ("team.chisel.ctmlib:CTMLib:${ctmlib_version}") {
+        transitive = false
+    }
 
     // FireBall's APIs
     // Unused by default
@@ -118,8 +128,6 @@ dependencies {
     compile(group: 'api', name: 'mfr', version: "${api_mfr_version}")
     compile(group: 'api', name: 'railcraft', version: "${api_railcraft_version}")
     compile(group: 'api', name: 'rf', version: "${api_rf_version}")*/
-
-    compile "org.projectlombok:lombok:1.16.4" // So Chisel keeps it's Drulloy Pants on
 
     compile fileTree(dir: 'lib', include: '*.jar')
     //deployerJars 'org.apache.maven.wagon:wagon-ssh:2.2'

@@ -35,7 +35,7 @@ import pneumaticCraft.api.block.IPneumaticWrenchable;
  *             Ender IO Compatable Facade Viewing Wrench
  *             Flux Gear Standard Wrench
  *         Project:Red Screwdriver
- *         Hairy Spice Wrench
+ *         BluePower Screwdriver
  *         Professor Flaxbeard's Wondrous Steam Power Mod Wrench
  *         MineFactory Reloaded Sledge Hammer (for overlays)
  *         Railcraft Crowbar
@@ -59,7 +59,7 @@ import pneumaticCraft.api.block.IPneumaticWrenchable;
  * May Work as:
  * [HARDCODE] Full RotaryCraft Screwdriver (If Reika made stuff streamlined enough to fully integrate, or I have nothing else to do... maybe someday...)
  * [HARDCODE] BiblioCraft Screwgun (No API :c)
- * [HARDCODE] BluePower Screwdriver (NO SCREWDRIVER API, MAYBE EVENTUALLY)
+ * [HARDCODE] Energetic Flux Wrench (NO API IN ELEC'S VERSION, MAYBE EVENTUALLY)
  *
  * Might Work as, because I am silly:
  * Botania Wand of the Forest? (This wrench works as a chisel, so this is nothing new :P)

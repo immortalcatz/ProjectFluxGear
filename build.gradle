@@ -62,7 +62,7 @@ if (use_MC_version) {
 		version = "v${mod_version_version}.${mod_version_major}.${mod_version_minor}.${mod_version_revision}${mod_version_patch}-${mod_version_appendix} ${mod_version_build}-${mod_internal_build}"
 	} else {
 		version = "v${mod_version_version}.${mod_version_major}.${mod_version_minor}.${mod_version_revision}${mod_version_patch}-${mod_internal_build}"
-	}	
+	}
 }
 
 // This is our group.
