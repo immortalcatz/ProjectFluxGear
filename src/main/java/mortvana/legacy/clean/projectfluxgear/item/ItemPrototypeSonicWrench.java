@@ -19,7 +19,8 @@ import mortvana.melteddashboard.api.item.tool.wrench.EnumWrenchMode;
 import mortvana.melteddashboard.api.item.tool.wrench.IFluxGearAdvOmniwrench;
 import mortvana.melteddashboard.common.MeltedDashboardCore;
 import mortvana.melteddashboard.item.FluxGearItem;
-import mortvana.legacy.clean.wrenching.NBTWrenchingHelper;
+
+import mortvana.legacy.clean.projectfluxgear.util.helpers.WrenchingHelper;
 import pneumaticCraft.api.block.IPneumaticWrenchable;
 
 /*
@@ -111,7 +112,7 @@ public class ItemPrototypeSonicWrench extends FluxGearItem implements IFluxGearA
 	/* IWrenchable (IndustrialCraft), IDismantleable (CoFH Mods), IFlowWrench (Flowstone Energy), Screwdriverable (RotaryCraft) and Rotation Handling*/
 	@Override
 	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int hitSide, float hitX, float hitY, float hitZ) {
-		return NBTWrenchingHelper.delegateWrenching(stack, player, world, x, y, z, hitSide);
+		return WrenchingHelper.delegateWrenching(stack, player, world, x, y, z, hitSide);
 	}
 
 	/* PneumaticCraft Drone Compat */
