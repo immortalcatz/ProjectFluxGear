@@ -1,5 +1,6 @@
 package mortvana.legacy.errored.weirdscience;
 
+import mortvana.projectfluxgear.core.common.ProjectFluxGear;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,7 +11,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
-import mortvana.legacy.errored.core.ProjectFluxGear;
 import mortvana.legacy.clean.weirdscience.block.tile.TileEntityBloodDynamo;
 import mortvana.legacy.clean.weirdscience.util.block.tile.BlockMetaTank;
 import tconstruct.smeltery.TinkerSmeltery;

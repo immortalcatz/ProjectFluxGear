@@ -20,6 +20,7 @@ import java.util.Random;
 import static mortvana.projectfluxgear.library.FluxGearLibrary.*;
 
 public class BlockDecorStone extends Block {
+
     public IIcon[] icons;
     public float[] hardness;
     public float[] resistance;
@@ -27,6 +28,7 @@ public class BlockDecorStone extends Block {
     Block dropBlock;
 
     public String overlayType;
+
     @SideOnly(Side.CLIENT)
     public IIcon overlayTexture;
 

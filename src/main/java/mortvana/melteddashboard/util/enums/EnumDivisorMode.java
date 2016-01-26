@@ -1,5 +1,6 @@
-package mortvana.projectfluxgear.util.enums;
+package mortvana.melteddashboard.util.enums;
 
+@Deprecated
 public enum EnumDivisorMode {
 	SCIENTIFIC,
 	FACTORIAL,

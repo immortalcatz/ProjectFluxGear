@@ -1,4 +1,4 @@
-package mortvana.legacy.clean.fluxgeartweaks.block.tileentity;
+package mortvana.legacy.clean.mechanicsutilities.block.tile;
 
 import java.util.HashSet;
 import java.util.Random;

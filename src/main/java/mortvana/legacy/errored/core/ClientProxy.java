@@ -1,7 +1,6 @@
 package mortvana.legacy.errored.core;
 
 import com.google.common.collect.Lists;
-import mortvana.legacy.clean.morttech.client.render.RenderCrank;
 import mortvana.legacy.clean.thaumicrevelations.entity.EntityPurity;
 
 import mortvana.projectfluxgear.thaumic.client.render.RenderPurity;
@@ -18,7 +17,6 @@ import mortvana.legacy.errored.morttech.MTControls;
 import mortvana.legacy.errored.morttech.ClientTickHandler;
 import mortvana.legacy.clean.morttech.util.handlers.MTKeyHandler;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 
@@ -51,7 +49,6 @@ public class ClientProxy extends CommonProxy {
 
 	public static int renderPass;
 	public static int dualPassCubeID;
-	public static int wardedChestID = -1;
 
 	public static final TRParticle PARTICLE_HANDLER = new TRParticle();
 

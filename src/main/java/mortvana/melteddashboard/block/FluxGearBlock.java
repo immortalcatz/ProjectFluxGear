@@ -167,15 +167,21 @@ public class FluxGearBlock extends Block {
 	 * @param type     Use a default type for ease of use.
 	 */
 	public FluxGearBlock(Material material, CreativeTabs tab, EnumBlockType type, String[] names, float[] hardness, float[] resistance, int[] light, String textureLocation) {
-		this(material, tab, type);
-
-		this.names = names;
-		textures = names;
-		blockHardness = hardness;
-		blastResistance = resistance;
-		blockLight = light;
-		this.textureLocation = textureLocation;
+		this(material, tab, type, names, names, hardness, resistance, light, textureLocation);
 	}
+
+    /**
+     * The only way, currently, to initialize a block with metadata things and automatic texture registration.
+     * Uses common for a type defaults.
+     *
+     * @param material The material of the block.
+     * @param tab      The creative tab the block is under.
+     * @param type     Use a default type for ease of use.
+     */
+    @Deprecated
+    public FluxGearBlock(Material material, CreativeTabs tab, EnumBlockType type, String[] names, IIcon[] dummy, float[] hardness, float[] resistance, int[] light, String textureLocation) {
+        this(material, tab, type, names, names, hardness, resistance, light, textureLocation);
+    }
 
 	//public FluxGearBlock(Material material, CreativeTabs tab, int metaBlocks, float blockHardness, float blockResistance,
 	//                     List<Boolean> canSpawn, List<Boolean> beaconBase, List<String> names, List<Float> hardness, List<Float> resistance,

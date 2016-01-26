@@ -15,9 +15,7 @@ import mortvana.legacy.errored.core.ProjectFluxGear;
 
 public class MessageBase {
 	int id;
-	public int x;
-	public int y;
-	public int z;
+	public int x, y, z;
 	public int meta;
 
 	public MessageBase(int id, int posX, int posY, int posZ, int meta) {

@@ -1,6 +1,4 @@
-package mortvana.legacy.errored.thaumicrevelations;
-
-import mortvana.projectfluxgear.library.*;
+package mortvana.legacy.clean.thaumicrevelations.item;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,8 +6,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-
-import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
 
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -78,7 +74,7 @@ public class ItemFocusIllumination extends ItemFocusBasic {
 				if (mop.sideHit == 5) {
 					x++;
 				}
-				world.setBlock(x, y, z, ThaumicContent.blockWitor, 0, 2); //TODO: Modify reference to our fake air
+				world.setBlock(x, y, z, blockFakeAir, 0, 2);
 			}
 		}
 		player.swingItem();

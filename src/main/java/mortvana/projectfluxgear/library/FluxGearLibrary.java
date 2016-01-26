@@ -86,6 +86,7 @@ public class FluxGearLibrary {
 
 
 	/** CREATIVE TABS **/
+    public static CreativeTabs debugTab;
 	public static CreativeTabs dynMaterialTab;
 	public static CreativeTabs componentsTab;
 	public static CreativeTabs equipmentTab;
@@ -94,6 +95,7 @@ public class FluxGearLibrary {
 
 	/** BLOCKS **/
 	public static Block blockThaumicPlant;
+    public static Block blockFakeAir;
 
 
 	/** ITEMS **/

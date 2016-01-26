@@ -2,9 +2,7 @@ package mortvana.legacy.errored.crystalclimate;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
-import java.util.Random;
 
-import mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -16,7 +14,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import mortvana.legacy.clean.crystalclimate.block.tile.CrystalLogic;
 import mortvana.legacy.dependent.firstdegree.crystalclimate.common.CrystalClimate;
 
-import static mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper.RANDOM;
+import static mortvana.melteddashboard.util.helpers.science.MathHelper.RANDOM;
 
 public class RedstoneAggregator extends TileEntity {
 	short currentTime;
@@ -81,7 +79,7 @@ public class RedstoneAggregator extends TileEntity {
 		}
 	}
 
-	/*void updateNearbyClients() {
+	void updateNearbyClients() {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
 		DataOutputStream outputStream = new DataOutputStream(bos);
 		try {
@@ -100,7 +98,7 @@ public class RedstoneAggregator extends TileEntity {
 		packet.length = bos.size();
 
 		PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.dimensionId, packet);
-	}*/
+	}
 
 	boolean findSugarInLayer(int range) {
 		for (int x = -range; x <= range; x++) {

@@ -7,7 +7,6 @@ import net.minecraft.entity.passive.*;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-import mortvana.melteddashboard.util.helpers.ServerHelper;
 import thaumcraft.api.entities.ITaintedMob;
 import thaumcraft.common.entities.monster.*;
 
@@ -24,7 +23,7 @@ public class PurityHelper {
 	public static void purifyEntity(Entity toPurify) {
 		if (toPurify != null) {
 			World world = toPurify.worldObj;
-			if (isTainted(toPurify) && ServerHelper.isServerWorld(world)) {
+			if (isTainted(toPurify) && !world.isRemote) {
 				Entity purified = getPureState(toPurify);
 				purified.setPositionAndRotation(toPurify.posX, toPurify.posY, toPurify.posZ, toPurify.rotationYaw, toPurify.rotationPitch);
 				toPurify.setDead();

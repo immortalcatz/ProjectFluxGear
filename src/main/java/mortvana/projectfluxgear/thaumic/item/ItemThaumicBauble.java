@@ -12,12 +12,13 @@ public class ItemThaumicBauble extends FluxGearItemBauble {
 
 	public ItemThaumicBauble() {
 		super("fluxgear", FluxGearLibrary.thaumicRevelationsTab);
+        setFolder("/baubles");
 	}
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
 		if (itemstack.getMetadata() == 1) {
-			world.playSoundAtEntity(player, "trevelations:abderp", 1, 1);
+			world.playSoundAtEntity(player, "fluxgear:abderp", 1, 1);
 		}
 		return super.onItemRightClick(itemstack, world, player);
 	}

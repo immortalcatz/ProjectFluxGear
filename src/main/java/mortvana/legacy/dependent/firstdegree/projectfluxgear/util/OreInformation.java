@@ -1,7 +1,7 @@
 package mortvana.legacy.dependent.firstdegree.projectfluxgear.util;
 
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
-import mortvana.legacy.errored.projectfluxgear.BlockInformation;
+import mortvana.legacy.dependent.seconddegree.projectfluxgear.util.BlockInformation;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;

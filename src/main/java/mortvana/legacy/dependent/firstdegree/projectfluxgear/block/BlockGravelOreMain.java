@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import mortvana.legacy.clean.core.util.block.FallingBlockFluxGear;
-import mortvana.legacy.errored.projectfluxgear.BlockInformation;
+import mortvana.legacy.dependent.seconddegree.projectfluxgear.util.BlockInformation;
 
 import mortvana.melteddashboard.util.enums.EnumBlockType;
 

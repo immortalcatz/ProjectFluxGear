@@ -1,9 +1,7 @@
 package mortvana.legacy.errored.morttweaks.common;
 
 import java.util.Iterator;
-import java.util.Random;
 
-import mortvana.melteddashboard.util.repack.mortvana.science.math.MathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.*;
 import net.minecraft.entity.item.*;
@@ -19,6 +17,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.event.entity.living.*;
+
+import static mortvana.melteddashboard.util.helpers.science.MathHelper.RANDOM;
 
 public class CommonProxy {
 
@@ -46,8 +46,6 @@ public class CommonProxy {
         }
     }
 
-	Random random = MathHelper.RANDOM;
-
 	@SubscribeEvent
 	public void onLivingDrop(LivingDropsEvent event) {
 		if (!(event.entityLiving == null) || !event.entity.worldObj.isRemote) {
@@ -55,7 +53,7 @@ public class CommonProxy {
 			if (MortTweaks.leather && living instanceof EntityCow) {
 				addDrops(event, new ItemStack(Items.leather));
 			} else if (MortTweaks.feathers && living instanceof EntityChicken) {
-				addDrops(event, new ItemStack(Items.feather, (random.nextInt(5) + random.nextInt(1 + event.lootingLevel) + random.nextInt(1 + event.lootingLevel) + 1)));
+				addDrops(event, new ItemStack(Items.feather, (RANDOM.nextInt(5) + RANDOM.nextInt(1 + event.lootingLevel) + RANDOM.nextInt(1 + event.lootingLevel) + 1)));
 			} else if (living instanceof EntityEnderman) {
 				Block block = ((EntityEnderman) living).getCarriedBlock();
 				if (block != null) {
@@ -63,7 +61,7 @@ public class CommonProxy {
 				}
 			} else if (MortTweaks.animalBones && living instanceof EntityAnimal) {
 				if (living.worldObj.difficultySetting.ordinal() == 0) {
-					addDrops(event, new ItemStack(Items.bone, (random.nextInt(3) + random.nextInt(1 + event.lootingLevel) + 1)));
+					addDrops(event, new ItemStack(Items.bone, (RANDOM.nextInt(3) + RANDOM.nextInt(1 + event.lootingLevel) + 1)));
 				}
 			} else if (MortTweaks.fleshToFeathers && event.entityLiving instanceof EntityZombie) {
 				Iterator iter = event.drops.iterator();
@@ -73,8 +71,8 @@ public class CommonProxy {
 						iter.remove();
 					}
 				}
-				if (random.nextInt(3) == 0) {
-					int amount = random.nextInt(3) + random.nextInt(event.lootingLevel + 1);
+				if (RANDOM.nextInt(3) == 0) {
+					int amount = RANDOM.nextInt(3) + RANDOM.nextInt(event.lootingLevel + 1);
 					if (amount > 0) {
 						event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, new ItemStack(Items.feather, amount)));
 					}
@@ -116,7 +114,7 @@ public class CommonProxy {
 	public void onLivingSpawn(LivingSpawnEvent.SpecialSpawn event) {
 		if (MortTweaks.mounts && !event.world.isRemote) {
 			EntityLivingBase living = event.entityLiving;
-			if (living.getClass() == EntitySpider.class && random.nextInt(100) == 0) {
+			if (living.getClass() == EntitySpider.class && RANDOM.nextInt(100) == 0) {
 				EntityCreeper creeper = new EntityCreeper(living.worldObj);
 				spawnEntityLiving(living.posX, living.posY + 1, living.posZ, creeper, living.worldObj);
 				if (living.riddenByEntity != null) {
@@ -125,10 +123,10 @@ public class CommonProxy {
 					creeper.mountEntity(living);
 				}
 
-				EntityXPOrb orb = new EntityXPOrb(living.worldObj, living.posX, living.posY, living.posZ, random.nextInt(20) + 20);
+				EntityXPOrb orb = new EntityXPOrb(living.worldObj, living.posX, living.posY, living.posZ, RANDOM.nextInt(20) + 20);
 				orb.mountEntity(creeper);
 			} else if (living.getClass() == EntitySlime.class) {
-				if (random.nextInt(10) == 0) {
+				if (RANDOM.nextInt(10) == 0) {
 					attachSlime(living, ((EntitySlime) living).getSlimeSize() - 1);
 				}
 			}
@@ -136,7 +134,7 @@ public class CommonProxy {
 	}
 
 	private void attachSlime(EntityLivingBase living, int size) {
-		if (random.nextBoolean()) {
+		if (RANDOM.nextBoolean()) {
 			EntitySlime slime = new EntitySlime(living.worldObj);
 			slime.setSlimeSize(size);
 

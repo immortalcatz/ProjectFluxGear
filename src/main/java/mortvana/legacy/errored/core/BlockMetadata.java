@@ -120,19 +120,6 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 		}
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	public static class TileEntityMetadata extends TileEntity {
 
 		protected int meta;

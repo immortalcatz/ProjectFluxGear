@@ -36,6 +36,7 @@ public class FluxGearItem extends Item {
 
 	public boolean hasTextures;
 	public String modName = "fluxgear";
+    public String folder = "";
 	public boolean registryItem = false;
 
 	public FluxGearItem() {
@@ -157,7 +158,7 @@ public class FluxGearItem extends Item {
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
 		int meta = stack.getMetadata();
-		return "item." + modName + (itemMap.containsKey(meta) ? "." + itemMap.get(meta).name : ".invalid");
+		return "item." + modName + folder + (itemMap.containsKey(meta) ? "." + itemMap.get(meta).name : ".invalid");
 	}
 
 	@Override
@@ -204,6 +205,11 @@ public class FluxGearItem extends Item {
 		this.hasTextures = hasTextures;
 		return this;
 	}
+
+    public FluxGearItem setFolder(String folder) {
+        this.folder = folder;
+        return this;
+    }
 
 	@Override
 	@SideOnly(Side.CLIENT)

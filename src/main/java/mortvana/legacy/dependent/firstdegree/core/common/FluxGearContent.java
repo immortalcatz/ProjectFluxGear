@@ -2,6 +2,11 @@ package mortvana.legacy.dependent.firstdegree.core.common;
 
 import java.util.*;
 
+import mortvana.legacy.dependent.seconddegree.projectfluxgear.block.BlockAlloyAux;
+import mortvana.legacy.dependent.seconddegree.projectfluxgear.util.BlockInformation;
+import mortvana.projectfluxgear.core.block.BlockFakeAir;
+import mortvana.projectfluxgear.core.common.ProjectFluxGear;
+import mortvana.melteddashboard.util.helpers.AccelerationHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.material.Material;
@@ -37,7 +42,7 @@ import mortvana.projectfluxgear.thaumic.augments.*;
 import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;
 import mortvana.projectfluxgear.thaumic.item.ItemThaumicBauble;
 import mortvana.projectfluxgear.tinkers.modifiers.ActiveToolModFeedback;
-import mortvana.projectfluxgear.util.helpers.TweakHelper;
+import mortvana.melteddashboard.util.helpers.TweakHelper;
 
 import mekanism.api.recipe.RecipeHelper;
 import mortvana.legacy.clean.core.common.FluxGearConfig;
@@ -48,8 +53,8 @@ import mortvana.legacy.clean.core.util.helpers.ItemHelper;
 import mortvana.legacy.clean.core.util.helpers.MiscHelper;
 import mortvana.legacy.clean.core.util.item.BucketFluxGear;
 import mortvana.legacy.clean.core.util.item.ItemArmorRF;
-import mortvana.legacy.clean.fluxgeartweaks.block.BlockTimeyWimey;
-import mortvana.legacy.clean.fluxgeartweaks.block.tileentity.TileTimeyWimey;
+import mortvana.legacy.clean.mechanicsutilities.block.BlockTimeyWimey;
+import mortvana.legacy.clean.mechanicsutilities.block.tile.TileTimeyWimey;
 import mortvana.legacy.clean.morttech.block.BlockCrank;
 import mortvana.legacy.dependent.firstdegree.mortech.block.BlockWoodmill;
 import mortvana.legacy.clean.morttech.block.itemblock.*;
@@ -58,23 +63,13 @@ import mortvana.legacy.dependent.firstdegree.mortech.item.WrenchSonic;
 import mortvana.legacy.dependent.seconddegree.paintedstone.recipe.RecipePaintbrush;
 import mortvana.legacy.clean.projectfluxgear.item.ItemPrototypeSonicWrench;
 import mortvana.legacy.clean.thaumicrevelations.block.*;
-import mortvana.legacy.clean.thaumicrevelations.block.tile.TileWitor;
 import mortvana.legacy.clean.thaumicrevelations.entity.EntityPurity;
 import mortvana.legacy.clean.thaumicrevelations.item.*;
 import mortvana.legacy.clean.thaumicrevelations.util.WardenicChargeHelper;
-import mortvana.legacy.clean.weirdscience.block.BlockBloodDonation;
-import mortvana.legacy.clean.weirdscience.block.BlockFuelBurner;
-import mortvana.legacy.clean.weirdscience.block.fluid.BlockFluidAcid;
-import mortvana.legacy.clean.weirdscience.block.tile.TileEntityGunpowderDynamo;
-import mortvana.legacy.clean.weirdscience.util.ContentRegistry;
-import mortvana.legacy.clean.weirdscience.util.block.fluid.BlockFluidClassicWS;
-import mortvana.legacy.clean.weirdscience.util.block.fluid.BlockFluidReactive;
-import mortvana.legacy.clean.weirdscience.util.chemistry.ReactionSpec;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreAux;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.BlockGravelOreMain;
 import mortvana.legacy.dependent.firstdegree.projectfluxgear.block.fluid.BlockFluidGhastTears;
 import mortvana.legacy.dependent.firstdegree.thaumicrevelations.entity.EntityFleshProjectile;
-import mortvana.legacy.dependent.firstdegree.weirdscience.block.*;
 import mortvana.legacy.dependent.seconddegree.morttech.block.BlockMachine;
 import mortvana.legacy.dependent.seconddegree.morttech.block.BlockMortTechOre;
 import mortvana.legacy.dependent.seconddegree.morttech.item.DebuggingSpork;
@@ -84,9 +79,9 @@ import mortvana.legacy.dependent.seconddegree.thaumicrevelations.block.BlockWard
 import mortvana.legacy.dependent.seconddegree.thaumicrevelations.entity.EntityFleshGolem;
 import mortvana.legacy.dependent.seconddegree.thaumicrevelations.item.ItemWardenicArmor;
 import mortvana.legacy.errored.projectfluxgear.*;
-import mortvana.legacy.errored.thaumicrevelations.ItemFocusIllumination;
-import mortvana.legacy.errored.weirdscience.BlockBloodDyanmo;
-import mortvana.legacy.errored.weirdscience.BlockFluidSmog;
+import mortvana.legacy.clean.thaumicrevelations.item.ItemFocusIllumination;
+//import mortvana.legacy.errored.weirdscience.BlockBloodDyanmo;
+//import mortvana.legacy.errored.weirdscience.BlockFluidSmog;
 
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
@@ -117,7 +112,7 @@ public class FluxGearContent implements IFuelHandler {
         machineCraftingRecipes();
         otherCraftingRecipes();
 	    furnaceRecipes();
-	    initTimeyWimey();
+	    AccelerationHelper.initAccelerators();
     }
 
     public void postInit() {
@@ -851,8 +846,6 @@ public class FluxGearContent implements IFuelHandler {
 		GameRegistry.registerBlock(blockInfusedQuartzStair, "blockInfusedQuartzStair");
 		GameRegistry.registerBlock(blockWitor, "blockWitor");
 
-		GameRegistry.registerTileEntity(TileWitor.class, "tileWitor");
-
 		GameRegistry.registerItem(itemFocusPurity, "itemFocusPurity");
 		GameRegistry.registerItem(itemWardenSword, "itemWardenWeapon");
 		GameRegistry.registerItem(itemWardenAmulet, "thaumicBauble");
@@ -868,8 +861,8 @@ public class FluxGearContent implements IFuelHandler {
 		wardenicCrystal = FluxGearContent.itemMaterial.addItem(15001, "wardenicCrystal");
 		wardenicQuartz = FluxGearContent.itemMaterial.addItem(15002, "wardenicQuartz");
 
-		EntityRegistry.registerModEntity(EntityPurity.class, "PurityOrb", 0, mortvana.projectfluxgear.core.common.ProjectFluxGear.instance, 64, 10, true);
-		EntityRegistry.registerModEntity(EntityFleshProjectile.class, "ThrownFlesh", 1, mortvana.projectfluxgear.core.common.ProjectFluxGear.instance, 64, 3, true); //TODO
+		EntityRegistry.registerModEntity(EntityPurity.class, "PurityOrb", 0, ProjectFluxGear.instance, 64, 10, true);
+		EntityRegistry.registerModEntity(EntityFleshProjectile.class, "ThrownFlesh", 1, ProjectFluxGear.instance, 64, 3, true);
 		EntityRegistry.registerGlobalEntityID(EntityFleshGolem.class, "FleshGolem", EntityRegistry.findGlobalUniqueEntityId(), 0xE4A2A9, 0x96452E);
 
 		ThaumcraftApi.registerObjectTag(exubituraPetal, new AspectList().add(WARDEN, 1));
@@ -959,13 +952,13 @@ public class FluxGearContent implements IFuelHandler {
 	public static ItemStack wardenicCrystal;
 	public static ItemStack wardenicQuartz;
 
-	public static Block blockExubitura = new BlockPlant(); //TODO: Proper cast
+	public static Block blockExubitura = new BlockPlant();
 	public static Block blockInfusedQuartzNormal = new BlockWardenicQuartzNormal();
 	public static Block blockInfusedQuartzChiseled = new BlockWardenicQuartzChiseled();
 	public static Block blockInfusedQuartzPillar = new BlockWardenicQuartzPillar();
 	public static Block blockInfusedQuartzSlab = new BlockWardenicQuartzSlab();
 	public static Block blockInfusedQuartzStair = new BlockWardenicQuartzStairs();
-	public static Block blockWitor = new BlockWitor();
+	public static Block blockWitor = new BlockFakeAir();
 
 	/* Research */
 	public static ResearchItem researchTWarden;
@@ -2156,19 +2149,6 @@ public class FluxGearContent implements IFuelHandler {
         GameRegistry.addSmelting(blockRust, new ItemStack(Blocks.iron_block, 1, 0), 0.0F);
     }
 
-	public void initTimeyWimey() {
-		TileTimeyWimey.blacklistBlock(Blocks.air);
-
-		TileTimeyWimey.blacklistBlock(FluxGearContent.timeyWimeyTorch);
-		TileTimeyWimey.blacklistTile(TileTimeyWimey.class);
-
-		TileTimeyWimey.blacklistBlock(Blocks.water);
-		TileTimeyWimey.blacklistBlock(Blocks.flowing_water);
-
-		TileTimeyWimey.blacklistBlock(Blocks.lava);
-		TileTimeyWimey.blacklistBlock(Blocks.flowing_lava);
-	}
-
     public void aluminiumArc() {
         OreDictionary.registerOre("ingotAluminum", ingotAluminium);
         OreDictionary.registerOre("dustAluminum", dustAluminium);
@@ -3148,7 +3128,7 @@ public class FluxGearContent implements IFuelHandler {
 	}
 
     //Pile of Weird Science Legacy Code
-    public static void RegisterContent (ContentRegistry cr) {
+    /**public static void RegisterContent (ContentRegistry cr) {
         //Constants.
         final int smogDetailDefault = 8;
         //Init fluids.
@@ -3172,7 +3152,7 @@ public class FluxGearContent implements IFuelHandler {
         //Fluids used must be registered first.
         BlockFluidClassicWS acidBlock = new BlockFluidReactive(fluidAcid);
         BlockFluidClassicWS baseBlock = new BlockFluidReactive(fluidBase);
-        BlockFluidClassicWS bloodBlock = new BlockFluidClassicWS("Blood", Material.water, fluidBlood);
+        BlockFluidClassicWS bloodBlock = new BlockFluidClassicWS("Blood", Material.water, fluidBlood);**/
 
         //Ugly gas init code goes here. //TODO
         /*GasWrapper smogManager = new GasWrapper(new GasFactory() {
@@ -3185,7 +3165,7 @@ public class FluxGearContent implements IFuelHandler {
         ((BlockGasSmog) smogManager.blocks.get(0)).setBlockAcid(acidBlock); */
 
 
-	    acidBlock.setTextureName("gui:placeholderacid");
+	    /**acidBlock.setTextureName("gui:placeholderacid");
         baseBlock.setTextureName("gui:placeholderbase");
         bloodBlock.setTextureName("gui:bloodStill");
         // smogManager.setTextureName("gui:smog"); //TODO
@@ -3198,7 +3178,7 @@ public class FluxGearContent implements IFuelHandler {
         //Give fluids block IDs and icons.
         fluidAcid.setBlock(acidBlock);
         fluidBlood.setBlock(bloodBlock);
-        fluidBase.setBlock(baseBlock);
+        fluidBase.setBlock(baseBlock);**/
 
         /*if (event.getSide() == Side.CLIENT) {
             fluidAcid.setIcons(acidBlock.getIcon(0, 0));
@@ -3214,7 +3194,7 @@ public class FluxGearContent implements IFuelHandler {
         }*/ //TODO
 
         //Register normal fluid blocks
-        cr.registerBlock(acidBlock);
+        /**cr.registerBlock(acidBlock);
         cr.registerBlock(baseBlock);
         cr.registerBlock(bloodBlock);
 
@@ -3223,14 +3203,14 @@ public class FluxGearContent implements IFuelHandler {
         aluminiumSludge.harvestType = "shovel";
         aluminiumSludge.harvestLevel = 0;
         aluminiumSludge.setHardness(0.3F);
-        cr.registerBlock(aluminiumSludge);
+        cr.registerBlock(aluminiumSludge);**/
 
         /*((BlockGasSmog) smogManager.blocks.get(0)).blockRust = blockRust;
         ((BlockGasSmog) smogManager.blocks.get(0)).metaRust = 0;*/ //TODO
 
         //Init & register tile-entity-bearing blocks.
 
-        BlockNitrateEngine nitrateEngineBlock = new BlockNitrateEngine(Material.rock, "blockNitrateEngine");
+        /**BlockNitrateEngine nitrateEngineBlock = new BlockNitrateEngine(Material.rock, "blockNitrateEngine");
         //BlockNitrateEngine.setWaste(fluidSmog); //TODO
         cr.registerBlock(nitrateEngineBlock);
 
@@ -3323,12 +3303,12 @@ public class FluxGearContent implements IFuelHandler {
 
         //Register aluminum ore dissolution.
         if (aluminiumOres.size() > 0) {
-            for (ItemStack item : aluminiumOres) {
+            for (ItemStack item : aluminiumOres) {**/
                 /* Note the stack size of 5: This allows ore quintupling early-game for those willing to spend the effort and fuel
                  * to go the Ore -> Aluminosillicate Slurry -> Alum -> Dissolved Alum -> Aluminium Dust -> Aluminium Ingot path.
                  */
 	            //TODO: Maybe 2.5 Al + 2 Fe + .5 Other for Bauxite
-                ReactionSpec aluminumDissolve = new ReactionSpec(fluidAcid, item.copy(), null, new ItemStack(aluminiumSludge, 5, 0));
+                /**ReactionSpec aluminumDissolve = new ReactionSpec(fluidAcid, item.copy(), null, new ItemStack(aluminiumSludge, 5, 0));
                 aluminumDissolve.soluteMin = 1; //Should be 1 to 1
                 aluminumDissolve.soluteAffected = true;
                 aluminumDissolve.solventAffected = false;
@@ -3344,5 +3324,5 @@ public class FluxGearContent implements IFuelHandler {
                 GameRegistry.addSmelting(item, dustAshes, 0.0F);
             }
         }
-    }
+    }**/
 }

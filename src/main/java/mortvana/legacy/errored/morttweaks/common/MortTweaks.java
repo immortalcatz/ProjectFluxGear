@@ -31,18 +31,19 @@ import mortvana.melteddashboard.util.helpers.RegistryHelper;
 import mortvana.legacy.clean.morttweaks.block.BlockTweakedPortal;
 import mortvana.legacy.clean.morttweaks.item.ItemTweakedArmor;
 import mortvana.legacy.clean.morttweaks.item.ItemTweakedFlesh;
-import mortvana.legacy.clean.morttweaks.util.TweakedFoodStats;
+import mortvana.legacy.dependent.firstdegree.morttweaks.util.TweakedFoodStats;
 import mortvana.legacy.dependent.firstdegree.morttweaks.potion.TweakedPoisonStatus;
 import mortvana.legacy.errored.morttweaks.block.BlockTweakedFire;
 import mortvana.legacy.clean.morttweaks.block.BlockTweakedTNT;
-import mortvana.legacy.clean.morttweaks.block.BlockTweakedSugarCane;
-import mortvana.legacy.clean.morttweaks.entity.EntityTweakedZombie;
+import mortvana.legacy.dependent.firstdegree.morttweaks.block.BlockTweakedSugarCane;
+import mortvana.legacy.dependent.firstdegree.morttweaks.entity.EntityTweakedZombie;
 import mortvana.legacy.clean.morttweaks.item.ItemTweakedStew;
 import mortvana.legacy.errored.morttweaks.util.*;
 
 @Mod(modid = "MortTweaks", name = "MortTweaks", version = "1.0.0.0", dependencies = "after:MineFactoryReloaded")
 public class MortTweaks {
-	@SidedProxy(clientSide = "mortvana.tweaks.client.ClientProxy", serverSide = "mortvana.legacy.errored.morttweaks.common.CommonProxy")
+
+	@SidedProxy(clientSide = "mortvana.legacy.errored.morttweaks.client.ClientProxy", serverSide = "mortvana.legacy.errored.morttweaks.common.CommonProxy")
 	public static CommonProxy proxy;
 
 	/* TODO: These things:

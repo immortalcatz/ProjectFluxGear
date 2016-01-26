@@ -14,6 +14,7 @@ import mortvana.melteddashboard.registry.wrapped.ores.OreDataEntry;
 import mortvana.melteddashboard.registry.wrapped.ores.OreDataSet;
 
 public class RegistationWrapper {
+
 	public static Block registerBlock(Block block, Class<? extends FluxGearItemBlock> itemblock, String name, String[] names, int[] rarities, String unlocalizedName) {
 		return GameRegistry.registerBlock(block, itemblock, name, names, rarities, unlocalizedName);
 	}
