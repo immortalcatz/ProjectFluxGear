@@ -3,6 +3,7 @@ package mortvana.melteddashboard.util.helpers;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
@@ -10,6 +11,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 import mortvana.melteddashboard.util.helpers.science.MathHelper;
+import net.minecraftforge.fluids.IFluidBlock;
 
 public class MiscHelper {
 
@@ -65,4 +67,8 @@ public class MiscHelper {
 		}
 		return stack != null;
 	}
+
+    public static boolean isFluidBlock(Block block) {
+        return block instanceof IFluidBlock || block == Blocks.water || block == Blocks.flowing_water || block == Blocks.lava || block == Blocks.flowing_lava;
+    }
 }

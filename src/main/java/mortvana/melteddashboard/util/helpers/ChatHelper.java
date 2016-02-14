@@ -17,4 +17,8 @@ public class ChatHelper {
         player.addChatMessage(text);
         return text;
     }
+
+    public static ChatComponentText addLocalizedTextMessage(EntityPlayer player, String message) {
+        return addTextMessage(player, StringHelper.localize(message));
+    }
 }
