@@ -8,8 +8,8 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import mortvana.melteddashboard.util.helpers.science.MathHelper;
 
-import mortvana.projectfluxgear.api.item.armor.IWardenicArmor;
-import mortvana.projectfluxgear.api.item.IWardenicEquipment;
+import mortvana.melteddashboard.api.item.armor.IWardenicArmor;
+import mortvana.melteddashboard.api.item.IWardenicEquipment;
 
 public class WardenicChargeEventHandler {
 

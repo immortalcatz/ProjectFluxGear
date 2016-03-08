@@ -20,7 +20,7 @@ import mortvana.melteddashboard.util.enums.EnumArmorType;
 import mortvana.melteddashboard.util.helpers.NBTHelper;
 import mortvana.melteddashboard.util.helpers.StringHelper;
 
-import mortvana.projectfluxgear.api.item.armor.IMagitechArmor;
+import mortvana.melteddashboard.api.item.armor.IMagitechArmor;
 import mortvana.projectfluxgear.library.FluxGearLibrary;
 
 public abstract class ItemMagitechArmor extends ItemArmorFluxGear implements IMagitechArmor {
@@ -68,6 +68,7 @@ public abstract class ItemMagitechArmor extends ItemArmorFluxGear implements IMa
 			list.add(StringHelper.holdShiftForDetails());
 		} else if (StringHelper.isShiftKeyDown()) {
 			list.add(StringHelper.visDiscount(getVisDiscount(stack, player, null)));
+            //list.add(StringHelper.vfCharge(stack, player, null));
 		}
 		super.addInformation(stack, player, list, par4);
 	}
@@ -88,7 +89,7 @@ public abstract class ItemMagitechArmor extends ItemArmorFluxGear implements IMa
 
     /* IArmorApiarist */
     @Override
-    public boolean protectPlayer(EntityPlayer entityPlayer, ItemStack stack, String cause, boolean protect) {
+    public boolean protectPlayer(EntityPlayer player, ItemStack stack, String cause, boolean protect) {
         return false;
     }
 

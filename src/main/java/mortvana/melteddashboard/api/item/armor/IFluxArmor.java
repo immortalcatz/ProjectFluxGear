@@ -1,4 +1,4 @@
-package mortvana.melteddashboard.api.item;
+package mortvana.melteddashboard.api.item.armor;
 
 import net.minecraftforge.common.ISpecialArmor;
 

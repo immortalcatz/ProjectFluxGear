@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.api.data;
+package mortvana.projectfluxgear.library;
 
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;

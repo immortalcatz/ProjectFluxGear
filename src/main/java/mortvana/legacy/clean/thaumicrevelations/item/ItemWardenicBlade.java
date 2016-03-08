@@ -13,7 +13,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mortvana.melteddashboard.util.FluxGearDamageSources;
 import mortvana.melteddashboard.util.helpers.StringHelper;
 
-import mortvana.projectfluxgear.api.item.IWardenicEquipment;
+import mortvana.melteddashboard.api.item.IWardenicEquipment;
 import mortvana.projectfluxgear.library.FluxGearLibrary;
 
 import mortvana.legacy.clean.thaumicrevelations.util.WardenicChargeHelper;

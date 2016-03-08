@@ -36,7 +36,7 @@ import mortvana.melteddashboard.item.FluxGearItem;
 import mortvana.melteddashboard.util.enums.EnumArmorType;
 import mortvana.melteddashboard.util.helpers.*;
 
-import mortvana.projectfluxgear.api.data.TweakItemRegistry;
+import mortvana.projectfluxgear.library.TweakItemRegistry;
 import mortvana.projectfluxgear.immersion.item.ItemPaintbrush;
 import mortvana.projectfluxgear.thaumic.augments.*;
 import mortvana.projectfluxgear.thaumic.common.ThaumicRevelations;

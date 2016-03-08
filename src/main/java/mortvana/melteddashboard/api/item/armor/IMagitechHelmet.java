@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.api.item.armor;
+package mortvana.melteddashboard.api.item.armor;
 
 import WayofTime.alchemicalWizardry.api.alchemy.energy.IAlchemyGoggles;
 import forestry.api.core.IArmorNaturalist;

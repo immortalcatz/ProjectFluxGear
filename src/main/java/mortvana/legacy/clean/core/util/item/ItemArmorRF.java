@@ -2,7 +2,7 @@ package mortvana.legacy.clean.core.util.item;
 
 import java.util.List;
 
-import mortvana.melteddashboard.api.item.IFluxArmor;
+import mortvana.melteddashboard.api.item.armor.IFluxArmor;
 import mortvana.melteddashboard.util.helpers.EnergyHelper;
 import mortvana.melteddashboard.util.helpers.StringHelper;
 import mortvana.melteddashboard.util.helpers.science.MathHelper;

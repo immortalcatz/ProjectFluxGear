@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import mortvana.projectfluxgear.api.item.armor.IMagitechHelmet;
+import mortvana.melteddashboard.api.item.armor.IMagitechHelmet;
 
 import thaumcraft.api.aspects.Aspect;
 

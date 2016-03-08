@@ -16,7 +16,7 @@ import mortvana.melteddashboard.util.helpers.StringHelper;
 import mortvana.projectfluxgear.library.FluxGearLibrary;
 
 import mortvana.legacy.clean.core.util.item.ItemArmorFluxGear;
-import mortvana.projectfluxgear.api.item.armor.IWardenicArmor;
+import mortvana.melteddashboard.api.item.armor.IWardenicArmor;
 import mortvana.legacy.clean.thaumicrevelations.util.WardenicChargeHelper;
 import mortvana.legacy.dependent.firstdegree.core.common.FluxGearContent;
 import thaumcraft.api.IVisDiscountGear;

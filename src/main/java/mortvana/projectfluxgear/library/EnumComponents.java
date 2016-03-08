@@ -1,4 +1,4 @@
-package mortvana.projectfluxgear.api.data;
+package mortvana.projectfluxgear.library;
 
 public enum EnumComponents {
 	//Circuitry

@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBook;
 import net.minecraft.item.ItemStack;
 
-import mortvana.projectfluxgear.api.enchant.IStabilizing;
+import mortvana.melteddashboard.api.enchant.IStabilizing;
 
 import thaumcraft.api.IRepairable;
 
