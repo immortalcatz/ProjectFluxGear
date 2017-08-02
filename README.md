@@ -1,6 +1,6 @@
 #Project Flux Gear
 
-# Project Flux Gear is on hold indefinately, I hope to be able to actually get back into Minecraft once I graduate this June. -Mortvana
+# Project Flux Gear is on hold until I finish Thaumic Revelations. -Mortvana
 
 # CURRENT MINECRAFT VERSION IS: 1.7.10
 
